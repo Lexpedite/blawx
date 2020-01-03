@@ -1,0 +1,214 @@
+<head>
+    <title>Blawx - Drag and Drop Legal AI</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+  
+        #codeoutput {
+          z-index: 10;
+          background: rgba(255, 255, 255, 0.5);
+          position:absolute;
+          top: 0;
+          right: 2%;
+          width: 15%;
+          bottom: 200;
+        }
+  
+        #output {
+          z-index: 15;
+          background: rgba(255, 255, 255, 0.5);
+          position: absolute;
+          top: 0;
+          right: 30%;
+          left: 30%;
+          width: 25%;
+        }
+  
+        #blocklyArea {
+            position: absolute;
+            min-height: 100%;
+            width: 100%;
+        }
+  
+        #blaw {
+          position: absolute;
+          min-height: 100%;
+          width: 20%;
+          left: 0%;
+        }
+    </style>
+    <!--[if lte IE 6]>
+    <style type="text/css">
+        #container {
+            height: 100%;
+        }
+    </style>
+    <![endif]-->
+</head>
+<body>
+    <script src="/blockly/blockly_compressed.js"></script>
+    <script src="/blockly/javascript_compressed.js"></script>
+    <script src="/blockly/blocks_compressed.js"></script>
+    <script src="/blockly/msg/js/en.js"></script>
+    <script src="/blockly_storage.js"></script>
+    <div id="blocklyArea"></div>
+    <div id="blocklyDiv" style="position: absolute"></div>
+    <script src="blawx-blocks.js"></script>
+
+    <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+        <category name="Menu" colour="#000000">
+        <button text="Clear Workspace" callbackKey="menuClear"></button>
+        <button text="Load Workspace" callbackKey="menuLoad"></button>
+        <button text="Save Workspace" callbackKey="menuSave"></button>
+        <button text="Run Blawx Code" callbackKey="menuRunCode"></button>
+        <button text="Help" callbackKey="menuHelp"></button>
+        </category>
+        <sep></sep>
+        <category name="Facts, Rules, Queries" colour="#805ba5">
+        <block type="fact"></block>
+        <block type="rule">
+            <field name="rule_name">name</field>
+        </block>
+        <block type="query"></block>
+        <block type="override">
+            <field name="first_rule">rule name</field>
+            <field name="second_rule">rule name</field>
+        </block>
+        <block type="import_ruleset"></block>
+        </category>
+        <sep></sep>
+        <category name="Categories" colour="#a55b5b">
+        <block type="declare_type">
+            <field name="type_name">default</field>
+        </block>
+        <block type="declare_type_with_attributes">
+            <statement name="NAME">
+            <block type="attribute_declaration">
+                <field name="attribute_name">name</field>
+            </block>
+            </statement>
+        </block>
+        <block type="attribute_declaration">
+            <field name="attribute_name">name</field>
+        </block>
+        <block type="declare_type_is_type"></block>
+        </category>
+        <category name="Known Categories" custom="KNOWN_CATEGORIES" colour="#a55b5b"></category>
+        <sep></sep>
+        <category name="Data Types" colour="#5ba593">
+        <block type="boolean_datatype"></block>
+        <block type="number_datatype"></block>
+        <block type="string_datatype"></block>
+        </category>
+        <sep></sep>
+        <category name="Objects" colour="#5b5ba5">
+        <block type="entity_declaration">
+            <field name="entity_name">default</field>
+        </block>
+        <block type="entity_is_type"></block>
+        <block type="entity_identity"></block>
+        </category>
+        <category name="Known Objects" custom='KNOWN_OBJECTS' colour="#5b5ba5">
+        </category>
+        <sep></sep>
+        <category name="Known Attributes" custom="KNOWN_ATTRIBUTES" colour="#5BA65B"></category>
+        <sep></sep>
+        <category name="Data" colour="#A55B5B">
+        <block type="data_property"></block>
+        <block type="data_dictionary"></block>
+        <block type="kvp_basic"></block>
+        <block type="data_dictionary_sub"></block>
+        </category>
+        <sep></sep>
+        <category name="Logic" colour="#a55b93">
+        <block type="conjunction"></block>
+        <block type="disjunction"></block>
+        <block type="negation"></block>
+        <block type="naf_negation"></block>
+        <block type="implication">
+            <field name="implication type">implies_1</field>
+        </block>
+        <block type="quantifier">
+            <field name="quantifier_type">any</field>
+        </block>
+        <block type="comparitor">
+            <field name="comparitor">lt</field>
+        </block>
+        </category>
+        <sep></sep>
+        <category name="Variables" colour="#a5a55b">
+        <block type="variable_selector">
+            <field name="variable_selected">A</field>
+        </block>
+        <block type="assignment"></block>
+        </category>
+        <category name="Values" colour="#5ba5a5">
+        <category name="True or False">
+            <block type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+            </block>
+            </category>
+        <category name="Numbers">
+            <block type="math_number">
+            <field name="NUM">0</field>
+            </block>
+            <block type="math_operator"></block>
+            <block type="aggregate_statement"></block>
+        </category>
+        <category name="Text">
+            <block type="text">
+            <field name="TEXT"></field>
+            </block>
+        </category>
+        </category>
+    </xml>
+  
+    <script>
+        var blocklyArea = document.getElementById('blocklyArea');
+        var blocklyDiv = document.getElementById('blocklyDiv');
+        var demoWorkspace = Blockly.inject(blocklyDiv,
+            {media: '../../media/',
+            toolbox: document.getElementById('toolbox')});
+        var importWorkspace = new Blockly.Workspace();
+        var onresize = function(e) {
+        // Compute the absolute coordinates and dimensions of blocklyArea.
+        var element = blocklyArea;
+        var x = 0;
+        var y = 0;
+        do {
+            x += element.offsetLeft;
+            y += element.offsetTop;
+            element = element.offsetParent;
+        } while (element);
+        // Position blocklyDiv over blocklyArea.
+        blocklyDiv.style.left = x + 'px';
+        blocklyDiv.style.top = y + 'px';
+        blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+        blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+        Blockly.svgResize(demoWorkspace);
+        };
+        window.addEventListener('resize', onresize, false);
+        onresize();
+        Blockly.svgResize(demoWorkspace);
+        window.setTimeout(BlocklyStorage.restoreBlocks, 0);
+        BlocklyStorage.backupOnUnload();
+    </script>
+    <script src="buttons.js"></script>
+    <script src="categories.js"></script>
+    <script src="import.js"></script>
+    <script src="mutators.js"></script>
+    <script src="attributes.js"></script>
+    <div>
+      <input id="loadfile"  onchange="loadBlocksFile(this)" type="file" accept=".blawx" hidden/>
+    </div>
+    <div>
+      <input id="importfile" onchange="importBlocksFile(this)" type="file" accept=".blawx" hidden />
+    </div>
+    <div>
+        <textarea rows=2 name="output" id="output" readonly></textarea>
+    </div>
+  </body>
+  
