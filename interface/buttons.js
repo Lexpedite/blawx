@@ -7,7 +7,7 @@ runCode = function(button) {
     var main_xml_text = Blockly.Xml.domToText(main_xml);
     code += main_xml_text;
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://www.blawx.com/cgi-bin/reasoner.php", true);
+    xhttp.open("POST", "/cgi-bin/reasoner.php", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
