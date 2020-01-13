@@ -76,4 +76,18 @@ sudo mv download flora2.run
 sudo sh flora2.run
 ```
 
+### Fix XSB Installation
+For reasons that aren't clear to me the installation of XSB ended up in a tmp folder and not where Flora-2 was expecting it to be.
+I had to find the location of XSB in the /tmp folder, and then
+```
+sudo mkdir /var/Flora-2/XSB
+cd /tmp/XSB-TEMP-DIRECTORY
+sudo cp -r * /var/Flora-2/XSB
+```
+
+
 ### Change Permsissions for Flora-2
+```
+cd /var
+chmod -R 755 Flora-2
+```
