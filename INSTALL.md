@@ -11,12 +11,10 @@ reasoner.php should be in /usr/lib/cgi-bin
 All other files should be in /var/www/html
 Flora-2 is expected at /opt/Flora-2/
 
-## Installation Process (in progress)
+## Interface Installation
 This process was tested on Windows 10 using Ubuntu 18.04 under WSL.
 After installing WSL and Ubuntu, run the Ubuntu shell as administrator, and follow these steps.
 The steps below assume that you are logged in as a non-root user.
-
-### Install Python3
 
 ### Install Apache
 `sudo apt-get apache2 install`
@@ -31,19 +29,6 @@ AcceptFilter http none
 
 ### Start Apache2:
 `service apache2 start`
-
-### Install NodeJS:
-`sudo apt-get install nodejs`
-
-### Install Node Package Manager
-`sudo apt-get install npm`
-
-### Install Blockly (Node):
-```
-sudo npm install -g blockly
-NODE_PATH=/usr/local/lib/node_modules
-export NODE_PATH
-```
 
 ### Install Blockly:
 ```
@@ -68,6 +53,31 @@ sudo cp json2f2.py /var/www/html
 At this point you should be able to access the Blawx interface at http://localhost/blawx.html, and all of the functionality
 should work except for the Run Blawx Code command.
 
+## Install Blawx Reasoner (Not currently working)
+
+*NB DO NOT ATTEMPT TO FOLLOW THESE INSTRUCTIONS*
+
+I'm having problems getting the Flora-2 installation to play nicely in Ubuntu under Windows. Have not yet been able to pinpoint the problem. So for the time being, the interface is being pointed to the reasoner at blawx.com. When I have a working set of install instructions for a local reasoner, I'll update these instructions.
+
+### Install NodeJS:
+`sudo apt-get install nodejs`
+
+### Install Python3
+
+### Install Node Package Manager
+`sudo apt-get install npm`
+
+### Install Blockly (Node):
+```
+sudo npm install -g blockly
+NODE_PATH=/usr/local/lib/node_modules
+export NODE_PATH
+```
+
+### Install RLWrap
+`sudo apt-get install rlwrap`
+
+
 ### Install Flora-2
 ```
 cd /var
@@ -84,7 +94,6 @@ sudo mkdir /var/Flora-2/XSB
 cd /tmp/XSB-TEMP-DIRECTORY
 sudo cp -r * /var/Flora-2/XSB
 ```
-
 
 ### Change Permsissions for Flora-2
 ```
