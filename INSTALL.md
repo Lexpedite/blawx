@@ -36,6 +36,9 @@ sudo ln -s ../mods-available/cgi.load
 Install the PHP Module for Apache:
 `sudo apt-get install libapache2-mod-php`
 
+Update /etc/apache2/envvars with the line:
+`export NODE_PATH=/usr/local/lib/node_modules`
+
 ### Start Apache2:
 `service apache2 start`
 
