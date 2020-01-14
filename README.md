@@ -3,7 +3,7 @@ A user-friendly web-based tool for Rules as Code written by Jason Morris of Roun
 
 Blocks + law = Blawx
 
-![Blawx Front End Screenshot](blawx_screenshot.png)
+![Blawx Front End Screenshot](blawx_screenshot.PNG)
 
 ## What is "Rules as Code"
 Rules as Code is the idea that if you write rules in a programming langauge at the same time you write them in a natural language,
