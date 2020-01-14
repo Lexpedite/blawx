@@ -33,6 +33,9 @@ cd /etc/apache2/mods-enabled
 sudo ln -s ../mods-available/cgi.load
 ```
 
+Install the PHP Module for Apache:
+`sudo apt-get install libapache2-mod-php`
+
 ### Start Apache2:
 `service apache2 start`
 
