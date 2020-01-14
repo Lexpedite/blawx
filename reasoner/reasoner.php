@@ -91,7 +91,7 @@ $streams = array(
 	2 => array("pipe", "w")
 );
 
-$flora = proc_open('/opt/Flora-2/flora2/runflora --noprompt', $streams, $pipes);
+$flora = proc_open('/var/Flora-2/flora2/runflora --noprompt', $streams, $pipes);
 sleep(1);
 if (is_resource($flora)) {
 	stream_set_blocking($pipes[1],0);
