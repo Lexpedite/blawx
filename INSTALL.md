@@ -53,11 +53,9 @@ sudo cp json2f2.py /var/www/html
 At this point you should be able to access the Blawx interface at http://localhost/blawx.html, and all of the functionality
 should work except for the Run Blawx Code command.
 
-## Install Blawx Reasoner (Not currently working)
+## Install Blawx Reasoner
 
-*NB DO NOT ATTEMPT TO FOLLOW THESE INSTRUCTIONS*
-
-I'm having problems getting the Flora-2 installation to play nicely in Ubuntu under Windows. Have not yet been able to pinpoint the problem. So for the time being, the interface is being pointed to the reasoner at blawx.com. When I have a working set of install instructions for a local reasoner, I'll update these instructions.
+*From here down the installation instructions are a work in progress.*
 
 ### Install NodeJS:
 `sudo apt-get install nodejs`
@@ -74,10 +72,6 @@ NODE_PATH=/usr/local/lib/node_modules
 export NODE_PATH
 ```
 
-### Install RLWrap
-`sudo apt-get install rlwrap`
-
-
 ### Install Flora-2
 ```
 cd /var
@@ -86,17 +80,14 @@ sudo mv download flora2.run
 sudo sh flora2.run
 ```
 
-### Fix XSB Installation
-For reasons that aren't clear to me the installation of XSB ended up in a tmp folder and not where Flora-2 was expecting it to be.
-I had to find the location of XSB in the /tmp folder, and then
+Once this was done, the XSB installation was in the wrong folder. I ran the manual installation steps from its manual.
+It then had to be moved to `/var/Flora-2/XSB` manually.
+I created a .flora_paths file in `/var/Flora-2/flora2` containing
 ```
-sudo mkdir /var/Flora-2/XSB
-cd /tmp/XSB-TEMP-DIRECTORY
-sudo cp -r * /var/Flora-2/XSB
+FLORADIR="/var/Flora-2/flora2"
+PROLOG="/var/Flora-2/XSB/bin/xsb"
 ```
 
-### Change Permsissions for Flora-2
-```
-cd /var
-chmod -R 755 Flora-2
-```
+Then I ran the manual installation steps from the Flora-2 manual.
+
+There may have also been permission problems along the way.
