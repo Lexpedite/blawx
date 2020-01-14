@@ -13,13 +13,15 @@ languages for encoding rules are declarative logic programming languages, but mo
 ## What is Blawx?
 Blawx is a friendly web-based tool for encoding and testing and using rules using declarative logic.
 
-It has a front-end part and a back-end part. The front-end part is a web app based on Google's Blockly framework for visual
+It has a front-end part and a back-end part. The front-end part is a web app based on 
+[Google's Blockly](https://github.com/google/blockly) framework for visual
 programming environments.
 
 The back-end is an Apache server which hosts the front end, but also provides an API over which the front end and other applications
 can send requests and get answers.
 
-The server takes the request from the front end, converts it to ErgoLite code, and then sends that code to an ErgoLite reasoner
+The server takes the request from the front end, converts it to [ErgoLite](http://flora.sourceforge.net/) code, and then 
+sends that code to an ErgoLite reasoner
 running on the webserver and returns
 the results to the Blawx front end, or whichever other app made the request.
 
