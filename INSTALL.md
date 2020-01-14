@@ -80,8 +80,6 @@ should work except for the Run Blawx Code command.
 ### Install Blockly (Node):
 ```
 sudo npm install -g blockly
-NODE_PATH=/usr/local/lib/node_modules
-export NODE_PATH
 ```
 
 ### Install xmlhttprequest
