@@ -27,6 +27,12 @@ AcceptFilter https none
 AcceptFilter http none
 ```
 
+Enable the CGI module for Apache:
+```
+cd /etc/apache2/mods-enabled
+sudo ln -s ../mods-available/cgi.load
+```
+
 ### Start Apache2:
 `service apache2 start`
 
