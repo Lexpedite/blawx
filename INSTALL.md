@@ -9,7 +9,7 @@ Blawx's front end is javascript, html, and needs access to the front-end Blockly
 
 reasoner.php should be in /usr/lib/cgi-bin
 All other files should be in /var/www/html
-Flora-2 is expected at /opt/Flora-2/
+Flora-2 is expected at /var/Flora-2/
 
 ## Interface Installation
 This process was tested on Windows 10 using Ubuntu 18.04 under WSL.
