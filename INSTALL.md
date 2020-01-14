@@ -81,6 +81,10 @@ NODE_PATH=/usr/local/lib/node_modules
 export NODE_PATH
 ```
 
+### Install xmlhttprequest
+`sudo npm install xmlhttprequest`
+
+
 ### Install Flora-2
 ```
 cd /var
