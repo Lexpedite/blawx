@@ -6,7 +6,7 @@ and the answer to your question will be added to this file, or join the Slack.
 This process was tested on Windows 10 using Ubuntu 18.04 under WSL. Your mileage will vary.
 
 ## Install Apache
-`sudo apt-get apache2 install`
+`sudo apt-get install apache2`
 
 ## Configure Apache
 Add Lines to /etc/apache2/apache2.conf
