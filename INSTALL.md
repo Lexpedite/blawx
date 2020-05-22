@@ -38,7 +38,7 @@ Allow Apache2 to run Flora-2 as root by adding the following line to /etc/sudoer
 This is a bit of a hack to deal with a permission problem I have not been able to sort out with Flora-2, yet.
 
 ## Start Apache2:
-`service apache2 start`
+`sudo service apache2 start`
 
 ## Install Blockly:
 ```
