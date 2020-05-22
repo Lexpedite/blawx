@@ -32,10 +32,8 @@ Update /etc/apache2/envvars with the line:
 
 `export NODE_PATH=/usr/local/lib/node_modules`
 
-Allow Apache2 to run Flora-2 as root by adding the following line to /etc/sudoers:
+Allow Apache2 to run Flora-2 as root by adding the following line to /etc/sudoers by running `visudo`:
 `www-data ALL=(root) NOPASSWD: /var/Flora-2/flora2/runflora`
-
-This is a bit of a hack to deal with a permission problem I have not been able to sort out with Flora-2, yet.
 
 ## Start Apache2:
 `sudo service apache2 start`
@@ -80,16 +78,8 @@ sudo npm install -g blockly
 `sudo npm install -g xmlhttprequest`
 
 ## Install Flora-2
-Find the linux download for version 2.0 Flora-2 from the [Flora-2 Downloads Page](http://flora.sourceforge.net/download.html),
+Download the linux package for version 2.0 Flora-2 from the [Flora-2 Downloads Page](http://flora.sourceforge.net/download.html),
 and place it in /var, giving it the name flora2.run, and run
 `sudo sh flora2.run`
-
-Flora-2 needs to be able to create files in the home directory of the user running the app, so make www-data the group owner
-of the /var/www folder and change its permissions:
-
-```
-sudo chgrp -hR www-data /var/www
-sudo chmod 775 /var/www
-```
 
 You should now be able to go to http://localhost/blawx.html, create code, and execute the "Run Blawx Code" command and get an answer from your server.
