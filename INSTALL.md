@@ -43,7 +43,7 @@ This is a bit of a hack to deal with a permission problem I have not been able t
 ## Install Blockly:
 ```
 cd /var/www/html
-git clone https://github.com/google/blockly blockly
+sudo git clone https://github.com/google/blockly blockly
 sudo cp -r ./blockly/media ./media
 ```
 
