@@ -99,12 +99,10 @@ if (is_resource($flora)) {
 	stream_set_blocking($pipes[1],0);
 	stream_set_blocking($pipes[2],0);
 	// I want to send the initial commands.
-	fwrite($pipes[0], ":- symbol_context.\n");
-	sleep(1);
 	fwrite($pipes[0], "expert{on}.\n");
 	sleep(1);
 	fwrite($pipes[0], "['".$tmpflrfile."'].\n");
-	sleep(2);
+	sleep(5);
 	stream_get_contents($pipes[1],1024);
 	stream_get_contents($pipes[2],1024);
 	// I want to send the query
