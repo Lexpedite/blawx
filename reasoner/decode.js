@@ -1,4 +1,4 @@
-var Blockly = require('/usr/lib/node_modules/blockly');
+var Blockly = require('/usr/local/lib/node_modules/blockly');
 
 Blockly.Blocks['declare_type'] = {
     init: function() {
@@ -1502,7 +1502,7 @@ Blockly.Blocks['declare_type'] = {
 
 var workspace = new Blockly.Workspace();
 
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var XMLHttpRequest = require("/usr/local/lib/node_modules/xmlhttprequest").XMLHttpRequest;
 var fs = require('fs');
 var data = "";
 var importDictionary = {};
