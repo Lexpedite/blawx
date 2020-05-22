@@ -3,7 +3,7 @@
 The repository is in a very early state. If you need assistance with installation, open an issue in GitHub,
 and the answer to your question will be added to this file, or join the Slack.
 
-This process was tested on Windows 10 using Ubuntu 18.04 under WSL. Your mileage will vary.
+This process was tested on Windows 10 using Ubuntu 20.04 under WSL2. Your mileage will vary.
 
 ## Install Apache
 `sudo apt-get install apache2`
@@ -83,16 +83,5 @@ sudo npm install -g blockly
 Find the linux download for version 2.0 Flora-2 from the [Flora-2 Downloads Page](http://flora.sourceforge.net/download.html),
 and place it in /var, giving it the name flora2.run, and run
 `sudo sh flora2.run`
-
-On my installation, the installation process did not complete properly, and I had to take the following steps:
-Find the XSB folder created in /tmp. Go there, and then follow the instructions for making and building XSB from the XSB manual.
-Copy the XSB temp folder to /var/Flora-2/XSB.
-Then follow the instructions for making and building Flora-2 from the Flora-2 manual.
-
-Created a .flora_paths file in `/var/Flora-2/flora2` containing
-```
-FLORADIR="/var/Flora-2/flora2"
-PROLOG="/var/Flora-2/XSB/bin/xsb"
-```
 
 You should now be able to go to http://localhost/blawx.html, create code, and execute the "Run Blawx Code" command and get an answer from your server.
