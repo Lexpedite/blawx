@@ -65,6 +65,7 @@ should work except for the "Run Blawx Code" command.
 
 ## Install NodeJS:
 `sudo apt-get update`
+
 `sudo apt-get install nodejs`
 
 ## Install Node Package Manager
