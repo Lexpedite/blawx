@@ -80,7 +80,8 @@ sudo npm install -g blockly
 `sudo npm install -g xmlhttprequest`
 
 ## Install Flora-2
-Find the linux binary download for Flora-2, and place it in /var, giving it the name flora2.run, and run
+Find the linux download for version 2.0 Flora-2 from the [Flora-2 Downloads Page](http://flora.sourceforge.net/download.html),
+and place it in /var, giving it the name flora2.run, and run
 `sudo sh flora2.run`
 
 On my installation, the installation process did not complete properly, and I had to take the following steps:
