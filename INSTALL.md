@@ -84,4 +84,12 @@ Find the linux download for version 2.0 Flora-2 from the [Flora-2 Downloads Page
 and place it in /var, giving it the name flora2.run, and run
 `sudo sh flora2.run`
 
+Flora-2 needs to be able to create files in the home directory of the user running the app, so make www-data the group owner
+of the /var/www folder and change its permissions:
+
+```
+sudo chgrp -hR www-data /var/www
+sudo chmod 775 /var/www
+```
+
 You should now be able to go to http://localhost/blawx.html, create code, and execute the "Run Blawx Code" command and get an answer from your server.
