@@ -1395,7 +1395,7 @@ Blockly.Blocks['calculation'] = {
     var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
     var value_calculation = Blockly.JavaScript.valueToCode(block, 'calculation', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = 'NOT IMPLEMENTED;\n';
+    var code = value_variable + " \\is " + value_calculation;
     return code;
   };
   
