@@ -348,28 +348,20 @@ Blockly.Blocks['declare_type'] = {
                         "name": "implication type",
                         "options": [
                             [
-                                "-->",
+                                "==>",
                                 "implies_1"
                             ],
                             [
-                                "==>",
+                                "~~>",
                                 "implies_2"
                             ],
                             [
-                                "~~>",
-                                "implies_3"
-                            ],
-                            [
-                                "<-->",
+                                "<==>",
                                 "bdimplies_1"
                             ],
                             [
-                                "<==>",
-                                "bdimplies_2"
-                            ],
-                            [
                                 "<~~>",
-                                "bdimplies_3"
+                                "bdimplies_2"
                             ]
                         ]
                     },
