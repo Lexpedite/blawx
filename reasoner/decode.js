@@ -349,30 +349,22 @@ Blockly.Blocks['declare_type'] = {
                           "type": "field_dropdown",
                           "name": "implication type",
                           "options": [
-                              [
-                                  "-->",
-                                  "implies_1"
-                              ],
-                              [
-                                  "==>",
-                                  "implies_2"
-                              ],
-                              [
-                                  "~~>",
-                                  "implies_3"
-                              ],
-                              [
-                                  "<-->",
-                                  "bdimplies_1"
-                              ],
-                              [
-                                  "<==>",
-                                  "bdimplies_2"
-                              ],
-                              [
-                                  "<~~>",
-                                  "bdimplies_3"
-                              ]
+                            [
+                              "==>",
+                              "implies_1"
+                            ],
+                            [
+                                "~~>",
+                                "implies_2"
+                            ],
+                            [
+                                "<==>",
+                                "bdimplies_1"
+                            ],
+                            [
+                                "<~~>",
+                                "bdimplies_2"
+                            ]
                           ]
                       },
                       {
