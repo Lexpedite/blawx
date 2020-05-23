@@ -632,7 +632,7 @@ Blockly.Blocks['declare_type'] = {
                       }
                   ],
                   "inputsInline": true,
-                  "output": "ENTITY",
+                  "output": "Number",
                   "colour": 230,
                   "tooltip": "",
                   "helpUrl": ""
@@ -758,7 +758,7 @@ Blockly.Blocks['declare_type'] = {
       }
     ],
     "inputsInline": true,
-    "output": null,
+    "output": "Number",
     "colour": 230,
     "tooltip": "",
     "helpUrl": ""
@@ -954,6 +954,38 @@ Blockly.Blocks['declare_type'] = {
           )
         }
   }
+
+Blockly.Blocks['calculation'] = {
+    init: function() {
+      this.jsonInit(
+        {
+            "type": "calculation",
+            "message0": "%1 = %2 %3",
+            "args0": [
+              {
+                "type": "input_value",
+                "name": "variable",
+                "check": "ENTITY"
+              },
+              {
+                "type": "input_dummy"
+              },
+              {
+                "type": "input_value",
+                "name": "calculation",
+                "check": "Number"
+              }
+            ],
+            "inputsInline": true,
+            "previousStatement": null,
+            "nextStatement": null,
+            "colour": 230,
+            "tooltip": "The first field is a variable. The second field is a calculation using math blocks.",
+            "helpUrl": ""
+        }
+      )
+    }
+}
 
   Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
@@ -1356,6 +1388,14 @@ Blockly.Blocks['declare_type'] = {
     }
     // Add closer code
     code += "]";
+    return code;
+  };
+
+  Blockly.JavaScript['calculation'] = function(block) {
+    var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_calculation = Blockly.JavaScript.valueToCode(block, 'calculation', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'NOT IMPLEMENTED;\n';
     return code;
   };
   
