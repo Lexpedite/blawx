@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update && \
 	apt-get install -y \
 	git \
-	curl \
+	wget \
 	apache2 \
 	libapache2-mod-php \
 	nodejs \
@@ -37,10 +37,8 @@ RUN git clone https://github.com/google/blockly blockly && \
 
 WORKDIR /var
 
-COPY flora2_Pyrus_nivalis_2_0.run .
-
-RUN mv flora2_Pyrus_nivalis_2_0.run flora2.run && \
-	sh flora2.run
+RUN wget -O flora2.run \
+	https://sourceforge.net/projects/flora/files/FLORA-2/2.0%20%28Pyrus%20nivalis%29/flora2_Pyrus_nivalis_2_0.run/download
 
 CMD ["apachectl", "-D", "FOREGROUND"]
 
