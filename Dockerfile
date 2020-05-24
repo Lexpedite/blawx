@@ -38,7 +38,9 @@ RUN git clone https://github.com/google/blockly blockly && \
 WORKDIR /var
 
 RUN wget -O flora2.run \
-	https://sourceforge.net/projects/flora/files/FLORA-2/2.0%20%28Pyrus%20nivalis%29/flora2_Pyrus_nivalis_2_0.run/download
+	https://sourceforge.net/projects/flora/files/FLORA-2/2.0%20%28Pyrus%20nivalis%29/flora2_Pyrus_nivalis_2_0.run/download && \
+	sh flora2.run
+	
 
 CMD ["apachectl", "-D", "FOREGROUND"]
 
