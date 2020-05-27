@@ -13,6 +13,7 @@ While alpha, however, any version changes may cause breaking changes that may no
 * Changelog
 ### Changed
 * Remove extra implication operators ([Issue #11]())
+* Math operators and aggregate functions now report "Number" as their output type.
 
 ## [v0.2-alpha]() 2020-05-??
 ### Changed
