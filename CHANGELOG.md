@@ -17,3 +17,5 @@ While alpha, however, any version changes may cause breaking changes that may no
 ## [v0.2-alpha]() 2020-05-??
 ### Changed
 * Installation process clarified, simplified.
+### Fixed
+* Reasoner was crashing on machines with slower processors.
