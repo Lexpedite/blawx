@@ -349,30 +349,22 @@ Blockly.Blocks['declare_type'] = {
                           "type": "field_dropdown",
                           "name": "implication type",
                           "options": [
-                              [
-                                  "-->",
-                                  "implies_1"
-                              ],
-                              [
-                                  "==>",
-                                  "implies_2"
-                              ],
-                              [
-                                  "~~>",
-                                  "implies_3"
-                              ],
-                              [
-                                  "<-->",
-                                  "bdimplies_1"
-                              ],
-                              [
-                                  "<==>",
-                                  "bdimplies_2"
-                              ],
-                              [
-                                  "<~~>",
-                                  "bdimplies_3"
-                              ]
+                            [
+                              "==>",
+                              "implies_1"
+                            ],
+                            [
+                                "~~>",
+                                "implies_2"
+                            ],
+                            [
+                                "<==>",
+                                "bdimplies_1"
+                            ],
+                            [
+                                "<~~>",
+                                "bdimplies_2"
+                            ]
                           ]
                       },
                       {
@@ -640,7 +632,7 @@ Blockly.Blocks['declare_type'] = {
                       }
                   ],
                   "inputsInline": true,
-                  "output": "ENTITY",
+                  "output": "Number",
                   "colour": 230,
                   "tooltip": "",
                   "helpUrl": ""
@@ -766,7 +758,7 @@ Blockly.Blocks['declare_type'] = {
       }
     ],
     "inputsInline": true,
-    "output": null,
+    "output": "Number",
     "colour": 230,
     "tooltip": "",
     "helpUrl": ""
@@ -962,6 +954,38 @@ Blockly.Blocks['declare_type'] = {
           )
         }
   }
+
+Blockly.Blocks['calculation'] = {
+    init: function() {
+      this.jsonInit(
+        {
+            "type": "calculation",
+            "message0": "%1 = %2 %3",
+            "args0": [
+              {
+                "type": "input_value",
+                "name": "variable",
+                "check": "ENTITY"
+              },
+              {
+                "type": "input_dummy"
+              },
+              {
+                "type": "input_value",
+                "name": "calculation",
+                "check": "Number"
+              }
+            ],
+            "inputsInline": true,
+            "previousStatement": null,
+            "nextStatement": null,
+            "colour": 230,
+            "tooltip": "The first field is a variable. The second field is a calculation using math blocks.",
+            "helpUrl": ""
+        }
+      )
+    }
+}
 
   Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
@@ -1364,6 +1388,13 @@ Blockly.Blocks['declare_type'] = {
     }
     // Add closer code
     code += "]";
+    return code;
+  };
+
+  Blockly.JavaScript['calculation'] = function(block) {
+    var value_variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_calculation = Blockly.JavaScript.valueToCode(block, 'calculation', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = value_variable + " \\is " + value_calculation;
     return code;
   };
   
