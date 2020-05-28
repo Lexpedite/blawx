@@ -1,2 +1,2 @@
-* [Home](/index.html)
-* [About](/about/)
+* [Home](/blawx/)
+* [About](/blawx/about/)
