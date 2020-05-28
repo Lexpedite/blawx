@@ -1,5 +1,5 @@
 ---
-nav: site.data.nav.nav
+nav: site.data.navlist.nav
 ---
 {% include nav.html nav=page.nav %}
 
