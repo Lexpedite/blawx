@@ -1,0 +1,12 @@
+nav:
+  - title: Home
+    url: /blawx/
+  - title: Blocks
+    url: /blawx/block/
+    subnav:
+      - title: Fact
+        url: /blawx/block/fact/
+  - title: Help
+    url: /blawx/help/
+  - title: About
+    url: /blawx/about/
