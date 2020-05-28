@@ -4,6 +4,6 @@ title: "About Blawx"
 permalink: /about/
 ---
 
-{% include nav.md %}
+{% include nav.html %}
 
 # About Blawx
