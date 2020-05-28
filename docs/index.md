@@ -1,3 +1,3 @@
-{% include nav.md %}
+{% include nav.html %}
 
 # Blawx Documentation
