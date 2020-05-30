@@ -71,6 +71,8 @@ $facts = preg_replace('/^\?-.*\.$/ms','',$code);
 // in a temporary file, and have flora2 load it.
 $factshandle = fopen($tmpflrfile,"w");
 if ($code) {
+	fwrite($factshandle,':- use_argumentation_theory.'.PHP_EOL);
+	fwrite($factshandle,'\opposes(?_x[?_y->\true],?_x[?_y->\false]) :- ?_x:?_T, ?_T[|?_y=>\boolean|].'.PHP_EOL);
 	fwrite($factshandle,$facts);
 	if ($blawxdata) {
 		fwrite($factshandle,$blawxdata);
