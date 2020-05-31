@@ -27,7 +27,7 @@ the results to the Blawx front end, or whichever other app made the request.
 
 ## How Can I Try It?
 The easiest way to try Blawx is to go to www.blawx.com. The current version of Blawx is available for free at that site, and has all
-the features of this package.
+the features of this package. [Alternatively, you can run Blawx in Docker.](DOCKER.md)
 
 ## How Can I Learn More?
 Right now, most of the useful information is at www.blawx.com/learn. I hope to increase the amount of documentation in this repository
