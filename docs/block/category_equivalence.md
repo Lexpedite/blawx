@@ -1,0 +1,1 @@
+# Category Equivalence Block
