@@ -1,0 +1,31 @@
+nav:
+  - title: Home
+    url: /blawx/
+  - title: Blocks
+    url: /blawx/block/
+    subnav:
+      - title: Fact
+        url: /blawx/block/fact/
+      - title: Rule
+        url: /blawx/block/rule/
+      - title: Question
+        url: /blawx/block/question/
+      - title: Override
+        url: /blawx/block/override/
+      - title: Include
+        url: /blawx/block/include/
+  - title: Interface
+    url: /blawx/interface/
+    subnav:
+      - title: Toolbox
+        url: blawx/interface/toolbox/
+      - title: Workspace
+        url: blawx/interface/workspace/
+      - title: Trashcan
+        url: /blawx/interface/trashcan/
+      - title: Reasoner Response Window
+        url: /blawx/interface/response/
+  - title: Help
+    url: /blawx/help/
+  - title: About
+    url: /blawx/about/
