@@ -599,15 +599,15 @@ Blockly.Blocks['declare_type'] = {
                             ],
                             [
                                 "distinct count",
-                                "distinctcount"
+                                "countdistinct"
                             ],
                             [
                                 "average",
-                                "average"
+                                "avg"
                             ],
                             [
                                 "distinct average",
-                                "distinctaverage"
+                                "avgdistinct"
                             ],
                             [
                                 "sum",
@@ -615,7 +615,7 @@ Blockly.Blocks['declare_type'] = {
                             ],
                             [
                                 "distinct sum",
-                                "distinctsum"
+                                "sumdistinct"
                             ]
                         ]
                     },
@@ -626,7 +626,7 @@ Blockly.Blocks['declare_type'] = {
                     },
                     {
                         "type": "input_statement",
-                        "name": "NAME"
+                        "name": "aggregate_conditions"
                     }
                 ],
                 "inputsInline": true,
@@ -981,6 +981,37 @@ Blockly.Blocks['calculation'] = {
             "tooltip": "The first field is a variable. The second field is a calculation using math blocks.",
             "helpUrl": ""
         }
+      )
+    }
+}
+
+Blockly.Blocks['boolean_value'] = {
+    init: function() {
+      this.jsonInit(
+        {
+            "type": "boolean_value",
+            "message0": "%1",
+            "args0": [
+              {
+                "type": "field_dropdown",
+                "name": "value",
+                "options": [
+                  [
+                    "true",
+                    "true"
+                  ],
+                  [
+                    "false",
+                    "false"
+                  ]
+                ]
+              }
+            ],
+            "output": "Boolean",
+            "colour": 195,
+            "tooltip": "Returns either true or false.",
+            "helpUrl": ""
+          }
       )
     }
 }

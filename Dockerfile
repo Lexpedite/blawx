@@ -4,6 +4,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get -y update && \
 	apt-get install -y \
+	sudo \
+	python3 \
 	git \
 	wget \
 	apache2 \
@@ -26,14 +28,7 @@ RUN echo "www-data ALL=(root) NOPASSWD: /var/Flora-2/flora2/runflora" >> /etc/su
 WORKDIR /var/www/html
 
 RUN git clone https://github.com/google/blockly blockly && \
-	cp -r ./blockly/media ./media && \
-	git clone -b dev https://github.com/Blawx/blawx blawx && \
-	cd blawx/interface && \
-	cp * /var/www/html && \
-	cd ../reasoner && \
-	cp reasoner.php /usr/lib/cgi-bin && \
-	cp decode.js /var/www/html && \
-	cp json2f2.py /var/www/html
+	cp -r ./blockly/media ./media
 
 WORKDIR /var
 
@@ -42,5 +37,15 @@ RUN wget -O flora2.run \
 	sh flora2.run
 
 CMD ["apachectl", "-D", "FOREGROUND"]
+
+WORKDIR /var/www/html
+
+COPY . ./blawx
+
+COPY interface .
+
+COPY reasoner/decode.js reasoner/json2f2.py ./
+
+COPY reasoner/reasoner.php /usr/lib/cgi-bin
 
 EXPOSE 80
