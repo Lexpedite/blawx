@@ -110,7 +110,7 @@ $streams = array(
 $flora = proc_open('sudo -u root /var/Flora-2/flora2/runflora --noprompt', $streams, $pipes);
 // using sudo above is a hack to solve a permission problem that flora-2 doesn't run properly except with root
 // privileges.
-sleep(1);
+sleep(5);
 if (is_resource($flora)) {
 	stream_set_blocking($pipes[1],0);
 	stream_set_blocking($pipes[2],0);
@@ -119,7 +119,7 @@ if (is_resource($flora)) {
 		echo "setting expert mode.\n";
 	}
 	fwrite($pipes[0], "expert{on}.\n");
-	sleep(1);
+	sleep(5);
 	if ($debugmode) {
 		$stdout = stream_get_contents($pipes[1],1024);
 		$sterr = stream_get_contents($pipes[2],1024);
@@ -130,7 +130,7 @@ if (is_resource($flora)) {
 		echo "Loading data file:\n";
 	}
 	fwrite($pipes[0], "['".$tmpflrfile."'].\n");
-	sleep(5);
+	sleep(10);
 	if ($debugmode) {
 		$stdout = stream_get_contents($pipes[1],1024);
 		$sterr = stream_get_contents($pipes[2],1024);
@@ -149,7 +149,7 @@ if (is_resource($flora)) {
 	}
 	
 	fwrite($pipes[0],$queries[0]."\n");
-	sleep(1);
+	sleep(5);
 	$answer = stream_get_contents($pipes[1],1024);  // This needs to be adjusted for longer output.
 	if ($debugmode) {
 		$sterr = stream_get_contents($pipes[2],1024);
