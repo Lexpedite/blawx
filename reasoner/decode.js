@@ -1018,7 +1018,7 @@ Blockly.Blocks['calculation'] = {
     var statements_conclusion = Blockly.JavaScript.statementToCode(block, 'conclusion');
     var code = "";
     if (text_rule_name) {
-        code += '@!{' + text_rule_name.replace(/ /g,"_") + "}\n";
+        code += '@{' + text_rule_name.replace(/ /g,"_") + "}\n";
     }
     var currentBlock = this.getInputTargetBlock('conclusion');
     while (currentBlock) {
