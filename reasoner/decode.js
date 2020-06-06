@@ -987,6 +987,37 @@ Blockly.Blocks['calculation'] = {
     }
 }
 
+Blockly.Blocks['boolean_value'] = {
+  init: function() {
+    this.jsonInit(
+      {
+          "type": "boolean_value",
+          "message0": "%1",
+          "args0": [
+            {
+              "type": "field_dropdown",
+              "name": "value",
+              "options": [
+                [
+                  "true",
+                  "true"
+                ],
+                [
+                  "false",
+                  "false"
+                ]
+              ]
+            }
+          ],
+          "output": "Boolean",
+          "colour": 195,
+          "tooltip": "Returns either true or false.",
+          "helpUrl": ""
+        }
+    )
+  }
+}
+
   Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
     var code = text_type_name + '::Thing';
@@ -1018,7 +1049,7 @@ Blockly.Blocks['calculation'] = {
     var statements_conclusion = Blockly.JavaScript.statementToCode(block, 'conclusion');
     var code = "";
     if (text_rule_name) {
-        code += '@!{' + text_rule_name.replace(/ /g,"_") + "}\n";
+        code += '@{' + text_rule_name.replace(/ /g,"_") + "}\n";
     }
     var currentBlock = this.getInputTargetBlock('conclusion');
     while (currentBlock) {
@@ -1396,6 +1427,18 @@ Blockly.Blocks['calculation'] = {
     var value_calculation = Blockly.JavaScript.valueToCode(block, 'calculation', Blockly.JavaScript.ORDER_ATOMIC);
     var code = value_variable + " \\is " + value_calculation;
     return code;
+  };
+
+  Blockly.JavaScript['boolean_value'] = function(block) {
+    var dropdown_value = block.getFieldValue('value');
+    var code = "";
+    if (dropdown_value == "true") {
+      code = "\\true";
+    }
+    if (dropdown_value == "false") {
+      code = "\\false";
+    }
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
   /**
