@@ -599,15 +599,15 @@ Blockly.Blocks['declare_type'] = {
                             ],
                             [
                                 "distinct count",
-                                "distinctcount"
+                                "countdistinct"
                             ],
                             [
                                 "average",
-                                "average"
+                                "avg"
                             ],
                             [
                                 "distinct average",
-                                "distinctaverage"
+                                "avgdistinct"
                             ],
                             [
                                 "sum",
@@ -615,7 +615,7 @@ Blockly.Blocks['declare_type'] = {
                             ],
                             [
                                 "distinct sum",
-                                "distinctsum"
+                                "sumdistinct"
                             ]
                         ]
                     },
@@ -626,7 +626,7 @@ Blockly.Blocks['declare_type'] = {
                     },
                     {
                         "type": "input_statement",
-                        "name": "NAME"
+                        "name": "aggregate_conditions"
                     }
                 ],
                 "inputsInline": true,

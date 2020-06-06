@@ -601,15 +601,15 @@ Blockly.Blocks['declare_type'] = {
                               ],
                               [
                                   "distinct count",
-                                  "distinctcount"
+                                  "countdistinct"
                               ],
                               [
                                   "average",
-                                  "average"
+                                  "avg"
                               ],
                               [
                                   "distinct average",
-                                  "distinctaverage"
+                                  "avgdistinct"
                               ],
                               [
                                   "sum",
@@ -617,7 +617,7 @@ Blockly.Blocks['declare_type'] = {
                               ],
                               [
                                   "distinct sum",
-                                  "distinctsum"
+                                  "sumdistinct"
                               ]
                           ]
                       },
@@ -628,7 +628,7 @@ Blockly.Blocks['declare_type'] = {
                       },
                       {
                           "type": "input_statement",
-                          "name": "NAME"
+                          "name": "aggregate_conditions"
                       }
                   ],
                   "inputsInline": true,
@@ -1320,7 +1320,7 @@ Blockly.Blocks['boolean_value'] = {
   Blockly.JavaScript['aggregate_statement'] = function(block) {
     var dropdown_aggregation_operation = block.getFieldValue('aggregation_operation');
     var value_aggregate_variable = Blockly.JavaScript.valueToCode(block, 'aggregate_variable', Blockly.JavaScript.ORDER_ATOMIC);
-    var statements_aggregate_conditions = Blockly.JavaScript.statementToCode(block, 'aggregate_conditions');
+    //var statements_aggregate_conditions = Blockly.JavaScript.statementToCode(block, 'aggregate_conditions');
     var code = dropdown_aggregation_operation + '{' + value_aggregate_variable + '|';
     var currentBlock = this.getInputTargetBlock('aggregate_conditions');
     while (currentBlock) {
