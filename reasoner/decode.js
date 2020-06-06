@@ -1432,10 +1432,10 @@ Blockly.Blocks['boolean_value'] = {
   Blockly.JavaScript['boolean_value'] = function(block) {
     var dropdown_value = block.getFieldValue('value');
     var code = "";
-    if (dropdown_value = "true") {
+    if (dropdown_value == "true") {
       code = "\\true";
     }
-    if (dropdown_value = "false") {
+    if (dropdown_value == "false") {
       code = "\\false";
     }
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
