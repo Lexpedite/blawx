@@ -7,7 +7,7 @@ $blawxdata = $_POST["data"];
 // Debug mode, if set to true, will break the interface, but the feedback
 // from the reasoner will be visible in the data returned from the reasoner
 // and can be inspected in the browser's debugging tools.
-$debugmode = True;
+$debugmode = False;
 
 // for debugging, if no code provided, insert something simple.
 if ($debugmode) {
