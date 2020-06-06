@@ -15,6 +15,10 @@ While alpha, however, any version changes may cause breaking changes that may no
   **Note that this may be a breaking change for people using the docassemble-blawx integration.**
 * Changes to what counts as conflicting results for the purpose of override blocks, only applies
   to workspaces using the new true/false blocks.
+### Fixed
+* Docker install missing sudo.
+* Docker install missing python3. ([Issue #38](https://github.com/Blawx/blawx/issues/38))
+* Overridden answers still returned. ([Issue #2](https://github.com/Blawx/blawx/issues/2))
 
 
 ## [v0.2.1-alpha] 2020-05-26
