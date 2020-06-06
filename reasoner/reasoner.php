@@ -183,9 +183,17 @@ if (is_resource($flora)) {
 				$lineparts[1] = "Unnamed Object";
 			}
                         if (substr($lineparts[0],0,1) == '?') {
-                                $output['answers'][strval($answercount)][substr($lineparts[0],1)] = $lineparts[1];
+							if (substr($lineparts[1],0,1) == '\\') {
+								$output['answers'][strval($answercount)][substr($lineparts[0],1)] = substr($lineparts[1],1);
+							} else {
+								$output['answers'][strval($answercount)][substr($lineparts[0],1)] = $lineparts[1];
+							}
                         } else {
-                                $output['answers'][strval($answercount)][$lineparts[0]] = $lineparts[1];
+							if (substr($lineparts[1],0,1) == '\\') {
+								$output['answers'][strval($answercount)][$lineparts[0]] = substr($lineparts[1],1);
+							} else {
+								$output['answers'][strval($answercount)][$lineparts[0]] = $lineparts[1];
+							}
                         }
                 }
                 elseif ($lines[$i] == 'Yes' or $lines[$i] == 'No') {
