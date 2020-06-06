@@ -984,3 +984,34 @@ Blockly.Blocks['calculation'] = {
       )
     }
 }
+
+Blockly.Blocks['boolean_value'] = {
+    init: function() {
+      this.jsonInit(
+        {
+            "type": "boolean_value",
+            "message0": "%1",
+            "args0": [
+              {
+                "type": "field_dropdown",
+                "name": "value",
+                "options": [
+                  [
+                    "true",
+                    "true"
+                  ],
+                  [
+                    "false",
+                    "false"
+                  ]
+                ]
+              }
+            ],
+            "output": "Boolean",
+            "colour": 195,
+            "tooltip": "Returns either true or false.",
+            "helpUrl": ""
+          }
+      )
+    }
+}
