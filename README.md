@@ -27,11 +27,16 @@ the results to the Blawx front end, or whichever other app made the request.
 
 ## How Can I Try It?
 The easiest way to try Blawx is to go to www.blawx.com. The current version of Blawx is available for free at that site, and has all
-the features of this package. [Alternatively, you can run Blawx in Docker.](DOCKER.md)
+the features of this package.
+
+## How do I Install It Myself?
+If you would like to try running Blawx locally, check out [INSTALL.md](INSTALL.md) for instructions on a manual installation,
+or follow the instructions in [DOCKER.md](DOCKER.md) for instruction on how to install it as a docker container. Using the docker
+container is the preferred method as it involves far fewer steps, and is likely to work on more operating systems.
 
 ## How Can I Learn More?
 Right now, most of the useful information is at www.blawx.com/learn. I hope to increase the amount of documentation in this repository
-in future.  If you would like to try running Blawx locally, check out the INSTALL.md file for the latest instructions.
+in future.
 
 ## Is this software production ready?
 No. Blawx is a proof of concept. It is appropriate for use in Rules as Code experiments, but not in production environments.
