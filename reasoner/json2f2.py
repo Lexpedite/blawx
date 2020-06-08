@@ -68,9 +68,9 @@ def jsonvalue2flora(value):
     return "\@?"
   elif isinstance(value,bool):
     if value:
-      return "true"
+      return "\\true"
     else:
-      return "false"
+      return "\\false"
   elif isinstance(value,(int,float)):
     return str(value)
   else:
