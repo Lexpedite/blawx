@@ -1018,6 +1018,293 @@ Blockly.Blocks['boolean_value'] = {
   }
 }
 
+Blockly.Blocks['date_datatype'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "date_datatype",
+  "message0": "Date",
+  "output": "DATATYPE",
+  "colour": 160,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)
+}
+}
+
+Blockly.Blocks['time_datatype'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "time_datatype",
+  "message0": "Time",
+  "output": "DATATYPE",
+  "colour": 160,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)
+}
+}
+
+Blockly.Blocks['datetime_datatype'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "datetime_datatype",
+  "message0": "Date and Time",
+  "output": "DATATYPE",
+  "colour": 160,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)
+}
+}
+
+Blockly.Blocks['duration_datatype'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "duration_datatype",
+  "message0": "Duration",
+  "output": "DATATYPE",
+  "colour": 160,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)
+}
+}
+
+Blockly.Blocks['duration'] = {
+  init: function() {
+    this.jsonInit(  {
+  "type": "duration",
+  "message0": "Duration: %1 Y: %2 M: %3 D: %4 H: %5 M: %6 S: %7",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "sign",
+      "options": [
+        [
+          "+",
+          "pos"
+        ],
+        [
+          "-",
+          "neg"
+        ]
+      ]
+    },
+    {
+      "type": "field_number",
+      "name": "years",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "field_number",
+      "name": "months",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "field_number",
+      "name": "days",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "field_number",
+      "name": "hours",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "field_number",
+      "name": "minutes",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "field_number",
+      "name": "seconds",
+      "value": 0,
+      "min": 0,
+      "precision": 0.01
+    }
+  ],
+  "inputsInline": true,
+  "output": "DURATION",
+  "colour": 330,
+  "tooltip": "Choose a positive or negative duration, and provide an integer for the number of years, months, days, hours, and minutes. Seconds are precise to 0.01s.",
+  "helpUrl": ""
+}
+)
+}
+}
+
+Blockly.Blocks['time'] = {
+  init: function() {
+    this.jsonInit(  {
+  "type": "time",
+  "message0": "Time: %1 : %2 : %3 %4",
+  "args0": [
+    {
+      "type": "field_number",
+      "name": "hours",
+      "value": 0,
+      "min": 1,
+      "max": 12
+    },
+    {
+      "type": "field_number",
+      "name": "minutes",
+      "value": 0,
+      "min": 0,
+      "max": 59
+    },
+    {
+      "type": "field_number",
+      "name": "seconds",
+      "value": 0,
+      "min": 0,
+      "max": 59.99,
+      "precision": 0.01
+    },
+    {
+      "type": "field_dropdown",
+      "name": "daypart",
+      "options": [
+        [
+          "am",
+          "am"
+        ],
+        [
+          "pm",
+          "pm"
+        ]
+      ]
+    }
+  ],
+  "output": "TIME",
+  "colour": 330,
+  "tooltip": "Choose hours (1-12), minutes (0-59), and seconds (0-59.99), and part of day (am/pm).",
+  "helpUrl": ""
+}
+)
+}
+}
+
+Blockly.Blocks['date'] = {
+  init: function() {
+    this.jsonInit(
+          {
+  "type": "date",
+  "message0": "Date: %1 / %2 / %3",
+  "args0": [
+    {
+      "type": "field_number",
+      "name": "year",
+      "value": 2020
+    },
+    {
+      "type": "field_number",
+      "name": "month",
+      "value": 1,
+      "min": 1,
+      "max": 12
+    },
+    {
+      "type": "field_number",
+      "name": "day",
+      "value": 1,
+      "min": 1,
+      "max": 31
+    }
+  ],
+  "output": "DATE",
+  "colour": 330,
+  "tooltip": "YYYY/M/D",
+  "helpUrl": ""
+}
+)
+}
+}
+
+Blockly.Blocks['datetime'] = {
+  init: function() {
+    this.jsonInit(  {
+  "type": "datetime",
+  "message0": "Date: %1 / %2 / %3 at %4 : %5 : %6 %7",
+  "args0": [
+    {
+      "type": "field_number",
+      "name": "year",
+      "value": 2020
+    },
+    {
+      "type": "field_number",
+      "name": "month",
+      "value": 1,
+      "min": 1,
+      "max": 12
+    },
+    {
+      "type": "field_number",
+      "name": "day",
+      "value": 1,
+      "min": 1,
+      "max": 31
+    },
+    {
+      "type": "field_number",
+      "name": "hours",
+      "value": 0,
+      "min": 1,
+      "max": 12
+    },
+    {
+      "type": "field_number",
+      "name": "minutes",
+      "value": 0,
+      "min": 0,
+      "max": 59
+    },
+    {
+      "type": "field_number",
+      "name": "seconds",
+      "value": 0,
+      "min": 0,
+      "max": 59.99,
+      "precision": 0.01
+    },
+    {
+      "type": "field_dropdown",
+      "name": "daypart",
+      "options": [
+        [
+          "am",
+          "am"
+        ],
+        [
+          "pm",
+          "pm"
+        ]
+      ]
+    }
+  ],
+  "output": "DATETIME",
+  "colour": 330,
+  "tooltip": "YYYY/M/D at h:m:s am/pm (seconds are from 0-59.99)",
+  "helpUrl": ""
+}
+)
+  }
+}
+
   Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
     var code = text_type_name + '::Thing';
@@ -1439,6 +1726,83 @@ Blockly.Blocks['boolean_value'] = {
       code = "\\false";
     }
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  };
+
+  Blockly.JavaScript['datetime'] = function(block) {
+    var number_year = block.getFieldValue('year');
+    var number_month = block.getFieldValue('month');
+    var number_day = block.getFieldValue('day');
+    var number_hours = block.getFieldValue('hours');
+    var number_minutes = block.getFieldValue('minutes');
+    var number_seconds = block.getFieldValue('seconds');
+    var dropdown_daypart = block.getFieldValue('daypart');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  Blockly.JavaScript['date'] = function(block) {
+    var number_year = block.getFieldValue('year');
+    var number_month = block.getFieldValue('month');
+    var number_day = block.getFieldValue('day');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  Blockly.JavaScript['time'] = function(block) {
+    var number_hours = block.getFieldValue('hours');
+    var number_minutes = block.getFieldValue('minutes');
+    var number_seconds = block.getFieldValue('seconds');
+    var dropdown_daypart = block.getFieldValue('daypart');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  Blockly.JavaScript['duration'] = function(block) {
+    var dropdown_sign = block.getFieldValue('sign');
+    var number_years = block.getFieldValue('years');
+    var number_months = block.getFieldValue('months');
+    var number_days = block.getFieldValue('days');
+    var number_hours = block.getFieldValue('hours');
+    var number_minutes = block.getFieldValue('minutes');
+    var number_seconds = block.getFieldValue('seconds');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  Blockly.JavaScript['duration_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  Blockly.JavaScript['datetime_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  Blockly.JavaScript['time_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  Blockly.JavaScript['date_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
   };
   
   /**
