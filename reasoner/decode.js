@@ -1082,7 +1082,7 @@ Blockly.Blocks['duration'] = {
   init: function() {
     this.jsonInit(  {
   "type": "duration",
-  "message0": "Duration: %1 Y: %2 M: %3 D: %4 H: %5 M: %6 S: %7",
+  "message0": "%1 Y: %2 M: %3 D: %4 H: %5 M: %6 S: %7",
   "args0": [
     {
       "type": "field_dropdown",
@@ -1139,7 +1139,7 @@ Blockly.Blocks['duration'] = {
   "inputsInline": true,
   "output": "DURATION",
   "colour": 330,
-  "tooltip": "Choose a positive or negative duration, and provide an integer for the number of years, months, days, hours, and minutes. Seconds are precise to 0.01s.",
+  "tooltip": "Duration. Choose positive or negative, and provide a number for the number of years, months, days, hours, and minutes. Seconds are precise to 0.01s.",
   "helpUrl": ""
 }
 )
@@ -1150,7 +1150,7 @@ Blockly.Blocks['time'] = {
   init: function() {
     this.jsonInit(  {
   "type": "time",
-  "message0": "Time: %1 : %2 : %3 %4",
+  "message0": "%1 : %2 : %3 %4",
   "args0": [
     {
       "type": "field_number",
@@ -1191,7 +1191,7 @@ Blockly.Blocks['time'] = {
   ],
   "output": "TIME",
   "colour": 330,
-  "tooltip": "Choose hours (1-12), minutes (0-59), and seconds (0-59.99), and part of day (am/pm).",
+  "tooltip": "Time. Choose hours (1-12), minutes (0-59), and seconds (0-59.99), and part of day (am/pm).",
   "helpUrl": ""
 }
 )
@@ -1203,7 +1203,7 @@ Blockly.Blocks['date'] = {
     this.jsonInit(
           {
   "type": "date",
-  "message0": "Date: %1 / %2 / %3",
+  "message0": "%1 / %2 / %3",
   "args0": [
     {
       "type": "field_number",
@@ -1227,7 +1227,7 @@ Blockly.Blocks['date'] = {
   ],
   "output": "DATE",
   "colour": 330,
-  "tooltip": "YYYY/M/D",
+  "tooltip": "Date. YYYY/M/D",
   "helpUrl": ""
 }
 )
@@ -1238,7 +1238,7 @@ Blockly.Blocks['datetime'] = {
   init: function() {
     this.jsonInit(  {
   "type": "datetime",
-  "message0": "Date: %1 / %2 / %3 at %4 : %5 : %6 %7",
+  "message0": "%1 / %2 / %3 at %4 : %5 : %6 %7",
   "args0": [
     {
       "type": "field_number",
@@ -1298,7 +1298,7 @@ Blockly.Blocks['datetime'] = {
   ],
   "output": "DATETIME",
   "colour": 330,
-  "tooltip": "YYYY/M/D at h:m:s am/pm (seconds are from 0-59.99)",
+  "tooltip": "Date/Time. YYYY/M/D at h:m:s am/pm (seconds are from 0-59.99)",
   "helpUrl": ""
 }
 )
