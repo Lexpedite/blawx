@@ -5,13 +5,13 @@ function blawxTypeToBlocklyType(blawxType) {
       return 'Number';
     } else if (blawxType == "String") {
       return 'String';
-    } else if (blawxType == "Date") {
+    } else if (blawxType == "DATE") {
       return 'DATE';
-    } else if (blawxType == "Datetime") {
+    } else if (blawxType == "DATETIME") {
       return 'DATETIME';
-    } else if (blawxType == "Time") {
+    } else if (blawxType == "TIME") {
       return "TIME";
-    } else if (blawxType == "Duration") {
+    } else if (blawxType == "DURATION") {
       return "DURATION";
     } else {
       return null;
