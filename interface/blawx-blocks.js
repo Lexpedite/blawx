@@ -718,7 +718,11 @@ Blockly.Blocks['declare_type'] = {
       "name": "left_value",
       "check": [
         "ENTITY",
-        "Number"
+        "Number",
+        "DATE",
+        "DURATION",
+        "TIME",
+        "DATETIME"
       ]
     },
     {
@@ -751,7 +755,11 @@ Blockly.Blocks['declare_type'] = {
       "name": "right_value",
       "check": [
         "ENTITY",
-        "Number"
+        "Number",
+        "DATE",
+        "DURATION",
+        "TIME",
+        "DATETIME"
       ]
     }
   ],
