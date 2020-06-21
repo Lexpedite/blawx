@@ -5,6 +5,14 @@ function blawxTypeToBlocklyType(blawxType) {
       return 'Number';
     } else if (blawxType == "String") {
       return 'String';
+    } else if (blawxType == "Date") {
+      return 'DATE';
+    } else if (blawxType == "Datetime") {
+      return 'DATETIME';
+    } else if (blawxType == "Time") {
+      return "TIME";
+    } else if (blawxType == "Duration") {
+      return "DURATION";
     } else {
       return null;
     }
