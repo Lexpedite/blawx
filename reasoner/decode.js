@@ -1778,31 +1778,23 @@ Blockly.Blocks['datetime'] = {
   };
 
   Blockly.JavaScript['duration_datatype'] = function(block) {
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    var code = "\\duration";
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
   Blockly.JavaScript['datetime_datatype'] = function(block) {
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    var code = "\\datetime";
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
   Blockly.JavaScript['time_datatype'] = function(block) {
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    var code = "\\time";
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
   Blockly.JavaScript['date_datatype'] = function(block) {
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    var code = "\\date";
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
   /**
