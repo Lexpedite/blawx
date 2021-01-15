@@ -1305,6 +1305,549 @@ Blockly.Blocks['datetime'] = {
   }
 }
 
+Blockly.Blocks['date_before'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "date_before",
+  "message0": "📅/📅🕓 %1 is before %2 📅/📅🕓 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "first_date",
+      "check": [
+        "DATE",
+        "DATETIME"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "second_date",
+      "check": [
+        "DATE",
+        "DATETIME"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "Boolean",
+  "colour": 330,
+  "tooltip": "Enter two dates or dates with times to see if the first is before the second",
+  "helpUrl": ""
+}
+    )}}
+
+Blockly.Blocks['date_before_or_eq'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "date_before_or_eq",
+  "message0": "📅/📅🕓 %1 is before or at %2 📅/📅🕓 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "first_date",
+      "check": [
+        "DATE",
+        "DATETIME"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "second_date",
+      "check": [
+        "DATE",
+        "DATETIME"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "Boolean",
+  "colour": 330,
+  "tooltip": "Enter two dates or dates with times to see if the first is before or exactly the same as the second.",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['time_before_or_eq'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "time_before_or_eq",
+  "message0": "🕓 %1 is before or at %2 🕓 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "first_time",
+      "check": "TIME"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "second_time",
+      "check": "TIME"
+    }
+  ],
+  "inputsInline": true,
+  "output": "Boolean",
+  "colour": 330,
+  "tooltip": "Enter two times to see if the first is before or exactly the same as the second.",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['time_before'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "time_before",
+  "message0": "🕓 %1 is before %2 🕓 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "first_time",
+      "check": "TIME"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "second_time",
+      "check": "TIME"
+    }
+  ],
+  "inputsInline": true,
+  "output": "Boolean",
+  "colour": 330,
+  "tooltip": "Enter two times to see if the first is before the second.",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['time_plus_dur'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "time_plus_dur",
+  "message0": "🕓 %1 plus %2 ⏱ %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "time",
+      "check": "TIME"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "duration",
+      "check": "DURATION"
+    }
+  ],
+  "inputsInline": true,
+  "output": "TIME",
+  "colour": 330,
+  "tooltip": "Add a time and a duration to get a new time.",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['date_plus_dur'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "date_plus_dur",
+  "message0": "📅/📅🕓 %1 plus %2 ⏱ %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "date",
+      "check": [
+        "DATE",
+        "DATETIME"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "duration",
+      "check": "DURATION"
+    }
+  ],
+  "inputsInline": true,
+  "output": [
+    "DATE",
+    "DATETIME"
+  ],
+  "colour": 330,
+  "tooltip": "Add a time and a duration to get a new time.",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['date_icon_datatype'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "date_icon_datatype",
+  "message0": "📅 Date",
+  "output": "DATATYPE",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['datetime_icon_datatype'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "datetime_icon_datatype",
+  "message0": "📅🕓 Date and Time",
+  "output": "DATATYPE",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['time_icon_datatype'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "time_icon_datatype",
+  "message0": "🕓 Time",
+  "output": "DATATYPE",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['boolean_icon_datatype'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "boolean_icon_datatype",
+  "message0": "☑ Yes / No",
+  "output": "DATATYPE",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['duration_icon_datatype'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "duration_icon_datatype",
+  "message0": "⏱ Duration",
+  "output": "DATATYPE",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['text_icon_datatype'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "text_icon_datatype",
+  "message0": "🔠 Text",
+  "output": "DATATYPE",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['number_icon_datatype'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "number_icon_datatype",
+  "message0": "#️⃣ Number",
+  "output": "DATATYPE",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['currency_icon_datatype'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "currency_icon_datatype",
+  "message0": "💰 Currency",
+  "output": "DATATYPE",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['time_minus_time'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "time_minus_time",
+  "message0": "🕓 %1 minus %2 🕓 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "time",
+      "check": "TIME"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "second_time",
+      "check": "TIME"
+    }
+  ],
+  "inputsInline": true,
+  "output": "DURATION",
+  "colour": 330,
+  "tooltip": "Find the duration between two times.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['date_minus_date'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "date_minus_date",
+  "message0": "📅/📅🕓 %1 minus %2 📅/📅🕓 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "date",
+      "check": [
+        "DATE",
+        "DATETIME"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "second_date",
+      "check": [
+        "DATE",
+        "DATETIME"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "DURATION",
+  "colour": 330,
+  "tooltip": "Get the duration bewteen two dates or date times.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['concat_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "concat_text",
+  "message0": "🔠 %1 + %2 🔠 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "first_text",
+      "check": "String"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "second_text",
+      "check": "String"
+    }
+  ],
+  "output": "String",
+  "colour": 165,
+  "tooltip": "Makes one text value out of two text values by appending them.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['length_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "length_text",
+  "message0": "length of 🔠 %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "output": "Number",
+  "colour": 165,
+  "tooltip": "Returns the length of a text value.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['toupper_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "toupper_text",
+  "message0": "uppercase version of 🔠 %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "output": "String",
+  "colour": 165,
+  "tooltip": "Returns the text in ALL CAPS",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['tolower_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "tolower_text",
+  "message0": "lowercase version of 🔠 %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "output": "String",
+  "colour": 165,
+  "tooltip": "Returns the text in lowercase",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['startswith_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "startswith_text",
+  "message0": "🔠 %1 starts with 🔠 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": "String"
+    },
+    {
+      "type": "input_value",
+      "name": "target",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "output": "Boolean",
+  "colour": 165,
+  "tooltip": "Returns a yes or no if the first text begins with the second text.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['endswith_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "endswith_text",
+  "message0": "🔠 %1 ends with 🔠 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": "String"
+    },
+    {
+      "type": "input_value",
+      "name": "target",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "output": "Boolean",
+  "colour": 165,
+  "tooltip": "Returns a yes or no if the first text ends with the second text.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['substring_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "substring_text",
+  "message0": "🔠 %1 from character #️⃣ %2 to character  #️⃣ %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": "String"
+    },
+    {
+      "type": "input_value",
+      "name": "start",
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "length",
+      "check": "Number"
+    }
+  ],
+  "inputsInline": true,
+  "output": "String",
+  "colour": 165,
+  "tooltip": "Returns a part of a text. -1 means the end of the text value.",
+  "helpUrl": ""
+}
+)}}
+
   Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
     var code = text_type_name + '::Thing';
@@ -1795,6 +2338,195 @@ Blockly.Blocks['datetime'] = {
   Blockly.JavaScript['date_datatype'] = function(block) {
     var code = "\\date";
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  };
+
+  Blockly.JavaScript['concat_text'] = function(block) {
+    var value_first_text = Blockly.JavaScript.valueToCode(block, 'first_text', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_second_text = Blockly.JavaScript.valueToCode(block, 'second_text', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['length_text'] = function(block) {
+    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['toupper_text'] = function(block) {
+    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['tolower_text'] = function(block) {
+    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['startswith_text'] = function(block) {
+    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['endswith_text'] = function(block) {
+    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['substring_text'] = function(block) {
+    var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_start = Blockly.JavaScript.valueToCode(block, 'start', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_length = Blockly.JavaScript.valueToCode(block, 'length', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  Blockly.JavaScript['time_minus_time'] = function(block) {
+    var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['date_minus_date'] = function(block) {
+    var value_date = Blockly.JavaScript.valueToCode(block, 'date', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  Blockly.JavaScript['date_before'] = function(block) {
+    var value_first_date = Blockly.JavaScript.valueToCode(block, 'first_date', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['date_before_or_eq'] = function(block) {
+    var value_first_date = Blockly.JavaScript.valueToCode(block, 'first_date', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['time_before_or_eq'] = function(block) {
+    var value_first_time = Blockly.JavaScript.valueToCode(block, 'first_time', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['time_before'] = function(block) {
+    var value_first_time = Blockly.JavaScript.valueToCode(block, 'first_time', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['time_plus_dur'] = function(block) {
+    var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['date_plus_dur'] = function(block) {
+    var value_date = Blockly.JavaScript.valueToCode(block, 'date', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['date_icon_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['datetime_icon_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['time_icon_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['boolean_icon_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['duration_icon_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['text_icon_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['number_icon_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['currency_icon_datatype'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
   };
   
   /**
