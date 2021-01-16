@@ -2353,8 +2353,12 @@ Blockly.Blocks['date_minus_date'] = {
     var number_hours = block.getFieldValue('hours');
     var number_minutes = block.getFieldValue('minutes');
     var number_seconds = block.getFieldValue('seconds');
-    var code = '"' + dropdown_sign + 'P' + number_years + 'Y' + number_months + 'M';
-    code += number_days + 'D' + number_hours + 'H' + number_minutes + 'M' + number_seconds + 'S"^^\\duration'; 
+    var sign = '';
+    if (dropdown_sign == 'neg') {
+      sign = '-';
+    }
+    var code = '"' + sign + 'P' + number_years + 'Y' + number_months + 'M';
+    code += number_days + 'DT' + number_hours + 'H' + number_minutes + 'M' + number_seconds + 'S"^^\\duration'; 
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
@@ -2389,14 +2393,14 @@ Blockly.Blocks['date_minus_date'] = {
   Blockly.JavaScript['date_before_or_eq'] = function(block) {
     var value_first_date = Blockly.JavaScript.valueToCode(block, 'first_date', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_first_date + '[lessThanEq(' + value_second_date + ')]@\\basetype';
+    var code = value_first_date + '[lessEq(' + value_second_date + ')]@\\basetype';
     return code;
   };
   
   Blockly.JavaScript['time_before_or_eq'] = function(block) {
     var value_first_time = Blockly.JavaScript.valueToCode(block, 'first_time', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_first_time + '[lessThanEq(' + value_second_time + ')]@\\basetype';
+    var code = value_first_time + '[lessEq(' + value_second_time + ')]@\\basetype';
     return code;
   };
   
