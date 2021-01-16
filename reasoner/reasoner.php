@@ -89,6 +89,7 @@ $factshandle = fopen($tmpflrfile,"w");
 if ($code) {
 	fwrite($factshandle,':- use_argumentation_theory.'.PHP_EOL);
 	fwrite($factshandle,'\opposes(?_x[?_y->\true],?_x[?_y->\false]) :- ?_x:?_T, ?_T[|?_y=>\boolean|].'.PHP_EOL);
+	// TODO: Add TimeMinus code to each program here.
 	fwrite($factshandle,$facts);
 	if ($blawxdata) {
 		fwrite($factshandle,$blawxdata);
@@ -121,6 +122,17 @@ if (is_resource($flora)) {
 		echo "setting expert mode.\n";
 	}
 	fwrite($pipes[0], "expert{on}.\n");
+	sleep(5);
+	if ($debugmode) {
+		$stdout = stream_get_contents($pipes[1],1024);
+		$sterr = stream_get_contents($pipes[2],1024);
+		echo "Standard Out;\n";
+		echo $stdout . "\n";
+		echo "Standard Err:\n";
+		echo $stderr . "\n";
+		echo "Loading dateminus:\n";
+	}
+	fwrite($pipes[0], "['/usr/lib/cgi-bin/dateminus.flr'>>datemin].\n");
 	sleep(5);
 	if ($debugmode) {
 		$stdout = stream_get_contents($pipes[1],1024);

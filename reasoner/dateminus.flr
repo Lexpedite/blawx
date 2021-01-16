@@ -1,0 +1,227 @@
+// dateminus.flr
+
+// This module should allow for the following predicates:
+// \dateTime[|minus(\dateTime)=>\duration|]
+// \date[|minus(\date)=>\duration|]
+// \dateTime[|minus(\date)=>\duration|]
+// \date[|minus(\dateTime)=>\duration|]
+// \date[|toDateTime(\integer,\integer,\decimal)=>\dateTime|]
+// \time[|toDateTime(\integer,\integer,\integer)=>?dateTime|]
+// \time[|minus(\time)=>\duration|]
+
+// Durations use days over months, so March 30 minus February 28 is P30D, not P1M2D.
+
+// Requires Flora-2 version 2.1 or later.
+
+?first_date^^\dateTime[minus(?second_date^^\dateTime)->?duration] :-
+	?first_date[lessThan(?second_date)]@\btp,
+	?second_date[minus(?first_date)->?temp_dur],
+	?temp_dur[
+		year->?y,
+		month->?mo,
+		day->?d,
+		hour->?h,
+		minute->?mi,
+		second->?s
+	]@\btp,
+	\duration[toType(-1,?y,?mo,?d,?h,?mi,?s)->?duration]@\btp.
+
+?first_date^^\dateTime[minus(?second_date^^\dateTime)->?duration] :-
+	\naf ?first_date[lessThan(?second_date)]@\btp,
+	// Convert both into local time (remove time zone info)
+	?first_date[localtime->?local_first_date]@\btp,
+	?second_date[localtime->?local_second_date]@\btp,
+	// Break second date into pieces
+	?local_second_date[
+		second->?ss,
+		minute->?sm,
+		hour->?sh,
+		day->?sd,
+		month->?smo,
+		year->?sy,
+		dateSign->?sds]@\btp,
+	// Apply the sign to the second date year
+	?sy \is ?sy * ?sds,
+	// Subtract the seconds
+	?local_first_date[second->?fs]@\btp,
+	?sec \is ?fs - ?ss,
+	\if ?sec < 0 \then (
+		?sec2 \is ?sec + 60,
+		?local_first_date[nextminute(-1)->?newdate]@\btp
+	) \else (
+        ?newdate = ?local_first_date,
+        ?sec2 = ?sec),
+	// Subtract the minutes
+	?newdate[minute->?fm]@\btp,
+	?min \is ?fm - ?sm,
+	\if ?min < 0 \then (
+		?min2 \is ?min + 60,
+		?newdate[nexthour(-1)->?nd2]@\btp
+	) \else (
+        ?nd2 = ?newdate,
+        ?min2 = ?min),
+	// Subtract the hours
+	?nd2[hour->?fh]@\btp,
+	?hour \is ?fh - ?sh,
+	\if ?hour < 0 \then (
+		?hour2 \is ?hour + 24,
+		?nd2[nextday(-1)->?nd3]@\btp
+	) \else (
+        ?nd3 = ?nd2,
+        ?hour2 = ?hour),
+	// Subtract the days
+	?nd3[day->?fd]@\btp,
+	?day \is ?fd - ?sd,
+	\if ?day < 0 \then (
+		?nd3[nextmonth(-1)->?nd4]@\btp,
+		?nd4.monthend[day->?days_in_prior_month]@\btp,
+		?day2 \is ?day + ?days_in_prior_month,
+		// It is possible that all the days in the last month were not sufficient,
+		// so check again.
+		\if ?day2 < 0 \then (
+			?nd4[nextmonth(-1)->?nd4a]@\btp,
+			?nd4a.monthend[day->?days_in_second_prior_month]@\btp,
+			?day3 \is ?day2 + ?days_in_second_prior_month
+		) \else (
+			?nd4a = ?nd4,
+			?day3 = ?day2
+		)
+	) \else (
+        ?nd4a = ?nd3,
+        ?day3 = ?day
+    ),
+	// Subtract the months
+	?nd4a[month->?fmo]@\btp,
+	?month \is ?fmo - ?smo,
+	\if ?month < 0 \then (
+		?month2 \is ?month + 12,
+		?nd4a[nextyear(-1)->?nd5]@\btp
+	) \else (
+        ?nd5 = ?nd4a,
+        ?month2 = ?month),
+	// Subtract the years
+	?nd5[year->?fy,dateSign->?fds]@\btp,
+	?fy \is ?fy * ?fds, // Apply the sign to the year
+	?year \is ?fy - ?sy,
+	\if ?year<0 \then (
+		?year2 \is ?year * -1,
+		?sign = -1
+	) \else (
+		?year2 = ?year,
+		?sign = 1
+	),
+	// Create the output
+	\duration[toType(?sign,?year2,?month2,?day3,?hour2,?min2,?sec2)->?duration]@\btp,
+	\true.
+
+?first_time^^\time[minus(?second_time^^\time)->?duration] :-
+	// Convert both into local time (remove time zone info)
+	?first_time[localtime->?lft]@\btp,
+	?second_time[localtime->?lst]@\btp,
+	// Break second time into pieces
+	?lst[
+		second->?sts,
+		minute->?stm,
+		hour->?sth]@\btp,
+	// Subtract the seconds
+	?lft[second->?fts]@\btp,
+	?sec \is ?fts - ?sts,
+	\if ?sec < 0 \then (
+		?sec2 \is ?sec + 60,
+		?lft[nextminute(-1)->?newtime]@\btp
+	) \else (
+        ?newtime = ?lft,
+        ?sec2 = ?sec),
+	// Subtract the minutes
+	?newtime[minute->?ftm]@\btp,
+	?min \is ?ftm - ?stm,
+	\if ?min < 0 \then (
+		?min2 \is ?min + 60,
+		?newtime[nexthour(-1)->?nt2]@\btp
+	) \else (
+        ?nt2 = ?newtime,
+        ?min2 = ?min),
+	// Subtract the hours
+	?nt2[hour->?fth]@\btp,
+	?hour \is ?fth - ?sth,
+	// Create the output
+	\if ?hour<0 \then (
+		?hour2 \is ?hour * -1,
+		?sign = -1
+	) \else (
+		?hour2 = ?hour,
+		?sign = 1
+	),
+	\duration[toType(?sign,0,0,0,?hour2,?min2,?sec2)->?duration]@\btp.
+
+// TO DO: Add versions of the predicate to detect type errors.
+
+
+// This converts dates to datetimes for the purpose of all combinations.
+?first[minus(?second)->?duration] :-
+	(
+		(
+			?first:\dateTime,
+			?fdt = ?first
+		);
+		?first[toDateTime(0,0,0)->?fdt]
+	),
+	(
+		(
+			?second:\dateTime,
+			?sdt = ?second
+		);
+		?second[toDateTime(0,0,0)->?sdt]
+	),
+	?fdt[minus(?sdt)->?duration].
+
+// \date[|toDateTime(\integer,\integer,\integer)->\dateTime|].
+?date^^\date[toDateTime(?h^^\integer,?m^^\integer,?s^^\number)->?dateTime] :-
+	?date[
+		dateSign->?dateSign,
+		year->?year,
+		month->?month,
+		day->?day,
+		zoneSign->?zs,
+		zoneHour->?zh,
+		zoneMinute->?zm
+	]@\btp,
+	\dateTime[toType(?dateSign,?year,?month,?day,?h,?m,?s,?zs,?zh,?zm)->?dateTime]@\btp.
+
+// \time[|toDateTime(\integer,\integer,\integer)->\dateTime|].
+?time^^\time[toDateTime(?y^^\integer,?mo^^\integer,?d^^\integer)->?dateTime] :-
+	?time[
+		hour->?h,
+		minute->?mi,
+		second->?s,
+		zoneSign->?zs,
+		zoneHour->?zh,
+		zoneMinute->?zm
+	]@\btp,
+	\if ?y<0 \then (
+		?y2 \is ?y * -1,
+		?sign = -1
+	) \else (
+		?y2 = ?y,
+		?sign = 1
+	),
+	?s2 \is ?s +0.0,
+	\dateTime[toType(?sign,?y,?mo,?d,?h,?mi,?s2,?zs,?zh,?zm)->?dateTime]@\btp.
+
+
+// Tests
+
+// ?- \dt"2021-01-10T17:16:00Z"[minus(\dt"2020-01-11T0:0:0Z")->?diff].
+// ?- \d"2021-01-10"[toDateTime(0,0,0)->?datetime].
+// ?- \d"2021-01-10"[minus(\d"1970-04-25")->?diff2].
+// ?- \dt"2021-01-10T17:16:00Z"[minus(\d"2020-01-11")->?diff3].
+// ?- \d"2021-01-10"[minus(\dt"2020-01-11T0:0:0Z")->?diff4].
+// ?- \d"2020-02-28"[minus(\d"2020-03-30")->?diff5].
+// ?- \d"2020-03-01"[minus(\d"2020-01-31")->?diff6].
+// ?- \t"8:00:00"[toDateTime(0,0,0)->?datetime2]. // Should fail, 0 is not a valid year.
+// ?- \t"8:15:00"[toDateTime(2000,12,25)->?datetime3].
+// ?- \t"12:00:00"[minus(\t"10:00:00")->?diff7].
+// ?- \t"10:00:00"[minus(\t"12:00:00")->?diff8].
+// ?- \d"2021-01-02"[minus(\d"2021-01-03")->?diff9].
+// ?- \d"2021-01-03"[minus(\d"2021-01-02")->?diff10].
+// ?- \d"2020-02-02"[minus(\d"2020-02-02")->?diff11].

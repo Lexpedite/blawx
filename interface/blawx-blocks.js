@@ -478,7 +478,7 @@ Blockly.Blocks['declare_type'] = {
         init: function () {
             this.jsonInit({
                 "type": "boolean_datatype",
-                "message0": "True/False",
+                "message0": "☑ Yes / No",
                 "output": "DATATYPE",
                 "colour": 160,
                 "tooltip": "",
@@ -491,7 +491,7 @@ Blockly.Blocks['declare_type'] = {
         init: function () {
             this.jsonInit({
                 "type": "number_datatype",
-                "message0": "Number",
+                "message0": "#️⃣ Number",
                 "output": "DATATYPE",
                 "colour": 160,
                 "tooltip": "",
@@ -504,7 +504,7 @@ Blockly.Blocks['declare_type'] = {
         init: function () {
             this.jsonInit({
                 "type": "string_datatype",
-                "message0": "String",
+                "message0": "🔠 Text",
                 "output": "DATATYPE",
                 "colour": 160,
                 "tooltip": "",
@@ -718,7 +718,11 @@ Blockly.Blocks['declare_type'] = {
       "name": "left_value",
       "check": [
         "ENTITY",
-        "Number"
+        "Number",
+        "DATE",
+        "DURATION",
+        "TIME",
+        "DATETIME"
       ]
     },
     {
@@ -751,7 +755,11 @@ Blockly.Blocks['declare_type'] = {
       "name": "right_value",
       "check": [
         "ENTITY",
-        "Number"
+        "Number",
+        "DATE",
+        "DURATION",
+        "TIME",
+        "DATETIME"
       ]
     }
   ],
@@ -1015,3 +1023,860 @@ Blockly.Blocks['boolean_value'] = {
       )
     }
 }
+
+Blockly.Blocks['date_datatype'] = {
+    init: function() {
+      this.jsonInit(
+{
+    "type": "date_datatype",
+    "message0": "📅 Date",
+    "output": "DATATYPE",
+    "colour": 160,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+  )
+}
+}
+
+Blockly.Blocks['time_datatype'] = {
+    init: function() {
+      this.jsonInit(
+  {
+    "type": "time_datatype",
+    "message0": "🕓 Time",
+    "output": "DATATYPE",
+    "colour": 160,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+  )
+}
+}
+
+Blockly.Blocks['datetime_datatype'] = {
+    init: function() {
+      this.jsonInit(
+  {
+    "type": "datetime_datatype",
+    "message0": "📅🕓 Date and Time",
+    "output": "DATATYPE",
+    "colour": 160,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+  )
+}
+}
+
+Blockly.Blocks['duration_datatype'] = {
+    init: function() {
+      this.jsonInit(
+  {
+    "type": "duration_datatype",
+    "message0": "⏱ Duration",
+    "output": "DATATYPE",
+    "colour": 160,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+  )
+}
+}
+
+Blockly.Blocks['duration'] = {
+    init: function() {
+      this.jsonInit(  {
+    "type": "duration",
+    "message0": "%1 Y: %2 M: %3 D: %4 H: %5 M: %6 S: %7",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "sign",
+        "options": [
+          [
+            "+",
+            "pos"
+          ],
+          [
+            "-",
+            "neg"
+          ]
+        ]
+      },
+      {
+        "type": "field_number",
+        "name": "years",
+        "value": 0,
+        "min": 0
+      },
+      {
+        "type": "field_number",
+        "name": "months",
+        "value": 0,
+        "min": 0
+      },
+      {
+        "type": "field_number",
+        "name": "days",
+        "value": 0,
+        "min": 0
+      },
+      {
+        "type": "field_number",
+        "name": "hours",
+        "value": 0,
+        "min": 0
+      },
+      {
+        "type": "field_number",
+        "name": "minutes",
+        "value": 0,
+        "min": 0
+      },
+      {
+        "type": "field_number",
+        "name": "seconds",
+        "value": 0,
+        "min": 0,
+        "precision": 0.01
+      }
+    ],
+    "inputsInline": true,
+    "output": "DURATION",
+    "colour": 330,
+    "tooltip": "Duration. Choose positive or negative, and provide a number for the number of years, months, days, hours, and minutes. Seconds are precise to 0.01s.",
+    "helpUrl": ""
+  }
+  )
+}
+}
+
+Blockly.Blocks['time'] = {
+    init: function() {
+      this.jsonInit(  {
+    "type": "time",
+    "message0": "%1 : %2 : %3 %4",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "hours",
+        "value": 0,
+        "min": 1,
+        "max": 12
+      },
+      {
+        "type": "field_number",
+        "name": "minutes",
+        "value": 0,
+        "min": 0,
+        "max": 59
+      },
+      {
+        "type": "field_number",
+        "name": "seconds",
+        "value": 0,
+        "min": 0,
+        "max": 59.99,
+        "precision": 0.01
+      },
+      {
+        "type": "field_dropdown",
+        "name": "daypart",
+        "options": [
+          [
+            "am",
+            "am"
+          ],
+          [
+            "pm",
+            "pm"
+          ]
+        ]
+      }
+    ],
+    "output": "TIME",
+    "colour": 330,
+    "tooltip": "Time. Choose hours (1-12), minutes (0-59), and seconds (0-59.99), and part of day (am/pm).",
+    "helpUrl": ""
+  }
+  )
+}
+}
+
+Blockly.Blocks['date'] = {
+    init: function() {
+      this.jsonInit(
+            {
+    "type": "date",
+    "message0": "%1 / %2 / %3",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "year",
+        "value": 2020
+      },
+      {
+        "type": "field_number",
+        "name": "month",
+        "value": 1,
+        "min": 1,
+        "max": 12
+      },
+      {
+        "type": "field_number",
+        "name": "day",
+        "value": 1,
+        "min": 1,
+        "max": 31
+      }
+    ],
+    "output": "DATE",
+    "colour": 330,
+    "tooltip": "Date. YYYY/M/D",
+    "helpUrl": ""
+  }
+  )
+}
+}
+
+Blockly.Blocks['datetime'] = {
+    init: function() {
+      this.jsonInit(  {
+    "type": "datetime",
+    "message0": "%1 / %2 / %3 at %4 : %5 : %6 %7",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "year",
+        "value": 2020
+      },
+      {
+        "type": "field_number",
+        "name": "month",
+        "value": 1,
+        "min": 1,
+        "max": 12
+      },
+      {
+        "type": "field_number",
+        "name": "day",
+        "value": 1,
+        "min": 1,
+        "max": 31
+      },
+      {
+        "type": "field_number",
+        "name": "hours",
+        "value": 0,
+        "min": 1,
+        "max": 12
+      },
+      {
+        "type": "field_number",
+        "name": "minutes",
+        "value": 0,
+        "min": 0,
+        "max": 59
+      },
+      {
+        "type": "field_number",
+        "name": "seconds",
+        "value": 0,
+        "min": 0,
+        "max": 59.99,
+        "precision": 0.01
+      },
+      {
+        "type": "field_dropdown",
+        "name": "daypart",
+        "options": [
+          [
+            "am",
+            "am"
+          ],
+          [
+            "pm",
+            "pm"
+          ]
+        ]
+      }
+    ],
+    "output": "DATETIME",
+    "colour": 330,
+    "tooltip": "Date/Time. YYYY/M/D at h:m:s am/pm (seconds are from 0-59.99)",
+    "helpUrl": ""
+  }
+  )
+    }
+}
+
+
+Blockly.Blocks['currency_datatype'] = {
+  init: function() {
+    this.jsonInit(  
+{
+  "type": "currency_datatype",
+  "message0": "💰 Currency",
+  "output": "DATATYPE",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['concat_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "concat_text",
+  "message0": "🔠 %1 with %2 🔠 %3 appended is 🔠 %4 %5",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "first_text",
+      "check": [
+        "String",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "second_text",
+      "check": [
+        "String",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "result",
+      "check": [
+        "String",
+        "ENTITY"
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 165,
+  "tooltip": "Makes one text value out of two text values by appending them.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['length_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "length_text",
+  "message0": "length of 🔠 %1 is #️⃣ %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": [
+        "String",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "NAME",
+      "check": [
+        "Number",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 165,
+  "tooltip": "Returns the length of a text value.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['toupper_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "toupper_text",
+  "message0": "🔠 %1 in uppercase is 🔠 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": [
+        "String",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "output",
+      "check": [
+        "String",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 165,
+  "tooltip": "Returns the text in ALL CAPS",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['tolower_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "tolower_text",
+  "message0": "🔠 %1 in lowercase is 🔠 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": [
+        "String",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "output",
+      "check": [
+        "String",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 165,
+  "tooltip": "Returns the text in lowercase",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['startswith_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "startswith_text",
+  "message0": "🔠 %1 starts with 🔠 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": "String"
+    },
+    {
+      "type": "input_value",
+      "name": "target",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 165,
+  "tooltip": "Returns a yes or no if the first text begins with the second text.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['endswith_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "endswith_text",
+  "message0": "🔠 %1 ends with 🔠 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": "String"
+    },
+    {
+      "type": "input_value",
+      "name": "target",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 165,
+  "tooltip": "Returns a yes or no if the first text ends with the second text.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['substring_text'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "substring_text",
+  "message0": "🔠 %1 from character #️⃣ %2 to character  #️⃣ %3 is 🔠 %4",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "text",
+      "check": "String"
+    },
+    {
+      "type": "input_value",
+      "name": "start",
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "length",
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "output",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 165,
+  "tooltip": "Returns a part of a text. -1 means the end of the text value.",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['date_before'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "date_before",
+  "message0": "📅/📅🕓 %1 is before 📅/📅🕓 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "first_date",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "second_date",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "Enter two dates or dates with times to see if the first is before the second",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['date_before_or_eq'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "date_before_or_eq",
+  "message0": "📅/📅🕓 %1 is before or at 📅/📅🕓 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "first_date",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "second_date",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "Enter two dates or dates with times to see if the first is before or exactly the same as the second.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['time_before_or_eq'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "time_before_or_eq",
+  "message0": "🕓 %1 is before or at 🕓 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "first_time",
+      "check": [
+        "TIME",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "second_time",
+      "check": [
+        "TIME",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "Enter two times to see if the first is before or exactly the same as the second.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['time_before'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "time_before",
+  "message0": "🕓 %1 is before🕓 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "first_time",
+      "check": [
+        "TIME",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "second_time",
+      "check": [
+        "TIME",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "Enter two times to see if the first is before the second.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['time_plus_dur'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "time_plus_dur",
+  "message0": "🕓 %1 plus ⏱ %2 is 🕓 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "time",
+      "check": [
+        "TIME",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "duration",
+      "check": [
+        "DURATION",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "output",
+      "check": [
+        "TIME",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "Add a time and a duration to get a new time.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['date_plus_dur'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "date_plus_dur",
+  "message0": "📅/📅🕓 %1 plus ⏱ %2 is 📅/📅🕓 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "date",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "duration",
+      "check": [
+        "DURATION",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "output",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "Add a time and a duration to get a new time.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['time_minus_time'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "time_minus_time",
+  "message0": "🕓 %1 minus %2 🕓 %3 is ⏱ %4",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "time",
+      "check": [
+        "TIME",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "second_time",
+      "check": [
+        "TIME",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "output",
+      "check": [
+        "DURATION",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "Find the duration between two times.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['date_minus_date'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "date_minus_date",
+  "message0": "📅/📅🕓 %1 minus 📅/📅🕓 %2 is ⏱ %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "date",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "second_date",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "ENTITY"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "output",
+      "check": [
+        "DURATION",
+        "ENTITY"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "Get the duration bewteen two dates or date times.",
+  "helpUrl": ""
+}
+)}}
