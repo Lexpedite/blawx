@@ -2431,7 +2431,7 @@ Blockly.Blocks['date_minus_date'] = {
     var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
     var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_time + '[minus(' + value_second_time + ')->' + value_output + ']@\\basetype';
+    var code = value_time + '[minus(' + value_second_time + ')->' + value_output + ']@datemin';
     return code;
   };
   
@@ -2439,7 +2439,7 @@ Blockly.Blocks['date_minus_date'] = {
     var value_date = Blockly.JavaScript.valueToCode(block, 'date', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
     var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = value_date + '[minus(' + value_second_date + ')->' + value_output + ']@\\basetype';
+    var code = value_date + '[minus(' + value_second_date + ')->' + value_output + ']@datemin';
     return code;
   };
   

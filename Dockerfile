@@ -48,4 +48,6 @@ COPY reasoner/decode.js reasoner/json2f2.py ./
 
 COPY reasoner/reasoner.php /usr/lib/cgi-bin
 
+COPY reasoner/datemiinus.flr /usr/lib/cgi-bin
+
 EXPOSE 80

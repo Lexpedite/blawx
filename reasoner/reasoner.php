@@ -130,6 +130,17 @@ if (is_resource($flora)) {
 		echo $stdout . "\n";
 		echo "Standard Err:\n";
 		echo $stderr . "\n";
+		echo "Loading dateminus:\n";
+	}
+	fwrite($pipes[0], "['/usr/lib/cgi-bin/dateminus.flr'>>datemin].\n");
+	sleep(5);
+	if ($debugmode) {
+		$stdout = stream_get_contents($pipes[1],1024);
+		$sterr = stream_get_contents($pipes[2],1024);
+		echo "Standard Out;\n";
+		echo $stdout . "\n";
+		echo "Standard Err:\n";
+		echo $stderr . "\n";
 		echo "Loading data file:\n";
 	}
 	fwrite($pipes[0], "['".$tmpflrfile."'].\n");
