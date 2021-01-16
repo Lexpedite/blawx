@@ -1,17 +1,17 @@
 function blawxTypeToBlocklyType(blawxType) {
-    if (blawxType == 'True/False') {
+    if (blawxType == '☑ Yes / No') {
       return 'Boolean';
-    } else if (blawxType == "Number") {
+    } else if (blawxType == "#️⃣ Number") {
       return 'Number';
-    } else if (blawxType == "String") {
+    } else if (blawxType == "🔠 Text") {
       return 'String';
-    } else if (blawxType == "DATE") {
+    } else if (blawxType == "📅 Date") {
       return 'DATE';
-    } else if (blawxType == "DATETIME") {
+    } else if (blawxType == "📅🕓 Date and Time") {
       return 'DATETIME';
-    } else if (blawxType == "TIME") {
+    } else if (blawxType == "🕓 Time") {
       return "TIME";
-    } else if (blawxType == "DURATION") {
+    } else if (blawxType == "⏱ Duration") {
       return "DURATION";
     } else {
       return null;

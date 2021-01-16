@@ -1061,7 +1061,7 @@ Blockly.Blocks['datetime_datatype'] = {
       this.jsonInit(
   {
     "type": "datetime_datatype",
-    "message0": "📅🕔 Date and Time",
+    "message0": "📅🕓 Date and Time",
     "output": "DATATYPE",
     "colour": 160,
     "tooltip": "",
