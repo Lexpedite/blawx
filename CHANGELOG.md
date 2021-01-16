@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
+## [v0.2.3-dev]
+As of 2021-01-16...
+### Added
+* Date, Time, Datetime, and Duration Datatypes ([Issue #48](https://github.com/Blawx/blawx/issues/48))
+* Date Math Functions
+* Blocks for String Functions (Not Yet Implemented)
+### Changed
+* Added emoji to data type selectors and functions
+* Changed organization of ToolBox
+* Updated reasoner to Flora-2.1RC1 ([Issue #55](https://github.com/Blawx/blawx/issues/55))
+* "String" is renamed to "Text"
+* "True/False" is renamed to "Yes/No"
+
+
 ## [v0.2.2-alpha](https://github.com/Blawx/blawx/releases/tag/v0.2.2-alpha) 2020-06-06
 ### Added
 * Script for updating running container in development enviroments.
