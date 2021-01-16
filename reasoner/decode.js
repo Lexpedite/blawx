@@ -2443,48 +2443,43 @@ Blockly.Blocks['date_minus_date'] = {
     var value_first_text = Blockly.JavaScript.valueToCode(block, 'first_text', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_text = Blockly.JavaScript.valueToCode(block, 'second_text', Blockly.JavaScript.ORDER_ATOMIC);
     var value_result = Blockly.JavaScript.valueToCode(block, 'result', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_first_text + '[concat(' + value_second_text + ')->' + value_result + ']';
     return code;
   };
   
   Blockly.JavaScript['length_text'] = function(block) {
     var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
     var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_text + '[length->' + value_name + ']';
+    // TODO Fix Field naming
     return code;
   };
   
   Blockly.JavaScript['toupper_text'] = function(block) {
     var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
     var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_text + '[toUpper->' + value_output + ']';
     return code;
   };
   
   Blockly.JavaScript['tolower_text'] = function(block) {
     var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
     var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_text + '[toLower->' + value_output + ']';
     return code;
   };
   
   Blockly.JavaScript['startswith_text'] = function(block) {
     var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
     var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_text + '[startsWith(' + value_output + ')]';
     return code;
   };
   
   Blockly.JavaScript['endswith_text'] = function(block) {
     var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
     var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_text + '[endsWith(' + value_output + ')]';
     return code;
   };
   
@@ -2493,8 +2488,7 @@ Blockly.Blocks['date_minus_date'] = {
     var value_start = Blockly.JavaScript.valueToCode(block, 'start', Blockly.JavaScript.ORDER_ATOMIC);
     var value_length = Blockly.JavaScript.valueToCode(block, 'length', Blockly.JavaScript.ORDER_ATOMIC);
     var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_text + '[substring(' + value_start + ',' + value_length + ')->' + value_output + ']';
     return code;
   };
   
