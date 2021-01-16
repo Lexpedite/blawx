@@ -2314,8 +2314,11 @@ Blockly.Blocks['date_minus_date'] = {
     var number_minutes = block.getFieldValue('minutes');
     var number_seconds = block.getFieldValue('seconds');
     var dropdown_daypart = block.getFieldValue('daypart');
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...';
+    if (dropdown_daypart == "pm") {
+      number_hours += 12;
+    }
+    var code = '"' + number_year + '-' + number_month + '-' + number_day + 'T';
+    code += number_hours + ':' + number_minutes + ':' + number_seconds + '"^^\\dateTime';
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
@@ -2324,8 +2327,7 @@ Blockly.Blocks['date_minus_date'] = {
     var number_year = block.getFieldValue('year');
     var number_month = block.getFieldValue('month');
     var number_day = block.getFieldValue('day');
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...';
+    var code = '"' + number_year + "-" + number_month + "-" + number_day + '"^^\\date';
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
@@ -2335,8 +2337,10 @@ Blockly.Blocks['date_minus_date'] = {
     var number_minutes = block.getFieldValue('minutes');
     var number_seconds = block.getFieldValue('seconds');
     var dropdown_daypart = block.getFieldValue('daypart');
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...';
+    if (dropdown_daypart == "pm") {
+      number_hours += 12;
+    }
+    var code = '"' + number_hours + ':' + number_minutes + ':' + number_seconds + '"^^\\time';
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
@@ -2349,8 +2353,8 @@ Blockly.Blocks['date_minus_date'] = {
     var number_hours = block.getFieldValue('hours');
     var number_minutes = block.getFieldValue('minutes');
     var number_seconds = block.getFieldValue('seconds');
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...';
+    var code = '"' + dropdown_sign + 'P' + number_years + 'Y' + number_months + 'M';
+    code += number_days + 'D' + number_hours + 'H' + number_minutes + 'M' + number_seconds + 'S"^^\\duration'; 
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
@@ -2361,7 +2365,7 @@ Blockly.Blocks['date_minus_date'] = {
   };
 
   Blockly.JavaScript['datetime_datatype'] = function(block) {
-    var code = "\\datetime";
+    var code = "\\dateTime";
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
@@ -2378,32 +2382,28 @@ Blockly.Blocks['date_minus_date'] = {
   Blockly.JavaScript['date_before'] = function(block) {
     var value_first_date = Blockly.JavaScript.valueToCode(block, 'first_date', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_first_date + '[lessThan(' + value_second_date + ')]';
     return code;
   };
   
   Blockly.JavaScript['date_before_or_eq'] = function(block) {
     var value_first_date = Blockly.JavaScript.valueToCode(block, 'first_date', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_first_date + '[lessThanEq(' + value_second_date + ')]';
     return code;
   };
   
   Blockly.JavaScript['time_before_or_eq'] = function(block) {
     var value_first_time = Blockly.JavaScript.valueToCode(block, 'first_time', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_first_time + '[lessThanEq(' + value_second_time + ')]';
     return code;
   };
   
   Blockly.JavaScript['time_before'] = function(block) {
     var value_first_time = Blockly.JavaScript.valueToCode(block, 'first_time', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_first_time + '[lessThan(' + value_second_time + ')]';
     return code;
   };
   
@@ -2411,8 +2411,7 @@ Blockly.Blocks['date_minus_date'] = {
     var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
     var value_duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
     var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_time + '[add(' + value_duration + ')->' + value_output + ']';
     return code;
   };
   
@@ -2420,8 +2419,7 @@ Blockly.Blocks['date_minus_date'] = {
     var value_date = Blockly.JavaScript.valueToCode(block, 'date', Blockly.JavaScript.ORDER_ATOMIC);
     var value_duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
     var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_date + '[add(' + value_duration + ')->' + value_output + ']';
     return code;
   };
   
@@ -2429,8 +2427,7 @@ Blockly.Blocks['date_minus_date'] = {
     var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_time = Blockly.JavaScript.valueToCode(block, 'second_time', Blockly.JavaScript.ORDER_ATOMIC);
     var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_time + '[minus(' + value_second_time + ')->' + value_output + ']';
     return code;
   };
   
@@ -2438,8 +2435,7 @@ Blockly.Blocks['date_minus_date'] = {
     var value_date = Blockly.JavaScript.valueToCode(block, 'date', Blockly.JavaScript.ORDER_ATOMIC);
     var value_second_date = Blockly.JavaScript.valueToCode(block, 'second_date', Blockly.JavaScript.ORDER_ATOMIC);
     var value_output = Blockly.JavaScript.valueToCode(block, 'output', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = value_date + '[minus(' + value_second_date + ')->' + value_output + ']';
     return code;
   };
   
