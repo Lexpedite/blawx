@@ -89,6 +89,7 @@ $factshandle = fopen($tmpflrfile,"w");
 if ($code) {
 	fwrite($factshandle,':- use_argumentation_theory.'.PHP_EOL);
 	fwrite($factshandle,'\opposes(?_x[?_y->\true],?_x[?_y->\false]) :- ?_x:?_T, ?_T[|?_y=>\boolean|].'.PHP_EOL);
+	// TODO: Add TimeMinus code to each program here.
 	fwrite($factshandle,$facts);
 	if ($blawxdata) {
 		fwrite($factshandle,$blawxdata);
