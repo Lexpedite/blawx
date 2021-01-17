@@ -11,13 +11,15 @@ As of 2021-01-16...
 ### Added
 * Date, Time, Datetime, and Duration Datatypes ([Issue #48](https://github.com/Blawx/blawx/issues/48))
 * Date Math Functions
-* Blocks for String Functions (Not Yet Implemented)
+* String Functions
 ### Changed
 * Added emoji to data type selectors and functions
 * Changed organization of ToolBox
 * Updated reasoner to Flora-2.1RC1 ([Issue #55](https://github.com/Blawx/blawx/issues/55))
 * "String" is renamed to "Text"
 * "True/False" is renamed to "Yes/No"
+* String Value Block
+  **Earlier Blawx workspaces using string values will no longer function**
 
 
 ## [v0.2.2-alpha](https://github.com/Blawx/blawx/releases/tag/v0.2.2-alpha) 2020-06-06
