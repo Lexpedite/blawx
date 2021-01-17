@@ -21,7 +21,7 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
 	echo "AcceptFilter https none" >> /etc/apache2/apache2.conf && \
 	echo "AcceptFilter http none" >> /etc/apache2/apache2.conf
 
-COPY reasoner/serve_cgi_bin.conf /etc/apache2/conf-available
+COPY reasoner/serve-cgi-bin.conf /etc/apache2/conf-available
 
 RUN cd /etc/apache2/mods-enabled && \
 	ln -s ../mods-available/cgi.load
