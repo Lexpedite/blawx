@@ -7,7 +7,7 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
 ## [v0.2.3-dev]
-As of 2021-01-16...
+As of 2021-01-17...
 ### Added
 * Date, Time, Datetime, and Duration Datatypes ([Issue #48](https://github.com/Blawx/blawx/issues/48))
 * Date Math Functions
@@ -18,8 +18,15 @@ As of 2021-01-16...
 * Updated reasoner to Flora-2.1RC1 ([Issue #55](https://github.com/Blawx/blawx/issues/55))
 * "String" is renamed to "Text"
 * "True/False" is renamed to "Yes/No"
-* String Value Block
+* New String Value Block
   **Earlier Blawx workspaces using string values will no longer function**
+* System now uses reasoner.py instead of reasoner.php
+  The system should generally be much faster, in particular for small queries.
+  It will now time-out if loading the blawx rules or data takes more than 30 seconds of server time.
+### Fixed
+* Allow Long Search Results ([Issue #1](https://github.com/Blawx/blawx/issues/1))
+* Stop using sleep in Reasoner.php ([Issue #26](https://github.com/Blawx/blawx/issues/26))
+
 
 
 ## [v0.2.2-alpha](https://github.com/Blawx/blawx/releases/tag/v0.2.2-alpha) 2020-06-06
