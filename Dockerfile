@@ -6,6 +6,7 @@ RUN apt-get -y update && \
 	apt-get install -y \
 	sudo \
 	python3 \
+	python3-pip \
 	git \
 	wget \
 	apache2 \
@@ -13,6 +14,10 @@ RUN apt-get -y update && \
 	nodejs \
 	npm && \
 	npm install -g blockly xmlhttprequest
+
+RUN pip3 install pexpect
+
+RUN pip3 install git+https://github.com/AILab-FOI/pyxf
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
 	echo "AcceptFilter https none" >> /etc/apache2/apache2.conf && \
