@@ -17,11 +17,11 @@ RUN apt-get -y update && \
 
 RUN pip3 install pexpect
 
-RUN pip3 install git+https://github.com/AILab-FOI/pyxf
-
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
 	echo "AcceptFilter https none" >> /etc/apache2/apache2.conf && \
 	echo "AcceptFilter http none" >> /etc/apache2/apache2.conf
+
+COPY reasoner/serve_cgi_bin.conf /etc/apache2/conf-available
 
 RUN cd /etc/apache2/mods-enabled && \
 	ln -s ../mods-available/cgi.load
