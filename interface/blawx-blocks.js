@@ -1917,3 +1917,188 @@ Blockly.Blocks['blawx_string'] = {
   "helpUrl": ""
 }
 )}}
+
+
+Blockly.Blocks['cardinality_up_to'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "cardinality_up_to",
+  "message0": "%1 , which is up to  %2 %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "default"
+    },
+    {
+      "type": "field_number",
+      "name": "maximum_cardinality",
+      "value": 1,
+      "min": 1
+    },
+    {
+      "type": "input_value",
+      "name": "attribute_type",
+      "check": [
+        "TYPE",
+        "DATATYPE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['cardinality_or_more'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "cardinality_or_more",
+  "message0": "%1 , which is  %2 or more %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "default"
+    },
+    {
+      "type": "field_number",
+      "name": "minimum_cardinality",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "input_value",
+      "name": "attribute_type",
+      "check": [
+        "TYPE",
+        "DATATYPE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['cardinality_exactly'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "cardinality_exactly",
+  "message0": "%1 , which is exactly %2 %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "default"
+    },
+    {
+      "type": "field_number",
+      "name": "cardinality",
+      "value": 1,
+      "min": 1
+    },
+    {
+      "type": "input_value",
+      "name": "attribute_type",
+      "check": [
+        "TYPE",
+        "DATATYPE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['cardinality_between'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "cardinality_between",
+  "message0": "%1 , which is between %2 and %3 %4",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "default"
+    },
+    {
+      "type": "field_number",
+      "name": "minimum_cardinality",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "field_number",
+      "name": "maximum_cardinality",
+      "value": 1,
+      "min": 1
+    },
+    {
+      "type": "input_value",
+      "name": "attribute_type",
+      "check": [
+        "TYPE",
+        "DATATYPE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['cardinality_any'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "cardinality_any",
+  "message0": "%1 , which is any number of %2",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "default"
+    },
+    {
+      "type": "input_value",
+      "name": "attribute_type",
+      "check": [
+        "TYPE",
+        "DATATYPE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
