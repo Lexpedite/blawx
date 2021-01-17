@@ -2,39 +2,53 @@
 
 # Imports
 import cgi
-import pyxf
+import pexpect
 import tempfile
 import subprocess
 import sys, json, types
 import re
+import time
 
 # Print Headers
 print("Content-type: application/json;charset=utf-8")
 print() 
 
-# Collect "code" and "data" from environment
-input = cgi.FieldStorage()
-code = input.getvalue('code')
-data = input.getvalue('data')
+debugmode = False # Causes it to print Flora-2 interactions
+testmode = True # Causes it to use provided blawx files for testing if True
 
-
-# Put the .blawx code in a temporary file
-blawxfile = tempfile.NamedTemporaryFile()
-blawxfile.write(code)
+if not debugmode and not testmode:
+    # Collect "code" and "data" from environment
+    input = cgi.FieldStorage()
+    code = input.getvalue('code')
+    data = input.getvalue('data')
+    # Put the .blawx code in a temporary file
+    blawxfile = tempfile.NamedTemporaryFile()
+    blawxfile.write(code.encode())
+else:
+    # Load the default blawx code provided with the software
+    blawxfile = open('/usr/lib/cgi-bin/demo2.blawx','r')
+    data = ''
 
 # Run "decode.js" on the blawx code.
-floracode = subprocess.run(["npm", "/var/www/html/decode.js", blawxfile.name],
-                capture_output=True).stdout
+floracode = subprocess.run(["node", "/var/www/html/decode.js", blawxfile.name],
+                capture_output=True,text=True).stdout
 
 # Take the queries out of the code and save them.
 # Also, think about whether or not this is necessary. Maybe not.
-queries = re.findall('/^\?-.*\.$/ms',floracode)
-noqueryfloracode = re.sub('/^\?-.*\.$/ms','',floracode)
 
+flora_query_re = re.compile("^\?-.*\.$", re.MULTILINE | re.S)
+queries = re.findall(flora_query_re,floracode)
+noqueryfloracode = re.sub(flora_query_re,'',floracode)
 
 # Put the remaining flora code in a temporary file
-floracodefile = tempfile.NamedTemporaryFile()
-floracodefile.write(noqueryfloracode)
+floracodefile = tempfile.NamedTemporaryFile(delete=False,prefix="Blawx",suffix=".flr")
+floracodefile.write(noqueryfloracode.encode())
+
+# Recording the name of the temporary file and closing it
+# is necessary to get Flora-2 to load the file in an simulated TTY
+# for some reason.
+user_rules = floracodefile.name
+floracodefile.close()
 
 # run json2f2 on the json code.
 
@@ -111,41 +125,108 @@ def jsonvalue2flora(value):
   else:
     return str(value) + ":" + type(value).__name__
 
-data_dictionary = json.loads(data)
 
-# Convert the resulting Python dictionary to a list of Flora-2 Entries.
 flora_data = []
-for k,v in data_dictionary.items():
-  flora_data.append(json2flora(k,v,root=True))    
+ 
+if data and data != '':
+    data_dictionary = json.loads(data)
+
+    # Convert the resulting Python dictionary to a list of Flora-2 Entries.
+    for k,v in data_dictionary.items():
+        flora_data.append(json2flora(k,v,root=True))    
 
 # Start Flora-2
-flora2prompt = 'flora2 [?][-][ ]'
-flora2error = '[+][+]Error.*'
+flora2prompt = 'flora2 \?\- '
+flora2error = '\+\+Error\[Flora\-2\]'
+console = pexpect.spawn('/var/Flora-2/flora2/runflora',encoding='utf-8')
+if debugmode:
+    console.logfile = sys.stdout
+expected_result = console.expect([flora2prompt, flora2error])
+if expected_result != 0:
+    raise Exception("Error running Flora-2" + str(console))
 # Set Expert Mode
-console = pyxf.flora2(path='/var/Flora-2/flora2/runflora', args='--noprompt', expert=True)
+console.sendline("expert{on}.")
+expected_result = console.expect([flora2prompt, flora2error])
+if expected_result != 0:
+    raise Exception("Error setting expert mode." + str(console))
 
 # Turn on Argumentation Theory
-console.engine.sendline(":- use_argumentation_theory.")
-return = console.engine.expect([flora2prompt, flora2error])
-if return==1:
-    raise Exception('Error enabling argumentation theory.')
+# This needs to be in the flora file, so has been moved to the decode.js file.
+
+# Load System Modules
+console.sendline("['/usr/lib/cgi-bin/dateminus.flr'>>datemin].")
+expected_result = console.expect([flora2prompt, flora2error])
+if expected_result != 0:
+    raise Exception("Error loading date math library." + str(console))
+
+# Load Rules
+console.sendline("['" + user_rules + "'].")
+expected_result = console.expect([flora2prompt, flora2error])
+if expected_result != 0:
+    raise Exception("Error loading blawx code." + str(console))
 
 # Set Default Opposes
-console.addfacts( ['\opposes(?_x[?_y->\\true],?_x[?_y->\\false]) :- ?_x:?_T, ?_T[|?_y=>\\boolean|].'])
-# Load System Modules
-console.engine.sendline("['/usr/lib/cgi-bin/dateminus.flr'>>datemin].")
-return = console.engine.expect([flora2prompt, flora2error])
-if return==1:
-    raise Exception('Error loading dateminus module.')
+console.sendline('insert{\opposes(?_x[?_y->\\true],?_x[?_y->\\false]) :- ?_x:?_T, ?_T[|?_y=>\\boolean|]}.')
+expected_result = console.expect([flora2prompt, flora2error])
+if expected_result != 0:
+    raise Exception("Error defining default opposition." + str(console))
+
 # Insert Facts
-console.load(floracodefile.name)
+for f in flora_data:
+    console.sendline("insert{" + f + "}.")
+    expected_result = console.expect([flora2prompt, flora2error])
+    if expected_result != 0:
+        raise Exception("Error loading user data." + str(console))
+
 # Send Query
-output = console.query(queries[0])
-# Send the json response
-print(json.dumps(output))
+console.sendline(queries[0][3:]) #strips the "?- " from the start of the query
+expected_result = console.expect([flora2prompt, flora2error])
+if expected_result != 0:
+    raise Exception("Error sending query." + str(console))
+
+# Process the output into a data object
+query_response = console.before
+
+response_data = {}
+response_data['answers'] = {}
+answercount = 0
+answersdone = False
+lines = query_response.splitlines()
+for l in lines:
+    if l == "" and not answersdone:
+        answercount += 1
+        response_data['answers'][str(answercount)] = {}
+    elif l == queries[0][3:]:
+        pass
+    elif "Times (in seconds)" in l:
+        answersdone = True
+        del response_data['answers'][str(answercount)]
+    elif "solution(s)" in l:
+        answersdone = True
+        del response_data['answers'][str(answercount)]
+    elif l != "Yes" and l != "No" and l != "":
+        #Lots of stuff here.
+        lineparts = l.split(" = ", 2)
+        if "flora'skolem" in lineparts[1]:
+            lineparts[1] = "Unnamed Object"
+        if lineparts[0][0:1] == '?':
+            if lineparts[1][0:1] == "\\":
+                response_data['answers'][str(answercount)][lineparts[0][1:]] = lineparts[1][1:]
+            else:
+                response_data['answers'][str(answercount)][lineparts[0][1:]] = lineparts[1]
+        else:
+            if lineparts[1][0:1] == "\\":
+                response_data['answers'][str(answercount)][lineparts[0]] = lineparts[1][1:]
+            else:
+                response_data['answers'][str(answercount)][lineparts[0]] = lineparts[1]
+    elif l == "Yes" or l == "No":
+        response_data['main'] = l
+
+# Send the json version of the data object
+print(json.dumps(response_data))
 
 # Halt Flora-2
-console.engine.sendline("\halt.")
+console.sendline("\halt.")
 console.close()
 # Delete temporary files
 blawxfile.close()

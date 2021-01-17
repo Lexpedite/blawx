@@ -12,3 +12,6 @@ docker cp ./reasoner/reasoner.php $(docker ps -qf "ancestor=blawx"):/usr/lib/cgi
 docker cp ./reasoner/decode.js $(docker ps -qf "ancestor=blawx"):/var/www/html
 docker cp ./reasoner/json2f2.py $(docker ps -qf "ancestor=blawx"):/var/www/html
 docker cp ./reasoner/dateminus.flr $(docker ps -qf "ancestor=blawx"):/usr/lib/cgi-bin
+docker cp ./reasoner/reasoner.py $(docker ps -qf "ancestor=blawx"):/usr/lib/cgi-bin
+docker cp ./reasoner/demo.blawx $(docker ps -qf "ancestor=blawx"):/usr/lib/cgi-bin
+docker cp ./reasoner/demo2.blawx $(docker ps -qf "ancestor=blawx"):/usr/lib/cgi-bin
