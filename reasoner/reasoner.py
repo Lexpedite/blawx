@@ -14,7 +14,7 @@ print("Content-type: application/json;charset=utf-8")
 print() 
 
 debugmode = False # Causes it to print Flora-2 interactions
-testmode = True # Causes it to use provided blawx files for testing if True
+testmode = False # Causes it to use provided blawx files for testing if True
 
 if not debugmode and not testmode:
     # Collect "code" and "data" from environment
