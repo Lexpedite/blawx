@@ -1,2 +1,2 @@
 # And Block
-![and block](../img/and.png "And Block")
+![and block]({{ site.base_url }}/img/and.png "And Block")
