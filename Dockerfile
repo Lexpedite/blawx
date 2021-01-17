@@ -55,6 +55,8 @@ COPY reasoner/reasoner.php /usr/lib/cgi-bin
 
 COPY reasoner/reasoner.py /usr/lib/cgi-bin
 
+RUN chmod +x /usr/lib/cgi-bin/reasoner.py
+
 COPY reasoner/dateminus.flr /usr/lib/cgi-bin
 
 COPY reasoner/demo.blawx /usr/lib/cgi-bin
