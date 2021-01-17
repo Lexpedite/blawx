@@ -1920,6 +1920,191 @@ Blockly.Blocks['blawx_string'] = {
 }
 )}}
 
+
+Blockly.Blocks['cardinality_up_to'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "cardinality_up_to",
+  "message0": "%1 , which is up to  %2 %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "default"
+    },
+    {
+      "type": "field_number",
+      "name": "maximum_cardinality",
+      "value": 1,
+      "min": 1
+    },
+    {
+      "type": "input_value",
+      "name": "attribute_type",
+      "check": [
+        "TYPE",
+        "DATATYPE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['cardinality_or_more'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "cardinality_or_more",
+  "message0": "%1 , which is  %2 or more %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "default"
+    },
+    {
+      "type": "field_number",
+      "name": "minimum_cardinality",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "input_value",
+      "name": "attribute_type",
+      "check": [
+        "TYPE",
+        "DATATYPE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['cardinality_exactly'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "cardinality_exactly",
+  "message0": "%1 , which is exactly %2 %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "default"
+    },
+    {
+      "type": "field_number",
+      "name": "cardinality",
+      "value": 1,
+      "min": 1
+    },
+    {
+      "type": "input_value",
+      "name": "attribute_type",
+      "check": [
+        "TYPE",
+        "DATATYPE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['cardinality_between'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "cardinality_between",
+  "message0": "%1 , which is between %2 and %3 %4",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "default"
+    },
+    {
+      "type": "field_number",
+      "name": "minimum_cardinality",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "field_number",
+      "name": "maximum_cardinality",
+      "value": 1,
+      "min": 1
+    },
+    {
+      "type": "input_value",
+      "name": "attribute_type",
+      "check": [
+        "TYPE",
+        "DATATYPE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['cardinality_any'] = {
+  init: function() {
+    this.jsonInit( 
+{
+  "type": "cardinality_any",
+  "message0": "%1 , which is any number of %2",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "default"
+    },
+    {
+      "type": "input_value",
+      "name": "attribute_type",
+      "check": [
+        "TYPE",
+        "DATATYPE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
   Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
     var code = text_type_name + '::Thing';
@@ -2538,6 +2723,46 @@ Blockly.Blocks['blawx_string'] = {
     var code = '"' + text_string + '"^^\\string';
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+  Blockly.JavaScript['cardinality_up_to'] = function(block) {
+    var text_attribute_name = block.getFieldValue('attribute_name');
+    var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
+    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = text_attribute_name + " {.." + number_maximum_cardinality + "} =>" + value_attribute_type;
+    return code;
+  };
+  
+  Blockly.JavaScript['cardinality_or_more'] = function(block) {
+    var text_attribute_name = block.getFieldValue('attribute_name');
+    var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
+    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = text_attribute_name + " {" + number_minimum_cardinality + "..} =>" + value_attribute_type;
+    return code;
+  };
+  
+  Blockly.JavaScript['cardinality_exactly'] = function(block) {
+    var text_attribute_name = block.getFieldValue('attribute_name');
+    var number_cardinality = block.getFieldValue('cardinality');
+    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = text_attribute_name + " {" + number_cardinality + ".." + number_cardinality + "} =>" + value_attribute_type;
+    return code;
+  };
+  
+  Blockly.JavaScript['cardinality_between'] = function(block) {
+    var text_attribute_name = block.getFieldValue('attribute_name');
+    var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
+    var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
+    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = text_attribute_name + " {" + number_minimum_cardinality + ".." + number_maximum_cardinality + "} =>" + value_attribute_type;
+    return code;
+  };
+  
+  Blockly.JavaScript['cardinality_any'] = function(block) {
+    var text_attribute_name = block.getFieldValue('attribute_name');
+    var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = text_attribute_name + "=>" + value_attribute_type;
+    return code;
   };
   
   /**
