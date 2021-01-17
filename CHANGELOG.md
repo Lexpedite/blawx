@@ -6,8 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
-## [v0.2.3-dev]
-As of 2021-01-17...
+## [v0.2.3-dev] as of 2021-01-17...
 ### Added
 * Date, Time, Datetime, and Duration Datatypes ([Issue #48](https://github.com/Blawx/blawx/issues/48))
 * Date Math Functions
