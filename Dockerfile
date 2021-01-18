@@ -49,6 +49,8 @@ COPY . ./blawx
 
 COPY interface .
 
+COPY reasoner/decode.js /var/www/html
+
 COPY reasoner/reasoner.py /usr/lib/cgi-bin
 
 RUN chmod +x /usr/lib/cgi-bin/reasoner.py
