@@ -2691,7 +2691,7 @@ data = fs.readFileSync(datafile,'utf8');
 	  importBlawxCode();
   
     // Convert code and log output
-    var code = "";
+    var code = ":- use_argumentation_theory.\n";
     for (var id in importDictionary) {
 	    code += Blockly.JavaScript.workspaceToCode(importDictionary[id]);
     }

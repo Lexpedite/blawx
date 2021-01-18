@@ -6,6 +6,7 @@ RUN apt-get -y update && \
 	apt-get install -y \
 	sudo \
 	python3 \
+	python3-pip \
 	git \
 	wget \
 	apache2 \
@@ -14,9 +15,13 @@ RUN apt-get -y update && \
 	npm && \
 	npm install -g blockly xmlhttprequest
 
+RUN pip3 install pexpect
+
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
 	echo "AcceptFilter https none" >> /etc/apache2/apache2.conf && \
 	echo "AcceptFilter http none" >> /etc/apache2/apache2.conf
+
+COPY reasoner/serve-cgi-bin.conf /etc/apache2/conf-available
 
 RUN cd /etc/apache2/mods-enabled && \
 	ln -s ../mods-available/cgi.load
@@ -44,10 +49,18 @@ COPY . ./blawx
 
 COPY interface .
 
-COPY reasoner/decode.js reasoner/json2f2.py ./
+COPY reasoner/decode.js /var/www/html
 
-COPY reasoner/reasoner.php /usr/lib/cgi-bin
+COPY reasoner/reasoner.py /usr/lib/cgi-bin
+
+RUN chmod +x /usr/lib/cgi-bin/reasoner.py
 
 COPY reasoner/dateminus.flr /usr/lib/cgi-bin
+
+COPY reasoner/demo.blawx /usr/lib/cgi-bin
+
+COPY reasoner/demo2.blawx /usr/lib/cgi-bin
+
+COPY reasoner/simple.blawx /usr/lib/cgi-bin
 
 EXPOSE 80
