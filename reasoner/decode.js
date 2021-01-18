@@ -2729,7 +2729,7 @@ Blockly.Blocks['cardinality_any'] = {
     var text_attribute_name = block.getFieldValue('attribute_name');
     var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
     var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_attribute_name + " {.." + number_maximum_cardinality + "} =>" + value_attribute_type;
+    var code = text_attribute_name + "{0.." + number_maximum_cardinality + "} =>" + value_attribute_type;
     return code;
   };
   
@@ -2737,7 +2737,7 @@ Blockly.Blocks['cardinality_any'] = {
     var text_attribute_name = block.getFieldValue('attribute_name');
     var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
     var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_attribute_name + " {" + number_minimum_cardinality + "..} =>" + value_attribute_type;
+    var code = text_attribute_name + "{" + number_minimum_cardinality + "..*} =>" + value_attribute_type;
     return code;
   };
   
@@ -2745,7 +2745,7 @@ Blockly.Blocks['cardinality_any'] = {
     var text_attribute_name = block.getFieldValue('attribute_name');
     var number_cardinality = block.getFieldValue('cardinality');
     var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_attribute_name + " {" + number_cardinality + ".." + number_cardinality + "} =>" + value_attribute_type;
+    var code = text_attribute_name + "{" + number_cardinality + ".." + number_cardinality + "} =>" + value_attribute_type;
     return code;
   };
   
@@ -2754,7 +2754,7 @@ Blockly.Blocks['cardinality_any'] = {
     var number_minimum_cardinality = block.getFieldValue('minimum_cardinality');
     var number_maximum_cardinality = block.getFieldValue('maximum_cardinality');
     var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = text_attribute_name + " {" + number_minimum_cardinality + ".." + number_maximum_cardinality + "} =>" + value_attribute_type;
+    var code = text_attribute_name + "{" + number_minimum_cardinality + ".." + number_maximum_cardinality + "} =>" + value_attribute_type;
     return code;
   };
   

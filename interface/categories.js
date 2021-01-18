@@ -6,7 +6,12 @@ knownAttributesCallback = function(workspace) {
     attributeTypes = [];
     var blockList = demoWorkspace.getAllBlocks();
     for (var i = 0; i< blockList.length; i++) {
-    if (blockList[i].type == "attribute_declaration") {
+    if (blockList[i].type == "attribute_declaration" |
+        blockList[i].type == "cardinality_up_to" |
+        blockList[i].type == "cardinality_or_more" |
+        blockList[i].type == "cardinality_between" |
+        blockList[i].type == "cardinality_exactly" |
+        blockList[i].type == "cardinality_any") {
         var attribute_name = blockList[i].getFieldValue('attribute_name');
         var attribute_type = blockList[i].getInputTargetBlock('attribute_type').toString();
         attributeTypes[attribute_name] = attribute_type;
