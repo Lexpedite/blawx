@@ -1,5 +1,5 @@
 ---
-title: "Blawx - Rule Block"
+title: "Rule Block"
 ---
 # Rule Block
 ![rule block]({{ site.baseurl }}/img/rule.png "Rule Block")

@@ -1,5 +1,5 @@
 ---
-title: "Blawx - And Block"
+title: "And Block"
 ---
 # And Block
 ![and block]({{ site.baseurl }}/img/and.png "And Block")

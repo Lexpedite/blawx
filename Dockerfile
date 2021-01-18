@@ -72,7 +72,9 @@ COPY docs /var/www/html/docsource
 
 WORKDIR /var/www/html/docsource
 
-RUN gem install "jekyll-theme-cayman"
+RUN gem install "just-the-docs"
+
+RUN bundle exec just-the-docs rake search:init
 
 RUN bundle exec jekyll build
 

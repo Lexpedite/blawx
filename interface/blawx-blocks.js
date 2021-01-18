@@ -168,7 +168,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 290,
                 "tooltip": "",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/and"
             });
         }
     }
