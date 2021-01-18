@@ -138,7 +138,7 @@ if data and data != '':
 # Start Flora-2
 flora2prompt = 'flora2 \?\- '
 flora2error = '\+\+Error\[Flora\-2\]'
-console = pexpect.spawn('/var/Flora-2/flora2/runflora',encoding='utf-8')
+console = pexpect.spawn('sudo -u root /var/Flora-2/flora2/runflora',encoding='utf-8')
 if debugmode:
     console.logfile = sys.stdout
 expected_result = console.expect([flora2prompt, flora2error])
