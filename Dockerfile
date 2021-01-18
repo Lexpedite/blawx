@@ -49,10 +49,6 @@ COPY . ./blawx
 
 COPY interface .
 
-COPY reasoner/decode.js reasoner/json2f2.py ./
-
-COPY reasoner/reasoner.php /usr/lib/cgi-bin
-
 COPY reasoner/reasoner.py /usr/lib/cgi-bin
 
 RUN chmod +x /usr/lib/cgi-bin/reasoner.py
