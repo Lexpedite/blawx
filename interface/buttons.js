@@ -31,7 +31,8 @@ runCode = function(button) {
         $output.value = text;
         }
     };
-    xhttp.send("code=" + encodeURI(code));
+    //xhttp.send("code=" + encodeURI(code));
+    xhttp.send("code=" + encodeURIComponent(code));
     Blockly.hideChaff();
 }
 var clearBlocks;

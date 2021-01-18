@@ -63,4 +63,6 @@ COPY reasoner/demo.blawx /usr/lib/cgi-bin
 
 COPY reasoner/demo2.blawx /usr/lib/cgi-bin
 
+COPY reasoner/simple.blawx /usr/lib/cgi-bin
+
 EXPOSE 80

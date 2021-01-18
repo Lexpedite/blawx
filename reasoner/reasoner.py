@@ -18,19 +18,23 @@ testmode = False # Causes it to use provided blawx files for testing if True
 
 if not debugmode and not testmode:
     # Collect "code" and "data" from environment
-    input = cgi.FieldStorage()
+    input = cgi.FieldStorage(encoding="utf8")
     code = input.getvalue('code')
     data = input.getvalue('data')
     # Put the .blawx code in a temporary file
-    blawxfile = tempfile.NamedTemporaryFile()
+    blawxfile = tempfile.NamedTemporaryFile(delete=False,prefix="Blawx",suffix=".blawx")
     blawxfile.write(code.encode())
+    blawxfilename = blawxfile.name
+    blawxfile.close()
 else:
     # Load the default blawx code provided with the software
     blawxfile = open('/usr/lib/cgi-bin/demo2.blawx','r')
+    blawxfilename = blawxfile.name
+    blawxfile.close()
     data = ''
 
 # Run "decode.js" on the blawx code.
-floracode = subprocess.run(["node", "/var/www/html/decode.js", blawxfile.name],
+floracode = subprocess.run(["node", "/var/www/html/decode.js", blawxfilename],
                 capture_output=True,text=True).stdout
 
 # Take the queries out of the code and save them.
@@ -44,9 +48,7 @@ noqueryfloracode = re.sub(flora_query_re,'',floracode)
 floracodefile = tempfile.NamedTemporaryFile(delete=False,prefix="Blawx",suffix=".flr")
 floracodefile.write(noqueryfloracode.encode())
 
-# Recording the name of the temporary file and closing it
-# is necessary to get Flora-2 to load the file in an simulated TTY
-# for some reason.
+# Software can't access files that are still open.
 user_rules = floracodefile.name
 floracodefile.close()
 
@@ -228,9 +230,6 @@ print(json.dumps(response_data))
 # Halt Flora-2
 console.sendline("\halt.")
 console.close()
-# Delete temporary files
-blawxfile.close()
-floracodefile.close()
 
 # Nice-To-Have Features:
 # Ideally, there should be a debug mode that
