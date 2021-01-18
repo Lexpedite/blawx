@@ -12,8 +12,13 @@ RUN apt-get -y update && \
 	apache2 \
 	libapache2-mod-php \
 	nodejs \
-	npm && \
+	npm \
+	ruby-full \
+	build-essential \
+	zlib1g-dev && \
 	npm install -g blockly xmlhttprequest
+
+RUN gem install jekyll bundler
 
 RUN pip3 install pexpect
 
@@ -45,8 +50,6 @@ CMD ["apachectl", "-D", "FOREGROUND"]
 
 WORKDIR /var/www/html
 
-COPY . ./blawx
-
 COPY interface .
 
 COPY reasoner/decode.js /var/www/html
@@ -62,5 +65,19 @@ COPY reasoner/demo.blawx /usr/lib/cgi-bin
 COPY reasoner/demo2.blawx /usr/lib/cgi-bin
 
 COPY reasoner/simple.blawx /usr/lib/cgi-bin
+
+RUN mkdir /var/www/html/docs
+
+COPY docs /var/www/html/docsource
+
+WORKDIR /var/www/html/docsource
+
+RUN gem install "just-the-docs"
+
+RUN bundle exec just-the-docs rake search:init
+
+RUN bundle exec jekyll build
+
+RUN cp -r /var/www/html/docsource/_site/* /var/www/html/docs
 
 EXPOSE 80

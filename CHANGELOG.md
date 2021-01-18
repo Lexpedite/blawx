@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
-## [v0.2.3-dev] as of 2021-01-17...
+## [v0.2.3-dev] as of 2021-01-19...
 ### Added
 * Date, Time, Datetime, and Duration Datatypes ([Issue #48](https://github.com/Blawx/blawx/issues/48))
 * Date Math Functions
@@ -14,6 +14,7 @@ While alpha, however, any version changes may cause breaking changes that may no
 * New Attribute Declarations with Cardinality
   This removes the old attribute declaration from the toolbox, but Blawx still
   knows how to process it, so this change should not break old code.
+* The docker container now includes a Jekyll set of documentation at /docs.
 ### Changed
 * Added emoji to data type selectors and functions
 * Changed organization of ToolBox
