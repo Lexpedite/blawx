@@ -1,6 +1,6 @@
 ---
-nav: site.data.navlist.nav
+title: Blawx - Documentation
+layout: default
 ---
-{% include nav.html nav=page.nav %}
 
 # Blawx Documentation

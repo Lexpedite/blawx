@@ -1,5 +1,5 @@
 <ul>
-  {% for item in include.nav %}
+  {% for item in site.data.navlist %}
     <li><a href="{{ item.url }}">{{ item.title }}</a></li>
 
     {% if item.subnav %}

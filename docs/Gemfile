@@ -1,0 +1,7 @@
+# ./Gemfile
+
+# This is an example, declare the theme gem you want to use here
+gem "jekyll-theme-cayman"
+gem "kramdown-parser-gfm"
+gem "jekyll"
+source 'https://rubygems.org'
