@@ -1,6 +1,5 @@
 ---
-layout: default
-title: "Blawx - And Block"
+title: "Blawx - Object Category Block"
 ---
 # Object Category Block
-![object category](../img/object_category.png "Object Category Block")
+![object category]({{ site.baseurl }}/img/object_category.png "Object Category Block")

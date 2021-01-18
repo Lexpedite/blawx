@@ -1,2 +1,5 @@
+---
+title: "Blawx - Variable Assignment Block"
+---
 # Variable Assignment Block
-![variable assignment block](../img/variable_assignment.png "Variable Assignment")
+![variable assignment block]({{ site.baseurl }}/img/variable_assignment.png "Variable Assignment")

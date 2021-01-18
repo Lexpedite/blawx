@@ -1,6 +1,5 @@
 ---
-layout: default
-title: "Blawx - And Block"
+title: "Blawx - Include Block"
 ---
 # Include Block
-![incllude block](../img/include.png "Include Block")
+![incllude block]({{ site.baseurl }}/img/include.png "Include Block")

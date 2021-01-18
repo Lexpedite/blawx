@@ -1,2 +1,5 @@
+---
+title: "Blawx - Quantifier Block"
+---
 # Quantifier Block
-![quantifier block](../img/quantifier.png "Quantifier Block")
+![quantifier block]({{ site.baseurl }}/img/quantifier.png "Quantifier Block")

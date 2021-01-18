@@ -1,6 +1,5 @@
 ---
-layout: default
-title: "Blawx - And Block"
+title: "Blawx - Comparison Block"
 ---
 # Comparison Block
-![comparison block](../img/comparitor.png "Comparison Block")
+![comparison block]({{ site.baseurl }}/img/comparitor.png "Comparison Block")

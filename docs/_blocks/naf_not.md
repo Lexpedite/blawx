@@ -1,6 +1,5 @@
 ---
-layout: default
-title: "Blawx - And Block"
+title: "Blawx - NAF Not Block"
 ---
 # NAF Not Block
-![naf not block](../img/naf_not.png "NAF Not Block")
+![naf not block]({{ site.baseurl }}/img/naf_not.png "NAF Not Block")

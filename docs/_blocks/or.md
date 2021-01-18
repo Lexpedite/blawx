@@ -1,2 +1,5 @@
+---
+title: "Blawx - Or Block"
+---
 # Or Block
-![or block](../img/or.png "Or Block")
+![or block]({{ site.baseurl }}/img/or.png "Or Block")

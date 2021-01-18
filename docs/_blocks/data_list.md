@@ -1,6 +1,5 @@
 ---
-layout: default
-title: "Blawx - And Block"
+title: "Blawx - Data List Block"
 ---
 # Data List Block
-![data list block](../img/data_list.png "Data List Block")
+![data list block]({{ site.baseurl }}/img/data_list.png "Data List Block")

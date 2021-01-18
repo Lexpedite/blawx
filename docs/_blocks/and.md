@@ -1,5 +1,4 @@
 ---
-layout: default
 title: "Blawx - And Block"
 ---
 # And Block

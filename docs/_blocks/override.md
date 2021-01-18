@@ -1,2 +1,5 @@
+---
+title: "Blawx - Override Block"
+---
 # Override Block
-![override block](../img/override.png "Override Block")
+![override block]({{ site.baseurl }}/img/override.png "Override Block")
