@@ -1,31 +1,31 @@
 nav:
   - title: Home
-    url: {{ site.baseurl }}/
+    url: '{{ site.baseurl }}/'
   - title: Blocks
-    url: {{ site.baseurl }}/block/
+    url: '{{ site.baseurl }}/block/'
     subnav:
       - title: Fact
-        url: {{ site.baseurl }}/block/fact/
+        url: '{{ site.baseurl }}/block/fact/'
       - title: Rule
-        url: {{ site.baseurl }}/block/rule/
+        url: '{{ site.baseurl }}/block/rule/'
       - title: Question
-        url: {{ site.baseurl }}/block/question/
+        url: '{{ site.baseurl }}/block/question/'
       - title: Override
-        url: {{ site.baseurl }}/block/override/
+        url: '{{ site.baseurl }}/block/override/'
       - title: Include
-        url: {{ site.baseurl }}/block/include/
+        url: '{{ site.baseurl }}/block/include/'
   - title: Interface
-    url: {{ site.baseurl }}/interface/
+    url: '{{ site.baseurl }}/interface/'
     subnav:
       - title: Toolbox
-        url: {{ site.baseurl }}/interface/toolbox/
+        url: '{{ site.baseurl }}/interface/toolbox/'
       - title: Workspace
-        url: {{ site.baseurl }}/interface/workspace/
+        url: '{{ site.baseurl }}/interface/workspace/'
       - title: Trashcan
-        url: {{ site.baseurl }}/interface/trashcan/
+        url: '{{ site.baseurl }}/interface/trashcan/'
       - title: Reasoner Response Window
-        url: {{ site.baseurl }}/interface/response/
+        url: '{{ site.baseurl }}/interface/response/'
   - title: Help
-    url: {{ site.baseurl }}/help/
+    url: '{{ site.baseurl }}/help/'
   - title: About
-    url: {{ site.baseurl }}/about/
+    url: '{{ site.baseurl }}/about/'

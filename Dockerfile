@@ -68,10 +68,14 @@ COPY reasoner/simple.blawx /usr/lib/cgi-bin
 
 RUN mkdir /var/www/html/docs
 
-COPY docs. /var/www/html/docsource
+COPY docs /var/www/html/docsource
 
 WORKDIR /var/www/html/docsource
 
+RUN gem install "jekyll-theme-cayman"
+
 RUN bundle exec jekyll build
+
+RUN cp -r /var/www/html/docsource/_site/* /var/www/html/docs
 
 EXPOSE 80

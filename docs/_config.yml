@@ -1,2 +1,25 @@
 theme: jekyll-theme-cayman
 baseurl: /docs
+collections:
+  blocks:
+    output: true
+  interfaces:
+    output: true
+  menus:
+    output: true
+defaults:
+  - scope:
+      path: ""
+      type: "blocks"
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: "menus"
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: "interfaces"
+    values:
+      layout: default
