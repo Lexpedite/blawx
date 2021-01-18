@@ -11,6 +11,9 @@ While alpha, however, any version changes may cause breaking changes that may no
 * Date, Time, Datetime, and Duration Datatypes ([Issue #48](https://github.com/Blawx/blawx/issues/48))
 * Date Math Functions
 * String Functions
+* New Attribute Declarations with Cardinality
+  This removes the old attribute declaration from the toolbox, but Blawx still
+  knows how to process it, so this change should not break old code.
 ### Changed
 * Added emoji to data type selectors and functions
 * Changed organization of ToolBox
