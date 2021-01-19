@@ -130,7 +130,7 @@ Blockly.Blocks['declare_type'] = {
         init: function () {
             this.jsonInit({
                 "type": "variable_selector",
-                "message0": "\" %1 \"",
+                "message0": "%1",
                 "args0": [
                     {
                         "type": "field_input",
@@ -2099,6 +2099,40 @@ Blockly.Blocks['cardinality_any'] = {
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
   "tooltip": "",
+  "helpUrl": ""
+}
+)}}
+
+Blockly.Blocks['unnamed_variable'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "unnamed_variable",
+  "message0": "any",
+  "output": "ENTITY",
+  "colour": 60,
+  "tooltip": "Match any object or value.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['silent_variable_selector'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "silent_variable_selector",
+  "message0": "🔇 %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "variable_selected",
+      "text": "A"
+    }
+  ],
+  "output": "ENTITY",
+  "colour": 60,
+  "tooltip": "Silent named variables are not reported in result.",
   "helpUrl": ""
 }
 )}}
