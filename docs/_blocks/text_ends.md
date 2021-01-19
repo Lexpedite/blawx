@@ -1,3 +1,4 @@
+---
 title: "Text Ends Block"
 ---
 # Text Ends Block

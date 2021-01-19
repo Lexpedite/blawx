@@ -1,3 +1,4 @@
+---
 title: "Duration Value Block"
 ---
 # Duration Value Block

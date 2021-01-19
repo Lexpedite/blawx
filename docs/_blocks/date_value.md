@@ -1,3 +1,4 @@
+---
 title: "Date Value Block"
 ---
 # Date Value Block

@@ -1,3 +1,4 @@
+---
 title: "Aggregate Block"
 ---
 # Aggregate Block

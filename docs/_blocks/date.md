@@ -1,3 +1,4 @@
+---
 title: "Date Block"
 ---
 # Date Block
