@@ -1051,7 +1051,7 @@ Blockly.Blocks['time_datatype'] = {
     "message0": "🕓 Time",
     "output": "DATATYPE",
     "colour": 160,
-    "tooltip": "A time, in H:M:S format. Seconds are precise to two digits.",
+    "tooltip": "A time of day.",
     "helpUrl": ""
   }
   )
@@ -1066,7 +1066,7 @@ Blockly.Blocks['datetime_datatype'] = {
     "message0": "📅🕓 Date and Time",
     "output": "DATATYPE",
     "colour": 160,
-    "tooltip": "A date and time, in YYYY-M-D H:M:S format. Seconds are precise to two digits.",
+    "tooltip": "A date and time.",
     "helpUrl": ""
   }
   )
@@ -1149,7 +1149,7 @@ Blockly.Blocks['duration'] = {
     "inputsInline": true,
     "output": "DURATION",
     "colour": 330,
-    "tooltip": "Duration. Choose positive or negative, and provide a number for the number of years, months, days, hours, and minutes. Seconds are precise to 0.01s.",
+    "tooltip": "A duration, in +/- Years, Months, Days, Hours, Minues, Seconds format. Seconds are precise to two digits.",
     "helpUrl": ""
   }
   )
@@ -1237,7 +1237,7 @@ Blockly.Blocks['date'] = {
     ],
     "output": "DATE",
     "colour": 330,
-    "tooltip": "Date. YYYY/M/D",
+    "tooltip": "Date. In YYYY/M/D format.",
     "helpUrl": ""
   }
   )
@@ -1308,7 +1308,7 @@ Blockly.Blocks['datetime'] = {
     ],
     "output": "DATETIME",
     "colour": 330,
-    "tooltip": "Date/Time. YYYY/M/D at h:m:s am/pm (seconds are from 0-59.99)",
+    "tooltip": "A date and time in YYYY/M/D at h:m:s am/pm format. Seconds are precise to two digits.",
     "helpUrl": ""
   }
   )
@@ -1324,7 +1324,7 @@ Blockly.Blocks['currency_datatype'] = {
   "message0": "💰 Currency",
   "output": "DATATYPE",
   "colour": 180,
-  "tooltip": "",
+  "tooltip": "An amount of currency.",
   "helpUrl": ""
 }
 )}}
@@ -1500,7 +1500,7 @@ Blockly.Blocks['startswith_text'] = {
   "previousStatement": null,
   "nextStatement": null,
   "colour": 165,
-  "tooltip": "Returns a yes or no if the first text begins with the second text.",
+  "tooltip": "States whether the first text begins with the second text.",
   "helpUrl": ""
 }
 )}}
@@ -1528,7 +1528,7 @@ Blockly.Blocks['endswith_text'] = {
   "previousStatement": null,
   "nextStatement": null,
   "colour": 165,
-  "tooltip": "Returns a yes or no if the first text ends with the second text.",
+  "tooltip": "States whether the first text ends with the second text.",
   "helpUrl": ""
 }
 )}}
@@ -1601,7 +1601,7 @@ Blockly.Blocks['date_before'] = {
   "previousStatement": null,
   "nextStatement": null,
   "colour": 330,
-  "tooltip": "Enter two dates or dates with times to see if the first is before the second",
+  "tooltip": "Whether the first date (or datetime) is before the second",
   "helpUrl": ""
 }
 )}}
@@ -1637,7 +1637,7 @@ Blockly.Blocks['date_before_or_eq'] = {
   "previousStatement": null,
   "nextStatement": null,
   "colour": 330,
-  "tooltip": "Enter two dates or dates with times to see if the first is before or exactly the same as the second.",
+  "tooltip": "Whether the first date or datetime is before or exactly the same as the second.",
   "helpUrl": ""
 }
 )}}
@@ -1671,7 +1671,7 @@ Blockly.Blocks['time_before_or_eq'] = {
   "previousStatement": null,
   "nextStatement": null,
   "colour": 330,
-  "tooltip": "Enter two times to see if the first is before or exactly the same as the second.",
+  "tooltip": "Whether the first time is before or exactly the same as the second.",
   "helpUrl": ""
 }
 )}}
@@ -1705,7 +1705,7 @@ Blockly.Blocks['time_before'] = {
   "previousStatement": null,
   "nextStatement": null,
   "colour": 330,
-  "tooltip": "Enter two times to see if the first is before the second.",
+  "tooltip": "Whether the first time is before the second.",
   "helpUrl": ""
 }
 )}}
@@ -1791,7 +1791,7 @@ Blockly.Blocks['date_plus_dur'] = {
   "previousStatement": null,
   "nextStatement": null,
   "colour": 330,
-  "tooltip": "Add a time and a duration to get a new time.",
+  "tooltip": "Add a date or datetime and a duration to get a new time.",
   "helpUrl": ""
 }
 )}}
@@ -1836,7 +1836,7 @@ Blockly.Blocks['time_minus_time'] = {
   "previousStatement": null,
   "nextStatement": null,
   "colour": 330,
-  "tooltip": "Find the duration between two times.",
+  "tooltip": "State the duration between two times.",
   "helpUrl": ""
 }
 )}}
@@ -1880,7 +1880,7 @@ Blockly.Blocks['date_minus_date'] = {
   "previousStatement": null,
   "nextStatement": null,
   "colour": 330,
-  "tooltip": "Get the duration bewteen two dates or date times.",
+  "tooltip": "State the duration bewteen two dates or date times.",
   "helpUrl": ""
 }
 )}}
@@ -1954,7 +1954,7 @@ Blockly.Blocks['cardinality_up_to'] = {
   "previousStatement": "ATTRIBUTE_DECLARATION",
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
-  "tooltip": "",
+  "tooltip": "A category has an attribute with a maximum number of values.",
   "helpUrl": ""
 }
 )}}
@@ -1991,7 +1991,7 @@ Blockly.Blocks['cardinality_or_more'] = {
   "previousStatement": "ATTRIBUTE_DECLARATION",
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
-  "tooltip": "",
+  "tooltip": "A category has an attribute with a minimum number of values.",
   "helpUrl": ""
 }
 )}}
@@ -2028,7 +2028,7 @@ Blockly.Blocks['cardinality_exactly'] = {
   "previousStatement": "ATTRIBUTE_DECLARATION",
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
-  "tooltip": "",
+  "tooltip": "A category has an attribute with a specific number of values.",
   "helpUrl": ""
 }
 )}}
@@ -2071,7 +2071,7 @@ Blockly.Blocks['cardinality_between'] = {
   "previousStatement": "ATTRIBUTE_DECLARATION",
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
-  "tooltip": "",
+  "tooltip": "A category has an attribute with a minimum and maximum number of values.",
   "helpUrl": ""
 }
 )}}
@@ -2102,7 +2102,7 @@ Blockly.Blocks['cardinality_any'] = {
   "previousStatement": "ATTRIBUTE_DECLARATION",
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
-  "tooltip": "",
+  "tooltip": "A category has an attribute with any number of values.",
   "helpUrl": ""
 }
 )}}
@@ -2136,7 +2136,7 @@ Blockly.Blocks['silent_variable_selector'] = {
   ],
   "output": "ENTITY",
   "colour": 60,
-  "tooltip": "Silent named variables are not reported in result.",
+  "tooltip": "Match to a variable that may be used again, but which is not reported in queries.",
   "helpUrl": ""
 }
 )}}
