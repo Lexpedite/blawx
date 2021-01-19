@@ -12,9 +12,12 @@ While alpha, however, any version changes may cause breaking changes that may no
 * Date Math Functions
 * String Functions
 * New Attribute Declarations with Cardinality
+
   This removes the old attribute declaration from the toolbox, but Blawx still
   knows how to process it, so this change should not break old code.
+
 * The docker container now includes a Jekyll set of documentation at /docs.
+* Added silent and unnamed variable blocks.
 ### Changed
 * Added emoji to data type selectors and functions
 * Changed organization of ToolBox
