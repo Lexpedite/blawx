@@ -2105,6 +2105,40 @@ Blockly.Blocks['cardinality_any'] = {
 }
 )}}
 
+Blockly.Blocks['unnamed_variable'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "unnamed_variable",
+  "message0": "any",
+  "output": "ENTITY",
+  "colour": 60,
+  "tooltip": "Match any object or value.",
+  "helpUrl": ""
+}
+)}}
+
+
+Blockly.Blocks['silent_variable_selector'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "silent_variable_selector",
+  "message0": "🔇 %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "variable_selected",
+      "text": "A"
+    }
+  ],
+  "output": "ENTITY",
+  "colour": 60,
+  "tooltip": "Silent named variables are not reported in result.",
+  "helpUrl": ""
+}
+)}}
+
   Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
     var code = text_type_name + '::Thing';
@@ -2763,6 +2797,21 @@ Blockly.Blocks['cardinality_any'] = {
     var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
     var code = text_attribute_name + "=>" + value_attribute_type;
     return code;
+  };
+
+  Blockly.JavaScript['unnamed_variable'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '?_';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+  
+  Blockly.JavaScript['silent_variable_selector'] = function(block) {
+    var text_variable_selected = block.getFieldValue('variable_selected');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '?_' + text_variable_selected;
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
   };
   
   /**
