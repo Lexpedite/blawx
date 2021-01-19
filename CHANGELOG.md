@@ -20,6 +20,7 @@ While alpha, however, any version changes may cause breaking changes that may no
 * Added silent and unnamed variable blocks.
 * Added tooltips and help links to all blocks.
 * Added stub help pages for all block types.
+* Added user interface tour to docs.
 ### Changed
 * Added emoji to data type selectors and functions
 * Changed organization of ToolBox
