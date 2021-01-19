@@ -1,5 +1,5 @@
 ---
-title: "Text Datatype Selector Block"
+title: "Text Block"
 parent: Data Types
 ---
 # Text Datatype Selector

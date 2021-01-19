@@ -1,5 +1,5 @@
 ---
-title: "True/False Datatype Selector Block"
+title: "True/False Block"
 parent: Data Types
 ---
 # True/False Datatype Selector
