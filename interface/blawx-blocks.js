@@ -14,7 +14,7 @@ Blockly.Blocks['declare_type'] = {
   "nextStatement": null,
   "colour": 20,
   "tooltip": "A Category exists.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/new_category/"
 })
   }
 };
@@ -41,7 +41,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 20,
                 "tooltip": "An object in the first category is also in the second category.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/category_equivalence/"
             });
         }
     }
@@ -62,7 +62,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 230,
                 "tooltip": "An object exists.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/new_object/"
             });
         }
     }
@@ -89,7 +89,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 230,
                 "tooltip": "Object is in a category.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/object_category/"
             });
         }
     }
@@ -121,7 +121,7 @@ Blockly.Blocks['declare_type'] = {
                 ],
                 "colour": 260,
                 "tooltip": "If the conditions are known, the conclusion is also known.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/rule/"
             });
         }
     }
@@ -141,7 +141,7 @@ Blockly.Blocks['declare_type'] = {
                 "output": "ENTITY",
                 "colour": 60,
                 "tooltip": "Match to an object or data value.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/variable_selector/"
             });
         }
     }
@@ -168,7 +168,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 290,
                 "tooltip": "Both statements are true. (Vertically stacking statements has the same effect.)",
-                "helpUrl": "/docs/blocks/and"
+                "helpUrl": "/docs/blocks/and/"
             });
         }
     }
@@ -195,7 +195,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 290,
                 "tooltip": "One of the two statements is true.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/or/"
             });
         }
     }
@@ -215,7 +215,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 290,
                 "tooltip": "The statement is known to be false.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/not/"
             });
         }
     }
@@ -233,7 +233,7 @@ Blockly.Blocks['declare_type'] = {
                 ],
                 "colour": 260,
                 "tooltip": "The statement is known to be true.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/fact/"
             });
         }
     }
@@ -251,7 +251,7 @@ Blockly.Blocks['declare_type'] = {
                 ],
                 "colour": 260,
                 "tooltip": "Pose a question to the Blawx resoner.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/question/"
             });
         }
     }
@@ -271,7 +271,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 290,
                 "tooltip": "Either the statement is known to be false, or it cannot be proven.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/naf_not/"
             });
         }
     }
@@ -298,7 +298,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 230,
                 "tooltip": "These two objects are the same thing.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/object_equivalence/"
             });
         }
     }
@@ -328,7 +328,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": "ATTRIBUTE_DECLARATION",
                 "colour": 45,
                 "tooltip": "The category has an attribute with the name and type. Type is a datatype or Category.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/new_attribute/"
             });
         }
     }
@@ -377,7 +377,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 290,
                 "tooltip": "For all data that matches the top statement, the bottom statement is also true. See documentation for variations.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/implication/"
             });
         }
     }
@@ -417,7 +417,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 290,
                 "tooltip": "Check whether the statement is true for all, or any given values or objects.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/quantifier/"
             });
         }
     }
@@ -441,7 +441,7 @@ Blockly.Blocks['declare_type'] = {
                 ],
                 "colour": 260,
                 "tooltip": "Rules with the first name override rules with the second name.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/override/"
             });
         }
     }
@@ -468,7 +468,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 20,
                 "tooltip": "Add attributes to a category.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/category_attribute/"
             });
         }
     }
@@ -482,7 +482,7 @@ Blockly.Blocks['declare_type'] = {
                 "output": "DATATYPE",
                 "colour": 160,
                 "tooltip": "Yes or no values.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/true_false/"
             });
         }
     }
@@ -495,7 +495,7 @@ Blockly.Blocks['declare_type'] = {
                 "output": "DATATYPE",
                 "colour": 160,
                 "tooltip": "Numbers.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/number/"
             });
         }
     }
@@ -508,7 +508,7 @@ Blockly.Blocks['declare_type'] = {
                 "output": "DATATYPE",
                 "colour": 160,
                 "tooltip": "Words, letters, and lines of text.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/text/"
             });
         }
     }
@@ -570,7 +570,7 @@ Blockly.Blocks['declare_type'] = {
                 "nextStatement": null,
                 "colour": 290,
                 "tooltip": "The comparison of the two values is true.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/comparison/"
             });
         }
     }
@@ -633,7 +633,7 @@ Blockly.Blocks['declare_type'] = {
                 "output": "Number",
                 "colour": 230,
                 "tooltip": "Obtain one value from a list of values.",
-                "helpUrl": ""
+                "helpUrl": "/docs/blocks/aggregate/"
             });
         }
     }
@@ -653,7 +653,7 @@ Blockly.Blocks['declare_type'] = {
                 "output": "ENTITY",
                 "colour": 230,
                 "tooltip": "The named object.",
-                "helpUrl": "",
+                "helpUrl": "/docs/blocks/object_selector/",
                 "mutator": "object_selector_mutator"
             });
         }
@@ -674,7 +674,7 @@ Blockly.Blocks['declare_type'] = {
                 "output": "TYPE",
                 "colour": 20,
                 "tooltip": "The named category.",
-                "helpUrl": "",
+                "helpUrl": "/docs/blocks/category_selector/",
                 "mutator": "category_selector_mutator"
             });
         }
@@ -701,7 +701,7 @@ Blockly.Blocks['declare_type'] = {
   "nextStatement": "ATTRIBUTE_ASSIGNMENT",
   "colour": 60,
   "tooltip": "The variable on the left has the value on the right in this statement.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/variable_assignment/"
 })
       }
     }
@@ -767,7 +767,7 @@ Blockly.Blocks['declare_type'] = {
   "output": "Number",
   "colour": 230,
   "tooltip": "Do math to two numbers. Must be placed inside a calculation block.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/math_operator/"
 }
         );
       }
@@ -803,7 +803,7 @@ Blockly.Blocks['declare_type'] = {
   "nextStatement": null,
   "colour": 120,
   "tooltip": "Set or check the value of an object's attribute.",
-  "helpUrl": "",
+  "helpUrl": "/docs/blocks/attribute_selector/",
   "mutator": "attribute_selector_mutator"
 });
       }
@@ -824,7 +824,7 @@ Blockly.Blocks['declare_type'] = {
           ],
           "colour": 260,
           "tooltip": "Include code from a Blawx workspace online.",
-          "helpUrl": ""
+          "helpUrl": "/docs/blocks/include/"
         }
 
         )
@@ -863,7 +863,7 @@ Blockly.Blocks['declare_type'] = {
             "nextStatement": null,
             "colour": 0,
             "tooltip": "The object (first blank) has an attribute (second blank) with a value (third blank).",
-            "helpUrl": ""
+            "helpUrl": "/docs/blocks/data_attribute/"
           }
         )
       }
@@ -894,7 +894,7 @@ Blockly.Blocks['declare_type'] = {
         "nextStatement": null,
         "colour": 0,
         "tooltip": "Create a data object. It may contain data dictionaries, and data values.",
-        "helpUrl": ""
+        "helpUrl": "/docs/blocks/data_object/"
       }
         )
       }
@@ -931,7 +931,7 @@ Blockly.Blocks['kvp_basic'] = {
             "nextStatement": null,
             "colour": 0,
             "tooltip": "Creates a data type value inside a data object or data dictionary.",
-            "helpUrl": ""
+            "helpUrl": "/docs/blocks/data_value/"
           }
         )
       }
@@ -959,7 +959,7 @@ Blockly.Blocks['data_dictionary_sub'] = {
             "nextStatement": "KVP",
             "colour": 0,
             "tooltip": "Create a dictionary inside a data object or data dictionary. It can contain data dictionaries, or data values.",
-            "helpUrl": ""
+            "helpUrl": "/docs/blocks/data_list/"
           }
         )
       }
@@ -991,7 +991,7 @@ Blockly.Blocks['calculation'] = {
             "nextStatement": null,
             "colour": 230,
             "tooltip": "A variable on the left is given the value calculated using mathematical operation blocks on the right.",
-            "helpUrl": ""
+            "helpUrl": "/docs/blocks/calculation/"
         }
       )
     }
@@ -1022,7 +1022,7 @@ Blockly.Blocks['boolean_value'] = {
             "output": "Boolean",
             "colour": 195,
             "tooltip": "Yes or No.",
-            "helpUrl": ""
+            "helpUrl": "/docs/blocks/tf_value"
           }
       )
     }
@@ -1037,7 +1037,7 @@ Blockly.Blocks['date_datatype'] = {
     "output": "DATATYPE",
     "colour": 160,
     "tooltip": "A date, in YYYY-M-D format.",
-    "helpUrl": ""
+    "helpUrl": "/docs/blocks/date/"
   }
   )
 }
@@ -1052,7 +1052,7 @@ Blockly.Blocks['time_datatype'] = {
     "output": "DATATYPE",
     "colour": 160,
     "tooltip": "A time of day.",
-    "helpUrl": ""
+    "helpUrl": "/docs/blocks/time/"
   }
   )
 }
@@ -1067,7 +1067,7 @@ Blockly.Blocks['datetime_datatype'] = {
     "output": "DATATYPE",
     "colour": 160,
     "tooltip": "A date and time.",
-    "helpUrl": ""
+    "helpUrl": "/docs/blocks/datetime/"
   }
   )
 }
@@ -1082,7 +1082,7 @@ Blockly.Blocks['duration_datatype'] = {
     "output": "DATATYPE",
     "colour": 160,
     "tooltip": "A duration of time.",
-    "helpUrl": ""
+    "helpUrl": "/docs/blocks/duration/"
   }
   )
 }
@@ -1150,7 +1150,7 @@ Blockly.Blocks['duration'] = {
     "output": "DURATION",
     "colour": 330,
     "tooltip": "A duration, in +/- Years, Months, Days, Hours, Minues, Seconds format. Seconds are precise to two digits.",
-    "helpUrl": ""
+    "helpUrl": "/docs/blocks/duration_value/"
   }
   )
 }
@@ -1202,7 +1202,7 @@ Blockly.Blocks['time'] = {
     "output": "TIME",
     "colour": 330,
     "tooltip": "Time. Choose hours (1-12), minutes (0-59), and seconds (0-59.99), and part of day (am/pm).",
-    "helpUrl": ""
+    "helpUrl": "/docs/blocks/time_value/"
   }
   )
 }
@@ -1238,7 +1238,7 @@ Blockly.Blocks['date'] = {
     "output": "DATE",
     "colour": 330,
     "tooltip": "Date. In YYYY/M/D format.",
-    "helpUrl": ""
+    "helpUrl": "/docs/blocks/date_value/"
   }
   )
 }
@@ -1309,7 +1309,7 @@ Blockly.Blocks['datetime'] = {
     "output": "DATETIME",
     "colour": 330,
     "tooltip": "A date and time in YYYY/M/D at h:m:s am/pm format. Seconds are precise to two digits.",
-    "helpUrl": ""
+    "helpUrl": "/docs/blocks/datetime_value/"
   }
   )
     }
@@ -1325,7 +1325,7 @@ Blockly.Blocks['currency_datatype'] = {
   "output": "DATATYPE",
   "colour": 180,
   "tooltip": "An amount of currency.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/currency/"
 }
 )}}
 
@@ -1371,7 +1371,7 @@ Blockly.Blocks['concat_text'] = {
   "nextStatement": null,
   "colour": 165,
   "tooltip": "Makes one text value out of two text values by appending them.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/text_append/"
 }
 )}}
 
@@ -1405,7 +1405,7 @@ Blockly.Blocks['length_text'] = {
   "nextStatement": null,
   "colour": 165,
   "tooltip": "Returns the length of a text value.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/text_length/"
 }
 )}}
 
@@ -1439,7 +1439,7 @@ Blockly.Blocks['toupper_text'] = {
   "nextStatement": null,
   "colour": 165,
   "tooltip": "Returns the text in ALL CAPS",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/text_upper/"
 }
 )}}
 
@@ -1473,7 +1473,7 @@ Blockly.Blocks['tolower_text'] = {
   "nextStatement": null,
   "colour": 165,
   "tooltip": "Returns the text in lowercase",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/text_lower/"
 }
 )}}
 
@@ -1501,7 +1501,7 @@ Blockly.Blocks['startswith_text'] = {
   "nextStatement": null,
   "colour": 165,
   "tooltip": "States whether the first text begins with the second text.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/text_starts/"
 }
 )}}
 
@@ -1529,7 +1529,7 @@ Blockly.Blocks['endswith_text'] = {
   "nextStatement": null,
   "colour": 165,
   "tooltip": "States whether the first text ends with the second text.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/text_ends/"
 }
 )}}
 
@@ -1567,7 +1567,7 @@ Blockly.Blocks['substring_text'] = {
   "nextStatement": null,
   "colour": 165,
   "tooltip": "Returns a part of a text. -1 means the end of the text value.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/text_part/"
 }
 )}}
 
@@ -1602,7 +1602,7 @@ Blockly.Blocks['date_before'] = {
   "nextStatement": null,
   "colour": 330,
   "tooltip": "Whether the first date (or datetime) is before the second",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/date_before/"
 }
 )}}
 
@@ -1638,7 +1638,7 @@ Blockly.Blocks['date_before_or_eq'] = {
   "nextStatement": null,
   "colour": 330,
   "tooltip": "Whether the first date or datetime is before or exactly the same as the second.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/date_before_equal/"
 }
 )}}
 
@@ -1672,7 +1672,7 @@ Blockly.Blocks['time_before_or_eq'] = {
   "nextStatement": null,
   "colour": 330,
   "tooltip": "Whether the first time is before or exactly the same as the second.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/time_before_equal"
 }
 )}}
 
@@ -1706,7 +1706,7 @@ Blockly.Blocks['time_before'] = {
   "nextStatement": null,
   "colour": 330,
   "tooltip": "Whether the first time is before the second.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/time_before/"
 }
 )}}
 
@@ -1748,7 +1748,7 @@ Blockly.Blocks['time_plus_dur'] = {
   "nextStatement": null,
   "colour": 330,
   "tooltip": "Add a time and a duration to get a new time.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/time_plus/"
 }
 )}}
 
@@ -1792,7 +1792,7 @@ Blockly.Blocks['date_plus_dur'] = {
   "nextStatement": null,
   "colour": 330,
   "tooltip": "Add a date or datetime and a duration to get a new time.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/date_plus/"
 }
 )}}
 
@@ -1837,7 +1837,7 @@ Blockly.Blocks['time_minus_time'] = {
   "nextStatement": null,
   "colour": 330,
   "tooltip": "State the duration between two times.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/time_minus/"
 }
 )}}
 
@@ -1881,7 +1881,7 @@ Blockly.Blocks['date_minus_date'] = {
   "nextStatement": null,
   "colour": 330,
   "tooltip": "State the duration bewteen two dates or date times.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/date_minus/"
 }
 )}}
 
@@ -1918,7 +1918,7 @@ Blockly.Blocks['blawx_string'] = {
   "output": "String",
   "colour": 165,
   "tooltip": "A letter, word, or line of text.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/text/"
 }
 )}}
 
@@ -1955,7 +1955,7 @@ Blockly.Blocks['cardinality_up_to'] = {
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
   "tooltip": "A category has an attribute with a maximum number of values.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/attribute_up_to/"
 }
 )}}
 
@@ -1992,7 +1992,7 @@ Blockly.Blocks['cardinality_or_more'] = {
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
   "tooltip": "A category has an attribute with a minimum number of values.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/attribute_or_more/"
 }
 )}}
 
@@ -2029,7 +2029,7 @@ Blockly.Blocks['cardinality_exactly'] = {
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
   "tooltip": "A category has an attribute with a specific number of values.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/attribute_exactly/"
 }
 )}}
 
@@ -2072,7 +2072,7 @@ Blockly.Blocks['cardinality_between'] = {
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
   "tooltip": "A category has an attribute with a minimum and maximum number of values.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/attribute_between/"
 }
 )}}
 
@@ -2103,7 +2103,7 @@ Blockly.Blocks['cardinality_any'] = {
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
   "tooltip": "A category has an attribute with any number of values.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/attribute_any/"
 }
 )}}
 
@@ -2116,7 +2116,7 @@ Blockly.Blocks['unnamed_variable'] = {
   "output": "ENTITY",
   "colour": 60,
   "tooltip": "Match any object or value.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/unnamed_variable/"
 }
 )}}
 
@@ -2137,6 +2137,6 @@ Blockly.Blocks['silent_variable_selector'] = {
   "output": "ENTITY",
   "colour": 60,
   "tooltip": "Match to a variable that may be used again, but which is not reported in queries.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/silent_variable/"
 }
 )}}
