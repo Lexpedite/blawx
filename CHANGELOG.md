@@ -18,6 +18,8 @@ While alpha, however, any version changes may cause breaking changes that may no
 
 * The docker container now includes a Jekyll set of documentation at /docs.
 * Added silent and unnamed variable blocks.
+* Added tooltips and help links to all blocks.
+* Added stub help pages for all block types.
 ### Changed
 * Added emoji to data type selectors and functions
 * Changed organization of ToolBox
