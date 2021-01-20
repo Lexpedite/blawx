@@ -39,8 +39,6 @@ I asked you to think of a specific thing that "it" might be. Or put differently,
 I asked you to think of a specific thing, where if you put that thing everywhere the word "it"
 appears, the four statement would be true.
 
-(Note that it is one statement, not four, because the four parts are combined with the word "and".)
-
 **The way we are using "it" in that list is *exactly* how a Blawx variable works.**
 
 See? Easy!
@@ -66,9 +64,7 @@ As a rule, do not use a variable in a rule conclusion that wasn't also used in t
 
 ### Copy, Don't Type
 
-Blawx tries to avoid typos as much as possible by giving you object, category, and attribute selector blocks. That way you type once, and drag and drop later.
-
-The same benefit doesn't exist with variables, because it would just slow users down too much. So it is good practice, to attempt to avoid typos, to copy and paste variable blocks rather than creating new ones and typing in the same name again.
+Because variables are typed, and not declared like objects or categories, there is a higher risk of typos. It is a good practice to copy and paste variable blocks whenever possible to avoid problems.
 
 ### Multiple Variables
 
@@ -86,7 +82,7 @@ The more complicated your data structure, and the more layers of that data struc
 
 ### Sameness and Differentness
 
-Blawx is going to automatically find data that can be put in the place of the variable everwhere it appears. So it checks to see if
+Blawx is going to automatically find data that can be put in the place of the variable everywhere it appears. So it checks to see if
 the data is the same in each place the same variable is used.
 
 You might assume that Blawx also checks to see if a *different* piece of data is used
@@ -170,8 +166,8 @@ Two variables with the same name  refer to the same thing if they are both in th
 
 This is an example of variable "scope". A variable's "scope" is the part of the code in which another variable with the same name will be matched to the same thing.
 
-Some scopes are nested inside other scopes. If that happens, all the variables in the outside scope are also in the inside scope. But variables in the inside scope are not used outside that scope.
+Some scopes are nested inside other scopes. If that happens, all the variables in the outside scope are also in the inside scope. But variables in the inside scope are not matched with the same variable used outside that scope.
 
 Usually, scope is not an issue. Every rule is its own scope. Every query is its own scope.
 
-The only other blocks which create new scopes (where it is possible that the same variable inside the same outer block might NOT always mean the same thing) are the [aggregate block]({{ site.baseurl }}/block/aggregate/), the [quantifier block]({{ site.baseurl }}/block/quantifier/), and the [fact block]({{ site.baseurl}}/block/fact/).
+The only blocks which create new scopes are the [aggregate block]({{ site.baseurl }}/blocks/aggregate/), the [quantifier block]({{ site.baseurl }}/blocks/quantifier/), and the [fact block]({{ site.baseurl}}/blocks/fact/).
