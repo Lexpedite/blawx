@@ -141,6 +141,10 @@ be at a number of "level," each of which is nested inside the workspace.
             1. Sub-Block
          2. Field
 
+A "top-level block" means a block that is not connected above, or on the left,
+to another block, which is different from an "outer block", which is a block that
+has no top or left-side connectors.
+
 Navigation is done using the `WASD` keys that you are familiar with from video games.
 
 At each level, pressing `D` on your keyboard takes you "in" to a deeper level. So for example, pressing D while a connector is highlighted will take you to the block that is attached to that connector.
