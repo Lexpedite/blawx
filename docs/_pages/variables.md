@@ -1,6 +1,7 @@
 ---
 title: Variables
 nav_order: 6
+parent: Beginners Guide to Blawx
 ---
 # Variables
 {: .no_toc}

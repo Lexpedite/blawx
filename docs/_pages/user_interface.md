@@ -1,6 +1,7 @@
 ---
 title: User Interface Tour
 nav_order: 2
+parent: Beginners Guide to Blawx
 ---
 # Blawx User Interface Tour
 {: .no_toc}

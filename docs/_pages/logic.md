@@ -1,6 +1,7 @@
 ---
 title: Logic Blocks
 nav_order: 5
+parent: Beginners Guide to Blawx
 ---
 # Logic Blocks
 {: .no_toc}

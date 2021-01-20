@@ -1,5 +1,6 @@
 ---
 title: Categories, Objects, and Attributes
+parent: Beginners Guide to Blawx
 nav_order: 3
 ---
 # Categories, Objects, and Attributes

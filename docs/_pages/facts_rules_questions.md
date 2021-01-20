@@ -1,5 +1,6 @@
 ---
 title: Facts, Rules, and Questions
+parent: Beginners Guide to Blawx
 nav_order: 4
 ---
 # Facts, Rules, and Questions
