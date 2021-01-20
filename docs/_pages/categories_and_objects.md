@@ -34,11 +34,11 @@ For example, you can say that a Person has a Name, which is a text value, and th
 ### Creating Categories
 You create a category by putting a category declaration block in a fact block. A category declaration block can be found under the “Categories” drawer in the Toolbox.
 
-
+![default category]({{ site.basurl }}/img/default_is_category.png)
 
 When you drag a category declaration block onto the workspace, a corresponding category block is added under the “known categories” drawer of the toolbox. This block is used in blanks that require or allow a Category as a value.
 
-
+![known category default]({{ site.baseurl }}/img/known_category_default.png)
 
 Note that if you have two category declarations with the same name defined, Blawx will create two different known category blocks with the same text, using either of them has the same effect. So it is best practice not to have duplicates in category names in order to avoid confusion.
 
@@ -48,14 +48,15 @@ a category with a space in its name, but it is unlikely to work properly.
 ### Adding Attributes to a Category
 Once you have declared a Category, you can use an category attribute block to give it one or more attributes. The category attribute block can be found in the “Categories” drawer of the toolbox, and looks like this:
 
+![attribute declaration]({{ site.baseurl }}/img/attribute_declaration.png)
 
 To complete a category attribute block, you must provide the category that you are defining attributes for, and add new attribute blocks. The category attribute block comes with new attribute block by default, but you can add more by dragging additional new attribute blocks from the “Categories” drawer of the toolbox.
 
 For example, to say that “a person has a name and a best friend” you might set out an attribute declaration block like this:
 
+![person ontology]({{ site.baseurl }}/img/person_ontology.png)
 
 Remember, all of this needs to be placed in a Fact block to work properly. Fact blocks are explained in the next section.
-
 
 ### Attribute Cardinality
 
@@ -70,6 +71,12 @@ different answers to the question of "how many value should this attribute have"
 The options are "exactly X", "up to X", "X or more", "between X and Y", or "any
 number." Using the "any number" block has the same meaning as "0 or more."
 
+![exactly x]({{ site.baseurl }}/img/attribute_exactly.png)
+![up to X]({{ site.baseurl }}/img/attribute_up_to.png)
+![or more]({{ site.baseurl }}/img/attribute_or_more.png)
+![between]({{ site.baseurl }}/img/attribute_between.png)
+![any]({{ site.baseurl }}/img/attribute_any.png)
+
 Blawx allows you to specify cardinality, but it does not
 do anything to enforce it in your code. That encorcement can be done,
 but is an advanced technique, and doesn't happen
@@ -83,9 +90,11 @@ An object can have more than one category. One of the ways you can give an objec
 
 In Blawx you can do this using the category equivalence block, which looks like this:
 
+![category equivalence](../img/category_equivalence.png)
 
 The category equivalence block requires two category blocks from the “Known Categories” drawer of the Toolbox. A complete category equivalence block would look like this:
 
+![cat is mammal](../img/cat_is_mammal.png)
 
 Category equivalence works in one direction only. In this example, if you create an object, and give that object the category “Cat”, and then ask whether that object is in the category “Mammal”, the answer will be yes. If you create an object and give it only the category of “Mammal”, and then ask whether it is in the category “Cat”, the answer will be no.
 
@@ -94,25 +103,30 @@ Category equivalence works in one direction only. In this example, if you create
 ### Creating an Object
 An object is created by using the object declaration block, which looks like this, and it just takes a name for the object.
 
+![bob is object](../img/bob_is_object.png)
+
 Object names should not have spaces in them. Blawx will not stop you from creating
 an object with a name that has spaces in it, but it is unlikely to work properly.
 
-
 When you drag an object declaration onto the Workspace, a corresponding Object Block appears in the “Known Objects” drawer of the Toolbox.
 
+![bob known](../img/known_object_bob.png)
 
 The object block for “Bob” can be used anywhere a block is expecting an or accepts an object as a value.
 
 ### Giving an Object a Category
 You give an object a category by using the object category block, which can be found in the “Objects” drawer of the Toolbox. It expects an object block and a category block. A completed object category block that says “Bob is a Person” looks like this.
 
+![bob is person](../img/bob_is_person.png)
 
 ### Making Two Objects the Same Object
 Sometimes your Blawx code will get data from more than one source, and each source may create its own versions of the same objects. In those cases, it can be useful to state that two objects are the same object. You can do that using the object equivalence block, which is found in the “Objects” drawer of the Toolbox, and which looks like this:
 
+![object identity](../img/object_equivalence.png)
 
 The object equivalence block takes two object blocks. To say that “Bob” and “Robert” are the same object, you could do this:
 
+![bob and robert](../img/bob_and_robert_identical.png)
 
 Note that unlike with the Category Equivalence, which goes in one direction only, object equivalence goes in both directions. If Bob is the same object as Robert, Robert is the same object as Bob. So if you set out Bob’s Middle name, and then say that Bob and Robert are the same object, asking for Bob’s middle name and asking for Robert’s middle name will both work.
 
@@ -120,14 +134,17 @@ Note that unlike with the Category Equivalence, which goes in one direction only
 
 Let’s imagine you want to write some rules about cars, and you have an ontology like this:
 
+![car ontology](../img/car_ontology.png)
 
 You can see that two attributes have been defined for the category “Car”. One is “make”, and its type is “Manufacturer”, which is a category. The other attribute is “model”, which has a data type of text.
 
 If you make these declarations, Blawx will now know about these two attributes, and they will be available in the Known Attributes drawer of the toolbox.
 
+![known attributes](../img/cat_ontology_known_attributes.png)
 
-As suggested by the text on the known attribute blocks, the first hole is filled with an object, and the second hole is filled with a value. So to create a Ford Mustang, you might use the following blocks in a Fact Block:
+The first connector expects an object, and the second hole is filled with a value. So to create a Ford Mustang, you might use the following blocks in a Fact Block:
 
+![ford mustang](../img/ford_mustang.png)
 
 This creates an object called “my_car”, places it in the category “Car”, gives it the make “Ford”, and the model “Mustang.” If you try to place something in the value of the make attribute block that is not an object or a variable, it will not fit because Blwx knows that value is supposed to be an object in the category Manufacturer.
 
