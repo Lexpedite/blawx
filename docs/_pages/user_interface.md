@@ -106,6 +106,7 @@ We say “blocks with connectors” must be attached to outer blocks, because th
 So you have well formed code if there are only full outer blocks, and blocks with no connections in the workspace.
 
 ## Navigating the Blawx User Interface
+
 ### Scrolling
 The size of the workspace increases as necessary for however many blocks you add to it. If you can’t see all the blocks on the workspace, you can scroll around the workspace using the vertical and horizontal scroll bars.
 
@@ -123,6 +124,63 @@ Dragging a block will drag blocks contained in it.
 Because of the different ways in which dragging behaves, it’s important to know which block is currently selected. For that reason, the currently selected block is highlighted with an orange boundary.
 
 ![block highlighting]({{ site.baseurl }}/img/block_highlighting.png "Block Highlighting")
+
+### Keyboard Navigation
+
+For accessibility and convenience, Blawx offers keyboard navigation so that it
+can be used without a mouse.
+
+To enable keyboard navigation, press `SHIFT-CTRL-K` on your keyboard. This will
+create a "cursor" that will allow you to navigate your workspace. The cursor can
+be at a number of "level," each of which is nested inside the workspace.
+
+1. Workspace
+   1. Top-Level Blocks
+      1. Individual Block
+         1. Connector
+            1. Sub-Block
+         2. Field
+
+Navigation is done using the `WASD` keys that you are familiar with from video games.
+
+At each level, pressing `D` on your keyboard takes you "in" to a deeper level. So for example, pressing D while a connector is highlighted will take you to the block that is attached to that connector.
+
+At each level, pressing `A` takes you "out" to a shallower level, with the most
+shallow level being the workspace itself.
+
+At each level, pressing `W` takes you "up" among the options, and pressing `S` takes you down among the options.
+
+When you are on the workspace level, holding the `Shift` key while using `WASD`
+allows you to navigate through the workspace in two dimensions to be able to
+choose arbitrary places as targets.
+
+Pressing the `Enter` key while on a location on the workspace,
+or a connector, means "select this as the target."
+
+Pressing `I` means "insert", or "move this item to the selected target." This
+is used both to connect blocks and to move them on the workspace.
+
+Pressing `X` while highlighting a connection in a block stack will disconnect
+the blocks above and below it.
+
+The layer of naviation you are in is represented by the shape of the cursor.
+If you are on the workspace, the cursor is a flat line of fixed length.
+If you are navigating
+top blocks, an entire stack of blocks is outlined. If you are navigating
+inside a top block, one block is highlighted with a "cover". If you are
+navigating inside a block, fields will be outlined, and connectors will be
+highlighted with a horizontal line.
+
+This is what it looks like when a connector in a rule block is highlighted, and
+you have navigated to a new object top block.
+
+![beforemove]({{ site.baseurl }}/img/highlighted_target.png "Highlighted target")
+
+This is what you will see after you press `I` to insert:
+
+![aftermove]({{ site.baseurl }}/img/inserted_block.png "Block Inserted")
+
+More details on keyboard navigation are [available here](https://developers.google.com/blockly/guides/configure/web/keyboard-nav).
 
 ### Block Context Menu
 If you right-click on a block in the workspace you will get a context menu.
