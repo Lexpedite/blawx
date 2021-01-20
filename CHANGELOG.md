@@ -42,6 +42,7 @@ While alpha, however, any version changes may cause breaking changes that may no
 ### Added
 * Script for updating running container in development enviroments.
 * Start of gh-pages based documentation
+* Keyboard navigation.
 ### Changed
 * Implemented custom true/false value block ([Issue #8](https://github.com/Blawx/blawx/issues/8))
   **Note that this may be a breaking change for people using the docassemble-blawx integration.**

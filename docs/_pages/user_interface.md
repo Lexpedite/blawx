@@ -233,7 +233,7 @@ If there is a help page for the specific kind of block you are using, the Help i
 
 The help context menu is also the only item that is available when you right click on a block in the toolbox.
 
-![context menu toolbox]({{ site.baseurl }}/img/context_menu_toolbox.png "Context Menu Toolbox")
+![context menu toolbox]({{ site.baseurl }}/img/context_menu_in_toolbox.png "Context Menu Toolbox")
 
 ### Workspace Context Menu
 There is also a context menu that you can access by right-clicking on an empty part of the workspace.
