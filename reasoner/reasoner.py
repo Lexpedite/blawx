@@ -40,7 +40,7 @@ floracode = subprocess.run(["node", "/var/www/html/decode.js", blawxfilename],
 # Take the queries out of the code and save them.
 # Also, think about whether or not this is necessary. Maybe not.
 
-flora_query_re = re.compile("^\?-.*\.$", re.MULTILINE | re.S)
+flora_query_re = re.compile("^\?-.*?\.$", re.MULTILINE | re.S)
 queries = re.findall(flora_query_re,floracode)
 noqueryfloracode = re.sub(flora_query_re,'',floracode)
 
