@@ -15,136 +15,213 @@ nav_order: 7
 {:toc}
 </details>
 
-This tutorial shows you how the four-stage Blawx encoding process works for a very small example of a game of Rock, Paper, Scissors (also known as Rochambeau, and in certain mighty circles as Boulder, Parchment, Shears) .
+This tutorial shows you how the Blawx encoding process works for a the example of the rules of the game of Rock, Paper, Scissors (also known as Rochambeau, and in certain mighty circles as Boulder, Parchment, Shears).
 
-The encoding process (whether for laws, regulations, contracts, or board games) involves four stages. First, you tell Blawx what you are going to be talking about. Second, you tell it the rules. Third, you tell it the facts for the specific question, and fourth you ask the question.
+## The Blawx Encoding Process
 
-Phase One: What are we talking about, here?
-The first step is to think about what sorts of questions we want to be able to answer. For this tutorial, we only want to be able to answer the question of which of two players won a game of rock paper scissors. And we’re talking about only one “throw”.
+The Blawx encoding process (whether for laws, regulations, contracts, or board games) involves four stages: Ontology, Rules, Facts, Questions.
 
-So what categories do we need? Well, we are going to need some sort of category for the game, and that category is going to need an attribute for who the winner is, so that we can ask for that value.
+1. Ontology: In this phase you tell Blawx about your model of the world.
+2. Rules: In this phase you tell Blawx how to derive new information about the world.
+3. Facts: In this phase you tell Blawx about a specific scenario that you want to ask questions about.
+4. Question: In this phase you ask Blawx questions and get answers.
 
-We need a category called Player, but because we don’t really need to know anything about them except their name, the category won’t need any attributes. We can just use the name of the object as the name of the player.
+As you will see, you will naturally jump back and forth between these phases as
+required. They are not a strict sequence of events. But they are a helpful map for beginners. 
 
-In order to describe the rules, we’re probably going to need to be able to talk about the three different hand signs (rock, paper, and scissors), and which other signs they beat. Because we know that no matter what there can only be three signs, we will define them as objects, and say what other signs they beat.
+## Phase 1: Ontology - "What are we talking about, here?"
 
-Here’s what that might look like:
+The task in phase one is to tell Blawx about the Categories, Objects, and Attributes that will be applicable to all different fact scenarios. We want to
+figure out how we are going to model the world we are interested in.
+
+When trying to discover categories, attributes, and objects that you might need, it is helpful to start at the end of the process and work backward. Imagine the question you want to be able to ask, and imagine what categories and attributes and objects you might need to ask that question. Then imagine the rules that you
+are going to want to express, and imagine what categories, attributes, and objects
+you might need to be able to express those.
+
+If you don't think of everything (and you won't), don't worry. You can always
+switch back to the Ontology phase whenever you need to.
+
+### The Ontology of Rock, Paper, Scissors
+
+The only question that we want to be answer is "who won this game of Rock,
+Paper, Scissors." So what categories might we need?
+
+Well, we want to be able to talk about games. A game will have players, and
+a winner. So we also need to be able to talk about players. So let's start there:
+
+![ont1]({{ site.baseurl }}/img/rps_ont_1.png)
+
+Now we can think about the rules. The rules of Rock Paper Scissors are simple.
+Each player throws one of three signs, and each sign beats one other sign.
+The winner is the player whose sign beats the other player's sign.
+
+So we are going to need to talk about the signs, what signs beat what other
+signs. Because we know what the specific
+signs will be in every possible case, we can include them as objects in our
+ontology.
+
+![ont2]({{ site.baseurl }}/img/rps_ont_2.png)
+
+We need to tell Blawx that Rock beats Scissors, etc. What phase of the
+encoding process does that belong in?
+
+Note that the word "rule" in Blawx means something
+slightly different than the way we use it in everyday language. In everyday
+language we might say "it is a rule of Rock, Paper, Scissors that Rock beats Scissors." But in Blawx, the "Rules" phase is for explaining how to get new
+information from existing information. "Rock beats Scissors" is not a way to
+get new information from existing information. It is a statement that is
+always true, with regard to any game we are interested in modelling.
+So inside our encoding, "Rock beats Scissors" not a Rule, it is Ontology.
+
+We can use the obects and attributes we have already created to add the 
+relationships bewtween the signs like this:
+
+![ont3]({{ site.baseurl }}/img/rps_ont_3.png)
+
+Note that we used three different Fact blocks to set out our Ontology, but
+we could have used just one. It doesn't make any difference. You can use as many fact blocks as
+is convenient for you, and include the statements in any order.
+
+## Phase 2: Rules - "What can I infer?"
+
+In the second phase of the Blawx encoding process, you encode Blawx rules.
+
+Rules are ways that Blawx can go from something that it already knows, to
+something that it can infer. They have conditions, and if those conditions are
+true, then the conclusion is also true.
+
+If you are encoding legislation or contracts, you may find that you need one
+or more rules for each section or subsection of the source document. But
+more generally, you
+want to think about what pieces of information you want to be able to calculate.
+
+### The Rules of Rock, Paper, Scissors
+
+For Rock, Paper, Scissors, we want to be able to infer the winner of the game. So
+we will need a rule, and the conclusion of the rule will be that a given game
+has a given winner. So here's how we can start:
+
+![rule1]({{ site.baseurl }}/img/rps_rule_1.png)
+
+Now we need to make some conditions. A player is the winner if their throw
+beats the other player's throw.
+
+### Back to Phase 1!
+
+Uh oh! We don't have anything in our ontology to represent a "throw". That's OK,
+we can add it now. But how shall we do it?
+
+We could say "a player has exactly 1 throw." And if we knew for sure that our
+code was never going to be used to talk about more than one game at the same time,
+that might be just fine. But if we modeled throws that way, we would have no way
+of saying that the player threw Rock in Game 1, but Paper in Game 2!
+
+One way to think about your ontology model is to ask questions like "what is the
+type of thing, and what other types of things does it contain?"
+
+It doesn't really makes sense to say "a player has a throw," because "Rock" is not
+a piece of information about "Bob". Instead "Bob threw rock" is a piece of
+information about a game. So what type of thing is "bob threw rock"? Let's call
+that a "throw". So a "game" has two "throws", and a "throw" has one "player" and 
+one "sign." 
+
+![ont4]({{ site.baseurl }}/img/rps_ont_4.png)
+
+Note that we now have two different blocks that create attributes for the Game
+cateogry. Again, Blawx doesn't care. You can add attributes whenever you like.
+
+Now we have a game, that has throws, that has a player; and we still have a block
+that says a game has players. We have created two different ways of storing the
+players.
+
+It's possible to imagine reasons you might want to have both, but we don't need
+games to have players. And while you can add attributes later, you can't remove
+them later, so we will go back to the first ontology block and remove "players"
+as an attribute of a "game".
+
+![ont5]({{ site.baseurl }}/img/rps_ont_5.png)
+
+### Back to Phase 2!
+
+Alright, now we have the ontology we need to express our rule. The rule, again,
+is "the winner of a game is the player whose throw beats the other player's
+throw."
+
+One way to approach this is to start at a central point in your ontology,
+and then move, step-by-step to the information that you need.
+
+Our central point is the game, so let's start by saying "there is a game."
+
+![rule2]({{ site.baseurl }}/img/rps_rule_2.png)
+
+A game only has throws. So let's get two throws from the game. Because Blawx
+doesn't know when you want different variables to refer to different objects,
+we also have to say specifically that these two throws are not the same thing.
+
+![rule3]({{ site.baseurl }}/img/rps_rule_3.png)
+
+Great. Now from the first throw we can get the player. We could get the other
+player, too, but we don't need that information. We just need the signs that
+both players threw. So we can add blocks for that.
+
+![rule4]({{ site.baseurl }}/img/rps_rule_4.png)
+
+We have followed the links through our ontology, and we now have all the information
+we need to say the thing we actually wanted to check, which is whether or not
+the player's throw beats the other player's throw. So we ask whether the
+sign in the player's throw beats the sign in the other player's throw.
+
+![rule5]({{ site.baseurl }}/img/rps_rule_5.png)
+
+## Phase 3: Facts - "Describe a fact scenario"
+
+In the third phase, we describe the specific facts we want to ask Blawx about. So here, we’re going to say there was a game where Bob threw Rock, and Jane threw Paper. Here's what it looks like:
+
+![facts]({{ site.baseurl }}/img/rps_facts.png)
+
+Note that because our model has one game, two players, and two throws, we needed
+to crete 5 objects, put all those objects into the appropriate categories,
+and then give those objects their attributes.
 
 
-Phase 2: What are the Rules?
-OK, so the only rule we need to write is the rule that figures out who the winner of the game is. We need to compare the two throws in a game, and figure out which player won based on which player made what throw.
-
-Wait. Games don’t have “throws”. We didn’t put anything in our description to explain what a “throw” is, or how you know what player it is for. Hmm…
-
-Back to Phase 1
-There are a lot of ways we could do this, but let’s do it this way: Let’s say that a Player has a Throw, which is a Sign. And that a Game has two players, Player 1 and Player 2. It will look like this:
-
-
-We can create a new “We Know” block, and add new attribute declarations for player and game, without causing any problems. The category “Game” will still also have the attribute “winner” that we described before.
-
-Back to Phase 2
-OK, so what is our rule about who wins the game? First we need to formulate it, and then express it in Blawx. So we might say “the winner of the game is the player whose throw beats the throw of the other player.”
-
-That seems pretty good, but if you think about it, we’re going to run into a problem when there are ties. Maybe? Maybe not. The “winner” of a game is maybe a slot that should stay empty if the game was a tie. So let’s stick with that formalization. If we want to deal better with ties we can fix it later.
-
-OK, so a rule in Blawx needs a conclusion, which here is going to be setting the winner of a game object. That’s easy enough for getting started. Because we’re talking about a rule that applies to all possible objects, we want to use variables to refer the winner and the game.
-
-
-Now, how do we encode “player’s throw beats the throw of the other player?” First, we have to find “other player”. Where does that object exist? We need to find “game”, first. Naming it the variable “game” doesn’t actually tell Blawx anything about what should go into that variable. So to avoid having Blawx waste time trying to figure out whether or not the object “Rock” fits in there, let’s be specific that the variable named game refers to an object that is in the Game category.
-
-
-Now we need to make sure Blawx knows what “player” and “other player” means. So we will say that they both must be answers to the question “what are the game’s players”?
-
-
-Note that spaces don’t work in variable names, so we use underscores to make the names like other_player a little more readable.
-
-Again, we don’t want Blawx to waste time checking to see if Rock is a player for a given Game. So we will say that player and other player are both in the category Player.
-
-
-Now we need to say that player’s throw beats the other player’s throw. So we need to get the information about what the throws are, put them into variables, make sure those variables are actually in the category “Sign”, and then compare them.
-
-
-That should cover it, right?
-
-We’re doing a lot of making sure that variables are in the right category, here. That may not be absolutely necessary if you’re dealing with a small set of data, and you are never letting anyone else use your code. But checking categories is good practice. It makes Blawx faster in large datasets, and it allows you to notice when something was entered incorrectly, or didn’t match your expectations.
-
-Phase 3: What are the Facts?
-In the third phase, we describe the specific facts we want to ask Blawx about. So here, we’re going to say there was a game where Bob threw Rock, and Jane threw Paper. To do this in Blawx we have to create a myGame object, make it a Game, create Bob and Jane, put them in the category Player, make them both players in myGame, and set their throws. This is what it looks like.
-
-
-Phase 4: What Question Are We Asking?
+## Phase 4: Question - "What do you want to know?"
 Now we can just ask the question. Who is the winner of myGame? Because we’ve created all the rules and facts above, asking the question is really simple, and looks like this:
 
+![question]({{ site.baseurl }}/img/rps_question.png)
 
-We use the name “W” for the variable that will hold the winner.
+We use the name “winner” for the variable that will hold the winner.
 
-So now we can click Run… and we should get something that says the winner is Jane, because paper beats rock. So here we go…
+So now we can click Run Blawx Code in the Menu… and we should get something that says the winner is Jane, because paper beats rock.
 
+```
+Yes
 
-Wait… “no?”
-
-Well, we screwed something up. It should have said something like “W = Jane, Yes.”
-
-Phase 5: Debugging
-Did I not mention phase 5? There is always phase 5.
-
-Tutorials don’t usually include a debugging part. But Blawx is a very powerful tool. Which means that there are a lot of ways in which things can not work on the first try. That’s 100% normal. That’s what you should expect. So why not learn how to deal with it while we are learning everything else?
-
-If you want to try and find the bug before I tell you what it is, now’s your chance. Stop scrolling now and check it out..
-
-Ready?
-
-So the problem is probably in our rule. Here’s something you can do to help debug rules. Right click on the rule block, and choose “Duplicate”. That will create a copy of the rule and all its sub-blocks.
-
-Then, in the copy you just made, grab the top condition (in this case “game is in the category Game”), and drag it out of the rule. It will take all the other conditions with it. Now delete the rule you just emptied out, either by clicking on it and using the delete key, right-clicking on it and choosing delete, or dragging it into the trash.
-
-Now you have a copy of the conditions of the rule. Create a new query block, and drop the conditions into it.
-
-You can now drag “Known Object” blocks for what you think should be the right answer, and put them in all the places where there is a variable, and run your query, and see what you have to change in order to make it work. Here’s what I get when I start that process:
-
-
-You can then go through each condition and run it as a query on its own to see what is making your rule fail. But we don’t even need to play with it to see what’s wrong: Rock doesn’t beat paper!
-
-The rule, as we have written it, doesn’t check whether one player’s throw beats the other player’s throw… it checks whether or not Player 1’s throw beats Player 2’s throw. It will never check to see if Player 2 won. That’s not what we wanted.
-
-There are a couple of ways we could solve this problem. One would be to add an “or” block to the rule, and check scenarios where player 1 is “player” OR player 2 is “player” and vice-versa for “other_player.” But the other option shows off some more of Blawx’s features, and helps you understand how Blawx finds answers, so we’ll do that instead.
-
-How Blawx Finds Answers
-When you ask Blawx a question, you are asking it to search for some combination of objects that will make the statements in that query true. If you include variables in the question, it will tell you the variables it found for the variables listed in the question. But in the background, even for yes or no questions, it is trying to find a combination of objects that it can slot into the variables in the rules that gets it to a correct answer.
-
-Here, it didn’t work because there is no combination of variables where the rule will result in there being a winner if the winner was the second player. What we want is for Blawx to consider each player, and whether that player is the winner. We can take advantage of the fact that in Blawx all attributes are lists to make this happen.
-
-Back to Phase 1 (again)
-Instead of having player 1 and player 2 as different attributes, let’s just use one, a list of players. As you’ll see, that lets us keep the rules and facts almost as they are.
-
-So we need to fix our declaration for Game so it looks like this:
-
-
-Back to Phase 2 (again)
-Now we replace the Player 1 and Player 2 Known Attribute Blocks in our rule with the new “players” known attribute block, like this:
-
-
-So you might think that this will make Blawx check for situations where Bob is “player” and Jane is “other_player”, and vice versa. And that’s true. But it will also make Blawx check for circumstances where Bob is “player” and Bob is also “other_player”, and where they are both Jane. In fact, if we didn’t include the checks for categories, Blawx would also consider the possibility that ALL of the variables should be filled with “scissors.”
-
-We could add parts to the rule to say that player and other_player should not be the same object. And code to deal with the possibility that a player has more than one throw, and a game has more or less than two players. We won’t. But if you were writing code for production you might want to think about things like that.
-
-Back to Phase 3 (for the first time)
-Now we make the same change in our facts, removing the Player 1 and Player 2 known attributes, and replacing them with the new Players attribute. You can think of this as adding two objects, Bob and Jane, to the list of objects for which it is true that they are a player in myGame.
-
-
-Back to Phase 4
-So let’s recreate our query, and run it again. (Make sure you delete the query you created when you were debugging. Blawx can get confused if there is more than one query in the workspace. Alpha software, sorry.)
-
+winner = Jane
+```
 
 Victory! For us, and for Jane!
 
-What Should We Do Now?
-Don’t stop there. What are you going to change the code to do?
+## Play with it!
 
-Maybe you want to change it so that it you can ask what the “outcome” is, and it will tell you if someone won, or if it was aa tie.
+The code that we made above is available for you to play with. Just
+[click here](/blawx.com?load=address_of_example) and you will be taken to your blawx interface with the code pre-loaded.
 
-Maybe you want to make it able to figure out who won a best-of-3.
+Here are some things to try:
+1. Change the signs that Bob and Jane threw, and see if the winner changes.
+2. Create a second game between Bob and Jane.
+3. Change the question to use a variable instead of "myGame", and find the winners
+   of all the games.
+4. Create a game where both players throw the same sign, and see who Blawx thinks
+   the winner is.
+5. Create an attribute for games called "is_a_tie", and write a rule to set it
+   to true if a game does not have a winner.
 
-Maybe you want it to be able to figure out who’s left in the game (all the people who tied) in a game with more than 2 players?
+## Congratulations
 
-Try something. See what happens.
+You have made it to the end of the Blawx Beginners Guide! You are officially
+no longer a beginner. If you would like to learn more, you can take a look at
+the [Advanced Topics](/docs/advanced_topics/) section of the documentation, or take a look at some of
+the [examples](/docs/examples/) available.
+
+Your feedback on Blawx and on this Guide is extremely valuable. If you have any
+thoughts you would be willing to share, don't hesitate to contact us.

@@ -1,9 +1,8 @@
 ---
-title: Examples
-has_children: true
-nav_order: 4
+title: Debugging Blawx Code
+parent: Advanced Topics
 ---
-# Examples
+# Debugging Blawx Code
 {: .no_toc}
 
 <details open markdown="block">
