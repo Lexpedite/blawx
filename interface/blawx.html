@@ -247,6 +247,22 @@
         Blockly.svgResize(demoWorkspace);
         window.setTimeout(BlocklyStorage.restoreBlocks, 0);
         BlocklyStorage.backupOnUnload();
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        if (urlParams.has('load')) {
+            xhttp = new XMLHttpRequest();
+            loadfile = urlParams.get('load');
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var xml = Blockly.Xml.textToDom(this.responseText);
+                    demoWorkspace.clear();
+                    Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+                }
+            };
+            xhttp.open("GET",loadfile,true);
+            xhttp.send();
+        }
     </script>
     <script src="buttons.js"></script>
     <script src="categories.js"></script>
