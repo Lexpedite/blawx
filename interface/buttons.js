@@ -77,7 +77,7 @@ try {
 }
 var gotoHelp;
 gotoHelp = function(button) {
-    window.open('https://www.blawx.com/learn');
+    window.open('/docs');
 }
 demoWorkspace.registerButtonCallback('menuRunCode', runCode);
 demoWorkspace.registerButtonCallback('menuClear', clearBlocks);
