@@ -4,6 +4,16 @@ has_children: true
 nav_order: 2
 ---
 # Beginners Guide to Blawx
+{: .no_toc}
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
 
 Welcome to Blawx!
 
@@ -35,8 +45,16 @@ The guide will take you through the following chapters:
 1. The User Interface
    This section will show you what the Blawx interface looks like, and explain
    how to get around.
-2. Categories and Objects
+2. Categories,  Objects, and Attributes
    This section of the guide explains how you record information about the world
    in Blawx.
 3. Facts, Rules, and Questions
-   This section 
+   This section introduces you to the three main elements of a Blawx workspace.
+4. Logic
+   This section will explain the various ways in which you can combine statements in Blawx to create more complicated statements.
+5. Variables
+   This section explains how variables work in Blawx, and how to use them.
+6. Rock, Paper, Scissors
+   This final section of the guide introduces you to the three-step process used in legal knowledge representation, and takes you step-by-step through the process of modelling the rules of "Rock, Paper, Scissors" in Blawx.
+
+

@@ -13,25 +13,13 @@ collections:
     output: true
   blocks:
     output: true
-  interfaces:
-    output: true
-  commands:
-    output: true
 just_the_docs:
   # Define which collections are used in just-the-docs
   collections:
     pages:
       nav_order: 1
     blocks:
-      name: Blocks
-      nav_exclude: false
-      search_exclude: false
-    interfaces:
-      name: Interface Elements
-      nav_exclude: false
-      search_exclude: false
-    commands:
-      name: Commands
+      name: Specific Blocks
       nav_exclude: false
       search_exclude: false
 # Aux links for the upper right navigation
