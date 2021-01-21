@@ -2300,7 +2300,9 @@ Blockly.Blocks['silent_variable_selector'] = {
             code += ".\n";
         }
     }
-    return code;
+    // Flora-2 gets confused if queries are more than one line.
+    onelinecode = code.replace(/\r?\n|\r/g, "");
+    return onelinecode;
   };
   
   Blockly.JavaScript['naf_negation'] = function(block) {
@@ -2807,7 +2809,7 @@ Blockly.Blocks['silent_variable_selector'] = {
     // TODO: Assemble JavaScript into code variable.
     var code = '?_';
     // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
   Blockly.JavaScript['silent_variable_selector'] = function(block) {
@@ -2815,7 +2817,7 @@ Blockly.Blocks['silent_variable_selector'] = {
     // TODO: Assemble JavaScript into code variable.
     var code = '?_' + text_variable_selected;
     // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
   /**

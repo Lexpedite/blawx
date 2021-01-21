@@ -140,7 +140,7 @@ if data and data != '':
 # Start Flora-2
 flora2prompt = 'flora2 \?\- '
 flora2error = '\+\+Error\[Flora\-2\]'
-console = pexpect.spawn('sudo -u root /var/Flora-2/flora2/runflora',encoding='utf-8')
+console = pexpect.spawn('sudo -u root /var/Flora-2/flora2/runflora',encoding='utf-8',echo=False)
 if debugmode:
     console.logfile = sys.stdout
 expected_result = console.expect([flora2prompt, flora2error])
@@ -207,7 +207,6 @@ for l in lines:
         answersdone = True
         del response_data['answers'][str(answercount)]
     elif l != "Yes" and l != "No" and l != "":
-        #Lots of stuff here.
         lineparts = l.split(" = ", 2)
         if "flora'skolem" in lineparts[1]:
             lineparts[1] = "Unnamed Object"
