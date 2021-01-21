@@ -35,6 +35,8 @@ While alpha, however, any version changes may cause breaking changes that may no
 ### Fixed
 * Allow Long Search Results ([Issue #1](https://github.com/Blawx/blawx/issues/1))
 * Stop using sleep in Reasoner.php ([Issue #26](https://github.com/Blawx/blawx/issues/26))
+* Queries don't work if they are not at the bottom ([Issue #24](https://github.com/Blawx/blawx/issues/24))
+* 
 
 
 
