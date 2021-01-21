@@ -32,13 +32,12 @@ While alpha, however, any version changes may cause breaking changes that may no
 * System now uses reasoner.py instead of reasoner.php
   The system should generally be much faster, in particular for small queries.
   It will now time-out if loading the blawx rules or data takes more than 30 seconds of server time.
+* New Object blocks are now created for each Category in the workspace, significantly reducing the
+  amount of work required to create objects and place them in their first category. ([Issue #42](https://github.com/Blawx/blawx/issues/42))
 ### Fixed
 * Allow Long Search Results ([Issue #1](https://github.com/Blawx/blawx/issues/1))
 * Stop using sleep in Reasoner.php ([Issue #26](https://github.com/Blawx/blawx/issues/26))
 * Queries don't work if they are not at the bottom ([Issue #24](https://github.com/Blawx/blawx/issues/24))
-* 
-
-
 
 ## [v0.2.2-alpha](https://github.com/Blawx/blawx/releases/tag/v0.2.2-alpha) 2020-06-06
 ### Added

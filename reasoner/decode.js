@@ -2143,6 +2143,32 @@ Blockly.Blocks['silent_variable_selector'] = {
 }
 )}}
 
+Blockly.Blocks['new_object_of_type'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "new_object_of_type",
+  "message0": "%1 is in the Category %2",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "object_name",
+      "text": "default"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "category_name",
+      "text": "Object"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "An object exists.",
+  "helpUrl": "/docs/blocks/new_object"
+}
+)}}
+
   Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
     var code = text_type_name + '::Thing';
@@ -2806,18 +2832,21 @@ Blockly.Blocks['silent_variable_selector'] = {
   };
 
   Blockly.JavaScript['unnamed_variable'] = function(block) {
-    // TODO: Assemble JavaScript into code variable.
     var code = '?_';
-    // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
   
   Blockly.JavaScript['silent_variable_selector'] = function(block) {
     var text_variable_selected = block.getFieldValue('variable_selected');
-    // TODO: Assemble JavaScript into code variable.
     var code = '?_' + text_variable_selected;
-    // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  };
+
+  Blockly.JavaScript['new_object_of_type'] = function(block) {
+    var text_object_name = block.getFieldValue('object_name');
+    var category_name = block.getFieldValue('category_name');
+    var code = text_object_name + ':' + category_name;
+    return code;
   };
   
   /**
