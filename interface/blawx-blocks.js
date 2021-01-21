@@ -2140,3 +2140,29 @@ Blockly.Blocks['silent_variable_selector'] = {
   "helpUrl": "/docs/blocks/silent_variable/"
 }
 )}}
+
+Blockly.Blocks['new_object_of_type'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "new_object_of_type",
+  "message0": "%1 %2",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "object_name",
+      "text": "default"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "category_name",
+      "text": "is an Object"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "An object exists.",
+  "helpUrl": "/docs/blocks/new_object"
+}
+)}}
