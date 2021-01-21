@@ -2148,7 +2148,7 @@ Blockly.Blocks['new_object_of_type'] = {
     this.jsonInit(
 {
   "type": "new_object_of_type",
-  "message0": "%1 %2",
+  "message0": "%1 is a(n) %2",
   "args0": [
     {
       "type": "field_input",
@@ -2158,7 +2158,7 @@ Blockly.Blocks['new_object_of_type'] = {
     {
       "type": "field_label_serializable",
       "name": "category_name",
-      "text": "is an Object"
+      "text": "Object"
     }
   ],
   "previousStatement": null,
@@ -2844,9 +2844,8 @@ Blockly.Blocks['new_object_of_type'] = {
 
   Blockly.JavaScript['new_object_of_type'] = function(block) {
     var text_object_name = block.getFieldValue('object_name');
-    var attributeName = block.getFieldValue('category_Name');
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var category_name = block.getFieldValue('category_name');
+    var code = text_object_name + ':' + category_name;
     return code;
   };
   

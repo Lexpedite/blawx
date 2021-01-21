@@ -2146,7 +2146,7 @@ Blockly.Blocks['new_object_of_type'] = {
     this.jsonInit(
 {
   "type": "new_object_of_type",
-  "message0": "%1 %2",
+  "message0": "%1 is a(n) %2",
   "args0": [
     {
       "type": "field_input",
@@ -2156,7 +2156,7 @@ Blockly.Blocks['new_object_of_type'] = {
     {
       "type": "field_label_serializable",
       "name": "category_name",
-      "text": "is an Object"
+      "text": "Object"
     }
   ],
   "previousStatement": null,
