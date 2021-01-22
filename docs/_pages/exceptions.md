@@ -59,7 +59,7 @@ if you have something else that you want Blawx to treat as a conflict, you need 
 allows Blawx to infer that when one is true the other is negated. For instance, if you wanted to insist
 that a person cannot be both a dog person and a cat person, you might use this rule:
 
-![custom conflict](../img/custom_conflict.png)
+![custom conflict]({{ site.baseurl }}/img/custom_conflict.png)
 
 ### How Should Blawx Resolve the Conflict?
 
@@ -77,34 +77,34 @@ process.
 First, we encode the ontology, which is straightforward. There are birds. They can either fly, or not,
 and they can be injured, or not. There are also Penguins, which are a subcategory of birds.
 
-![tweety ontology](../img/tweety_ontology.png)
+![tweety ontology]({{ site.baseurl }}/img/tweety_ontology.png)
 
 Next, we encode our three rules. The first rule is the default. If something is a bird, that thing can fly.
 
-![default](../img/tweety_default.png)
+![default]({{ site.baseurl }}/img/tweety_default.png)
 
 The second rule is that an injured bird cannot fly. So we create that as a rule, and then we create an
 override statement to make this override the default rule above.
 
-![exception1](../img/tweety_exception_1.png)
+![exception1]({{ site.baseurl }}/img/tweety_exception_1.png)
 
 The third rule is that a penguin cannot fly. Again, we make that a rule, and say that it overrides the
 default rule.
 
-![exception2](../img/tweety_exception_2.png)
+![exception2]({{ site.baseurl }}/img/tweety_exception_2.png)
 
 Now we describe the facts of the specific scenario and ask questions. If we say Tweety is a bird, and ask
 if it is true that Tweety can fly, Blawx says "Yes."
 
-![q1](../img/tweety_q1.png)
+![q1]({{ site.baseurl }}/img/tweety_q1.png)
 
 If we add to the facts that Tweety is injured, blawx says "No", because the injury overrides the default.
 
-![q2](../img/tweety_q2.png)
+![q2]({{ site.baseurl }}/img/tweety_q2.png)
 
 If we say instead that Tweety is a Penguin, Blawx answers "No", because the penguin rule overrides.
 
-![q3](../img/tweety_q3.png)
+![q3]({{ site.baseurl }}/img/tweety_q3.png)
 
 Note that when we said only that Tweety was a Penguin, Blawx still knew that Tweety was also a bird,
 because in our ontology we said that all Penguins were Birds.
