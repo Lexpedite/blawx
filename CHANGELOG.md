@@ -6,34 +6,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
-## [v0.2.3-dev] as of 2021-01-19...
+## [v0.2.3-alpha RC1]() 2021-01-22
 ### Added
 * Date, Time, Datetime, and Duration Datatypes ([Issue #48](https://github.com/Blawx/blawx/issues/48))
 * Date Math Functions
 * String Functions
 * New Attribute Declarations with Cardinality
-
-  This removes the old attribute declaration from the toolbox, but Blawx still
-  knows how to process it, so this change should not break old code.
-
 * The docker container now includes a Jekyll set of documentation at /docs.
-* Added silent and unnamed variable blocks.
-* Added tooltips and help links to all blocks.
-* Added stub help pages for all block types.
-* Added user interface tour to docs.
+* Silent and unnamed variable blocks.
+* Tooltips and help links to all blocks.
+* Beginner's Guide in documentation
+* Image type hints on method and type selectors
 ### Changed
-* Added emoji to data type selectors and functions
-* Changed organization of ToolBox
+* Toolbox reorganized
 * Updated reasoner to Flora-2.1RC1 ([Issue #55](https://github.com/Blawx/blawx/issues/55))
-* "String" is renamed to "Text"
-* "True/False" is renamed to "Yes/No"
+* "String" renamed to "Text"
+* "True/False" renamed to "Yes/No"
 * New String Value Block
-  **Earlier Blawx workspaces using string values will no longer function**
-* System now uses reasoner.py instead of reasoner.php
-  The system should generally be much faster, in particular for small queries.
-  It will now time-out if loading the blawx rules or data takes more than 30 seconds of server time.
-* New Object blocks are now created for each Category in the workspace, significantly reducing the
-  amount of work required to create objects and place them in their first category. ([Issue #42](https://github.com/Blawx/blawx/issues/42))
+  
+  **Breaking Change: Workspaces from previous versions using string values will not load.**
+
+* Reimplemented Reasoner
+  
+  Reasoner responses for small queries will be significantly faster. Reasoner responses will also scale better with hardware. Workspaces or data that take more than 30 seconds of processor time will fail.
+
+* New Object blocks are now created for each Category in the workspace. ([Issue #42](https://github.com/Blawx/blawx/issues/42))
 ### Fixed
 * Allow Long Search Results ([Issue #1](https://github.com/Blawx/blawx/issues/1))
 * Stop using sleep in Reasoner.php ([Issue #26](https://github.com/Blawx/blawx/issues/26))
