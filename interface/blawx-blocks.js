@@ -71,7 +71,7 @@ Blockly.Blocks['declare_type'] = {
         init: function () {
             this.jsonInit({
                 "type": "entity_is_type",
-                "message0": "%1 is in the Category %2",
+                "message0": "%1 is in the category %2",
                 "args0": [
                     {
                         "type": "input_value",
@@ -2581,7 +2581,7 @@ Blockly.Blocks['new_object_of_type'] = {
     this.jsonInit(
 {
   "type": "new_object_of_type",
-  "message0": "%1 is in the Category %2",
+  "message0": "%1 is in the category %2",
   "args0": [
     {
       "type": "field_input",
