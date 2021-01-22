@@ -109,4 +109,4 @@ If we say instead that Tweety is a Penguin, Blawx answers "No", because the peng
 Note that when we said only that Tweety was a Penguin, Blawx still knew that Tweety was also a bird,
 because in our ontology we said that all Penguins were Birds.
 
-If you would like to try the Tweety code for yourself, it is [available in the Examples section](/docs/tweety).
+If you would like to try the Tweety code for yourself, it is [available in the Examples section](/docs/pages/tweety).
