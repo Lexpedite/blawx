@@ -2561,8 +2561,16 @@ Blockly.Blocks['silent_variable_selector'] = {
     this.jsonInit(
 {
   "type": "silent_variable_selector",
-  "message0": "🔇 %1",
+  "message0": "%1 %2",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAzElEQVR4AWOgG/j//78zEJuQokEDiOvRxHYD8e//EDCbWIPqoRr6oXwZqCHBQFwMxN+BWIJYw/rRDAuG0gpQcQcQnyzDcBlErsskoN50ICe2JqN7E4htiNVsAMT7gZgDyv6PxZsyUDUy+AwSgWq0gPIvoxsGpHWA+DMQ8xBy1XaojSxQl8UD8XI0wzRwGoAWQ6+hiVEHKsYCsQBhGGGACIfdUI3voYnxN8SrCMNIMhCq+Two/GBJg1zD9oMwjnRWT2ri7MeRNzUYBi0AANQgbf4Gx9YVAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
     {
       "type": "field_input",
       "name": "variable_selected",
