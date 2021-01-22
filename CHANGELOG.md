@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
-## [v0.2.3-alpha RC1]() 2021-01-22
+## [v0.2.4-alpha RC1](https://github.com/Blawx/blawx/releases/tag/v0.2.4-alphaRC1) 2021-01-22
 ### Added
 * Date, Time, Datetime, and Duration Datatypes ([Issue #48](https://github.com/Blawx/blawx/issues/48))
 * Date Math Functions
@@ -35,6 +35,11 @@ While alpha, however, any version changes may cause breaking changes that may no
 * Allow Long Search Results ([Issue #1](https://github.com/Blawx/blawx/issues/1))
 * Stop using sleep in Reasoner.php ([Issue #26](https://github.com/Blawx/blawx/issues/26))
 * Queries don't work if they are not at the bottom ([Issue #24](https://github.com/Blawx/blawx/issues/24))
+
+## [v0.2.3-alpha](https://github.com/Blawx/blawx/releases/tag/v0.2.3-alpha) 2020-06-29
+### Added
+* adding `?load=url` to address for interface will pre-load a .blawx file
+  at that url.
 
 ## [v0.2.2-alpha](https://github.com/Blawx/blawx/releases/tag/v0.2.2-alpha) 2020-06-06
 ### Added
