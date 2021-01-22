@@ -1,3 +1,5 @@
+var Blockly = require('/usr/local/lib/node_modules/blockly');
+
 Blockly.Blocks['declare_type'] = {
   init: function() {
     this.jsonInit({
