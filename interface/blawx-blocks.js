@@ -478,7 +478,17 @@ Blockly.Blocks['declare_type'] = {
         init: function () {
             this.jsonInit({
                 "type": "boolean_datatype",
-                "message0": "☑ Yes / No",
+                "message0": "%1 Yes / No",
+                "args0":[
+                  {
+                    "type": "field_image",
+                    "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABE0lEQVR4AbTTgWYDQRAG4KIogiAIiiAIgiCAQzkUARQQBHmM4gBFEUBRBFAUAfQB8gAFFBAEARyCw+ErDI5bd4r+LHasb8eOvfn34A45NrEy3P4FGGGHSjslCgz6kBlOgA+sMccEK3wCvjFOI4xxxgWrjssecQ2s3Rn2qLDo6XqIDaBIdVPjtQd5QoklvlBqDgBrwLwHqXHEAFtA1jxUQHP0XUjUFoBNC8IAS1yQJZEI7gHbJrQFZIEdcUXRQiLIAXmzOAG8xD4wWkgE76gQzxDBATUWDWyXRixRY5eayhQlfjDpmN4DLjhhlD5EhjLWM6ZRHyLHG+CMWd9/m+IgnRp7jH9HSimgAI3NeiiOBhtAawAAtsUaDV9xaDsAAAAASUVORK5CYII=",
+                    "width": 15,
+                    "height": 15,
+                    "alt": "",
+                    "flipRtl": false
+                  }
+                ],
                 "output": "DATATYPE",
                 "colour": 160,
                 "tooltip": "Yes or no values.",
@@ -491,7 +501,17 @@ Blockly.Blocks['declare_type'] = {
         init: function () {
             this.jsonInit({
                 "type": "number_datatype",
-                "message0": "#️⃣ Number",
+                "message0": "%1 Number",
+                "args0":[
+                  {
+                    "type": "field_image",
+                    "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+                    "width": 15,
+                    "height": 15,
+                    "alt": "",
+                    "flipRtl": false
+                  }
+                ],
                 "output": "DATATYPE",
                 "colour": 160,
                 "tooltip": "Numbers.",
@@ -504,7 +524,17 @@ Blockly.Blocks['declare_type'] = {
         init: function () {
             this.jsonInit({
                 "type": "string_datatype",
-                "message0": "🔠 Text",
+                "message0": "%1 Text",
+                "args0":[
+                  {
+                    "type": "field_image",
+                    "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+                    "width": 15,
+                    "height": 15,
+                    "alt": "",
+                    "flipRtl": false
+                  }
+                ],
                 "output": "DATATYPE",
                 "colour": 160,
                 "tooltip": "Words, letters, and lines of text.",
@@ -1033,7 +1063,17 @@ Blockly.Blocks['date_datatype'] = {
       this.jsonInit(
 {
     "type": "date_datatype",
-    "message0": "📅 Date",
+    "message0": "%1 Date",
+    "args0":[
+      {
+        "type": "field_image",
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+        "width": 15,
+        "height": 15,
+        "alt": "",
+        "flipRtl": false
+      }
+    ],
     "output": "DATATYPE",
     "colour": 160,
     "tooltip": "A date, in YYYY-M-D format.",
@@ -1048,7 +1088,17 @@ Blockly.Blocks['time_datatype'] = {
       this.jsonInit(
   {
     "type": "time_datatype",
-    "message0": "🕓 Time",
+    "message0": "%1 Time",
+    "args0":[
+      {
+        "type": "field_image",
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+        "width": 15,
+        "height": 15,
+        "alt": "",
+        "flipRtl": false
+      }
+    ],
     "output": "DATATYPE",
     "colour": 160,
     "tooltip": "A time of day.",
@@ -1063,7 +1113,25 @@ Blockly.Blocks['datetime_datatype'] = {
       this.jsonInit(
   {
     "type": "datetime_datatype",
-    "message0": "📅🕓 Date and Time",
+    "message0": "%1 %2 Date and Time",
+    "args0":[
+      {
+        "type": "field_image",
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+        "width": 15,
+        "height": 15,
+        "alt": "",
+        "flipRtl": false
+      },
+      {
+        "type": "field_image",
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+        "width": 15,
+        "height": 15,
+        "alt": "",
+        "flipRtl": false
+      }
+    ],
     "output": "DATATYPE",
     "colour": 160,
     "tooltip": "A date and time.",
@@ -1078,7 +1146,17 @@ Blockly.Blocks['duration_datatype'] = {
       this.jsonInit(
   {
     "type": "duration_datatype",
-    "message0": "⏱ Duration",
+    "message0": "%1 Duration",
+    "args0":[
+      {
+        "type": "field_image",
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+        "width": 15,
+        "height": 15,
+        "alt": "",
+        "flipRtl": false
+      }
+    ],
     "output": "DATATYPE",
     "colour": 160,
     "tooltip": "A duration of time.",
@@ -1334,8 +1412,16 @@ Blockly.Blocks['concat_text'] = {
     this.jsonInit( 
 {
   "type": "concat_text",
-  "message0": "🔠 %1 with %2 🔠 %3 appended is 🔠 %4 %5",
+  "message0": "%1 %2 with %3 %4 %5 appended is %6 %7 %8",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "first_text",
@@ -1348,6 +1434,14 @@ Blockly.Blocks['concat_text'] = {
       "type": "input_dummy"
     },
     {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
+    {
       "type": "input_value",
       "name": "second_text",
       "check": [
@@ -1357,6 +1451,14 @@ Blockly.Blocks['concat_text'] = {
     },
     {
       "type": "input_dummy"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1381,8 +1483,16 @@ Blockly.Blocks['length_text'] = {
     this.jsonInit( 
 {
   "type": "length_text",
-  "message0": "length of 🔠 %1 is #️⃣ %2",
+  "message0": "length of %1 %2 is %3 %4",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "text",
@@ -1390,6 +1500,14 @@ Blockly.Blocks['length_text'] = {
         "String",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1415,8 +1533,16 @@ Blockly.Blocks['toupper_text'] = {
     this.jsonInit( 
 {
   "type": "toupper_text",
-  "message0": "🔠 %1 in uppercase is 🔠 %2",
+  "message0": "%1 %2 in uppercase is %3 %4",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "text",
@@ -1424,6 +1550,14 @@ Blockly.Blocks['toupper_text'] = {
         "String",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1449,8 +1583,16 @@ Blockly.Blocks['tolower_text'] = {
     this.jsonInit( 
 {
   "type": "tolower_text",
-  "message0": "🔠 %1 in lowercase is 🔠 %2",
+  "message0": "%1 %2 in lowercase is %3 %4",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "text",
@@ -1458,6 +1600,14 @@ Blockly.Blocks['tolower_text'] = {
         "String",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1483,12 +1633,28 @@ Blockly.Blocks['startswith_text'] = {
     this.jsonInit( 
 {
   "type": "startswith_text",
-  "message0": "🔠 %1 starts with 🔠 %2",
+  "message0": "%1 %2 starts with %3 %4",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "text",
       "check": "String"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1511,12 +1677,28 @@ Blockly.Blocks['endswith_text'] = {
     this.jsonInit( 
 {
   "type": "endswith_text",
-  "message0": "🔠 %1 ends with 🔠 %2",
+  "message0": "%1 %2 ends with %3 %4",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "text",
       "check": "String"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1539,12 +1721,28 @@ Blockly.Blocks['substring_text'] = {
     this.jsonInit( 
 {
   "type": "substring_text",
-  "message0": "🔠 %1 from character #️⃣ %2 to character  #️⃣ %3 is 🔠 %4",
+  "message0": "%1 %2 from character %3 %4 to character %5 %6 is %7 %8",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "text",
       "check": "String"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1552,9 +1750,25 @@ Blockly.Blocks['substring_text'] = {
       "check": "Number"
     },
     {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
+    {
       "type": "input_value",
       "name": "length",
       "check": "Number"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVR4AWOgOvj//78DENeTiE3QDQn+Tz5AGAY1/T/JvoCAegyDSPCiA16D4GzCoJ4YgxRANhLACsPLRfXUijUHXAbRKB1BQD8ZKdsZ1SAEWE5CXgsG6cfqIkpzfj3MEEoN0mAYLAAATaRgs9TeCMkAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1576,8 +1790,24 @@ Blockly.Blocks['date_before'] = {
     this.jsonInit( 
 {
   "type": "date_before",
-  "message0": "📅/📅🕓 %1 is before 📅/📅🕓 %2",
+  "message0": "%1 %2 %3 is before %4 %5 %6",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "first_date",
@@ -1586,6 +1816,22 @@ Blockly.Blocks['date_before'] = {
         "DATETIME",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1612,8 +1858,24 @@ Blockly.Blocks['date_before_or_eq'] = {
     this.jsonInit( 
 {
   "type": "date_before_or_eq",
-  "message0": "📅/📅🕓 %1 is before or at 📅/📅🕓 %2",
+  "message0": "%1 %2 %3 is before or at %4 %5 %6",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "first_date",
@@ -1622,6 +1884,22 @@ Blockly.Blocks['date_before_or_eq'] = {
         "DATETIME",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1648,8 +1926,16 @@ Blockly.Blocks['time_before_or_eq'] = {
     this.jsonInit( 
 {
   "type": "time_before_or_eq",
-  "message0": "🕓 %1 is before or at 🕓 %2",
+  "message0": "%1 %2 is before or at %3 %4",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "first_time",
@@ -1657,6 +1943,14 @@ Blockly.Blocks['time_before_or_eq'] = {
         "TIME",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1682,8 +1976,16 @@ Blockly.Blocks['time_before'] = {
     this.jsonInit( 
 {
   "type": "time_before",
-  "message0": "🕓 %1 is before🕓 %2",
+  "message0": "%1 %2 is before %3 %4",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "first_time",
@@ -1691,6 +1993,14 @@ Blockly.Blocks['time_before'] = {
         "TIME",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1716,8 +2026,16 @@ Blockly.Blocks['time_plus_dur'] = {
     this.jsonInit( 
 {
   "type": "time_plus_dur",
-  "message0": "🕓 %1 plus ⏱ %2 is 🕓 %3",
+  "message0": "%1 %2 plus %3 %4 is %5 %6",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "time",
@@ -1727,12 +2045,28 @@ Blockly.Blocks['time_plus_dur'] = {
       ]
     },
     {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
+    {
       "type": "input_value",
       "name": "duration",
       "check": [
         "DURATION",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1758,8 +2092,24 @@ Blockly.Blocks['date_plus_dur'] = {
     this.jsonInit( 
 {
   "type": "date_plus_dur",
-  "message0": "📅/📅🕓 %1 plus ⏱ %2 is 📅/📅🕓 %3",
+  "message0": "%1 %2 %3 plus %4 %5 is %6 %7 %8",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "date",
@@ -1770,12 +2120,36 @@ Blockly.Blocks['date_plus_dur'] = {
       ]
     },
     {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
+    {
       "type": "input_value",
       "name": "duration",
       "check": [
         "DURATION",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1802,8 +2176,16 @@ Blockly.Blocks['time_minus_time'] = {
     this.jsonInit( 
 {
   "type": "time_minus_time",
-  "message0": "🕓 %1 minus %2 🕓 %3 is ⏱ %4",
+  "message0": "%1 %2 minus %3 %4 is %5 %6",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "time",
@@ -1813,7 +2195,12 @@ Blockly.Blocks['time_minus_time'] = {
       ]
     },
     {
-      "type": "input_dummy"
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1822,6 +2209,14 @@ Blockly.Blocks['time_minus_time'] = {
         "TIME",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "",
+      "flipRtl": false
     },
     {
       "type": "input_value",
@@ -1847,8 +2242,24 @@ Blockly.Blocks['date_minus_date'] = {
     this.jsonInit( 
 {
   "type": "date_minus_date",
-  "message0": "📅/📅🕓 %1 minus 📅/📅🕓 %2 is ⏱ %3",
+  "message0": "%1 %2 %3 minus %4 %5 %6 is %7 %8",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "date",
@@ -1859,6 +2270,22 @@ Blockly.Blocks['date_minus_date'] = {
       ]
     },
     {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABEElEQVR4AbXRAWfDQBjG8SAIgqEIiqIoggCGYARDP0IQ5EMUQzDAEAzDUAwwFAUM+wBFAQUURQGHIgjS/8vhnOtV0Icf8nrz5OSCh2cYhggFKi1HOKZgghYd7Cg0iO+VLHCE5AclUsywxC8keyS3ShKccMbS87ECF10WuxbW6JBa8xav1qyCpHGdpseH4wP/qBzzLRRCc1hCko4oqiHJzWGDISAjijJIKrtIEjte+MMWiTWfQlI7j+koesIXFFYIjduTFObyDJJ3z7U/Y4eVfv5Gh8he3KBH5ikLESFDj9a1NIfCAVNP2QvOOGJyaymH0t4wN/5TgU9ITlgEvuiTbeBKj7V9g97oC6jRaKUueGyuUFDoynUXVjgAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
       "type": "input_value",
       "name": "second_date",
       "check": [
@@ -1866,6 +2293,14 @@ Blockly.Blocks['date_minus_date'] = {
         "DATETIME",
         "ENTITY"
       ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
     },
     {
       "type": "input_value",
