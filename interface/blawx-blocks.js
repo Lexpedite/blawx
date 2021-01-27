@@ -2682,6 +2682,7 @@ Blockly.Blocks['custom_attribute_declaration'] = {
   "nextStatement": "ATTRIBUTE DECLARATION",
   "colour": 45,
   "tooltip": "Customize the appearance of the attribute declared directly above it.",
-  "helpUrl": "/docs/pages/custom_attribute"
+  "helpUrl": "/docs/pages/custom_attribute",
+  "extensions": ['changeCustomAttributeText']
 }
 )}}
