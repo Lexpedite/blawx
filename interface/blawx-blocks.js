@@ -2535,7 +2535,7 @@ Blockly.Blocks['cardinality_any'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","custom_attribute_declaration"],
   "colour": 45,
   "tooltip": "A category has an attribute with any number of values.",
   "helpUrl": "/docs/blocks/attribute_any/"
@@ -2678,8 +2678,8 @@ Blockly.Blocks['custom_attribute_declaration'] = {
     }
   ],
   "inputsInline": false,
-  "previousStatement": "ATTRIBUTE DECLARATION",
-  "nextStatement": "ATTRIBUTE DECLARATION",
+  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
   "tooltip": "Customize the appearance of the attribute declared directly above it.",
   "helpUrl": "/docs/pages/custom_attribute",

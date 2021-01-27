@@ -36,12 +36,12 @@ demoWorkspace.addChangeListener(setAttributeType);
 
 Blockly.Extensions.register('changeCustomAttributeText', function() {
   this.setOnChange(function(changeEvent) {
-    if (this.getFieldValue('order') == "object, then value") {
-      this.getInput('first_element').setValue('object');
-      this.getInput('second_element').setValue('value');
+    if (this.getFieldValue('order') == "object_first") {
+      this.getField('first_element').setValue('object');
+      this.getField('second_element').setValue('value');
     } else {
-      this.getInput('first_element').setValue('value');
-      this.getInput('second_element').setValue('object');
+      this.getField('first_element').setValue('value');
+      this.getField('second_element').setValue('object');
     }
   });
 });
