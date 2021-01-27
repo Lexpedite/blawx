@@ -2609,3 +2609,79 @@ Blockly.Blocks['new_object_of_type'] = {
   "helpUrl": "/docs/blocks/new_object"
 }
 )}}
+
+
+Blockly.Blocks['custom_attribute_declaration'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "custom_attribute_declaration",
+  "message0": "Appearing as: %1 %2 %3 %4 %5 %6 %7 %8 %9",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "order",
+      "options": [
+        [
+          "object, then value",
+          "object_first"
+        ],
+        [
+          "value, then object",
+          "value_first"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_input",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "first_element",
+      "text": "object"
+    },
+    {
+      "type": "field_input",
+      "name": "infix",
+      "text": "'s attribute name is"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "second_element",
+      "text": "value"
+    },
+    {
+      "type": "field_input",
+      "name": "postfix",
+      "text": ""
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": "ATTRIBUTE DECLARATION",
+  "nextStatement": "ATTRIBUTE DECLARATION",
+  "colour": 45,
+  "tooltip": "Customize the appearance of the attribute declared directly above it.",
+  "helpUrl": "/docs/pages/custom_attribute"
+}
+)}}
