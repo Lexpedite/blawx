@@ -2681,6 +2681,55 @@ Blockly.Blocks['custom_attribute_declaration'] = {
 }
 )}}
 
+
+Blockly.Blocks['custom_attribute_selector'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "custom_attribute_selector",
+  "message0": "%1 %2 %3 %4 %5",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "input_value",
+      "name": "first_entity",
+      "check": [
+        "ENTITY",
+        "CALCULATED_TYPE_HERE"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "infix",
+      "text": "'s attribute_name is"
+    },
+    {
+      "type": "input_value",
+      "name": "second_entity",
+      "check": [
+        "ENTITY",
+        "CALCULATED_TYPE_HERE"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": ""
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "Use to specify that an entity is related to another entity.",
+  "helpUrl": ""
+}
+)}}
+
   Blockly.JavaScript['declare_type'] = function(block) {
     var text_type_name = block.getFieldValue('type_name');
     var code = text_type_name + '::Thing';
