@@ -3354,8 +3354,7 @@ Blockly.Blocks['custom_attribute_selector'] = {
   Blockly.JavaScript['blawx_string'] = function(block) {
     var text_string = block.getFieldValue('string');
     var code = '"' + text_string + '"^^\\string';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return code;
   };
 
   Blockly.JavaScript['cardinality_up_to'] = function(block) {
