@@ -2684,8 +2684,8 @@ Blockly.Blocks['custom_attribute_declaration'] = {
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
   "tooltip": "Customize the appearance of the attribute declared directly above it.",
-  "helpUrl": "/docs/pages/custom_attribute",
-  "extensions": ['changeCustomAttributeText']
+  "helpUrl": "/docs/pages/custom_attribute"
+  // Extension removed
 }
 )}}
 
@@ -3421,8 +3421,9 @@ Blockly.Blocks['custom_attribute_selector'] = {
   };
 
   Blockly.JavaScript['custom_attribute_selector'] = function(block) {
-    var attributeName = block.data;
-    var order = attributeOrders[attributeName];
+    var payload = JSON.parse(block.data);
+    var attributeName = payload['attributeName'];
+    var order = payload['order'];
     if (order == "object_first") {
       var object_entity = 'first_entity';
       var value_entity = 'second_entity';
@@ -3597,3 +3598,5 @@ data = fs.readFileSync(datafile,'utf8');
   catch (e) {
     console.log(e);
   }
+
+  

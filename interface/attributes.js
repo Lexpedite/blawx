@@ -39,9 +39,10 @@ function setCustomAttributeType(event) {
     for (var i = 0; i < event.ids.length; i++) {
       block = demoWorkspace.getBlockById(event.ids[i]);
       if (block.type == "custom_attribute_selector") {
-        var attribute_name = block.data;
+        var payload = JSON.parse(block.data);
+        var attribute_name = payload['attributeName'];
         var type = attributeTypes[attribute_name];
-        var order = attributeOrders[attribute_name];
+        var order = payload['order'];
         if (order == 'object_first') {
           // Change the second input.
           block.getInput('second_entity').connection.setCheck([type,'ENTITY']);
