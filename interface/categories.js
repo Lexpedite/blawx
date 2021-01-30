@@ -16,7 +16,7 @@ knownAttributesCallback = function(workspace) {
         var attribute_type = blockList[i].getInputTargetBlock('attribute_type').toString();
         attributeTypes[attribute_name] = attribute_type;
         // At this point, I need to check to see if the next block is a customization.
-        var nextblock = blocklist[i].getNextBlock();
+        var nextblock = blockList[i].getNextBlock();
         if (nextblock && nextblock.type == "custom_attribute_declaration") {
             // If it is, I need to get (where the next block is "block")
             var dropdown_order = nextblock.getFieldValue('order');
@@ -52,7 +52,7 @@ knownAttributesCallback = function(workspace) {
         var attribute_type = blockList[i].getInputTargetBlock('attribute_type').toString();
         attributeTypes[attribute_name] = attribute_type;
         // At this point, I need to check to see if the next block is a customization.
-        var nextblock = blocklist[i].getNextBlock();
+        var nextblock = blockList[i].getNextBlock();
         if (nextblock && nextblock.type == "custom_attribute_declaration") {
             // If it is, I need to get (where the next block is "block")
             var dropdown_order = nextblock.getFieldValue('order');
