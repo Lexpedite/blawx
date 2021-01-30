@@ -158,12 +158,16 @@ And here is what the resulting attribute selector block will look like:
 
 ![customized attribute selector]({{site.baseurl}}/img/customized_attribute_selector.png)
 
-**BE CAREFUL**
+**BE CAREFUL!**
 
-Even if you leave all three fields blank, Blawx will still know what attribute the
+If you leave all three fields blank, Blawx will still know what attribute the
 block is for, but your users will have no clue. Make sure to customize attribute
-blocks in ways that sound natural to your users, but are also very clear about what
-attribute, in particular, is being modified.
+blocks in ways that sound natural to your users, but are also very clear about which
+attribute is being modified.
+
+That said, there is no need for your attribute name
+to appear in the text, which can allow you to use
+more concise attribute names.
 
 ### Category Equivalence
 An object can have more than one category. One of the ways you can give an object more than one category is by stating that all objects of one category are also included in another category. For example, “all cats are mammals”.
