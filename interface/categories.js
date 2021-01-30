@@ -25,7 +25,7 @@ knownAttributesCallback = function(workspace) {
             var text_postfix = nextblock.getFieldValue('postfix');
             // And then I need to construct the custom block, in such a way as to give it
             // the information it needs to set the TYPE checking value on both fields.
-            if (dropdown_order == "object_first") {
+            if (dropdown_order == "object_first") { // This currently isn't doing anything, may need to remove.
                 var blockText = "<xml><block type='custom_attribute_selector'><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
             } else {
                 var blockText = "<xml><block type='custom_attribute_selector'><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
