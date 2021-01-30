@@ -2706,7 +2706,7 @@ Blockly.Blocks['custom_attribute_selector'] = {
       "name": "first_entity",
       "check": [
         "ENTITY",
-        "CALCULATED_TYPE_HERE"
+        "FIRST CALCULATED TYPE HERE"
       ]
     },
     {
@@ -2719,7 +2719,7 @@ Blockly.Blocks['custom_attribute_selector'] = {
       "name": "second_entity",
       "check": [
         "ENTITY",
-        "CALCULATED_TYPE_HERE"
+        "SECOND CALCULATED TYPE HERE"
       ]
     },
     {
