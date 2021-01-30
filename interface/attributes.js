@@ -43,13 +43,21 @@ function setCustomAttributeType(event) {
         var attribute_name = payload['attributeName'];
         var type = blawxTypeToBlocklyType(attributeTypes[attribute_name]);
         var order = payload['order'];
-        if (order == 'object_first') {
-          // Change the second input.
-          block.getInput('second_entity').connection.setCheck([type,'ENTITY']);
-        } else {
-          // Change the first input.
-          block.getInput('first_entity').connection.setCheck([type,'ENTITY']);
+        if (block.getInput('first_entity').connection.getCheck() == "FIRST COMPUTED TYPE HERE") {
+          // This checks to see if the type has already been set. If so, don't
+          // set it again, because that will first unset it, which will kick
+          // out copied sub-blocks and mess up the workspace.
+          if (order == 'object_first') {
+            // Change the second input.
+            block.getInput('second_entity').connection.setCheck([type,'ENTITY']);
+            block.getInput('first_entity').connection.setCheck('ENTITY');
+          } else {
+            // Change the first input.
+            block.getInput('first_entity').connection.setCheck([type,'ENTITY']);
+            block.getInput('second_entity').connection.setCheck('ENTITY');
+          }
         }
+        
       }
     }
   }
