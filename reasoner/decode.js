@@ -2704,10 +2704,7 @@ Blockly.Blocks['custom_attribute_selector'] = {
     {
       "type": "input_value",
       "name": "first_entity",
-      "check": [
-        "ENTITY",
-        "FIRST CALCULATED TYPE HERE"
-      ]
+      "check": "ENTITY"
     },
     {
       "type": "field_label_serializable",
@@ -2717,10 +2714,7 @@ Blockly.Blocks['custom_attribute_selector'] = {
     {
       "type": "input_value",
       "name": "second_entity",
-      "check": [
-        "ENTITY",
-        "SECOND CALCULATED TYPE HERE"
-      ]
+      "check": "ENTITY"
     },
     {
       "type": "field_label_serializable",

@@ -34,6 +34,28 @@ function setAttributeType(event) {
 
 demoWorkspace.addChangeListener(setAttributeType);
 
+function setCustomAttributeType(event) {
+  if (event.type == Blockly.Events.BLOCK_CREATE) {
+    for (var i = 0; i < event.ids.length; i++) {
+      block = demoWorkspace.getBlockById(event.ids[i]);
+      if (block.type == "custom_attribute_selector") {
+        var attribute_name = block.data;
+        var type = attributeTypes[attribute_name];
+        var order = attributeOrders[attribute_name];
+        if (order == 'object_first') {
+          // Change the second input.
+          block.getInput('second_entity').connection.setCheck([type,'ENTITY']);
+        } else {
+          // Change the first input.
+          block.getInput('first_entity').connection.setCheck([type,'ENTITY']);
+        }
+      }
+    }
+  }
+}
+
+demoWorkspace.addChangeListener(setCustomAttributeType);
+
 Blockly.Extensions.register('changeCustomAttributeText', function() {
   this.setOnChange(function(changeEvent) {
     if (this.getFieldValue('order') == "object_first") {
