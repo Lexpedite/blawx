@@ -61,3 +61,15 @@ OBJECT_SELECTOR_MUTATOR_MIXIN = {
 
 
     Blockly.Extensions.registerMutator('attribute_selector_mutator', ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);
+
+    Blockly.Extensions.register('changeCustomAttributeText', function() {
+        this.setOnChange(function(changeEvent) {
+          if (this.getFieldValue('order') == "object_first") {
+            this.getField('first_element').setValue('object');
+            this.getField('second_element').setValue('value');
+          } else {
+            this.getField('first_element').setValue('value');
+            this.getField('second_element').setValue('object');
+          }
+        });
+      });
