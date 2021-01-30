@@ -2389,7 +2389,7 @@ Blockly.Blocks['cardinality_up_to'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a maximum number of values.",
   "helpUrl": "/docs/blocks/attribute_up_to/"
@@ -2426,7 +2426,7 @@ Blockly.Blocks['cardinality_or_more'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a minimum number of values.",
   "helpUrl": "/docs/blocks/attribute_or_more/"
@@ -2463,7 +2463,7 @@ Blockly.Blocks['cardinality_exactly'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a specific number of values.",
   "helpUrl": "/docs/blocks/attribute_exactly/"
@@ -2506,7 +2506,7 @@ Blockly.Blocks['cardinality_between'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a minimum and maximum number of values.",
   "helpUrl": "/docs/blocks/attribute_between/"
@@ -2537,7 +2537,7 @@ Blockly.Blocks['cardinality_any'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with any number of values.",
   "helpUrl": "/docs/blocks/attribute_any/"
@@ -2563,8 +2563,16 @@ Blockly.Blocks['silent_variable_selector'] = {
     this.jsonInit(
 {
   "type": "silent_variable_selector",
-  "message0": "🔇 %1",
+  "message0": "%1 %2",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAzElEQVR4AWOgG/j//78zEJuQokEDiOvRxHYD8e//EDCbWIPqoRr6oXwZqCHBQFwMxN+BWIJYw/rRDAuG0gpQcQcQnyzDcBlErsskoN50ICe2JqN7E4htiNVsAMT7gZgDyv6PxZsyUDUy+AwSgWq0gPIvoxsGpHWA+DMQ8xBy1XaojSxQl8UD8XI0wzRwGoAWQ6+hiVEHKsYCsQBhGGGACIfdUI3voYnxN8SrCMNIMhCq+Two/GBJg1zD9oMwjnRWT2ri7MeRNzUYBi0AANQgbf4Gx9YVAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
     {
       "type": "field_input",
       "name": "variable_selected",
@@ -2672,15 +2680,14 @@ Blockly.Blocks['custom_attribute_declaration'] = {
     }
   ],
   "inputsInline": false,
-  "previousStatement": "ATTRIBUTE DECLARATION",
-  "nextStatement": "ATTRIBUTE DECLARATION",
+  "previousStatement": "ATTRIBUTE_CUSTOMIZATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
   "tooltip": "Customize the appearance of the attribute declared directly above it.",
   "helpUrl": "/docs/pages/custom_attribute",
   "extensions": ['changeCustomAttributeText']
 }
 )}}
-
 
 Blockly.Blocks['custom_attribute_selector'] = {
   init: function() {

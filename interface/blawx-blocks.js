@@ -2387,7 +2387,7 @@ Blockly.Blocks['cardinality_up_to'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a maximum number of values.",
   "helpUrl": "/docs/blocks/attribute_up_to/"
@@ -2424,7 +2424,7 @@ Blockly.Blocks['cardinality_or_more'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a minimum number of values.",
   "helpUrl": "/docs/blocks/attribute_or_more/"
@@ -2461,7 +2461,7 @@ Blockly.Blocks['cardinality_exactly'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a specific number of values.",
   "helpUrl": "/docs/blocks/attribute_exactly/"
@@ -2504,7 +2504,7 @@ Blockly.Blocks['cardinality_between'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a minimum and maximum number of values.",
   "helpUrl": "/docs/blocks/attribute_between/"
@@ -2535,7 +2535,7 @@ Blockly.Blocks['cardinality_any'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with any number of values.",
   "helpUrl": "/docs/blocks/attribute_any/"
@@ -2678,7 +2678,7 @@ Blockly.Blocks['custom_attribute_declaration'] = {
     }
   ],
   "inputsInline": false,
-  "previousStatement": "ATTRIBUTE_DECLARATION",
+  "previousStatement": "ATTRIBUTE_CUSTOMIZATION",
   "nextStatement": "ATTRIBUTE_DECLARATION",
   "colour": 45,
   "tooltip": "Customize the appearance of the attribute declared directly above it.",
