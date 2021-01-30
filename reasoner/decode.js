@@ -3419,6 +3419,22 @@ Blockly.Blocks['custom_attribute_selector'] = {
     var code = '';
     return code;
   };
+
+  Blockly.JavaScript['custom_attribute_selector'] = function(block) {
+    var attributeName = block.data;
+    var order = attributeOrders[attributeName];
+    if (order == "object_first") {
+      var object_entity = 'first_entity';
+      var value_entity = 'second_entity';
+    } else {
+      var object_entity = 'second_entity';
+      var value_entity = 'first_entity';
+    }
+    var object_element = Blockly.JavaScript.valueToCode(block, object_entity, Blockly.JavaScript.ORDER_ATOMIC);
+    var value_element = Blockly.JavaScript.valueToCode(block, value_entity, Blockly.JavaScript.ORDER_ATOMIC);
+    var code = object_element + '[' + attributeName + '->' + value_element + ']';
+    return code;
+  }
   
   /**
    * Generate code for the specified block but not following blocks.
