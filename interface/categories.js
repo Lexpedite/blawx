@@ -1,4 +1,5 @@
 var attributeTypes = [];
+var attributeOrders = [];
 var importDictionary = {};
 var knownAttributesCallback;
 knownAttributesCallback = function(workspace) {
@@ -23,13 +24,10 @@ knownAttributesCallback = function(workspace) {
             var text_prefix = nextblock.getFieldValue('prefix');
             var text_infix = nextblock.getFieldValue('infix');
             var text_postfix = nextblock.getFieldValue('postfix');
-            // And then I need to construct the custom block, in such a way as to give it
-            // the information it needs to set the TYPE checking value on both fields.
-            if (dropdown_order == "object_first") { // This currently isn't doing anything, may need to remove.
-                var blockText = "<xml><block type='custom_attribute_selector'><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
-            } else {
-                var blockText = "<xml><block type='custom_attribute_selector'><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
-            }
+            attributeOrders[attribute_name] = dropdown_order; // This saves the order so that it can be retrieved when setting the types.
+            // And then I need to construct the custom block, putting the name of the attribute in 'data',
+            // which is automatically serialized without needing any mutators.
+            var blockText = "<xml><block type='custom_attribute_selector'><data>" + attribute_name + "</data><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
         } else {
             var blockText = "<xml><block type='attribute_selector'><field name='attributeName'>" + attribute_name + "</field></block></xml>";
         }
