@@ -41,7 +41,7 @@ function setCustomAttributeType(event) {
       if (block.type == "custom_attribute_selector") {
         var payload = JSON.parse(block.data);
         var attribute_name = payload['attributeName'];
-        var type = attributeTypes[attribute_name];
+        var type = blawxTypeToBlocklyType(attributeTypes[attribute_name]);
         var order = payload['order'];
         if (order == 'object_first') {
           // Change the second input.
