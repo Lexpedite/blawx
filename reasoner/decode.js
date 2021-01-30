@@ -2968,6 +2968,11 @@ Blockly.Blocks['custom_attribute_selector'] = {
       var codeForBlock = getCodeForSingleBlock(currentBlock);
       code += codeForBlock;
       currentBlock = currentBlock.getNextBlock();
+      if (currentBlock.type == "custom_attribute_declaration") {
+        currentBlock = currentBlock.getNextBlock();
+        // Skip custom attribute declarations of which there can only
+        // be one in a row.
+      }
       if (currentBlock) {
           code += ', ';
       }
