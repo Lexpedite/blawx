@@ -3551,6 +3551,44 @@ Blockly.Blocks['custom_attribute_selector'] = {
 
   Blockly.Extensions.registerMutator('attribute_selector_mutator', ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);
 
+  CUSTOM_ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
+    mutationToDom: function() {
+        var container = Blockly.utils.xml.createElement('mutation');
+        var payload = JSON.parse(this.data);
+        var attributeName = payload['attributeName'];
+        var attributeType = payload['type'];
+        var attributeOrder = payload['order'];
+        container.setAttribute('attributename', attributeName);
+        container.setAttribute('attributetype', attributeType);
+        container.setAttribute('attributeorder', attributeOrder);
+        return container;
+    },
+    domToMutation: function(xmlElement) {
+        var attributeName = xmlElement.getAttribute('attributename');
+        var attributeType = xmlElement.getAttribute('attributetype');
+        var attributeOrder = xmlElement.getAttribute('attributeorder');
+        // I "think" that the field values are automatically serialized,
+        // as are the words "object" and "value" in the serialized text,
+        // so the only thing to do here should be to set the type checking.
+        // This should only be done if the object has a type set, which may
+        // not have happened yet for new blocks.
+        if (attributeType != "undefined") {
+          if (attributeOrder == 'object_first') {
+              // Change the second input.
+              this.getInput('second_entity').connection.setCheck([attributeType,'ENTITY']);
+              this.getInput('first_entity').connection.setCheck('ENTITY');
+          } else {
+              // Change the first input.
+              this.getInput('first_entity').connection.setCheck([type,'ENTITY']);
+              this.getInput('second_entity').connection.setCheck('ENTITY');
+          }
+        }
+    }
+    }
+
+    Blockly.Extensions.registerMutator('custom_attribute_selector_mutator', CUSTOM_ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);
+
+
       function importBlawxCode() {
 	// Get all the blocks and go through them.
 	get_blocks = workspace.getAllBlocks();

@@ -74,14 +74,13 @@ OBJECT_SELECTOR_MUTATOR_MIXIN = {
         });
       });
 
-      Blockly.Extensions.registerMutator('category_selector_mutator', CATEGORY_SELECTOR_MUTATOR_MIXIN);
-
       CUSTOM_ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
       mutationToDom: function() {
           var container = document.createElement('mutation');
-          var attributeName = this.data['attributeName'];
-          var attributeType = this.data['type'];
-          var attributeOrder = this.data['order'];
+          var payload = JSON.parse(this.data);
+          var attributeName = payload['attributeName'];
+          var attributeType = payload['type'];
+          var attributeOrder = payload['order'];
           container.setAttribute('attributename', attributeName);
           container.setAttribute('attributetype', attributeType);
           container.setAttribute('attributeorder', attributeOrder);
@@ -94,16 +93,18 @@ OBJECT_SELECTOR_MUTATOR_MIXIN = {
           // I "think" that the field values are automatically serialized,
           // as are the words "object" and "value" in the serialized text,
           // so the only thing to do here should be to set the type checking.
-          // There should be no need to check to see if the types are unset,
-          // because they should always be unset if coming from dom.
-          if (attributeOrder == 'object_first') {
-            // Change the second input.
-            block.getInput('second_entity').connection.setCheck([attributeType,'ENTITY']);
-            block.getInput('first_entity').connection.setCheck('ENTITY');
-          } else {
-            // Change the first input.
-            block.getInput('first_entity').connection.setCheck([type,'ENTITY']);
-            block.getInput('second_entity').connection.setCheck('ENTITY');
+          // This should only be done if the object has a type set, which may
+          // not have happened yet for new blocks.
+          if (attributeType != "undefined") {
+            if (attributeOrder == 'object_first') {
+                // Change the second input.
+                this.getInput('second_entity').connection.setCheck([attributeType,'ENTITY']);
+                this.getInput('first_entity').connection.setCheck('ENTITY');
+            } else {
+                // Change the first input.
+                this.getInput('first_entity').connection.setCheck([type,'ENTITY']);
+                this.getInput('second_entity').connection.setCheck('ENTITY');
+            }
           }
       }
       }
