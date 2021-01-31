@@ -99,11 +99,11 @@ OBJECT_SELECTOR_MUTATOR_MIXIN = {
           if (attributeType) {
             if (attributeOrder == 'object_first') {
                 // Change the second input.
-                this.getInput('second_entity').connection.setCheck([attributeType,'ENTITY']);
+                this.getInput('second_entity').connection.setCheck([blawxTypeToBlocklyType(attributeType),'ENTITY']);
                 this.getInput('first_entity').connection.setCheck('ENTITY');
             } else {
                 // Change the first input.
-                this.getInput('first_entity').connection.setCheck([type,'ENTITY']);
+                this.getInput('first_entity').connection.setCheck([blawxTypeToBlocklyType(attributeType),'ENTITY']);
                 this.getInput('second_entity').connection.setCheck('ENTITY');
             }
           }
