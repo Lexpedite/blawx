@@ -25,13 +25,8 @@ knownAttributesCallback = function(workspace) {
             var text_postfix = nextblock.getFieldValue('postfix');
             // The attribute name, and the order of the elements, is required
             // in order to generate code, so those pieces of information are
-            // placed in a json text payload and added to the XML as data.
-            var payload = {
-                attributeName: attribute_name,
-                order: dropdown_order
-            }
-            // Now construct the custom block with the payload in <data>
-            var blockText = "<xml><block type='custom_attribute_selector'><data>" + JSON.stringify(payload) + "</data><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
+            // placed in THE MUTATOR.
+            var blockText = "<xml><block type='custom_attribute_selector'><mutation xmlns='http://www.w3.org/1999/xhtml' attributename='" + attribute_name + "' attributetype='" + attribute_type + "' attributeorder='" + dropdown_order + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
         } else {
             var blockText = "<xml><block type='attribute_selector'><field name='attributeName'>" + attribute_name + "</field></block></xml>";
         }
@@ -63,13 +58,8 @@ knownAttributesCallback = function(workspace) {
             var text_postfix = nextblock.getFieldValue('postfix');
             // The attribute name, and the order of the elements, is required
             // in order to generate code, so those pieces of information are
-            // placed in a json text payload and added to the XML as data.
-            var payload = {
-                attributeName: attribute_name,
-                order: dropdown_order
-            }
-            // Now construct the custom block with the payload in <data>
-            var blockText = "<xml><block type='custom_attribute_selector'><data>" + JSON.stringify(payload) + "</data><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
+            // placed in THE MUTATOR.
+            var blockText = "<xml><block type='custom_attribute_selector'><mutation xmlns='http://www.w3.org/1999/xhtml' attributename='" + attribute_name + "' attributetype='" + attribute_type + "' attributeorder='" + dropdown_order + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
         } else {
             var blockText = "<xml><block type='attribute_selector'><field name='attributeName'>" + attribute_name + "</field></block></xml>";
         }

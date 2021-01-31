@@ -77,25 +77,26 @@ OBJECT_SELECTOR_MUTATOR_MIXIN = {
       CUSTOM_ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
       mutationToDom: function() {
           var container = document.createElement('mutation');
-          var payload = JSON.parse(this.data);
-          var attributeName = payload['attributeName'];
-          var attributeType = payload['type'];
-          var attributeOrder = payload['order'];
-          container.setAttribute('attributename', attributeName);
-          container.setAttribute('attributetype', attributeType);
-          container.setAttribute('attributeorder', attributeOrder);
+          container.setAttribute('attributename', this.blawxAttributeName);
+          container.setAttribute('attributetype', this.blawxAttributeType);
+          container.setAttribute('attributeorder', this.blawxAttributeOrder);
           return container;
       },
       domToMutation: function(xmlElement) {
           var attributeName = xmlElement.getAttribute('attributename');
           var attributeType = xmlElement.getAttribute('attributetype');
           var attributeOrder = xmlElement.getAttribute('attributeorder');
+          this.blawxAttributeName = attributeName;
+          this.blawxAttributeType = attributeType;
+          this.blawxAttributeOrder = attributeOrder;
+
           // I "think" that the field values are automatically serialized,
           // as are the words "object" and "value" in the serialized text,
-          // so the only thing to do here should be to set the type checking.
+          // so the only thing to do here other than collecting the hidden
+          // data should be to set the type checking.
           // This should only be done if the object has a type set, which may
           // not have happened yet for new blocks.
-          if (attributeType != "undefined") {
+          if (attributeType) {
             if (attributeOrder == 'object_first') {
                 // Change the second input.
                 this.getInput('second_entity').connection.setCheck([attributeType,'ENTITY']);
