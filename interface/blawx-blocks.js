@@ -2387,7 +2387,7 @@ Blockly.Blocks['cardinality_up_to'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a maximum number of values.",
   "helpUrl": "/docs/blocks/attribute_up_to/"
@@ -2424,7 +2424,7 @@ Blockly.Blocks['cardinality_or_more'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a minimum number of values.",
   "helpUrl": "/docs/blocks/attribute_or_more/"
@@ -2461,7 +2461,7 @@ Blockly.Blocks['cardinality_exactly'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a specific number of values.",
   "helpUrl": "/docs/blocks/attribute_exactly/"
@@ -2504,7 +2504,7 @@ Blockly.Blocks['cardinality_between'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a minimum and maximum number of values.",
   "helpUrl": "/docs/blocks/attribute_between/"
@@ -2535,7 +2535,7 @@ Blockly.Blocks['cardinality_any'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with any number of values.",
   "helpUrl": "/docs/blocks/attribute_any/"
@@ -2607,5 +2607,125 @@ Blockly.Blocks['new_object_of_type'] = {
   "colour": 230,
   "tooltip": "An object exists.",
   "helpUrl": "/docs/blocks/new_object"
+}
+)}}
+
+
+Blockly.Blocks['custom_attribute_declaration'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "custom_attribute_declaration",
+  "message0": "Appearing as: %1 %2 %3 %4 %5 %6 %7 %8 %9",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "order",
+      "options": [
+        [
+          "object, then value",
+          "object_first"
+        ],
+        [
+          "value, then object",
+          "value_first"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_input",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "first_element",
+      "text": "object"
+    },
+    {
+      "type": "field_input",
+      "name": "infix",
+      "text": "'s attribute name is"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "second_element",
+      "text": "value"
+    },
+    {
+      "type": "field_input",
+      "name": "postfix",
+      "text": ""
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": "ATTRIBUTE_CUSTOMIZATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "Customize the appearance of the attribute declared directly above it.",
+  "helpUrl": "/docs/pages/custom_attribute",
+  "extensions": ['changeCustomAttributeText']
+}
+)}}
+
+Blockly.Blocks['custom_attribute_selector'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "custom_attribute_selector",
+  "message0": "%1 %2 %3 %4 %5",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "input_value",
+      "name": "first_entity",
+      "check": "FIRST COMPUTED TYPE HERE"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "infix",
+      "text": "'s attribute_name is"
+    },
+    {
+      "type": "input_value",
+      "name": "second_entity",
+      "check": "SECOND COMPUTED TYPE HERE"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": ""
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "Use to specify that an entity is related to another entity.",
+  "helpUrl": "/docs/blocks/customized_attribute_selector",
+  "mutator": "custom_attribute_selector_mutator"
 }
 )}}

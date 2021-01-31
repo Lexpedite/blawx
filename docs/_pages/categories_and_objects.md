@@ -98,6 +98,77 @@ data structures is for automatically generating user interfaces. Without this
 information a tool that was generating a user interface on the basis of your
 Blawx code might ask something like "do you have any *other* birthdays?"
 
+### Attribute Customization
+
+By default, when you create an attribute using the above blocks, an attribute
+selector block will be created that looks like this...
+
+![default attribute selector]({{site.baseurl}}/img/default_attribute_selector.png)
+
+... where the text "attribute_name" is replaced with the text that you have provided.
+
+This may not be the most intuitive way of describing the relationship, however. If
+you want to customize how the attribute selector will appear, you can use the
+attribute customization block. The only place an attribute customization block can
+be used is under an attribute declaration block, and it applies only to the attribute
+declared directly above it.
+
+The attribute customization block looks like this:
+
+![attribute customization block]({{site.baseurl}}/img/attribute_customization.png)
+
+The block allows you to choose the order in which the object and the value are
+included, and the text that should appear before, between, and after them. By default
+the order is "object, then value". And the words "object" and "value" appear in that
+order below. If you change the order to "value, then object" in the dropdown, the
+illustration below the dropdown field will be updated, like this:
+
+![reverse order customization]({{site.baseurl}}/img/reversed_order_attribute_customization.png)
+
+Once you have selected the order that you want the object and the value to appear,
+you can specify the text that appears before, between, and after them. For example,
+imagine that you have a category called "Animal" and an attribute called "legs" that
+was supposed to hold how many legs the animal has.  
+
+Here are three different ways you might want your
+customized attribute block to appear, and how to
+achieve that effect using the attribute customization block:
+
+* "The animal has N legs"
+  * Order: object, then value
+  * Before: "The"
+  * Between: "has"
+  * After: "legs"
+* "There are N legs on a(n) animal"
+  * Order: value, then object
+  * Before: "There are"
+  * Between: "legs on a(n)"
+  * After: Empty
+* "N is the number of legs on a(n)"
+  * Order: value, then object
+  * Before: Empty
+  * Between: "is the number of legs on a(n)"
+  * After: Empty
+
+Here's what the second example above looks like in the interface:
+
+![customization example]({{site.baseurl}}/img/attribute_customization_example.png)
+
+And here is what the resulting attribute selector block will look like:
+
+![customized attribute selector]({{site.baseurl}}/img/customized_attribute_selector.png)
+
+**BE CAREFUL!**
+
+If you leave all three fields blank, Blawx will still know what attribute the
+block is for, but your users will have no clue. Make sure to customize attribute
+blocks in ways that sound natural to your users, but are also very clear about which
+attribute is being modified.
+
+That said, there is no need for your attribute name
+to appear in the text, which can allow you to use
+more concise attribute names.
+
 ### Category Equivalence
 An object can have more than one category. One of the ways you can give an object more than one category is by stating that all objects of one category are also included in another category. For example, “all cats are mammals”.
 

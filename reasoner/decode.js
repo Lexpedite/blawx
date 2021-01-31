@@ -2389,7 +2389,7 @@ Blockly.Blocks['cardinality_up_to'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a maximum number of values.",
   "helpUrl": "/docs/blocks/attribute_up_to/"
@@ -2426,7 +2426,7 @@ Blockly.Blocks['cardinality_or_more'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a minimum number of values.",
   "helpUrl": "/docs/blocks/attribute_or_more/"
@@ -2463,7 +2463,7 @@ Blockly.Blocks['cardinality_exactly'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a specific number of values.",
   "helpUrl": "/docs/blocks/attribute_exactly/"
@@ -2506,7 +2506,7 @@ Blockly.Blocks['cardinality_between'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with a minimum and maximum number of values.",
   "helpUrl": "/docs/blocks/attribute_between/"
@@ -2537,7 +2537,7 @@ Blockly.Blocks['cardinality_any'] = {
   ],
   "inputsInline": true,
   "previousStatement": "ATTRIBUTE_DECLARATION",
-  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "nextStatement": ["ATTRIBUTE_DECLARATION","ATTRIBUTE_CUSTOMIZATION"],
   "colour": 45,
   "tooltip": "A category has an attribute with any number of values.",
   "helpUrl": "/docs/blocks/attribute_any/"
@@ -2563,8 +2563,16 @@ Blockly.Blocks['silent_variable_selector'] = {
     this.jsonInit(
 {
   "type": "silent_variable_selector",
-  "message0": "🔇 %1",
+  "message0": "%1 %2",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAzElEQVR4AWOgG/j//78zEJuQokEDiOvRxHYD8e//EDCbWIPqoRr6oXwZqCHBQFwMxN+BWIJYw/rRDAuG0gpQcQcQnyzDcBlErsskoN50ICe2JqN7E4htiNVsAMT7gZgDyv6PxZsyUDUy+AwSgWq0gPIvoxsGpHWA+DMQ8xBy1XaojSxQl8UD8XI0wzRwGoAWQ6+hiVEHKsYCsQBhGGGACIfdUI3voYnxN8SrCMNIMhCq+Two/GBJg1zD9oMwjnRWT2ri7MeRNzUYBi0AANQgbf4Gx9YVAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
     {
       "type": "field_input",
       "name": "variable_selected",
@@ -2601,6 +2609,126 @@ Blockly.Blocks['new_object_of_type'] = {
   "colour": 230,
   "tooltip": "An object exists.",
   "helpUrl": "/docs/blocks/new_object"
+}
+)}}
+
+
+Blockly.Blocks['custom_attribute_declaration'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "custom_attribute_declaration",
+  "message0": "Appearing as: %1 %2 %3 %4 %5 %6 %7 %8 %9",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "order",
+      "options": [
+        [
+          "object, then value",
+          "object_first"
+        ],
+        [
+          "value, then object",
+          "value_first"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_input",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "first_element",
+      "text": "object"
+    },
+    {
+      "type": "field_input",
+      "name": "infix",
+      "text": "'s attribute name is"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "second_element",
+      "text": "value"
+    },
+    {
+      "type": "field_input",
+      "name": "postfix",
+      "text": ""
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": "ATTRIBUTE_CUSTOMIZATION",
+  "nextStatement": "ATTRIBUTE_DECLARATION",
+  "colour": 45,
+  "tooltip": "Customize the appearance of the attribute declared directly above it.",
+  "helpUrl": "/docs/pages/custom_attribute"
+  // Extension removed
+}
+)}}
+
+Blockly.Blocks['custom_attribute_selector'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "custom_attribute_selector",
+  "message0": "%1 %2 %3 %4 %5",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "input_value",
+      "name": "first_entity",
+      "check": "ENTITY"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "infix",
+      "text": "'s attribute_name is"
+    },
+    {
+      "type": "input_value",
+      "name": "second_entity",
+      "check": "ENTITY"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": ""
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "Use to specify that an entity is related to another entity.",
+  "helpUrl": "/docs/blocks/customized_attribute_selector",
+  "mutator": "custom_attribute_selector_mutator"
 }
 )}}
 
@@ -2841,6 +2969,11 @@ Blockly.Blocks['new_object_of_type'] = {
       var codeForBlock = getCodeForSingleBlock(currentBlock);
       code += codeForBlock;
       currentBlock = currentBlock.getNextBlock();
+      if (currentBlock.type == "custom_attribute_declaration") {
+        currentBlock = currentBlock.getNextBlock();
+        // Skip custom attribute declarations of which there can only
+        // be one in a row.
+      }
       if (currentBlock) {
           code += ', ';
       }
@@ -3222,8 +3355,7 @@ Blockly.Blocks['new_object_of_type'] = {
   Blockly.JavaScript['blawx_string'] = function(block) {
     var text_string = block.getFieldValue('string');
     var code = '"' + text_string + '"^^\\string';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
   Blockly.JavaScript['cardinality_up_to'] = function(block) {
@@ -3283,6 +3415,31 @@ Blockly.Blocks['new_object_of_type'] = {
     var code = text_object_name + ':' + category_name;
     return code;
   };
+
+  Blockly.JavaScript['custom_attribute_declaration'] = function(block) {
+    var dropdown_order = block.getFieldValue('order');
+    var text_prefix = block.getFieldValue('prefix');
+    var text_infix = block.getFieldValue('infix');
+    var text_postfix = block.getFieldValue('postfix');
+    var code = '';
+    return code;
+  };
+
+  Blockly.JavaScript['custom_attribute_selector'] = function(block) {
+    var attributeName = block.blawxAttributeName;
+    var order = block.blawxAttributeOrder;
+    if (order == "object_first") {
+      var object_entity = 'first_entity';
+      var value_entity = 'second_entity';
+    } else {
+      var object_entity = 'second_entity';
+      var value_entity = 'first_entity';
+    }
+    var object_element = Blockly.JavaScript.valueToCode(block, object_entity, Blockly.JavaScript.ORDER_ATOMIC);
+    var value_element = Blockly.JavaScript.valueToCode(block, value_entity, Blockly.JavaScript.ORDER_ATOMIC);
+    var code = object_element + '[' + attributeName + '->' + value_element + ']';
+    return code;
+  }
   
   /**
    * Generate code for the specified block but not following blocks.
@@ -3393,6 +3550,64 @@ Blockly.Blocks['new_object_of_type'] = {
 
   Blockly.Extensions.registerMutator('attribute_selector_mutator', ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);
 
+  function blawxTypeToBlocklyType(blawxType) {
+    if (blawxType == 'Yes / No') {
+      return 'Boolean';
+    } else if (blawxType == "Number") {
+      return 'Number';
+    } else if (blawxType == "Text") {
+      return 'String';
+    } else if (blawxType == "Date") {
+      return 'DATE';
+    } else if (blawxType == "Date and Time") {
+      return 'DATETIME';
+    } else if (blawxType == "Time") {
+      return "TIME";
+    } else if (blawxType == "Duration") {
+      return "DURATION";
+    } else {
+      return null;
+    }
+  }
+
+  CUSTOM_ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
+    mutationToDom: function() {
+        var container = Blockly.utils.xml.createElement('mutation');
+        container.setAttribute('attributename', this.blawxAttributeName);
+        container.setAttribute('attributetype', this.blawxAttributeType);
+        container.setAttribute('attributeorder', this.blawxAttributeOrder);
+        return container;
+    },
+    domToMutation: function(xmlElement) {
+        var attributeName = xmlElement.getAttribute('attributename');
+        var attributeType = xmlElement.getAttribute('attributetype');
+        var attributeOrder = xmlElement.getAttribute('attributeorder');
+        this.blawxAttributeName = attributeName;
+        this.blawxAttributeType = attributeType;
+        this.blawxAttributeOrder = attributeOrder;
+
+        // I "think" that the field values are automatically serialized,
+        // as are the words "object" and "value" in the serialized text,
+        // so the only thing to do here other than collecting the hidden
+        // data should be to set the type checking.
+        // This should only be done if the object has a type set, which may
+        // not have happened yet for new blocks. (That's not right anymore.)
+        if (attributeType) {
+          if (attributeOrder == 'object_first') {
+              // Change the second input.
+              this.getInput('second_entity').connection.setCheck([blawxTypeToBlocklyType(attributeType),'ENTITY']);
+              this.getInput('first_entity').connection.setCheck('ENTITY');
+          } else {
+              // Change the first input.
+              this.getInput('first_entity').connection.setCheck([blawxTypeToBlocklyType(attributeType),'ENTITY']);
+              this.getInput('second_entity').connection.setCheck('ENTITY');
+          }
+        }
+    }
+    }
+    Blockly.Extensions.registerMutator('custom_attribute_selector_mutator', CUSTOM_ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);
+
+
       function importBlawxCode() {
 	// Get all the blocks and go through them.
 	get_blocks = workspace.getAllBlocks();
@@ -3445,3 +3660,5 @@ data = fs.readFileSync(datafile,'utf8');
   catch (e) {
     console.log(e);
   }
+
+  
