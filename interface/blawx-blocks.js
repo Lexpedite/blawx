@@ -2683,7 +2683,8 @@ Blockly.Blocks['custom_attribute_declaration'] = {
   "colour": 45,
   "tooltip": "Customize the appearance of the attribute declared directly above it.",
   "helpUrl": "/docs/pages/custom_attribute",
-  "extensions": ['changeCustomAttributeText']
+  "extensions": ['changeCustomAttributeText'],
+  "mutator": "custom_attribute_selector_mutator"
 }
 )}}
 

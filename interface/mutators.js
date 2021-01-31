@@ -73,3 +73,39 @@ OBJECT_SELECTOR_MUTATOR_MIXIN = {
           }
         });
       });
+
+      Blockly.Extensions.registerMutator('category_selector_mutator', CATEGORY_SELECTOR_MUTATOR_MIXIN);
+
+      CUSTOM_ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
+      mutationToDom: function() {
+          var container = document.createElement('mutation');
+          var attributeName = this.data['attributeName'];
+          var attributeType = this.data['type'];
+          var attributeOrder = this.data['order'];
+          container.setAttribute('attributename', attributeName);
+          container.setAttribute('attributetype', attributeType);
+          container.setAttribute('attributeorder', attributeOrder);
+          return container;
+      },
+      domToMutation: function(xmlElement) {
+          var attributeName = xmlElement.getAttribute('attributename');
+          var attributeType = xmlElement.getAttribute('attributetype');
+          var attributeOrder = xmlElement.getAttribute('attributeorder');
+          // I "think" that the field values are automatically serialized,
+          // as are the words "object" and "value" in the serialized text,
+          // so the only thing to do here should be to set the type checking.
+          // There should be no need to check to see if the types are unset,
+          // because they should always be unset if coming from dom.
+          if (attributeOrder == 'object_first') {
+            // Change the second input.
+            block.getInput('second_entity').connection.setCheck([attributeType,'ENTITY']);
+            block.getInput('first_entity').connection.setCheck('ENTITY');
+          } else {
+            // Change the first input.
+            block.getInput('first_entity').connection.setCheck([type,'ENTITY']);
+            block.getInput('second_entity').connection.setCheck('ENTITY');
+          }
+      }
+      }
+  
+      Blockly.Extensions.registerMutator('custom_attribute_selector_mutator', CUSTOM_ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);

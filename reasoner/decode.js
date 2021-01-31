@@ -2727,7 +2727,8 @@ Blockly.Blocks['custom_attribute_selector'] = {
   "nextStatement": null,
   "colour": 120,
   "tooltip": "Use to specify that an entity is related to another entity.",
-  "helpUrl": "/docs/blocks/customized_attribute_selector"
+  "helpUrl": "/docs/blocks/customized_attribute_selector",
+  "mutator": "custom_attribute_selector_mutator"
 }
 )}}
 
