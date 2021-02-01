@@ -15,4 +15,15 @@ nav_order: 3
 {:toc}
 </details>
 
-WIP
+The advanced topics section of the documentation covers things that become
+relevant as you attempt to implement Rules as Code projects in Blawx,
+including:
+
+* Debugging
+* Testing
+* Integrations
+  * Docassemble Integration
+  * Simulating External Data
+* Mathematical Calculations
+
+See the menu on the left for specific categories.

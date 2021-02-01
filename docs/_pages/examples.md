@@ -15,4 +15,7 @@ nav_order: 4
 {:toc}
 </details>
 
-WIP
+This section of the Blawx documentation collects examples that you can
+review, and often that you can load into your Blawx interface and play with.
+
+See the menu for specific examples.
