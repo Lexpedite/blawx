@@ -2,6 +2,7 @@
 title: Beginners Guide to Blawx
 has_children: true
 nav_order: 2
+has_toc: false
 ---
 # Beginners Guide to Blawx
 {: .no_toc}
