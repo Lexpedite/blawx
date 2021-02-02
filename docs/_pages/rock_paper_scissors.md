@@ -204,7 +204,7 @@ Victory! For us, and for Jane!
 ## Play with it!
 
 The code that we made above is available for you to play with. Just
-[click here](/blawx.html?load=/docs/code/mortality.blawx) and you will be taken to your blawx interface with the code pre-loaded.
+[click here](/blawx.html?load=/docs/code/rps.blawx) and you will be taken to your blawx interface with the code pre-loaded.
 
 Here are some things to try:
 1. Change the signs that Bob and Jane threw, and see if the winner changes.
