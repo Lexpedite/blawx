@@ -3463,7 +3463,7 @@ Blockly.Blocks['category_weight'] = {
 
   Blockly.JavaScript['category_weight'] = function(block) {
     var number_weight = block.getFieldValue('weight');
-    var code = '';
+    var code = '// Not Implemented in Flora-2';
     // TODO: Figure out how to represent this in the Flora-2 encoding, if at all.
     return code;
   };
