@@ -11,7 +11,7 @@ Blockly.Blocks['declare_type'] = {
     }
   ],
   "previousStatement": null,
-  "nextStatement": null,
+  "nextStatement": "category_customize",
   "colour": 20,
   "tooltip": "A Category exists.",
   "helpUrl": "/docs/blocks/new_category/"
@@ -2727,5 +2727,26 @@ Blockly.Blocks['custom_attribute_selector'] = {
   "tooltip": "Use to specify that an entity is related to another entity.",
   "helpUrl": "/docs/blocks/customized_attribute_selector",
   "mutator": "custom_attribute_selector_mutator"
+}
+)}}
+
+Blockly.Blocks['category_weight'] = {
+  init: function() {
+    this.jsonInit(
+{
+  "type": "category_weight",
+  "message0": "Category weight: %1",
+  "args0": [
+    {
+      "type": "field_number",
+      "name": "weight",
+      "value": 0
+    }
+  ],
+  "previousStatement": "category_customize",
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "Use this block to change the order in which your categories are collected from users.",
+  "helpUrl": "/docs/blocks/category_weight"
 }
 )}}
