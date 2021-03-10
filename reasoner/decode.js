@@ -3461,6 +3461,13 @@ Blockly.Blocks['category_weight'] = {
     var code = object_element + '[' + attributeName + '->' + value_element + ']';
     return code;
   }
+
+  Blockly.JavaScript['category_weight'] = function(block) {
+    var number_weight = block.getFieldValue('weight');
+    var code = '';
+    // TODO: Figure out how to represent this in the Flora-2 encoding, if at all.
+    return code;
+  };
   
   /**
    * Generate code for the specified block but not following blocks.
