@@ -224,7 +224,7 @@ You can see that two attributes have been defined for the category “Car”. On
 
 If you make these declarations, Blawx will now know about these two attributes, and they will be available in the Known Attributes drawer of the toolbox.
 
-![known attributes]({{ site.baseurl }}/img/cat_ontology_known_attributes.png)
+![known attributes]({{ site.baseurl }}/img/car_ontology_known_attributes.png)
 
 The first connector expects an object, and the second hole is filled with a value. So to create a Ford Mustang, you might use the following blocks in a Fact Block:
 
