@@ -4,7 +4,7 @@ parent: Examples
 ---
 # Encoding Covid-19 Rules in Blawx
 
-This example was originally published as part of the article [Blawx: A Rules as Code Demonstration](https://law.mit.edu.pub/blawxrulesascodedemonstration/release/1) as part of version 2.0 of the MIT Computational Law Report. It was written on the 0.2.3Alpha version of Blawx, and therefore does not utilize all of Blawx's most recent features, and may not operate properly on the current version of Blawx.
+This example was originally published as part of the article [Blawx: A Rules as Code Demonstration](https://law.mit.edu/pub/blawxrulesascodedemonstration/release/1) as part of version 2.0 of the MIT Computational Law Report. It was written on the 0.2.3Alpha version of Blawx, and therefore does not utilize all of Blawx's most recent features, and may not operate properly on the current version of Blawx.
 
 To load your Blawx instance with this example code, [click here](/blawx.html?load=/docs/code/covid.blawx).
 
