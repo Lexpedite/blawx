@@ -6,10 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
-## [development] 2021-03-11
+## [development] 2021-08-30
 ### Added
 * Attribute customization blocks
 * Category weighting blocks
+* Help pages for all interface elements included in the documentation and linked from the workspace
+* Documentation updated to latest visual elements
 
 ## [v0.2.4-alpha RC1](https://github.com/Blawx/blawx/releases/tag/v0.2.4-alphaRC1) 2021-01-22
 ### Added
