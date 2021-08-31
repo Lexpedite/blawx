@@ -1,7 +1,7 @@
 ---
 title: "New Object Block"
 parent: Objects
-disabled: true
+published: false
 ---
 # New Object Block
 ![new object block]({{ site.baseurl }}/img/new_object.png "New Object Block")
