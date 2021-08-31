@@ -1,5 +1,5 @@
 # Blawx
-A user-friendly web-based tool for Rules as Code written by Jason Morris of Round Table Law and Lemma Legal Consulting.
+A user-friendly web-based tool for Rules as Code written by Jason Morris of [Lexpedite Legal Technologies Ltd.](https://lexpedite.ca).
 
 Blocks + law = Blawx
 
@@ -35,8 +35,7 @@ or follow the instructions in [DOCKER.md](DOCKER.md) for instruction on how to i
 container is the preferred method as it involves far fewer steps, and is likely to work on more operating systems.
 
 ## How Can I Learn More?
-Right now, most of the useful information is at www.blawx.com/learn. I hope to increase the amount of documentation in this repository
-in future.
+Documentation, including the Blawx Beginner's Guide, has been added to the repository and is available by selecting "Menu" and "Help" from your interface, or at [app.blawx.com/blawx.html](app.blawx.com/blawx.html).
 
 ## Is this software production ready?
 No. Blawx is a proof of concept. It is appropriate for use in Rules as Code experiments, but not in production environments.
