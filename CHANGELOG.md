@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
-## [development] 2021-08-30
+## [v0.2.4-alpha] 2021-08-30
 ### Added
 * Attribute customization blocks
 * Category weighting blocks
