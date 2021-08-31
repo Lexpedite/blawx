@@ -1,2 +1,35 @@
-theme: jekyll-theme-cayman
-baseurl: /blawx
+title: Blawx Documentation
+permalink: pretty
+theme: "just-the-docs"
+baseurl: /docs
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "default"
+collections:
+  pages:
+    output: true
+  blocks:
+    output: true
+just_the_docs:
+  # Define which collections are used in just-the-docs
+  collections:
+    pages:
+      nav_order: 1
+    blocks:
+      name: Specific Blocks
+      nav_exclude: false
+      search_exclude: false
+# Aux links for the upper right navigation
+aux_links:
+  "Blawx on GitHub":
+    - "https://github.com/Blawx/blawx"
+  "Your Blawx Interface":
+    - "/blawx.html"  
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: true
+
+footer_content: "Copyright &copy; 2021 Jason Morris. Distributed by an <a href=\"https://github.com/Blawx/blawx/blob/master/LICENSE\">MIT license.</a>"

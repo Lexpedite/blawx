@@ -1,1 +1,0 @@
-# Reasoner Response Window

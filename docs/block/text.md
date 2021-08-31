@@ -1,1 +1,0 @@
-# Text Datatype Selector

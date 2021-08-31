@@ -84,17 +84,25 @@
         <block type="declare_type">
             <field name="type_name">default</field>
         </block>
-        <block type="declare_type_with_attributes">
-            <statement name="NAME">
-            <block type="attribute_declaration">
-                <field name="attribute_name">name</field>
-            </block>
-            </statement>
+        <block type="category_weight"></block>
+        <block type="declare_type_with_attributes"></block>
+        <block type="cardinality_any">
+            <field name="attribute_name">name</field>
         </block>
-        <block type="attribute_declaration">
+        <block type="cardinality_up_to">
+            <field name="attribute_name">name</field>
+        </block>
+        <block type="cardinality_or_more">
+            <field name="attribute_name">name</field>
+        </block>
+        <block type="cardinality_exactly">
+            <field name="attribute_name">name</field>
+        </block>
+        <block type="cardinality_between">
             <field name="attribute_name">name</field>
         </block>
         <block type="declare_type_is_type"></block>
+        <block type="custom_attribute_declaration"></block>
         </category>
         <category name="Known Categories" custom="KNOWN_CATEGORIES" colour="#a55b5b"></category>
         <sep></sep>
@@ -102,15 +110,61 @@
         <block type="boolean_datatype"></block>
         <block type="number_datatype"></block>
         <block type="string_datatype"></block>
+        <block type="date_datatype"></block>
+        <block type="time_datatype"></block>
+        <block type="datetime_datatype"></block>
+        <block type="duration_datatype"></block>
+    </category>
+        <category name="Data Values" colour="#5ba5a5">
+            <category name="Yes / No"></label>
+            <block type="boolean_value">
+            <field name="value">true</field>
+            </block>
+        </category>
+            <category name="Number"></label>
+            <block type="math_number">
+            <field name="NUM">0</field>
+            </block>
+        </category>
+            <category name="Text"></label>
+            <block type="blawx_string">
+            </block>
+        </category>
+            <category name="Dates and Times">
+            <block type="date"></block>
+            <block type="time"></block>
+            <block type="datetime"></block>
+            <block type="duration"></block>
+            </category>
+        </category>
+        <category name="Data Statements" colour="#5ba5a5">
+            <category name="Number">
+                <block type="math_operator"></block>
+                <block type="calculation"></block>
+                <block type="aggregate_statement"></block>
+            </category>
+            <category name="Text">
+                <block type="concat_text"></block>
+                <block type="length_text"></block>
+                <block type="toupper_text"></block>
+                <block type="tolower_text"></block>
+                <block type="startswith_text"></block>
+                <block type="endswith_text"></block>
+                <block type="substring_text"></block>
+            </category>
+            <category name="Date/Time">
+                <block type="date_before"></block>
+                <block type="date_before_or_eq"></block>
+                <block type="time_before"></block>
+                <block type="time_before_or_eq"></block>
+                <block type="date_plus_dur"></block>
+                <block type="time_plus_dur"></block>
+                <block type="date_minus_date"></block>
+                <block type="time_minus_time"></block>
+                </category>
         </category>
         <sep></sep>
-        <category name="Objects" colour="#5b5ba5">
-        <block type="entity_declaration">
-            <field name="entity_name">default</field>
-        </block>
-        <block type="entity_is_type"></block>
-        <block type="entity_identity"></block>
-        </category>
+        <category name="Objects" custom="NEW_OBJECTS" colour="#5b5ba5"></category>
         <category name="Known Objects" custom='KNOWN_OBJECTS' colour="#5b5ba5">
         </category>
         <sep></sep>
@@ -132,7 +186,7 @@
             <field name="implication type">implies_1</field>
         </block>
         <block type="quantifier">
-            <field name="quantifier_type">any</field>
+            <field name="quantifier_type">exists</field>
         </block>
         <block type="comparitor">
             <field name="comparitor">lt</field>
@@ -143,30 +197,18 @@
         <block type="variable_selector">
             <field name="variable_selected">A</field>
         </block>
+        <block type="silent_variable_selector">
+            <field name="variable_selected">A</field>
+        </block>
+        <block type="unnamed_variable"></block>
         <block type="assignment"></block>
         </category>
-        <category name="Values" colour="#5ba5a5">
-        <category name="True or False">
-            <block type="boolean_value">
-            <field name="value">true</field>
-            </block>
-            </category>
-        <category name="Numbers">
-            <block type="math_number">
-            <field name="NUM">0</field>
-            </block>
-            <block type="math_operator"></block>
-            <block type="calculation"></block>
-            <block type="aggregate_statement"></block>
-        </category>
-        <category name="Text">
-            <block type="text">
-            <field name="TEXT"></field>
-            </block>
-        </category>
-        </category>
+        <sep></sep>
+        
+        
     </xml>
   
+    <script src="mutators.js"></script>
     <script>
         var blocklyArea = document.getElementById('blocklyArea');
         var blocklyDiv = document.getElementById('blocklyDiv');
@@ -197,8 +239,6 @@
         window.setTimeout(BlocklyStorage.restoreBlocks, 0);
         BlocklyStorage.backupOnUnload();
 
-        // If there is a load urlparameter set.
-        
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         if (urlParams.has('load')) {
@@ -218,8 +258,8 @@
     <script src="buttons.js"></script>
     <script src="categories.js"></script>
     <script src="import.js"></script>
-    <script src="mutators.js"></script>
     <script src="attributes.js"></script>
+    
     <div>
       <input id="loadfile"  onchange="loadBlocksFile(this)" type="file" accept=".blawx" hidden/>
     </div>
