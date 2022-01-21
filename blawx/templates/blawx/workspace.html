@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block page_content %}
+
+<h1>{{ workspace.workspace_name }}</h1>
+
+<p>Queries</p>
+<p>Add a Query</p>
+<p>Go to Code Editor</p>
+<p>Delete this Workspace</p>
+<a href="{% url 'blawx:workspaces' %}">Back to home</a>
+{% endblock %}
