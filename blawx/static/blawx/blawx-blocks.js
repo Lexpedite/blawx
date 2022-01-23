@@ -308,12 +308,12 @@ scasp_blockset = [{
 },
 {
   "type": "legal_doc",
-  "message0": "Legal Document %1 reads: %2 %3",
+  "message0": "§ %1 reads: %2 %3",
   "args0": [
     {
       "type": "field_input",
       "name": "legal_doc_name",
-      "text": "document name"
+      "text": "document"
     },
     {
       "type": "input_dummy"
@@ -331,12 +331,12 @@ scasp_blockset = [{
 },
 {
   "type": "legal_doc_node",
-  "message0": "%1 reads: %2 %3 Include in rule names? %4",
+  "message0": "§ %1 reads: %2 %3",
   "args0": [
     {
       "type": "field_input",
       "name": "node_name",
-      "text": "sub-section 1"
+      "text": "section"
     },
     {
       "type": "input_dummy"
@@ -345,11 +345,6 @@ scasp_blockset = [{
       "type": "input_statement",
       "name": "sub_parts",
       "check": "DOCPART"
-    },
-    {
-      "type": "field_checkbox",
-      "name": "display_node_name",
-      "checked": true
     }
   ],
   "previousStatement": [
@@ -379,25 +374,6 @@ scasp_blockset = [{
   "colour": 165,
   "tooltip": "Use to create a part of a legal document that does not have sub-parts.",
   "helpUrl": "/docs/blocks/legal_doc_leaf"
-},
-{
-  "type": "legal_doc_unnamed_node",
-  "message0": "%1",
-  "args0": [
-    {
-      "type": "input_statement",
-      "name": "sub_parts",
-      "check": "DOCPART"
-    }
-  ],
-  "previousStatement": [
-    "LEGALDOC",
-    "DOCPART"
-  ],
-  "nextStatement": "DOCPART",
-  "colour": 165,
-  "tooltip": "Use to create a part of a legal document that has sub-parts, but no identifying name..",
-  "helpUrl": "/docs/blocks/legal_doc_unnamed_node"
 },
 {
   "type": "doc_selector",
@@ -536,7 +512,7 @@ scasp_blockset = [{
       "text": "filename"
     }
   ],
-  "colour": "#666666",
+  "colour": 270,
   "tooltip": "Use to include the statements from a Blawx workspace at the given URL in this workspace without repeating them.",
   "helpUrl": "/docs/blocks/include/"
 },
@@ -1717,6 +1693,79 @@ scasp_blockset = [{
   "colour": 0,
   "tooltip": "Use to simulate a JSON dictionary.",
   "helpUrl": "/docs/blocks/json_dictionary/"
+},
+{
+  "type": "silent_legal_doc_node",
+  "message0": "%1 § %2 reads: %3 %4",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAzElEQVR4AWOgG/j//78zEJuQokEDiOvRxHYD8e//EDCbWIPqoRr6oXwZqCHBQFwMxN+BWIJYw/rRDAuG0gpQcQcQnyzDcBlErsskoN50ICe2JqN7E4htiNVsAMT7gZgDyv6PxZsyUDUy+AwSgWq0gPIvoxsGpHWA+DMQ8xBy1XaojSxQl8UD8XI0wzRwGoAWQ6+hiVEHKsYCsQBhGGGACIfdUI3voYnxN8SrCMNIMhCq+Two/GBJg1zD9oMwjnRWT2ri7MeRNzUYBi0AANQgbf4Gx9YVAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "(mute)",
+      "flipRtl": false
+    },
+    {
+      "type": "field_input",
+      "name": "node_name",
+      "text": "section"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "sub_parts",
+      "check": "DOCPART"
+    }
+  ],
+  "previousStatement": [
+    "LEGALDOC",
+    "DOCPART"
+  ],
+  "nextStatement": "DOCPART",
+  "colour": 165,
+  "tooltip": "Use to create a part of a legal document that has sub-parts and a name.",
+  "helpUrl": "/docs/blocks/legal_doc_node"
+},
+{
+  "type": "legal_doc_text_continuation",
+  "message0": "→ %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "legal_doc_text",
+      "text": "text"
+    }
+  ],
+  "previousStatement": [
+    "LEGALDOC",
+    "DOCPART"
+  ],
+  "nextStatement": "DOCPART",
+  "colour": 165,
+  "tooltip": "Use to describe text that when quoted to the user should include the text of its parent.",
+  "helpUrl": "/docs/blocks/legal_doc_text_continuation"
+},
+{
+  "type": "legal_doc_text_parent_continuation",
+  "message0": "↳ %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "legal_doc_text",
+      "text": "text"
+    }
+  ],
+  "previousStatement": [
+    "LEGALDOC",
+    "DOCPART"
+  ],
+  "nextStatement": "DOCPART",
+  "colour": 165,
+  "tooltip": "Use to describe text that when quoted to the user should include the text of its parent.",
+  "helpUrl": "/docs/blocks/legal_doc_text_continuation"
 }]
 
 // Make modifications that it is not possible to make in the Developer Tools

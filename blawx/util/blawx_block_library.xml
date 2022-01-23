@@ -760,11 +760,11 @@
       <block type="input_dummy" id="Hal-gdL6e@@4gGH_8]lt">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
-          <block type="field_static" id="(4f-#H~Hr,YgxxC%xR`@">
-            <field name="TEXT">Legal Document</field>
+          <block type="field_static" id="oM*n.(]YuXi)hP*6/lUa">
+            <field name="TEXT">§</field>
             <next>
               <block type="field_input" id="X=Vk?-7JRh3^Blse:=gG">
-                <field name="TEXT">document name</field>
+                <field name="TEXT">document</field>
                 <field name="FIELDNAME">legal_doc_name</field>
                 <next>
                   <block type="field_static" id="C7mWn`.}X_K_Z]RXUmU9">
@@ -814,12 +814,17 @@
       <block type="input_dummy" id="AL6,7hb1M]fW8o_hsdWd">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
-          <block type="field_input" id="sBHIXrKH$3$+D-#.+#Be">
-            <field name="TEXT">sub-section 1</field>
-            <field name="FIELDNAME">node_name</field>
+          <block type="field_static" id="dl~~fuQekyaK|y^Qm)Jq">
+            <field name="TEXT">§</field>
             <next>
-              <block type="field_static" id="u=GqJ-QnI-.{2q[qJlvA">
-                <field name="TEXT">reads:</field>
+              <block type="field_input" id="sBHIXrKH$3$+D-#.+#Be">
+                <field name="TEXT">section</field>
+                <field name="FIELDNAME">node_name</field>
+                <next>
+                  <block type="field_static" id="u=GqJ-QnI-.{2q[qJlvA">
+                    <field name="TEXT">reads:</field>
+                  </block>
+                </next>
               </block>
             </next>
           </block>
@@ -834,22 +839,6 @@
                 <field name="TYPE">DOCPART</field>
               </block>
             </value>
-            <next>
-              <block type="input_dummy" id="h7g=b1V)!:b}??,B!l^8">
-                <field name="ALIGN">LEFT</field>
-                <statement name="FIELDS">
-                  <block type="field_static" id="3I.+RV8Zx)Xl~RSr@eTt">
-                    <field name="TEXT">Include in rule names?</field>
-                    <next>
-                      <block type="field_checkbox" id="iY}5o/*5hR/?DdVyJp+o">
-                        <field name="CHECKED">TRUE</field>
-                        <field name="FIELDNAME">display_node_name</field>
-                      </block>
-                    </next>
-                  </block>
-                </statement>
-              </block>
-            </next>
           </block>
         </next>
       </block>
@@ -916,61 +905,6 @@
     <value name="HELPURL">
       <block type="text" id="ZU*3#SHr@s(L,BlV2n7T" deletable="false" movable="false">
         <field name="TEXT">/docs/blocks/legal_doc_leaf</field>
-      </block>
-    </value>
-    <value name="TOPTYPE">
-      <shadow type="type_null" id="-dZ4Lu1;TR7PW@XZVwW_"></shadow>
-      <block type="type_group" id="{8tTn/YB@9.#b(!qx)V!">
-        <mutation types="2"></mutation>
-        <value name="TYPE0">
-          <block type="type_other" id="F}MiHARG[3$d#6%F(D24">
-            <field name="TYPE">LEGALDOC</field>
-          </block>
-        </value>
-        <value name="TYPE1">
-          <block type="type_other" id="as+uBiN(V/(c,bKz=)P5">
-            <field name="TYPE">DOCPART</field>
-          </block>
-        </value>
-      </block>
-    </value>
-    <value name="BOTTOMTYPE">
-      <shadow type="type_null" id="!y{%x6X{i^qF9P{yoVV^"></shadow>
-      <block type="type_other" id="bws1-qM?`inn*]DkFsvL">
-        <field name="TYPE">DOCPART</field>
-      </block>
-    </value>
-    <value name="COLOUR">
-      <block type="colour_hue" id="3|**LXhhFq+M*_{.o*r9">
-        <mutation colour="#5ba593"></mutation>
-        <field name="HUE">165</field>
-      </block>
-    </value>
-  </block><block type="factory_base" id="cr@}NLtfGGDE=!MZ|3R~" deletable="false" movable="false" x="10" y="10">
-    <mutation connections="BOTH"></mutation>
-    <field name="NAME">legal_doc_unnamed_node</field>
-    <field name="INLINE">AUTO</field>
-    <field name="CONNECTIONS">BOTH</field>
-    <statement name="INPUTS">
-      <block type="input_statement" id="dC$r]l]%[KYb%m#8SheW">
-        <field name="INPUTNAME">sub_parts</field>
-        <field name="ALIGN">LEFT</field>
-        <value name="TYPE">
-          <shadow type="type_null" id="#kxba%e+NaFkPj[Sn0sT"></shadow>
-          <block type="type_other" id="d(~hG):$Ns;U#Cq*Q7j4">
-            <field name="TYPE">DOCPART</field>
-          </block>
-        </value>
-      </block>
-    </statement>
-    <value name="TOOLTIP">
-      <block type="text" id="j9+8m[SwsJox0#oJk5@P" deletable="false" movable="false">
-        <field name="TEXT">Use to create a part of a legal document that has sub-parts, but no identifying name..</field>
-      </block>
-    </value>
-    <value name="HELPURL">
-      <block type="text" id="ZU*3#SHr@s(L,BlV2n7T" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/legal_doc_unnamed_node</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -4010,6 +3944,209 @@
       <block type="colour_hue" id="fBp3wu.vq,c,9e`uAR;d">
         <mutation colour="#a55b5b"></mutation>
         <field name="HUE">0</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="cr@}NLtfGGDE=!MZ|3R~" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">silent_legal_doc_node</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="AL6,7hb1M]fW8o_hsdWd">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_image" id="|j+]r[4j]~/4eKl6b~sy">
+            <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAzElEQVR4AWOgG/j//78zEJuQokEDiOvRxHYD8e//EDCbWIPqoRr6oXwZqCHBQFwMxN+BWIJYw/rRDAuG0gpQcQcQnyzDcBlErsskoN50ICe2JqN7E4htiNVsAMT7gZgDyv6PxZsyUDUy+AwSgWq0gPIvoxsGpHWA+DMQ8xBy1XaojSxQl8UD8XI0wzRwGoAWQ6+hiVEHKsYCsQBhGGGACIfdUI3voYnxN8SrCMNIMhCq+Two/GBJg1zD9oMwjnRWT2ri7MeRNzUYBi0AANQgbf4Gx9YVAAAAAElFTkSuQmCC</field>
+            <field name="WIDTH">15</field>
+            <field name="HEIGHT">15</field>
+            <field name="ALT">(mute)</field>
+            <field name="FLIP_RTL">FALSE</field>
+            <next>
+              <block type="field_static" id="Dc4JqMm;!vKqrcko!w}/">
+                <field name="TEXT">§</field>
+                <next>
+                  <block type="field_input" id="sBHIXrKH$3$+D-#.+#Be">
+                    <field name="TEXT">section</field>
+                    <field name="FIELDNAME">node_name</field>
+                    <next>
+                      <block type="field_static" id="u=GqJ-QnI-.{2q[qJlvA">
+                        <field name="TEXT">reads:</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="dC$r]l]%[KYb%m#8SheW">
+            <field name="INPUTNAME">sub_parts</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="#kxba%e+NaFkPj[Sn0sT"></shadow>
+              <block type="type_other" id="d(~hG):$Ns;U#Cq*Q7j4">
+                <field name="TYPE">DOCPART</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="j9+8m[SwsJox0#oJk5@P" deletable="false" movable="false">
+        <field name="TEXT">Use to create a part of a legal document that has sub-parts and a name.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ZU*3#SHr@s(L,BlV2n7T" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/legal_doc_node</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="-dZ4Lu1;TR7PW@XZVwW_"></shadow>
+      <block type="type_group" id="{8tTn/YB@9.#b(!qx)V!">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="F}MiHARG[3$d#6%F(D24">
+            <field name="TYPE">LEGALDOC</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="as+uBiN(V/(c,bKz=)P5">
+            <field name="TYPE">DOCPART</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="!y{%x6X{i^qF9P{yoVV^"></shadow>
+      <block type="type_other" id="bws1-qM?`inn*]DkFsvL">
+        <field name="TYPE">DOCPART</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="3|**LXhhFq+M*_{.o*r9">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="cr@}NLtfGGDE=!MZ|3R~" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">legal_doc_text_continuation</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="-HKs|eM1o/9mh!v3J/x5">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="!9^Vps9N0dJWqe--5;SR">
+            <field name="TEXT">→</field>
+            <next>
+              <block type="field_input" id="#p;KAO[!uky62p}_oxO!">
+                <field name="TEXT">text</field>
+                <field name="FIELDNAME">legal_doc_text</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="j9+8m[SwsJox0#oJk5@P" deletable="false" movable="false">
+        <field name="TEXT">Use to describe text that when quoted to the user should include the text of its parent.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ZU*3#SHr@s(L,BlV2n7T" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/legal_doc_text_continuation</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="-dZ4Lu1;TR7PW@XZVwW_"></shadow>
+      <block type="type_group" id="{8tTn/YB@9.#b(!qx)V!">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="F}MiHARG[3$d#6%F(D24">
+            <field name="TYPE">LEGALDOC</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="as+uBiN(V/(c,bKz=)P5">
+            <field name="TYPE">DOCPART</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="!y{%x6X{i^qF9P{yoVV^"></shadow>
+      <block type="type_other" id="bws1-qM?`inn*]DkFsvL">
+        <field name="TYPE">DOCPART</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="3|**LXhhFq+M*_{.o*r9">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="cr@}NLtfGGDE=!MZ|3R~" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">legal_doc_text_parent_continuation</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="-HKs|eM1o/9mh!v3J/x5">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="!9^Vps9N0dJWqe--5;SR">
+            <field name="TEXT">↳</field>
+            <next>
+              <block type="field_input" id="#p;KAO[!uky62p}_oxO!">
+                <field name="TEXT">text</field>
+                <field name="FIELDNAME">legal_doc_text</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="j9+8m[SwsJox0#oJk5@P" deletable="false" movable="false">
+        <field name="TEXT">Use to describe text that when quoted to the user should include the text of its parent.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ZU*3#SHr@s(L,BlV2n7T" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/legal_doc_text_continuation</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="-dZ4Lu1;TR7PW@XZVwW_"></shadow>
+      <block type="type_group" id="{8tTn/YB@9.#b(!qx)V!">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="F}MiHARG[3$d#6%F(D24">
+            <field name="TYPE">LEGALDOC</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="as+uBiN(V/(c,bKz=)P5">
+            <field name="TYPE">DOCPART</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="!y{%x6X{i^qF9P{yoVV^"></shadow>
+      <block type="type_other" id="bws1-qM?`inn*]DkFsvL">
+        <field name="TYPE">DOCPART</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="3|**LXhhFq+M*_{.o*r9">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
       </block>
     </value>
   </block></xml>
