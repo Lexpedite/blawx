@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_head %}
+
+<style type="text/css">
+.blocklyTreeLabel{
+    color:black;
+}
+
+</style>
+{% endblock %}
+
+{% block page_content %}
+    <script src="{% static 'blawx/blockly/blockly_compressed.js' %}"></script>
+    <script src="{% static 'blawx/blockly/javascript_compressed.js' %}"></script>
+    <script src="{% static 'blawx/blockly/blocks_compressed.js' %}"></script>
+    <script src="{% static 'blawx/blockly/msg/js/en.js' %}"></script>
+    <script src="{% static 'blawx/blockly/appengine/storage.js' %}"></script>
+    <script src="{% static 'blawx/blawx-blocks.js' %}"></script>
+
+    <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+        
+        <category name="Include" colour="#666666">
+            <block type="include"></block>  
+        </category>
+        <sep></sep>
+        <category name="Documents" colour="#5ba593">
+            <block type="legal_doc"></block>
+            <block type="legal_doc_node"></block>
+            <block type="legal_doc_unnamed_node"></block>
+            <block type="legal_doc_text"></block>
+            <block type="doc_selector"></block>
+        </category>
+        <category name="Known Documents" custom="KNOWN_RULES" colour="#5ba593">
+        </category>
+        <sep></sep>
+        <category name="Facts" colour="#805ba5">
+        <block type="fact"></block>
+        <block type="unattributed_fact"></block>
+        </category>
+        <category name="Rules" colour="#805ba5">
+            <block type="rule"></block>
+            <block type="unattributed_rule"></block>  
+            <block type="overrules"></block>
+        </category>
+        <category name="Queries" colour="#805ba5">
+            <block type="query"></block>
+        </category>
+        <category name="Constraints" colour="#805ba5">
+            <block type="constraint"></block>
+        <block type="unattributed_constraint"></block>
+        </category>
+        <sep></sep>
+        <category name="Categories" colour="#a55b5b">
+        <block type="category_declaration"></block>
+        <block type="category_display"></block>
+        <block type="category_attribute"></block>
+        <block type="attribute_declaration"></block>
+        <block type="attribute_display"></block>
+        <block type="category_equivalence"></block>
+        <block type="category_selector"></block>
+        </category>
+        <category name="Known Categories" custom="KNOWN_CATEGORIES" colour="#a55b5b"></category>
+        <sep></sep>
+        <category name="Data Types" colour="#5ba593">
+            <block type="true_false_type_selector"></block>
+            <block type="number_type_selector"></block>
+            <block type="date_type_selector"></block>
+            <block type="duration_type_selector"></block>
+    </category>
+        <category name="Data Values" colour="#5ba5a5">
+            <block type="number_value"></block>
+            <block type="true_value"></block>
+            <block type="false_value"></block>
+            <block type="date_value"></block>
+            <block type="duration_value"></block>
+        </category>
+        <category name="Data Statements" colour="#5ba5a5">
+            <category name="Number">
+                <block type="math_operation"></block>
+                <block type="calculation"></block>
+                <block type="numerical_constraint"></block>
+            </category>
+            <category name="Date">
+                <block type="date_comparison"></block>
+                <block type="date_element"></block>
+                <block type="date_calculate"></block>
+                <block type="date_difference_days"></block>
+                <block type="date_difference"></block>
+                <block type="date_add"></block>
+                <block type="duration_calculate"></block>
+                <block type="duration_element"></block>
+                </category>
+        </category>
+        <sep></sep>
+        <category name="Temp Objects" colour="#5b5ba5">
+            <block type="object_declaration"></block>
+            <block type="object_equality"></block>
+            <block type="object_disequality"></block>
+            <block type="object_category"></block>
+            <block type="object_selector"></block>
+        </category>
+        <category name="Objects" custom="NEW_OBJECTS" colour="#5b5ba5">
+            <block type="object_declaration"></block>
+            <block type="object_equality"></block>
+            <block type="object_disequality"></block>
+            <block type="object_category"></block>
+        </category>
+        <category name="Known Objects" custom='KNOWN_OBJECTS' colour="#5b5ba5">
+        </category>
+        <sep></sep>
+        <category name="Known Attributes" custom="KNOWN_ATTRIBUTES" colour="#5BA65B"></category>
+        <sep></sep>
+        <category name="Logic" colour="#a55b93">
+            <block type="conjunction"></block>
+            <block type="disjunction"></block>
+            <block type="logical_negation"></block>
+            <block type="default_negation"></block>
+            <block type="comparison"></block>
+        </category>
+        <sep></sep>
+        <category name="Variables" colour="#a5a55b">
+        <block type="variable"></block>
+        <block type="silent_variable"></block>
+        <block type="unnamed_variable"></block>
+        <block type="variable_assignment"></block>
+        </category>
+        <sep></sep>
+        <category name="Input" colour="#A55B5B">
+        <block type="json_input"></block>
+        <block type="json_list"></block>
+        <block type="json_dictionary"></block>
+        <block type="json_value"></block>
+        </category>
+        <sep></sep>
+    </xml>
+
+
+    <div class="row flex-grow-1 d-flex">
+        <div id="interface" class="col-8 flex-grow-1 d-flex">
+            <div class="col-12">
+
+                <div class="card shadow mb-4" style="min-height: 100%; padding: 5px;">
+                    <div class="card-body d-flex" id="blocklyArea" style="padding: 0px">
+                        <div id="blocklyDiv" style="position: absolute; top: 0px; left: 0px"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-4 flex-grow-1">
+            <div class="card shadow mb-4" style="min-height: 100%;">
+                <div id="output" class=" card-body d-flex">
+                    <p>Results would go here.</p>
+                    <ul>
+                        <li><strike>fix workspace positioning</strike></li>
+                        <li><strike>get rid of padding around workspace</strike></LI>
+                        <li><strike></strike>fix the problem that it resizes very badly.</strike></li>
+                        <li><strike>change the font colour for the toolbox</strike></li>
+                        <li>get objects menu working again</li>
+                        <li>get known objects working again</li>
+                        <li>get known attributes working again</li>
+                        <li>make category customizations work</li>
+                        <li>get known documents working</li>
+                        <li>get include working again</li>
+                        <li>move the code generation code out of the reasoner into the interface</li>
+                        <li>get generated code to display somewhere for debugging</li>
+                        <li>write language generation code</li>
+                        <li><strike>add a save and a close button for the django version</strike></li>
+                        <li>add the new reasoner API to the django version</li>
+                        <li>make the run blawx code verison use the new reasoner API</li>
+                        <li>get server response to display in results pane</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'blawx/mutators.js' %}"></script>
+        <script>
+            var blocklyArea = document.getElementById('blocklyArea');
+            var blocklyDiv = document.getElementById('blocklyDiv');
+            var demoWorkspace = Blockly.inject(blocklyDiv,
+                {media: "{% static 'blawx/blockly/media/' %}",
+                toolbox: document.getElementById('toolbox')});
+            var importWorkspace = new Blockly.Workspace();
+            var onresize = function(e) {
+            // Compute the absolute coordinates and dimensions of blocklyArea.
+            var element = blocklyArea;
+            var x = 0;
+            var y = 0;
+            do {
+                x += element.offsetLeft;
+                y += element.offsetTop;
+                element = element.offsetParent;
+            } while (element);
+            // Position blocklyDiv over blocklyArea.
+            blocklyDiv.style.left = '5px';
+            blocklyDiv.style.top = '5px';
+            blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+            blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+            Blockly.svgResize(demoWorkspace);
+            };
+            window.addEventListener('resize', onresize, false);
+            onresize();
+            Blockly.svgResize(demoWorkspace);
+            window.setTimeout(BlocklyStorage.restoreBlocks, 0);
+            BlocklyStorage.backupOnUnload();
+    
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            if (urlParams.has('load')) {
+                xhttp = new XMLHttpRequest();
+                loadfile = urlParams.get('load');
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var xml = Blockly.Xml.textToDom(this.responseText);
+                        demoWorkspace.clear();
+                        Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+                    }
+                };
+                xhttp.open("GET",loadfile,true);
+                xhttp.send();
+            }
+        </script>
+        <script src="{% static 'blawx/buttons.js' %}"></script>
+        <script src="{% static 'blawx/drawers.js' %}"></script>
+        <script src="{% static 'blawx/import.js' %}"></script>
+        <script src="{% static 'blawx/attributes.js' %}"></script>
+   
+    <div>
+      <input id="loadfile"  onchange="loadBlocksFile(this)" type="file" accept=".blawx" hidden/>
+    </div>
+    <div>
+      <input id="importfile" onchange="importBlocksFile(this)" type="file" accept=".blawx" hidden />
+    </div>
+    
+
+
+{% endblock %}
+
+{% block header_elements %}
+<div class="col-12">
+    <div class="col-12">
+        <a href="javascript:void(0);" class="btn btn-secondary btn-icon-split" onclick="getLoadFile()">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
+                <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z"/>
+              </svg>
+            <span class="text">Import Workspace</span>
+        </a>
+        <a href="javascript:void(0);" class="btn btn-primary btn-icon-split" onclick="exportBlocks()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1h-2z"/>
+                <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+              </svg>
+            <span class="text">Export Workspace</span>
+        </a>
+        <a href="javascript:void(0);" class="btn btn-danger btn-icon-split" onclick="clearBlocks()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            <span class="text">Clear Workspace</span>
+        </a>
+        <a href="javascript:void(0);" class="btn btn-success btn-icon-split" onclick="runCode()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M5.795 12.456A.5.5 0 0 1 5.5 12V4a.5.5 0 0 1 .832-.374l4.5 4a.5.5 0 0 1 0 .748l-4.5 4a.5.5 0 0 1-.537.082z"/>
+              </svg>
+            <span class="text">Run Blawx Code</span>
+        </a>
+        <a href="/docs/" target=_blank class="btn btn-warning btn-icon-split">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+              </svg>
+            <span class="text">Help</span>
+        </a>
+        <a href="javascript:void(0);" class="btn btn-primary btn-icon-split">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+                <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+              </svg>
+            <span class="text">Save and Close</span>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -21,3 +21,49 @@ urlpatterns = [
     path('blawx/', include('blawx.urls')),
     path('admin/', admin.site.urls),
 ]
+
+# from django.views import generic
+# from django.forms import modelform_factory
+# from django.urls import path
+# from django.apps import apps
+
+# blawx = apps.get_app_config('blawx')
+
+# for model in blawx.get_models():
+#     create_url = path(
+#         f"{model.__name__.lower()}/create/",
+#         generic.CreateView.as_view(
+#             form_class=modelform_factory(model=model, fields='__all__'),
+#             template_name=f"{model._meta.app_label}/create.html",
+#             model=model
+#         ),
+#     ),
+#     list_url = path(
+#         f"{model.__name__.lower()}/",
+#         generic.ListView.as_view(
+#             template_name=f"{model._meta.app_label}/list.html",
+#             model=model
+#         ),
+#     ),
+#     read_url = path(
+#         f"{model.__name__.lower()}/read/",
+#         generic.DetailView.as_view(
+#             template_name=f"{model._meta.app_label}/read.html",
+#             model=model
+#         ),
+#     ),
+#     update_url = path(
+#         f"{model.__name__.lower()}/update/",
+#         generic.UpdateView.as_view(
+#             template_name=f"{model._meta.app_label}/update.html",
+#             model=model
+#         ),
+#     ),
+#     delete_url = path(
+#         f"{model.__name__.lower()}/delete/",
+#         generic.DeleteView.as_view(
+#             template_name=f"{model._meta.app_label}/delete.html",
+#             model=model
+#         ),
+#     )
+#     urlpatterns.extend([create_url, list_url, read_url, update_url, delete_url])

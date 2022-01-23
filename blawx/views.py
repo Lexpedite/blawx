@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Workspace, Query
+from .models import Workspace, Query, BlawxCode
 # Create your views here.
 
 class WorkspacesView(generic.ListView):
@@ -19,3 +19,10 @@ class WorkspaceView(generic.DetailView):
 
     def get_queryset(self):
         return Workspace.objects.all()
+
+class BlawxView(generic.DetailView):
+    template_name = 'blawx/blawx.html'
+    model = BlawxCode
+
+    def get_queryset(self):
+        return BlawxCode.objects.all()

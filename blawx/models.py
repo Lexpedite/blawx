@@ -14,3 +14,10 @@ class Query(models.Model):
 
     def __str__(self):
         return self.query_name + " inside " + self.workspace + " not" if not self.published else "" + " published"
+
+class BlawxCode(models.Model):
+    workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE)
+    xml_content = models.TextField()
+
+    def __str__(self):
+        return self.workspace + " BlawxCode"

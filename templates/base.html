@@ -1,8 +1,55 @@
-{% load bootstrap5 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'blawx/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'blawx/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'blawx/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'blawx/site.webmanifest' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <title>Blawx - Drag and Drop Legal AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mina:wght@700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&amp;display=swap" rel="stylesheet">
+    <style type="text/css">
+        #blawxlogo {
+        font-family: 'Mina', sans-serif;
+        font-size:xx-large;
+        color: #5a005a;
+        }
+        #blawxWordMark{
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+    </style>    
+    {% block page_head %}{% endblock %}
+    
+</head>
+<body>
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 
+<div class="container-fluid d-flex flex-column" style="min-height: 100vh;">
+    <div id="header" class="col-12">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <div class="sidebar-brand-text mx-3" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
+            {% block header_elements %}{% endblock %}
+        </nav>
+    </div>
+
 {% block page_content %}{% endblock %}
+
+<div id="footer" class="col-12">
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Lexpedite Legal Technologies Ltd. 2022</span>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
