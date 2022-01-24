@@ -649,7 +649,7 @@ scasp_blockset = [{
     },
     {
       "type": "input_value",
-      "name": "attribute",
+      "name": "attribute_type",
       "check": [
         "CATEGORY",
         "TYPE"
@@ -1766,11 +1766,70 @@ scasp_blockset = [{
   "colour": 165,
   "tooltip": "Use to describe text that when quoted to the user should include the text of its parent.",
   "helpUrl": "/docs/blocks/legal_doc_text_continuation"
+},
+{
+  "type": "attribute_selector",
+  "message0": "%1 %2 %3 %4 %5",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "input_value",
+      "name": "first_element"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "infix",
+      "text": "'s attribute_name is"
+    },
+    {
+      "type": "input_value",
+      "name": "second_element"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": ""
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 135,
+  "tooltip": "Use to set or check the value of an object's attribute.",
+  "helpUrl": "/docs/blocks/attribute_selector"
 }]
 
 // Make modifications that it is not possible to make in the Developer Tools
 // Set the colour of the include block to #666666
 // Add extensions and mutators to the relevant blocks
+// Attribute Selector Mutator
+// Category Selector Mutator
+// Object Selector Mutator
+// Attribute Declaration Mutator
+for (var i = 0; i < scasp_blockset.length; i++) {
+  if (scasp_blockset[i].type == "attribute_selector") {
+    scasp_blockset[i]['mutator'] = "attribute_selector_mutator"
+  };
+  if (scasp_blockset[i].type == "object_selector") {
+    scasp_blockset[i]['mutator'] = "object_selector_mutator"
+  };
+  if (scasp_blockset[i].type == "category_selector") {
+    scasp_blockset[i]['mutator'] = "category_selector_mutator"
+  };
+  if (scasp_blockset[i].type == "attribute_declaration") {
+    scasp_blockset[i]['mutator'] = "attribute_declaration_mutator";
+  };
+  if (scasp_blockset[i].type == "attribute_display") {
+    scasp_blockset[i]['extensions'] = ["changeAttributeDisplayText"];
+  }
+}
 
 for (var i = 0; i < scasp_blockset.length; i++) {
   console.log("Adding " + scasp_blockset[i].type)

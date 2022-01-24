@@ -1719,7 +1719,7 @@
     <field name="CONNECTIONS">BOTH</field>
     <statement name="INPUTS">
       <block type="input_value" id="dEQP@/;jwLz.kVDOfRV]">
-        <field name="INPUTNAME">attribute</field>
+        <field name="INPUTNAME">attribute_type</field>
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_input" id="ZUeBea5O/D~EHL;oOyP$">
@@ -4147,6 +4147,90 @@
       <block type="colour_hue" id="3|**LXhhFq+M*_{.o*r9">
         <mutation colour="#5ba593"></mutation>
         <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4[qp41mWp3q(j4t+BX#3" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">attribute_selector</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="9UgD/y?5t-~eZY0DDjBa">
+        <field name="INPUTNAME">first_element</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_label_serializable" id="Q-=eu6V!+SS=S+ql7ciR">
+            <field name="TEXT"></field>
+            <field name="FIELDNAME">prefix</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="ord2F6IbG_]1{h;;6#iw"></shadow>
+        </value>
+        <next>
+          <block type="input_value" id="mC;vOp}wwzKlYoASgxqM">
+            <field name="INPUTNAME">second_element</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_label_serializable" id="x??_5[}q$Q{~-WhQGi0F">
+                <field name="TEXT">'s attribute_name is</field>
+                <field name="FIELDNAME">infix</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="w|?ThmFqf-Jf~8I-e+,^"></shadow>
+            </value>
+            <next>
+              <block type="input_dummy" id="@[tmUKHdjE@hvJvO4HxU">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_label_serializable" id="uMwz1Rivg5k@(QhW7|)J">
+                    <field name="TEXT"></field>
+                    <field name="FIELDNAME">postfix</field>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="{eSN[+qyNeVq}U.n2)jQ" deletable="false" movable="false">
+        <field name="TEXT">Use to set or check the value of an object's attribute.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dvx@JRhOJ^=FPd%RM8zb" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/attribute_selector</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="2h@(kVX-RFb=ob=x$bK*"></shadow>
+      <block type="type_group" id="ZU^EI44z]RoP;(FOBvCQ">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="+B_w,2YSR;C1V+n899+.">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id=",`NDf!]O%$w[PWln{?}Z">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="TL9=ToehH-%xg7$VgOHY"></shadow>
+      <block type="type_other" id="y!hu59mc=onha.rCP|Pi">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
+        <mutation colour="#5ba56d"></mutation>
+        <field name="HUE">135</field>
       </block>
     </value>
   </block></xml>
