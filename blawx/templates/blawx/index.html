@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block page_content %}
-<h1>Blawx</h1>
 {% if workspace_list %}
     <ul>
     {% for workspace in workspace_list %}
@@ -10,5 +9,6 @@
 {% else %}
     <p>No workspaces are available.</p>
 {% endif %}
-A method of adding workspaces goes here.
+<div><a href="javascript:void(0);" class="btn btn-success">Create Workspace</a></div>
+
 {% endblock %}
