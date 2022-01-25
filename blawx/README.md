@@ -67,6 +67,7 @@ Contributions to the code and documentation are welcome. Please contribute respo
   * Application
     * Make it possible to create workspaces
     * Make it possible to delete workspaces
+    * Bring the helpfiles back in.
   * Integration
     * Get the Run Blawx Code command to send requests
       to the code editor's s(CASP) reasoner.
@@ -91,7 +92,6 @@ Contributions to the code and documentation are welcome. Please contribute respo
     * Add the ability to save queries to a workspace
     * Add the ability to make a workspace or query public or not
     * GitHub integration
-    * Bring the helpfiles back in.
     * Update the help files for the new
     blocks and reasoner.
     * Upgrade to the new JSON serialization method for Blockly
