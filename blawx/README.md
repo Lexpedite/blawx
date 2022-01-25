@@ -1,19 +1,66 @@
-# Blawx 2.0
+# Blawx
+
+A user-friendly web-based tool for Rules as Code written by Jason Morris of [Lexpedite Legal Technologies Ltd.](https://lexpedite.ca).
+
+Blocks + law = Blawx
+
+![Blawx Front End Screenshot](blawx_screenshot_v1.png)
 
 ## Overview
 
-## Installation
+### What is "Rules as Code"?
+Rules as Code is the idea that if you write rules in a programming langauge at the same time you write them in a natural language,
+you end up with better rules, and you make it easier for people to automate implementations of those rules.
 
-## Configuration
+I believe:
+1. The best tools for doing knowledge representation of laws are declarative logic programming languages.
+2. Rules as Code requires tools that make it easy for non-programmers to do legal knowledge representation.
+3. Tools for Rules as Code must be accessible, and transparent, which means they need to be open source.
 
-## Use
+## What is Blawx?
+Blawx is an open source, user-friendly, web-based declarative logic knowledge representation tool
+designed specifically for encoding, testing and using rules.
+
+It is implemented as a set of [Django](https://www.djangoproject.com/) applications.
+
+It provides:
+* a web server that stores your Blawx encodings
+* a visual development environment based on [Google's Blockly](https://github.com/google/blockly)
+  to write, edit, and test your encodings
+* a reasoner that will answer queries against your encodings over a web API
+
+The reasoner is based on SWI-Prolog, using the s(CASP) library.
+
+### Why Should I Use Blawx?
+
+In addition to being free, and open source, Blawx is build on cutting-edge research in symbolic artificial
+intelligence, and has several features that are found in no other open source tools, as well as features
+that are found in no other open source tools at all.
+
+## How Can I Try It?
+The easiest way to try Blawx is to go to [www.blawx.com](https://www.blawx.com). The latest public release of Blawx is always available
+to try, there.
+
+## How do I Install It Myself?
+If you would like to try running Blawx locally, check out [INSTALL.md](INSTALL.md) for instructions.
+
+## How Can I Learn More?
+Extensive documentation, including the Blawx Beginner's Guide and several examples, is available from inside the application
+by clicking "Help" in the coding interface. You can also view the [documentation on the live demo site](https://dev.blawx.com/docs).
+
+## Is this software production ready?
+No. Blawx is functional, but it is not production-quality software. It is a proof of concept that is intended to motivate
+investment in similar technologies in the future by demonstrating what they are capable of.
+
+## Contributions
+If you have questions on how to use Blawx, please consider joining the [Blawx Slack server](https://blawx.slack.com).
+If you have issues or concerns with the package, please open an Issue here in the [GitHub Repository](https://github.com/Blawx/blawx).
+Contributions to the code and documentation are welcome. Please contribute responsibly.
 
 ## Development Notes
-
 * Base Capabilities
   * Interface
     * Finish code generation for available blocks.
-      * Deal with commas at the end of lists in conditions, conclusions.
     * Make the responses pretty.
   * Reasoner
     * Add the blawx reasoner as a Django app
@@ -21,7 +68,6 @@
   * Application
     * Make it possible to create workspaces
     * Make it possible to delete workspaces
-    * Make it possible to edit workspaces
   * Integration
     * Get the Run Blawx Code command to send requests
       to the code editor's s(CASP) reasoner.

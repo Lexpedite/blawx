@@ -468,7 +468,7 @@ Blockly.JavaScript['math_operation'] = function(block) {
   var dropdown_operator = block.getFieldValue('operator');
   var value_right_side = Blockly.JavaScript.valueToCode(block, 'right_side', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = value_left_side + " " + text2math(dropdown_operator) + " " + value_right_side;
+  var code = "( " + value_left_side + " " + text2math(dropdown_operator) + " " + value_right_side + " )";
   // TODO: Change ORDER_ATOMIC to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
