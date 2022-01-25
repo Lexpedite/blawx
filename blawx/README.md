@@ -61,7 +61,6 @@ Contributions to the code and documentation are welcome. Please contribute respo
 * Base Capabilities
   * Interface
     * Finish code generation for available blocks.
-    * Make the responses pretty.
   * Reasoner
     * Add the blawx reasoner as a Django app
     * Make a no-query-specified version of the endpoint
@@ -77,6 +76,7 @@ Contributions to the code and documentation are welcome. Please contribute respo
       save a generated .pl associated with the workspace.
 * Future Capabilities
   * Interface
+    * Make the responses pretty.
     * Category Declaration Customization
     * Legal Documents
     * Input Blocks
