@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Workspace(models.Model):
     workspace_name = models.CharField(max_length=200)
+    workspace_example = models.BooleanField(default=False) # Example workspaces cannot be deleted from the web interface.
 
     def __str__(self):
         return self.workspace_name
@@ -17,7 +18,8 @@ class Query(models.Model):
 
 class BlawxCode(models.Model):
     workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE)
-    xml_content = models.TextField()
+    xml_content = models.TextField(default="")
+    scasp_encoding = models.TextField(default="")
 
     def __str__(self):
         return self.workspace + " BlawxCode"

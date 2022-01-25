@@ -14,7 +14,7 @@ knownAttributesCallback = function(workspace) {
         blockList[i].type == "cardinality_any") {
         var attribute_name = blockList[i].getFieldValue('attribute_name');
         var attribute_type = blockList[i].getInputTargetBlock('attribute_type').toString();
-        attributeTypes[attribute_name] = attribute_type;
+        // attributeTypes[attribute_name] = attribute_type; This is now being taken from the mutation.
         // At this point, I need to check to see if the next block is a customization.
         var nextblock = blockList[i].getNextBlock();
         if (nextblock && nextblock.type == "attribute_display") {

@@ -637,3 +637,6 @@ Blockly.JavaScript['assume'] = function(block) {
   }
   return code;
 };
+
+// Call code generation once when the page loads
+document.getElementById('output').textContent = Blockly.JavaScript.workspaceToCode(demoWorkspace);
