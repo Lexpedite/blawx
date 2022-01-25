@@ -12,21 +12,22 @@
 
 * Base Capabilities
   * Interface
-    * Fix basic type checking in attribute blocks
-    * Get Code Generation Working
-    * Display Generated Code in the Workspace
+    * Finish code generation for available blocks.
+      * Deal with commas at the end of lists in conditions, conclusions.
+    * Make the responses pretty.
   * Reasoner
     * Add the blawx reasoner as a Django app
     * Make a no-query-specified version of the endpoint
   * Application
     * Make it possible to create workspaces
     * Make it possible to delete workspaces
+    * Make it possible to edit workspaces
   * Integration
     * Get the Run Blawx Code command to send requests
       to the code editor's s(CASP) reasoner.
     * Display responses from the s(CASP) reasoner in the
       workspace.
-    * On Save, add workspace code to Django Database, and
+    * On Save (or Run?), add workspace code to Django Database, and
       save a generated .pl associated with the workspace.
 * Future Capabilities
   * Interface
@@ -37,6 +38,7 @@
     * Switch to attributed version of blocks (for rule references)
     * Dates
     * Overrides
+    * Disjunction
   * Random
     * Create an app that will collect
       input in an auto-generated interface and run a predefined query

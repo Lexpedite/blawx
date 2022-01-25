@@ -41,6 +41,7 @@
             <!-- <block type="overrules"></block> -->
             <block type="unattributed_constraint"></block>
             <block type="query"></block>
+            <block type="assume"></block>
         </category>
         <sep></sep>
         <category name="Categories" colour="#a55b5b">
@@ -50,7 +51,6 @@
         <block type="attribute_declaration"></block>
         <block type="attribute_display"></block>
         <block type="category_equivalence"></block>
-        <block type="category_selector"></block>
         </category>
         <category name="Known Categories" custom="KNOWN_CATEGORIES" colour="#a55b5b"></category>
         <sep></sep>
@@ -92,8 +92,8 @@
         <category name="Known Attributes" custom="KNOWN_ATTRIBUTES" colour="#5BA65B"></category>
         <sep></sep>
         <category name="Logic" colour="#a55b93">
-            <block type="conjunction"></block>
-            <block type="disjunction"></block>
+            <!-- <block type="conjunction"></block>
+            <block type="disjunction"></block> -->
             <block type="logical_negation"></block>
             <block type="default_negation"></block>
             <block type="comparison"></block>
@@ -130,8 +130,8 @@
         </div>
         <div class="col-4 flex-grow-1">
             <div class="card shadow mb-4" style="min-height: 100%;">
-                <div id="output" class=" card-body d-flex">
-                    <h2 class="col-12">{{ blawxcode.workspace.workspace_name|title }}</h2>
+                <div class=" card-body d-flex">
+                    <pre id="output"></pre>
                 </div>
             </div>
         </div>
@@ -188,6 +188,7 @@
         <script src="{% static 'blawx/drawers.js' %}"></script>
         <script src="{% static 'blawx/import.js' %}"></script>
         <script src="{% static 'blawx/attributes.js' %}"></script>
+        <script src="{% static 'blawx/blawx2scasp.js' %}"></script>
    
     <div>
       <input id="loadfile"  onchange="loadBlocksFile(this)" type="file" accept=".blawx" hidden/>

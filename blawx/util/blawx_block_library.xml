@@ -1260,8 +1260,18 @@
         <field name="ALIGN">LEFT</field>
         <value name="TYPE">
           <shadow type="type_null" id="pVByp$@9Y/5(Ylt=~;=#"></shadow>
-          <block type="type_other" id="LhY{+!v,zr{~3l@P1z0$">
-            <field name="TYPE">OBJECT</field>
+          <block type="type_group" id="*f(ar*[T0.0_@Z$sJ1ky">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="LhY{+!v,zr{~3l@P1z0$">
+                <field name="TYPE">OBJECT</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="F;~*S0vsj/Y,p;%wpgKl">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
           </block>
         </value>
         <next>
@@ -4231,6 +4241,44 @@
       <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
         <mutation colour="#5ba56d"></mutation>
         <field name="HUE">135</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2[HAFifgo,[Am-GrfjQR" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">assume</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_statement" id="=:-L,;zhweTa-#T*Xuu;">
+        <field name="INPUTNAME">statements</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="`{NFQw}ty*u:JGjU^=uM">
+            <field name="TEXT">Assume:</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id=".dyhv?n)WG]89Xh!M.yR"></shadow>
+          <block type="type_other" id="p~CvB:h^f`qj29mDh^JU">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id=",%C~R^^lo2H^jcp21E/M" deletable="false" movable="false">
+        <field name="TEXT">Use to specify statements which in the scenario may be proven or not proven.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="u1gZhP!w|nvU|S*chHu-" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/assume/</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="h|ttx|iL,8)kUEORuZ-O">
+        <mutation colour="#6d5ba5"></mutation>
+        <field name="HUE">270</field>
       </block>
     </value>
   </block></xml>

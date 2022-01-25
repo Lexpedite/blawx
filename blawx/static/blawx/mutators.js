@@ -1,7 +1,7 @@
 function blawxTypeToBlocklyType(blawxType) {
-    if (blawxType == 'Yes / No') {
+    if (blawxType == 'Checkmark True / False') {
       return 'Boolean';
-    } else if (blawxType == "Number") {
+    } else if (blawxType == "# Number") {
       return 'Number';
     } else if (blawxType == "Text") {
       return 'String';
@@ -14,9 +14,26 @@ function blawxTypeToBlocklyType(blawxType) {
     } else if (blawxType == "Duration") {
       return "DURATION";
     } else {
-      return null;
+      return 'OBJECT';
     }
   }
+
+OBJECT_DECLARATION_MUTATOR_MIXIN = {
+  mutationToDom: function() {
+    var container = document.createElement('mutation');
+    var category_name = this.blawxCategoryName;
+    container.setAttribute('category_name', category_name);
+    return container;
+  },
+
+  domToMutation: function(xmlElement) {
+    var category_name = xmlElement.getAttribute('category_name');
+    this.blawxCategoryName = category_name;
+  }
+}
+
+
+Blockly.Extensions.registerMutator('object_declaration_mutator', OBJECT_DECLARATION_MUTATOR_MIXIN);
 
 OBJECT_SELECTOR_MUTATOR_MIXIN = {
     mutationToDom: function() {
@@ -70,13 +87,13 @@ ATTRIBUTE_DECLARATION_MUTATOR_MIXIN = {
     domToMutation: function(xmlElement) {
         var attributeName = xmlElement.getAttribute('attribute_name');
         var attributeType = xmlElement.getAttribute('attribute_type');
-        this.updateAttributeSelector(attributeName,attributeType);
+        // this.updateAttributeSelector(attributeName,attributeType);
     },
 
-    updateAttributeSelector: function(attributeName,attributeType) {
-        this.setFieldValue(attributeName, "attribute_name");
-        this.getInput('attribute_type').setCheck([attributeType,"ENTITY"]);
-    }
+    // updateAttributeSelector: function(attributeName,attributeType) {
+    //      this.setFieldValue(attributeName, "attribute_name");
+    //      this.getInput('attribute_type').setCheck([attributeType,"VARIABLE"]);
+    //  }
     }
 
 
@@ -96,6 +113,7 @@ Blockly.Extensions.register('changeAttributeDisplayText', function() {
 
 ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
       mutationToDom: function() {
+        //   console.log("Saving : " + this.blawxAttributeName + ", " + this.blawxAttributeType + ", " + this.blawxAttributeOrder)
           var container = document.createElement('mutation');
           container.setAttribute('attributename', this.blawxAttributeName);
           container.setAttribute('attributetype', this.blawxAttributeType);
@@ -109,6 +127,7 @@ ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
           this.blawxAttributeName = attributeName;
           this.blawxAttributeType = attributeType;
           this.blawxAttributeOrder = attributeOrder;
+        //   console.log("Restoring : " + this.blawxAttributeName + ", " + this.blawxAttributeType + ", " + this.blawxAttributeOrder)
 
           // I "think" that the field values are automatically serialized,
           // as are the words "object" and "value" in the serialized text,
@@ -119,12 +138,14 @@ ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
           if (attributeType) {
             if (attributeOrder == 'ov') {
                 // Change the second input.
-                this.getInput('second_element').connection.setCheck([blawxTypeToBlocklyType(attributeType),'ENTITY']);
-                this.getInput('first_element').connection.setCheck('ENTITY');
+                // console.log("Setting type of second element of attribute block to " + blawxTypeToBlocklyType(attributeType) + " or variable")
+                this.getInput('second_element').connection.setCheck([blawxTypeToBlocklyType(attributeType),'VARIABLE']);
+                this.getInput('first_element').connection.setCheck(['OBJECT','VARIABLE']);
             } else {
                 // Change the first input.
-                this.getInput('first_element').connection.setCheck([blawxTypeToBlocklyType(attributeType),'ENTITY']);
-                this.getInput('second_element').connection.setCheck('ENTITY');
+                // console.log("Setting type of first element of attribute block to " + blawxTypeToBlocklyType(attributeType) + " or variable")
+                this.getInput('first_element').connection.setCheck([blawxTypeToBlocklyType(attributeType),'VARIABLE']);
+                this.getInput('second_element').connection.setCheck(['OBJECT','VARIABLE']);
             }
           }
       }

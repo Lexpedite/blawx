@@ -461,7 +461,10 @@
     {
       "type": "input_value",
       "name": "object",
-      "check": "OBJECT"
+      "check": [
+        "OBJECT",
+        "VARIABLE"
+      ]
     },
     {
       "type": "input_value",
@@ -1781,4 +1784,19 @@
   "colour": 135,
   "tooltip": "Use to set or check the value of an object's attribute.",
   "helpUrl": "/docs/blocks/attribute_selector"
+},
+{
+  "type": "assume",
+  "message0": "Assume: %1",
+  "args0": [
+    {
+      "type": "input_statement",
+      "name": "statements",
+      "check": "OUTER"
+    }
+  ],
+  "inputsInline": false,
+  "colour": 270,
+  "tooltip": "Use to specify statements which in the scenario may be proven or not proven.",
+  "helpUrl": "/docs/blocks/assume/"
 }]

@@ -1,26 +1,3 @@
-
-
-// Blockly.Blocks['declare_type'] = {
-//   init: function() {
-//     this.jsonInit({
-//   "type": "declare_type",
-//   "message0": "%1 is a Category",
-//   "args0": [
-//     {
-//       "type": "field_input",
-//       "name": "type_name",
-//       "text": "default"
-//     }
-//   ],
-//   "previousStatement": null,
-//   "nextStatement": "category_customize",
-//   "colour": 20,
-//   "tooltip": "A Category exists.",
-//   "helpUrl": "/docs/blocks/new_category/"
-// })
-//   }
-// };
-
 scasp_blockset = [{
   "type": "variable",
   "message0": "%1",
@@ -484,7 +461,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "object",
-      "check": "OBJECT"
+      "check": [
+        "OBJECT",
+        "VARIABLE"
+      ]
     },
     {
       "type": "input_value",
@@ -1804,6 +1784,21 @@ scasp_blockset = [{
   "colour": 135,
   "tooltip": "Use to set or check the value of an object's attribute.",
   "helpUrl": "/docs/blocks/attribute_selector"
+},
+{
+  "type": "assume",
+  "message0": "Assume: %1",
+  "args0": [
+    {
+      "type": "input_statement",
+      "name": "statements",
+      "check": "OUTER"
+    }
+  ],
+  "inputsInline": false,
+  "colour": 270,
+  "tooltip": "Use to specify statements which in the scenario may be proven or not proven.",
+  "helpUrl": "/docs/blocks/assume/"
 }]
 
 // Make modifications that it is not possible to make in the Developer Tools
@@ -1828,11 +1823,14 @@ for (var i = 0; i < scasp_blockset.length; i++) {
   };
   if (scasp_blockset[i].type == "attribute_display") {
     scasp_blockset[i]['extensions'] = ["changeAttributeDisplayText"];
+  };
+  if (scasp_blockset[i].type == "object_declaration") {
+    scasp_blockset[i]['mutator'] = "object_declaration_mutator";
   }
 }
 
 for (var i = 0; i < scasp_blockset.length; i++) {
-  console.log("Adding " + scasp_blockset[i].type)
+  // console.log("Adding " + scasp_blockset[i].type)
   const typename = scasp_blockset[i].type
   const elem = scasp_blockset[i]
   Blockly.Blocks[typename] = {

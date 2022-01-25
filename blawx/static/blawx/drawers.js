@@ -172,7 +172,7 @@ newObjectCallback = function(workspace) {
     if (blockList[i].type == "category_declaration") {
         // Get the name of the entity, insert a block of that type,
         var category_name = blockList[i].getFieldValue('category_name'); 
-        var blockText = "<xml><block type='object_declaration'><field name='postfix'>is a " + category_name + "</field></block></xml>"
+        var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='postfix'>is a " + category_name + "</field></block></xml>"
         var block = Blockly.Xml.textToDom(blockText).firstChild;
         // Need to add check to make sure I'm not repeatedly adding the same block.
         xmlList.push(block);
@@ -184,7 +184,7 @@ newObjectCallback = function(workspace) {
         if (blockList[i].type == "category_declaration") {
         // Get the name of the entity, insert a block of that type,
         var category_name = blockList[i].getFieldValue('category_name'); 
-        var blockText = "<xml><block type='object_declaration'><field name='postfix'>is a " + category_name + "</field></block></xml>"
+        var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='postfix'>is a " + category_name + "</field></block></xml>"
         var block = Blockly.Xml.textToDom(blockText).firstChild;
         // Need to add check to make sure I'm not repeatedly adding the same block.
         xmlList.push(block);

@@ -2,16 +2,21 @@
 
 function setAttributeType(event) {
   if (event.type == Blockly.Events.BLOCK_CREATE) {
+    // console.log("Block was created.");
     for (var i = 0; i < event.ids.length; i++) {
       block = demoWorkspace.getBlockById(event.ids[i]);
       if (block.type == "attribute_selector") {
-        var attribute_name = block.getFieldValue('attribute_name');
-        if (block.getFieldValue('order') == 'ov') {
-            block.getInput('second_element').connection.setCheck([blawxTypeToBlocklyType(attributeTypes[attribute_name]),'VARIABLE']);
+        // console.log("Block type is attribute selector.");
+        var attribute_name = block.blawxAttributeName;
+        // console.log("Order is " + block.blawxAttributeOrder);
+        // console.log("Name is " + block.blawxAttributeName);
+        if (block.blawxAttributeOrder == 'ov') {
+            // console.log("Setting type")
+            block.getInput('second_element').connection.setCheck([blawxTypeToBlocklyType(block.blawxAttributeType),'VARIABLE']);
             block.getInput('first_element').connection.setCheck(['OBJECT','VARIABLE']);
         }
         else {
-          block.getInput('first_element').connection.setCheck([blawxTypeToBlocklyType(attributeTypes[attribute_name]),'VARIABLE']);
+          block.getInput('first_element').connection.setCheck([blawxTypeToBlocklyType(block.blawxAttributeType),'VARIABLE']);
           block.getInput('second_element').connection.setCheck(['OBJECT','VARIABLE']);
         }
       }
