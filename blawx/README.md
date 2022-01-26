@@ -62,8 +62,7 @@ Contributions to the code and documentation are welcome. Please contribute respo
   * Interface
     * Finish code generation for available blocks.
   * Reasoner
-    * Add the blawx reasoner as a Django app
-    * Make a no-query-specified version of the endpoint
+    * Get the run workspace endpoint to extract queries from the provided code.
   * Integration
     * On Save (or Run?), add workspace code to Django Database, and
       save a generated .pl associated with the workspace.

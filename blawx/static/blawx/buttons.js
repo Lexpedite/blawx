@@ -2,40 +2,17 @@ var runCode
 runCode = function(button) {
     $output = document.getElementById('output');
     $output.textContent = "Thinking...\n";
-    var code = "";
     var main_xml = Blockly.Xml.workspaceToDom(demoWorkspace);
     var main_xml_text = Blockly.Xml.domToText(main_xml);
-    code += main_xml_text;
+    //code += main_xml_text;
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/cgi-bin/reasoner.py", true);
+    xhttp.open("POST", "/blawx/run/rps/", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onreadystatechange = function() {
-    //     if (this.readyState == 4 && this.status == 200) {
-    //         var reasoner_output = JSON.parse(this.responseText);
-    //         //console.log(reasoner_output);
-    //         var text = "";
-    //         text += "The answer is: " + reasoner_output['main'] + "\n\n";
-    //         var answers = reasoner_output['answers'];
-    //         //console.log(answers);
-    //         if (answers) {
-    //             for (const [k, v] of Object.entries(answers)) {
-    //                 //console.log(k, v);
-    //                 for (const [k2, v2] of Object.entries(v)) {
-    //                     //console.log(k2, v2);
-    //                     //Remove XML DataType Information
-    //                     var v2clean = v2.replace(/\^\^\\.*$/s,"");
-    //                     text += k2 + ": " + v2clean + ", ";	
-    //                 }
-    //                 text = text.substr(0,text.length-2);
-    //                 text += "\n";
-    //             }
-    //         }
-    //     $output.textContent = text;
-// }   
-    $output.textContent = this.responseText;
+        $output.textContent = this.responseText;
     };
     //xhttp.send("code=" + encodeURI(code));
-    xhttp.send("code=" + encodeURIComponent(code));
+    xhttp.send();
     Blockly.hideChaff();
 }
 var clearBlocks;
@@ -82,11 +59,11 @@ var gotoHelp;
 gotoHelp = function(button) {
     window.open('/docs');
 }
-demoWorkspace.registerButtonCallback('menuRunCode', runCode);
-demoWorkspace.registerButtonCallback('menuClear', clearBlocks);
-demoWorkspace.registerButtonCallback('menuLoad', getLoadFile);
-demoWorkspace.registerButtonCallback('menuSave', exportBlocks);
-demoWorkspace.registerButtonCallback('menuHelp', gotoHelp);
+// demoWorkspace.registerButtonCallback('menuRunCode', runCode);
+// demoWorkspace.registerButtonCallback('menuClear', clearBlocks);
+// demoWorkspace.registerButtonCallback('menuLoad', getLoadFile);
+// demoWorkspace.registerButtonCallback('menuSave', exportBlocks);
+// demoWorkspace.registerButtonCallback('menuHelp', gotoHelp);
 
 function loadBlocksFile(element) {
     try {	
