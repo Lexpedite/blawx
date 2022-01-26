@@ -4,9 +4,12 @@ from django.db import models
 class Workspace(models.Model):
     workspace_name = models.CharField(max_length=200)
     workspace_example = models.BooleanField(default=False) # Example workspaces cannot be deleted from the web interface.
+    xml_content = models.TextField(default="")
+    scasp_encoding = models.TextField(default="")
 
     def __str__(self):
         return self.workspace_name
+
 
 class Query(models.Model):
     workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE)
@@ -15,11 +18,3 @@ class Query(models.Model):
 
     def __str__(self):
         return self.query_name + " inside " + self.workspace + " not" if not self.published else "" + " published"
-
-class BlawxCode(models.Model):
-    workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE)
-    xml_content = models.TextField(default="")
-    scasp_encoding = models.TextField(default="")
-
-    def __str__(self):
-        return self.workspace + " BlawxCode"

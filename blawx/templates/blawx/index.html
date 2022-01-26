@@ -9,6 +9,6 @@
 {% else %}
     <p>No workspaces are available.</p>
 {% endif %}
-<div><a href="javascript:void(0);" class="btn btn-success">Create Workspace</a></div>
+<div><a href="{% url 'blawx:workspace_create' %}" class="btn btn-success">Create Workspace</a></div>
 
 {% endblock %}

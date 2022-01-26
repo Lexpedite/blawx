@@ -4,7 +4,7 @@
 <h1>{{ workspace.workspace_name }}</h1>
 <div><a href="{% url 'blawx:code' workspace.id %}" class="btn btn-success">Code Editor</a></div>
 <div>
-    <a href="javascript:void(0);" class="btn btn-danger">Delete Workspace</a>
+    <a href="{% url 'blawx:workspace_delete' workspace.id %}" class="btn btn-danger">Delete Workspace</a>
 </div>
 <a href="{% url 'blawx:workspaces' %}">Back to home</a>
 {% endblock %}

@@ -65,8 +65,6 @@ Contributions to the code and documentation are welcome. Please contribute respo
     * Add the blawx reasoner as a Django app
     * Make a no-query-specified version of the endpoint
   * Application
-    * Make it possible to create workspaces
-    * Make it possible to delete workspaces
     * Bring the helpfiles back in.
   * Integration
     * Get the Run Blawx Code command to send requests
