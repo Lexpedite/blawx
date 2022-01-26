@@ -9,7 +9,7 @@ Blocks + law = Blawx
 ## Overview
 
 ### What is "Rules as Code"?
-Rules as Code is the idea that if you write rules in a programming langauge at the same time you write them in a natural language,
+Rules as Code is the idea that if you write rules in a programming language at the same time you write them in a natural language,
 you end up with better rules, and you make it easier for people to automate implementations of those rules.
 
 I believe:
