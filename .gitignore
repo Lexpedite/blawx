@@ -1,1 +1,4 @@
-blawx/__pycache__/*
+/newblawx/__pycache__/
+/blawx/__pycache__/
+/blawx/migrations/__pycache__/
+*.pyc

@@ -64,15 +64,14 @@ Contributions to the code and documentation are welcome. Please contribute respo
   * Reasoner
     * Add the blawx reasoner as a Django app
     * Make a no-query-specified version of the endpoint
-  * Application
-    * Bring the helpfiles back in.
   * Integration
+    * On Save (or Run?), add workspace code to Django Database, and
+      save a generated .pl associated with the workspace.
     * Get the Run Blawx Code command to send requests
       to the code editor's s(CASP) reasoner.
     * Display responses from the s(CASP) reasoner in the
       workspace.
-    * On Save (or Run?), add workspace code to Django Database, and
-      save a generated .pl associated with the workspace.
+    
 * Future Capabilities
   * Interface
     * Make the responses pretty.
@@ -85,6 +84,7 @@ Contributions to the code and documentation are welcome. Please contribute respo
     * Overrides
     * Disjunction
   * Random
+    * Bring the help files back in to the main site.
     * Create an app that will collect
       input in an auto-generated interface and run a predefined query
     * Add the ability to save queries to a workspace
