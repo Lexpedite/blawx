@@ -106,3 +106,15 @@ Contributions to the code and documentation are welcome. Please contribute respo
     * Search capabilities inside the editor?
     * Consider other blockly plugins, like the highlighter.
     * Re-implement code-generation as its own blockly language, instead of piggy-backing off of JavaScript.
+
+## Notes for Installation Process
+
+Python requirements are in the requirements.txt
+To run the reasoner,
+```
+apt-add-repository --yes ppa:swi-prolog/stable
+apt-get update
+apt-get install swi-prolog
+git clone https://github.com/JanWielemaker/sCASP.git
+cd sCASP && swipl -g "pack_install('.',[interactive(false)])" -t halt
+```

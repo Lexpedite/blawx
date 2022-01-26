@@ -1,6 +1,10 @@
-from django.urls import path
+from django.urls import include, path
+from rest_framework import routers
+from . import views, reasoner
 
-from . import views
+
+router = routers.DefaultRouter()
+router.register(r'workspaces', views.WorkspaceAPIViewSet)
 
 app_name = 'blawx'
 urlpatterns = [
@@ -11,5 +15,7 @@ urlpatterns = [
     path('<int:pk>/delete/', views.WorkspaceDeleteView.as_view(), name="workspace_delete"),
     path('create/', views.WorkspaceCreateView.as_view(), name="workspace_create"),
     path('docs/<path:path>', views.DocumentView.as_view(), name="docs"),
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('query/<str:workspace>/<str:query>/', reasoner.run_query),
 ]
-

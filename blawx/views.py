@@ -4,6 +4,9 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy, reverse
 
+from rest_framework import viewsets, permissions
+# from rest_framework import permissions
+from .serializers import WorkspaceSerializer
 from .models import Workspace, Query
 # Create your views here.
 
@@ -46,3 +49,13 @@ class WorkspaceUpdateView(UpdateView):
 
 class DocumentView(TemplateView):
     template_name = "blawx/docs.html"
+
+
+
+class WorkspaceAPIViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Workspace.objects.all()
+    serializer_class = WorkspaceSerializer
+    permission_classes = [permissions.IsAuthenticated]
