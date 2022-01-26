@@ -10,5 +10,6 @@ urlpatterns = [
     path('<int:pk>/update/', views.WorkspaceUpdateView.as_view(), name="workspace_update"),
     path('<int:pk>/delete/', views.WorkspaceDeleteView.as_view(), name="workspace_delete"),
     path('create/', views.WorkspaceCreateView.as_view(), name="workspace_create"),
+    path('docs/<path:path>', views.DocumentView.as_view(), name="docs"),
 ]
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic import TemplateView
 from django.urls import reverse_lazy, reverse
 
 from .models import Workspace, Query
@@ -42,3 +43,6 @@ class WorkspaceDeleteView(DeleteView):
 class WorkspaceUpdateView(UpdateView):
     model = Workspace
     fields = ['workspace_name']
+
+class DocumentView(TemplateView):
+    template_name = "blawx/docs.html"
