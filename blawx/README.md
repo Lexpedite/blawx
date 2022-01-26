@@ -4,7 +4,7 @@ A user-friendly web-based tool for Rules as Code written by Jason Morris of [Lex
 
 Blocks + law = Blawx
 
-![Blawx Front End Screenshot](blawx_screenshot_v1.png)
+![Blawx Front End Screenshot](/blawx/static/blawx/blawxv1screenshot.png)
 
 ## Overview
 
@@ -21,21 +21,26 @@ I believe:
 Blawx is an open source, user-friendly, web-based declarative logic knowledge representation tool
 designed specifically for encoding, testing and using rules.
 
-It is implemented as a set of [Django](https://www.djangoproject.com/) applications.
+It is implemented as a set of applications.
 
 It provides:
-* a web server that stores your Blawx encodings
+* a web server that stores your Blawx encodings and gives access to them and the reasoner over a RESTful API, based on [Django](https://www.djangoproject.com/) 
 * a visual development environment based on [Google's Blockly](https://github.com/google/blockly)
   to write, edit, and test your encodings
-* a reasoner that will answer queries against your encodings over a web API
-
-The reasoner is based on SWI-Prolog, using the s(CASP) library.
+* a reasoner based on [SWI-Prolog](https://swi-prolog.org/) and [s(CASP)](https://github.com/JanWielemaker) that will answer questions and explain the answers
 
 ### Why Should I Use Blawx?
 
-In addition to being free, and open source, Blawx is build on cutting-edge research in symbolic artificial
-intelligence, and has several features that are found in no other open source tools, as well as features
-that are found in no other open source tools at all.
+* Open Source
+* Easy to Learn
+* Designed Specifically for Rules as Code
+* Publish Code as an API
+* Explainability
+* Hypothetical reasoning
+* More to come soon.
+
+In it's pre-v1.0.0 state, Blawx is the only open source Rules as Code programming environment with
+explanations for answers, and hypothetical reasoning.
 
 ## How Can I Try It?
 The easiest way to try Blawx is to go to [www.blawx.com](https://www.blawx.com). The latest public release of Blawx is always available
@@ -61,14 +66,20 @@ Contributions to the code and documentation are welcome. Please contribute respo
 * Base Capabilities
   1. Create an end-point on the API for updating workspace content and code.
   2. Create a javascript function that takes the current workspace and the current code, and sends them to the endpoint.
-  3. Call that function when the user clicks "save".
-  4. Have the system load the workspace from the database on page load.
+  3. Execute that function whenever the code is saved?
+  4. Have the system load the workspace from the database, not local storage, on page load.
   5. Rewrite the run endpoint to collect the code from the database, and extract and reformat a query.
   6. Finish blawx2scasp.js code.
+* Important for v1.0.0-alpha
+  * Retrieve and display all the answers, not just the first.
+  * Display compiler warnings.
+  * Get the reasoner to use #Pred statements properly.
+  * Bring the help files back in to the main site.
+  * Simplify and document the installation and configuration process.
+  * Make it so that examples can't be deleted by non-admins.
 * Future Capabilities
   * Interface
     * Make the responses pretty.
-    * Display all the answers.
     * Format and display warnings as messages.
     * Category Declaration Customization
     * Legal Documents
@@ -79,8 +90,6 @@ Contributions to the code and documentation are welcome. Please contribute respo
     * Overrides
     * Disjunction
   * Random
-    * Get the reasoner to use #Pred statements properly.
-    * Bring the help files back in to the main site.
     * Create an app that will collect
       input in an auto-generated interface and run a predefined query
     * Add the ability to save queries to a workspace
@@ -93,10 +102,9 @@ Contributions to the code and documentation are welcome. Please contribute respo
     * WYSIWYG legal document editing
     * Ontology features
     * Switch between attributed/unattributed blocks using context menu
-    * Update existing blocks when their
-    source definition is updated.
+    * Update existing blocks when their source definition is updated.
     * Code validation inside the coding environment, missing things, etc.
-    * Limit the number of queries to 1
+    * Limit the number of queries to 1.
     * Limit the number of inputs to 1.
     * Search capabilities inside the editor?
     * Consider other blockly plugins, like the highlighter.
