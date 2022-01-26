@@ -59,21 +59,17 @@ Contributions to the code and documentation are welcome. Please contribute respo
 
 ## Development Notes
 * Base Capabilities
-  * Interface
-    * Finish code generation for available blocks.
-  * Reasoner
-    * Get the run workspace endpoint to extract queries from the provided code.
-  * Integration
-    * On Save (or Run?), add workspace code to Django Database, and
-      save a generated .pl associated with the workspace.
-    * Get the Run Blawx Code command to send requests
-      to the code editor's s(CASP) reasoner.
-    * Display responses from the s(CASP) reasoner in the
-      workspace.
-    
+  1. Create an end-point on the API for updating workspace content and code.
+  2. Create a javascript function that takes the current workspace and the current code, and sends them to the endpoint.
+  3. Call that function when the user clicks "save".
+  4. Have the system load the workspace from the database on page load.
+  5. Rewrite the run endpoint to collect the code from the database, and extract and reformat a query.
+  6. Finish blawx2scasp.js code.
 * Future Capabilities
   * Interface
     * Make the responses pretty.
+    * Display all the answers.
+    * Format and display warnings as messages.
     * Category Declaration Customization
     * Legal Documents
     * Input Blocks
@@ -83,14 +79,14 @@ Contributions to the code and documentation are welcome. Please contribute respo
     * Overrides
     * Disjunction
   * Random
+    * Get the reasoner to use #Pred statements properly.
     * Bring the help files back in to the main site.
     * Create an app that will collect
       input in an auto-generated interface and run a predefined query
     * Add the ability to save queries to a workspace
     * Add the ability to make a workspace or query public or not
     * GitHub integration
-    * Update the help files for the new
-    blocks and reasoner.
+    * Update the help files for the new blocks and reasoner.
     * Upgrade to the new JSON serialization method for Blockly
     * Fix the CSS and templates to be minimal
     * Import legal documents from external sources
@@ -105,6 +101,7 @@ Contributions to the code and documentation are welcome. Please contribute respo
     * Search capabilities inside the editor?
     * Consider other blockly plugins, like the highlighter.
     * Re-implement code-generation as its own blockly language, instead of piggy-backing off of JavaScript.
+    * Get the reasoner to accept JSON input formatted for Blockly, not sCASP.
 
 ## Notes for Installation Process
 

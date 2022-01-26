@@ -1,3 +1,19 @@
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
 var runCode
 runCode = function(button) {
     $output = document.getElementById('output');
@@ -8,10 +24,13 @@ runCode = function(button) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/blawx/run/rps/", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.setRequestHeader('X-CSRFToken', csrftoken);
     xhttp.onreadystatechange = function() {
-        $output.textContent = this.responseText;
+        output_object = JSON.parse(this.responseText);
+        answer = output_object.answer;
+        console.log(output_object.transcript);
+        $output.textContent = answer.JOut;
     };
-    //xhttp.send("code=" + encodeURI(code));
     xhttp.send();
     Blockly.hideChaff();
 }

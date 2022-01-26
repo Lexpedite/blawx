@@ -166,11 +166,11 @@
             window.addEventListener('resize', onresize, false);
             onresize();
             Blockly.svgResize(demoWorkspace);
+
             window.setTimeout(BlocklyStorage.restoreBlocks, 0);
             BlocklyStorage.backupOnUnload();
     
-            const queryString = window.location.search;
-            
+            //const queryString = window.location.search;
             // const urlParams = new URLSearchParams(queryString);
             // if (urlParams.has('load')) {
             //     xhttp = new XMLHttpRequest();
