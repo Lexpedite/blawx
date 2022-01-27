@@ -18,5 +18,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('query/<str:workspace>/<str:query>/', reasoner.run_query),
-    path('run/<str:workspace>/', reasoner.run_workspace),
+    path('<int:pk>/run/', reasoner.run_workspace, name="runcode"),
 ]

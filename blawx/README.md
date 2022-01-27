@@ -73,10 +73,10 @@ Contributions to the code and documentation are welcome. Please contribute respo
   * Bring the help files back in to the main site.
   * Simplify and document the installation and configuration process.
   * Make it so that examples can't be deleted by non-admins.
+  * Make the responses pretty.
+  * Format and display warnings as messages.
 * Future Capabilities
   * Interface
-    * Make the responses pretty.
-    * Format and display warnings as messages.
     * Category Declaration Customization
     * Legal Documents
     * Input Blocks

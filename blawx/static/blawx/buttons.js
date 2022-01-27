@@ -42,14 +42,14 @@ runCode = function(button) {
     var main_xml_text = Blockly.Xml.domToText(main_xml);
     //code += main_xml_text;
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/blawx/run/rps/", true);
+    xhttp.open("POST", "../run/", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.setRequestHeader('X-CSRFToken', csrftoken);
     xhttp.onreadystatechange = function() {
         output_object = JSON.parse(this.responseText);
         answer = output_object.answer;
         console.log(output_object.transcript);
-        $output.textContent = answer.JOut;
+        $output.textContent = answer.Human;
     };
     xhttp.send();
     Blockly.hideChaff();

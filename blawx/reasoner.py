@@ -135,14 +135,15 @@ throw(jane,scissors)."""
       # Return the results as JSON
       return Response({ "answer": query_output, "transcript": transcript_output })
 
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
 @permission_classes([AllowAny])
-def run_workspace(request,workspace):
+def run_workspace(request,pk):
   
   # Collect the rules based on the ruleset specified
-  if workspace == "rps":
+  if pk == 1:
     scasp_ruleset = """
 :- use_module(library(scasp)).
+:- use_module(library(scasp/human)).
 
 #pred player(X) :: '@(X) is a player'.
 #pred participate_in(Game,Player) :: '@(Player) participated in @(Game)'.
@@ -182,7 +183,7 @@ throw(bob,rock).
 throw(jane,scissors).
 
 """
-    query = "scasp(winner(G,P)),scasp_embed:scasp_justification(J,[]),with_output_to(string(JOut), scasp_just_human:human_justification_tree(J,[]))."
+    query = "scasp(winner(G,P),[tree(Tree)]),with_output_to(string(Human), human_justification_tree(Tree,[]))."
     rulefile = tempfile.NamedTemporaryFile('w',delete=False)
     rulefile.write(scasp_ruleset)
     rulefile.close()
@@ -195,6 +196,9 @@ throw(jane,scissors).
     with swipl.create_thread() as swipl_thread:
 
       file = open(rulefilename,'r')
+      # Get rid of the file operations entirely.
+      # Load the rules from the database, and build
+      # a transcript in memory.
       transcript = open("transcript","w")
       transcript.write("Loading " + rulefilename + ", the contents of which are:\n")
       transcript.write(file.read() + '\n')
