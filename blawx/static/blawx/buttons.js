@@ -14,6 +14,26 @@ function getCookie(name) {
     return cookieValue;
 }
 const csrftoken = getCookie('csrftoken');
+var updateWorkspace
+updateWorkspace = function() {
+    var payload = {}
+    var main_xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+    // Output the current workspace to a variable
+    payload.xml_content = Blockly.Xml.domToText(main_xml);
+    // Output the current encoding to a variable
+    payload.scasp_encoding = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../update/", true);
+    xhttp.setRequestHeader('Content-type', 'application/json');
+    xhttp.setRequestHeader('X-CSRFToken', csrftoken);
+    xhttp.onreadystatechange = function() {
+        console.log("Saved")
+    };
+    console.log("Saving")
+    xhttp.send(body=JSON.stringify(payload));
+    Blockly.hideChaff();
+
+}
 var runCode
 runCode = function(button) {
     $output = document.getElementById('output');

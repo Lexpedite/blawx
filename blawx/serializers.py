@@ -6,3 +6,8 @@ class WorkspaceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Workspace
         fields = ['workspace_name', 'xml_content', 'scasp_encoding', 'workspace_example']
+
+class CodeUpdateRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Workspace
+        fields = ['xml_content', 'scasp_encoding']

@@ -64,12 +64,8 @@ Contributions to the code and documentation are welcome. Please contribute respo
 
 ## Development Notes
 * Base Capabilities
-  1. Create an end-point on the API for updating workspace content and code.
-  2. Create a javascript function that takes the current workspace and the current code, and sends them to the endpoint.
-  3. Execute that function whenever the code is saved?
-  4. Have the system load the workspace from the database, not local storage, on page load.
-  5. Rewrite the run endpoint to collect the code from the database, and extract and reformat a query.
-  6. Finish blawx2scasp.js code.
+  1. Rewrite the run endpoint to collect the code from the database, and extract and reformat a query.
+  2. Finish blawx2scasp.js code.
 * Important for v1.0.0-alpha
   * Retrieve and display all the answers, not just the first.
   * Display compiler warnings.
