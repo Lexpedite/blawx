@@ -67,14 +67,13 @@ Contributions to the code and documentation are welcome. Please contribute respo
   1. Finish blawx2scasp.js code.
     * There are problems with how #pred statements are generated.
 * Important for v1.0.0-alpha
+  * Make running code synchronous after saving it. I think it is causing some errors.
   * Retrieve and display all the answers, not just the first.
   * Display compiler warnings.
-  * Get the reasoner to use #Pred statements properly.
   * Bring the help files back in to the main site.
   * Simplify and document the installation and configuration process.
   * Make it so that examples can't be deleted by non-admins.
   * Make the responses pretty.
-  * Format and display warnings as messages.
 * Future Capabilities
   * Interface
     * Category Declaration Customization
