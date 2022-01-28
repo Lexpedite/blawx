@@ -36,6 +36,7 @@ updateWorkspace = function() {
 }
 var runCode
 runCode = function(button) {
+    updateWorkspace();
     $output = document.getElementById('output');
     $output.textContent = "Thinking...\n";
     var main_xml = Blockly.Xml.workspaceToDom(demoWorkspace);
@@ -47,9 +48,17 @@ runCode = function(button) {
     xhttp.setRequestHeader('X-CSRFToken', csrftoken);
     xhttp.onreadystatechange = function() {
         output_object = JSON.parse(this.responseText);
-        answer = output_object.answer;
+        // console.log(output_object);
+        if (output_object.answer == 'false' || output_object.answer == 'true') {
+            if (output_object.answer == 'false') {
+                $output.textContent = "No";
+            } else {
+                $output.textContent = "Yes";
+            }
+        } else {
+            $output.textContent = JSON.parse(output_object.answer)[0].Human;
+        }
         console.log(output_object.transcript);
-        $output.textContent = answer.Human;
     };
     xhttp.send();
     Blockly.hideChaff();

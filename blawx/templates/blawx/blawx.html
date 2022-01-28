@@ -147,7 +147,9 @@
                 toolbox: document.getElementById('toolbox')});
             var importWorkspace = new Blockly.Workspace();
             var xmlText = '{{ workspace.xml_content | safe | escapejs }}';
-            Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xmlText), demoWorkspace);
+            if (xmlText) {
+                Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xmlText), demoWorkspace);
+            }
             var onresize = function(e) {
             // Compute the absolute coordinates and dimensions of blocklyArea.
             var element = blocklyArea;

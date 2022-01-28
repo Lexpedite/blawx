@@ -64,8 +64,8 @@ Contributions to the code and documentation are welcome. Please contribute respo
 
 ## Development Notes
 * Base Capabilities
-  1. Rewrite the run endpoint to collect the code from the database, and extract and reformat a query.
-  2. Finish blawx2scasp.js code.
+  1. Finish blawx2scasp.js code.
+    * There are problems with how #pred statements are generated.
 * Important for v1.0.0-alpha
   * Retrieve and display all the answers, not just the first.
   * Display compiler warnings.

@@ -5,9 +5,12 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 import tempfile
 import os
+import json 
 from contextlib import redirect_stderr
 
 from swiplserver import PrologMQI
+
+from .models import Workspace
 
 def json_2_scasp(element,higher_order=False):
   output = ""
@@ -138,95 +141,50 @@ throw(jane,scissors)."""
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def run_workspace(request,pk):
-  
-  # Collect the rules based on the ruleset specified
-  if pk == 1:
-    scasp_ruleset = """
-:- use_module(library(scasp)).
-:- use_module(library(scasp/human)).
 
-#pred player(X) :: '@(X) is a player'.
-#pred participate_in(Game,Player) :: '@(Player) participated in @(Game)'.
-#pred winner(Game,Player) :: '@(Player) is the winner of @(Game)'.
-#pred throw(Player,Sign) :: '@(Player) threw @(Sign)'.
-#pred beat(Sign,OtherSign) :: '@(Sign) beats @(OtherSign)'.
-#pred game(G) :: '@(G) is a game of rock-paper-scissors'.
-#pred not_same_player(X,Y) :: '@(X) and @(Y) are not the same player'.
-
-beat(rock,scissors).
-beat(scissors,paper).
-beat(paper,rock).
-
-not_same_player(X,Y) :-
-    X \= Y.
-
-game_has_two_different_players(Game,Player,OtherPlayer) :-
-    game(Game),
-    player(Player),
-    not_same_player(Player,OtherPlayer),
-    player(OtherPlayer),
-    participate_in(Game,Player),
-    participate_in(Game,OtherPlayer).
-
-winner(Game,Player) :-
-  game_has_two_different_players(Game,Player,OtherPlayer),
-  throw(Player,Sign),
-  throw(OtherPlayer,OtherSign),
-  beat(Sign,OtherSign).
-
-game(testgame).
-player(bob).
-player(jane).
-participate_in(testgame,bob).
-participate_in(testgame,jane).
-throw(bob,rock).
-throw(jane,scissors).
-
-"""
-    query = "scasp(winner(G,P),[tree(Tree)]),with_output_to(string(Human), human_justification_tree(Tree,[]))."
+    ws = Workspace.objects.get(pk=pk)
+    ruleset = ws.scasp_encoding
+    query = "No Query Specified"
+    for line in ruleset.splitlines():
+        if line.startswith("?- "):
+            query = line[3:-1] # remove query prompt and period.
+    full_query = "scasp(" + query + ",[tree(Tree)]),with_output_to(string(Human), human_justification_tree(Tree,[]))."
     rulefile = tempfile.NamedTemporaryFile('w',delete=False)
-    rulefile.write(scasp_ruleset)
+    rulefile.write(":- use_module(library(scasp)).\n")
+    rulefile.write(":- use_module(library(scasp/human)).\n")
+    rulefile.write(ruleset)
     rulefile.close()
     rulefilename = rulefile.name
-  else:
-    return Http404("Workspace not found")
-    
-  # Start the Prolog "thread"
-  with PrologMQI() as swipl:
-    with swipl.create_thread() as swipl_thread:
 
-      file = open(rulefilename,'r')
-      # Get rid of the file operations entirely.
-      # Load the rules from the database, and build
-      # a transcript in memory.
-      transcript = open("transcript","w")
-      transcript.write("Loading " + rulefilename + ", the contents of which are:\n")
-      transcript.write(file.read() + '\n')
-    #   print(file.read())
-      file.close()
-      
+    # Start the Prolog "thread"
+    with PrologMQI() as swipl:
+        with swipl.create_thread() as swipl_thread:
 
-      with redirect_stderr(transcript):
-        load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
-      transcript.write(str(load_file_answer) + '\n')
-      if os.path.exists(rulefilename):
-        os.remove(rulefilename)
+            transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
+            transcript_name = transcript.name
 
-      transcript.write(query)
-      with redirect_stderr(transcript):
-        query_answer = swipl_thread.query(query)
-      transcript.write(str(query_answer) + '\n')
+            with redirect_stderr(transcript):
+                load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+            transcript.write(str(load_file_answer) + '\n')
+            if os.path.exists(rulefilename):
+                os.remove(rulefilename)
 
-      transcript.close()
-      transcript = open("transcript",'r')
-      transcript_output = transcript.read()
-      transcript.close()
-      os.remove('transcript')
-      
-      if type(query_answer) is not list:
-        query_output = query_answer
-      else:
-        query_output = query_answer[0]
+            transcript.write(full_query)
+            with redirect_stderr(transcript):
+                query_answer = swipl_thread.query(full_query)
+            transcript.write(str(query_answer) + '\n')
 
-      # Return the results as JSON
-      return Response({ "answer": query_output, "transcript": transcript_output })
+            transcript.close()
+            transcript = open(transcript_name,'r')
+            # transcript = open("transcript",'r')
+            transcript_output = transcript.read()
+            transcript.close()
+            os.remove(transcript_name)
+            
+            # if type(query_answer) is not list:
+                # query_output = query_answer
+            # else:
+                # query_output = query_answer[0]
+
+    # Return the results as JSON
+    return Response({ "answer": json.dumps(query_answer), "transcript": transcript_output })
