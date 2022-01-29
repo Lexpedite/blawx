@@ -106,14 +106,14 @@ Blockly.JavaScript['disjunction'] = function(block) {
 Blockly.JavaScript['logical_negation'] = function(block) {
   var statements_negated_statement = Blockly.JavaScript.statementToCode(block, 'negated_statement');
   // TODO: Assemble JavaScript into code variable.
-  var code = '-' + statements_negated_statement;
+  var code = '-' + statements_negated_statement.trim();
   return code;
 };
 
 Blockly.JavaScript['default_negation'] = function(block) {
   var statements_default_negated_statement = Blockly.JavaScript.statementToCode(block, 'default_negated_statement');
   // TODO: Assemble JavaScript into code variable.
-  var code = 'not ' + statements_default_negated_statement;
+  var code = 'not ' + statements_default_negated_statement.trim();
   return code;
 };
 
@@ -144,7 +144,19 @@ Blockly.JavaScript['query'] = function(block) {
   var statements_query = Blockly.JavaScript.statementToCode(block, 'query');
   // TODO: Assemble JavaScript into code variable.
   var code = '?- ' + statements_query + '.\n\n';
+  var code = "?- ";
+  var currentBlock = this.getInputTargetBlock('query');
+  while (currentBlock) {
+    var codeForBlock = getCodeForSingleBlock(currentBlock);
+    code += codeForBlock
+    currentBlock = currentBlock.getNextBlock();
+    if (currentBlock) {
+      code += ", "
+    }
+  }
+  code += ".\n"
   return code;
+  
 };
 
 Blockly.JavaScript['rule'] = function(block) {
@@ -260,7 +272,10 @@ Blockly.JavaScript['unattributed_fact'] = function(block) {
   var currentBlock = this.getInputTargetBlock('statements');
   while (currentBlock) {
     var codeForBlock = getCodeForSingleBlock(currentBlock);
-    code += codeForBlock + '.\n';
+    code += codeForBlock
+    if (!code.endsWith('\n')) {
+      code += '.\n';
+    }
     currentBlock = currentBlock.getNextBlock();
   }
   return code;
@@ -313,7 +328,10 @@ Blockly.JavaScript['category_attribute'] = function(block) {
   var code = '';
   while (currentBlock) {
     var codeForBlock = getCodeForSingleBlock(currentBlock);
-    code += codeForBlock + '\n';
+    code += codeForBlock
+    if (codeForBlock != "") {
+      code += '\n';
+    }
     currentBlock = currentBlock.getNextBlock();
   }
   // TODO: Assemble JavaScript into code variable.
@@ -337,7 +355,7 @@ Blockly.JavaScript['attribute_declaration'] = function(block) {
     } else {
       code += "Y,X";
     }
-    code += ") :: '" + prefix + " @(X) " + infix + " @(Y) " + postfix + "'\n"
+    code += ") :: '" + prefix + " @(X) " + infix + " @(Y) " + postfix + "'.\n"
   }
   return code;
 };
