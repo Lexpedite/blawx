@@ -12,7 +12,7 @@ from rest_framework.parsers import JSONParser
 # from rest_framework import permissions
 
 from .serializers import WorkspaceSerializer, CodeUpdateRequestSerializer
-from .models import Workspace, Query
+from .models import Workspace, Query, DocPage
 
 
 # Create your views here.
@@ -54,9 +54,12 @@ class WorkspaceUpdateView(UpdateView):
     model = Workspace
     fields = ['workspace_name']
 
-class DocumentView(TemplateView):
+class DocumentView(generic.DetailView):
+    model = DocPage
     template_name = "blawx/docs.html"
 
+    def get_queryset(self):
+        return DocPage.objects.all()
 
 
 class WorkspaceAPIViewSet(viewsets.ModelViewSet):
@@ -77,3 +80,6 @@ def update_code(request,pk): # /url-mapping is blawx/1/update
     target.scasp_encoding = workspace_serializer.validated_data.get('scasp_encoding', target.scasp_encoding)
     target.save()
     return Response({"That probably worked."})
+
+# def docHome(request):
+#     return None

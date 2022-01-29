@@ -18,3 +18,12 @@ class Query(models.Model):
 
     def __str__(self):
         return self.query_name + " inside " + self.workspace + " not" if not self.published else "" + " published"
+
+class DocPage(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    path = models.CharField(primary_key = True, max_length=200)
+
+    def __str__(self):
+        return self.title
+

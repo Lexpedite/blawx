@@ -47,7 +47,7 @@
         <sep></sep>
         <category name="Categories" colour="#a55b5b">
         <block type="category_declaration"></block>
-        <block type="category_display"></block>
+        <!-- <block type="category_display"></block> -->
         <block type="category_attribute"></block>
         <block type="attribute_declaration"></block>
         <block type="attribute_display"></block>
@@ -116,21 +116,15 @@
         <sep></sep> -->
     </xml>
 
-
-    <div class="row flex-grow-1 d-flex">
-        <div id="interface" class="col-8 flex-grow-1 d-flex">
-            <div class="col-12">
-
-                <div class="card shadow mb-4" style="min-height: 100%; padding: 5px;">
-                    <div class="card-body d-flex" id="blocklyArea" style="padding: 0px">
+    
+    <div class="row">
+        <div id="interface" class="col-9 d-flex align-self-stretch">
+                    <div id="blocklyArea" style="padding: 0px; min-width: 100%; min-height: 100%">
                         <div id="blocklyDiv" style="position: absolute; top: 0px; left: 0px"></div>
                     </div>
-                </div>
-
-            </div>
         </div>
-        <div class="col-4 flex-grow-1">
-            <div class="card shadow mb-4" style="min-height: 100%;">
+        <div class="col-3 ">
+            <div class="card" style="min-height: 100%;">
                 <div class=" card-body d-flex">
                     <pre id="output"></pre>
                 </div>
@@ -161,8 +155,8 @@
                 element = element.offsetParent;
             } while (element);
             // Position blocklyDiv over blocklyArea.
-            blocklyDiv.style.left = '5px';
-            blocklyDiv.style.top = '5px';
+            blocklyDiv.style.left = blocklyArea.offsetLeft + 'px';
+            blocklyDiv.style.top = blocklyArea.offsetTop + 'px';
             blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
             blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
             Blockly.svgResize(demoWorkspace);
@@ -202,7 +196,6 @@
     <div>
       <input id="importfile" onchange="importBlocksFile(this)" type="file" accept=".blawx" hidden />
     </div>
-    
 
 {% endblock %}
 

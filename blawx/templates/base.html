@@ -31,25 +31,22 @@
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 
-<div class="container-fluid d-flex flex-column" style="min-height: 100vh;">
-    <div id="header" class="col-12">
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-            <div class="sidebar-brand-text mx-3" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
-            {% block header_elements %}{% endblock %}
-        </nav>
-    </div>
+<header class="py-3 mb-3 border-bottom">
+    <div class="container-fluid d-grid gap-3 align-items-left" style="grid-template-columns: 1fr 2fr;">
+        <div class="sidebar-brand-text mx-3" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
+        {% block header_elements %}{% endblock %}
+
+        </div>
+  </header>
+
 
 {% block page_content %}{% endblock %}
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span>Copyright &copy; Lexpedite Legal Technologies Ltd. 2022</span>
+    </div>
+  </footer>
 
-<div id="footer" class="col-12">
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Lexpedite Legal Technologies Ltd. 2022</span>
-            </div>
-        </div>
-    </footer>
-</div>
 
 </body>
 </html>
