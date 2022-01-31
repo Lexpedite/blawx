@@ -65,15 +65,18 @@ Contributions to the code and documentation are welcome. Please contribute respo
 ## Development Notes
 * Base Capabilities Are Complete.
 * Important for v1.0.0-alpha
-  * Make running code synchronous after saving it. I think it is causing some errors.
+  * Make running code synchronous after saving it.
+  * Make save and exit separate buttons.
   * Retrieve and display all the answers, not just the first.
   * Display compiler warnings, swipl crash errors.
-  * Bring the help files back in to the main site.
-  * Simplify and document the installation and configuration process.
   * Make it so that examples can't be deleted by non-admins.
-  * Add examples.
-  * Make the responses pretty.
+  * There is a problem with the code page where until it is resized, the interface
+    covers the footer and the screen jiggles on scrolling.
+  * Simplify and document the installation and configuration process.
 * Known Problems
+  * Make the responses pretty.
+  * Add examples.
+  * Headers behaving strange in the documentation.
   * Shouldn't be able to apply to more than one statement at a time in negations.
   * Rules should not allow more than one statement in the conclusion.
   * Category Creation Statements should only go in Facts.

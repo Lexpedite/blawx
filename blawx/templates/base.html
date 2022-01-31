@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'blawx/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'blawx/favicon-32x32.png' %}">
@@ -27,26 +27,21 @@
     {% block page_head %}{% endblock %}
     
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
-
 <header class="py-3 mb-3 border-bottom">
-    <div class="container-fluid d-grid gap-3 align-items-left" style="grid-template-columns: 1fr 2fr;">
-        <div class="sidebar-brand-text mx-3" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
+    <div class="row">
+        <div class="col-2 align-self-center" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
         {% block header_elements %}{% endblock %}
 
         </div>
   </header>
-
-
 {% block page_content %}{% endblock %}
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
         <span>Copyright &copy; Lexpedite Legal Technologies Ltd. 2022</span>
     </div>
   </footer>
-
-
 </body>
 </html>

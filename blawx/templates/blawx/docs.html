@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load markdown_extras %}
 
-{% block header_elements %}<h1>Documentation</h1>{% endblock %}
+{% block header_elements %}<h1 class="col-8">Documentation</h1>{% endblock %}
 
 {% block page_content %}
 <style>
@@ -118,9 +118,9 @@ main {
     </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <button class="btn align-items-center rounded">
+        <a href="/blawx/docs/home/" class="btn align-items-center rounded">
           Home
-        </button>
+        </a>
       </li>
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
@@ -128,12 +128,12 @@ main {
         </button>
         <div class="collapse" id="dashboard-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">User Interface Tour</a></li>
-            <li><a href="#" class="link-dark rounded">Categories, Objects, and Attributes</a></li>
-            <li><a href="#" class="link-dark rounded">Facts, Rules, and Questions</a></li>
-            <li><a href="#" class="link-dark rounded">Logic Blocks</a></li>
-            <li><a href="#" class="link-dark rounded">Variables</a></li>
-            <li><a href="#" class="link-dark rounded">Rock, Paper, Scissors</a></li>
+            <li><a href="/blawx/docs/guide/interface/" class="link-dark rounded">User Interface Tour</a></li>
+            <li><a href="/blawx/docs/guide/categories/" class="link-dark rounded">Categories, Objects, and Attributes</a></li>
+            <li><a href="/blawx/docs/guide/facts_rules_questions/" class="link-dark rounded">Facts, Rules, and Questions</a></li>
+            <li><a href="/blawx/docs/guide/logic/" class="link-dark rounded">Logic Blocks</a></li>
+            <li><a href="/blawx/docs/guide/variables/" class="link-dark rounded">Variables</a></li>
+            <li><a href="/blawx/docs/guide/rps/" class="link-dark rounded">Rock, Paper, Scissors</a></li>
           </ul>
         </div>
       </li>
@@ -143,8 +143,8 @@ main {
         </button>
         <div class="collapse" id="orders-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">The Blawx Web API</a></li>
-            <li><a href="#" class="link-dark rounded">Math</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">The Blawx Web API</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Math</a></li>
           </ul>
         </div>
       </li>
@@ -154,15 +154,15 @@ main {
         </button>
         <div class="collapse" id="account-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Socrates</a></li>
-            <li><a href="#" class="link-dark rounded">Rock, Paper, Scissors</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Socrates</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Rock, Paper, Scissors</a></li>
           </ul>
         </div>
       </li>
       <li class="mb-1">
-        <button class="btn align-items-center rounded">
+        <a href="/blawx/docs/about/" class="btn align-items-center rounded">
           About Blawx
-        </button>
+        </a>
       </li>
       <li class="border-top my-3"></li>
     </ul>
@@ -172,29 +172,29 @@ main {
       </a>
       <ul class="list-unstyled ps-0">
         <li class="mb-1">
-            <button class="btn align-items-center rounded">
+            <a href="/blawx/docs/incomplete/" class="btn align-items-center rounded">
               Fact
-            </button>
+            </a>
           </li>
           <li class="mb-1">
-            <button class="btn align-items-center rounded">
+            <a href="/blawx/docs/incomplete/" class="btn align-items-center rounded">
               Rule
-            </button>
+            </a>
           </li>
           <li class="mb-1">
-            <button class="btn align-items-center rounded">
+            <a href="/blawx/docs/incomplete/" class="btn align-items-center rounded">
               Constraint
-            </button>
+            </a>
           </li>
           <li class="mb-1">
-            <button class="btn align-items-center rounded">
+            <a href="/blawx/docs/incomplete/" class="btn align-items-center rounded">
               Assumption
-            </button>
+            </a>
           </li>
           <li class="mb-1">
-            <button class="btn align-items-center rounded">
+            <a href="/blawx/docs/incomplete/" class="btn align-items-center rounded">
               Question
-            </button>
+            </a>
           </li>
           <li class="mb-1">
             <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#categories-collapse" aria-expanded="false">
@@ -202,13 +202,13 @@ main {
             </button>
             <div class="collapse" id="categories-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-dark rounded">New Category</a></li>
-                <li><a href="#" class="link-dark rounded">Category Attributes</a></li>
-                <li><a href="#" class="link-dark rounded">New Attribute</a></li>
-                <li><a href="#" class="link-dark rounded">Attribute Display</a></li>
-                <li><a href="#" class="link-dark rounded">Category Selector</a></li>
-                <li><a href="#" class="link-dark rounded">Attribute Selector</a></li>
-                <li><a href="#" class="link-dark rounded">Category Equivalence</a></li>
+                <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">New Category</a></li>
+                <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Category Attributes</a></li>
+                <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">New Attribute</a></li>
+                <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Attribute Display</a></li>
+                <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Category Selector</a></li>
+                <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Attribute Selector</a></li>
+                <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Category Equivalence</a></li>
               </ul>
             </div>
           </li>
@@ -218,8 +218,8 @@ main {
         </button>
         <div class="collapse" id="data-types-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">True / False</a></li>
-            <li><a href="#" class="link-dark rounded">Number</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">True / False</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Number</a></li>
           </ul>
         </div>
       </li>
@@ -229,9 +229,9 @@ main {
         </button>
         <div class="collapse" id="data-values-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Number Value</a></li>
-            <li><a href="#" class="link-dark rounded">True</a></li>
-            <li><a href="#" class="link-dark rounded">False</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Number Value</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">True</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">False</a></li>
           </ul>
         </div>
       </li>
@@ -241,9 +241,9 @@ main {
         </button>
         <div class="collapse" id="number-statements-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Calculation</a></li>
-            <li><a href="#" class="link-dark rounded">Math Operator</a></li>
-            <li><a href="#" class="link-dark rounded">Numerical Constraint</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Calculation</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Math Operator</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Numerical Constraint</a></li>
           </ul>
         </div>
       </li>
@@ -253,11 +253,11 @@ main {
         </button>
         <div class="collapse" id="objects-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Object Declaration</a></li>
-            <li><a href="#" class="link-dark rounded">Object Equality</a></li>
-            <li><a href="#" class="link-dark rounded">Object Disequality</a></li>
-            <li><a href="#" class="link-dark rounded">Object Category</a></li>
-            <li><a href="#" class="link-dark rounded">Object Selector</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Object Declaration</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Object Equality</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Object Disequality</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Object Category</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Object Selector</a></li>
           </ul>
         </div>
       </li>
@@ -267,9 +267,9 @@ main {
         </button>
         <div class="collapse" id="logic-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Known False</a></li>
-            <li><a href="#" class="link-dark rounded">Not</a></li>
-            <li><a href="#" class="link-dark rounded">Comparison</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Known False</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Not</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Comparison</a></li>
           </ul>
         </div>
       </li>
@@ -279,10 +279,9 @@ main {
         </button>
         <div class="collapse" id="variables-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Variable</a></li>
-            <li><a href="#" class="link-dark rounded">Silent Variable</a></li>
-            <li><a href="#" class="link-dark rounded">Unnamed Variable</a></li>
-            <li><a href="#" class="link-dark rounded">Variable Assignment</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Named Variable</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Unnamed Variable</a></li>
+            <li><a href="/blawx/docs/incomplete/" class="link-dark rounded">Variable Assignment</a></li>
           </ul>
         </div>
       </li>
