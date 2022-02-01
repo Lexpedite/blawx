@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
     'blawx.apps.BlawxConfig',
     'django.contrib.admin',
     'django.contrib.auth',
