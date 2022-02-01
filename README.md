@@ -4,7 +4,7 @@ A user-friendly web-based tool for Rules as Code written by Jason Morris of [Lex
 
 Blocks + law = Blawx
 
-![Blawx Front End Screenshot](/blawx/static/blawx/blawxv1screenshot.png)
+![Blawx Front End Screenshot](blawxv1screenshot.png)
 
 ## Overview
 
@@ -61,15 +61,3 @@ investment in similar technologies in the future by demonstrating what they are 
 If you have questions on how to use Blawx, please consider joining the [Blawx Slack server](https://blawx.slack.com).
 If you have issues or concerns with the package, please open an Issue here in the [GitHub Repository](https://github.com/Lexpedite/blawx).
 Contributions to the code and documentation are welcome. Please contribute responsibly.
-
-## Notes for Installation Process
-
-Python requirements are in the requirements.txt
-To run the reasoner,
-```
-apt-add-repository --yes ppa:swi-prolog/stable
-apt-get update
-apt-get install swi-prolog
-git clone https://github.com/JanWielemaker/sCASP.git
-cd sCASP && swipl -g "pack_install('.',[interactive(false)])" -t halt
-```
