@@ -1,7 +1,7 @@
 function liveCode(event) {
   // console.log("Livecoding")
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-  document.getElementById('output').textContent = code;
+  document.getElementById('code').textContent = code;
 }
 demoWorkspace.addChangeListener(liveCode);
 
