@@ -27,7 +27,7 @@ It provides:
 * a web server that stores your Blawx encodings and gives access to them and the reasoner over a RESTful API, based on [Django](https://www.djangoproject.com/) 
 * a visual development environment based on [Google's Blockly](https://github.com/google/blockly)
   to write, edit, and test your encodings
-* a reasoner based on [SWI-Prolog](https://swi-prolog.org/) and [s(CASP)](https://github.com/JanWielemaker) that will answer questions and explain the answers
+* a reasoner based on [SWI-Prolog](https://swi-prolog.org/) and [s(CASP)](https://github.com/JanWielemaker/sCASP) that will answer questions and explain the answers
 
 ### Why Should I Use Blawx?
 
@@ -59,7 +59,7 @@ investment in similar technologies in the future by demonstrating what they are 
 
 ## Contributions
 If you have questions on how to use Blawx, please consider joining the [Blawx Slack server](https://blawx.slack.com).
-If you have issues or concerns with the package, please open an Issue here in the [GitHub Repository](https://github.com/Blawx/blawx).
+If you have issues or concerns with the package, please open an Issue here in the [GitHub Repository](https://github.com/Lexpedite/blawx).
 Contributions to the code and documentation are welcome. Please contribute responsibly.
 
 ## Notes for Installation Process
