@@ -3,6 +3,7 @@ from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import api_view, permission_classes, parser_classes
@@ -46,13 +47,28 @@ class WorkspaceCreateView(CreateView):
     fields = ['workspace_name']
     success_url = reverse_lazy('blawx:workspaces')
 
-class WorkspaceDeleteView(DeleteView):
+class WorkspaceDeleteView(UserPassesTestMixin, DeleteView):
+    # I need to restrict access where the object is set to be an example
     model = Workspace
     success_url = reverse_lazy('blawx:workspaces')
 
-class WorkspaceUpdateView(UpdateView):
+    def test_func(self):
+        if self.get_object().workspace_example:
+            return self.request.user.is_authenticated
+        else:
+            return True
+
+class WorkspaceUpdateView(UserPassesTestMixin, UpdateView):
+    # I need to restrict access where the object is set to be an example.
     model = Workspace
     fields = ['workspace_name']
+
+    def test_func(self):
+        if self.get_object().workspace_example:
+            return self.request.user.is_authenticated
+        else:
+            return True
+
 
 class DocumentView(generic.DetailView):
     model = DocPage
@@ -64,7 +80,7 @@ class DocumentView(generic.DetailView):
 
 class WorkspaceAPIViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows Workspaces to be viewed or edited.
     """
     queryset = Workspace.objects.all()
     serializer_class = WorkspaceSerializer
@@ -73,7 +89,10 @@ class WorkspaceAPIViewSet(viewsets.ModelViewSet):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def update_code(request,pk): # /url-mapping is blawx/1/update
+    # Need to restrict this to logged-in individuals for example workspaces
     target = Workspace.objects.get(pk=pk)
+    if target.workspace_example and not request.user.is_authenticated:
+            return Response("Not permitted for examples.")
     workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
     workspace_serializer.is_valid()
     target.xml_content = workspace_serializer.validated_data.get('xml_content', target.xml_content)

@@ -3,8 +3,10 @@
 
 <h1>{{ workspace.workspace_name }}</h1>
 <div><a href="{% url 'blawx:code' workspace.id %}" class="btn btn-success">Code Editor</a></div>
+{% if not workspace.workspace_example %}
 <div>
     <a href="{% url 'blawx:workspace_delete' workspace.id %}" class="btn btn-danger">Delete Workspace</a>
 </div>
+{% endif %}
 <a href="{% url 'blawx:workspaces' %}">Back to home</a>
 {% endblock %}
