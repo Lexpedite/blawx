@@ -62,53 +62,6 @@ If you have questions on how to use Blawx, please consider joining the [Blawx Sl
 If you have issues or concerns with the package, please open an Issue here in the [GitHub Repository](https://github.com/Blawx/blawx).
 Contributions to the code and documentation are welcome. Please contribute responsibly.
 
-## Development Notes
-* Base Capabilities Are Complete.
-* Important for v1.0.0-alpha
-  * Make it so that examples can't be deleted by non-admins.
-  * Simplify and document and test the installation and configuration process.
-* Known Problems
-  * Make the documentation and examples something that loads after installation, so
-    the user can use whatever database they want.
-  * Make the responses pretty.
-  * Add examples.
-  * Headers behaving strange in the documentation.
-  * Shouldn't be able to apply to more than one statement at a time in negations.
-  * Rules should not allow more than one statement in the conclusion.
-  * Category Creation Statements should only go in Facts.
-  * Some kinds of statements shouldn't go in assumptions.
-* Future Capabilities
-  * Interface
-    * Category Declaration Customization
-    * Legal Documents
-    * Input Blocks
-    * Include
-    * Switch to attributed version of blocks (for rule references)
-    * Dates
-    * Overrides
-    * Disjunction
-  * Random
-    * Create an app that will collect
-      input in an auto-generated interface and run a predefined query
-    * Add the ability to save queries to a workspace
-    * Add the ability to make a workspace or query public or not
-    * GitHub integration
-    * Update the help files for the new blocks and reasoner.
-    * Upgrade to the new JSON serialization method for Blockly
-    * Fix the CSS and templates to be minimal
-    * Import legal documents from external sources
-    * WYSIWYG legal document editing
-    * Ontology features
-    * Switch between attributed/unattributed blocks using context menu
-    * Update existing blocks when their source definition is updated.
-    * Code validation inside the coding environment, missing things, etc.
-    * Limit the number of queries to 1.
-    * Limit the number of inputs to 1.
-    * Search capabilities inside the editor?
-    * Consider other blockly plugins, like the highlighter.
-    * Re-implement code-generation as its own blockly language, instead of piggy-backing off of JavaScript.
-    * Get the reasoner to accept JSON input formatted for Blockly, not sCASP.
-
 ## Notes for Installation Process
 
 Python requirements are in the requirements.txt
