@@ -87,13 +87,7 @@ ATTRIBUTE_DECLARATION_MUTATOR_MIXIN = {
     domToMutation: function(xmlElement) {
         var attributeName = xmlElement.getAttribute('attribute_name');
         var attributeType = xmlElement.getAttribute('attribute_type');
-        // this.updateAttributeSelector(attributeName,attributeType);
     },
-
-    // updateAttributeSelector: function(attributeName,attributeType) {
-    //      this.setFieldValue(attributeName, "attribute_name");
-    //      this.getInput('attribute_type').setCheck([attributeType,"VARIABLE"]);
-    //  }
     }
 
 
@@ -127,7 +121,6 @@ ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
           this.blawxAttributeName = attributeName;
           this.blawxAttributeType = attributeType;
           this.blawxAttributeOrder = attributeOrder;
-        //   console.log("Restoring : " + this.blawxAttributeName + ", " + this.blawxAttributeType + ", " + this.blawxAttributeOrder)
 
           // I "think" that the field values are automatically serialized,
           // as are the words "object" and "value" in the serialized text,
@@ -138,12 +131,10 @@ ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
           if (attributeType) {
             if (attributeOrder == 'ov') {
                 // Change the second input.
-                // console.log("Setting type of second element of attribute block to " + blawxTypeToBlocklyType(attributeType) + " or variable")
                 this.getInput('second_element').connection.setCheck([blawxTypeToBlocklyType(attributeType),'VARIABLE']);
                 this.getInput('first_element').connection.setCheck(['OBJECT','VARIABLE']);
             } else {
                 // Change the first input.
-                // console.log("Setting type of first element of attribute block to " + blawxTypeToBlocklyType(attributeType) + " or variable")
                 this.getInput('first_element').connection.setCheck([blawxTypeToBlocklyType(attributeType),'VARIABLE']);
                 this.getInput('second_element').connection.setCheck(['OBJECT','VARIABLE']);
             }

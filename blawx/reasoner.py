@@ -180,11 +180,6 @@ def run_workspace(request,pk):
             transcript_output = transcript.read()
             transcript.close()
             os.remove(transcript_name)
-            
-            # if type(query_answer) is not list:
-                # query_output = query_answer
-            # else:
-                # query_output = query_answer[0]
 
     # Return the results as JSON
     return Response({ "answer": json.dumps(query_answer), "transcript": transcript_output })

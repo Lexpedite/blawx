@@ -1,19 +1,16 @@
-from django.shortcuts import render
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic import TemplateView
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 from rest_framework import viewsets, permissions
-from rest_framework.decorators import api_view, permission_classes, parser_classes
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
-from rest_framework.parsers import JSONParser
 # from rest_framework import permissions
 
 from .serializers import WorkspaceSerializer, CodeUpdateRequestSerializer
-from .models import Workspace, Query, DocPage
+from .models import Workspace, DocPage
 
 
 # Create your views here.
@@ -48,7 +45,6 @@ class WorkspaceCreateView(CreateView):
     success_url = reverse_lazy('blawx:workspaces')
 
 class WorkspaceDeleteView(UserPassesTestMixin, DeleteView):
-    # I need to restrict access where the object is set to be an example
     model = Workspace
     success_url = reverse_lazy('blawx:workspaces')
 
@@ -59,7 +55,6 @@ class WorkspaceDeleteView(UserPassesTestMixin, DeleteView):
             return True
 
 class WorkspaceUpdateView(UserPassesTestMixin, UpdateView):
-    # I need to restrict access where the object is set to be an example.
     model = Workspace
     fields = ['workspace_name']
 
@@ -88,8 +83,7 @@ class WorkspaceAPIViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-def update_code(request,pk): # /url-mapping is blawx/1/update
-    # Need to restrict this to logged-in individuals for example workspaces
+def update_code(request,pk):
     target = Workspace.objects.get(pk=pk)
     if target.workspace_example and not request.user.is_authenticated:
             return Response("Not permitted for examples.")
@@ -99,6 +93,3 @@ def update_code(request,pk): # /url-mapping is blawx/1/update
     target.scasp_encoding = workspace_serializer.validated_data.get('scasp_encoding', target.scasp_encoding)
     target.save()
     return Response({"That probably worked."})
-
-# def docHome(request):
-#     return None

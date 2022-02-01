@@ -134,11 +134,6 @@ var gotoHelp;
 gotoHelp = function(button) {
     window.open('/docs');
 }
-// demoWorkspace.registerButtonCallback('menuRunCode', runCode);
-// demoWorkspace.registerButtonCallback('menuClear', clearBlocks);
-// demoWorkspace.registerButtonCallback('menuLoad', getLoadFile);
-// demoWorkspace.registerButtonCallback('menuSave', exportBlocks);
-// demoWorkspace.registerButtonCallback('menuHelp', gotoHelp);
 
 function loadBlocksFile(element) {
     try {	

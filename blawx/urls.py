@@ -15,7 +15,6 @@ urlpatterns = [
     path('<int:pk>/delete/', views.WorkspaceDeleteView.as_view(), name="workspace_delete"),
     path('create/', views.WorkspaceCreateView.as_view(), name="workspace_create"),
     path('docs/<path:pk>/', views.DocumentView.as_view(), name="docs_page"),
-    # path('docs/', views.docHome, name="docs_home"),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('query/<str:workspace>/<str:query>/', reasoner.run_query),

@@ -125,7 +125,6 @@
                     </div>
         </div>
         <div class="flex-column card col-3 h-100 p-0">
-            <!-- <div style="min-height: 100%;"> -->
                 <nav class="card-header">
                     <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
                       <button class="nav-link active" id="nav-output-tab" data-bs-toggle="tab" data-bs-target="#nav-output" type="button" role="tab" aria-controls="nav-output" aria-selected="true">Output</button>
@@ -138,7 +137,6 @@
                     <div class="tab-pane fade" id="nav-problems" role="tabpanel" aria-labelledby="nav-problems-tab"><pre id="problems"></pre></div>
                     <div class="tab-pane fade " id="nav-code" role="tabpanel" aria-labelledby="nav-code-tab"><pre id="code"></pre></div>
                 </div>
-            <!-- </div> -->
         </div>
     </div>
 
@@ -155,21 +153,11 @@
                 Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xmlText), demoWorkspace);
             }
             var onresize = function(e) {
-            // Compute the absolute coordinates and dimensions of blocklyArea.
-            // var element = blocklyArea;
-            // var x = 0;
-            // var y = 0;
-            // do {
-            //     x += element.offsetLeft;
-            //     y += element.offsetTop;
-            //     element = element.offsetParent;
-            // } while (element);
-            // Position blocklyDiv over blocklyArea.
-            blocklyDiv.style.left = blocklyArea.offsetLeft + 'px';
-            blocklyDiv.style.top = blocklyArea.offsetTop + 'px';
-            blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
-            blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
-            Blockly.svgResize(demoWorkspace);
+                blocklyDiv.style.left = blocklyArea.offsetLeft + 'px';
+                blocklyDiv.style.top = blocklyArea.offsetTop + 'px';
+                blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+                blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+                Blockly.svgResize(demoWorkspace);
             };
             window.addEventListener('resize', onresize, false);
             Blockly.svgResize(demoWorkspace);
@@ -177,25 +165,6 @@
             window.onload = function() {
                 onresize();
             };
-            
-            // window.setTimeout(BlocklyStorage.restoreBlocks, 0);
-            // BlocklyStorage.backupOnUnload();
-    
-            //const queryString = window.location.search;
-            // const urlParams = new URLSearchParams(queryString);
-            // if (urlParams.has('load')) {
-            //     xhttp = new XMLHttpRequest();
-            //     loadfile = urlParams.get('load');
-            //     xhttp.onreadystatechange = function() {
-            //         if (this.readyState == 4 && this.status == 200) {
-            //             var xml = Blockly.Xml.textToDom(this.responseText);
-            //             demoWorkspace.clear();
-            //             Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-            //         }
-            //     };
-            //     xhttp.open("GET",loadfile,true);
-            //     xhttp.send();
-            // }
         </script>
         <script src="{% static 'blawx/buttons.js' %}"></script>
         <script src="{% static 'blawx/drawers.js' %}"></script>

@@ -1802,12 +1802,6 @@ scasp_blockset = [{
 }]
 
 // Make modifications that it is not possible to make in the Developer Tools
-// Set the colour of the include block to #666666
-// Add extensions and mutators to the relevant blocks
-// Attribute Selector Mutator
-// Category Selector Mutator
-// Object Selector Mutator
-// Attribute Declaration Mutator
 for (var i = 0; i < scasp_blockset.length; i++) {
   if (scasp_blockset[i].type == "attribute_selector") {
     scasp_blockset[i]['mutator'] = "attribute_selector_mutator"
@@ -1830,7 +1824,6 @@ for (var i = 0; i < scasp_blockset.length; i++) {
 }
 
 for (var i = 0; i < scasp_blockset.length; i++) {
-  // console.log("Adding " + scasp_blockset[i].type)
   const typename = scasp_blockset[i].type
   const elem = scasp_blockset[i]
   Blockly.Blocks[typename] = {
