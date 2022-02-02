@@ -1,24 +1,34 @@
 # Install Blawx
 
-This document is a WIP as we work on streamlining the installation process.
+The recommended method of installing and running Blawx is with Docker.
 
-## Rough Draft
+## Install Docker
 
-* Install django.
-* Add the Blawx app
-* Add the Blawx app code.
-* Install the non-python components (swipl,sCASP)
-* Configure the super-user account.
+Install Docker for the platform you are using.
 
-* Run the server
+## Clone Blawx
 
-
-Python requirements are in the requirements.txt
-To run the reasoner,
+Using git, clone this repository to your local machine.
 ```
-apt-add-repository --yes ppa:swi-prolog/stable
-apt-get update
-apt-get install swi-prolog
-git clone https://github.com/JanWielemaker/sCASP.git
-cd sCASP && swipl -g "pack_install('.',[interactive(false)])" -t halt
+git clone https://github.com/Lexpedite.blawx blawx
 ```
+
+## Build Blawx
+
+Build the blawx image with the following commands
+```
+cd blawx
+docker build . -t blawx
+```
+
+This command will take several minutes to run.
+
+## Run Blawx
+
+Run the newly generated blawx image with the following command:
+```
+docker run -d -p 8000:8000 blawx
+```
+
+The Blawx server will now be available at [http://127.0.0.1:8000](http://127.0.0.1:8000),
+and the administrative console will be available at [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
