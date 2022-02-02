@@ -15,15 +15,16 @@ RUN apt-add-repository --yes ppa:swi-prolog/stable && \
 
 RUN pip3 install Django
 
-RUN pip3 install -r blawx/blawx/requirements.txt
-
 RUN git clone https://github.com/JanWielemaker/sCASP.git && \
 	cd sCASP && \
 	swipl -g "pack_install('.',[interactive(false)])" -t halt
 
-RUN git clone -b v1 --single-branch https://github.com/Lexpedite/blawx blawx && \
+RUN git clone https://github.com/Lexpedite/blawx blawx && \
     cd blawx/blawx/static/blawx && \
     git clone https://github.com/google/blockly blockly
+
+RUN pip3 install -r blawx/blawx/requirements.txt
+
 
 WORKDIR blawx
 
