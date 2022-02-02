@@ -40,11 +40,6 @@ The move from v0 to v1 indicates there is no compatibility between Blawx code wr
 * Includes
 * Data blocks
 
-## [development] 2021-03-11
-### Added
-* Attribute customization blocks
-* Category weighting blocks
-
 ## [v0.2.4-alpha RC1](https://github.com/Blawx/blawx/releases/tag/v0.2.4-alphaRC1) 2021-01-22
 ### Added
 * Date, Time, Datetime, and Duration Datatypes ([Issue #48](https://github.com/Blawx/blawx/issues/48))
