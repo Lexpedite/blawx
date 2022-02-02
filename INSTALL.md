@@ -31,4 +31,7 @@ docker run -d -p 8000:8000 blawx
 ```
 
 The Blawx server will now be available at [http://127.0.0.1:8000](http://127.0.0.1:8000),
-and the administrative console will be available at [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+and the administrative console will be available at [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin).
+
+You can log into the admin console using the username "admin" and the password "blawx2022", which should be
+changed immediately on logging in.
