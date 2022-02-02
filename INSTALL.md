@@ -10,7 +10,7 @@ Install Docker for the platform you are using.
 
 Using git, clone this repository to your local machine.
 ```
-git clone https://github.com/Lexpedite.blawx blawx
+git clone https://github.com/Lexpedite/blawx blawx
 ```
 
 ## Build Blawx
