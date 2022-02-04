@@ -93,7 +93,7 @@
       6. Rock, Paper, Scissors
         This final section of the guide introduces you to
         the three-step process used in legal knowledge representation, and takes you
-        step-by-step through the process of modelling the rules of \"Rock, Paper, Scissors\"
+        step-by-step through the process of modelling the rules of "Rock, Paper, Scissors"
         in Blawx.
 - model: blawx.docpage
   pk: guide/categories
@@ -106,19 +106,19 @@
       Attributes are how Blawx organizes what it knows about the world.
 
       A Category
-      is a type of object. For example, \"Car.\"
+      is a type of object. For example, "Car."
 
       A Category has Attributes,
       which are names for things that you can know about things in that Category.
       Attributes also describe the type of data that can go in that attribute. For
-      example, \"a car has a model name, which is text.\"
+      example, "a car has a model name, which is text."
 
       An Object is a specific
       thing in the world you want to model. An object can have
       any number of categories.
       An Object has the same attributes as all of the categories it belongs to, which
-      hold that information about the object. For example, \"my car's make is Ford,
-      and my car's model is 'mustang'.\"
+      hold that information about the object. For example, "my car's make is Ford,
+      and my car's model is 'mustang'."
 
       The information that you put into
       an object's attribute has to be of
@@ -155,7 +155,7 @@
       ![person friend](/blawx/person_friend.png)
 
       ##
-      <a name=\"categories\"></a>Categories
+      <a name="categories"></a>Categories
 
       ### Creating Categories
       You
@@ -213,8 +213,8 @@
       Attribute Cardinality
 
       It is sometimes important to have an answer to
-      the question \"how many values
-      is this attribute supposed to have?\" For
+      the question "how many values
+      is this attribute supposed to have?" For
       example, if a person has more than one
       birthdate, something has probably
       gone wrong. But if they have more than one
@@ -223,13 +223,13 @@
       Blawx
       provides five different new attribute blocks to allow you to specify
       different
-      answers to the question of \"how many value should this attribute have\"?
+      answers to the question of "how many value should this attribute have"?
 
       The
-      options are \"exactly X\", \"up to X\", \"X or more\", \"between X and Y\",
-      or \"any
-      number.\" Using the \"any number\" block has the same meaning as
-      \"0 or more.\"
+      options are "exactly X", "up to X", "X or more", "between X and Y",
+      or "any
+      number." Using the "any number" block has the same meaning as
+      "0 or more."
 
       ![exactly x]({{ site.baseurl }}/img/attribute_exactly.png)
       ![up
@@ -252,7 +252,7 @@
       information
       a tool that was generating a user interface on the basis of your
       Blawx code
-      might ask something like \"do you have any *other* birthdays?\"
+      might ask something like "do you have any *other* birthdays?"
 
       ### Attribute
       Customization
@@ -265,7 +265,7 @@
       attribute selector]({{site.baseurl}}/img/default_attribute_selector.png)
 
       ...
-      where the text \"attribute_name\" is replaced with the text that you have provided.
+      where the text "attribute_name" is replaced with the text that you have provided.
 
       This
       may not be the most intuitive way of describing the relationship, however. If
@@ -288,9 +288,9 @@
       included,
       and the text that should appear before, between, and after them. By default
       the
-      order is \"object, then value\". And the words \"object\" and \"value\" appear
+      order is "object, then value". And the words "object" and "value" appear
       in that
-      order below. If you change the order to \"value, then object\" in
+      order below. If you change the order to "value, then object" in
       the dropdown, the
       illustration below the dropdown field will be updated,
       like this:
@@ -302,7 +302,7 @@
       you
       can specify the text that appears before, between, and after them. For example,
       imagine
-      that you have a category called \"Animal\" and an attribute called \"legs\"
+      that you have a category called "Animal" and an attribute called "legs"
       that
       was supposed to hold how many legs the animal has.  
 
@@ -313,25 +313,28 @@
       achieve that effect using the attribute customization block:
 
       *
-      \"The animal has N legs\"
+      
+      "The animal has N legs
+      "
       * Order: object, then value
-      * Before: \"The\"
+      * Before: 
+      "The"
 
-      \ * Between: \"has\"
-      * After: \"legs\"
-      * \"There are N legs on a(n)
-      animal\"
+      \ * Between: "has"
+      * After: "legs"
+      * "There are N legs on a(n)
+      animal"
       * Order: value, then object
-      * Before: \"There are\"
+      * Before: "There are"
       *
-      Between: \"legs on a(n)\"
+      Between: "legs on a(n)"
       * After: Empty
-      * \"N is the number of legs
-      on a(n)\"
+      * "N is the number of legs
+      on a(n)"
       * Order: value, then object
       * Before: Empty
       * Between:
-      \"is the number of legs on a(n)\"
+      "is the number of legs on a(n)"
       * After: Empty
 
       Here's what the
@@ -525,58 +528,58 @@
       the user recall that the attribute may have more than one value. Likewise, a
       category called “world_record_holder” may have an attribute that refers to the
       player holding that record, of which there is only one, so it may make sense
-      to call that attribute “player” instead of “players.”</div><div class=\"col-3
-      bd-toc\">
-      <strong class=\"d-block h6 my-2 pb-2 border-bottom\">On this page</strong>
+      to call that attribute “player” instead of “players.”</div><div class="col-3
+      bd-toc">
+      <strong class="d-block h6 my-2 pb-2 border-bottom">On this page</strong>
       <nav
-      id=\"TableOfContents\">
+      id="TableOfContents">
       <ul>
-      <li><a href=\"#example\">Example</a></li>
+      <li><a href="#example">Example</a></li>
 
-      \   <li><a href=\"#how-it-works\">How it works</a></li>
-      <li><a href=\"#grid-options\">Grid
+      \   <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#grid-options">Grid
       options</a></li>
-      <li><a href=\"#auto-layout-columns\">Auto-layout columns</a>
+      <li><a href="#auto-layout-columns">Auto-layout columns</a>
 
       \     <ul>
-        <li><a href=\"#equal-width\">Equal-width</a></li>
+        <li><a href="#equal-width">Equal-width</a></li>
 
-      \       <li><a href=\"#setting-one-column-width\">Setting one column width</a></li>
+      \       <li><a href="#setting-one-column-width">Setting one column width</a></li>
 
-      \       <li><a href=\"#variable-width-content\">Variable width content</a></li>
+      \       <li><a href="#variable-width-content">Variable width content</a></li>
 
       \     </ul>
       </li>
-      <li><a href=\"#responsive-classes\">Responsive
+      <li><a href="#responsive-classes">Responsive
       classes</a>
       <ul>
-        <li><a href=\"#all-breakpoints\">All breakpoints</a></li>
+        <li><a href="#all-breakpoints">All breakpoints</a></li>
 
-      \       <li><a href=\"#stacked-to-horizontal\">Stacked to horizontal</a></li>
+      \       <li><a href="#stacked-to-horizontal">Stacked to horizontal</a></li>
 
-      \       <li><a href=\"#mix-and-match\">Mix and match</a></li>
+      \       <li><a href="#mix-and-match">Mix and match</a></li>
         <li><a
-      href=\"#row-columns\">Row columns</a></li>
+      href="#row-columns">Row columns</a></li>
       </ul>
       </li>
       <li><a
-      href=\"#nesting\">Nesting</a></li>
-      <li><a href=\"#sass\">Sass</a>
+      href="#nesting">Nesting</a></li>
+      <li><a href="#sass">Sass</a>
 
       \     <ul>
-        <li><a href=\"#variables\">Variables</a></li>
+        <li><a href="#variables">Variables</a></li>
         <li><a
-      href=\"#mixins\">Mixins</a></li>
-        <li><a href=\"#example-usage\">Example
+      href="#mixins">Mixins</a></li>
+        <li><a href="#example-usage">Example
       usage</a></li>
       </ul>
       </li>
-      <li><a href=\"#customizing-the-grid\">Customizing
+      <li><a href="#customizing-the-grid">Customizing
       the grid</a>
       <ul>
-        <li><a href=\"#columns-and-gutters\">Columns
+        <li><a href="#columns-and-gutters">Columns
       and gutters</a></li>
-        <li><a href=\"#grid-tiers\">Grid tiers</a></li>
+        <li><a href="#grid-tiers">Grid tiers</a></li>
 
       \     </ul>
       </li>
@@ -633,7 +636,7 @@
       If you ask Blawx whether or not something is true
       that you have stated as a Fact, the answer is always yes, without further explanation.
       Facts explain themselves. In fact, you can imagine a Blawx explanation as saying
-      \"because you told me so as a fact\", after any line of an explanation that
+      "because you told me so as a fact", after any line of an explanation that
       doesn't have further explanations.
 
       Typically facts are used at two different
@@ -715,7 +718,7 @@
 
       This
       question will be answered by the Blawx reasoner with either the bare statement
-      \"socrates is mortal\", or “No”.
+      "socrates is mortal", or “No”.
 
       ### Search Question
       A question that
@@ -807,7 +810,7 @@
       and the area on the right is the workspace.
 
       ![workspace](/static/blawx/user_interface_v1.png
-      \"Blawx Workspace\")
+      "Blawx Workspace")
 
       The toolbox is made up of categories. When you click
       on a category name, the blocks available in that category are displayed. If
@@ -822,7 +825,7 @@
       from the Blawx reasoner.
 
       ![response area]({{ site.baseurl }}/img/results_area.png
-      \"Results Area\")
+      "Results Area")
 
       ## Blocks
       The individual puzzle pieces that you
@@ -834,7 +837,7 @@
       ### Fields
 
       ![text field]({{
-      site.baseurl }}/img/text_field.png \"Text Field\")
+      site.baseurl }}/img/text_field.png "Text Field")
 
       Information that you
       can change in a block is called a field. The field above is a text field that
@@ -842,14 +845,14 @@
       is a text field that you can only type numbers into.
 
       ![number field]({{
-      site.baseurl }}/img/number_field.png \"Number Field\")
+      site.baseurl }}/img/number_field.png "Number Field")
 
       And there are
       dropdown fields, that allow you to choose one of several options. One example
       is the true/false block.
 
       ![dropdown field]({{ site.baseurl }}/img/dropdown.png
-      \"Dropdown Field\")
+      "Dropdown Field")
 
       ### Connectors
       There are two kinds of connectors
@@ -861,7 +864,7 @@
       out of the left side of the block.
 
       ![positive insert connector]({{ site.baseurl
-      }}/img/positive_insert_connector.png \"Positive Insert Connector\")
+      }}/img/positive_insert_connector.png "Positive Insert Connector")
 
       Th
       negative insert connector looks like a “hole” where the positive insert connector
@@ -869,7 +872,7 @@
       a larger block.
 
       ![negative insert connector]({{ site.baseurl }}/img/negative_insert_connector.png
-      \"Negative Insert Connector\")
+      "Negative Insert Connector")
 
       The size of the hole doesn’t matter, and
       will expand to fit whatever block connects to it.
@@ -906,10 +909,10 @@
 
       Some blocks have “internal”
       and connectors, when they expect to contain other blocks. A block usually won’t
-      work properly if it has any internal \"and\" connectors that are left empty.
+      work properly if it has any internal "and" connectors that are left empty.
 
       In
-      any stack of blocks, the bottom block will always have an external \"and\" connector
+      any stack of blocks, the bottom block will always have an external "and" connector
       with nothing attached. That's fine.
 
       ### Keeping Connected: Outer Blocks
@@ -919,7 +922,7 @@
       assumptions, and queries, and look like this:
 
       ![outer blocks]({{ site.baseurl
-      }}/img/outer_blocks.png \"Outer Blocks\")
+      }}/img/outer_blocks.png "Outer Blocks")
 
       The Facts, Assumption, Constraint,
       and Query blocks have only one internal And connector. The Rule query has two.
@@ -933,7 +936,7 @@
 
       So you have well formed
       code if there are only full outer blocks, and blocks with no empty connections
-      (except for the last \"and\" in a stack) in the workspace.
+      (except for the last "and" in a stack) in the workspace.
 
       ## Navigating
       the Blawx User Interface
@@ -945,7 +948,7 @@
       and horizontal scroll bars.
 
       ![workspace]({{ site.baseurl }}/img/workspace.png
-      \"Blawx Workspace\")
+      "Blawx Workspace")
 
       You can also scroll the workspace by dragging any
       empty part of the workspace.
@@ -968,14 +971,14 @@
       boundary.
 
       ![block highlighting]({{ site.baseurl }}/img/block_highlighting.png
-      \"Block Highlighting\")
+      "Block Highlighting")
 
       ### Block Context Menu
       If you right-click
       on a block in the workspace you will get a context menu.
 
       ![context menu]({{
-      site.baseurl }}/img/context_menu.png \"Block Context Menu\")
+      site.baseurl }}/img/context_menu.png "Block Context Menu")
 
       #### Duplicate
       The
@@ -1005,7 +1008,7 @@
       blue question mark icon that appears on the top left of the block.
 
       ![commment]({{
-      site.baseurl }}/img/comment.png \"Comment\")
+      site.baseurl }}/img/comment.png "Comment")
 
       #### Collapsing
       Collapsing
@@ -1013,7 +1016,7 @@
       “torn” to show that it is a collapsed block.
 
       ![collapsed]({{ site.baseurl
-      }}/img/collapsed.png \"Collapsed Block\")
+      }}/img/collapsed.png "Collapsed Block")
 
       In a collapsed block the context
       menu will allow you to expand it to its normal size again.
@@ -1032,7 +1035,7 @@
       has unfilled connectors.
 
       ![disabled]({{ site.baseurl }}/img/disabled.png
-      \"Disabled Blocks\")
+      "Disabled Blocks")
 
       Disabling a block disables that block and any blocks
       it contains.
@@ -1050,7 +1053,7 @@
       delete, as shown here:
 
       ![context menu delete]({{ site.baseurl }}/img/context_menu_delete.png
-      \"Context Menu Delete\")
+      "Context Menu Delete")
 
       #### Block-Specific Help
       If there is a help
@@ -1062,7 +1065,7 @@
       on a block in the toolbox.
 
       ![context menu toolbox]({{ site.baseurl }}/img/context_menu_in_toolbox.png
-      \"Context Menu Toolbox\")
+      "Context Menu Toolbox")
 
       ### Workspace Context Menu
       There is also
@@ -1070,7 +1073,7 @@
       workspace.
 
       ![workspace context menu]({{ site.baseurl }}/img/workspace_context_menu.png
-      \"Workspace Context Menu\")
+      "Workspace Context Menu")
 
       #### Undo and Redo
       If you make a mistake,
@@ -1113,7 +1116,7 @@
       the bottom right of the workspace, no matter where you scroll.
 
       ![trash
-      can]({{ site.baseurl }}/img/trash.png \"Trash Can\")
+      can]({{ site.baseurl }}/img/trash.png "Trash Can")
 
 
       Dragging a block
@@ -1124,14 +1127,14 @@
       into the workspace.
 
       ![open trash can]({{ site.baseurl }}/img/open_trash.png
-      \"Open Trash Can\")
+      "Open Trash Can")
 
       ### The Command Menu
       Commands that you can run
       on an entire workspace are located at the top of the page.
 
       ![menu]({{
-      site.baseurl }}/img/menu.png \"Command Menu\")
+      site.baseurl }}/img/menu.png "Command Menu")
 
       #### Clear Workspace
       The
@@ -1177,12 +1180,12 @@
       you with two different types of negation.
 
       The first type of negation
-      is a \"known false” block. It looks like this:
+      is a "known false” block. It looks like this:
 
       ![not]({{ site.baseurl
       }}/img/not.png)
 
-      The second type of negation is a \"not\" block. It looks
+      The second type of negation is a "not" block. It looks
       like this:
 
       ![naf not]({{ site.baseurl }}/img/naf_not.png)
@@ -1191,17 +1194,17 @@
       very important to understand the difference between them.
 
       Inside a Fact
-      or a Rule Conclusion, a \"known false\" block tells Blawx that the included
+      or a Rule Conclusion, a "known false" block tells Blawx that the included
       statement is known with certainty to be false. Inside a Question or a Rule Condition,
       it asks Blawx to check to see whether it is known with certainty that the statement
       is false.
 
-      A \"not\" block does require that a thing is certainly false,
-      but if it is known false, the \"not\" block will succeed. But a \"not\" block
+      A "not" block does require that a thing is certainly false,
+      but if it is known false, the "not" block will succeed. But a "not" block
       will also succeed if there is only no facts or rules that can be used to derive
       that the statement is true.
 
-      \"Not\" blocks can't be used in facts, or
+      "Not" blocks can't be used in facts, or
       the conclusions of rules. They are used in queries, and in the conditions of
       rules.
 
@@ -1212,10 +1215,10 @@
       }}/img/wrong_not_any_dogs.png)
 
       But this code will not work as expected.
-      A \"known false\" only returns “true” if its contents are explicitly 
+      A "known false" only returns “true” if its contents are explicitly 
       stated
-      to be false. But if a fact stated (or a rule concluded) \"it is known false
-      that any is in the category Dog\", that would mean “it is impossible for an
+      to be false. But if a fact stated (or a rule concluded) "it is known false
+      that any is in the category Dog", that would mean “it is impossible for an
       object to be a dog.” That is probably not what you meant to check for.
 
       You
@@ -1223,9 +1226,9 @@
       whether
       you can find a specific example in which it is true. Put another way,
       you
-      don't want to ask \"is it true that nothing can be a dog?\", you want to ask
+      don't want to ask "is it true that nothing can be a dog?", you want to ask
 
-      \"do you know of any examples of dogs?\" So the \"not\" version
+      "do you know of any examples of dogs?" So the "not" version
       is what
       you need.
 
@@ -1236,22 +1239,22 @@
 
       Another way to think about
       the difference is to think of statements as having opposites.
-      \"Known false\"
-      checks to see if the opposite is true. \"Not\" checks to see if the opposite
+      "Known false"
+      checks to see if the opposite is true. "Not" checks to see if the opposite
       is
       true, *or* if the statement can't be proven.
 
       In law, we are familiar
       with this distinction between the two different kinds of negation. In criminal
-      trials, when a court decides that a person is \"not guilty\", they are using
-      the \"not\". \"Not guilty\" means *either* the person is innocent (the opposite
+      trials, when a court decides that a person is "not guilty", they are using
+      the "not". "Not guilty" means *either* the person is innocent (the opposite
       of guilty), *or* there was not sufficient proof to
       find them guilty.
 
       As
-      a general rule, you usually want to use \"not\" in questions and in rule
+      a general rule, you usually want to use "not" in questions and in rule
       conditions.
-      \"Known fasle\" is the only thing that will work in rule conclusions and facts.
+      "Known fasle" is the only thing that will work in rule conclusions and facts.
 
 
       ## Comparison
@@ -1265,15 +1268,15 @@
       They are quite self-explanatory. The block will succeed if
       the two values provided satisfy the condition, which is one of:
 
-      * \"is
-      the same value as\"
-      * \"is a different value from\"
-      * \"is less than\"
+      * "is
+      the same value as"
+      * "is a different value from"
+      * "is less than"
       *
-      \"is greater than\"
-      * \"is less than or the same value as\"
-      * \"is greater
-      than or the same value as\"
+      "is greater than"
+      * "is less than or the same value as"
+      * "is greater
+      than or the same value as"
 
       There are a couple of things to note. First,
       it will only work if the values are ordered, like numbers, or dates. Second,
@@ -1282,7 +1285,7 @@
       same source.
 
       If you want to know whether objects referred to by
-      two variables are the same object (they are \"identical\"), then you don't want
+      two variables are the same object (they are "identical"), then you don't want
       to compare their values, you want to check their identities. That is done using
       the object equivalence or object disequivalence blocks.
 - model: blawx.docpage
@@ -1313,9 +1316,9 @@
       ## Understanding
       Variables in Blawx
 
-      Imagine I asked you \"this species is carnivourous,
+      Imagine I asked you "this species is carnivourous,
       it is four-legged, and it is known as man's best
-      friend.\" What would you
+      friend." What would you
       answer?
 
       A dog!
@@ -1332,14 +1335,14 @@
       * it is known as man's best
       friend
 
-      I asked you to think of a specific thing that \"it\" might be.
+      I asked you to think of a specific thing that "it" might be.
       Or put differently,
       I asked you to think of a specific thing, where if you
-      put that thing everywhere the word \"it\"
+      put that thing everywhere the word "it"
       appears, the four statement would
       be true.
 
-      **The way we are using \"it\" in that list is *exactly* how
+      **The way we are using "it" in that list is *exactly* how
       a Blawx variable works.**
 
       See? Easy!
@@ -1366,7 +1369,7 @@
       ![it query]({{
       site.baseurl }}/img/it_query.png)
 
-      This example uses the word \"It\" as
+      This example uses the word "It" as
       the name of the variable, but you can use anything you like.
 
       Note that
@@ -1402,8 +1405,8 @@
       5 variables in the conditions, and only 2 of them in the conclusion.
 
       Blawx
-      searches for a set of 5 data points that can fill in for the variables \"game\",
-      \"player\", \"other_player\", \"player_throw\", and \"other_player_throw\",
+      searches for a set of 5 data points that can fill in for the variables "game",
+      "player", "other_player", "player_throw", and "other_player_throw",
       which will make all of those 10 statements in the condition true.
 
       The
@@ -1511,7 +1514,7 @@
       same names, and it does not affect the meaning.
 
       This is an example of
-      variable \"scope\". A variable's \"scope\" is the part of the code in which
+      variable "scope". A variable's "scope" is the part of the code in which
       another variable with the same name will be matched to the same thing.
 
       Usually,
@@ -1527,7 +1530,7 @@
       # Blawx Documentation Home
 
       This documentation can be reached
-      at any time by choosing \"Help\" in the menu
+      at any time by choosing "Help" in the menu
       of the Blawx interface.
 
       The
@@ -1538,10 +1541,10 @@
       and an Examples section.
 
       Details on specific interface elements
-      and how they work are included in the \"Specific Blocks\" section. The pages
+      and how they work are included in the "Specific Blocks" section. The pages
       in this section are also accessible by
       right-clicking on a block in the Blawx
-      interface and choosing \"Help.\"
+      interface and choosing "Help."
 
       Blawx is under active development. The
       documentation is a work in progress. Some pages may not include much detail,
