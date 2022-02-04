@@ -312,19 +312,10 @@ Blockly.JavaScript['category_declaration'] = function(block) {
   var code = '';
   var nextblock = block.getNextBlock();
   if (nextblock && nextblock.type == "category_display") {
-    var order = nextblock.getFieldValue('order');
     var prefix = nextblock.getFieldValue('prefix');
-    var infix = nextblock.getFieldValue('infix');
     var postfix = nextblock.getFieldValue('postfix');
     code += "#pred " + text_category_name + "(X) :: '";
-    if (order == "oc") {
-      first_element = " @(X) ";
-      second_element = " " + text_category_name + " ";
-    } else {
-      first_element = " " + text_category_name + " ";
-      second_element = " @(X) ";
-    }
-    code += (prefix + first_element + infix + second_element + postfix).trim() + "'.\n"
+    code += (prefix + " @(X) " + postfix).trim() + "'.\n"
   } else {
     code = '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'";
   }

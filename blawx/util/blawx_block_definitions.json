@@ -776,25 +776,8 @@
 },
 {
   "type": "category_display",
-  "message0": "Appearing as %1 %2 %3 %4 %5 %6 %7 %8 %9",
+  "message0": "Appearing as: %1 %2 %3 %4 %5",
   "args0": [
-    {
-      "type": "field_dropdown",
-      "name": "order",
-      "options": [
-        [
-          "object, then category",
-          "oc"
-        ],
-        [
-          "category, then object",
-          "co"
-        ]
-      ]
-    },
-    {
-      "type": "input_dummy"
-    },
     {
       "type": "field_image",
       "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC",
@@ -815,18 +798,8 @@
     },
     {
       "type": "field_input",
-      "name": "infix",
-      "text": "is a"
-    },
-    {
-      "type": "field_label_serializable",
-      "name": "second_element",
-      "text": "category"
-    },
-    {
-      "type": "field_input",
       "name": "postfix",
-      "text": ""
+      "text": "is a category"
     },
     {
       "type": "field_image",

@@ -2052,27 +2052,12 @@
     <field name="INLINE">AUTO</field>
     <field name="CONNECTIONS">BOTH</field>
     <statement name="INPUTS">
-      <block type="input_dummy" id="CTi;z;E;SI_xLXKk?]YG">
+      <block type="input_dummy" id="|jp}+S8b!fyBRgVG}B7i">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
-          <block type="field_static" id="DTSPo[VX7ZC~0{kW6ZAN">
-            <field name="TEXT">Appearing as</field>
+          <block type="field_static" id="Yu0fc~9o/x}vdZ!BdX,,">
+            <field name="TEXT">Appearing as:</field>
             <next>
-              <block type="field_dropdown" id=";~K#RAd-UC-LJ@}9;t]j">
-                <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
-                <field name="FIELDNAME">order</field>
-                <field name="USER0">object, then category</field>
-                <field name="CPU0">oc</field>
-                <field name="USER1">category, then object</field>
-                <field name="CPU1">co</field>
-              </block>
-            </next>
-          </block>
-        </statement>
-        <next>
-          <block type="input_dummy" id="|jp}+S8b!fyBRgVG}B7i">
-            <field name="ALIGN">LEFT</field>
-            <statement name="FIELDS">
               <block type="field_image" id="6d,d)=(q87cf[OtGWFLW">
                 <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC</field>
                 <field name="WIDTH">15</field>
@@ -2088,28 +2073,16 @@
                         <field name="TEXT">object</field>
                         <field name="FIELDNAME">first_element</field>
                         <next>
-                          <block type="field_input" id="%qk3b6?0)lc{P^m.rgB-">
-                            <field name="TEXT">is a</field>
-                            <field name="FIELDNAME">infix</field>
+                          <block type="field_input" id="|V{P.d}^Mhe{ON${);4f">
+                            <field name="TEXT">is a category</field>
+                            <field name="FIELDNAME">postfix</field>
                             <next>
-                              <block type="field_label_serializable" id="%(q+vT`10RwZn|U5~sy|">
-                                <field name="TEXT">category</field>
-                                <field name="FIELDNAME">second_element</field>
-                                <next>
-                                  <block type="field_input" id="|V{P.d}^Mhe{ON${);4f">
-                                    <field name="TEXT"></field>
-                                    <field name="FIELDNAME">postfix</field>
-                                    <next>
-                                      <block type="field_image" id="0?pWnl8[Zf=IY-+qB).W">
-                                        <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==</field>
-                                        <field name="WIDTH">15</field>
-                                        <field name="HEIGHT">15</field>
-                                        <field name="ALT">"</field>
-                                        <field name="FLIP_RTL">FALSE</field>
-                                      </block>
-                                    </next>
-                                  </block>
-                                </next>
+                              <block type="field_image" id="0?pWnl8[Zf=IY-+qB).W">
+                                <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==</field>
+                                <field name="WIDTH">15</field>
+                                <field name="HEIGHT">15</field>
+                                <field name="ALT">"</field>
+                                <field name="FLIP_RTL">FALSE</field>
                               </block>
                             </next>
                           </block>
@@ -2119,9 +2092,9 @@
                   </block>
                 </next>
               </block>
-            </statement>
+            </next>
           </block>
-        </next>
+        </statement>
       </block>
     </statement>
     <value name="TOOLTIP">
@@ -4277,7 +4250,7 @@
     </value>
     <value name="COLOUR">
       <block type="colour_hue" id="h|ttx|iL,8)kUEORuZ-O">
-        <mutation colour="#6d5ba5"></mutation>
+        <mutation colour="#805ba5"></mutation>
         <field name="HUE">270</field>
       </block>
     </value>
