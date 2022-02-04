@@ -1,0 +1,9 @@
+- model: blawx.DocPage
+  fields:
+    title: Fact Block
+    path: docs/blocks/fact
+    content: | # markdown
+      # This is the content of the page.
+
+      I think as long as you keep the indenting right, it should work fine,
+      and you should have **access** to all the markdown capabilities.
