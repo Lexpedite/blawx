@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
+## [v1.0.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.1-alpha) 2022-02-03
+
+### Added
+* Category Display Block
+* `update.sh` Script to stop, rebuild, and run local docker container
+
+### Changed
+* Dockerfile loads blawx files from local
+* Explanations use language from category display block
+* Object declaration blocks use language from category display block
+* Dockerfile reorganized to rebuild faster
+
+
 ## [v1.0.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.0-alpha) 2022-02-01
 v1.0.0-alpha is nearly a complete rewrite of the code, to facilitate two major changes:
 * New reasoning engine (from Flora-2 to s(CASP))
