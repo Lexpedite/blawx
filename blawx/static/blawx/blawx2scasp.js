@@ -324,7 +324,7 @@ Blockly.JavaScript['category_declaration'] = function(block) {
       first_element = " " + text_category_name + " ";
       second_element = " @(X) ";
     }
-    code += prefix + first_element + infix + second_element + postfix + "'.\n"
+    code += (prefix + first_element + infix + second_element + postfix).trim() + "'.\n"
   } else {
     code = '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'";
   }
