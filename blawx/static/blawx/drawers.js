@@ -169,7 +169,30 @@ newObjectCallback = function(workspace) {
     if (blockList[i].type == "category_declaration") {
         // Get the name of the entity, insert a block of that type,
         var category_name = blockList[i].getFieldValue('category_name'); 
-        var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='postfix'>is a " + category_name + "</field></block></xml>"
+        var nextblock = blockList[i].getNextBlock();
+        if (nextblock && nextblock.type == "category_display") {
+            // If it is, I need to get (where the next block is "block")
+            var dropdown_order = nextblock.getFieldValue('order');
+            var text_prefix = nextblock.getFieldValue('prefix');
+            var text_infix = nextblock.getFieldValue('infix');
+            var text_postfix = nextblock.getFieldValue('postfix');
+            // The category name, and the order of the elements, is required
+            // in order to generate code, so those pieces of information are
+            // placed in THE MUTATOR.
+            var first_part = "";
+            var second_part = "";
+            if (dropdown_order == "oc") {
+                first_part = text_prefix;
+                second_part = text_infix + " " + category_name + " " + text_postfix;
+            } else {
+                first_part = text_prefix + " " + category_name + " " + text_infix;
+                second_part = text_postfix;
+            }
+            var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "' category_order='" + dropdown_order + "'></mutation><field name='prefix'>" + first_part + "</field><field name='postfix'>" + second_part + "</field></block></xml>";
+        } else {
+            var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='postfix'>is a " + category_name + "</field></block></xml>"
+        }
+        
         var block = Blockly.Xml.textToDom(blockText).firstChild;
         // Need to add check to make sure I'm not repeatedly adding the same block.
         xmlList.push(block);
@@ -181,13 +204,35 @@ newObjectCallback = function(workspace) {
         if (blockList[i].type == "category_declaration") {
         // Get the name of the entity, insert a block of that type,
         var category_name = blockList[i].getFieldValue('category_name'); 
-        var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='postfix'>is a " + category_name + "</field></block></xml>"
+        var nextblock = blockList[i].getNextBlock();
+        if (nextblock && nextblock.type == "category_display") {
+            // If it is, I need to get (where the next block is "block")
+            var dropdown_order = nextblock.getFieldValue('order');
+            var text_prefix = nextblock.getFieldValue('prefix');
+            var text_infix = nextblock.getFieldValue('infix');
+            var text_postfix = nextblock.getFieldValue('postfix');
+            // The category name, and the order of the elements, is required
+            // in order to generate code, so those pieces of information are
+            // placed in THE MUTATOR.
+            var first_part = "";
+            var second_part = "";
+            if (dropdown_order == "oc") {
+                first_part = text_prefix;
+                second_part = text_infix + " " + category_name + " " + text_postfix;
+            } else {
+                first_part = text_prefix + " " + category_name + " " + text_infix;
+                second_part = text_postfix;
+            }
+            var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "' category_order='" + dropdown_order + "'></mutation><field name='prefix'>" + first_part + "</field><field name='postfix'>" + second_part + "</field></block></xml>";
+        } else {
+            var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='postfix'>is a " + category_name + "</field></block></xml>"
+        }
         var block = Blockly.Xml.textToDom(blockText).firstChild;
         // Need to add check to make sure I'm not repeatedly adding the same block.
         xmlList.push(block);
         }
     }
-    // Now add the two blocks that are always there, object equivalence and category assignment
+    // Now add the three blocks that are always there, object equivalence and category assignment
     }
     
     var objectEqualityBlockText = '<xml><block type="object_equality"></block></xml>';
