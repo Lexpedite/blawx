@@ -1,0 +1,1563 @@
+- model: blawx.docpage
+  pk: about
+  fields:
+    title: About
+    content: |
+      # About Blawx
+
+      Blawx is an open source, web-based, user-friendly
+      interface
+      to the [s(CASP) programming language](http://ceur-ws.org/Vol-2970/gdeinvited4.pdf)
+      built
+      on [Google's Blockly library](https://developers.google.com/blockly),
+      intended
+      for use in encoding legislation and contracts.
+
+      Blocks + Law = Blawx.
+
+      It
+      is maintained by [Jason Morris](https://github.com/Gauntlet173) of Lexpedite
+      Legal Technologies, Ltd.
+
+      An article featuring an earlier version of Blawx
+      is available at the [MIT Computational Law Report](https://law.mit.edu/pub/blawxrulesascodedemonstration/release/1).
+- model: blawx.docpage
+  pk: docs/blocks/fact
+  fields:
+    title: Fact Block
+    content: |
+      # Test of Fact Block Page
+
+      This is a test to see if I can insert
+      code in this page that will generate a dynamic view of the code block."
+- model: blawx.docpage
+  pk: guide
+  fields:
+    title: Beginner's Guide
+    content: |
+      # Beginners Guide to Blawx
+
+      Welcome to Blawx!
+
+      ## What is
+      Blawx?
+
+      Blawx is a web-based, user-friendly tool for Rules as Code. It
+      is free, open
+      source software provided under the MIT license by Jason Morris.
+
+      It
+      is alpha software, and not yet appropriate for use in production environments.
+
+      ## What is Rules As Code?
+
+      Rules as Code is the idea that legislation, regulations,
+      contracts, and other forms
+      of formal written legal rules can and should be
+      written in languages computers can understand and use.
+
+      Some adherents
+      want to translate existing laws into code to improve automation of legal services.
+
+      Others
+      want to write laws and regulations in natural languages and programming languages
+      at the same time, in an interdisciplinary way, to improve legal drafting, public
+      policy, and automation in public administration.
+
+      ## Who is this guide for?
+
+      This guide is written for people who are interested in learning
+      about encoding
+      legal knowledge in Blawx. It assumes no experience with programming.
+
+      ## What does the guide include?
+
+      The guide will take you through the following
+      chapters:
+
+      1. The User Interface
+        This section will show you what
+        the Blawx interface looks like, and explain
+        how to get around.
+      2. Categories, Objects, and Attributes
+        This section of the guide explains how you record
+        information about the world
+        in Blawx.
+      3. Facts, Rules, and Questions
+        This section introduces you to the three main elements of a Blawx workspace.
+      4. Logic
+        This section will explain the various ways in which you can combine
+        statements in Blawx to create more complicated statements.
+      5. Variables
+        This section explains how variables work in Blawx, and how to use them.
+      6. Rock, Paper, Scissors
+        This final section of the guide introduces you to
+        the three-step process used in legal knowledge representation, and takes you
+        step-by-step through the process of modelling the rules of \"Rock, Paper, Scissors\"
+        in Blawx.
+- model: blawx.docpage
+  pk: guide/categories
+  fields:
+    title: Categories, Objects, and Attributes
+    content: |
+      # Categories, Objects, and Attributes
+
+      Categories, Objects, and
+      Attributes are how Blawx organizes what it knows about the world.
+
+      A Category
+      is a type of object. For example, \"Car.\"
+
+      A Category has Attributes,
+      which are names for things that you can know about things in that Category.
+      Attributes also describe the type of data that can go in that attribute. For
+      example, \"a car has a model name, which is text.\"
+
+      An Object is a specific
+      thing in the world you want to model. An object can have
+      any number of categories.
+      An Object has the same attributes as all of the categories it belongs to, which
+      hold that information about the object. For example, \"my car's make is Ford,
+      and my car's model is 'mustang'.\"
+
+      The information that you put into
+      an object's attribute has to be of
+      the correct type. You can't put a number
+      if the attribute is supposed to hold text, and vice-versa.
+
+      An easy way
+      to think of a Category is as a description of a blank form. The form might have
+      a name, like “Application for a Permit”. That is like the Category name. A form
+      will also have fields that can be filled in, like “Applicant’s Name. Those are
+      like the category’s attributes.
+
+      When you create and fill out an actual
+      form of that type, that is like creating an Object. The information that gets
+      put into the blanks on the form are like the values that get put into the attributes
+      of an object. Some fields on the form are for writing words, others numbers,
+      and others dates. Those are like the types of the category attributes.
+
+      An
+      attribute can hold either a basic data type, or objects in a category.
+
+      The
+      basic data types are text, numbers, yes/no values, dates, times, datetimes,
+      and durations.
+
+      Not only can you use your Categories as a type, but you
+      can use your category
+      as the type of an attribute inside itself!
+
+      For
+      example, you can say that a Person has a Name, which is a text value, and they
+      have a friend, which is a Person.
+
+      ![person friend](/blawx/person_friend.png)
+
+      ##
+      <a name=\"categories\"></a>Categories
+
+      ### Creating Categories
+      You
+      create a category by putting a category declaration block in a fact block. A
+      category declaration block can be found under the “Categories” drawer in the
+      Toolbox.
+
+      ![default category]({{ site.baseurl }}/img/default_is_category.png)
+
+      When
+      you drag a category declaration block onto the workspace, a corresponding category
+      block is added under the “known categories” drawer of the toolbox. This block
+      is used in blanks that require or allow a Category as a value.
+
+      ![known
+      category default]({{ site.baseurl }}/img/known_category_default.png)
+
+      Note
+      that if you have two category declarations with the same name defined, Blawx
+      will create two different known category blocks with the same text, using either
+      of them has the same effect. So it is best practice not to have duplicates in
+      category names in order to avoid confusion.
+
+      Category names should not
+      have spaces in them. Blawx will not stop you from creating
+      a category with
+      a space in its name, but it is unlikely to work properly.
+
+      ### Adding
+      Attributes to a Category
+      Once you have declared a Category, you can use an
+      category attribute block to give it one or more attributes. The category attribute
+      block can be found in the “Categories” drawer of the toolbox, and looks like
+      this:
+
+      ![attribute declaration]({{ site.baseurl }}/img/attribute_declaration.png)
+
+      To
+      complete a category attribute block, you must provide the category that you
+      are defining attributes for, and add new attribute blocks. The category attribute
+      block comes with new attribute block by default, but you can add more by dragging
+      additional new attribute blocks from the “Categories” drawer of the toolbox.
+
+      For
+      example, to say that “a person has a name and a best friend” you might set out
+      an attribute declaration block like this:
+
+      ![person ontology]({{ site.baseurl
+      }}/img/person_ontology.png)
+
+      Remember, all of this needs to be placed
+      in a Fact block to work properly. Fact blocks are explained in the next section.
+
+      ###
+      Attribute Cardinality
+
+      It is sometimes important to have an answer to
+      the question \"how many values
+      is this attribute supposed to have?\" For
+      example, if a person has more than one
+      birthdate, something has probably
+      gone wrong. But if they have more than one
+      friend, that is just good news.
+
+      Blawx
+      provides five different new attribute blocks to allow you to specify
+      different
+      answers to the question of \"how many value should this attribute have\"?
+
+      The
+      options are \"exactly X\", \"up to X\", \"X or more\", \"between X and Y\",
+      or \"any
+      number.\" Using the \"any number\" block has the same meaning as
+      \"0 or more.\"
+
+      ![exactly x]({{ site.baseurl }}/img/attribute_exactly.png)
+      ![up
+      to X]({{ site.baseurl }}/img/attribute_up_to.png)
+      ![or more]({{ site.baseurl
+      }}/img/attribute_or_more.png)
+      ![between]({{ site.baseurl }}/img/attribute_between.png)
+      ![any]({{
+      site.baseurl }}/img/attribute_any.png)
+
+      Blawx allows you to specify cardinality,
+      but it does not
+      do anything to enforce it in your code. That encorcement
+      can be done,
+      but is an advanced technique, and doesn't happen
+      by default.
+      The primary motivation for including cardinality in your
+      data structures
+      is for automatically generating user interfaces. Without this
+      information
+      a tool that was generating a user interface on the basis of your
+      Blawx code
+      might ask something like \"do you have any *other* birthdays?\"
+
+      ### Attribute
+      Customization
+
+      By default, when you create an attribute using the above
+      blocks, an attribute
+      selector block will be created that looks like this...
+
+      ![default
+      attribute selector]({{site.baseurl}}/img/default_attribute_selector.png)
+
+      ...
+      where the text \"attribute_name\" is replaced with the text that you have provided.
+
+      This
+      may not be the most intuitive way of describing the relationship, however. If
+      you
+      want to customize how the attribute selector will appear, you can use the
+      attribute
+      customization block. The only place an attribute customization block can
+      be
+      used is under an attribute declaration block, and it applies only to the attribute
+      declared
+      directly above it.
+
+      The attribute customization block looks like this:
+
+      ![attribute
+      customization block]({{site.baseurl}}/img/attribute_customization.png)
+
+      The
+      block allows you to choose the order in which the object and the value are
+      included,
+      and the text that should appear before, between, and after them. By default
+      the
+      order is \"object, then value\". And the words \"object\" and \"value\" appear
+      in that
+      order below. If you change the order to \"value, then object\" in
+      the dropdown, the
+      illustration below the dropdown field will be updated,
+      like this:
+
+      ![reverse order customization]({{site.baseurl}}/img/reversed_order_attribute_customization.png)
+
+      Once
+      you have selected the order that you want the object and the value to appear,
+      you
+      can specify the text that appears before, between, and after them. For example,
+      imagine
+      that you have a category called \"Animal\" and an attribute called \"legs\"
+      that
+      was supposed to hold how many legs the animal has.  
+
+      Here are
+      three different ways you might want your
+      customized attribute block to appear,
+      and how to
+      achieve that effect using the attribute customization block:
+
+      *
+      \"The animal has N legs\"
+      * Order: object, then value
+      * Before: \"The\"
+
+      \ * Between: \"has\"
+      * After: \"legs\"
+      * \"There are N legs on a(n)
+      animal\"
+      * Order: value, then object
+      * Before: \"There are\"
+      *
+      Between: \"legs on a(n)\"
+      * After: Empty
+      * \"N is the number of legs
+      on a(n)\"
+      * Order: value, then object
+      * Before: Empty
+      * Between:
+      \"is the number of legs on a(n)\"
+      * After: Empty
+
+      Here's what the
+      second example above looks like in the interface:
+
+      ![customization example]({{site.baseurl}}/img/attribute_customization_example.png)
+
+      And
+      here is what the resulting attribute selector block will look like:
+
+      ![customized
+      attribute selector]({{site.baseurl}}/img/customized_attribute_selector.png)
+
+      **BE
+      CAREFUL!**
+
+      If you leave all three fields blank, Blawx will still know
+      what attribute the
+      block is for, but your users will have no clue. Make sure
+      to customize attribute
+      blocks in ways that sound natural to your users, but
+      are also very clear about which
+      attribute is being modified.
+
+      That
+      said, there is no need for your attribute name
+      to appear in the text, which
+      can allow you to use
+      more concise attribute names.
+
+      ### Category Equivalence
+      An
+      object can have more than one category. One of the ways you can give an object
+      more than one category is by stating that all objects of one category are also
+      included in another category. For example, “all cats are mammals”.
+
+      In
+      Blawx you can do this using the category equivalence block, which looks like
+      this:
+
+      ![category equivalence]({{ site.baseurl }}/img/category_equivalence.png)
+
+      The
+      category equivalence block requires two category blocks from the “Known Categories”
+      drawer of the Toolbox. A complete category equivalence block would look like
+      this:
+
+      ![cat is mammal]({{ site.baseurl }}/img/cat_is_mammal.png)
+
+      Category
+      equivalence works in one direction only. In this example, if you create an object,
+      and give that object the category “Cat”, and then ask whether that object is
+      in the category “Mammal”, the answer will be yes. If you create an object and
+      give it only the category of “Mammal”, and then ask whether it is in the category
+      “Cat”, the answer will be no.
+
+      ## Objects
+
+      ### Creating an Object
+      An
+      object is created by using the object declaration block, which looks like this,
+      and it just takes a name for the object.
+
+      ![bob is object]({{ site.baseurl
+      }}/img/bob_is_object.png)
+
+      Object names should not have spaces in them.
+      Blawx will not stop you from creating
+      an object with a name that has spaces
+      in it, but it is unlikely to work properly.
+
+      When you drag an object declaration
+      onto the Workspace, a corresponding Object Block appears in the “Known Objects”
+      drawer of the Toolbox.
+
+      ![bob known]({{ site.baseurl }}/img/known_object_bob.png)
+
+      The
+      object block for “Bob” can be used anywhere a block is expecting an or accepts
+      an object as a value.
+
+      ### Giving an Object a Category
+      You give an
+      object a category by using the object category block, which can be found in
+      the “Objects” drawer of the Toolbox. It expects an object block and a category
+      block. A completed object category block that says “Bob is a Person” looks like
+      this.
+
+      ![bob is person]({{ site.baseurl }}/img/bob_is_person.png)
+
+      ###
+      Making Two Objects the Same Object
+      Sometimes your Blawx code will get data
+      from more than one source, and each source may create its own versions of the
+      same objects. In those cases, it can be useful to state that two objects are
+      the same object. You can do that using the object equivalence block, which is
+      found in the “Objects” drawer of the Toolbox, and which looks like this:
+
+      ![object
+      identity]({{ site.baseurl }}/img/object_equivalence.png)
+
+      The object equivalence
+      block takes two object blocks. To say that “Bob” and “Robert” are the same object,
+      you could do this:
+
+      ![bob and robert]({{ site.baseurl }}/img/bob_and_robert_identical.png)
+
+      Note
+      that unlike with the Category Equivalence, which goes in one direction only,
+      object equivalence goes in both directions. If Bob is the same object as Robert,
+      Robert is the same object as Bob. So if you set out Bob’s Middle name, and then
+      say that Bob and Robert are the same object, asking for Bob’s middle name and
+      asking for Robert’s middle name will both work.
+
+      ### Adding Attributes
+      to an Object
+
+      Let’s imagine you want to write some rules about cars, and
+      you have an ontology like this:
+
+      ![car ontology]({{ site.baseurl }}/img/car_ontology.png)
+
+      You
+      can see that two attributes have been defined for the category “Car”. One is
+      “make”, and its type is “Manufacturer”, which is a category. The other attribute
+      is “model”, which has a data type of text.
+
+      If you make these declarations,
+      Blawx will now know about these two attributes, and they will be available in
+      the Known Attributes drawer of the toolbox.
+
+      ![known attributes]({{ site.baseurl
+      }}/img/cat_ontology_known_attributes.png)
+
+      The first connector expects
+      an object, and the second hole is filled with a value. So to create a Ford Mustang,
+      you might use the following blocks in a Fact Block:
+
+      ![ford mustang]({{
+      site.baseurl }}/img/ford_mustang.png)
+
+      This creates an object called “my_car”,
+      places it in the category “Car”, gives it the make “Ford”, and the model “Mustang.”
+      If you try to place something in the value of the make attribute block that
+      is not an object or a variable, it will not fit because Blwx knows that value
+      is supposed to be an object in the category Manufacturer.
+
+      If you try
+      to place something other than a string or an object or variable into the “model”
+      attribute block, it will not fit, because Blawx knows that attribute is supposed
+      to have a text value. Objects can still be provided because Blawx treats objects
+      and variables as the same “type”, and a variable may contain a text value.
+
+      ###
+      Naming Attributes
+
+      Attribute names should not have spaces in them. Blawx
+      will not currently
+      stop you from creting attribute names with spaces, but
+      they are unlikely to work
+      properly.
+
+      When working with attributes you
+      will want to be careful with how you name them. Blawx will not stop you from
+      applying an attribute defined for “cars” to an object inthe category “bicycle”.
+      If you need to know how many seats both categories have, but you want to avoid
+      the implication that bikes have car seats or vice-versa, you may want to name
+      the attributes “Bike_seats” and “car_seats” to make it clear what you are referring
+      to.
+
+      If you create two attributes both named “seats”, they will both appear
+      in the Known Attributes drawer of the toolbox, but it will not be possible to
+      tell which attribute belongs to which category, and in fact, Blawx will treat
+      them as two copies of the same attribute.
+
+      You may also want to name attributes
+      so that their names fit more comfortably into the syntax of the attribute block,
+      which is “object’s attribute is value”. For example, an attribute named “father”
+      makes sense, if you have objects named Anakin and Luke: “Luke’s father is Anakin.”
+      But it may be more difficult to read a yes/no attribute named “Jedi”. “Luke’s
+      Jedi is True.” Something like “is_a_Jedi” might read more clearly.
+
+      ###
+      Object Attributes Hold Multiple Values By Default
+
+      In Blawx, because cardinality
+      is not enforced by default, all object attributes can hold more than one value.
+      As a result, it can be helpful to name your attributes in a way that implies
+      how many values they are supposed to have. For instance, a game may have many
+      players. So a game category might have an attribute called “players” to help
+      the user recall that the attribute may have more than one value. Likewise, a
+      category called “world_record_holder” may have an attribute that refers to the
+      player holding that record, of which there is only one, so it may make sense
+      to call that attribute “player” instead of “players.”</div><div class=\"col-3
+      bd-toc\">
+      <strong class=\"d-block h6 my-2 pb-2 border-bottom\">On this page</strong>
+      <nav
+      id=\"TableOfContents\">
+      <ul>
+      <li><a href=\"#example\">Example</a></li>
+
+      \   <li><a href=\"#how-it-works\">How it works</a></li>
+      <li><a href=\"#grid-options\">Grid
+      options</a></li>
+      <li><a href=\"#auto-layout-columns\">Auto-layout columns</a>
+
+      \     <ul>
+        <li><a href=\"#equal-width\">Equal-width</a></li>
+
+      \       <li><a href=\"#setting-one-column-width\">Setting one column width</a></li>
+
+      \       <li><a href=\"#variable-width-content\">Variable width content</a></li>
+
+      \     </ul>
+      </li>
+      <li><a href=\"#responsive-classes\">Responsive
+      classes</a>
+      <ul>
+        <li><a href=\"#all-breakpoints\">All breakpoints</a></li>
+
+      \       <li><a href=\"#stacked-to-horizontal\">Stacked to horizontal</a></li>
+
+      \       <li><a href=\"#mix-and-match\">Mix and match</a></li>
+        <li><a
+      href=\"#row-columns\">Row columns</a></li>
+      </ul>
+      </li>
+      <li><a
+      href=\"#nesting\">Nesting</a></li>
+      <li><a href=\"#sass\">Sass</a>
+
+      \     <ul>
+        <li><a href=\"#variables\">Variables</a></li>
+        <li><a
+      href=\"#mixins\">Mixins</a></li>
+        <li><a href=\"#example-usage\">Example
+      usage</a></li>
+      </ul>
+      </li>
+      <li><a href=\"#customizing-the-grid\">Customizing
+      the grid</a>
+      <ul>
+        <li><a href=\"#columns-and-gutters\">Columns
+      and gutters</a></li>
+        <li><a href=\"#grid-tiers\">Grid tiers</a></li>
+
+      \     </ul>
+      </li>
+      </ul>
+      </nav>
+      </div>
+- model: blawx.docpage
+  pk: guide/facts_rules_questions
+  fields:
+    title: Facts, Rules, and Questions
+    content: |
+      # Facts, Rules and Questions
+
+      The vast majority of the encoding
+      that you do in Blawx will be done setting out Facts, Rules, and Questions. They
+      are the starting points for the encoding process.
+
+      When you encode laws,
+      you will do it by setting out facts and rules. Then, when you want to use the
+      laws you have encoded, you will use questions.
+
+      ## Facts
+      A “Fact” in
+      Blawx represents a thing that is known with certainty. If you have a fact, you
+      need to put it in a Fact block, which looks like this:
+
+      ![fact]({{ site.baseurl
+      }}/img/fact.png)
+
+      So for example, let’s say we have some code that represents
+      the idea that Socrates is a human being. That would be placed in a Fact block.
+
+      ![socrates_human]({{
+      site.baseurl }}/img/socrates_human.png)
+
+      As you will see in the documentation
+      around Categories, you may also make statements about Categories of objects,
+      like saying “A dog is an animal.” These are also treated as facts because they
+      are a thing that is known with certainty.
+
+      A fact block can hold as many
+      unrelated facts as you would like. And you can have as many different fact blocks
+      in your workspace as is useful.
+
+      ![socrates and dog]({{ site.baseurl }}/img/socrates_human_dog_animal.png)
+
+      It
+      can be helpful to create separate Fact blocks for pieces of information that
+      you will be working with at the same time, so that when you are not using them
+      you can Collapse the fact block and leave your workspace a little easier to
+      read. See the documentation on the Blawx User Interface for details on collapsing
+      and expanding blocks.
+
+      If you ask Blawx whether or not something is true
+      that you have stated as a Fact, the answer is always yes, without further explanation.
+      Facts explain themselves. In fact, you can imagine a Blawx explanation as saying
+      \"because you told me so as a fact\", after any line of an explanation that
+      doesn't have further explanations.
+
+      Typically facts are used at two different
+      stages of the encoding process. First, they are used to set out the terms of
+      the conversation (e.g. “Human is a Category”, “Mortal is a Category”). Then
+      fact blocks take a back seat while rules are written using those terms (e.g.
+      “We know a thing is a mortal if we know that thing is a human.”). Then we come
+      back to using fact blocks to describe a specific fact scenario that we want
+      to ask questions about (e.g. “Socrates is a Human”). Then we use queries to
+      ask questions (e.g. “Is Socrates a Mortal?”).
+
+      It can be helpful to separate
+      facts that are always true in the ruleset from facts that are only true in the
+      specific scenario being tested, and multiple fact blocks can be used for that
+      purpose.
+
+      Note that when you use your encoding over the Web API, this
+      second type of fact, the case-specific kind, is provided by the user in the
+      request that is sent to Blawx. Your deployed code should not have testing facts
+      inside it, because the user's data will add to them, not replace them.
+
+      ##
+      Rules
+      Rules are the most important part of encoding in Blawx. They are where
+      you describe the simple logical building blocks that Blawx can combine in complicated
+      ways to generate new insights. That is why the technology that Blawx implements
+      is often referred to as “rules-based artificial intelligence”.
+
+      A rule
+      has two parts. The first part is one or more statements that can be proved true
+      by the rule, called the “conclusions.” The second part is the “conditions” that
+      must be met for the conclusion to be proved true.
+
+      ![rule]({{ site.baseurl
+      }}/img/rule.png)
+
+      A rule block has one slot for the conclusions, one slot
+      for the conditions.
+
+      A rule with no conclusions should be a Question or
+      a Constraint, and a rule with no conditions should be a Fact, so a rule block
+      needs both statement connections filled to work properly.
+
+      ### A Note
+      on If/Then
+      Some people might express rules as `if conditions then conclusions`.
+      \ We prefer to avoid the words “if” and “then” to describe rules, because people
+      who are familiar with imperative programming languages (which is most of the
+      programming languages out there) will have in their minds a different meaning
+      for “if” and “then.”
+
+      In imperative programming, `if conditions then conclusions`
+      means “if right now the conditions are true, then next the computer should do
+      conclusions.”
+
+      Blawx is a declarative logic programming tool, not an imperative
+      one. Which means that the rule `if conditions then conclusions` means “if conditions
+      are true, then conclusions are also true.”
+
+      When using Blawx, remember
+      that you are not describing what steps the computer should follow. You are describing
+      what is known (the fact, or the conclusion for rules), and when it is known
+      (always for facts, when the conditions are true for rules).
+
+      ## Questions
+      Once
+      you have encoded rules and described relevant facts, you will want to ask a
+      question. That is what the question block is for.
+
+      There are two kinds
+      of questions… yes/no questions, and search questions.
+
+      ### Yes/No Questions
+      A
+      question that does not include variables is a “yes/no” question. An example
+      is “Is Socrates Mortal?”
+
+      ![is socrates mortal]({{ site.baseurl }}/img/is_socrates_mortal.png)
+
+      This
+      question will be answered by the Blawx reasoner with either the bare statement
+      \"socrates is mortal\", or “No”.
+
+      ### Search Question
+      A question that
+      includes variables is a “search” question. Blawx attempts to find any objects
+      that it can place in all the variables used so that the all of the statements
+      will be true. If it can’t find any, it will respond “No.” If it can find any
+      examples, it will provide each combination of objects that made the statements
+      true, and each reason for each combination of objects.
+
+      So the question
+      “is Socrates Mortal” above, which is a “yes or no” question, can be changed
+      into a search by replacing “Socrates” with a variable. We will name the variable
+      “Who”, because it reads better, but the name is unimportant, as long as you
+      use the same variable name everywhere that it is important the rule is referring
+      to the same object.
+
+      ![who is morta]({{ site.baseurl }}/img/who_is_mortal.png)
+
+      If
+      you ask this question of the Reasoner, the answer back will be:
+
+      ```
+      socrates
+      is a mortal, because
+      socrates is a person
+      ```
+
+      Remember that a
+      question requires all of its blocks connected by the And connectors to be true
+      at the same time in order to find any answers. So make sure you are only asking
+      one question at a time.
+
+      ## Declarations in Facts and Rule Conclusions
+      vs Rule Conditions and Queries
+      Declaration blocks for objects and categories
+      have the usual meaning when used in a fact or the conclusions of a Rule block.
+      But they have a different meaning when they are included in the conditions of
+      a Rule block, or in a query.
+
+      A declaration causes the object, category,
+      or attribute to exist when used inside a fact block or the conclusions of a
+      rule. Inside a condition block, they test whether or not those declarations
+      have been made somewhere else.
+
+      So this rule says “we know fruit is a
+      Category if plants are living things.” This rule has the effect of creating
+      a category when its conditions are met.
+
+      ![conclude fruit]({{ site.baseurl
+      }}/img/conclude_fruit.png)
+
+      However, in the next rule, the same Category
+      declaration block “Fruit is a Category” does not create the category fruit,
+      but instead asks whether the category has been created.
+
+      ![query fruit]({{
+      site.baseurl }}/img/query_fruit.png)
+
+      If the category Fruit has not been
+      defined anywhere (in a fact, or the conclusion of a Rule that had true conditions),
+      then the answer to the query “is Fruit a category” will be no.
+
+      This can
+      be confusing, because Blawx still creates a “Known Category”, “Known Object”
+      or “Known Attribute” block in the toolbox regardless of where the relevant block
+      is used. So you may have a Category selector block called “Fruit” while *in
+      the code* the category fruit does not exist.
+
+      So it is important to remember
+      the effect of declaration blocks in different locations:
+
+      > **In Facts
+      and Rule Conclusions, a new object or new category block or new attribute block
+      means “this thing exists”. In Rules Conditions and Queries, a declaration block
+      means “does this thing exist?”**
+      - model: blawx.docpage
+      pk: guide/interface
+      fields:
+      title: User Interface Tour
+      content: # Blawx User Interface Tour
+
+      ## Workspace Components
+      In Blawx
+      you encode laws by sticking puzzle pieces together on a table. The table is
+      called your “workspace”. The place you grab the puzzle pieces from is called
+      the “toolbox.”
+
+      In the picture below, the area on the left is the toolbox,
+      and the area on the right is the workspace.
+
+      ![workspace](/static/blawx/user_interface_v1.png
+      \"Blawx Workspace\")
+
+      The toolbox is made up of categories. When you click
+      on a category name, the blocks available in that category are displayed. If
+      the category has sub-categories, a black triangle appears before the name of
+      the category.
+
+      Usually, most of the blocks in a category will match the
+      highlight colour on the left side of the category.
+
+      At the top of the
+      workspace is a resizeable, transparent area that shows the results received
+      from the Blawx reasoner.
+
+      ![response area]({{ site.baseurl }}/img/results_area.png
+      \"Results Area\")
+
+      ## Blocks
+      The individual puzzle pieces that you
+      use to encode laws are called “Blocks”, or “Blawx”. Blocks can include information
+      that you can’t change, like the words “is an Object” in the Object Declaration
+      block shown below, and they can include information that you can change, like
+      the word “rock” in the image below.
+
+      ### Fields
+
+      ![text field]({{
+      site.baseurl }}/img/text_field.png \"Text Field\")
+
+      Information that you
+      can change in a block is called a field. The field above is a text field that
+      allows you to type information into it. There are also fields for numbers, which
+      is a text field that you can only type numbers into.
+
+      ![number field]({{
+      site.baseurl }}/img/number_field.png \"Number Field\")
+
+      And there are
+      dropdown fields, that allow you to choose one of several options. One example
+      is the true/false block.
+
+      ![dropdown field]({{ site.baseurl }}/img/dropdown.png
+      \"Dropdown Field\")
+
+      ### Connectors
+      There are two kinds of connectors
+      on the blocks in in Blawx (say that 5 times fast!): “insert” connectors, and
+      “and” connectors. Each has a positive and negative version.
+
+      The positive
+      “insert” connector looks like the sticky-outie part of a puzzle piece and sticks
+      out of the left side of the block.
+
+      ![positive insert connector]({{ site.baseurl
+      }}/img/positive_insert_connector.png \"Positive Insert Connector\")
+
+      Th
+      negative insert connector looks like a “hole” where the positive insert connector
+      would fit. Most of these locations show up as a missing puzzle piece inside
+      a larger block.
+
+      ![negative insert connector]({{ site.baseurl }}/img/negative_insert_connector.png
+      \"Negative Insert Connector\")
+
+      The size of the hole doesn’t matter, and
+      will expand to fit whatever block connects to it.
+
+      ### Add part for when
+      Connectors DO Fit
+
+      ### When Insert Connectors “Don’t Fit”
+      Blawx tries
+      to help make sure that you don’t stick things where they don’t belong. So as
+      an example, if you try to stick a number where Blawx is expecting a string,
+      the blocks won’t “fit properly.” Just like when you’re doing a jigsaw puzzle
+      and you’re trying to stick two pieces together that don’t belong together… it
+      just doesn’t quite work.
+
+      If you’re trying to insert a block and it “won’t
+      fit”, you are probably trying to insert a block that is of the wrong datatype.
+
+      Whenever
+      you use an insert connector, it has the same meaning as “filling in the blank”.
+      Most blocks will not work if any of their negative insert connectors are empty.
+      If there’s a blank, you need to fill it.
+
+      ### And Connectors
+      The “And”
+      connectors, are shown as a divot on the top of a block and a bump on the bottom
+      of a block.
+
+      Blocks with “and” connectors can be stacked with each other
+      vertically. When you stack two things vertically using the “and” connector,
+      that is treated as a statement that they both must be true. You
+      can stack
+      as many statements as you need in this way.
+
+      Some blocks have “internal”
+      and connectors, when they expect to contain other blocks. A block usually won’t
+      work properly if it has any internal \"and\" connectors that are left empty.
+
+      In
+      any stack of blocks, the bottom block will always have an external \"and\" connector
+      with nothing attached. That's fine.
+
+      ### Keeping Connected: Outer Blocks
+      For
+      your encoding to work, all of the blocks need to be connected to an outer block
+      that has no empty connectors. The outer blocks are facts, rules, constraints,
+      assumptions, and queries, and look like this:
+
+      ![outer blocks]({{ site.baseurl
+      }}/img/outer_blocks.png \"Outer Blocks\")
+
+      The Facts, Assumption, Constraint,
+      and Query blocks have only one internal And connector. The Rule query has two.
+      All of them must be connected to a stack of blocks to work properly. And all
+      blocks with connectors must be attached to (or attached to something that is
+      attached to) an outer block with no empty connectors.
+
+      So if you have
+      blocks hanging around with empty negative and connectors, that won’t work. But
+      if you put them inside an outer block, it will.
+
+      So you have well formed
+      code if there are only full outer blocks, and blocks with no empty connections
+      (except for the last \"and\" in a stack) in the workspace.
+
+      ## Navigating
+      the Blawx User Interface
+
+      ### Scrolling
+      The size of the workspace increases
+      as necessary for however many blocks you add to it. If you can’t see all the
+      blocks on the workspace, you can scroll around the workspace using the vertical
+      and horizontal scroll bars.
+
+      ![workspace]({{ site.baseurl }}/img/workspace.png
+      \"Blawx Workspace\")
+
+      You can also scroll the workspace by dragging any
+      empty part of the workspace.
+
+      ### Dragging Blocks
+      You drag blocks from
+      the toolbox to the workspace in order to add them to your code, and you drag
+      them around the workspace in order to connect them to one another.
+
+      Dragging
+      a block in a vertical stack will drag that block and any blocks that are connected
+      below it, but not blocks above it or blocks containing it.
+
+      Dragging a
+      block will drag blocks contained in it.
+
+      Because of the different ways
+      in which dragging behaves, it’s important to know which block is currently selected.
+      For that reason, the currently selected block is highlighted with an orange
+      boundary.
+
+      ![block highlighting]({{ site.baseurl }}/img/block_highlighting.png
+      \"Block Highlighting\")
+
+      ### Block Context Menu
+      If you right-click
+      on a block in the workspace you will get a context menu.
+
+      ![context menu]({{
+      site.baseurl }}/img/context_menu.png \"Block Context Menu\")
+
+      #### Duplicate
+      The
+      Duplicate menu option will make a copy of the block you have selected (and any
+      blocks that are contained in it, but not any blocks it is vertically stacked
+      with), and put it on the workspace.
+
+      #### Comments
+      Adding a comment
+      opens a bubble that you can type extra information into. That information has
+      no effect on the meaning of the blocks, it is just to allow you to add more
+      useful information to the workspace.
+
+      Comments are typically used by software
+      developers to explain what a piece of code is supposed to do, and why it is
+      built the way it is, so that if anyone else (or the same person, but after a
+      long period of time) needs to make adjustments later, they can get up to speed
+      more quickly.
+
+      That is a very good idea. When encoding legislation, until
+      we add more specific features for it, the comments are also a good place to
+      include information about the source for the rule.
+
+      When a block already
+      has a comment, the context menu will allow you to delete it instead. When a
+      block has a comment, that comment can be hidden or shown by clicking on the
+      blue question mark icon that appears on the top left of the block.
+
+      ![commment]({{
+      site.baseurl }}/img/comment.png \"Comment\")
+
+      #### Collapsing
+      Collapsing
+      a block reduces it to one line high, and makes the right side of the block look
+      “torn” to show that it is a collapsed block.
+
+      ![collapsed]({{ site.baseurl
+      }}/img/collapsed.png \"Collapsed Block\")
+
+      In a collapsed block the context
+      menu will allow you to expand it to its normal size again.
+
+      Collapsing
+      blocks can be very helpful when you are dealing with a lot of complicated outer
+      blocks at the same time.
+
+      Note that when a block is collapsed you cannot
+      see whether it has a comment.
+
+      #### Disabling
+      A disabled block will
+      change in colour to a cross-hatch pattern. Disabled blocks remain on the workspace,
+      but they do not mean anything. So it does not matter whether a disabled block
+      has unfilled connectors.
+
+      ![disabled]({{ site.baseurl }}/img/disabled.png
+      \"Disabled Blocks\")
+
+      Disabling a block disables that block and any blocks
+      it contains.
+
+      For a disabled block, the context menu will allow you to
+      enable it again.
+
+      #### Deleting
+      Deleting a block removes a block and
+      any blocks it contains from the workspace. If you delete a block in a vertical
+      stack, the blocks above and below will become vertically connected with each
+      other.
+
+      The context menu will tell you how many blocks you are about to
+      delete, as shown here:
+
+      ![context menu delete]({{ site.baseurl }}/img/context_menu_delete.png
+      \"Context Menu Delete\")
+
+      #### Block-Specific Help
+      If there is a help
+      page for the specific kind of block you are using, the Help item in the context
+      menu will take you to that help page. If there isn’t, it will be disabled.
+
+      The
+      help context menu is also the only item that is available when you right click
+      on a block in the toolbox.
+
+      ![context menu toolbox]({{ site.baseurl }}/img/context_menu_in_toolbox.png
+      \"Context Menu Toolbox\")
+
+      ### Workspace Context Menu
+      There is also
+      a context menu that you can access by right-clicking on an empty part of the
+      workspace.
+
+      ![workspace context menu]({{ site.baseurl }}/img/workspace_context_menu.png
+      \"Workspace Context Menu\")
+
+      #### Undo and Redo
+      If you make a mistake,
+      you can use the Undo and Redo commands in the workspace context menu to get
+      things back to how they were before the mistake.
+
+      #### Clean Up Blocks
+      Cleaning
+      up blocks will cause all the blocks in the workspace to be organized in a single
+      vertical column along the left side of the workspace. This can be useful if
+      your workspace has gotten out of control.
+
+      #### Collapse and Expand Blocks
+      Collapsing
+      and expanding blocks from the workspace context menu does it to all the blocks
+      in the workspace.
+
+      #### Delete All
+      Deleting blocks from the workspace
+      context menu will delete all the blocks in the workspace, and has the same effect
+      as using the Menu, Clear Workspace command.
+
+      ### Keyboard Shortcuts
+      `CTRL-C`
+      will copy the currently selected block and any blocks that would move with it
+      if you dragged it.
+
+      `CTRL-V` will pase the most recently copied blocks
+      slightly below and to the right of where it was copied (which may not be where
+      you are looking).
+
+      The `Delete` key will delete the currently selected
+      block and any blocks it contains.
+
+      `CTRL-Z` will undo the most recent
+      change to the workspace.
+
+      ### Trash Can
+      The trash can is located in
+      the bottom right of the workspace, no matter where you scroll.
+
+      ![trash
+      can]({{ site.baseurl }}/img/trash.png \"Trash Can\")
+
+
+      Dragging a block
+      to the trash can deletes it from the workspace.
+
+      Clicking on the trash
+      can will open the trash can and allow you to drag blocks that were deleted back
+      into the workspace.
+
+      ![open trash can]({{ site.baseurl }}/img/open_trash.png
+      \"Open Trash Can\")
+
+      ### The Command Menu
+      Commands that you can run
+      on an entire workspace are located at the top of the page.
+
+      ![menu]({{
+      site.baseurl }}/img/menu.png \"Command Menu\")
+
+      #### Clear Workspace
+      The
+      Clear Workspace command will delete all of the blocks in the current workspace.
+
+      ####
+      Import Workspace
+      The Import Workspace command will let you choose a local
+      .blawx file to open in the current workspace. The contents of the uploaded file
+      will overwrite the contents of the workspace.
+
+      #### Export Workspace
+      The
+      Export Workspace command will allow you to save the current workspace to a local
+      .blawx file, so that it can be shared with someone using a different Blawx server.
+
+      ####
+      Run Blawx Code
+      The Run Blawx Code command sends the current workspace to
+      the Blawx reasoner and displays the results in the output area. Note that the
+      Rune Blawx Code command also saves the current workspace to the Blawx server.
+
+      ####
+      Help
+      The Help command brings you to the Blawx.com documentation, which...
+      is what you're reading right now.
+      #### Save and Close
+      The Save and
+      Close command saves the current workspace to the Blawx server, and returns to
+      the Workspace view.
+      - model: blawx.docpage
+      pk: guide/logic
+      fields:
+      title: Logic Blocks
+      content: # Logic Blocks
+
+      This page describes the basic logic blocks available
+      in the Logic drawer of the Toolbox.
+
+      ## Negation
+
+      Blawx provides
+      you with two different types of negation.
+
+      The first type of negation
+      is a \"known false” block. It looks like this:
+
+      ![not]({{ site.baseurl
+      }}/img/not.png)
+
+      The second type of negation is a \"not\" block. It looks
+      like this:
+
+      ![naf not]({{ site.baseurl }}/img/naf_not.png)
+
+      It is
+      very important to understand the difference between them.
+
+      Inside a Fact
+      or a Rule Conclusion, a \"known false\" block tells Blawx that the included
+      statement is known with certainty to be false. Inside a Question or a Rule Condition,
+      it asks Blawx to check to see whether it is known with certainty that the statement
+      is false.
+
+      A \"not\" block does require that a thing is certainly false,
+      but if it is known false, the \"not\" block will succeed. But a \"not\" block
+      will also succeed if there is only no facts or rules that can be used to derive
+      that the statement is true.
+
+      \"Not\" blocks can't be used in facts, or
+      the conclusions of rules. They are used in queries, and in the conditions of
+      rules.
+
+      Let's imagine you want to ask if there are no dogs. You might
+      (incorrectly) write this code:
+
+      ![wrong not any dogs]({{ site.baseurl
+      }}/img/wrong_not_any_dogs.png)
+
+      But this code will not work as expected.
+      A \"known false\" only returns “true” if its contents are explicitly 
+      stated
+      to be false. But if a fact stated (or a rule concluded) \"it is known false
+      that any is in the category Dog\", that would mean “it is impossible for an
+      object to be a dog.” That is probably not what you meant to check for.
+
+      You
+      don't want to know if that statement is explicitly false. You want to know
+      whether
+      you can find a specific example in which it is true. Put another way,
+      you
+      don't want to ask \"is it true that nothing can be a dog?\", you want to ask
+
+      \"do you know of any examples of dogs?\" So the \"not\" version
+      is what
+      you need.
+
+      ![correct not any dogs]({{ site.baseurl }}/img/correct_not_any_dogs.png)
+
+      That
+      version of the rule will work as expected.
+
+      Another way to think about
+      the difference is to think of statements as having opposites.
+      \"Known false\"
+      checks to see if the opposite is true. \"Not\" checks to see if the opposite
+      is
+      true, *or* if the statement can't be proven.
+
+      In law, we are familiar
+      with this distinction between the two different kinds of negation. In criminal
+      trials, when a court decides that a person is \"not guilty\", they are using
+      the \"not\". \"Not guilty\" means *either* the person is innocent (the opposite
+      of guilty), *or* there was not sufficient proof to
+      find them guilty.
+
+      As
+      a general rule, you usually want to use \"not\" in questions and in rule
+      conditions.
+      \"Known fasle\" is the only thing that will work in rule conclusions and facts.
+
+
+      ## Comparison
+
+      ![comparison]({{ site.baseurl }}/img/comparitor.png)
+
+      The
+      comparison operator has 6 different comparisons it can make between two values,
+      or objects.
+
+      They are quite self-explanatory. The block will succeed if
+      the two values provided satisfy the condition, which is one of:
+
+      * \"is
+      the same value as\"
+      * \"is a different value from\"
+      * \"is less than\"
+      *
+      \"is greater than\"
+      * \"is less than or the same value as\"
+      * \"is greater
+      than or the same value as\"
+
+      There are a couple of things to note. First,
+      it will only work if the values are ordered, like numbers, or dates. Second,
+      it compares the values, but it does not know whether the values are coming from
+      the
+      same source.
+
+      If you want to know whether objects referred to by
+      two variables are the same object (they are \"identical\"), then you don't want
+      to compare their values, you want to check their identities. That is done using
+      the object equivalence or object disequivalence blocks.
+- model: blawx.docpage
+  pk: guide/rps
+  fields:
+    title: Rock, Paper, Scissors
+    content: |
+      The Blawx documentation is currently under active re-development to
+      catch up with significant changes in version 1.0.0-alpha of the tool.
+
+      This
+      page isn't finished yet. Thanks for your patience.
+- model: blawx.docpage
+  pk: guide/variables
+  fields:
+    title: Variables
+    content: |
+      # Variables
+
+      Variables are a fundamental part of how Blawx works.
+      You can't do anything interesting without them. But if you have experience
+      with
+      other programming languages, they probably will not behave as you first expect.
+
+      Don't
+      worry, variables in Blawx are VERY easy to understand.
+
+      ## Understanding
+      Variables in Blawx
+
+      Imagine I asked you \"this species is carnivourous,
+      it is four-legged, and it is known as man's best
+      friend.\" What would you
+      answer?
+
+      A dog!
+
+      So what happened, there?
+
+      I gave you a list
+      of things that was true. The list was:
+
+      * it is a species, and
+      * it
+      is carnivourous, and
+      * it is four-legged, and
+      * it is known as man's best
+      friend
+
+      I asked you to think of a specific thing that \"it\" might be.
+      Or put differently,
+      I asked you to think of a specific thing, where if you
+      put that thing everywhere the word \"it\"
+      appears, the four statement would
+      be true.
+
+      **The way we are using \"it\" in that list is *exactly* how
+      a Blawx variable works.**
+
+      See? Easy!
+
+      A Blawx variable is just
+      a name that you give to an unknown. When you use the same name, you
+      are referring
+      to the same unknown.
+
+      This is also precisely the way variables are used
+      in math.
+
+      It's just different from how they are used in most programming
+      langauges.
+
+      ## Variables In Action
+
+      ### Single Variable
+
+      The
+      first and most obvious place that you will use variables is in questions. The
+      dog question above could be posed in Blawx like this:
+
+      ![it query]({{
+      site.baseurl }}/img/it_query.png)
+
+      This example uses the word \"It\" as
+      the name of the variable, but you can use anything you like.
+
+      Note that
+      variable names should not include spaces, and should start with a capital letter.
+
+      ###
+      Variables in Rule Conclusions
+
+      Do not use a variable in a rule conclusion
+      that wasn't also used in the conditions of that rule. Otherwise, your variable
+      will match with everything in the database, which probably isn't what you wanted.
+
+      ###
+      Copy, Don't Type
+
+      Because variables are names that you type, and not declared
+      like objects or categories, there is a higher risk of typos. It is a good practice
+      to copy and paste variable blocks whenever possible to avoid typos.
+
+      ###
+      Multiple Variables
+
+      Where Blawx gets very powerful is in its ability to
+      match multiple variables at the same time.
+
+      For example, let's take this
+      rule that defines the winner of a game of rock-paper-scissors:
+
+      ![rock
+      paper scissors]({{ site.baseurl }}/img/rps_winner.png)
+
+      This rule uses
+      5 variables in the conditions, and only 2 of them in the conclusion.
+
+      Blawx
+      searches for a set of 5 data points that can fill in for the variables \"game\",
+      \"player\", \"other_player\", \"player_throw\", and \"other_player_throw\",
+      which will make all of those 10 statements in the condition true.
+
+      The
+      more complicated your data structure, and the more layers of that data structure
+      you need to navigate in order to reach a conclusion, the more variables you
+      will need in your rules and queries.
+
+      ### Sameness and Differentness
+
+      Blawx
+      is going to automatically find data that can be put in the place of the variable
+      everywhere it appears. So it checks to see if
+      the data is the same in each
+      place the same variable is used.
+
+      You might assume that Blawx also checks
+      to see if a *different* piece of data is used
+      everywhere that *different*
+      variables are used, but **this is not true**.
+
+      Let's imagine we have the
+      following ontology:
+
+      ![family ontology]({{ site.baseurl }}/img/family_ontology.png)
+
+      And
+      let's say that we have the following rule in order to calculate siblings:
+
+      ![sibling
+      broken]({{ site.baseurl }}/img/sibling_rule_broken.png)
+
+      This will incorrectly
+      tell us that Wednesday is her own sibling. Why?
+
+      Because Blawx will see
+      if there are values that it can put into A, B, and C, using the same values
+      each time each variable is used, and have all of the statements in the condition
+      be true.
+
+      So here, if A is Wednesday, and if B is Wednesday, and if C
+      is Morticia, all three statements are true.
+
+      Therefore Wednesday (A) has
+      a sibling Wednesday (B).
+
+      Blawx is checking to see that the A in the condition
+      is the same as the A in the conclusion, the B in the condition is the same as
+      in the conclusion, and the C is the same both times it appears in the condition.
+      But is not checking to see if anything is different.
+
+      To force a check
+      for difference, you have to be explicit, like this:
+
+      ![sibling fixed]({{
+      site.baseurl }}/img/sibling_rule_fixed.png)
+
+      Now Wednesday has only one
+      sibling, Pugsley, and Pugsley has only one sibling, Wednesday.
+
+      ## Types
+      of Variables
+
+      Blawx gives you two different types of variables that you
+      can use:
+
+      ### Named Variables
+
+      ![variable]({{ site.baseurl }}/img/variable_selector.png)
+
+      A
+      normal variable is just a name. Blawx will look for data which, if you put it
+      in everywhere the 
+      variable appears, it makes the statement true. And if
+      you used it in a question, it will tell you what that data was.
+
+      In fact,
+      this is the only kind of variable that will cause Blawx to give you the specifics
+      in response to a question.
+
+      A variable should start with a capital letter,
+      and have no spaces.
+
+      ### Unnamed Variables
+
+      ![unnamed]({{ site.baseurl
+      }}/img/unnamed_variable.png)
+
+      If you need to check that *something* can
+      be put into a statement, but you don't need to learn what,
+      and you won't
+      ever need Blawx to make sure it's the same *something* that was used elsewhere,
+      you can use
+      the unnamed variable block.
+
+      Using an unnamed variable
+      is the same as using a named variable only one time in a question or rule condition,
+      except that Blawx will warn you about using a variable only once, but it will
+      not warn you if the variable is unnamed.
+
+      ## Variable Scope
+
+      Two
+      variables with the same name  refer to the same thing if they are both in the
+      same rule or question. Variables in different rules or questions can reuse the
+      same names, and it does not affect the meaning.
+
+      This is an example of
+      variable \"scope\". A variable's \"scope\" is the part of the code in which
+      another variable with the same name will be matched to the same thing.
+
+      Usually,
+      scope is not an issue. Every rule is its own scope. Every query is its own scope.
+      The one other thing to keep in mind is that a Fact block gives a new scope to
+      each of the statements included in it. So re-using the same variable name in
+      multiple statements in a Fact block will not make those things true simultaneously.
+- model: blawx.docpage
+  pk: home
+  fields:
+    title: Blawx Documentation Home
+    content: |
+      # Blawx Documentation Home
+
+      This documentation can be reached
+      at any time by choosing \"Help\" in the menu
+      of the Blawx interface.
+
+      The
+      Blawx documentation is divided into a guide section, and a reference section.
+      The guide section includes the Beginner's Guide to Blawx,
+      an Advanced Topics
+      section,
+      and an Examples section.
+
+      Details on specific interface elements
+      and how they work are included in the \"Specific Blocks\" section. The pages
+      in this section are also accessible by
+      right-clicking on a block in the Blawx
+      interface and choosing \"Help.\"
+
+      Blawx is under active development. The
+      documentation is a work in progress. Some pages may not include much detail,
+      and some examples may be out of date compared to the interface. If there is
+      something missing that you need, or something incorrect, please file an issue
+      at the [Blawx GitHub repository](https://github.com/Blawx/blawx).
+- model: blawx.docpage
+  pk: incomplete
+  fields:
+    title: Incomplete
+    content: |
+      # Incomplete
+
+      The Blawx documentation is a work in progress, and
+      we are currently working on getting it up to speed with version 1.0.0-alpha of
+      the reasoner and interface.
+
+      The page you are seeking has not been completed
+      yet. Thanks for your patience.
