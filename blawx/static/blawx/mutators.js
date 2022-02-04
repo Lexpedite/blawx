@@ -143,3 +143,15 @@ ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
       }
   
 Blockly.Extensions.registerMutator('attribute_selector_mutator', ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);
+
+Blockly.Extensions.register('changeCategoryDisplayText', function() {
+  this.setOnChange(function(changeEvent) {
+      if (this.getFieldValue('order') == "oc") {
+      this.getField('first_element').setValue('object');
+      this.getField('second_element').setValue('category');
+      } else {
+      this.getField('first_element').setValue('category');
+      this.getField('second_element').setValue('object');
+      }
+  });
+  });

@@ -1820,6 +1820,9 @@ for (var i = 0; i < scasp_blockset.length; i++) {
   };
   if (scasp_blockset[i].type == "object_declaration") {
     scasp_blockset[i]['mutator'] = "object_declaration_mutator";
+  };
+  if (scasp_blockset[i].type == "category_display") {
+    scasp_blockset[i]['extensions'] = ['changeCategoryDisplayText'];
   }
 }
 
