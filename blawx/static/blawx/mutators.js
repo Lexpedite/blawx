@@ -22,13 +22,21 @@ OBJECT_DECLARATION_MUTATOR_MIXIN = {
   mutationToDom: function() {
     var container = document.createElement('mutation');
     var category_name = this.blawxCategoryName;
+    var prefix = this.blawxPrefix;
+    var postfix = this.blawxPostfix;
     container.setAttribute('category_name', category_name);
+    container.setAttribute('prefix',prefix);
+    container.setAttribute('postfix',postfix);
     return container;
   },
 
   domToMutation: function(xmlElement) {
     var category_name = xmlElement.getAttribute('category_name');
+    var prefix = xmlElement.getAttribute('prefix');
+    var postfix = xmlElement.getAttribute('postfix');
     this.blawxCategoryName = category_name;
+    this.blawxPrefix = prefix;
+    this.blawxPostfix = postfix;
   }
 }
 
@@ -143,3 +151,15 @@ ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
       }
   
 Blockly.Extensions.registerMutator('attribute_selector_mutator', ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);
+
+// Blockly.Extensions.register('changeCategoryDisplayText', function() {
+//   this.setOnChange(function(changeEvent) {
+//       if (this.getFieldValue('order') == "oc") {
+//       this.getField('first_element').setValue('object');
+//       this.getField('second_element').setValue('category');
+//       } else {
+//       this.getField('first_element').setValue('category');
+//       this.getField('second_element').setValue('object');
+//       }
+//   });
+//   });

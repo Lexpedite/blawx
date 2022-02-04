@@ -309,7 +309,16 @@ Blockly.JavaScript['unattributed_constraint'] = function(block) {
 Blockly.JavaScript['category_declaration'] = function(block) {
   var text_category_name = block.getFieldValue('category_name');
   // // TODO: Assemble JavaScript into code variable.
-  var code = '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'";
+  var code = '';
+  var nextblock = block.getNextBlock();
+  if (nextblock && nextblock.type == "category_display") {
+    var prefix = nextblock.getFieldValue('prefix');
+    var postfix = nextblock.getFieldValue('postfix');
+    code += "#pred " + text_category_name + "(X) :: '";
+    code += (prefix + " @(X) " + postfix).trim() + "'.\n"
+  } else {
+    code = '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'";
+  }
   return code;
 };
 
@@ -393,12 +402,12 @@ Blockly.JavaScript['object_declaration'] = function(block) {
 };
 
 Blockly.JavaScript['category_display'] = function(block) {
-  var dropdown_order = block.getFieldValue('order');
-  var text_prefix = block.getFieldValue('prefix');
-  var text_infix = block.getFieldValue('infix');
-  var text_postfix = block.getFieldValue('postfix');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  // var dropdown_order = block.getFieldValue('order');
+  // var text_prefix = block.getFieldValue('prefix');
+  // var text_infix = block.getFieldValue('infix');
+  // var text_postfix = block.getFieldValue('postfix');
+  // // TODO: Assemble JavaScript into code variable.
+  var code = '';
   return code;
 };
 
