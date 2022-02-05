@@ -1,0 +1,256 @@
+- model: blawx.workspace
+  pk: 1
+  fields:
+    workspace_name: Rock Paper Scissors
+    workspace_example: true
+    xml_content: |
+      <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="?)ApQNg1jB.,IM(o!mA`" x="0" y="0"><statement name="statements"><block type="category_declaration"
+      id="Ca4Cx,@OTy5zEz,%,tJA"><field name="category_name">game</field><next><block
+      type="category_declaration" id="v0=@GdjA}rF@yIj)Ftd]"><field name="category_name">player</field><next><block
+      type="category_declaration" id="?c2mZnwZs0IUi)0z8+IU"><field name="category_name">sign</field><next><block
+      type="category_attribute" id="[/_3l2-yD+xPk)5T2y1,"><value name="category"><block
+      type="category_selector" id="OKH+)fJT,QtsSSXTqLr("><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="game"></mutation><field name="category_name">game</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="Et_OB798^[uEzM?Xqw#$"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="participant" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">participant</field><value name="attribute_type"><block
+      type="category_selector" id="lZ$NI19p0KN8ulAi+MYS"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="player"></mutation><field name="category_name">player</field></block></value><next><block
+      type="attribute_display" id="}2^zm4OiGS5roNT:4wpB"><field name="order">vo</field><field
+      name="prefix"></field><field name="first_element">value</field><field name="infix">played
+      in</field><field name="second_element">object</field><field name="postfix"></field><next><block
+      type="attribute_declaration" id="]{~uCkQD:RQnu0ES1]nA"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="winner" attribute_type="CATEGORY"></mutation><field name="attribute_name">winner</field><value
+      name="attribute_type"><block type="category_selector" id="vLVE|soc2_y`*uEd!;US"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="category_name">player</field></block></value><next><block type="attribute_display"
+      id="D8)2_}IaRsEzL0mMJo@["><field name="order">vo</field><field name="prefix"></field><field
+      name="first_element">value</field><field name="infix">won</field><field name="second_element">object</field><field
+      name="postfix"></field><next><block type="attribute_declaration" id="(QU?3C!5dU$KXr8Kh^IF"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="tied" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">tied</field><value name="attribute_type"><block type="true_false_type_selector"
+      id=";|yXi*L-:TBVyD,xd*V#"></block></value><next><block type="attribute_display"
+      id="uYIRPY~MMFWK=_YVIz4v"><field name="order">vo</field><field name="prefix">it
+      is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">was a tied game</field></block></next></block></next></block></next></block></next></block></next></block></statement><next><block
+      type="category_attribute" id="gm[h;FTmjCL3V-/{wRon"><value name="category"><block
+      type="category_selector" id="vE})_,ppO|0{GVZvD-%J"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="player"></mutation><field name="category_name">player</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="r^XK`,0eF8bVy$ys=tvP"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="sign_thrown" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">sign_thrown</field><value name="attribute_type"><block
+      type="category_selector" id="2m#H%O*?klUxuPDw$Nu4"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="sign"></mutation><field name="category_name">sign</field></block></value><next><block
+      type="attribute_display" id="Tmc%dF4d1%Q.-Lak,hk@"><field name="order">ov</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="infix">threw</field><field
+      name="second_element">value</field><field name="postfix"></field></block></next></block></statement><next><block
+      type="category_attribute" id=".D2Y~u}uLPmANw:J~XIu"><value name="category"><block
+      type="category_selector" id="SkhJL4W?=cgO{-XR0b=8"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="sign"></mutation><field name="category_name">sign</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="ug$?H}w7N@L0h-B{]5-y"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="defeats" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">defeats</field><value name="attribute_type"><block type="category_selector"
+      id="nah![LZlWL/;J^a:.yJK"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="sign"></mutation><field
+      name="category_name">sign</field></block></value><next><block type="attribute_display"
+      id="T{hJgsj8p$A~v~bI.q#d"><field name="order">ov</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="infix">beats</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></statement></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_fact" id="LPkSXf.IF`3#b.lM[^t$" x="0" y="742"><statement
+      name="statements"><block type="object_declaration" id=",|pBANh:gS):Gw%_yoeY"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="sign"></mutation><field
+      name="prefix"></field><field name="object_name">rock</field><field name="postfix">is
+      a sign</field><next><block type="object_declaration" id="EMYgslSW7#N?Wk,Edly%"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="sign"></mutation><field
+      name="prefix"></field><field name="object_name">paper</field><field name="postfix">is
+      a sign</field><next><block type="object_declaration" id="rOa9oZJD0}~h?Q$|ElcY"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="sign"></mutation><field
+      name="prefix"></field><field name="object_name">scissors</field><field name="postfix">is
+      a sign</field><next><block type="attribute_selector" id="_Kfa*!Rr1Pg+,VqU*;n:"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="defeats" attributetype="sign"
+      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">beats</field><field
+      name="postfix"></field><value name="first_element"><block type="object_selector"
+      id="=Fm_i5p07vm+W}j-=9)U"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field
+      name="object_name">rock</field></block></value><value name="second_element"><block
+      type="object_selector" id=":ek^lJq98={m)Z@~%/=g"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="scissors"></mutation><field name="object_name">scissors</field></block></value><next><block
+      type="attribute_selector" id=")lrFRjxvs[:`tGh`Qo)K"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="defeats" attributetype="sign" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">beats</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="Lg$W1|18C@A-RqBVA/D|"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="scissors"></mutation><field
+      name="object_name">scissors</field></block></value><value name="second_element"><block
+      type="object_selector" id="HOR5R.[SbdS+K)dG%*2x"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="paper"></mutation><field name="object_name">paper</field></block></value><next><block
+      type="attribute_selector" id="uUyNYWu7^c!sHh*yX/M$"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="defeats" attributetype="sign" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">beats</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="UGK$1N:;9R5DWJd7B$t_"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="paper"></mutation><field name="object_name">paper</field></block></value><value
+      name="second_element"><block type="object_selector" id="g(F+(J%P*}/xv.LK!4V7"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field name="object_name">rock</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="l$0tozh.ygLj6=TCLXKG" x="-1" y="967"><statement
+      name="conditions"><block type="attribute_selector" id="zF_;2HW,[=9]V6MgdY5m"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="participant" attributetype="player"
+      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">played
+      in</field><field name="postfix"></field><value name="first_element"><block type="variable"
+      id="2|fK7{}cX}fqs1/fxq9K"><field name="variable_name">PlayerOne</field></block></value><value
+      name="second_element"><block type="variable" id="Tk!P^QFy_,Nah2:g(szx"><field
+      name="variable_name">Game</field></block></value><next><block type="attribute_selector"
+      id="H)c@@(jtxF.hi9*bn?a}"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="participant"
+      attributetype="player" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">played in</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="I}UKs(([]rCVNWfNUU1#"><field name="variable_name">PlayerTwo</field></block></value><value
+      name="second_element"><block type="variable" id="va??6/dBW+r~F/W1`W`1"><field
+      name="variable_name">Game</field></block></value><next><block type="attribute_selector"
+      id="ZHRcqfk1QXQ,uj./i@0B"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sign_thrown"
+      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="5/0gm=(DDGMOr3*:|/UC"><field name="variable_name">PlayerOne</field></block></value><value
+      name="second_element"><block type="variable" id="MkGh/!=O:h_qK`I9nYz~"><field
+      name="variable_name">ThrowOne</field></block></value><next><block type="attribute_selector"
+      id="!m*3jr5Md;z.pGX5s.H7"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sign_thrown"
+      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="WUqJ-]e7NVf?pyt@@xgl"><field name="variable_name">PlayerTwo</field></block></value><value
+      name="second_element"><block type="variable" id="2j2#5gTV-3mwUc}$F?V}"><field
+      name="variable_name">ThrowTwo</field></block></value><next><block type="attribute_selector"
+      id="H=nx)a-XK,0He1jM{DY{"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="defeats"
+      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">beats</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="4Q?6%|;6yA3g~4@O9mf}"><field name="variable_name">ThrowOne</field></block></value><value
+      name="second_element"><block type="variable" id="|#_lm%SX6]u)]pO91QSW"><field
+      name="variable_name">ThrowTwo</field></block></value></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="attribute_selector" id="-.G6KK3LmO3E~}N`+BPz"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="winner" attributetype="player"
+      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">won</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="ZVSA2}.0sbUX0X4c4;]Q"><field
+      name="variable_name">PlayerOne</field></block></value><value name="second_element"><block
+      type="variable" id="PBJZy@$?cWw].Z3@GFMI"><field name="variable_name">Game</field></block></value></block></statement></block><block
+      type="unattributed_fact" id="Df%=NpOiHOH:^IkDE~RP" x="6" y="1275"><statement
+      name="statements"><block type="object_declaration" id="o=DP8WlhG/Qz$j~c!}ZD"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="game"></mutation><field
+      name="prefix"></field><field name="object_name">testgame</field><field name="postfix">is
+      a game</field><next><block type="object_declaration" id="eY/g@rZelIxtbiHGS6b["><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="prefix"></field><field name="object_name">jane</field><field name="postfix">is
+      a player</field><next><block type="object_declaration" id="X?G[!QyV2,l4zQbge+PD"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="prefix"></field><field name="object_name">bob</field><field name="postfix">is
+      a player</field><next><block type="attribute_selector" id="^Q^VDN(S@(xB-3IAf@|C"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="participant" attributetype="player"
+      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">played
+      in</field><field name="postfix"></field><value name="first_element"><block type="object_selector"
+      id="3e,_#5:fwb6}0o.6[V6)"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field
+      name="object_name">bob</field></block></value><value name="second_element"><block
+      type="object_selector" id="G%#:F^rFhJHy5-6ymyB_"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="testgame"></mutation><field name="object_name">testgame</field></block></value><next><block
+      type="attribute_selector" id="-OAgA5tr(ffL3Q_hU_G;"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="participant" attributetype="player" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">played in</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="GzQN/NQhACSN$Ib,A{cC"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="jane"></mutation><field name="object_name">jane</field></block></value><value
+      name="second_element"><block type="object_selector" id="U3/bA$/+A)jx~5{wXr^C"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="testgame"></mutation><field
+      name="object_name">testgame</field></block></value><next><block type="attribute_selector"
+      id="wM.^p69cTx;{~K/!yuMA"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sign_thrown"
+      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
+      type="object_selector" id="uX/^/z=c@DOk(r5{plW7"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
+      name="second_element"><block type="object_selector" id="56u}Nko-eSB{;FG!N:nR"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field name="object_name">rock</field></block></value><next><block
+      type="attribute_selector" id="Vu1}z3W.SAFH9D8EuQ6k"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="sign_thrown" attributetype="sign" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">threw</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="q1(25}vj*M$im=KuQttQ"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="jane"></mutation><field name="object_name">jane</field></block></value><value
+      name="second_element"><block type="object_selector" id="mD=3kgU@9G67uq`S5xmR"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="scissors"></mutation><field
+      name="object_name">scissors</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="assume" id="h:=ER{_1-8EsWFVtwnR#" disabled="true" x="401" y="1349"><statement
+      name="statements"><block type="attribute_selector" id="LH~i%LWRbSq9H-]Gi.+)"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="participant" attributetype="player"
+      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">played
+      in</field><field name="postfix"></field><value name="first_element"><block type="variable"
+      id="BP,L-1hoKO)i!(Us@:;n"><field name="variable_name">Player</field></block></value><value
+      name="second_element"><block type="variable" id="3t12^iY:g_D8~qxrp8a9"><field
+      name="variable_name">Game</field></block></value><next><block type="attribute_selector"
+      id="|)2+x%uP~1]0dxg+!kRW"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sign_thrown"
+      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="5f2n|)`k?bd9AE*+=s[X"><field name="variable_name">Player</field></block></value><value
+      name="second_element"><block type="variable" id="Us|=c84Q#_,Cf]M4Y^ai"><field
+      name="variable_name">Throw</field></block></value></block></next></block></statement></block><block
+      type="query" id="9c?FE/.BD?j`|}cvX4@]" x="-3" y="1563"><statement name="query"><block
+      type="attribute_selector" id=":RJM?oz)/jI@l)6?pQ%J"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="winner" attributetype="player" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">won</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="K3`AK?ZU]w|20?|Wlv]{"><field
+      name="variable_name">PlayerOne</field></block></value><value name="second_element"><block
+      type="variable" id="$b[k|x!cFz%TIz@@8_;("><field name="variable_name">Game</field></block></value></block></statement></block></xml>
+    scasp_encoding: |
+      #pred game(X) :: '@(X) is a game'.
+
+      #pred player(X) :: '@(X) is a player'.
+
+      #pred sign(X) :: '@(X) is a sign'.
+
+      #pred participant(Y,X) :: ' @(X) played in @(Y) '.
+
+
+      #pred winner(Y,X) :: ' @(X) won @(Y) '.
+
+
+      #pred tied(Y,X) :: 'it is @(X) that @(Y) was a tied game'.
+
+
+      #pred sign_thrown(X,Y) :: ' @(X) threw @(Y) '.
+
+
+      #pred defeats(X,Y) :: ' @(X) beats @(Y) '.
+
+
+
+      sign(rock).
+
+      sign(paper).
+
+      sign(scissors).
+
+      defeats(rock,scissors).
+
+      defeats(scissors,paper).
+
+      defeats(paper,rock).
+
+
+      winner(Game,PlayerOne) :-
+
+      participant(Game,PlayerOne),
+
+      participant(Game,PlayerTwo),
+
+      sign_thrown(PlayerOne,ThrowOne),
+
+      sign_thrown(PlayerTwo,ThrowTwo),
+
+      defeats(ThrowOne,ThrowTwo).
+
+
+      game(testgame).
+
+      player(jane).
+
+      player(bob).
+
+      participant(testgame,bob).
+
+      participant(testgame,jane).
+
+      sign_thrown(bob,rock).
+
+      sign_thrown(jane,scissors).
+
+
+      ?- winner(Game,PlayerOne).

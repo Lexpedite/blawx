@@ -2,3 +2,4 @@ django-bootstrap-v5
 djangorestframework
 markdown
 swiplserver
+pyyaml

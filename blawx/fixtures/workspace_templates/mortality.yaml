@@ -1,0 +1,33 @@
+- model: blawx.workspace
+  pk: 2
+  fields:
+    workspace_name: Mortality
+    workspace_example: true
+    xml_content: |
+      <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="va9hJj%n~=#-V$OG$4pg" x="78" y="83"><statement name="statements"><block
+      type="category_declaration" id="H^Ztllbvm3V:W=vlHRvn"><field name="category_name">person</field><next><block
+      type="category_declaration" id="t8H8iM9nTeQ,xMd/u9T]"><field name="category_name">mortal</field><next><block
+      type="category_equivalence" id="G`8,y#Vd.Vim,`kCH!KV"><value name="first_category"><block
+      type="category_selector" id="JNoe;$f2hmnRO!E@8_-+"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><value
+      name="second_category"><block type="category_selector" id="AvgZmAYdp(f:$uM2#%U3"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="mortal"></mutation><field
+      name="category_name">mortal</field></block></value><next><block type="object_declaration"
+      id="M)gze_+jcT|ipaN3y,Dk"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="prefix"></field><field name="object_name">socrates</field><field name="postfix">is
+      a person</field></block></next></block></next></block></next></block></statement></block><block
+      type="query" id="U)D@HF1126Ah$}s8[zAg" x="79" y="259"><statement name="query"><block
+      type="object_category" id="?HLOpyE7B16]h#mt#UeU"><value name="object"><block
+      type="variable" id="f(|5$wZM61#NLY8!*;9v"><field name="variable_name">Anything</field></block></value><value
+      name="category"><block type="category_selector" id="9hMs8I*3wQ_=7w:!@Y)L"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="mortal"></mutation><field
+      name="category_name">mortal</field></block></value></block></statement></block></xml>
+    scasp_encoding: |
+      #pred person(X) :: '@(X) is a person'.
+      #pred mortal(X) :: '@(X) is a mortal'.
+      mortal(X) :-
+      person(X).
+      person(socrates).
+      
+      ?- mortal(Anything).

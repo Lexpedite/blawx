@@ -29,6 +29,8 @@ RUN pip3 install -r blawx/blawx/requirements.txt
 
 WORKDIR blawx
 
+RUN python3 load_data.py
+
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
 
 EXPOSE 8000
