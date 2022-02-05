@@ -1,7 +1,7 @@
 - model: blawx.docpage
   fields:
     title: Fact Block
-    pk: docs/blocks/fact
+    path: docs/blocks/fact
     content: | # markdown
       # This is the content of the page.
 
