@@ -1,0 +1,10 @@
+- model: blawx.docpage
+  pk: guide/rps
+  fields:
+    title: Rock, Paper, Scissors
+    content: |
+      The Blawx documentation is currently under active re-development to
+      catch up with significant changes in version 1.0.0-alpha of the tool.
+
+      This
+      page isn't finished yet. Thanks for your patience.

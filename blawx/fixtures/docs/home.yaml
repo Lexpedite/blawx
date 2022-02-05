@@ -1,0 +1,29 @@
+- model: blawx.docpage
+  pk: home
+  fields:
+    title: Blawx Documentation Home
+    content: |
+      # Blawx Documentation Home
+
+      This documentation can be reached
+      at any time by choosing "Help" in the menu
+      of the Blawx interface.
+
+      The
+      Blawx documentation is divided into a guide section, and a reference section.
+      The guide section includes the Beginner's Guide to Blawx,
+      an Advanced Topics
+      section,
+      and an Examples section.
+
+      Details on specific interface elements
+      and how they work are included in the "Specific Blocks" section. The pages
+      in this section are also accessible by
+      right-clicking on a block in the Blawx
+      interface and choosing "Help."
+
+      Blawx is under active development. The
+      documentation is a work in progress. Some pages may not include much detail,
+      and some examples may be out of date compared to the interface. If there is
+      something missing that you need, or something incorrect, please file an issue
+      at the [Blawx GitHub repository](https://github.com/Blawx/blawx).

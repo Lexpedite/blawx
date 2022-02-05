@@ -1,0 +1,23 @@
+- model: blawx.docpage
+  pk: about
+  fields:
+    title: About
+    content: |
+      # About Blawx
+
+      Blawx is an open source, web-based, user-friendly
+      interface
+      to the [s(CASP) programming language](http://ceur-ws.org/Vol-2970/gdeinvited4.pdf)
+      built
+      on [Google's Blockly library](https://developers.google.com/blockly),
+      intended
+      for use in encoding legislation and contracts.
+
+      Blocks + Law = Blawx.
+
+      It
+      is maintained by [Jason Morris](https://github.com/Gauntlet173) of Lexpedite
+      Legal Technologies, Ltd.
+
+      An article featuring an earlier version of Blawx
+      is available at the [MIT Computational Law Report](https://law.mit.edu/pub/blawxrulesascodedemonstration/release/1).
