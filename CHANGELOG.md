@@ -10,6 +10,7 @@ While alpha, however, any version changes may cause breaking changes that may no
 
 ### Added
 * Blawx reports compiler errors (resolving [#61](https://github.com/Lexpedite/blawx/issues/61))
+* Basic CodeQL Scanning Workflow
 
 ### Removed
 * Admin interface for documentation
