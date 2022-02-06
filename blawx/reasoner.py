@@ -8,7 +8,7 @@ import os
 import json 
 from contextlib import redirect_stderr
 
-from swiplserver import PrologMQI
+from swiplserver import PrologMQI, PrologError, PrologLaunchError
 
 from .models import Workspace
 
@@ -157,29 +157,34 @@ def run_workspace(request,pk):
     rulefilename = rulefile.name
 
     # Start the Prolog "thread"
-    with PrologMQI() as swipl:
-        with swipl.create_thread() as swipl_thread:
+    try: 
+      with PrologMQI() as swipl:
+          with swipl.create_thread() as swipl_thread:
 
-            transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
-            transcript_name = transcript.name
+              transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
+              transcript_name = transcript.name
 
-            with redirect_stderr(transcript):
-                load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
-            transcript.write(str(load_file_answer) + '\n')
-            if os.path.exists(rulefilename):
-                os.remove(rulefilename)
+              with redirect_stderr(transcript):
+                  load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+              transcript.write(str(load_file_answer) + '\n')
+              if os.path.exists(rulefilename):
+                  os.remove(rulefilename)
 
-            transcript.write(full_query)
-            with redirect_stderr(transcript):
-                query_answer = swipl_thread.query(full_query)
-            transcript.write(str(query_answer) + '\n')
+              transcript.write(full_query)
+              with redirect_stderr(transcript):
+                  query_answer = swipl_thread.query(full_query)
+              transcript.write(str(query_answer) + '\n')
 
-            transcript.close()
-            transcript = open(transcript_name,'r')
-            # transcript = open("transcript",'r')
-            transcript_output = transcript.read()
-            transcript.close()
-            os.remove(transcript_name)
-
+              transcript.close()
+              transcript = open(transcript_name,'r')
+              # transcript = open("transcript",'r')
+              transcript_output = transcript.read()
+              transcript.close()
+              os.remove(transcript_name)
+    except PrologError as err:
+      return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
+    except PrologLaunchError as err:
+      query_answer = "Blawx could not load the reasoner."
+      return Response({ "error": "Blawx could not load the reasoner." })
     # Return the results as JSON
     return Response({ "answer": json.dumps(query_answer), "transcript": transcript_output })

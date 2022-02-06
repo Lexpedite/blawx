@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
+## [v1.0.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.2-alpha) 2022-02-03
+
+### Added
+* Blawx reports compiler errors (resolving [#61](https://github.com/Lexpedite/blawx/issues/61))
+
+### Removed
+* Admin interface for documentation
+
 ## [v1.0.2-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.2-alpha) 2022-02-03
 
 ### Changed
