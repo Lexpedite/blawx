@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Attribute Display Block
+    path: docs/blocks/attribute_display
+    content: |
+      # Attribute Display Block

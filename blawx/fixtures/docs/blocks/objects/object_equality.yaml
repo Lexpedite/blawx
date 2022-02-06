@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Object Equality Block
+    path: docs/blocks/object_equality
+    content: |
+      # Object Disequality Block

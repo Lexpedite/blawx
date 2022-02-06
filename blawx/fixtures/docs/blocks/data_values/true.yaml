@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: True Value Block
+    path: docs/blocks/true
+    content: |
+      # True Value Block

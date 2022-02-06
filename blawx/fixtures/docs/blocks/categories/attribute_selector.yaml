@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Attribute Selector Block
+    path: docs/blocks/attribute_selector
+    content: |
+      # Attribute Selector Block

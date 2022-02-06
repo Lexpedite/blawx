@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Comparison Block
+    path: docs/blocks/comparison
+    content: |
+      # Comparison Block

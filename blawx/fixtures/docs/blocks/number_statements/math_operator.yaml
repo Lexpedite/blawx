@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Math Operator Block
+    path: docs/blocks/math_operator
+    content: |
+      # Math Operator Block

@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Calculation Block
+    path: docs/blocks/calculation
+    content: |
+      # Calculation Block

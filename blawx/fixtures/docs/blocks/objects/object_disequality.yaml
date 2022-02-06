@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Object Disequality Block
+    path: docs/blocks/object_disequality
+    content: |
+      # Object Disequality Block

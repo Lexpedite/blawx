@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Numerical Constraint Block
+    path: docs/blocks/numerical_constraint
+    content: |
+      # Numerical Constraint Block

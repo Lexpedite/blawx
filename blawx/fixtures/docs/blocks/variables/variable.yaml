@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Variable Block
+    path: docs/blocks/variable
+    content: |
+      # Variable Block

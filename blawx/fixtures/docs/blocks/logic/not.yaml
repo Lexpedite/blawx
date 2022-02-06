@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Not Block
+    path: docs/blocks/not
+    content: |
+      # Not Block

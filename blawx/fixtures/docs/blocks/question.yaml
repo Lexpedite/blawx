@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Question Block
+    path: docs/blocks/question
+    content: |
+      # Question Block

@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Unnamed Variable Block
+    path: docs/blocks/unnamed_variable
+    content: |
+      # Unnamed Variable Block

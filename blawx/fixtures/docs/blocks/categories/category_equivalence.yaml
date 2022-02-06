@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  fields:
+    title: Category Equivalence Block
+    path: docs/blocks/category_equivalence
+    content: |
+      # Category Equivalence Block
