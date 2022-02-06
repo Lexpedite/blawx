@@ -3,4 +3,6 @@
   fields:
     title: Object Equality Block
     content: |
-      # Object Disequality Block
+      # Object Equality Block
+
+      ![Object Equality Block](/static/blawx/docs/images/blocks/object_equality.png)
