@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/variable
   fields:
     title: Variable Block
-    path: docs/blocks/variable
     content: |
       # Variable Block

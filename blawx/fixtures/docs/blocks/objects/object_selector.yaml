@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/object_selector
   fields:
     title: Object Selector Block
-    path: docs/blocks/object_selector
     content: |
       # Object Selector Block

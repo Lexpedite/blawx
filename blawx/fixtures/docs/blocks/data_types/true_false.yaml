@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/true_false
   fields:
     title: True / False Datatype Block
-    path: docs/blocks/true_false
     content: |
       # True / False Datatype Block

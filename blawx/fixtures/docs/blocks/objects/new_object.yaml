@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/new_object
   fields:
     title: New Object Block
-    path: docs/blocks/new_object
     content: |
       # New Object Block

@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/category_attribute
   fields:
     title: Category Attribute Block
-    path: docs/blocks/category_attribute
     content: |
       # Category Attribute Block

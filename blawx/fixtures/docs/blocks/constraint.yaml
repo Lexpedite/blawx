@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/constraint
   fields:
     title: Constraint Block
-    path: docs/blocks/constraint
     content: |
       # Constraint Block

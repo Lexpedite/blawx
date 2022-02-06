@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/assumption
   fields:
     title: Assumption Block
-    path: docs/blocks/assumption
     content: |
       # Assumption Block

@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/fact
   fields:
     title: Fact Block
-    path: docs/blocks/fact
     content: |
       # Fact Block

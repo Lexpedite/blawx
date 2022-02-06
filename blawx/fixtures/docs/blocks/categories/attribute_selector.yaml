@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/attribute_selector
   fields:
     title: Attribute Selector Block
-    path: docs/blocks/attribute_selector
     content: |
       # Attribute Selector Block

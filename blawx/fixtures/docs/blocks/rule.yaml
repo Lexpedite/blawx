@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/rule
   fields:
     title: Rule Block
-    path: docs/blocks/rule
     content: |
       # Rule Block

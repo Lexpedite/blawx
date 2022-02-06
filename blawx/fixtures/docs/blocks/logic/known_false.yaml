@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/known_false
   fields:
     title: Known False Block
-    path: docs/blocks/known_false
     content: |
       # Known False Block

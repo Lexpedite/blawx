@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/number_value
   fields:
     title: Number Value Block
-    path: docs/blocks/number_value
     content: |
       # Number Value Block

@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/variable_assignment
   fields:
     title: Variable Assignment Block
-    path: docs/blocks/variable_assignment
     content: |
       # Variable Assignment Block

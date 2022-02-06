@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/category_selector
   fields:
     title: Category Selector Block
-    path: docs/blocks/category_selector
     content: |
       # Category Selector Block

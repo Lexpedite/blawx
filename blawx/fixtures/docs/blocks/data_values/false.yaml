@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/false
   fields:
     title: False Value Block
-    path: docs/blocks/false
     content: |
       # False Value Block

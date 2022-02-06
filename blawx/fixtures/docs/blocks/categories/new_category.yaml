@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/new_category
   fields:
     title: New Category Block
-    path: docs/blocks/new_category
     content: |
       # New Category Block

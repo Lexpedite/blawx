@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/object_category
   fields:
     title: Object Category Block
-    path: docs/blocks/object_category
     content: |
       # Object Category Block

@@ -1,6 +1,6 @@
 - model: blawx.docpage
+  pk: blocks/new_attribute
   fields:
     title: New Attribute Block
-    path: docs/blocks/new_attribute
     content: |
       # New Attribute Block
