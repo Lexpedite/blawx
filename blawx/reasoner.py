@@ -182,14 +182,9 @@ def run_workspace(request,pk):
               transcript.close()
               os.remove(transcript_name)
     except PrologError as err:
-      query_answer = "Blawx could not run the code."
-      transcript_output = err.toJson()
+      return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
     except PrologLaunchError as err:
       query_answer = "Blawx could not load the reasoner."
-      transcript_output = err.toJson()
-    except BaseException as err:
-      query_answer = "There was an unexpected error."
-      transcript_output = err
-      raise
+      return Response({ "error": "Blawx could not load the reasoner." })
     # Return the results as JSON
     return Response({ "answer": json.dumps(query_answer), "transcript": transcript_output })

@@ -55,7 +55,9 @@ runCode = function(button) {
         run_xhttp.onreadystatechange = function() {
             output_object = JSON.parse(this.responseText);
             // console.log(output_object);
-            if (output_object.answer == 'false' || output_object.answer == 'true') {
+            if (output_object.error) {
+                $output.textContent = output_object.error;
+            } else if (output_object.answer == 'false' || output_object.answer == 'true') {
                 if (output_object.answer == 'false') {
                     $output.textContent = "No models";
                 } else {
@@ -79,7 +81,9 @@ runCode = function(button) {
                 output_content += '</div>';
                 $output.innerHTML = output_content;
             }
-            $problems.textContent = output_object.transcript;
+            if (output_object.transcript) {
+                $problems.textContent = output_object.transcript;
+            }
         };
         run_xhttp.send();
     };
