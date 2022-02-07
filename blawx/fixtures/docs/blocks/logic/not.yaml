@@ -9,8 +9,40 @@
 
       ## Where Is It?
 
+      The not block is located in the Logic drawer of the Blawx toolbox.
+
       ## What Does It Do?
+
+      The not block is used to indicate that either the included statement is known to be false,
+      or it cannot be proven from the facts and the rules.
 
       ## Technical Details
 
+      The not block is a statement that can be stacked with other statements. It cannot be used
+      in the conclusion of a rule, or in a fact block.
+
+      It accepts a single external connector, which must be a single statement.
+
+      It returns true if the connected statement is known false, or if it is not possible to prove
+      that statement on the basis of the facts and rules.
+
       ## Tips
+
+      The not block is one of two kinds of negation in Blawx, the other is the "known false" block.
+
+      The difference between them is that the known false block is true only when Blawx is certain
+      of the falsehood of the statement. The not block is true when Blawx is certain of the falsehood,
+      but also when Blawx is not certain of the falsehood, and can't prove the truth.
+
+      If you are not sure which negation block to use, start with "not" in rules conditions and
+      questions.
+      
+      One way to think of the difference between "known false" and "not" is by looking at the difference
+      between "not guilty" and "innocent" in criminal law.
+
+      Courts don't typically find accused "innocent", because that would be to say that they know, as
+      a fact, that it is not true that the party is guilty. They typically find people "not guilty", which
+      means they may or may not be guilty, but there was not enough evidence to prove it.
+
+      If "guilty" was an attribute in Blawx, "not guilty" would be wrapping the "guilty" attribute In
+      a "not" block, and "innocent" would be wrapping guilty in a "known false" block.

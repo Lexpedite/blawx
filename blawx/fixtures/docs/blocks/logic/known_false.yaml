@@ -9,8 +9,37 @@
 
       ## Where Is It?
 
+      The known false block is located in the Logic drawer of the Blawx toolbox.
+
       ## What Does It Do?
+
+      The known false block is used to specify that the statement it contains is known
+      with certainty to be false.
 
       ## Technical Details
 
+      The known false block is a statement that can be stacked with other statements.
+
+      The known false block accepts an external connection which must be a single statement.
+
+      The known false block is one of two forms of negation in Blawx. The other is the not block.
+
+      The not block and the known false block differ in that the known false block asserts that
+      something is false, while the not block asserts only that it is either false, or the truth
+      of the statement is impossible to prove.
+
       ## Tips
+
+      The known false block is not usually going to be used in rules, and is more common to use in facts.
+
+      If you are not sure which negation block to use, start with "not."
+      
+      One way to think of the difference between "known false" and "not" is by looking at the difference
+      between "not guilty" and "innocent" in criminal law.
+
+      Courts don't typically find accused "innocent", because that would be to say that they know, as
+      a fact, that it is not true that the party is guilty. They typically find people "not guilty", which
+      means they may or may not be guilty, but there was not enough evidence to prove it.
+
+      If "guilty" was an attribute in Blawx, "not guilty" would be wrapping the "guilty" attribute In
+      a "not" block, and "innocent" would be wrapping guilty in a "known false" block.
