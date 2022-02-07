@@ -9,8 +9,15 @@
 
       ## Where Is It?
 
+      The number value block is located in the Data Values drawer of the Blawx toolbox.
+
       ## What Does It Do?
 
+      The number value block is used to provide a specific numerical value.
+
       ## Technical Details
+
+      The number value block can be used to provide an Integer or a Real number (with 
+      decimal point values).
 
       ## Tips
