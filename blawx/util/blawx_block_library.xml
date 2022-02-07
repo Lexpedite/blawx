@@ -21,7 +21,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="0H:5AU$ZjE8O{CoNq*fz" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/variable_selector/</field>
+        <field name="TEXT">/docs/blocks/variable/</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -615,7 +615,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="zlyY)CY)pr/O:p0!^o*#" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/query/</field>
+        <field name="TEXT">/docs/blocks/question/</field>
       </block>
     </value>
     <value name="COLOUR">
@@ -742,7 +742,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="owE1@A#g+,P5W]XO.d,-" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/unattributed_rule/</field>
+        <field name="TEXT">/docs/blocks/rule/</field>
       </block>
     </value>
     <value name="COLOUR">
@@ -1116,7 +1116,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="6D+$;p7nWc@i(7J~2j$F" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/object_equivalence/</field>
+        <field name="TEXT">/docs/blocks/object_equality/</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -1218,7 +1218,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="6D+$;p7nWc@i(7J~2j$F" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/object_disequivalence/</field>
+        <field name="TEXT">/docs/blocks/object_disequality/</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -1490,7 +1490,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="owE1@A#g+,P5W]XO.d,-" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/unattributed_constraint/</field>
+        <field name="TEXT">/docs/blocks/constraint/</field>
       </block>
     </value>
     <value name="COLOUR">
@@ -2156,7 +2156,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="Y{Be/eTl:}WU(K{C!`0$" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/true_false_type_selector/</field>
+        <field name="TEXT">/docs/blocks/true_false/</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -2202,7 +2202,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="Y{Be/eTl:}WU(K{C!`0$" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/number_type_selector/</field>
+        <field name="TEXT">/docs/blocks/number/</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -2370,7 +2370,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="]3YOU5M*D/KGxyg-[jB=" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/true_value/</field>
+        <field name="TEXT">/docs/blocks/true/</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -2405,7 +2405,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="]3YOU5M*D/KGxyg-[jB=" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/false_value/</field>
+        <field name="TEXT">/docs/blocks/false/</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -2743,7 +2743,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="_{iwHlP1}_Z646YOg[dB" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/math_operation/</field>
+        <field name="TEXT">/docs/blocks/math_operator/</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -4245,7 +4245,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="u1gZhP!w|nvU|S*chHu-" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/assume/</field>
+        <field name="TEXT">/docs/blocks/assumption/</field>
       </block>
     </value>
     <value name="COLOUR">
