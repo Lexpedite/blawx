@@ -50,12 +50,14 @@
       object disequality block is useful. In Blawx, the definition of "sibling" might be
       a rule that says:
 
-      > When we know:
-      > (Person) has a parent (Parent)
-      > (Other_Person) has a parent (Parent)
-      > (Person) is not the same object as (Other_Person) <- object disequality block
-      > We also know:
-      > (Person) is a sibling of (Other_Person)
+      ```
+      When we know:
+      (Person) has a parent (Parent)
+      (Other_Person) has a parent (Parent)
+      (Person) is not the same object as (Other_Person) <- object disequality block
+      We also know:
+      (Person) is a sibling of (Other_Person)
+      ```
 
       Without the object disequality, that rule would conclude that everyone was their own sibling.
 
