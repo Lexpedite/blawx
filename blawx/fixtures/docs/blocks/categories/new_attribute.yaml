@@ -1,0 +1,32 @@
+- model: blawx.docpage
+  pk: blocks/new_attribute
+  fields:
+    title: New Attribute Block
+    content: |
+      # New Attribute Block
+
+      ![New Attribute Block](/static/blawx/docs/images/blocks/new_attribute.png)
+
+      ## Where Is It?
+
+      The new attribute block is located in the Categories drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The new attribute block is used to add an attribute to a category.
+
+      ## Technical Details
+
+      The new attribute block must be placed inside a category attribute block, and applies
+      to the category named in the category attribute block. It requires an attribute name,
+      which must begin with a lowercase letter and not include spaces. It also requires a
+      data type, which must be one of the datatype blocks in the Data Types drawer of the Blawx
+      toolbox, or a category.
+
+      ## Tips
+
+      Note that if you specify a data type, and not a category, your attribute selector blocks
+      for that attribute will only accept the right type of value, and variables. If you choose
+      a category as the data type, your attribute selector blocks will accept any object, or variables.
+
+      Attribute names should be unique, even as between different categories.

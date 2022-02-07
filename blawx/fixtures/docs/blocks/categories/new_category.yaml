@@ -1,0 +1,29 @@
+- model: blawx.docpage
+  pk: blocks/new_category
+  fields:
+    title: New Category Block
+    content: |
+      # New Category Block
+
+      ![New Category Block](/static/blawx/docs/images/blocks/new_category.png)
+
+      ## Where Is It?
+
+      The new category block is found in the Categories drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The new category block is used to create a new category of objects.
+
+      ## Technical Details
+
+      The new category block is a statement, and can be stacked with other statements.
+
+      The new category block accepts a single field, which is the name of the category.
+      To be valid, the name of the category must begin with a lower-case letter and not
+      include any spaces.
+
+      ## Tips
+
+      Multiple new category blocks with the same category
+      name will have no effect.

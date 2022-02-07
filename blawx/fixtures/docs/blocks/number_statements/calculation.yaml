@@ -1,0 +1,36 @@
+- model: blawx.docpage
+  pk: blocks/calculation
+  fields:
+    title: Calculation Block
+    content: |
+      # Calculation Block
+
+      ![Calculation Block](/static/blawx/docs/images/blocks/calculation.png)
+
+      ## Where Is It?
+
+      The calculation block is located in the Number section of the 
+      Data Statements drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The calculation block is used to provide a mathematical calculation of a numerical value.
+
+      ## Technical Details
+
+      The calculation block is a statement block, and can be stacked with other statement blocks.
+      It always evaluates to true.
+
+      The calculation block has two internal connectors. The first requires a variable to which
+      the result of the calculation will be assigned. The second requires a block that returns
+      a number, which might include either a number value, or a math operation.
+
+      ## Tips
+
+      Any time that you want to perform a mathematical operation, it needs to be surrounded by
+      a calculation block.
+
+      Calculation blocks are similar to variable assignment blocks, except that the value assigned
+      is always a number. If you want to assign a specific number value to a variable, and not
+      the result of a calculation, you can use the variable assignment block instead.
+

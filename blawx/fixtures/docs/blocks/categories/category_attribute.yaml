@@ -1,0 +1,27 @@
+- model: blawx.docpage
+  pk: blocks/category_attribute
+  fields:
+    title: Category Attribute Block
+    content: |
+      # Category Attribute Block
+
+      ![Category Attribute Block](/static/blawx/docs/images/blocks/category_attributes.png)
+
+      ## Where Is It?
+
+      The category attribute block is located in the Categories drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The category attribute block is used to create new attributes associated with a category.
+
+      ## Technical Details
+
+      The category attribute block accepts one internal input, which must be a category selector.
+      It also has an external connector which must be a stack of new attribute blocks, optionally
+      with attribute display blocks included.
+
+      ## Tips
+
+      Multiple category attribute blocks can be created for the same category, so it is possible
+      to add attributes to a category in multiple places in your code.

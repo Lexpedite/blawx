@@ -1,0 +1,38 @@
+- model: blawx.docpage
+  pk: blocks/math_operator
+  fields:
+    title: Math Operator Block
+    content: |
+      # Math Operator Block
+
+      ![Math Operator Block](/static/blawx/docs/images/blocks/math_operator.png)
+
+      ## Where Is It?
+
+      The math operator block is found in the Number section of the Data Statements
+      drawer in the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The math operator block is used to perform a mathematical operation to two
+      numerical values.
+
+      ## Technical Details
+
+      The mathematical operator block can only be used inside a calculation block.
+
+      It returns a number. It accepts two internal inputs both of which must be 
+      variables or numbers, or blocks that return a number, like another math operator block.
+
+      It performs the operation selected in the drop-down, either addition, subtraction,
+      multiplication, or division.
+
+      Normal mathematical order of operations does not apply. Each input to a math operator
+      block is treated as if it was surrounded by parentheses.  So `(2 * (3 + 4))` will always
+      be evaluated to 14.
+
+      ## Tips
+
+      Some complicated calculations can require nesting multiple math operator blocks inside
+      one another. If your calculation is becoming difficult to visually read, you can
+      break it into steps by using multiple calculation blocks, and re-using variables between them.

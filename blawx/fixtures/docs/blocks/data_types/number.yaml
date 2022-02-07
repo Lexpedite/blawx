@@ -1,0 +1,25 @@
+- model: blawx.docpage
+  pk: blocks/number
+  fields:
+    title: Number Datatype Block
+    content: |
+      # Number Datatype Block
+
+      ![Number Datatype Block](/static/blawx/docs/images/blocks/number.png)
+
+      ## Where Is It?
+
+      The number datatype block is located in the Data Types drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The number datatype block is used to indicate that an attribute has values that are numbers.
+
+      ## Technical Details
+
+      The number datatype block is a data type, and can only be used in blocks that are expecting
+      a data type, which is usually only a new attribute block.
+
+      The number datatype can be used for integers or real numbers.
+
+      ## Tips

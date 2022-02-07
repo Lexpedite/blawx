@@ -1,0 +1,44 @@
+- model: blawx.docpage
+  pk: blocks/comparison
+  fields:
+    title: Comparison Block
+    content: |
+      # Comparison Block
+
+      ![Comparison Block](/static/blawx/docs/images/blocks/comparison.png)
+
+      ## Where Is It?
+
+      The comparison block is located in the Logic drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The comparison block is used to determine the relative order of two values.
+
+      ## Technical Details
+
+      The comparison block accepts two variables, or two values of the same type,
+      which are ordered. It also requires you
+      to select a comparison between them, one of:
+      * the same value as
+      * a different value than
+      * less than
+      * greater than
+      * less than or the same value as
+      * greater than or the same value as
+
+      The comparison returns true if the comparison between the two values is true.
+
+      ## Tips
+
+      Note that a comparison between two values is different from a numerical constraint,
+      because a comparison requires that the values being compared be known specifically.
+
+      If the value of a variable X is not known, the numerical constraint X > 10 will result
+      in an answer of "X > 10". A comparison of `X > 10` while X is unknown will result in
+      "no models", because an unknown amount is not larger than 10.
+
+      Note also that a comparison between two values is different from a test of equivalence.
+      If you want to know whether or not two variables have the same value, you can use
+      the "is the same value as" comparison. If you want to know whether or not two variables
+      refer to the same object, you need to use the object equivalence block.

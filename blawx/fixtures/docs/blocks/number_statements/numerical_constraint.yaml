@@ -1,0 +1,42 @@
+- model: blawx.docpage
+  pk: blocks/numerical_constraint
+  fields:
+    title: Numerical Constraint Block
+    content: |
+      # Numerical Constraint Block
+
+      ![Numerical Constraint Block](/static/blawx/docs/images/blocks/numerical_constraint.png)
+
+      ## Where Is It?
+
+      The numerical constraint block is found in the Number section of the
+      Data Statements drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The numerical constraint block is used to specify that a numerical value must be
+      in a given range.
+
+      ## Technical Details
+
+      The numerical constraint block is a statement, and can be stacked with other statements.
+
+      It requires two internal connectors, both of which must be variables or numbers.
+
+      It allows the user to choose the restriction to be applied to the left input, relative
+      to the right input, either "less than", "greater than", "less than or the same value as",
+      or "greater than or the same value as".
+
+      ## Tips
+
+      The numerical constraint block is a very powerful tool when dealing with numbers that
+      are constrainted to be greater, equal to, or less than other numbers.
+
+      If a person at least 16 must pay taxes, and a person at least 18 may vote, then we know
+      the age of a person who is required to pay taxes and cannot vote is at least 16 and less
+      than 18. That is a numerical constraint that can be calculated by combining two other
+      numerical constraints.
+
+      Through the numerical constrain block, Blawx allows you to express those sorts of rules, and get answers
+      that are expressed as a range like "16 >= Age < 18".
+      

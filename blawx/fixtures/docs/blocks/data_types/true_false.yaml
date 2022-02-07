@@ -1,0 +1,27 @@
+- model: blawx.docpage
+  pk: blocks/true_false
+  fields:
+    title: True / False Datatype Block
+    content: |
+      # True / False Datatype Block
+
+      ![True / False Datatype Block](/static/blawx/docs/images/blocks/true_false.png)
+
+      ## Where Is It?
+
+      The true / false datatype block is located in the Data Types drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The true / false datatype block is used to indicate that the datatype of an attribute is a
+      boolean, or true or false value.
+
+      ## Technical Details
+
+      The true / false datatype block is a datatype block, and can only be used where a datatype
+      is expected, which is typically limited to the datatype input of a new attribute block.
+
+      ## Tips
+
+      The true / false datatype is used to represent concepts that are either true or false, but
+      don't hold any other value.

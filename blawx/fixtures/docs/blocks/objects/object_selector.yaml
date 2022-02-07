@@ -1,0 +1,25 @@
+- model: blawx.docpage
+  pk: blocks/object_selector
+  fields:
+    title: Object Selector Block
+    content: |
+      # Object Selector Block
+
+      ![Object Selector Block](/static/blawx/docs/images/blocks/object_selector.png)
+
+      ## Where Is It?
+
+      The object selector block is found in the Known Objects drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The object selector block is used to refer to an object that has already been declared
+      by a new object block.
+
+      ## Technical Details
+
+      The new object block has no inputs. It can be placed anywhere that an object is expected.
+
+      ## Tips
+
+      N/A.

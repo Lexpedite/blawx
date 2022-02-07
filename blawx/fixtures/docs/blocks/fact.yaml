@@ -1,9 +1,47 @@
 - model: blawx.docpage
+  pk: blocks/fact
   fields:
     title: Fact Block
-    path: docs/blocks/fact
-    content: | # markdown
-      # This is the content of the page.
+    content: |
+      # Fact Block
 
-      I think as long as you keep the indenting right, it should work fine,
-      and you should have **access** to all the markdown capabilities.
+      ![Fact Block](/static/blawx/docs/images/blocks/fact.png)
+
+      ## Where Is It?
+
+      The fact block is found in the Primary drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The fact block is used to set out things that are known with certainty.
+
+      This includes statements about what categories and attributes exist,
+      as well as statements about what objects are known to exist and what values
+      they have in their attributes.
+
+      ## Technical Details
+
+      The fact block is an outer block.
+
+      The fact block accepts a single stack of statements. Unlike most blocks in
+      Blawx, the stack is **not** treated as a list of conjoined statements. Instead,
+      each statement is given its own scope, and does not share variable names with the
+      other statements in the stack.
+
+      You can have as many fact blocks in your workspace as you like.
+
+      A fact block is complete if it has a stack of at least one statement on its
+      statement connector. A fact block without at least one statement is incomplete,
+      but Blawx may ignore it.
+
+      ## Tips
+
+      It is a good idea to use multiple fact blocks to separate out different types
+      of facts that you may need to deal with at different times. This allows you to
+      collapse fact blocks that you don't need at the moment, and make your workspace
+      a little easier to read.
+
+      For instance, you might have one fact block you are using to create categories
+      and attributes, and another fact block you are using to specify the facts of a test
+      scenario. 
+

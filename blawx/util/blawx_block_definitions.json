@@ -11,7 +11,7 @@
   "output": "VARIABLE",
   "colour": 60,
   "tooltip": "Use this block to match to an object or data value.",
-  "helpUrl": "/docs/blocks/variable_selector/"
+  "helpUrl": "/docs/blocks/variable/"
 },
 {
   "type": "silent_variable",
@@ -237,7 +237,7 @@
   ],
   "colour": 270,
   "tooltip": "Use to ask the reasoner to find scenarios in which the included statements are all true.",
-  "helpUrl": "/docs/blocks/query/"
+  "helpUrl": "/docs/blocks/question/"
 },
 {
   "type": "rule",
@@ -281,7 +281,7 @@
   ],
   "colour": 270,
   "tooltip": "Use to set out the conclusions that can be drawn without attributing them to a rule.",
-  "helpUrl": "/docs/blocks/unattributed_rule/"
+  "helpUrl": "/docs/blocks/rule/"
 },
 {
   "type": "legal_doc",
@@ -421,7 +421,7 @@
   "nextStatement": "STATEMENT",
   "colour": 225,
   "tooltip": "Use to indicate two variables or objects refer to the same object.",
-  "helpUrl": "/docs/blocks/object_equivalence/"
+  "helpUrl": "/docs/blocks/object_equality/"
 },
 {
   "type": "object_disequality",
@@ -452,7 +452,7 @@
   "nextStatement": "STATEMENT",
   "colour": 225,
   "tooltip": "Use to indicate two variables or objects do not refer to the same object.",
-  "helpUrl": "/docs/blocks/object_disequivalence/"
+  "helpUrl": "/docs/blocks/object_disequality/"
 },
 {
   "type": "object_category",
@@ -544,7 +544,7 @@
   "inputsInline": true,
   "colour": 270,
   "tooltip": "Use to set out a set of statements that are never true at the same time without attributing it to a rule..",
-  "helpUrl": "/docs/blocks/unattributed_constraint/"
+  "helpUrl": "/docs/blocks/constraint/"
 },
 {
   "type": "category_declaration",
@@ -832,7 +832,7 @@
   "output": "TYPE",
   "colour": 160,
   "tooltip": "Use to indicate that an attribute should have the values true or false.",
-  "helpUrl": "/docs/blocks/true_false_type_selector/"
+  "helpUrl": "/docs/blocks/true_false/"
 },
 {
   "type": "number_type_selector",
@@ -850,7 +850,7 @@
   "output": "TYPE",
   "colour": 160,
   "tooltip": "Use to indicate that an attribute should be a number.",
-  "helpUrl": "/docs/blocks/number_type_selector/"
+  "helpUrl": "/docs/blocks/number/"
 },
 {
   "type": "date_type_selector",
@@ -909,7 +909,7 @@
   "output": "Boolean",
   "colour": 195,
   "tooltip": "Use to specify the value 'true'.",
-  "helpUrl": "/docs/blocks/true_value/"
+  "helpUrl": "/docs/blocks/true/"
 },
 {
   "type": "false_value",
@@ -917,7 +917,7 @@
   "output": "Boolean",
   "colour": 195,
   "tooltip": "Use to specify the value 'false'.",
-  "helpUrl": "/docs/blocks/false_value/"
+  "helpUrl": "/docs/blocks/false/"
 },
 {
   "type": "date_value",
@@ -1094,7 +1094,7 @@
   "output": "Number",
   "colour": 240,
   "tooltip": "Use to apply a mathematical operator to two numbers.",
-  "helpUrl": "/docs/blocks/math_operation/"
+  "helpUrl": "/docs/blocks/math_operator/"
 },
 {
   "type": "date_comparison",
@@ -1771,5 +1771,5 @@
   "inputsInline": false,
   "colour": 270,
   "tooltip": "Use to specify statements which in the scenario may be proven or not proven.",
-  "helpUrl": "/docs/blocks/assume/"
+  "helpUrl": "/docs/blocks/assumption/"
 }]

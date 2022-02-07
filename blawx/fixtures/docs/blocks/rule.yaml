@@ -1,0 +1,45 @@
+- model: blawx.docpage
+  pk: blocks/rule
+  fields:
+    title: Rule Block
+    content: |
+      # Rule Block
+
+      ![Rule Block](/static/blawx/docs/images/blocks/rule.png)
+
+      ## Where Is It?
+
+      The rule block is found in the Primary drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The rule block is used to set out rules with which Blawx can infer new
+      information from facts.  Most legislative provisions will be modeled as
+      one or more rules.
+
+      The first statement connector, labeled "When we know:", allows you to set
+      out the conditions in which the rule is true.
+
+      The second statement connect, labeled "We also know:", allows you to set
+      out the new conclusion that can be drawn when the conditions are known to
+      be true.
+
+      ## Technical Details
+
+      The rule block is an outer block.
+
+      Its top statement connector accepts a stack of one or more condition statements.
+      These statements are treated as though they are all connected with an "and"
+      operator, and all variable names are shared among them, and with the conclusion.
+
+      Its bottom statement connector accepts exactly one conclusion statement.
+
+      ## Tips
+
+      Blawx does not currently support an "or" operator. In the meantime, if the same
+      conclusion can be reached in multiple ways, that should be represented by
+      multiple rules with the same conclusion.
+
+      Typically, you will want to avoid having variables in the conclusion that are not
+      also present in the conditions.
+

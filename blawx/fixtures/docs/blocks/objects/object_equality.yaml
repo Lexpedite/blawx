@@ -1,0 +1,41 @@
+- model: blawx.docpage
+  pk: blocks/object_equality
+  fields:
+    title: Object Equality Block
+    content: |
+      # Object Equality Block
+
+      ![Object Equality Block](/static/blawx/docs/images/blocks/object_equality.png)
+
+      ## Where Is It?
+
+      The object equality block is located in the Objects drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The object equality block is used to assert that two objects are references to
+      the same real-world concept.
+
+      ## Technical Details
+
+      The object equality block is a statement, and can be stacked with other statements.
+
+      It accepts two internal inputs. Both inputs are expected to be objects, or variables.
+
+      It can be used in conditions of rules and constraints, and in questions, but in most
+      cases you will want to just re-use the same variable name, which will have the same
+      effect.
+
+      ## Tips
+
+      The object equality block is used relatively rarely. You are most likely to need it
+      if you are combining inputs from more than one source, and you want to specify that
+      an object that was received from one source is identical to an object received from
+      another. For example, you might have a ruleset for determining the winner of a game
+      of Rock, Paper, Scissors, and you might import data from a system that plays the
+      game "Boulder, Parchment, Shears". In that case, it would make sense to say "the
+      parchment object is the same thing as the paper object", etc.
+
+      Note that saying that two objects are the same thing is different from asserting that
+      to variables hold the same value. To check to see whether or not two different values
+      are equal, use the comparison block.

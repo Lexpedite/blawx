@@ -1,0 +1,24 @@
+- model: blawx.docpage
+  pk: blocks/true
+  fields:
+    title: True Value Block
+    content: |
+      # True Value Block
+
+      ![True Value Block](/static/blawx/docs/images/blocks/true_value.png)
+
+      ## Where Is It?
+
+      The true value block is located in the Data Values drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The true value block is used to indicate that the value of a true / false attribute is true.
+
+      ## Technical Details
+
+      The true value block is a boolean value, and can be placed only in locations that
+      are expecting a boolean value. That is typically limited to the value input of
+      an attribute selector block, where the attribute is using the "True / False" data type.
+
+      ## Tips

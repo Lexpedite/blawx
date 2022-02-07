@@ -1,0 +1,36 @@
+- model: blawx.docpage
+  pk: blocks/variable
+  fields:
+    title: Variable Block
+    content: |
+      # Variable Block
+
+      ![Variable Block](/static/blawx/docs/images/blocks/variable.png)
+
+      ## Where Is It?
+
+      The variable block is located in the Variables drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The variable block is used to create an unknown, and give it a name. Any time the same
+      variable name is used inside the same scope, Blawx will return answers only where those
+      statements are true when the same object is used in all of those places.
+
+      Note that the opposite is not true. Blawx does not guarantee that variables with different
+      names refer to different objects. To force it to do that, you need to use an object
+      disequality block.
+
+      ## Technical Details
+
+      The variable block requires you to enter a variable name into the text field,
+      which must not include spaces and must start with a capital letter to be valid.
+
+      The variable block can be entered anywhere an object or a value is expected.
+
+      ## Tips
+
+      The actual names given to your variables are meaningless to Blawx, but they can be helpful
+      to the reader of your encoding. A variable name like "X" will work perfectly well for
+      answering questions, but a variable name like "Winner" might be more helpful for making
+      it obvious why a rule or question was written the way it was.

@@ -1,0 +1,25 @@
+- model: blawx.docpage
+  pk: blocks/false
+  fields:
+    title: False Value Block
+    content: |
+      # False Value Block
+
+      ![False Value Block](/static/blawx/docs/images/blocks/false_value.png)
+
+      ## Where Is It?
+
+      The false value block is located in the Data Values drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The false value block is used to indicate that the value of a true or false attribute
+      is false.
+
+      ## Technical Details
+
+      The false value block is a boolean value, and can be placed only in locations that
+      are expecting a boolean value. That is typically limited to the value input of
+      an attribute selector block, where the attribute is using the "True / False" data type.
+
+      ## Tips

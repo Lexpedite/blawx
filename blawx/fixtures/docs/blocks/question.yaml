@@ -1,0 +1,61 @@
+- model: blawx.docpage
+  pk: blocks/question
+  fields:
+    title: Question Block
+    content: |
+      # Question Block
+
+      ![Question Block](/static/blawx/docs/images/blocks/question.png)
+
+      ## Where Is It?
+
+      The question block is found in the Primary drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The question block is used to send a question to the Blawx reasoner, and
+      get one or more answers based on the code provided.
+
+      In most programming languages, all of the code that you write tells the
+      computer what to "do". In Blawx, that's not true. Most of the code tells
+      the computer what it "knows," and only question blocks ask the computer
+      to do anything.
+
+      So if you have code, but no question block, when you click "Run", nothing
+      much will happen!
+
+      ## Technical Details
+
+      The question block accepts a single stack of statements, which is valid if
+      it is a stack of at least one statement.  The stack is treated as if all
+      of its parts were joined together with "and".  All of the statements must
+      be true at the same time for an answer to be included. Variables in the
+      stack share a single scope, so anywhere you are using the same variable name
+      you are referring to the same object.
+
+      (Remember that the opposite is not true. If you use different variable names,
+      that does not necessarily mean you are referring to different objects. To
+      ensure that you include results only where two variables do not refer to the
+      same object, use the object disequality block.)
+
+      The question block will return a number of models, where each model represents
+      a combination of an answer to the question, and a way of obtaining that answer.
+      If there are two possible answers, and three ways of obtaining each answer, you
+      will get six models.
+
+      While it is possible to have more than one question block in a workspace, only
+      the last active question block will actually be used by the software.
+
+      ## Tips
+
+      If your question block returns the answer "no models found", but you think that it should
+      be finding answers, here are a few good troubleshooting tricks:
+
+      1. Try removing statements from the question block until you get an answer, and
+         then adding them back in until you find which statement is failing.
+      2. Try removing variables from the question block and replacing them with object
+         selectors that you think should have been returned.
+      3. Try using assumption blocks to see if adding or removing assumptions from your
+         code changes the result.
+      4. If your query is a single statement, try surrounding it with a not block, to
+         see if Blawx can explain why no answer was found.
