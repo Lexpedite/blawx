@@ -9,8 +9,17 @@
 
       ## Where Is It?
 
+      The category selector block is located in the Known Categories drawer of the Blawx toolbox.
+
       ## What Does It Do?
 
+      The category selector block is used to specify a category.
+
       ## Technical Details
+
+      The category block can be placed only on inputs that
+      are expecting a category,
+      such as in a category attribute block,
+      a category equivalence block, an object category block, or a new attribute block.
 
       ## Tips

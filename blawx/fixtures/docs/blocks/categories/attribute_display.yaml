@@ -9,8 +9,41 @@
 
       ## Where Is It?
 
+      The attribute display block is located in the Categories drawer of the Blawx toolbox.
+
       ## What Does It Do?
+
+      The attribute display block is used to customize how attributes are described in
+      attribute selector blocks and explanations.
 
       ## Technical Details
 
+      The attribute display block can only be placed immediately following a new attribute block,
+      and only applies to the attribute it immediately follows.
+
+      The attribute display block accepts four inputs.
+
+      The first input is an order. An attribute is the name of a relationship between an object
+      and a value for that attribute. The order indicates whether in the text describing that
+      relationship, the object or the value should appear first.
+
+      When you change this field, the corresponding text on the bottom of the attribute display
+      block changes also.
+
+      The other three values are text that should go before both values, text that should go
+      between them, and text that should go after them.
+
+      For example, you may have a category called "animal" and an attribute called "legs", which
+      accepts a number.
+
+      By default, your atribute selector block will read "(object) 's legs is (value)."
+
+      If instead you want the block to read "there are (value) legs on a (object), usually"
+      you would set the order to "value, then object", and set the three text inputs to "there are",
+      "legs on a", and "usually" respectively.
+
       ## Tips
+
+      There is no requirement that you use the name of the attribute in the text. This
+      can make your code easier to read by allowing for shorter attribute names, but it can also
+      make it more difficult to tell what attribute your attribute selector blocks are related to.

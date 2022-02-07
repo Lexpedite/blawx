@@ -9,8 +9,25 @@
 
       ## Where Is It?
 
+      The category equivalence block is located in the Categories drawer of the Blawx toolbox.
+
       ## What Does It Do?
+
+      The category equivalence block is used to indicate that all members of one category are
+      also members of another category.
 
       ## Technical Details
 
+      The category equivalence block is a statement, and can be stacked with other statements.
+      It accepts two inputs, both of which must be categories. The effect of the category
+      equivalence block is that all members of the first category are members of the second
+      category.
+
+      In fact, a category equivalence block is a short-form of a rule with two object category
+      blocks referring to the same variable and different categories.
+
       ## Tips
+
+      Using a category equivalence block happens in one direction only. If you want to say
+      something like "all tolkien books are great books, and all great books are tolkien books",
+      you will need two category equivalence blocks.

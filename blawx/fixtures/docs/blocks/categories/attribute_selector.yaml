@@ -9,8 +9,22 @@
 
       ## Where Is It?
 
+      The attribute selector block is located in the Known Attributes drawer of the Blawx toolbox.
+
       ## What Does It Do?
+
+      The attribute selector block is used to set or test a value for an attribute of a given object.
 
       ## Technical Details
 
+      The attribute selector block's appearance can vary due to the attribute display block.
+
+      It always has two internal connectors, one for the object, and one for the value. The object
+      connector accepts an object or a variable. The value connector accepts a variable, or a value
+      of the correct type if the attribute has a datatype, or an object, if the attribute's datatype is
+      a category.
+
       ## Tips
+
+      Most of the work that you will do setting out rules in Blawx will be done using attribute
+      selector blocks and variables.

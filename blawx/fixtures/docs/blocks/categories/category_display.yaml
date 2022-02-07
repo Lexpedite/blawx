@@ -9,8 +9,34 @@
 
       ## Where Is It?
 
+      The category display block is located in the Categories drawer of the Blawx toolbox.
+
       ## What Does It Do?
+
+      The category display block is used to change how categories are described in new object
+      blocks and in explanations.
 
       ## Technical Details
 
+      The category display block is a custom block type that can only be placed immediately
+      below a new category block.  It applies only to the new category block it is immediately
+      below.
+
+      The category display block accepts 2 inputs, the text that should appear the object name,
+      and the text that should appear after the object name when referring to a member of that
+      category.
+
+      For example, if you have a category named "person", the default new object block will read
+      "(object name) is a person". However, using the category display block, you could change
+      this text to read "we know (object name) is human". To do this "we know" would be placed
+      in the first text field, and "is human" would be placed in the second text field.
+
+      The revised display for the category will be used in new object blocks, and in explanations.
+
       ## Tips
+
+      It is possible to change the way that a category is displayed in such a way as to leave out
+      the name of the category. In the example above, the word "person" is still the name of the
+      category, but it no longer appears in the new object blocks or in the explanations. This can
+      make things easier for people using your code, but it can also make your code harder to
+      maintain, because it is more difficult to determine what category is being changed.
