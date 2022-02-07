@@ -9,8 +9,27 @@
 
       ## Where Is It?
 
+      The variable assignment block is found in the Variables drawer of the Blawx toolbox.
+
       ## What Does It Do?
 
+      The variable assignment block is used to assign an object or value to a variable.
+      
       ## Technical Details
 
+      The variable assignment block is a statement, and can be stacked with other statements.
+      In the conditions of rules, in a constraint, and in a question block, it is always true, and simply changes
+      the value of a variable in that scope.
+
+      Its first internal connector expects a variable. Its second internal connector expects
+      either a variable, an object, or a value.
+
+      It should not be used in facts, or in the conclusions of rules.
+
       ## Tips
+
+      The variable assignment block is used to assign a value to a variable explicitly. This
+      can be useful in situations where, for example, you would like to re-run a question where
+      the same value is being used over and over, and needs to be changed. Using the
+      variable assignment block would allow you to assign the variable once, and then re-use
+      it by referring to the same variable name repeatedly.

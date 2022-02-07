@@ -25,6 +25,10 @@
 
       ## Technical Details
 
+      The unnamed variable block accepts no inputs, and has no fields.
+
+      It can be used anywhere an object or a value is expected.
+
       ## Tips
 
       It's a good idea to start with named variables, and switch to unnamed variables only when you

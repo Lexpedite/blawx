@@ -23,8 +23,10 @@
 
       ## Technical Details
 
-      The variable block requires you to enter a variable name, which must not include spaces
-      and must start with a capital letter to be valid.
+      The variable block requires you to enter a variable name into the text field,
+      which must not include spaces and must start with a capital letter to be valid.
+
+      The variable block can be entered anywhere an object or a value is expected.
 
       ## Tips
 
