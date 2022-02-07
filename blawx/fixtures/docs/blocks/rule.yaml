@@ -26,6 +26,20 @@
 
       ## Technical Details
 
+      The rule block is an outer block.
+
+      Its top statement connector accepts a stack of one or more condition statements.
+      These statements are treated as though they are all connected with an "and"
+      operator, and all variable names are shared among them, and with the conclusion.
+
+      Its bottom statement connector accepts exactly one conclusion statement.
+
       ## Tips
 
-      
+      Blawx does not currently support an "or" operator. In the meantime, if the same
+      conclusion can be reached in multiple ways, that should be represented by
+      multiple rules with the same conclusion.
+
+      Typically, you will want to avoid having variables in the conclusion that are not
+      also present in the conditions.
+
