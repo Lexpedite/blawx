@@ -9,8 +9,54 @@
 
       ## Where Is It?
 
+      The object disequality block is located in the Objects drawer of the Blawx toolbox.
+
       ## What Does It Do?
+
+      The object disequality block is used to check that two objects are not the same object.
 
       ## Technical Details
 
+      The object disequlaity block is a statement, and can be stacked with other statements.
+
+      It expects two inputs, both of which need to be objects or variables.
+
+      When used in a question, or in the conditions of a rule or constraint, the block is
+      true only if the things referred to are not identical. Two objects are identical if
+      they are literally the same object (i.e. "bob is the same object as bob"), or if an
+      object equality block has declared them to be identical (i.e. "bob is the same object
+      as robert").
+
       ## Tips
+
+      Object disequality blocks are very useful when you have a rule that is dealing with
+      more than one object in the same category, and you need to know that they are different
+      objects.
+
+      This happens quite frequently.
+      
+      For example, the definition of a "sibling" is "a person who shares parents
+      with another person". Implicitly, it is understood that the reference to 
+      "a person" and the reference to "another person" exclude the possibility that
+      the two people are the same person.
+      
+      In Blawx, you might use "Person" and "Other_Person" as the
+      names of the variables. If you do, Blawx will make sure that every reference to "Person"
+      is a reference to the same object, and every reference to "Other_Person" is a reference
+      to the same object. But Blawx will not automatically ensure that "Person" and "Other_Person"
+      refer to different objects, merely because you gave them different names.
+      
+      That's where the
+      object disequality block is useful. In Blawx, the definition of "sibling" might be
+      a rule that says:
+
+      > When we know:
+      > (Person) has a parent (Parent)
+      > (Other_Person) has a parent (Parent)
+      > (Person) is not the same object as (Other_Person) <- object disequality block
+      > We also know:
+      > (Person) is a sibling of (Other_Person)
+
+      Without the object disequality, that rule would conclude that everyone was their own sibling.
+
+

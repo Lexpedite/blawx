@@ -9,8 +9,25 @@
 
       ## Where Is It?
 
+      The object category block is found in the Objects drawer of the Blawx toolbox.
+
       ## What Does It Do?
+
+      The object category block is used to assert (or check) that an object is a member of
+      a category.
 
       ## Technical Details
 
+      The object category block is a statement block, and can be stacked with other statements.
+
+      The first internal connector expects an object or a variable. The second internal connector
+      expects a category selector.
+
+      In a question or in the conditions of a rule or constraint, the block checks to see whether the object is
+      a member of the category. In a conclusion or in a fact, it asserts that the membership is true.
+
       ## Tips
+      
+      Generally, in facts you will want to use the new object block, unless the object has already been
+      declared as a member of a different category, and you are adding an additional category for that
+      object.

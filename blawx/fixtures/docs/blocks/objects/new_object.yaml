@@ -9,8 +9,55 @@
 
       ## Where Is It?
 
+      The new object block is found in the Objects drawer of the Blawx toolbox.
+
       ## What Does It Do?
+
+      The new object block is used to create a new object in a given category.
 
       ## Technical Details
 
+      The Objects drawer of the Blawx toolbox will include one new object block
+      for each defined category. By default, the new object block will read 
+      "(input) is a (category name)". However, the appearance of the new object 
+      block can be customized using the category display block. As such, the
+      new object block may not actually include the name of the category to which
+      it applies.
+
+      For instance, you might have a category "person", which has a new object
+      block that reads "(input) is a human being".
+
+      The new object block asserts that the named object is in the category.
+
+      The text field must be the name of the object, which must not include spaces
+      and must start with a lower-case letter.
+
+      The new object block is a statement, and can be stacked with other statements.
+
+      When used in the conditions of a rule or a question, it checks to see whether the
+      named object is a member of the category. But typically, you will want to use
+      the object category block to test for category membership in rules and questions,
+      because it allows you to use variables for the object, instead of needing to type
+      the object's name.
+
+      When used in a fact or in the conclusion of a rule, it asserts that the object is
+      a member of the category. But in the conclusion of a rule, you are probably going
+      to want to use the object category block so as to be able to draw that conclusion
+      about more than one thing.
+
+      Typically, therefore, the new object block is used only in facts.
+
       ## Tips
+
+      You will usually only need to create a large number of objects when you are testing
+      your rules, but there are some circumstances where there are a limited number of
+      objects in a category and you can define them in advance. In that case, it can be helpful
+      to combine the new object blocks in a single fact block, so that it can be collapsed to
+      make your workspaces easier to read.
+
+      Note that it is not possible to declare that an object exists without assigning it to
+      at least one category. But it is possible to take an object that has been created in one
+      category and add it to additional categories later. This can be done by using the
+      new object block from more than one category, but with the same object name. The safer
+      method, however, is to create the object once, and then use the object category block
+      to assign additional categories to it.
