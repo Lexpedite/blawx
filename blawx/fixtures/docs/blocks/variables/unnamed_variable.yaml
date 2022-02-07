@@ -6,3 +6,31 @@
       # Unnamed Variable Block
 
       ![Unnamed Variable Block](/static/blawx/docs/images/blocks/unnamed_variable.png)
+
+      ## Where Is It?
+
+      The unnamed variable block is located in the Variables drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The unnamed variable block is used when you need a variable, but you do not need to
+      use the variable more than once in the same scope, and you don't care what object
+      was bound to that variable.
+
+      For instance, you might have a rule that makes conclusions about an attribute called "has_a_sibling".
+      In that rule, you might use an attribute called "sibling_of" to check to see if someone has
+      a relationship to at least one sibling, but you don't care who the sibling is. In that
+      case you might write a condition using the unnamed variable, which reads "(Person) is
+      the sibling of (any)".
+
+      ## Technical Details
+
+      ## Tips
+
+      It's a good idea to start with named variables, and switch to unnamed variables only when you
+      are sure your rules are working as anticipated.
+
+      The Blawx reasoner will warn you if you have a rule in which a variable name is used only once.
+      Those are places where the unnamed variable may be appropriate, or where you may have accidentally
+      misspelled a variable name. If you start with too many unnamed variables, Blawx cannot warn you
+      that you might have made a mistake.

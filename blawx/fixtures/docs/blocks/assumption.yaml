@@ -6,3 +6,35 @@
       # Assumption Block
 
       ![Assumption Block](/static/blawx/docs/images/blocks/assumption.png)
+
+      ## Where Is It?
+
+      The assumption block is found in the Primary drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The assumption block is used to tell Blawx to assume that the included statement
+      may or may not be true, and enables Blawx to answer questions on the basis of
+      those assumptions.
+
+      ## Technical Details
+
+      An assumption block is valid if it has exactly one statement block connected to it.
+
+      In the background, the assumption block is implemented as a set of two rules which
+      say, essentially, "statement is true if it is not known false; statement is false if not true."
+      This creates two possible sets of scenarios for Blawx to consider, and Blawx will
+      provide answers from either scenario if the assumption is required in order to
+      answer the question.
+
+      Note that because Blawx generates both scenarios, when you are using an assumption block
+      it is typical for a question and it's opposite to both be answerable at the same time.
+
+      For instance, if you ask Blawx to assume eligibility, it will be able to find a scenario
+      in which the person is entitled to payment (because they are assumed to be eligible), and a scenario in
+      which they are not (because they are not to be eligible).
+
+      ## Tips
+
+      Note that if you use a large number of assumptions at the same time, you create exponentially
+      more fact scenarios for Blawx to consider. That may slow down processing of your consider.

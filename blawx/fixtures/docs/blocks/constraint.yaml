@@ -6,3 +6,27 @@
       # Constraint Block
 
       ![Constraint Block](/static/blawx/docs/images/blocks/constraint.png)
+
+      ## Where Is It?
+
+      The constraint block is found in the Primary drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The constraint block is used to set out a combination of statements that cannot
+      all be true at the same time.
+
+      ## Technical Details
+
+      The constraint block accepts a single stack of statements, which is valid if it
+      includes at least one statement.
+
+      A constraint is used to express a set of facts that cannot all be true at the same
+      time in any of the models returned by any question block.
+
+      For example, you might use a constraint block to indicate that a person cannot
+      be both the testator of a will and the trustee named in the will at the same time.
+
+      ## Tips
+
+      Using the constraint block can cause your code to run more slowly.
