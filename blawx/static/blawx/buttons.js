@@ -89,7 +89,7 @@ runCode = function(button) {
         // request.
         json_inputs = demoWorkspace.getBlocksByType('json_textfield');
         if (json_inputs) {
-            run_xhttp.send(body=JSON.stringify(json_inputs[0].getFieldValue('payload')))
+            run_xhttp.send(body=json_inputs[0].getFieldValue('payload'))
         } else {
             run_xhttp.send();
         }
