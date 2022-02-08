@@ -175,7 +175,7 @@ getExample = function(example_pk){
     // Get the code for the example
     var xml = "";
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "../example/" + example_pk + "/", true);
+    xhttp.open("GET", "/example/" + example_pk + "/", true);
     xhttp.setRequestHeader('Content-type', 'application/json');
     xhttp.setRequestHeader('X-CSRFToken', csrftoken);
     xhttp.onreadystatechange = function() {
