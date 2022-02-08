@@ -4254,4 +4254,41 @@
         <field name="HUE">270</field>
       </block>
     </value>
+  </block><block type="factory_base" id="evNl)!2|L_,4k.r|P57o" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">json_textfield</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hNlOB:jbGkmU#bow#./k">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="b3`M7hvemRQmB`Dby0x$">
+            <field name="TEXT">JSON:</field>
+            <next>
+              <block type="field_input" id=".[%7MbYFzx6;NYQqtV+e">
+                <field name="TEXT">{ 'insert': 'json here' }</field>
+                <field name="FIELDNAME">payload</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="qmd.mK/-u[^C@+OOlz~U" deletable="false" movable="false">
+        <field name="TEXT">Use to simulate JSON input for the API.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(2.ilmQL+#.:f+w`m!0`" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/json_input/</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="z!zqJj_LOovNf10sZ=e(">
+        <mutation colour="#6d5ba5"></mutation>
+        <field name="HUE">255</field>
+      </block>
+    </value>
   </block></xml>

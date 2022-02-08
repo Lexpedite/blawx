@@ -1772,6 +1772,20 @@ scasp_blockset = [{
   "colour": 270,
   "tooltip": "Use to specify statements which in the scenario may be proven or not proven.",
   "helpUrl": "/docs/blocks/assumption/"
+},
+{
+  "type": "json_textfield",
+  "message0": "JSON: %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "payload",
+      "text": "{ 'insert': 'json here' }"
+    }
+  ],
+  "colour": 255,
+  "tooltip": "Use to simulate JSON input for the API.",
+  "helpUrl": "/docs/blocks/json_input/"
 }]
 
 // Make modifications that it is not possible to make in the Developer Tools
@@ -1797,6 +1811,10 @@ for (var i = 0; i < scasp_blockset.length; i++) {
   // if (scasp_blockset[i].type == "category_display") {
   //   scasp_blockset[i]['extensions'] = ['changeCategoryDisplayText'];
   // }
+  if (scasp_blockset[i].type = "json_textfield") {
+    scasp_blockset[i]['args0']['type'] = "field_multilinetext";
+    scasp_blockset[i]['args0']['spellcheck'] = false;
+  }
 }
 
 for (var i = 0; i < scasp_blockset.length; i++) {
