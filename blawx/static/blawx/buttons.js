@@ -181,7 +181,8 @@ getExample = function(example_pk){
     xhttp.onreadystatechange = function() {
         output_object = JSON.parse(this.responseText);
         demoWorkspace.clear();
-        Blockly.Xml.domToWorkspace(output_object.xml_content, demoWorkspace);
+        xml = Blockly.xml.textToDom(output_object.xml_content);
+        Blockly.Xml.domToWorkspace(xml, demoWorkspace);
     }
     xhttp.send();
     Blockly.hideChaff();   
