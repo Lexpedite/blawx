@@ -50,7 +50,7 @@ runCode = function(button) {
         console.log("Saved")
         var run_xhttp = new XMLHttpRequest();
         run_xhttp.open("POST", "../run/", true);
-        run_xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        run_xhttp.setRequestHeader('Content-type', 'application/json');
         run_xhttp.setRequestHeader('X-CSRFToken', csrftoken);
         run_xhttp.onreadystatechange = function() {
             output_object = JSON.parse(this.responseText);
@@ -89,7 +89,7 @@ runCode = function(button) {
         // request.
         json_inputs = demoWorkspace.getBlocksByType('json_textfield');
         if (json_inputs) {
-            run_xhttp.send(body=json_inputs[0].getFieldValue('payload'))
+            run_xhttp.send(body=JSON.stringify(json_inputs[0].getFieldValue('payload')))
         } else {
             run_xhttp.send();
         }
