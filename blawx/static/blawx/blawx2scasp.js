@@ -665,5 +665,11 @@ Blockly.JavaScript['assume'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['json_textfield'] = function(block) {
+  // var text_payload = block.getFieldValue('payload');
+  var code = '';
+  return code;
+};
+
 // Call code generation once when the page loads
 document.getElementById('output').textContent = Blockly.JavaScript.workspaceToCode(demoWorkspace);
