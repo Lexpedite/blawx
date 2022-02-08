@@ -6,7 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
-## [v1.0.4-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.3-alpha) 2022-02-07
+## [v1.0.5-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.5-alpha) 2022-02-08
+
+### Added
+* Examples dropdown menu for loading example workspaces
+* Examples model and api endpoint at /examples/id
+
+### Removed
+* Existing example workspaces
+
+### Changed
+* Workspaces can all now be updated and deleted by anyone.
+
+## [v1.0.4-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.4-alpha) 2022-02-07
 
 ### Added
 * Documentation for all v1 blocks, available in context menu and help (resolve [#135](https://github.com/Lexpedite/blawx/issues/135))
