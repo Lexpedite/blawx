@@ -181,7 +181,7 @@ getExample = function(example_pk){
     xhttp.onreadystatechange = function() {
         output_object = JSON.parse(this.responseText);
         demoWorkspace.clear();
-        xml = Blockly.xml.textToDom(output_object.xml_content);
+        xml = Blockly.Xml.textToDom(output_object.xml_content);
         Blockly.Xml.domToWorkspace(xml, demoWorkspace);
     }
     xhttp.send();
