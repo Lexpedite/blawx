@@ -1,8 +1,7 @@
-- model: blawx.workspace
+- model: blawx.workspacetemplate
   pk: 2
   fields:
-    workspace_name: Mortality
-    workspace_example: true
+    template_name: Mortality
     xml_content: |
       <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="va9hJj%n~=#-V$OG$4pg" x="78" y="83"><statement name="statements"><block
@@ -23,11 +22,3 @@
       name="category"><block type="category_selector" id="9hMs8I*3wQ_=7w:!@Y)L"><mutation
       xmlns="http://www.w3.org/1999/xhtml" category_name="mortal"></mutation><field
       name="category_name">mortal</field></block></value></block></statement></block></xml>
-    scasp_encoding: |
-      #pred person(X) :: '@(X) is a person'.
-      #pred mortal(X) :: '@(X) is a mortal'.
-      mortal(X) :-
-      person(X).
-      person(socrates).
-      
-      ?- mortal(Anything).

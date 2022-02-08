@@ -170,3 +170,20 @@ try {
     alert(e);
 }
 }
+var getExample;
+getExample = function(example_pk){
+    // Get the code for the example
+    var xml = "";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/example/" + example_pk + "/", true);
+    xhttp.setRequestHeader('Content-type', 'application/json');
+    xhttp.setRequestHeader('X-CSRFToken', csrftoken);
+    xhttp.onreadystatechange = function() {
+        output_object = JSON.parse(this.responseText);
+        demoWorkspace.clear();
+        xml = Blockly.Xml.textToDom(output_object.xml_content);
+        Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+    }
+    xhttp.send();
+    Blockly.hideChaff();   
+}
