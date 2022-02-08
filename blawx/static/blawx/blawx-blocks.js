@@ -1783,7 +1783,7 @@ scasp_blockset = [{
       "text": "{ 'insert': 'json here' }"
     }
   ],
-  "colour": 255,
+  "colour": 270,
   "tooltip": "Use to simulate JSON input for the API.",
   "helpUrl": "/docs/blocks/json_input/"
 }]
@@ -1811,9 +1811,9 @@ for (var i = 0; i < scasp_blockset.length; i++) {
   // if (scasp_blockset[i].type == "category_display") {
   //   scasp_blockset[i]['extensions'] = ['changeCategoryDisplayText'];
   // }
-  if (scasp_blockset[i].type = "json_textfield") {
-    scasp_blockset[i]['args0']['type'] = "field_multilinetext";
-    scasp_blockset[i]['args0']['spellcheck'] = false;
+  if (scasp_blockset[i].type == "json_textfield") {
+    scasp_blockset[i].args0[0].type = "field_multilinetext";
+    scasp_blockset[i].args0[0]['spellcheck'] = false;
   }
 }
 

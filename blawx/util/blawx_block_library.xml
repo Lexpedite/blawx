@@ -4288,7 +4288,7 @@
     <value name="COLOUR">
       <block type="colour_hue" id="z!zqJj_LOovNf10sZ=e(">
         <mutation colour="#6d5ba5"></mutation>
-        <field name="HUE">255</field>
+        <field name="HUE">270</field>
       </block>
     </value>
   </block></xml>

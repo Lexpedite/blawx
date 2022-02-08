@@ -1783,7 +1783,7 @@
       "text": "{ 'insert': 'json here' }"
     }
   ],
-  "colour": 255,
+  "colour": 270,
   "tooltip": "Use to simulate JSON input for the API.",
   "helpUrl": "/docs/blocks/json_input/"
 }]
