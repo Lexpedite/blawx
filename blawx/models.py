@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 class Workspace(models.Model):
     workspace_name = models.CharField(max_length=200)
-    workspace_example = models.BooleanField(default=False) # Example workspaces cannot be deleted from the web interface.
     xml_content = models.TextField(default="")
     scasp_encoding = models.TextField(default="")
 

@@ -49,25 +49,14 @@ class WorkspaceCreateView(CreateView):
     fields = ['workspace_name']
     success_url = reverse_lazy('blawx:workspaces')
 
-class WorkspaceDeleteView(UserPassesTestMixin, DeleteView):
+class WorkspaceDeleteView(DeleteView):
     model = Workspace
     success_url = reverse_lazy('blawx:workspaces')
 
-    def test_func(self):
-        if self.get_object().workspace_example:
-            return self.request.user.is_authenticated
-        else:
-            return True
 
-class WorkspaceUpdateView(UserPassesTestMixin, UpdateView):
+class WorkspaceUpdateView(UpdateView):
     model = Workspace
     fields = ['workspace_name']
-
-    def test_func(self):
-        if self.get_object().workspace_example:
-            return self.request.user.is_authenticated
-        else:
-            return True
 
 
 class DocumentView(generic.DetailView):
@@ -90,8 +79,6 @@ class WorkspaceAPIViewSet(viewsets.ModelViewSet):
 @permission_classes([AllowAny])
 def update_code(request,pk):
     target = Workspace.objects.get(pk=pk)
-    if target.workspace_example and not request.user.is_authenticated:
-            return Response("Not permitted for examples.")
     workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
     workspace_serializer.is_valid()
     target.xml_content = workspace_serializer.validated_data.get('xml_content', target.xml_content)
