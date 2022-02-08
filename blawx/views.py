@@ -10,7 +10,7 @@ from rest_framework.permissions import AllowAny
 # from rest_framework import permissions
 
 from .serializers import WorkspaceSerializer, CodeUpdateRequestSerializer
-from .models import Workspace, DocPage
+from .models import Workspace, DocPage, WorkspaceTemplate
 
 
 # Create your views here.
@@ -38,6 +38,11 @@ class BlawxView(generic.DetailView):
 
     def get_queryset(self):
         return Workspace.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = super(BlawxView, self).get_context_data(**kwargs)
+        context['templates'] = WorkspaceTemplate.objects.all()
+        return context
 
 class WorkspaceCreateView(CreateView):
     model = Workspace
