@@ -1,8 +1,7 @@
-- model: blawx.workspace
+- model: blawx.workspacetemplate
   pk: 1
   fields:
-    workspace_name: Rock Paper Scissors
-    workspace_example: true
+    template_name: Rock Paper Scissors
     xml_content: |
       <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="?)ApQNg1jB.,IM(o!mA`" x="0" y="0"><statement name="statements"><block type="category_declaration"
@@ -189,68 +188,4 @@
       name="first_element"><block type="variable" id="K3`AK?ZU]w|20?|Wlv]{"><field
       name="variable_name">PlayerOne</field></block></value><value name="second_element"><block
       type="variable" id="$b[k|x!cFz%TIz@@8_;("><field name="variable_name">Game</field></block></value></block></statement></block></xml>
-    scasp_encoding: |
-      #pred game(X) :: '@(X) is a game'.
-
-      #pred player(X) :: '@(X) is a player'.
-
-      #pred sign(X) :: '@(X) is a sign'.
-
-      #pred participant(Y,X) :: ' @(X) played in @(Y) '.
-
-
-      #pred winner(Y,X) :: ' @(X) won @(Y) '.
-
-
-      #pred tied(Y,X) :: 'it is @(X) that @(Y) was a tied game'.
-
-
-      #pred sign_thrown(X,Y) :: ' @(X) threw @(Y) '.
-
-
-      #pred defeats(X,Y) :: ' @(X) beats @(Y) '.
-
-
-
-      sign(rock).
-
-      sign(paper).
-
-      sign(scissors).
-
-      defeats(rock,scissors).
-
-      defeats(scissors,paper).
-
-      defeats(paper,rock).
-
-
-      winner(Game,PlayerOne) :-
-
-      participant(Game,PlayerOne),
-
-      participant(Game,PlayerTwo),
-
-      sign_thrown(PlayerOne,ThrowOne),
-
-      sign_thrown(PlayerTwo,ThrowTwo),
-
-      defeats(ThrowOne,ThrowTwo).
-
-
-      game(testgame).
-
-      player(jane).
-
-      player(bob).
-
-      participant(testgame,bob).
-
-      participant(testgame,jane).
-
-      sign_thrown(bob,rock).
-
-      sign_thrown(jane,scissors).
-
-
-      ?- winner(Game,PlayerOne).
+      
