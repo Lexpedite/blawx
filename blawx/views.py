@@ -98,3 +98,11 @@ def update_code(request,pk):
     target.scasp_encoding = workspace_serializer.validated_data.get('scasp_encoding', target.scasp_encoding)
     target.save()
     return Response({"That probably worked."})
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_example(request,pk):
+    target = WorkspaceTemplate.objects.get(pk=pk)
+    # template_serializer = TemplateRequestSerializer(data=request.data)
+    # template_serializer.is_valid()
+    return Response({ 'xml_content': target.xml_content })
