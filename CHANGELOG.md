@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
 
+## [v1.0.6-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.6-alpha) 2022-02-08
+
+### Added
+* JSON Input primary block
+* Documentation page for JSON input primary block
+* JSON input processing on run endpoint
+
+### Changed
+* Requests to run code from the interface now use application/json content type
+
+
 ## [v1.0.5-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.5-alpha) 2022-02-08
 
 ### Added
