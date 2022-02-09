@@ -27,5 +27,22 @@
 
       There should be a maximum of one JSON input block per workspace.
 
+      Currently, the JSON input block uses an s(CASP)-specific format, not a Blawx-specific
+      format. The keys of the payload object are translated into predicates. The value of
+      each is a list of lists of parameters. Each outer list is converted into a single fact
+      statement, and each inner list is used as the list of parameters in that fact statement.
+
+      To generate the scasp statement `this(is,complicated).` you would use the following
+      JSON:
+      ```json
+      {
+        "this": [
+          [
+            "is", "complicated"
+          ]
+        ]
+      }
+      ```
+
       ## Tips
 
