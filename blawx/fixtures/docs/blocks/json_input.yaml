@@ -1,0 +1,31 @@
+- model: blawx.docpage
+  pk: blocks/json_input
+  fields:
+    title: JSON Input Block
+    content: |
+      # JSON Input Block
+
+      ![JSON Input Block](/static/blawx/docs/images/blocks/json_input.png)
+
+      ## Where Is It?
+
+      The JSON input block is found in the Primary drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The JSON input block is used to simulate an input request that might be
+      sent to an API endpoint when running your code.
+
+      ## Technical Details
+
+      The JSON input block is an outer block.
+
+      The JSON input block accepts a single multi-line text field (you can hit
+      `enter` on your keyboard to start a new line of text). To be valid the contents
+      of the JSON input block's text field should be valid JSON in a schema
+      understood by the Blawx API.
+
+      There should be a maximum of one JSON input block per workspace.
+
+      ## Tips
+

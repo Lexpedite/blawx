@@ -141,7 +141,8 @@ throw(jane,scissors)."""
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def run_workspace(request,pk):
-
+    if request.data:
+      translated_facts = json_2_scasp(request.data)
     ws = Workspace.objects.get(pk=pk)
     ruleset = ws.scasp_encoding
     query = "No Query Specified"
@@ -152,6 +153,7 @@ def run_workspace(request,pk):
     rulefile = tempfile.NamedTemporaryFile('w',delete=False)
     rulefile.write(":- use_module(library(scasp)).\n")
     rulefile.write(":- use_module(library(scasp/human)).\n")
+    rulefile.write(translated_facts)
     rulefile.write(ruleset)
     rulefile.close()
     rulefilename = rulefile.name
@@ -188,3 +190,7 @@ def run_workspace(request,pk):
       return Response({ "error": "Blawx could not load the reasoner." })
     # Return the results as JSON
     return Response({ "answer": json.dumps(query_answer), "transcript": transcript_output })
+
+    
+
+      

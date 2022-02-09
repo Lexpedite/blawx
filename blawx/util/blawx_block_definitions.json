@@ -1772,4 +1772,18 @@
   "colour": 270,
   "tooltip": "Use to specify statements which in the scenario may be proven or not proven.",
   "helpUrl": "/docs/blocks/assumption/"
+},
+{
+  "type": "json_textfield",
+  "message0": "JSON: %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "payload",
+      "text": "{ 'insert': 'json here' }"
+    }
+  ],
+  "colour": 270,
+  "tooltip": "Use to simulate JSON input for the API.",
+  "helpUrl": "/docs/blocks/json_input/"
 }]

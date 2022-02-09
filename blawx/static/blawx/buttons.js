@@ -50,7 +50,7 @@ runCode = function(button) {
         console.log("Saved")
         var run_xhttp = new XMLHttpRequest();
         run_xhttp.open("POST", "../run/", true);
-        run_xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        run_xhttp.setRequestHeader('Content-type', 'application/json');
         run_xhttp.setRequestHeader('X-CSRFToken', csrftoken);
         run_xhttp.onreadystatechange = function() {
             output_object = JSON.parse(this.responseText);
@@ -85,7 +85,14 @@ runCode = function(button) {
                 $problems.textContent = output_object.transcript;
             }
         };
-        run_xhttp.send();
+        // If there is a json_input type block on the workspace, insert its contents into the post
+        // request.
+        json_inputs = demoWorkspace.getBlocksByType('json_textfield');
+        if (json_inputs) {
+            run_xhttp.send(body=json_inputs[0].getFieldValue('payload'))
+        } else {
+            run_xhttp.send();
+        }
     };
     console.log("Saving and Running")
     $output = document.getElementById('nav-output');
