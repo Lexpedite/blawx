@@ -1,0 +1,1183 @@
+<html lang="en" class="h-100"><head><style id="blockly-renderer-style-geras-classic">.geras-renderer.classic-theme .blocklyText, 
+    .geras-renderer.classic-theme .blocklyFlyoutLabelText {
+    font: normal 11pt sans-serif;
+    }
+    .geras-renderer.classic-theme .blocklyText {
+    fill: #fff;
+    }
+    .geras-renderer.classic-theme .blocklyNonEditableText>rect,
+    .geras-renderer.classic-theme .blocklyEditableText>rect {
+    fill: #fff;
+    fill-opacity: .6;
+    stroke: none;
+    }
+    .geras-renderer.classic-theme .blocklyNonEditableText>text,
+    .geras-renderer.classic-theme .blocklyEditableText>text {
+    fill: #000;
+    }
+    .geras-renderer.classic-theme .blocklyFlyoutLabelText {
+    fill: #000;
+    }
+    .geras-renderer.classic-theme .blocklyText.blocklyBubbleText {
+    fill: #000;
+    }
+    .geras-renderer.classic-theme .blocklyEditableText:not(.editing):hover>rect {
+    stroke: #fff;
+    stroke-width: 2;
+    }
+    .geras-renderer.classic-theme .blocklyHtmlInput {
+    font-family: sans-serif;
+    font-weight: normal;
+    }
+    .geras-renderer.classic-theme .blocklySelected>.blocklyPath {
+    stroke: #fc3;
+    stroke-width: 3px;
+    }
+    .geras-renderer.classic-theme .blocklyHighlightedConnectionPath {
+    stroke: #fc3;
+    }
+    .geras-renderer.classic-theme .blocklyReplaceable .blocklyPath {
+    fill-opacity: .5;
+    }
+    .geras-renderer.classic-theme .blocklyReplaceable .blocklyPathLight,
+    .geras-renderer.classic-theme .blocklyReplaceable .blocklyPathDark {
+    display: none;
+    }
+    .geras-renderer.classic-theme .blocklyInsertionMarker>.blocklyPath {
+    fill-opacity: 0.2;
+    stroke: none;
+    }
+    .geras-renderer.classic-theme .blocklyInsertionMarker>.blocklyPathLight,
+    .geras-renderer.classic-theme .blocklyInsertionMarker>.blocklyPathDark {
+    fill-opacity: 0.2;
+    stroke: none;
+    }</style><style id="blockly-common-style">
+      .blocklySvg {
+        background-color: #fff;
+        outline: none;
+        overflow: hidden;  /* IE overflows by default. */
+        position: absolute;
+        display: block;
+      }
+    
+      .blocklyWidgetDiv {
+        display: none;
+        position: absolute;
+        z-index: 99999;  /* big value for bootstrap3 compatibility */
+      }
+    
+      .injectionDiv {
+        height: 100%;
+        position: relative;
+        overflow: hidden;  /* So blocks in drag surface disappear at edges */
+        touch-action: none;
+      }
+    
+      .blocklyNonSelectable {
+        user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+      }
+    
+      .blocklyWsDragSurface {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    
+      /* Added as a separate rule with multiple classes to make it more specific
+         than a bootstrap rule that selects svg:root. See issue #1275 for context.
+      */
+      .blocklyWsDragSurface.blocklyOverflowVisible {
+        overflow: visible;
+      }
+    
+      .blocklyBlockDragSurface {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: visible !important;
+        z-index: 50;  /* Display below toolbox, but above everything else. */
+      }
+    
+      .blocklyBlockCanvas.blocklyCanvasTransitioning,
+      .blocklyBubbleCanvas.blocklyCanvasTransitioning {
+        transition: transform .5s;
+      }
+    
+      .blocklyTooltipDiv {
+        background-color: #ffffc7;
+        border: 1px solid #ddc;
+        box-shadow: 4px 4px 20px 1px rgba(0,0,0,.15);
+        color: #000;
+        display: none;
+        font: 9pt sans-serif;
+        opacity: .9;
+        padding: 2px;
+        position: absolute;
+        z-index: 100000;  /* big value for bootstrap3 compatibility */
+      }
+    
+      .blocklyDropDownDiv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+        display: none;
+        border: 1px solid;
+        border-color: #dadce0;
+        background-color: #fff;
+        border-radius: 2px;
+        padding: 4px;
+        box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+      }
+    
+      .blocklyDropDownDiv.blocklyFocused {
+        box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+      }
+    
+      .blocklyDropDownContent {
+        max-height: 300px;  // @todo: spec for maximum height.
+        overflow: auto;
+        overflow-x: hidden;
+        position: relative;
+      }
+    
+      .blocklyDropDownArrow {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        z-index: -1;
+        background-color: inherit;
+        border-color: inherit;
+      }
+    
+      .blocklyDropDownButton {
+        display: inline-block;
+        float: left;
+        padding: 0;
+        margin: 4px;
+        border-radius: 4px;
+        outline: none;
+        border: 1px solid;
+        transition: box-shadow .1s;
+        cursor: pointer;
+      }
+    
+      .blocklyArrowTop {
+        border-top: 1px solid;
+        border-left: 1px solid;
+        border-top-left-radius: 4px;
+        border-color: inherit;
+      }
+    
+      .blocklyArrowBottom {
+        border-bottom: 1px solid;
+        border-right: 1px solid;
+        border-bottom-right-radius: 4px;
+        border-color: inherit;
+      }
+    
+      .blocklyResizeSE {
+        cursor: se-resize;
+        fill: #aaa;
+      }
+    
+      .blocklyResizeSW {
+        cursor: sw-resize;
+        fill: #aaa;
+      }
+    
+      .blocklyResizeLine {
+        stroke: #515A5A;
+        stroke-width: 1;
+      }
+    
+      .blocklyHighlightedConnectionPath {
+        fill: none;
+        stroke: #fc3;
+        stroke-width: 4px;
+      }
+    
+      .blocklyPathLight {
+        fill: none;
+        stroke-linecap: round;
+        stroke-width: 1;
+      }
+    
+      .blocklySelected>.blocklyPathLight {
+        display: none;
+      }
+    
+      .blocklyDraggable {
+        /* backup for browsers (e.g. IE11) that don't support grab */
+        cursor: url("/static/blawx/blockly/media/handopen.cur"), auto;
+        cursor: grab;
+        cursor: -webkit-grab;
+      }
+    
+        /* backup for browsers (e.g. IE11) that don't support grabbing */
+      .blocklyDragging {
+        /* backup for browsers (e.g. IE11) that don't support grabbing */
+        cursor: url("/static/blawx/blockly/media/handclosed.cur"), auto;
+        cursor: grabbing;
+        cursor: -webkit-grabbing;
+      }
+    
+        /* Changes cursor on mouse down. Not effective in Firefox because of
+           https://bugzilla.mozilla.org/show_bug.cgi?id=771241 */
+      .blocklyDraggable:active {
+        /* backup for browsers (e.g. IE11) that don't support grabbing */
+        cursor: url("/static/blawx/blockly/media/handclosed.cur"), auto;
+        cursor: grabbing;
+        cursor: -webkit-grabbing;
+      }
+    
+      /* Change the cursor on the whole drag surface in case the mouse gets
+         ahead of block during a drag. This way the cursor is still a closed hand.
+        */
+      .blocklyBlockDragSurface .blocklyDraggable {
+        /* backup for browsers (e.g. IE11) that don't support grabbing */
+        cursor: url("/static/blawx/blockly/media/handclosed.cur"), auto;
+        cursor: grabbing;
+        cursor: -webkit-grabbing;
+      }
+    
+      .blocklyDragging.blocklyDraggingDelete {
+        cursor: url("/static/blawx/blockly/media/handdelete.cur"), auto;
+      }
+    
+      .blocklyDragging>.blocklyPath,
+      .blocklyDragging>.blocklyPathLight {
+        fill-opacity: .8;
+        stroke-opacity: .8;
+      }
+    
+      .blocklyDragging>.blocklyPathDark {
+        display: none;
+      }
+    
+      .blocklyDisabled>.blocklyPath {
+        fill-opacity: .5;
+        stroke-opacity: .5;
+      }
+    
+      .blocklyDisabled>.blocklyPathLight,
+      .blocklyDisabled>.blocklyPathDark {
+        display: none;
+      }
+    
+      .blocklyInsertionMarker>.blocklyPath,
+      .blocklyInsertionMarker>.blocklyPathLight,
+      .blocklyInsertionMarker>.blocklyPathDark {
+        fill-opacity: .2;
+        stroke: none;
+      }
+    
+      .blocklyMultilineText {
+        font-family: monospace;
+      }
+    
+      .blocklyNonEditableText>text {
+        pointer-events: none;
+      }
+    
+      .blocklyFlyout {
+        position: absolute;
+        z-index: 20;
+      }
+    
+      .blocklyText text {
+        cursor: default;
+      }
+    
+      /*
+        Don't allow users to select text.  It gets annoying when trying to
+        drag a block and selected text moves instead.
+      */
+      .blocklySvg text,
+      .blocklyBlockDragSurface text {
+        user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        cursor: inherit;
+      }
+    
+      .blocklyHidden {
+        display: none;
+      }
+    
+      .blocklyFieldDropdown:not(.blocklyHidden) {
+        display: block;
+      }
+    
+      .blocklyIconGroup {
+        cursor: default;
+      }
+    
+      .blocklyIconGroup:not(:hover),
+      .blocklyIconGroupReadonly {
+        opacity: .6;
+      }
+    
+      .blocklyIconShape {
+        fill: #00f;
+        stroke: #fff;
+        stroke-width: 1px;
+      }
+    
+      .blocklyIconSymbol {
+        fill: #fff;
+      }
+    
+      .blocklyMinimalBody {
+        margin: 0;
+        padding: 0;
+      }
+    
+      .blocklyHtmlInput {
+        border: none;
+        border-radius: 4px;
+        height: 100%;
+        margin: 0;
+        outline: none;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+        display: block;
+        box-sizing: border-box;
+      }
+    
+      /* Edge and IE introduce a close icon when the input value is longer than a
+         certain length. This affects our sizing calculations of the text input.
+         Hiding the close icon to avoid that. */
+      .blocklyHtmlInput::-ms-clear {
+        display: none;
+      }
+    
+      .blocklyMainBackground {
+        stroke-width: 1;
+        stroke: #c6c6c6;  /* Equates to #ddd due to border being off-pixel. */
+      }
+    
+      .blocklyMutatorBackground {
+        fill: #fff;
+        stroke: #ddd;
+        stroke-width: 1;
+      }
+    
+      .blocklyFlyoutBackground {
+        fill: #ddd;
+        fill-opacity: .8;
+      }
+    
+      .blocklyMainWorkspaceScrollbar {
+        z-index: 20;
+      }
+    
+      .blocklyFlyoutScrollbar {
+        z-index: 30;
+      }
+    
+      .blocklyScrollbarHorizontal,
+      .blocklyScrollbarVertical {
+        position: absolute;
+        outline: none;
+      }
+    
+      .blocklyScrollbarBackground {
+        opacity: 0;
+      }
+    
+      .blocklyScrollbarHandle {
+        fill: #ccc;
+      }
+    
+      .blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+      .blocklyScrollbarHandle:hover {
+        fill: #bbb;
+      }
+    
+      /* Darken flyout scrollbars due to being on a grey background. */
+      /* By contrast, workspace scrollbars are on a white background. */
+      .blocklyFlyout .blocklyScrollbarHandle {
+        fill: #bbb;
+      }
+    
+      .blocklyFlyout .blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+      .blocklyFlyout .blocklyScrollbarHandle:hover {
+        fill: #aaa;
+      }
+    
+      .blocklyInvalidInput {
+        background: #faa;
+      }
+    
+      .blocklyVerticalMarker {
+        stroke-width: 3px;
+        fill: rgba(255,255,255,.5);
+        pointer-events: none;
+      }
+    
+      .blocklyComputeCanvas {
+        position: absolute;
+        width: 0;
+        height: 0;
+      }
+    
+      .blocklyNoPointerEvents {
+        pointer-events: none;
+      }
+    
+      .blocklyContextMenu {
+        border-radius: 4px;
+        max-height: 100%;
+      }
+    
+      .blocklyDropdownMenu {
+        border-radius: 2px;
+        padding: 0 !important;
+      }
+    
+      .blocklyDropdownMenu .blocklyMenuItem {
+        /* 28px on the left for icon or checkbox. */
+        padding-left: 28px;
+      }
+    
+      /* BiDi override for the resting state. */
+      .blocklyDropdownMenu .blocklyMenuItemRtl {
+        /* Flip left/right padding for BiDi. */
+        padding-left: 5px;
+        padding-right: 28px;
+      }
+    
+      .blocklyWidgetDiv .blocklyMenu {
+        background: #fff;
+        border: 1px solid transparent;
+        box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+        font: normal 13px Arial, sans-serif;
+        margin: 0;
+        outline: none;
+        padding: 4px 0;
+        position: absolute;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 100%;
+        z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+      }
+    
+      .blocklyWidgetDiv .blocklyMenu.blocklyFocused {
+        box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+      }
+    
+      .blocklyDropDownDiv .blocklyMenu {
+        background: inherit;  /* Compatibility with gapi, reset from goog-menu */
+        border: inherit;  /* Compatibility with gapi, reset from goog-menu */
+        font: normal 13px "Helvetica Neue", Helvetica, sans-serif;
+        outline: none;
+        position: relative;  /* Compatibility with gapi, reset from goog-menu */
+        z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+      }
+    
+      /* State: resting. */
+      .blocklyMenuItem {
+        border: none;
+        color: #000;
+        cursor: pointer;
+        list-style: none;
+        margin: 0;
+        /* 7em on the right for shortcut. */
+        min-width: 7em;
+        padding: 6px 15px;
+        white-space: nowrap;
+      }
+    
+      /* State: disabled. */
+      .blocklyMenuItemDisabled {
+        color: #ccc;
+        cursor: inherit;
+      }
+    
+      /* State: hover. */
+      .blocklyMenuItemHighlight {
+        background-color: rgba(0,0,0,.1);
+      }
+    
+      /* State: selected/checked. */
+      .blocklyMenuItemCheckbox {
+        height: 16px;
+        position: absolute;
+        width: 16px;
+      }
+    
+      .blocklyMenuItemSelected .blocklyMenuItemCheckbox {
+        background: url(/static/blawx/blockly/media/sprites.png) no-repeat -48px -16px;
+        float: left;
+        margin-left: -24px;
+        position: static;  /* Scroll with the menu. */
+      }
+    
+      .blocklyMenuItemRtl .blocklyMenuItemCheckbox {
+        float: right;
+        margin-right: -24px;
+      }
+    
+    
+      .blocklyTreeRow:not(.blocklyTreeSelected):hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    
+      .blocklyToolboxDiv[layout="h"] .blocklyToolboxCategory {
+        margin: 1px 5px 1px 0;
+      }
+    
+      .blocklyToolboxDiv[dir="RTL"][layout="h"] .blocklyToolboxCategory {
+        margin: 1px 0 1px 5px;
+      }
+    
+      .blocklyTreeRow {
+        height: 22px;
+        line-height: 22px;
+        margin-bottom: 3px;
+        padding-right: 8px;
+        white-space: nowrap;
+      }
+    
+      .blocklyToolboxDiv[dir="RTL"] .blocklyTreeRow {
+        margin-left: 8px;
+        padding-right: 0;
+      }
+    
+      .blocklyTreeIcon {
+        background-image: url(/static/blawx/blockly/media/sprites.png);
+        height: 16px;
+        vertical-align: middle;
+        visibility: hidden;
+        width: 16px;
+      }
+    
+      .blocklyTreeIconClosed {
+        background-position: -32px -1px;
+      }
+    
+      .blocklyToolboxDiv[dir="RTL"] .blocklyTreeIconClosed {
+        background-position: 0 -1px;
+      }
+    
+      .blocklyTreeSelected>.blocklyTreeIconClosed {
+        background-position: -32px -17px;
+      }
+    
+      .blocklyToolboxDiv[dir="RTL"] .blocklyTreeSelected>.blocklyTreeIconClosed {
+        background-position: 0 -17px;
+      }
+    
+      .blocklyTreeIconOpen {
+        background-position: -16px -1px;
+      }
+    
+      .blocklyTreeSelected>.blocklyTreeIconOpen {
+        background-position: -16px -17px;
+      }
+    
+      .blocklyTreeLabel {
+        cursor: default;
+        font: 16px sans-serif;
+        padding: 0 3px;
+        vertical-align: middle;
+      }
+    
+      .blocklyToolboxDelete .blocklyTreeLabel {
+        cursor: url("/static/blawx/blockly/media/handdelete.cur"), auto;
+      }
+    
+      .blocklyTreeSelected .blocklyTreeLabel {
+        color: #fff;
+      }
+    
+    
+      .blocklyTreeSeparator {
+        border-bottom: solid #e5e5e5 1px;
+        height: 0;
+        margin: 5px 0;
+      }
+    
+      .blocklyToolboxDiv[layout="h"] .blocklyTreeSeparator {
+        border-right: solid #e5e5e5 1px;
+        border-bottom: none;
+        height: auto;
+        margin: 0 5px 0 5px;
+        padding: 5px 0;
+        width: 0;
+      }
+    
+    
+      .blocklyToolboxDelete {
+        cursor: url("/static/blawx/blockly/media/handdelete.cur"), auto;
+      }
+    
+      .blocklyToolboxGrab {
+        cursor: url("/static/blawx/blockly/media/handclosed.cur"), auto;
+        cursor: grabbing;
+        cursor: -webkit-grabbing;
+      }
+    
+      /* Category tree in Toolbox. */
+      .blocklyToolboxDiv {
+        background-color: #ddd;
+        overflow-x: visible;
+        overflow-y: auto;
+        padding: 4px 0 4px 0;
+        position: absolute;
+        z-index: 70;  /* so blocks go under toolbox when dragging */
+        -webkit-tap-highlight-color: transparent;  /* issue #1345 */
+      }
+    
+      .blocklyToolboxContents {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+      }
+    
+      .blocklyToolboxContents:focus {
+        outline: none;
+      }
+    
+    
+      .blocklyHtmlTextAreaInput {
+        font-family: monospace;
+        resize: none;
+        overflow: hidden;
+        height: 100%;
+        text-align: left;
+      }
+    
+      .blocklyHtmlTextAreaInputOverflowedY {
+        overflow-y: scroll;
+      }
+    
+    
+      .blocklyColourTable {
+        border-collapse: collapse;
+        display: block;
+        outline: none;
+        padding: 1px;
+      }
+    
+      .blocklyColourTable>tr>td {
+        border: .5px solid #888;
+        box-sizing: border-box;
+        cursor: pointer;
+        display: inline-block;
+        height: 20px;
+        padding: 0;
+        width: 20px;
+      }
+    
+      .blocklyColourTable>tr>td.blocklyColourHighlighted {
+        border-color: #eee;
+        box-shadow: 2px 2px 7px 2px rgba(0,0,0,.3);
+        position: relative;
+      }
+    
+      .blocklyColourSelected, .blocklyColourSelected:hover {
+        border-color: #eee !important;
+        outline: 1px solid #333;
+        position: relative;
+      }
+    
+    
+      .blocklyAngleCircle {
+        stroke: #444;
+        stroke-width: 1;
+        fill: #ddd;
+        fill-opacity: .8;
+      }
+    
+      .blocklyAngleMarks {
+        stroke: #444;
+        stroke-width: 1;
+      }
+    
+      .blocklyAngleGauge {
+        fill: #f88;
+        fill-opacity: .8;
+        pointer-events: none;
+      }
+    
+      .blocklyAngleLine {
+        stroke: #f00;
+        stroke-width: 2;
+        stroke-linecap: round;
+        pointer-events: none;
+      }
+    
+    
+      .blocklyCommentTextarea {
+        background-color: #fef49c;
+        border: 0;
+        display: block;
+        margin: 0;
+        outline: 0;
+        padding: 3px;
+        resize: none;
+        text-overflow: hidden;
+      }
+    
+    
+      .blocklyZoom>image, .blocklyZoom>svg>image {
+        opacity: .4;
+      }
+    
+      .blocklyZoom>image:hover, .blocklyZoom>svg>image:hover {
+        opacity: .6;
+      }
+    
+      .blocklyZoom>image:active, .blocklyZoom>svg>image:active {
+        opacity: .8;
+      }
+    
+    
+      .blocklyCommentForeignObject {
+        position: relative;
+        z-index: 0;
+      }
+    
+      .blocklyCommentRect {
+        fill: #E7DE8E;
+        stroke: #bcA903;
+        stroke-width: 1px;
+      }
+    
+      .blocklyCommentTarget {
+        fill: transparent;
+        stroke: #bcA903;
+      }
+    
+      .blocklyCommentTargetFocused {
+        fill: none;
+      }
+    
+      .blocklyCommentHandleTarget {
+        fill: none;
+      }
+    
+      .blocklyCommentHandleTargetFocused {
+        fill: transparent;
+      }
+    
+      .blocklyFocused>.blocklyCommentRect {
+        fill: #B9B272;
+        stroke: #B9B272;
+      }
+    
+      .blocklySelected>.blocklyCommentTarget {
+        stroke: #fc3;
+        stroke-width: 3px;
+      }
+    
+      .blocklyCommentDeleteIcon {
+        cursor: pointer;
+        fill: #000;
+        display: none;
+      }
+    
+      .blocklySelected > .blocklyCommentDeleteIcon {
+        display: block;
+      }
+    
+      .blocklyDeleteIconShape {
+        fill: #000;
+        stroke: #000;
+        stroke-width: 1px;
+      }
+    
+      .blocklyDeleteIconShape.blocklyDeleteIconHighlighted {
+        stroke: #fc3;
+      }
+    
+    
+      .blocklyFlyoutButton {
+        fill: #888;
+        cursor: default;
+      }
+    
+      .blocklyFlyoutButtonShadow {
+        fill: #666;
+      }
+    
+      .blocklyFlyoutButton:hover {
+        fill: #aaa;
+      }
+    
+      .blocklyFlyoutLabel {
+        cursor: default;
+      }
+    
+      .blocklyFlyoutLabelBackground {
+        opacity: 0;
+      }
+    </style>
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/blawx/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/blawx/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/blawx/favicon-16x16.png">
+        <link rel="manifest" href="/static/blawx/site.webmanifest">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" rel="stylesheet">
+        <script crossorigin="anonymous" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <title>Blawx - Drag and Drop Legal AI</title>
+        <link href="https://fonts.googleapis.com/css2?family=Mina:wght@700&amp;display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&amp;display=swap" rel="stylesheet">
+        <style type="text/css">
+            #blawxlogo {
+            font-family: 'Mina', sans-serif;
+            font-size:xx-large;
+            color: #5a005a;
+            }
+            #blawxWordMark{
+                font-family: 'IBM Plex Sans', sans-serif;
+            }
+        </style>    
+        
+    
+    <style type="text/css">
+    .blocklyTreeLabel{
+        color:black;
+    }
+    
+    </style>
+    
+        
+    </head>
+    <body class="d-flex flex-column h-100">
+    
+    
+    
+    
+    <header class="py-3 mb-3 border-bottom">
+        <div class="row">
+            <div class="col-2 align-self-center" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
+            
+        <!-- <div class="col-12"> -->
+            <div class="col-10">
+                <a href="javascript:void(0);" class="btn btn-secondary" onclick="getLoadFile()">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"></path>
+                        <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z"></path>
+                    </svg>
+                    <span class="text">Import</span>
+                </a>
+                <a href="javascript:void(0);" class="btn btn-secondary" onclick="exportBlocks()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"></path>
+                        <path fill-rule="evenodd" d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"></path>
+                      </svg>
+                    <span class="text">Export</span>
+                </a>
+                <a href="javascript:void(0);" class="btn btn-secondary" onclick="clearBlocks()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6.5 1a.5.5 0 0 0-.5.5v1h4v-1a.5.5 0 0 0-.5-.5h-3ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1H3.042l.846 10.58a1 1 0 0 0 .997.92h6.23a1 1 0 0 0 .997-.92l.846-10.58Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"></path>
+                      </svg>
+                    <span class="text">Clear</span>
+                </a>
+                <a class="dropdown">
+                      </a><a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuExamples" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+                            <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"></path>
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
+                          </svg>
+                          <span class="text">Examples</span>
+                        </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuExamples">
+                      
+                      <li><a class="dropdown-item" href="javascript:void(0);" onclick="getExample(1)">Rock Paper Scissors</a></li>
+                      
+                      <li><a class="dropdown-item" href="javascript:void(0);" onclick="getExample(2)">Mortality</a></li>
+                      
+                    </ul>
+                
+                <a href="javascript:void(0);" class="btn btn-secondary" onclick="runCode()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                        <path d="M5.795 12.456A.5.5 0 0 1 5.5 12V4a.5.5 0 0 1 .832-.374l4.5 4a.5.5 0 0 1 0 .748l-4.5 4a.5.5 0 0 1-.537.082z"></path>
+                    </svg>
+                    <span class="text">Run</span>
+                </a>
+                <a href="/docs/home" target="_blank" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path>
+                    </svg>
+                    <span class="text">Help</span>
+                </a>
+                <a href="javascript:void(0);" class="btn btn-secondary" onclick="updateWorkspace()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+                        <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"></path>
+                    </svg>
+                    <span class="text">Save</span>
+                </a>
+                <a href="/1/" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+                    </svg>
+                    <span class="text">Exit</span>
+                </a>
+           </div>
+         <!-- </div> -->
+    
+    
+            </div>
+      </header>
+    
+        <script src="/static/blawx/blockly/blockly_compressed.js"></script>
+        <script src="/static/blawx/blockly/javascript_compressed.js"></script>
+        <script src="/static/blawx/blockly/blocks_compressed.js"></script>
+        <script src="/static/blawx/blockly/msg/js/en.js"></script>
+        <script src="/static/blawx/blockly/appengine/storage.js"></script>
+        <script src="/static/blawx/blawx-blocks.js"></script>
+    
+        <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+            <!-- <category name="Include" colour="#666666">
+                <block type="include"></block>  
+            </category>
+            <sep></sep>
+            <category name="Documents" colour="#5ba593">
+                <block type="legal_doc"></block>
+                <block type="legal_doc_node"></block>
+                <block type="silent_legal_doc_node"></block>
+                <block type="legal_doc_text"></block>
+                <block type="legal_doc_text_continuation"></block>
+                <block type="legal_doc_text_parent_continuation"></block>
+                <block type="doc_selector"></block>
+            </category>
+            <category name="Known Documents" custom="KNOWN_RULES" colour="#5ba593">
+            </category> -->
+            <sep></sep>
+            <category name="Primary" colour="#805ba5">
+                <block type="unattributed_fact"></block>
+                <block type="unattributed_rule"></block>
+                <!-- <block type="overrules"></block> -->
+                <block type="unattributed_constraint"></block>
+                <block type="query"></block>
+                <block type="assume"></block>
+                <block type="json_textfield"></block>
+            </category>
+            <sep></sep>
+            <category name="Categories" colour="#a55b5b">
+            <block type="category_declaration"></block>
+            <block type="category_display"></block>
+            <block type="category_attribute"></block>
+            <block type="attribute_declaration"></block>
+            <block type="attribute_display"></block>
+            <block type="category_equivalence"></block>
+            </category>
+            <category name="Known Categories" custom="KNOWN_CATEGORIES" colour="#a55b5b"></category>
+            <sep></sep>
+            <category name="Data Types" colour="#5ba593">
+                <block type="true_false_type_selector"></block>
+                <block type="number_type_selector"></block>
+                <!-- <block type="date_type_selector"></block>
+                <block type="duration_type_selector"></block> -->
+        </category>
+            <category name="Data Values" colour="#5ba5a5">
+                <block type="number_value"></block>
+                <block type="true_value"></block>
+                <block type="false_value"></block>
+                <!-- <block type="date_value"></block>
+                <block type="duration_value"></block> -->
+            </category>
+            <category name="Data Statements" colour="#5ba5a5">
+                <category name="Number">
+                    <block type="math_operation"></block>
+                    <block type="calculation"></block>
+                    <block type="numerical_constraint"></block>
+                </category>
+                <!-- <category name="Date">
+                    <block type="date_comparison"></block>
+                    <block type="date_element"></block>
+                    <block type="date_calculate"></block>
+                    <block type="date_difference_days"></block>
+                    <block type="date_difference"></block>
+                    <block type="date_add"></block>
+                    <block type="duration_calculate"></block>
+                    <block type="duration_element"></block>
+                    </category> -->
+            </category>
+            <sep></sep>
+            <category name="Objects" custom="NEW_OBJECTS" colour="#5b5ba5"></category>
+            <category name="Known Objects" custom="KNOWN_OBJECTS" colour="#5b5ba5">
+            </category>
+            <sep></sep>
+            <category name="Known Attributes" custom="KNOWN_ATTRIBUTES" colour="#5BA65B"></category>
+            <sep></sep>
+            <category name="Logic" colour="#a55b93">
+                <!-- <block type="conjunction"></block>
+                <block type="disjunction"></block> -->
+                <block type="logical_negation"></block>
+                <block type="default_negation"></block>
+                <block type="comparison"></block>
+            </category>
+            <sep></sep>
+            <category name="Variables" colour="#a5a55b">
+            <block type="variable"></block>
+            <!-- <block type="silent_variable"></block> -->
+            <block type="unnamed_variable"></block>
+            <block type="variable_assignment"></block>
+            </category>
+            <sep></sep>
+            <!-- <category name="Input" colour="#A55B5B">
+            <block type="json_input"></block>
+            <block type="json_list"></block>
+            <block type="json_dictionary"></block>
+            <block type="json_value"></block>
+            </category>
+            <sep></sep> -->
+        </xml>
+    
+        
+    <main class="flex-grow-1">
+        <div class="row flex-row h-100">
+        <div class="collapse-horizontal flex-column card col-3 h-100 p-0 collapse" id="leftbar" style="">
+                    
+                      <div class="card-body" id="rules"><p>This is some text where the rules would go.</p>
+                        
+                        
+                        
+                    </div>
+            </div>
+        <div id="lefttoggle" class="col-auto p-1 h-100">
+            <a href="#" class="btn d-flex align-items-center btn-secondary p-0 h-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#leftbar" aria-expanded="false" aria-controls="leftbar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"></path>
+    </svg></a>
+        </div>
+            <div id="interface" class="col-auto flex-grow-1 p-0">
+                        <div id="blocklyArea" class="p-0 h-100">
+                            <div id="blocklyDiv" style="position: absolute; left: 14px; top: 125px; width: 779px; height: 404px;"><div class="injectionDiv geras-renderer classic-theme" tabindex="0" aria-label="Blockly Workspace" dir="LTR"><div layout="v" class="blocklyToolboxDiv blocklyNonSelectable" dir="LTR" style="display: block; left: 0px; height: 100%;"><div class="blocklyToolboxContents" tabindex="0" role="tree"><div class="blocklyTreeSeparator"></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-1.label"><div class="blocklyTreeRow" id="blockly-1" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(128, 91, 165);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-1.label" class="blocklyTreeLabel">Primary</span></div></div></div><div class="blocklyTreeSeparator"></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-3.label"><div class="blocklyTreeRow" id="blockly-3" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(165, 91, 91);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-3.label" class="blocklyTreeLabel">Categories</span></div></div></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-4.label"><div class="blocklyTreeRow" id="blockly-4" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(165, 91, 91);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-4.label" class="blocklyTreeLabel">Known Categories</span></div></div></div><div class="blocklyTreeSeparator"></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-6.label"><div class="blocklyTreeRow" id="blockly-6" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(91, 165, 147);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-6.label" class="blocklyTreeLabel">Data Types</span></div></div></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-7.label"><div class="blocklyTreeRow" id="blockly-7" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(91, 165, 165);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-7.label" class="blocklyTreeLabel">Data Values</span></div></div></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-8.label" aria-expanded="undefined"><div class="blocklyTreeRow" id="blockly-8" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(91, 165, 165);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon blocklyTreeIconClosed" role="presentation" style="visibility: visible; display: inline-block;"></span><span id="blockly-8.label" class="blocklyTreeLabel">Data Statements</span></div></div><div class="blocklyToolboxContents" role="group" style="display: none;"><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="blockly-9.label"><div class="blocklyTreeRow" id="blockly-9" style="padding-left: 19px; pointer-events: auto;"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-9.label" class="blocklyTreeLabel">Number</span></div></div></div></div></div><div class="blocklyTreeSeparator"></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-b.label"><div class="blocklyTreeRow" id="blockly-b" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(91, 91, 165);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-b.label" class="blocklyTreeLabel">Objects</span></div></div></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-c.label"><div class="blocklyTreeRow" id="blockly-c" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(91, 91, 165);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-c.label" class="blocklyTreeLabel">Known Objects</span></div></div></div><div class="blocklyTreeSeparator"></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-e.label"><div class="blocklyTreeRow" id="blockly-e" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(91, 166, 91);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-e.label" class="blocklyTreeLabel">Known Attributes</span></div></div></div><div class="blocklyTreeSeparator"></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-g.label"><div class="blocklyTreeRow" id="blockly-g" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(165, 91, 147);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-g.label" class="blocklyTreeLabel">Logic</span></div></div></div><div class="blocklyTreeSeparator"></div><div class="blocklyToolboxCategory" role="treeitem" aria-selected="false" aria-level="0" aria-labelledby="blockly-i.label"><div class="blocklyTreeRow" id="blockly-i" style="padding-left: 0px; pointer-events: auto; border-left: 8px solid rgb(165, 165, 91);"><div class="blocklyTreeRowContentContainer" style="pointer-events: none;"><span class="blocklyTreeIcon" role="presentation" style="display: inline-block;"></span><span id="blockly-i.label" class="blocklyTreeLabel">Variables</span></div></div></div><div class="blocklyTreeSeparator"></div></div></div><svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="blocklySvg" tabindex="0" width="779px" height="404px"><defs><pattern id="blocklyGridPattern1753508874626728" patternUnits="userSpaceOnUse" width="100" height="100" x="100.00000000000034" y="-36.261932373046875"><line stroke-width="1" x1="0" y1="0.5" x2="1" y2="0.5"></line></pattern></defs><g class="blocklyWorkspace"><rect height="100%" width="100%" class="blocklyMainBackground" style="fill: url(&quot;#blocklyGridPattern1753508874626728&quot;);"></rect><g class="blocklyTrash" style="opacity: 0.4;" transform="translate(697,309)"><clipPath id="blocklyTrashBodyClipPath8470995005349591"><rect width="47" height="44" y="16"></rect></clipPath><image width="96" x="0" height="124" y="-32" clip-path="url(#blocklyTrashBodyClipPath8470995005349591)" xlink:href="/static/blawx/blockly/media/sprites.png"></image><clipPath id="blocklyTrashLidClipPath8470995005349591"><rect width="47" height="16"></rect></clipPath><image width="96" x="0" height="124" y="-32" clip-path="url(#blocklyTrashLidClipPath8470995005349591)" xlink:href="/static/blawx/blockly/media/sprites.png" transform="rotate(0,43,14)"></image></g><g class="blocklyBlockCanvas" transform="translate(100.00000000000034,-36.261932373046875) scale(1)"><g class="blocklyCursor"><g width="100" height="5"><rect width="100" height="5" style="display: none"><animate attributeType="XML" attributeName="fill" dur="1s" values="#cc0a0a;transparent;transparent;" repeatCount="indefinite"></animate></rect><rect class="blocklyVerticalMarker" rx="10" ry="10" style="display: none"></rect><path transform="" style="display: none"><animate attributeType="XML" attributeName="fill" dur="1s" values="#cc0a0a;transparent;transparent;" repeatCount="indefinite"></animate></path><path transform="" style="display: none" fill="none" stroke-width="4"><animate attributeType="XML" attributeName="stroke" dur="1s" values="#cc0a0a;transparent;transparent;" repeatCount="indefinite"></animate></path></g></g><g data-id="va9hJj%n~=#-V$OG$4pg" class="blocklyDraggable" transform="translate(78,83)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#664984" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 102.02146911621094  v 10  H 110.02146911621094  V 10  H 110.02146911621094  l -6,4  -3,0  -6,-4  h -7 a 8 8 0 0,0 -8,8  v 79 a 8 8 0 0,0 8,8  H 110.02146911621094  H 110.02146911621094  V 105  V 115  h -102.02146911621094 a 8 8 0 0,1 -8,-8 z
+    "></path><path class="blocklyPath" stroke="none" fill="#805ba5" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 102.02146911621094  v 10  H 110.02146911621094  V 10  H 110.02146911621094  l -6,4  -3,0  -6,-4  h -7 a 8 8 0 0,0 -8,8  v 79 a 8 8 0 0,0 8,8  H 110.02146911621094  H 110.02146911621094  V 105  V 115  h -102.02146911621094 a 8 8 0 0,1 -8,-8 z
+    "></path><path class="blocklyPathLight" stroke="#a68cc0" d=" m 0,0  m 0.5,8 a 7.5 7.5 0 0,1 8,-7.5  H 109.52146911621094  H 109.52146911621094  M 80.02146911621094,105  m 1.9895923599143455,-1.9895923599143455 a 8.5 8.5 0 0,0 6.0104076400856545,2.4895923599143455  l 21.5,0  H 109.52146911621094  M 0,115  m 2.6966991411008934,-2.6966991411008934 a 7.5 7.5 0 0,1 -2.1966991411008934,-5.303300858899107  V 8 
+    "></path><g data-id="H^Ztllbvm3V:W=vlHRvn" style="display: block;" class="blocklyDraggable" transform="translate(81.02146911621094,11)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#845749" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 7  l 6,4  3,0  6,-4  h 131.1953582763672  v 5  H 161.1953582763672  V 5  H 161.1953582763672  V 22  H 161.1953582763672  V 22  V 26  h -131.6953582763672  l -6,4  -3,0  -6,-4  h -14.5  H 0 z
+    "></path><path class="blocklyPath" stroke="none" fill="#a56d5b" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 7  l 6,4  3,0  6,-4  h 131.1953582763672  v 5  H 161.1953582763672  V 5  H 161.1953582763672  V 22  H 161.1953582763672  V 22  V 26  h -131.6953582763672  l -6,4  -3,0  -6,-4  h -14.5  H 0 z
+    "></path><path class="blocklyPathLight" stroke="#c0998c" d=" m 0,0  m 0.5,8 a 7.5 7.5 0 0,1 8,-7.5  H 14.5  h 0.5  l 6,4  3,0  6,-4  H 160.6953582763672  H 160.6953582763672  M 0.5,25.5  V 8 
+    "></path><g data-id="t8H8iM9nTeQ,xMd/u9T]" class="blocklyDraggable" transform="translate(0,27)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#845749" d=" m 0,0  h 15  l 6,4  3,0  6,-4  h 127.10087585449219  v 5  H 157.1008758544922  V 5  H 157.1008758544922  V 22  H 157.1008758544922  V 22  V 26  h -127.60087585449219  l -6,4  -3,0  -6,-4  h -14.5  H 0 z
+    "></path><path class="blocklyPath" stroke="none" fill="#a56d5b" d=" m 0,0  h 15  l 6,4  3,0  6,-4  h 127.10087585449219  v 5  H 157.1008758544922  V 5  H 157.1008758544922  V 22  H 157.1008758544922  V 22  V 26  h -127.60087585449219  l -6,4  -3,0  -6,-4  h -14.5  H 0 z
+    "></path><path class="blocklyPathLight" stroke="#c0998c" d=" m 0,0  m 0.5,0.5  H 14.5  h 0.5  l 6,4  3,0  6,-4  H 156.6008758544922  H 156.6008758544922  M 0.5,25.5  V 0.5 
+    "></path><g data-id="G`8,y#Vd.Vim,`kCH!KV" class="blocklyDraggable" transform="translate(0,27)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#845749" d=" m 0,0  h 15  l 6,4  3,0  6,-4  h 225.1123046875  v 5  H 255.1123046875  V 5  H 255.1123046875  V 33  H 255.1123046875  V 33  V 37  h -225.6123046875  l -6,4  -3,0  -6,-4  h -6.5 a 8 8 0 0,1 -8,-8 z
+     M 35.77809143066406,5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 8  h 66.82460021972656  v -28 z M 182.38218688964844,5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 8  h 62.73011779785156  v -28 z"></path><path class="blocklyPath" stroke="none" fill="#a56d5b" d=" m 0,0  h 15  l 6,4  3,0  6,-4  h 225.1123046875  v 5  H 255.1123046875  V 5  H 255.1123046875  V 33  H 255.1123046875  V 33  V 37  h -225.6123046875  l -6,4  -3,0  -6,-4  h -6.5 a 8 8 0 0,1 -8,-8 z
+     M 35.77809143066406,5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 8  h 66.82460021972656  v -28 z M 182.38218688964844,5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 8  h 62.73011779785156  v -28 z"></path><path class="blocklyPathLight" stroke="#c0998c" d=" m 0,0  m 0.5,0.5  H 14.5  h 0.5  l 6,4  3,0  6,-4  H 254.6123046875  H 254.6123046875  M 0,37  m 2.6966991411008934,-2.6966991411008934 a 7.5 7.5 0 0,1 -2.1966991411008934,-5.303300858899107  V 0.5 
+     M 103.10269165039062,5.5  v 28  h -66.82460021972656  M 35.77809143066406,10  m -5,14.3  l 3.68,-2.1  M 245.6123046875,5.5  v 28  h -62.73011779785156  M 182.38218688964844,10  m -5,14.3  l 3.68,-2.1 "></path><g data-id="JNoe;$f2hmnRO!E@8_-+" class="blocklyDraggable" style="display: block;" transform="translate(28.778091430664062,6)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#845749" d=" m 8,0  h 64.82460021972656  v 5  H 72.82460021972656  V 5  H 72.82460021972656  V 22  H 72.82460021972656  V 22  V 26  h -64.82460021972656  H 8  V 20  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5 z
+    "></path><path class="blocklyPath" stroke="none" fill="#a56d5b" d=" m 8,0  h 64.82460021972656  v 5  H 72.82460021972656  V 5  H 72.82460021972656  V 22  H 72.82460021972656  V 22  V 26  h -64.82460021972656  H 8  V 20  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5 z
+    "></path><path class="blocklyPathLight" stroke="#c0998c" d=" m 8,0  m 0.5,0.5  H 72.32460021972656  H 72.32460021972656  M 8.5,25.5  M 8.5,25.5  V 20  v -1.5  m -7.36,-0.5  q -1.52,-5.5  0,-11  m 7.36,1  V 0.5 
+    "></path><g transform="translate(18,5)"><text class="blocklyText" x="0" y="13">person</text></g></g><g data-id="AvgZmAYdp(f:$uM2#%U3" class="blocklyDraggable" style="display: block;" transform="translate(175.38218688964844,6)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#845749" d=" m 8,0  h 60.73011779785156  v 5  H 68.73011779785156  V 5  H 68.73011779785156  V 22  H 68.73011779785156  V 22  V 26  h -60.73011779785156  H 8  V 20  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5 z
+    "></path><path class="blocklyPath" stroke="none" fill="#a56d5b" d=" m 8,0  h 60.73011779785156  v 5  H 68.73011779785156  V 5  H 68.73011779785156  V 22  H 68.73011779785156  V 22  V 26  h -60.73011779785156  H 8  V 20  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5 z
+    "></path><path class="blocklyPathLight" stroke="#c0998c" d=" m 8,0  m 0.5,0.5  H 68.23011779785156  H 68.23011779785156  M 8.5,25.5  M 8.5,25.5  V 20  v -1.5  m -7.36,-0.5  q -1.52,-5.5  0,-11  m 7.36,1  V 0.5 
+    "></path><g transform="translate(18,5)"><text class="blocklyText" x="0" y="13">mortal</text></g></g><g transform="translate(10,10)"><text class="blocklyText" x="0" y="13">A</text></g><g transform="translate(112.60269165039062,10)"><text class="blocklyText" x="0" y="13">is&nbsp;also&nbsp;a</text></g></g><g class="blocklyEditableText" transform="translate(5,5)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="17" width="50.73011779785156" class="blocklyFieldRect"></rect><text class="blocklyText" x="5" y="13">mortal</text></g><g transform="translate(60.73011779785156,5)"><text class="blocklyText" x="0" y="13">is&nbsp;a&nbsp;Category</text></g></g><g class="blocklyEditableText" transform="translate(5,5)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="17" width="54.82460021972656" class="blocklyFieldRect"></rect><text class="blocklyText" x="5" y="13">person</text></g><g transform="translate(64.82460021972656,5)"><text class="blocklyText" x="0" y="13">is&nbsp;a&nbsp;Category</text></g></g><g transform="translate(10,15)"><text class="blocklyText" x="0" y="13">We&nbsp;know</text></g></g><g data-id="hJox(U=MD_6UE!ox@8:f" class="blocklyDraggable" transform="translate(69,235)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#664984" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 228.67108154296875  v 5  H 236.67108154296875  V 5  H 236.67108154296875  V 28  H 236.67108154296875  V 28  V 32  h -228.67108154296875 a 8 8 0 0,1 -8,-8 z
+    "></path><path class="blocklyPath" stroke="none" fill="#805ba5" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 228.67108154296875  v 5  H 236.67108154296875  V 5  H 236.67108154296875  V 28  H 236.67108154296875  V 28  V 32  h -228.67108154296875 a 8 8 0 0,1 -8,-8 z
+    "></path><path class="blocklyPathLight" stroke="#a68cc0" d=" m 0,0  m 0.5,8 a 7.5 7.5 0 0,1 8,-7.5  H 236.17108154296875  H 236.17108154296875  M 0,32  m 2.6966991411008934,-2.6966991411008934 a 7.5 7.5 0 0,1 -2.1966991411008934,-5.303300858899107  V 8 
+    "></path><g transform="translate(10,5)"><text class="blocklyText" x="0" y="13">JSON:</text></g><g class="blocklyEditableText" transform="translate(58.17108154296875,5)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="23" width="173.5" class="blocklyFieldRect"></rect><g class="blocklyEditableText"><text class="blocklyText blocklyMultilineText" x="5" y="3" dy="13">{&nbsp;"person":&nbsp;[["socrates"]]&nbsp;}</text></g></g></g><g data-id="U)D@HF1126Ah$}s8[zAg" class="blocklyDraggable" transform="translate(71,300)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#664984" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 126.73869323730469  v 10  H 134.7386932373047  V 10  H 134.7386932373047  l -6,4  -3,0  -6,-4  h -7 a 8 8 0 0,0 -8,8  v 25 a 8 8 0 0,0 8,8  H 134.7386932373047  H 134.7386932373047  V 51  V 61  h -126.73869323730469 a 8 8 0 0,1 -8,-8 z
+    "></path><path class="blocklyPath" stroke="none" fill="#805ba5" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 126.73869323730469  v 10  H 134.7386932373047  V 10  H 134.7386932373047  l -6,4  -3,0  -6,-4  h -7 a 8 8 0 0,0 -8,8  v 25 a 8 8 0 0,0 8,8  H 134.7386932373047  H 134.7386932373047  V 51  V 61  h -126.73869323730469 a 8 8 0 0,1 -8,-8 z
+    "></path><path class="blocklyPathLight" stroke="#a68cc0" d=" m 0,0  m 0.5,8 a 7.5 7.5 0 0,1 8,-7.5  H 134.2386932373047  H 134.2386932373047  M 104.73869323730469,51  m 1.9895923599143455,-1.9895923599143455 a 8.5 8.5 0 0,0 6.0104076400856545,2.4895923599143455  l 21.5,0  H 134.2386932373047  M 0,61  m 2.6966991411008934,-2.6966991411008934 a 7.5 7.5 0 0,1 -2.1966991411008934,-5.303300858899107  V 8 
+    "></path><g data-id="?HLOpyE7B16]h#mt#UeU" style="display: block;" class="blocklyDraggable" transform="translate(105.73869323730469,11)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#495784" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 7  l 6,4  3,0  6,-4  h 274.6040496826172  v 5  H 304.6040496826172  V 5  H 304.6040496826172  V 33  H 304.6040496826172  V 33  V 37  h -275.1040496826172  l -6,4  -3,0  -6,-4  h -6.5 a 8 8 0 0,1 -8,-8 z
+     M 16,5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 8  h 79.05079650878906  v -28 z M 231.87393188476562,5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 8  h 62.73011779785156  v -28 z"></path><path class="blocklyPath" stroke="none" fill="#5b6da5" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 7  l 6,4  3,0  6,-4  h 274.6040496826172  v 5  H 304.6040496826172  V 5  H 304.6040496826172  V 33  H 304.6040496826172  V 33  V 37  h -275.1040496826172  l -6,4  -3,0  -6,-4  h -6.5 a 8 8 0 0,1 -8,-8 z
+     M 16,5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 8  h 79.05079650878906  v -28 z M 231.87393188476562,5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 8  h 62.73011779785156  v -28 z"></path><path class="blocklyPathLight" stroke="#8c99c0" d=" m 0,0  m 0.5,8 a 7.5 7.5 0 0,1 8,-7.5  H 14.5  h 0.5  l 6,4  3,0  6,-4  H 304.1040496826172  H 304.1040496826172  M 0,37  m 2.6966991411008934,-2.6966991411008934 a 7.5 7.5 0 0,1 -2.1966991411008934,-5.303300858899107  V 8 
+     M 95.55079650878906,5.5  v 28  h -79.05079650878906  M 16,10  m -5,14.3  l 3.68,-2.1  M 295.1040496826172,5.5  v 28  h -62.73011779785156  M 231.87393188476562,10  m -5,14.3  l 3.68,-2.1 "></path><g data-id="f(|5$wZM61#NLY8!*;9v" class="blocklyDraggable" style="display: block;" transform="translate(9,6)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#848449" d=" m 8,0  h 77.05079650878906  v 5  H 85.05079650878906  V 5  H 85.05079650878906  V 22  H 85.05079650878906  V 22  V 26  h -77.05079650878906  H 8  V 20  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5 z
+    "></path><path class="blocklyPath" stroke="none" fill="#a5a55b" d=" m 8,0  h 77.05079650878906  v 5  H 85.05079650878906  V 5  H 85.05079650878906  V 22  H 85.05079650878906  V 22  V 26  h -77.05079650878906  H 8  V 20  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5 z
+    "></path><path class="blocklyPathLight" stroke="#c0c08c" d=" m 8,0  m 0.5,0.5  H 84.55079650878906  H 84.55079650878906  M 8.5,25.5  M 8.5,25.5  V 20  v -1.5  m -7.36,-0.5  q -1.52,-5.5  0,-11  m 7.36,1  V 0.5 
+    "></path><g class="blocklyEditableText" transform="translate(13,5)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="17" width="67.05079650878906" class="blocklyFieldRect"></rect><text class="blocklyText" x="5" y="13">Anything</text></g></g><g data-id="9hMs8I*3wQ_=7w:!@Y)L" class="blocklyDraggable" style="display: block;" transform="translate(224.87393188476562,6)"><path class="blocklyPathDark" transform="translate(1,1)" fill="#845749" d=" m 8,0  h 60.73011779785156  v 5  H 68.73011779785156  V 5  H 68.73011779785156  V 22  H 68.73011779785156  V 22  V 26  h -60.73011779785156  H 8  V 20  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5 z
+    "></path><path class="blocklyPath" stroke="none" fill="#a56d5b" d=" m 8,0  h 60.73011779785156  v 5  H 68.73011779785156  V 5  H 68.73011779785156  V 22  H 68.73011779785156  V 22  V 26  h -60.73011779785156  H 8  V 20  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5 z
+    "></path><path class="blocklyPathLight" stroke="#c0998c" d=" m 8,0  m 0.5,0.5  H 68.23011779785156  H 68.23011779785156  M 8.5,25.5  M 8.5,25.5  V 20  v -1.5  m -7.36,-0.5  q -1.52,-5.5  0,-11  m 7.36,1  V 0.5 
+    "></path><g transform="translate(18,5)"><text class="blocklyText" x="0" y="13">mortal</text></g></g><g transform="translate(105.05079650878906,10)"><text class="blocklyText" x="0" y="13">is&nbsp;in&nbsp;the&nbsp;category</text></g></g><g transform="translate(10,15)"><text class="blocklyText" x="0" y="13">Is&nbsp;it&nbsp;true&nbsp;that:</text></g></g></g><g class="blocklyBubbleCanvas" transform="translate(100.00000000000034,-36.261932373046875) scale(1)"></g><rect height="15" width="15" class="blocklyScrollbarBackground" x="763.5" y="388.5"></rect><defs><filter id="blocklyEmbossFilter847385748685662"><feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"></feGaussianBlur><feSpecularLighting in="blur" surfaceScale="1" specularConstant="0.5" specularExponent="10" lighting-color="white" result="specOut"><fePointLight x="-5000" y="-10000" z="20000"></fePointLight></feSpecularLighting><feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"></feComposite><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"></feComposite></filter><pattern id="blocklyDisabledPattern847385748685662" patternUnits="userSpaceOnUse" width="10" height="10"><rect width="10" height="10" fill="#aaa"></rect><path d="M 0 0 L 10 10 M 10 0 L 0 10" stroke="#cc0"></path></pattern><filter id="blocklyDebugFilter847385748685662" height="160%" width="180%" y="-30%" x="-40%"><feComponentTransfer result="outBlur"><feFuncA type="table" tableValues="0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"></feFuncA></feComponentTransfer><feFlood flood-color="#ff0000" flood-opacity="0.5" result="outColor"></feFlood><feComposite in="outColor" in2="outBlur" operator="in" result="outGlow"></feComposite></filter></defs></g></svg><svg class="blocklyScrollbarVertical blocklyMainWorkspaceScrollbar" width="15" height="388" style="transform: translate(763.5px, 0.5px);"><g><rect class="blocklyScrollbarBackground" width="15" height="388"></rect><rect class="blocklyScrollbarHandle" rx="5" ry="5" width="10" x="2.5" height="229.50512445095168" y="88.20150770240437"></rect></g></svg><svg class="blocklyScrollbarHorizontal blocklyMainWorkspaceScrollbar" height="15" width="594" style="transform: translate(169.5px, 388.5px);"><g><rect class="blocklyScrollbarBackground" height="15" width="594"></rect><rect class="blocklyScrollbarHandle" rx="5" ry="5" height="10" y="2.5" width="354.07492016421486" x="177.03746008210723"></rect></g></svg><svg class="blocklyFlyout" style="display: none"><path class="blocklyFlyoutBackground"></path><g class="blocklyWorkspace"><g class="blocklyBlockCanvas"><g class="blocklyCursor"><g width="100" height="5"><rect width="100" height="5" style="display: none"><animate attributeType="XML" attributeName="fill" dur="1s" values="#cc0a0a;transparent;transparent;" repeatCount="indefinite"></animate></rect><rect class="blocklyVerticalMarker" rx="10" ry="10" style="display: none"></rect><path transform="" style="display: none"><animate attributeType="XML" attributeName="fill" dur="1s" values="#cc0a0a;transparent;transparent;" repeatCount="indefinite"></animate></path><path transform="" style="display: none" fill="none" stroke-width="4"><animate attributeType="XML" attributeName="stroke" dur="1s" values="#cc0a0a;transparent;transparent;" repeatCount="indefinite"></animate></path></g></g></g><g class="blocklyBubbleCanvas"></g><defs><filter id="blocklyEmbossFilter9374469914035541"><feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"></feGaussianBlur><feSpecularLighting in="blur" surfaceScale="1" specularConstant="0.5" specularExponent="10" lighting-color="white" result="specOut"><fePointLight x="-5000" y="-10000" z="20000"></fePointLight></feSpecularLighting><feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"></feComposite><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"></feComposite></filter><pattern id="blocklyDisabledPattern9374469914035541" patternUnits="userSpaceOnUse" width="10" height="10"><rect width="10" height="10" fill="#aaa"></rect><path d="M 0 0 L 10 10 M 10 0 L 0 10" stroke="#cc0"></path></pattern><filter id="blocklyDebugFilter9374469914035541" height="160%" width="180%" y="-30%" x="-40%"><feComponentTransfer result="outBlur"><feFuncA type="table" tableValues="0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"></feFuncA></feComponentTransfer><feFlood flood-color="#ff0000" flood-opacity="0.5" result="outColor"></feFlood><feComposite in="outColor" in2="outBlur" operator="in" result="outGlow"></feComposite></filter></defs></g></svg><svg class="blocklyScrollbarVertical blocklyFlyoutScrollbar" width="15"><g><rect class="blocklyScrollbarBackground" width="15"></rect><rect class="blocklyScrollbarHandle" rx="5" ry="5" width="10" x="2.5"></rect></g></svg><svg class="blocklyFlyout" style="display: none"><path class="blocklyFlyoutBackground"></path><g class="blocklyWorkspace"><g class="blocklyBlockCanvas"><g class="blocklyCursor"><g width="100" height="5"><rect width="100" height="5" style="display: none"><animate attributeType="XML" attributeName="fill" dur="1s" values="#cc0a0a;transparent;transparent;" repeatCount="indefinite"></animate></rect><rect class="blocklyVerticalMarker" rx="10" ry="10" style="display: none"></rect><path transform="" style="display: none"><animate attributeType="XML" attributeName="fill" dur="1s" values="#cc0a0a;transparent;transparent;" repeatCount="indefinite"></animate></path><path transform="" style="display: none" fill="none" stroke-width="4"><animate attributeType="XML" attributeName="stroke" dur="1s" values="#cc0a0a;transparent;transparent;" repeatCount="indefinite"></animate></path></g></g></g><g class="blocklyBubbleCanvas"></g><defs><filter id="blocklyEmbossFilter22015823751654273"><feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"></feGaussianBlur><feSpecularLighting in="blur" surfaceScale="1" specularConstant="0.5" specularExponent="10" lighting-color="white" result="specOut"><fePointLight x="-5000" y="-10000" z="20000"></fePointLight></feSpecularLighting><feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"></feComposite><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"></feComposite></filter><pattern id="blocklyDisabledPattern22015823751654273" patternUnits="userSpaceOnUse" width="10" height="10"><rect width="10" height="10" fill="#aaa"></rect><path d="M 0 0 L 10 10 M 10 0 L 0 10" stroke="#cc0"></path></pattern><filter id="blocklyDebugFilter22015823751654273" height="160%" width="180%" y="-30%" x="-40%"><feComponentTransfer result="outBlur"><feFuncA type="table" tableValues="0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"></feFuncA></feComponentTransfer><feFlood flood-color="#ff0000" flood-opacity="0.5" result="outColor"></feFlood><feComposite in="outColor" in2="outBlur" operator="in" result="outGlow"></feComposite></filter></defs></g></svg><svg class="blocklyScrollbarVertical blocklyFlyoutScrollbar" width="15"><g><rect class="blocklyScrollbarBackground" width="15"></rect><rect class="blocklyScrollbarHandle" rx="5" ry="5" width="10" x="2.5"></rect></g></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="blocklyBlockDragSurface"><g transform="translate(100,-36) scale(1)"></g></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="blocklyWsDragSurface blocklyOverflowVisible" width="475" height="429" style="display: none;"></svg></div></div>
+                        </div>
+            </div>
+        <div id="righttoggle" class="col-auto p-1 h-100">
+            <a href="#" class="btn d-flex align-items-center btn-secondary h-100 p-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rightbar" aria-expanded="false" aria-controls="rightbar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
+    </svg></a>
+        </div>
+            <div class="collapse-horizontal flex-column card col-3 h-100 p-0 collapse" id="rightbar" style="">
+                    <nav class="card-header">
+                        <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
+                          <button class="nav-link" id="nav-output-tab" data-bs-toggle="tab" data-bs-target="#nav-output" type="button" role="tab" aria-controls="nav-output" aria-selected="false">Output</button>
+                          <button class="nav-link" id="nav-problems-tab" data-bs-toggle="tab" data-bs-target="#nav-problems" type="button" role="tab" aria-controls="nav-problems" aria-selected="false">Problems</button>
+                          <button class="nav-link active" id="nav-code-tab" data-bs-toggle="tab" data-bs-target="#nav-code" type="button" role="tab" aria-controls="nav-code" aria-selected="true">Code</button>
+                        </div>
+                      </nav>
+                      <div class="tab-content card-body" id="nav-tabContent">
+                        <div class="tab-pane fade" id="nav-output" role="tabpanel" aria-labelledby="nav-output-tab"></div>
+                        <div class="tab-pane fade" id="nav-problems" role="tabpanel" aria-labelledby="nav-problems-tab"><pre id="problems">Prolog: Warning: /tmp/tmpp8tv5gqx:4:
+    Prolog: Warning:    Singleton variables: [X]
+    Prolog: Warning: /tmp/tmpp8tv5gqx:5:
+    Prolog: Warning:    Singleton variables: [X]
+    Prolog: Warning: /tmp/tmpp8tv5gqx:9:
+    Prolog: Warning:    Singleton variables: [Anything]
+    True
+    scasp(mortal(Anything),[tree(Tree)]),with_output_to(string(Human), human_justification_tree(Tree,[])).[{'Anything': 'socrates', 'Tree': {'args': ['query', [{'args': [{'args': ['socrates'], 'functor': 'mortal'}, [{'args': [{'args': ['socrates'], 'functor': 'person'}, []], 'functor': '-'}]], 'functor': '-'}]], 'functor': '-'}, 'Human': '   socrates is a mortal, because\n      socrates is a person\n   ∎\n'}]
+    </pre></div>
+                        <div class="tab-pane fade active show" id="nav-code" role="tabpanel" aria-labelledby="nav-code-tab"><pre id="code">#pred person(X) :: '@(X) is a person'.
+    #pred mortal(X) :: '@(X) is a mortal'.
+    mortal(X) :-
+    person(X).
+    
+    ?- mortal(Anything).
+    </pre></div>
+                    </div>
+            </div>
+        </div>
+    
+        <script src="/static/blawx/mutators.js"></script>
+            <script>
+                var blocklyArea = document.getElementById('blocklyArea');
+                var blocklyDiv = document.getElementById('blocklyDiv');
+                var demoWorkspace = Blockly.inject(blocklyDiv,
+                    {media: "/static/blawx/blockly/media/",
+                    toolbox: document.getElementById('toolbox')});
+                var importWorkspace = new Blockly.Workspace();
+                var xmlText = '\u003Cxml xmlns\u003D\u0022https://developers.google.com/blockly/xml\u0022\u003E\u003Cblock type\u003D\u0022unattributed_fact\u0022 id\u003D\u0022va9hJj%n~\u003D#\u002DV$OG$4pg\u0022 x\u003D\u002278\u0022 y\u003D\u002283\u0022\u003E\u003Cstatement name\u003D\u0022statements\u0022\u003E\u003Cblock type\u003D\u0022category_declaration\u0022 id\u003D\u0022H^Ztllbvm3V:W\u003DvlHRvn\u0022\u003E\u003Cfield name\u003D\u0022category_name\u0022\u003Eperson\u003C/field\u003E\u003Cnext\u003E\u003Cblock type\u003D\u0022category_declaration\u0022 id\u003D\u0022t8H8iM9nTeQ,xMd/u9T]\u0022\u003E\u003Cfield name\u003D\u0022category_name\u0022\u003Emortal\u003C/field\u003E\u003Cnext\u003E\u003Cblock type\u003D\u0022category_equivalence\u0022 id\u003D\u0022G\u00608,y#Vd.Vim,\u0060kCH!KV\u0022\u003E\u003Cvalue name\u003D\u0022first_category\u0022\u003E\u003Cblock type\u003D\u0022category_selector\u0022 id\u003D\u0022JNoe\u003B$f2hmnRO!E@8_\u002D+\u0022\u003E\u003Cmutation xmlns\u003D\u0022http://www.w3.org/1999/xhtml\u0022 category_name\u003D\u0022person\u0022\u003E\u003C/mutation\u003E\u003Cfield name\u003D\u0022category_name\u0022\u003Eperson\u003C/field\u003E\u003C/block\u003E\u003C/value\u003E\u003Cvalue name\u003D\u0022second_category\u0022\u003E\u003Cblock type\u003D\u0022category_selector\u0022 id\u003D\u0022AvgZmAYdp(f:$uM2#%U3\u0022\u003E\u003Cmutation xmlns\u003D\u0022http://www.w3.org/1999/xhtml\u0022 category_name\u003D\u0022mortal\u0022\u003E\u003C/mutation\u003E\u003Cfield name\u003D\u0022category_name\u0022\u003Emortal\u003C/field\u003E\u003C/block\u003E\u003C/value\u003E\u003C/block\u003E\u003C/next\u003E\u003C/block\u003E\u003C/next\u003E\u003C/block\u003E\u003C/statement\u003E\u003C/block\u003E\u003Cblock type\u003D\u0022json_textfield\u0022 id\u003D\u0022hJox(U\u003DMD_6UE!ox@8:f\u0022 x\u003D\u002269\u0022 y\u003D\u0022235\u0022\u003E\u003Cfield name\u003D\u0022payload\u0022\u003E{ \u0022person\u0022: [[\u0022socrates\u0022]] }\u003C/field\u003E\u003C/block\u003E\u003Cblock type\u003D\u0022query\u0022 id\u003D\u0022U)D@HF1126Ah$}s8[zAg\u0022 x\u003D\u002271\u0022 y\u003D\u0022300\u0022\u003E\u003Cstatement name\u003D\u0022query\u0022\u003E\u003Cblock type\u003D\u0022object_category\u0022 id\u003D\u0022?HLOpyE7B16]h#mt#UeU\u0022\u003E\u003Cvalue name\u003D\u0022object\u0022\u003E\u003Cblock type\u003D\u0022variable\u0022 id\u003D\u0022f(|5$wZM61#NLY8!*\u003B9v\u0022\u003E\u003Cfield name\u003D\u0022variable_name\u0022\u003EAnything\u003C/field\u003E\u003C/block\u003E\u003C/value\u003E\u003Cvalue name\u003D\u0022category\u0022\u003E\u003Cblock type\u003D\u0022category_selector\u0022 id\u003D\u00229hMs8I*3wQ_\u003D7w:!@Y)L\u0022\u003E\u003Cmutation xmlns\u003D\u0022http://www.w3.org/1999/xhtml\u0022 category_name\u003D\u0022mortal\u0022\u003E\u003C/mutation\u003E\u003Cfield name\u003D\u0022category_name\u0022\u003Emortal\u003C/field\u003E\u003C/block\u003E\u003C/value\u003E\u003C/block\u003E\u003C/statement\u003E\u003C/block\u003E\u003C/xml\u003E';
+                if (xmlText) {
+                    Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xmlText), demoWorkspace);
+                }
+                var onresize = function(e) {
+                    blocklyDiv.style.left = blocklyArea.offsetLeft + 'px';
+                    blocklyDiv.style.top = blocklyArea.offsetTop + 'px';
+                    blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+                    blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+                    Blockly.svgResize(demoWorkspace);
+                };
+                var myob = new ResizeObserver(onresize);
+                myob.observe(blocklyArea);
+                Blockly.svgResize(demoWorkspace);
+    
+                window.onload = function() {
+                    onresize();
+                };
+            </script>
+            <script src="/static/blawx/buttons.js"></script>
+            <script src="/static/blawx/drawers.js"></script>
+            <script src="/static/blawx/import.js"></script>
+            <script src="/static/blawx/attributes.js"></script>
+            <script src="/static/blawx/blawx2scasp.js"></script>
+       
+        <div>
+          <input id="loadfile" onchange="loadBlocksFile(this)" type="file" accept=".blawx" hidden="">
+        </div>
+        <div>
+          <input id="importfile" onchange="importBlocksFile(this)" type="file" accept=".blawx" hidden="">
+        </div>
+    </main><div class="blocklyWidgetDiv" style="direction: ltr; display: none; height: 172px;"></div><div class="blocklyDropDownDiv" style="opacity: 0; transition: transform 0.25s ease 0s, opacity 0.25s ease 0s;"><div class="blocklyDropDownContent"></div><div class="blocklyDropDownArrow"></div></div><div class="blocklyTooltipDiv" style="direction: ltr; display: none; top: 313px; left: 569px;"><div>Use to simulate JSON input for the API.</div></div><canvas class="blocklyComputeCanvas"></canvas>
+    
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span>Copyright © Lexpedite Legal Technologies Ltd. 2022</span>
+        </div>
+      </footer>
+    
+    </body></html>
