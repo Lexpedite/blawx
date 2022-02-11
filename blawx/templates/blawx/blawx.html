@@ -9,6 +9,8 @@
 }
 
 </style>
+
+<link href="{% static 'blawx/akoma_ntoso.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block page_content %}
@@ -122,7 +124,8 @@
     <div class="row flex-row h-100">
         <div class="collapse-horizontal flex-column card col-3 h-100 p-0 collapse" id="leftbar" style="">
                     
-            <div class="card-body" id="rules"><p>This is some text where the rules would go.</p>
+            <div class="card-body akoma-ntoso" id="rules">
+                {{ workspace.akoma_ntoso | safe }}
               
               
               

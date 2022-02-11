@@ -1,0 +1,68 @@
+.akoma-ntoso preface shorttitle {
+    font-size: x-large;
+}
+
+.akoma-ntoso docnumber {
+    font-size: large;
+}
+
+.akoma-ntoso heading {
+    font-weight: bold;
+}
+
+.akoma-ntoso section > num {
+    font-weight: bold;
+}
+
+.akoma-ntoso subsection num::before {
+    content: "("
+}
+
+.akoma-ntoso subsection num::after {
+    content: ")"
+}
+
+.akoma-ntoso section * {
+    display:inline;
+    padding-bottom: 10px;
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-top: 2px;
+}
+
+.akoma-ntoso section *:hover {
+    background-color:lightblue;
+}
+
+.akoma-ntoso section {
+    border:2px solid lightgray;
+    border-radius: 5px;
+}
+
+.akoma-ntoso subsection {
+    margin-left: 30px;
+    display:block;
+    border:2px solid lightgray;
+    border-radius: 5px;
+}
+
+.akoma-ntoso paragraph {
+    margin-left: 30px;
+    display:block;
+    
+    border:2px solid lightgray;
+    border-radius: 5px;
+}
+
+.akoma-ntoso subparagraph {
+    margin-left: 30px;
+    display:block;
+    
+    border:2px solid lightgray;
+    border-radius: 5px;
+}
+
+.akoma-ntoso item {
+    margin-left: 30px;
+    display: block;
+}
