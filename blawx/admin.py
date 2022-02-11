@@ -4,6 +4,6 @@ from django.contrib import admin
 from .models import Workspace
 
 class WorkspaceAdmin(admin.ModelAdmin):
-    fields = ['workspace_name','xml_content','scasp_encoding']
+    fields = ['workspace_name','xml_content','scasp_encoding', 'akoma_ntoso']
 
 admin.site.register(Workspace,WorkspaceAdmin)

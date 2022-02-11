@@ -1,10 +1,15 @@
 {% extends "base.html" %}
+{% block page_head %}
+{% endblock %}
 {% block page_content %}
 
-<h1>{{ workspace.workspace_name }}</h1>
-<div><a href="{% url 'blawx:code' workspace.id %}" class="btn btn-success">Code Editor</a></div>
-<div>
+<h1>Workspace {{ workspace.pk }}: {{ workspace.workspace_name }}</h1>
+<div class="row"><a href="{% url 'blawx:code' workspace.id %}" class="btn btn-success">Code Editor</a>
     <a href="{% url 'blawx:workspace_delete' workspace.id %}" class="btn btn-danger">Delete Workspace</a>
+    <a href="{% url 'blawx:workspaces' %}">Home</a>
 </div>
-<a href="{% url 'blawx:workspaces' %}">Back to home</a>
+<h2>Statute</h2>
+<div class="akoma-ntoso">
+    {{ workspace.akoma_ntoso | safe}}
+</div>
 {% endblock %}

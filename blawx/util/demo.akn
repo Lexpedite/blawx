@@ -1,0 +1,946 @@
+<akomaNtoso xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://docs.oasis-open.org/legaldocml/ns/akn/3.0/WD17 ../schemas/akomantoso30.xsd " xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0/WD17">
+	<!-- Original document http://www.legislation.gov.uk/ukpga/2014/27/pdfs/ukpga_20140027_en.pdf -->
+	<!-- Level of compliance 1 because the FRBR IRI are not compliant with the AKN specs -->
+
+	<act name="UnitedKingdomPublicGeneralAct">
+		<meta>
+			<identification source="#source">
+				<FRBRWork>
+					<FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2014/27/enacted/"/>
+					<FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2014/27/enacted"/>
+					<FRBRdate date="2014-07-17" name="enacted"/>
+					<FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament"/>
+					<FRBRcountry value="GB-UKM"/>
+					<FRBRnumber value="27"/>
+					<FRBRname value="2014 c. 27"/>
+					<FRBRprescriptive value="true"/>
+				</FRBRWork>
+				<FRBRExpression>
+					<FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2014/27/enacted"/>
+					<FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2014/27/enacted"/>
+					<FRBRdate date="2014-07-17" name="enacted"/>
+					<FRBRauthor href="#source"/>
+					<FRBRlanguage language="eng"/>
+				</FRBRExpression>
+				<FRBRManifestation>
+					<FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2014/27/enacted/data.akn"/>
+					<FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2014/27/enacted/data.akn"/>
+					<FRBRdate date="2014-11-14Z" name="transform"/>
+					<FRBRauthor href="http://www.legislation.gov.uk"/>
+					<FRBRformat value="application/akn+xml"/>
+				</FRBRManifestation>
+			</identification>
+			<lifecycle source="#source">
+				<eventRef date="2014-07-17" type="generation" eId="eRef_1" source="#source" refersTo="#DateOfEnactment"/>
+				<eventRef date="2016-12-31" source="#source" eId="eRef_2" refersTo="#DateOfRepeal"/>
+			</lifecycle>
+			<analysis source="#palmirani">
+				<activeModifications>
+					<textualMod eId="textualMod_1" type="insertion" period="eRef_1">
+						<source eId="textualMod_1__source_1" href="#mod_1"/>
+						<destination eId="textualMod_1__destination_2" href="/akn/uk/act/2000-07-28/chapter23/main#sec_11__subsec_2A"/>
+						<destination eId="textualMod_1__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_11__subsec_2" pos="after"/>
+					</textualMod>
+					<textualMod eId="textualMod_2" type="insertion" period="eRef_1">
+						<source eId="textualMod_2__source_1" href="#mod_2"/>
+						<destination eId="textualMod_2__destination_1" href="akn/uk/act/2000-07-28/chapter23/main#sec_11__subsec_4"/>
+						<destination eId="textualMod_2__destination_2" href="#qtext_1" pos="after"/>
+						<new eId="textualMod_2__new_1" href="#qtext_2"/>
+					</textualMod>
+					<textualMod eId="textualMod_3" type="insertion" period="eRef_1">
+						<source eId="textualMod_3__source_1" href="#mod_3"/>
+						<destination eId="textualMod_3__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_11__subsec_5A"/>
+						<destination eId="textualMod_3__destination_2" href="/akn/uk/act/2000-07-28/chapter23/main#sec_11__subsec_5" pos="after"/>
+					</textualMod>
+					<textualMod eId="textualMod_4" type="insertion" period="eRef_1">
+						<source eId="textualMod_4__source_1" href="#mod_4"/>
+						<destination eId="textualMod_4__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_11__subsec_8"/>
+						<destination eId="textualMod_4__destination_2" href="#qtext_3" pos="after"/>
+						<new eId="textualMod_4__new_1" href="#qtext_4"/>
+					</textualMod>
+					<textualMod eId="textualMod_5" type="insertion" period="eRef_1">
+						<source eId="textualMod_5__source_1" href="#mod_5"/>
+						<destination eId="textualMod_5__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_12__subsec_3A"/>
+						<destination eId="textualMod_5__destination_2" href="/akn/uk/act/2000-07-28/chapter23/main#sec_12__subsec_3" pos="after"/>
+					</textualMod>
+					<textualMod eId="textualMod_6" type="insertion" period="eRef_1">
+						<source eId="textualMod_6__source_1" href="#mod_6"/>
+						<destination eId="textualMod_6__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_12__subsec_7"/>
+						<destination eId="textualMod_6__destination_2" href="#qtext_5" pos="after"/>
+						<new eId="textualMod_6__new_1" href="#qtext_6"/>
+					</textualMod>
+					<textualMod eId="textualMod_7" type="insertion" period="eRef_1">
+						<source eId="textualMod_7__source_1" href="#mod_7"/>
+						<destination eId="textualMod_7__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_12__subsec_7"/>
+						<destination eId="textualMod_7__destination_2" href="#qtext_7" pos="after"/>
+						<new eId="textualMod_7__new_1" href="#qtext_8"/>
+					</textualMod>
+					<textualMod eId="textualMod_8" type="insertion" period="eRef_1">
+						<source eId="textualMod_8__source_1" href="#mod_8"/>
+						<destination eId="textualMod_8__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_12__subsec_3A"/>
+						<destination eId="textualMod_8__destination_2" href="/akn/uk/act/2000-07-28/chapter23/main#sec_12__subsec_3" pos="after"/>
+					</textualMod>
+					<textualMod eId="textualMod_9" type="insertion" period="eRef_1">
+						<source eId="textualMod_9__source_1" href="#mod_9"/>
+						<destination eId="textualMod_9__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_22__subsec_6"/>
+						<destination eId="textualMod_9__destination_2" href="#qtext_9" pos="after"/>
+						<new eId="textualMod_9__new_1" href="#qtext_10"/>
+					</textualMod>
+					<textualMod eId="textualMod_10" type="insertion" period="eRef_1">
+						<source eId="textualMod_10__source_1" href="#mod_10"/>
+						<destination eId="textualMod_10__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_22__subsec_8"/>
+						<destination eId="textualMod_10__destination_2" href="#qtext_11" pos="after"/>
+						<new eId="textualMod_10__new_1" href="#qtext_12"/>
+					</textualMod>
+					<textualMod eId="textualMod_11" type="insertion" period="eRef_1">
+						<source eId="textualMod_11__source_1" href="#mod_11"/>
+						<destination eId="textualMod_11__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_2__subsec_8A"/>
+						<destination eId="textualMod_11__destination_2" href="/akn/uk/act/2000-07-28/chapter23/main#sec_2__subsec_8" pos="after"/>
+					</textualMod>
+					<textualMod eId="textualMod_12" type="insertion" period="eRef_1">
+						<source eId="textualMod_12__source_1" href="#mod_12"/>
+						<destination eId="textualMod_12__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_58__subsec_4"/>
+						<destination eId="textualMod_12__destination_2" href="#qtext_13" pos="after"/>
+						<new eId="textualMod_12__new_1" href="#qtext_14"/>
+					</textualMod>
+					<textualMod eId="textualMod_13" type="insertion" period="eRef_1">
+						<source eId="textualMod_13__source_1" href="#mod_13"/>
+						<destination eId="textualMod_13__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_58__subsec_4"/>
+						<destination eId="textualMod_13__destination_2" href="#qtext_15" pos="after"/>
+						<new eId="textualMod_13__new_1" href="#qtext_16"/>
+					</textualMod>
+					<textualMod eId="textualMod_14" type="insertion" period="eRef_1">
+						<source eId="textualMod_14__source_1" href="#mod_14"/>
+						<destination eId="textualMod_14__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_58__subsec_6A"/>
+						<destination eId="textualMod_14__destination_2" href="#qtext_17" pos="after"/>
+						<new eId="textualMod_14__new_1" href="#qtext_18"/>
+					</textualMod>
+					<textualMod eId="textualMod_15" type="insertion" period="eRef_1">
+						<source eId="textualMod_15__source_1" href="#mod_15"/>
+						<destination eId="textualMod_15__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_58__subsec_6A"/>
+						<destination eId="textualMod_15__destination_2" href="#qtext_19" pos="after"/>
+						<new eId="textualMod_15__new_1" href="#qtext_20"/>
+					</textualMod>
+					<meaningMod type="authenticInterpretation" eId="textualMod_16">
+						<source eId="textualMod_16__source_1" href="#mod_16"/>
+						<destination eId="textualMod_16__destination_1" href="#sec_7"/>
+						<domain href="#qtext_21"/>
+					</meaningMod>
+					<textualMod type="repeal" eId="textualMod_17">
+						<source eId="textualMod_17__source_1" href="#mod_17"/>
+						<destination eId="textualMod_17__destination_1" href="#sec_1" upTo="#sec_7"/>
+						<application period="#date_2"/>
+					</textualMod>
+					<textualMod type="repeal" eId="textualMod_18">
+						<source eId="textualMod_18__source_1" href="#mod_18"/>
+						<destination eId="textualMod_18__destination_1" href="/akn/uk/act/2000-07-28/chapter23/main#sec_3" upTo="/akn/uk/act/2000-07-28/chapter23/main#sec_6"/>
+						<application period="#date_2"/>
+					</textualMod>
+				</activeModifications>
+			</analysis>
+			<references source="#source">
+				<TLCOrganization eId="source" href="http://www.legislation.gov.uk/id/publisher/KingsOrQueensPrinterOfActsOfParliament" showAs="Queen's Printer of Acts of Parliament"/>
+				<passiveRef href="http://www.legislation.gov.uk/id/ukpga/2014/27" showAs="Data Retention and Investigatory Powers Act 2014"/>
+				<TLCEvent eId="DateOfEnactment" href="/ontology/events/akn/uk/DateOfEnactment" showAs="Date Of Enactment"/>
+				<TLCEvent eId="DateOfRepeal" href="/ontology/events/akn/uk/DateOfRepeal" showAs="Date Of Repeal"/>
+				<TLCPerson eId="palmirani" href="/ontology/persons/akn/it/palmirani" showAs="Monica Palmirani"/>
+			</references>
+		</meta>
+		<preface>
+			<p class="title">
+				<shortTitle>Data Retention and Investigatory Powers Act 2014</shortTitle>
+			</p>
+			<p class="number">
+				<docNumber>2014 Chapter 27</docNumber>
+			</p>
+			<p><docTitle>
+				An Act to make provision, in consequence of a declaration of invalidity made by the Court of Justice of the European Union in relation to Directive <ref href="http://www.legislation.gov.uk/european/directive/2006/0024">2006/24/<abbr title="European Community">EC</abbr>
+					</ref>, about the retention of certain communications data; to amend the grounds for issuing interception warrants, or granting or giving certain authorisations or notices, under Part 1 of the Regulation of Investigatory Powers Act 2000; to make provision about the extra-territorial application of that Part and about the meaning of “telecommunications service” for the purposes of that Act; to make provision about additional reports by the Interception of Communications Commissioner; to make provision about a review of the operation and regulation of investigatory powers; and for connected purposes.
+			</docTitle></p>
+			<p class="DateOfEnactment">
+				<docDate eId="date_1" date="2014-07-17" refersTo="#DateOfEnactment">[17th July 2014]</docDate>
+			</p>
+		</preface>
+		<preamble>
+			<formula name="EnactingText">
+				<p>B<inline name="smallCaps" style="font-variant:small-caps">e it enacted</inline> by the Queen’s most Excellent Majesty, by and with the advice and consent of the Lords Spiritual and Temporal, and Commons, in this present Parliament assembled, and by the authority of the same, as follows:—</p>
+			</formula>
+		</preamble>
+		<body>
+			<hcontainer name="crossheading" eId="crossheading-retention-of-relevant-communications-data">
+				<heading>Retention of relevant communications data</heading>
+				<section eId="sec_1">
+					<num>1</num>
+					<heading>Powers for retention of relevant communications data subject to safeguards</heading>
+					<subsection eId="sec_1__subsec_1">
+						<num>1</num>
+						<content>
+							<p>The Secretary of State may by notice (a “retention notice”) require a public telecommunications operator to retain relevant communications data if the Secretary of State considers that the requirement is necessary and proportionate for one or more of the purposes falling within paragraphs (a) to (h) of section 22(2) of the Regulation of Investigatory Powers Act 2000 (purposes for which communications data may be obtained).</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_1__subsec_2">
+						<num>2</num>
+						<intro>
+							<p>A retention notice may—</p>
+						</intro>
+						<paragraph eId="sec_1__subsec_2__para_a">
+							<num>a</num>
+							<content>
+								<p>relate to a particular operator or any description of operators,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_2__para_b">
+							<num>b</num>
+							<content>
+								<p>require the retention of all data or any description of data,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_2__para_c">
+							<num>c</num>
+							<content>
+								<p>specify the period or periods for which data is to be retained,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_2__para_d">
+							<num>d</num>
+							<content>
+								<p>contain other requirements, or restrictions, in relation to the retention of data,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_2__para_e">
+							<num>e</num>
+							<content>
+								<p>make different provision for different purposes,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_2__para_f">
+							<num>f</num>
+							<content>
+								<p>relate to data whether or not in existence at the time of the giving, or coming into force, of the notice.</p>
+							</content>
+						</paragraph>
+					</subsection>
+					<subsection eId="sec_1__subsec_3">
+						<num>3</num>
+						<content>
+							<p>The Secretary of State may by regulations make further provision about the retention of relevant communications data.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_1__subsec_4">
+						<num>4</num>
+						<intro>
+							<p>Such provision may, in particular, include provision about—</p>
+						</intro>
+						<paragraph eId="sec_1__subsec_4__para_a">
+							<num>a</num>
+							<content>
+								<p>requirements before giving a retention notice,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_4__para_b">
+							<num>b</num>
+							<content>
+								<p>the maximum period for which data is to be retained under a retention notice,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_4__para_c">
+							<num>c</num>
+							<content>
+								<p>the content, giving, coming into force, review, variation or revocation of a retention notice,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_4__para_d">
+							<num>d</num>
+							<content>
+								<p>the integrity, security or protection of, access to, or the disclosure or destruction of, data retained by virtue of this section,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_4__para_e">
+							<num>e</num>
+							<content>
+								<p>the enforcement of, or auditing compliance with, relevant requirements or restrictions,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_4__para_f">
+							<num>f</num>
+							<content>
+								<p>a code of practice in relation to relevant requirements or restrictions or relevant powers,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_4__para_g">
+							<num>g</num>
+							<content>
+								<p>the reimbursement by the Secretary of State (with or without conditions) of expenses incurred by public telecommunications operators in complying with relevant requirements or restrictions,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_4__para_h">
+							<num>h</num>
+							<content>
+								<p>the 2009 Regulations ceasing to have effect and the transition to the retention of data by virtue of this section.</p>
+							</content>
+						</paragraph>
+					</subsection>
+					<subsection eId="sec_1__subsec_5">
+						<num>5</num>
+						<content>
+							<p>The maximum period provided for by virtue of subsection (4)(b) must not exceed 12 months beginning with such day as is specified in relation to the data concerned by regulations under subsection (3).</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_1__subsec_6">
+						<num>6</num>
+						<intro>
+							<p>A public telecommunications operator who retains relevant communications data by virtue of this section must not disclose the data except—</p>
+						</intro>
+						<paragraph eId="sec_1__subsec_6__para_a">
+							<num>a</num>
+							<intro>
+								<p>in accordance with—</p>
+							</intro>
+							<subparagraph eId="sec_1__subsec_6__para_a__subpara_i">
+								<num>i</num>
+								<content>
+									<p>Chapter 2 of Part 1 of the Regulation of Investigatory Powers Act 2000 (acquisition and disclosure of communications data), or</p>
+								</content>
+							</subparagraph>
+							<subparagraph eId="sec_1__subsec_6__para_a__subpara_ii">
+								<num>ii</num>
+								<content>
+									<p>a court order or other judicial authorisation or warrant, or</p>
+								</content>
+							</subparagraph>
+						</paragraph>
+						<paragraph eId="sec_1__subsec_6__para_b">
+							<num>b</num>
+							<content>
+								<p>as provided by regulations under subsection (3).</p>
+							</content>
+						</paragraph>
+					</subsection>
+					<subsection eId="sec_1__subsec_7">
+						<num>7</num>
+						<content>
+							<p>The Secretary of State may by regulations make provision, which corresponds to any provision made (or capable of being made) by virtue of subsection (4)(d) to (g) or (6), in relation to communications data which is retained by telecommunications service providers by virtue of a code of practice under section 102 of the Anti-terrorism, Crime and Security Act 2001.</p>
+						</content>
+					</subsection>
+				</section>
+				<section eId="sec_2">
+					<num>2</num>
+					<heading>Section 1: supplementary</heading>
+					<subsection eId="sec_2__subsec_1">
+						<num>1</num>
+						<content>
+							<blockList class="unordered" eId="sec_2__subsec_1__list_1">
+								<listIntroduction>In this section and section 1—</listIntroduction>
+								<item eId="sec_2__subsec_1__list_1__item_1">
+									<p>“communications data” has the meaning given by section 21(4) of the Regulation of Investigatory Powers Act 2000 so far as that meaning applies in relation to telecommunications services and telecommunication systems;</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_2">
+									<p>“functions” includes powers and duties;</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_3">
+									<p>“notice” means notice in writing;</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_4">
+									<blockList class="ordered" eId="sec_2__subsec_1__list_1__item_4__list_1">
+										<listIntroduction>“public telecommunications operator” means a person who—</listIntroduction>
+										<item eId="sec_2__subsec_1__list_1__item_4__list_1__item_a">
+											<num title="(a)">a</num>
+											<p>controls or provides a public telecommunication system, or</p>
+										</item>
+										<item eId="sec_2__subsec_1__list_1__item_4__list_1__item_b">
+											<num title="(b)">b</num>
+											<p>provides a public telecommunications service;</p>
+										</item>
+									</blockList>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_5">
+									<p>“public telecommunications service” and “public telecommunication system” have the meanings given by section 2(1) of the Regulation of Investigatory Powers Act 2000;</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_6">
+									<p>“relevant communications data” means communications data of the kind mentioned in the Schedule to the 2009 Regulations so far as such data is generated or processed in the United Kingdom by public telecommunications operators in the process of supplying the telecommunications services concerned;</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_7">
+									<p>“relevant powers” means any powers conferred by virtue of section 1(1) to (6);</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_8">
+									<p>“relevant requirements or restrictions” means any requirements or restrictions imposed by virtue of section 1(1) to (6);</p>
+								</item>
+								<item>
+									<p>“retention notice” has the meaning given by section 1(1);</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_9">
+									<p>“specify” means specify or describe (and “specified” is to be read accordingly);</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_10">
+									<p>“telecommunications service” and “telecommunication system” have the meanings given by section 2(1) of the Regulation of Investigatory Powers Act 2000;</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_11">
+									<p>
+										<def>“telecommunications service provider”</def> means a person who provides a telecommunications service;</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_12">
+									<p>“unsuccessful call attempt” means a communication where a telephone call has been successfully connected but not answered or there has been a network management intervention;</p>
+								</item>
+								<item eId="sec_2__subsec_1__list_1__item_13">
+									<p>“the 2009 Regulations” means the provisions known as the Data Retention (EC Directive) Regulations 2009 (<ref href="http://www.legislation.gov.uk/id/uksi/2009/859">
+											<abbr title="Statutory Instrument">S.I.</abbr> 2009/859</ref>).</p>
+								</item>
+							</blockList>
+						</content>
+					</subsection>
+					<subsection eId="sec_2__subsec_2">
+						<num>2</num>
+						<intro>
+							<p>“Relevant communications data” includes (so far as it otherwise falls within the definition) communications data relating to unsuccessful call attempts that—</p>
+						</intro>
+						<paragraph eId="sec_2__subsec_2__para_a">
+							<num>a</num>
+							<content>
+								<p>in the case of telephony data, is stored in the United Kingdom, or</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_2__subsec_2__para_b">
+							<num>b</num>
+							<content>
+								<p>in the case of internet data, is logged in the United Kingdom,</p>
+							</content>
+						</paragraph>
+						<wrapUp>
+							<p>but does not include data relating to unconnected calls or data revealing the content of a communication.</p>
+						</wrapUp>
+					</subsection>
+					<subsection eId="sec_2__subsec_3">
+						<num>3</num>
+						<content>
+							<p>Regulations under section 1(3) may specify the communications data that is of the kind mentioned in the Schedule to the 2009 Regulations and, where they do so, the reference in the definition of “relevant communications data” to communications data of that kind is to be read as a reference to communications data so specified.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_2__subsec_4">
+						<num>4</num>
+						<intro>
+							<p>Any power to make regulations under section 1—</p>
+						</intro>
+						<paragraph eId="sec_2__subsec_4__para_a">
+							<num>a</num>
+							<content>
+								<p>is exercisable by statutory instrument,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_2__subsec_4__para_b">
+							<num>b</num>
+							<intro>
+								<p>includes power to—</p>
+							</intro>
+							<subparagraph eId="sec_2__subsec_4__para_b__subpara_i">
+								<num>i</num>
+								<content>
+									<p>confer or impose functions (including those involving the exercise of a discretion) on any person (including the Secretary of State),</p>
+								</content>
+							</subparagraph>
+							<subparagraph eId="sec_2__subsec_4__para_b__subpara_ii">
+								<num>ii</num>
+								<content>
+									<p>make supplementary, incidental, consequential, transitional, transitory or saving provision,</p>
+								</content>
+							</subparagraph>
+							<subparagraph eId="sec_2__subsec_4__para_b__subpara_iii">
+								<num>iii</num>
+								<content>
+									<p>make different provision for different purposes,</p>
+								</content>
+							</subparagraph>
+						</paragraph>
+						<paragraph eId="sec_2__subsec_4__para_c">
+							<num>c</num>
+							<content>
+								<p>may, so far as relating to provision about codes of practice, be exercised in particular by modifying the effect of sections 71 and 72 of the Regulation of Investigatory Powers Act 2000 (codes of practice in relation to certain powers and duties).</p>
+							</content>
+						</paragraph>
+					</subsection>
+					<subsection eId="sec_2__subsec_5">
+						<num>5</num>
+						<content>
+							<p>A statutory instrument containing regulations under section 1 is not to be made unless a draft of the instrument has been laid before, and approved by a resolution of, each House of Parliament.</p>
+						</content>
+					</subsection>
+				</section>
+			</hcontainer>
+			<hcontainer name="crossheading" eId="crossheading-investigatory-powers">
+				<heading>Investigatory powers</heading>
+				<section eId="sec_3">
+					<num>3</num>
+					<heading>Grounds for issuing warrants and obtaining data</heading>
+					<subsection eId="sec_3__subsec_1">
+						<num>1</num>
+						<content>
+							<p>Section 5 of the Regulation of Investigatory Powers Act 2000 (power to issue necessary and proportionate interception warrants in interests of national security, to prevent or detect serious crime or to safeguard the <abbr title="United Kingdom">UK</abbr>’s economic well-being) is amended as set out in subsection (2).</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_3__subsec_2">
+						<num>2</num>
+						<content>
+							<p>In subsection (3)(c) (economic well-being of the UK), after “purpose” insert “, in circumstances appearing to the Secretary of State to be relevant to the interests of national security,”.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_3__subsec_3">
+						<num>3</num>
+						<content>
+							<p>Section 22 of that Act (power to obtain communications data in interests of national security, to prevent or detect serious crime, in interests of the UK’s economic well-being and for other specified purposes) is amended as set out in subsection (4).</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_3__subsec_4">
+						<num>4</num>
+						<content>
+							<p>In subsection (2)(c) (economic well-being of the UK), after “United Kingdom” insert “so far as those interests are also relevant to the interests of national security”.</p>
+						</content>
+					</subsection>
+				</section>
+				<section eId="sec_4">
+					<num>4</num>
+					<heading>Extra-territoriality in Part 1 of <abbr title="Regulation of Investigatory Powers Act 2000 c. 23">RIPA</abbr>
+					</heading>
+					<subsection eId="sec_4__subsec_1">
+						<num>1</num>
+						<content>
+							<p>
+								<ref eId="ref_1" href="/akn/uk/act/2000-07-28/chapter23/main#part_1">Part 1 of the Regulation of Investigatory Powers Act 2000 (communications)</ref> is amended as follows.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_4__subsec_2">
+						<num>2</num>
+						<content>
+							<p>In <ref eId="ref_2" href="/akn/uk/act/2000-07-28/chapter23/main#sec_11__subsec_2">section 11 (implementation of interception warrants), after subsection (2)</ref> insert—</p>
+							<p class="BlockAmendment">
+								<mod eId="mod_1" for="#ref_2">
+									<quotedStructure eId="qstr_1" class="primary main" startQuote="“" endQuote="”">
+										<subsection eId="mod_1__sec_11__subsec_2A">
+											<num>2A</num>
+											<content>
+												<p>A copy of a warrant may be served under subsection (2) on a person outside the United Kingdom (and may relate to conduct outside the United Kingdom).</p>
+											</content>
+										</subsection>
+										<subsection eId="mod_1__sec_11__subsec_2B">
+											<num>2B</num>
+											<intro>
+												<p>Service under subsection (2) of a copy of a warrant on a person outside the United Kingdom may (in addition to electronic or other means of service) be effected in any of the following ways—</p>
+											</intro>
+											<paragraph eId="mod_1__sec_11__subsec_2B__para_a">
+												<num>a</num>
+												<content>
+													<p>by serving it at the person’s principal office within the United Kingdom or, if the person has no such office in the United Kingdom, at any place in the United Kingdom where the person carries on business or conducts activities;</p>
+												</content>
+											</paragraph>
+											<paragraph eId="mod_1__sec_11__subsec_2B__para_b">
+												<num>b</num>
+												<content>
+													<p>if the person has specified an address in the United Kingdom as one at which the person, or someone on the person’s behalf, will accept service of documents of the same description as a copy of a warrant, by serving it at that address;</p>
+												</content>
+											</paragraph>
+											<paragraph eId="mod_1__sec_11__subsec_2B__para_c">
+												<num>c</num>
+												<content>
+													<p>by making it available for inspection (whether to the person or to someone acting on the person’s behalf) at a place in the United Kingdom (but this is subject to subsection (2C)).</p>
+												</content>
+											</paragraph>
+										</subsection>
+										<subsection eId="mod_1__sec_11__subsec_2C">
+											<num>2C</num>
+											<intro>
+												<p>Service under subsection (2) of a copy of a warrant on a person outside the United Kingdom may be effected in the way mentioned in paragraph (c) of subsection (2B) only if—</p>
+											</intro>
+											<paragraph eId="mod_1__sec_11__subsec_2C__para_a">
+												<num>a</num>
+												<content>
+													<p>it is not reasonably practicable for service to be effected by any other means (whether as mentioned in subsection (2B)(a) or (b) or otherwise), and</p>
+												</content>
+											</paragraph>
+											<paragraph eId="mod_1__sec_11__subsec_2C__para_b">
+												<num>b</num>
+												<content>
+													<p>the person to whom the warrant is addressed takes such steps as the person thinks appropriate for the purpose of bringing the contents of the warrant, and the availability of a copy for inspection, to the attention of the person outside the United Kingdom.</p>
+												</content>
+											</paragraph>
+											<wrapUp>
+												<p>The steps mentioned in paragraph (b) must be taken as soon as reasonably practicable after the copy of the warrant is made available for inspection.</p>
+											</wrapUp>
+										</subsection>
+									</quotedStructure>
+								</mod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_4__subsec_3">
+						<num>3</num>
+						<content>
+							<p>
+								<mod eId="mod_2">In <ref eId="ref_4" href="/akn/uk/act/2000-07-28/chapter23/main#sec_11__subsec_4">subsection (4)</ref> of that section, after “<quotedText eId="qtext_1">that person</quotedText>” insert “<quotedText eId="qtext_2">(whether or not the person is in the United Kingdom)</quotedText>”.</mod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_4__subsec_4">
+						<num>4</num>
+						<content>
+							<p>After <ref eId="ref_5" href="/akn/uk/act/2000-07-28/chapter23/main#sec_11__subsec_5"> subsection (5)</ref> of that section insert—</p>
+							<p class="BlockAmendment">
+								<mod eId="mod_3" for="#ref_5">
+									<quotedStructure eId="qstr_2" class="primary main" startQuote="“" endQuote="”">
+										<subsection eId="mod_3__sec_4__subsection_5A">
+											<num>5A</num>
+											<intro>
+												<p>Where a person outside the United Kingdom is under a duty by virtue of subsection (4) to take any steps in a country or territory outside the United Kingdom for giving effect to a warrant, in determining for the purposes of subsection (5) whether the steps are reasonably practicable for the person to take, regard is to be had (amongst other matters) to—</p>
+											</intro>
+											<paragraph eId="mod_3__sec_4__subsection_5A__para_a">
+												<num>a</num>
+												<content>
+													<p>any requirements or restrictions under the law of that country or territory relevant to the taking of those steps, and</p>
+												</content>
+											</paragraph>
+											<paragraph eId="mod_3__sec_4__subsection_5A__para_b">
+												<num>b</num>
+												<content>
+													<p>the extent to which it is reasonably practicable to give effect to the warrant in a way that does not breach any such requirements or restrictions.</p>
+												</content>
+											</paragraph>
+										</subsection>
+									</quotedStructure>
+								</mod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_4__subsec_5">
+						<num>5</num>
+						<content>
+							<p>
+								<mod eId="mod_4">In <ref eId="ref_6" href="/akn/uk/act/2000-07-28/chapter23/main#sec_11__subsec_8">subsection (8)</ref> of that section, after “<quotedText eId="qtext_3">enforceable</quotedText> insert “<quotedText eId="qtext_4">(including in the case of a person outside the United Kingdom)</quotedText>
+								</mod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_4__subsec_6">
+						<num>6</num>
+						<content>
+							<p>In <ref eId="ref_7" href="/akn/uk/act/2000-07-28/chapter23/main#sec_12__subsec_3">section 12 (maintenance of interception capability), after subsection (3) </ref>insert—</p>
+							<p class="BlockAmendment">
+								<mod eId="mod_5" for="#ref_7">
+									<quotedStructure class="primary main" startQuote="“" endQuote="”">
+										<subsection eId="mod_5__sec__12__subsec_3A">
+											<num>3A</num>
+											<content>
+												<p>An obligation may be imposed in accordance with an order under this section on, and a notice under subsection (2) given to, persons outside the United Kingdom (and may be so imposed or given in relation to conduct outside the United Kingdom).</p>
+											</content>
+										</subsection>
+										<subsection eId="mod_5__sec__12__subsec_3B">
+											<num>3B</num>
+											<intro>
+												<p>Where a notice under subsection (2) is to be given to a person outside the United Kingdom, the notice may (in addition to electronic or other means of giving a notice) be given to the person—</p>
+											</intro>
+											<paragraph eId="mod_5__sec__12__subsec_3B__para_a">
+												<num>a</num>
+												<content>
+													<p>by delivering it to the person’s principal office within the United Kingdom or, if the person has no such office in the United Kingdom, to any place in the United Kingdom where the person carries on business or conducts activities, or</p>
+												</content>
+											</paragraph>
+											<paragraph eId="mod_5__sec__12__subsec_3B__para_b">
+												<num>b</num>
+												<content>
+													<p>if the person has specified an address in the United Kingdom as one at which the person, or someone on the person’s behalf, will accept documents of the same description as a notice, by delivering it to that address.</p>
+												</content>
+											</paragraph>
+										</subsection>
+									</quotedStructure>
+								</mod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_4__subsec_7">
+						<num>7</num>
+						<intro>
+							<p>In <ref eId="ref_8" href="/akn/uk/act/2000-07-28/chapter23/main#sec_12__subsec_7">subsection (7)</ref> of that section—</p>
+						</intro>
+						<paragraph eId="sec_4__subsec_7__para_a">
+							<num>a</num>
+							<content>
+								<p>
+									<mod eId="mod_6">after “<quotedText eId="qtext_5">person</quotedText>” insert “<quotedText eId="qtext_6">(whether or not the person is in the United Kingdom)</quotedText>”, and</mod>
+								</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_4__subsec_7__para_b">
+							<num>b</num>
+							<content>
+								<p>
+									<mod eId="mod_7">after “<quotedText eId="qtext_7">enforceable</quotedText>” insert “<quotedText eId="qtext_8">(including in the case of a person outside the United Kingdom)</quotedText>”.</mod>
+								</p>
+							</content>
+						</paragraph>
+					</subsection>
+					<subsection eId="sec_4__subsec_8">
+						<num>8</num>
+						<content>
+							<p>In <ref eId="ref_9" href="/akn/uk/act/2000-07-28/chapter23/main#sec_22__subsec_5">section 22 (obtaining and disclosing communications data), after subsection (5)</ref> insert—</p>
+							<p class="BlockAmendment">
+								<mod eId="mod_8" for="#ref_9">
+									<quotedStructure class="primary main" startQuote="“" endQuote="”">
+										<subsection eId="mod_8__sec_22__subsec_5A">
+											<num>5A</num>
+											<content>
+												<p>An authorisation under subsection (3) or (3B), or a requirement imposed in accordance with a notice under subsection (4), may relate to conduct outside the United Kingdom (and any such notice may be given to a person outside the United Kingdom).</p>
+											</content>
+										</subsection>
+										<subsection eId="mod_8__sec_22__subsec_5B">
+											<num>5B</num>
+											<intro>
+												<p>Where a notice under subsection (4) is to be given to a person outside the United Kingdom, the notice may (in addition to electronic or other means of giving a notice) be given to the person in any of the following ways—</p>
+											</intro>
+											<paragraph eId="mod_8__sec_22__subsec_5B__para_a">
+												<num>a</num>
+												<content>
+													<p>by delivering it to the person’s principal office within the United Kingdom or, if the person has no such office in the United Kingdom, to any place in the United Kingdom where the person carries on business or conducts activities;</p>
+												</content>
+											</paragraph>
+											<paragraph eId="mod_8__sec_22__subsec_5B__para_b">
+												<num>b</num>
+												<content>
+													<p>if the person has specified an address in the United Kingdom as one at which the person, or someone on the person’s behalf, will accept documents of the same description as a notice, by delivering it to that address;</p>
+												</content>
+											</paragraph>
+											<paragraph eId="mod_8__sec_22__subsec_5B__para_c">
+												<num>c</num>
+												<content>
+													<p>by notifying the person of the requirements imposed by the notice by such other means as the person giving the notice thinks appropriate (which may include notifying the person orally, except where the notice is one to which section 23A applies).</p>
+												</content>
+											</paragraph>
+										</subsection>
+									</quotedStructure>
+								</mod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_4__subsec_9">
+						<num>9</num>
+						<content>
+							<p>
+								<mod eId="mod_9">In <ref eId="ref_10" href="/akn/uk/act/2000-07-28/chapter23/main#sec_22__subsec_6">subsection (6)</ref> of that section, after “<quotedText eId="qtext_9">operator</quotedText> ” insert “<quotedText eId="qtext_10">(whether or not the operator is in the United Kingdom)</quotedText> ”.</mod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_4__subsec_10">
+						<num>10</num>
+						<content>
+							<p>
+								<mod eId="mod_10">In <ref eId="ref_11" href="/akn/uk/act/2000-07-28/chapter23/main#sec_22__subsec_8">subsection (8)</ref>  of that section, after “<quotedText eId="qtext_11">enforceable</quotedText> ” insert “<quotedText eId="qtext_12">(including in the case of a person outside the United Kingdom)</quotedText> ”.</mod>
+							</p>
+						</content>
+					</subsection>
+				</section>
+				<section eId="sec_5">
+					<num>5</num>
+					<heading>Meaning of “telecommunications service”</heading>
+					<content>
+						<p>In <ref eId="ref_12" href="/akn/uk/act/2000-07-28/chapter23/main#sec_2__subsec_8">  section 2 of the Regulation of Investigatory Powers Act 2000 (meaning of “interception” <abbr title="Et cetera" xml:lang="la">etc</abbr>), after subsection (8)</ref>insert—</p>
+						<p class="BlockAmendment">
+							<mod eId="mod_11" for="#ref_12">
+								<quotedStructure class="primary main" startQuote="“" endQuote="”">
+									<subsection eId="mod_5__sec_2__subsec_8A">
+										<num>8A</num>
+										<content>
+											<p>For the purposes of the definition of “telecommunications service” in subsection (1), the cases in which a service is to be taken to consist in the provision of access to, and of facilities for making use of, a telecommunication system include any case where a service consists in or includes facilitating the creation, management or storage of communications transmitted, or that may be transmitted, by means of such a system.</p>
+										</content>
+									</subsection>
+								</quotedStructure>
+							</mod>
+						</p>
+					</content>
+				</section>
+				<section eId="sec_6">
+					<num>6</num>
+					<heading>Half-yearly reports by the Interception of Communications Commissioner</heading>
+					<subsection eId="sec_6__subsec_1">
+						<num>1</num>
+						<content>
+							<p>
+								<ref eId="ref_13" href="/akn/uk/act/2000-07-28/chapter23/main#sec_58">Section 58 of the Regulation of Investigatory Powers Act 2000 </ref>(reports by the Interception of Communications Commissioner) is amended as follows.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_6__subsec_2">
+						<num>2</num>
+						<content>
+							<p>
+								<mod eId="mod_12">In <ref eId="ref_14" href="/akn/uk/act/2000-07-28/chapter23/main#sec_58__subsec_4">subsection (4)</ref> (annual reports), after “<quotedText eId="qtext_13">calendar year </quotedText> insert “<quotedText eId="qtext_14">and after the end of the period of six months beginning with the end of each calendar year</quotedText>”.</mod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_6__subsec_3">
+						<num>3</num>
+						<content>
+							<p>
+								<mod eId="mod_13">In <ref eId="ref_15" href="/akn/uk/act/2000-07-28/chapter23/main#sec_58__subsec_4">subsection (6)</ref>(duty to lay annual reports before Parliament), after “<quotedText eId="qtext_15">annual report </quotedText>” insert “<quotedText eId="qtext_16">, and every half-yearly report,</quotedText>”.</mod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_6__subsec_4">
+						<num>4</num>
+						<content>
+							<p>
+								<mod eId="mod_14">In <ref eId="ref_16" href="/akn/uk/act/2000-07-28/chapter23/main#sec_58__subsec_6A"> subsection (6A)</ref> (duty to send annual reports to the First Minister), after “<quotedText eId="qtext_17">annual report</quotedText> ” insert “<quotedText eId="qtext_18">, and every half-yearly report,</quotedText>”.</mod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_6__subsec_5">
+						<num>5</num>
+						<content>
+							<p>
+								<mod eId="mod_15">In <ref eId="ref_17" href="/akn/uk/act/2000-07-28/chapter23/main#sec_58__subsec_6A">subsection (7)</ref> (power to exclude matter from annual reports), after “<quotedText eId="qtext_19">annual report</quotedText>” insert “<quotedText eId="qtext_20">, or half-yearly report,</quotedText>”.</mod>
+							</p>
+						</content>
+					</subsection>
+				</section>
+				<section eId="sec_7">
+					<num>7</num>
+					<heading>Review of investigatory powers and their regulation</heading>
+					<subsection eId="sec_7__subsec_1">
+						<num>1</num>
+						<content>
+							<p>The Secretary of State must appoint the independent reviewer of terrorism legislation to review the operation and regulation of investigatory powers.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_7__subsec_2">
+						<num>2</num>
+						<intro>
+							<p>The independent reviewer must, in particular, consider—</p>
+						</intro>
+						<paragraph eId="sec_7__subsec_1__para_a">
+							<num>a</num>
+							<content>
+								<p>current and future threats to the United Kingdom,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_7__subsec_1__para_b">
+							<num>b</num>
+							<content>
+								<p>the capabilities needed to combat those threats,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_7__subsec_1__para_c">
+							<num>c</num>
+							<content>
+								<p>safeguards to protect privacy,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_7__subsec_1__para_d">
+							<num>d</num>
+							<content>
+								<p>the challenges of changing technologies,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_7__subsec_1__para_e">
+							<num>e</num>
+							<content>
+								<p>issues relating to transparency and oversight,</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_7__subsec_1__para_f">
+							<num>f</num>
+							<content>
+								<p>the effectiveness of existing legislation (including its proportionality) and the case for new or amending legislation.</p>
+							</content>
+						</paragraph>
+					</subsection>
+					<subsection eId="sec_7__subsec_3">
+						<num>3</num>
+						<content>
+							<p>The independent reviewer must, so far as reasonably practicable, complete the review before 1 May 2015.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_7__subsec_4">
+						<num>4</num>
+						<content>
+							<p>The independent reviewer must send to the Prime Minister a report on the outcome of the review as soon as reasonably practicable after completing the review.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_7__subsec_5">
+						<num>5</num>
+						<content>
+							<p>On receiving a report under subsection (4), the Prime Minister must lay a copy of it before Parliament together with a statement as to whether any matter has been excluded from that copy under subsection (6).</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_7__subsec_6">
+						<num>6</num>
+						<content>
+							<p>If it appears to the Prime Minister that the publication of any matter in a report under subsection (4) would be contrary to the public interest or prejudicial to national security, the Prime Minister may exclude the matter from the copy of the report laid before Parliament.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_7__subsec_7">
+						<num>7</num>
+						<intro>
+							<p>The Secretary of State may pay to the independent reviewer—</p>
+						</intro>
+						<paragraph eId="sec_7__subsec_7__para_a">
+							<num>a</num>
+							<content>
+								<p>expenses incurred in carrying out the functions of the independent reviewer under this section, and</p>
+							</content>
+						</paragraph>
+						<paragraph eId="sec_7__subsec_7__para_b">
+							<num>b</num>
+							<content>
+								<p>such allowances as the Secretary of State determines.</p>
+							</content>
+						</paragraph>
+					</subsection>
+					<subsection eId="sec_7__subsec_8">
+						<num>8</num>
+						<content>
+							<p>In this section <mod eId="mod_16">“<quotedText eId="qtext_21">the independent reviewer of terrorism legislation</quotedText>” means the person appointed under section 36(1) of the Terrorism Act 2006 (and “independent reviewer” is to be read accordingly).</mod>
+							</p>
+						</content>
+					</subsection>
+				</section>
+			</hcontainer>
+			<hcontainer name="crossheading" eId="crossheading-final-provisions">
+				<heading>Final provisions</heading>
+				<section eId="sec_8">
+					<num>8</num>
+					<heading>Commencement, duration, extent and short title</heading>
+					<subsection eId="sec_8__subsec_1">
+						<num>1</num>
+						<content>
+							<p>Subject to subsection (2), this Act comes into force on the day on which it is passed.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_8__subsec_2">
+						<num>2</num>
+						<content>
+							<p>Section 1(6) comes into force on such day as the Secretary of State may by order made by statutory instrument appoint; and different days may be appointed for different purposes.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_8__subsec_3">
+						<num>3</num>
+						<content>
+							<p>
+								<mmod eId="mmod_1">
+									<mod eId="mod_17" for="#rref_1">
+										<rref from="#sec_1" upTo="#sec_7" eId="rref_1">Sections 1 to 7</rref>
+									</mod> (and the provisions inserted into the <mod eId="mod_18" for="#rref_2">
+										<rref from="/akn/uk/act/2000-07-28/chapter23/main#sec_3" upTo="/akn/uk/act/2000-07-28/chapter23/main#sec_6" eId="rref_2">Regulation of Investigatory Powers Act 2000 by sections 3 to 6</rref>) are repealed on <date date="2016-12-31" eId="date_2" refersTo="#DateOfRepeal">31 December 2016</date>.</mod>
+								</mmod>
+							</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_8__subsec_4">
+						<num>4</num>
+						<content>
+							<p>This Act extends to England and Wales, Scotland and Northern Ireland.</p>
+						</content>
+					</subsection>
+					<subsection eId="sec_8__subsec_5">
+						<num>5</num>
+						<content>
+							<p>This Act may be cited as the <shortTitle>Data Retention and Investigatory Powers Act 2014</shortTitle>.</p>
+						</content>
+					</subsection>
+				</section>
+			</hcontainer>
+		</body>
+	</act>
+</akomaNtoso>

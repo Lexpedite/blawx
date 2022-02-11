@@ -3,8 +3,9 @@ from django.db import models
 # Create your models here.
 class Workspace(models.Model):
     workspace_name = models.CharField(max_length=200)
-    xml_content = models.TextField(default="")
-    scasp_encoding = models.TextField(default="")
+    xml_content = models.TextField(default="",blank=True)
+    scasp_encoding = models.TextField(default="",blank=True)
+    akoma_ntoso = models.TextField(default="",blank=True)
 
     def __str__(self):
         return self.workspace_name
