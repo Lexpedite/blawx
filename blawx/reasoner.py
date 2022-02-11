@@ -141,6 +141,7 @@ throw(jane,scissors)."""
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def run_workspace(request,pk):
+    translated_facts = ""
     if request.data:
       translated_facts = json_2_scasp(request.data)
     ws = Workspace.objects.get(pk=pk)
