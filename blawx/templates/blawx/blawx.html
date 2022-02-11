@@ -120,12 +120,30 @@
     
 <main class="flex-grow-1">
     <div class="row flex-row h-100">
-        <div id="interface" class="col-9">
+        <div class="collapse-horizontal flex-column card col-3 h-100 p-0 collapse" id="leftbar" style="">
+                    
+            <div class="card-body" id="rules"><p>This is some text where the rules would go.</p>
+              
+              
+              
+          </div>
+  </div>
+<div id="lefttoggle" class="col-auto p-1 h-100">
+  <a href="#" class="btn d-flex align-items-center btn-secondary p-0 h-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#leftbar" aria-expanded="false" aria-controls="leftbar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+<path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"></path>
+</svg></a>
+</div>
+        <div id="interface" class="col-auto flex-grow-1 p-0">
                     <div id="blocklyArea" class="p-0 h-100">
                         <div id="blocklyDiv" style="position: absolute;"></div>
                     </div>
         </div>
-        <div class="flex-column card col-3 h-100 p-0">
+        <div id="righttoggle" class="col-auto p-1 h-100">
+            <a href="#" class="btn d-flex align-items-center btn-secondary h-100 p-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rightbar" aria-expanded="false" aria-controls="rightbar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
+    </svg></a>
+        </div>
+        <div class="collapse-horizontal flex-column card col-3 h-100 p-0 collapse" id="rightbar">
                 <nav class="card-header">
                     <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
                       <button class="nav-link active" id="nav-output-tab" data-bs-toggle="tab" data-bs-target="#nav-output" type="button" role="tab" aria-controls="nav-output" aria-selected="true">Output</button>
@@ -160,7 +178,8 @@
                 blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
                 Blockly.svgResize(demoWorkspace);
             };
-            window.addEventListener('resize', onresize, false);
+            var myob = new ResizeObserver(onresize);
+            myob.observe(blocklyArea);
             Blockly.svgResize(demoWorkspace);
 
             window.onload = function() {
