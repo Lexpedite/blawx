@@ -19,13 +19,13 @@ RUN git clone https://github.com/JanWielemaker/sCASP.git && \
 	cd sCASP && \
 	swipl -g "pack_install('.',[interactive(false)])" -t halt
 
-ADD . blawx
+RUN git clone https://github.com/google/blockly blawx/blawx/static/blawx/blockly
 
-RUN cd blawx/blawx/static/blawx && \
-    git clone https://github.com/google/blockly blockly
+ADD ./blawx/requirements.txt blawx/blawx/requirements.txt
 
 RUN pip3 install -r blawx/blawx/requirements.txt
 
+ADD . blawx
 
 WORKDIR blawx
 
