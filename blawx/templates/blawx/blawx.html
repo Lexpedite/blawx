@@ -11,6 +11,7 @@
 </style>
 
 <link href="{% static 'blawx/akoma_ntoso.css' %}" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}
 
 {% block page_content %}
@@ -188,6 +189,11 @@
             window.onload = function() {
                 onresize();
             };
+
+            $(".akoma-ntoso *[eid]").on("mousemove", "section", function(e) {
+                $(".highlight").removeClass("highlight");
+                $(e.target).addClass("highlight");
+            });
         </script>
         <script src="{% static 'blawx/buttons.js' %}"></script>
         <script src="{% static 'blawx/drawers.js' %}"></script>

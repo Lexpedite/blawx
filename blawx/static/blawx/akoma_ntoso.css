@@ -30,7 +30,11 @@
     padding-top: 2px;
 }
 
-.akoma-ntoso section *:hover {
+/* I need to select things that are sections, or subsections, etc.
+   and I need to select things that are being hovered over,
+   and I need to select things where there is not a child also
+   being hovered over. */
+.akoma-ntoso .highlight {
     background-color:lightblue;
 }
 
