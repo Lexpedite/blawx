@@ -228,3 +228,47 @@ newObjectCallback = function(workspace) {
 };
 
 demoWorkspace.registerToolboxCategoryCallback('NEW_OBJECTS', newObjectCallback);
+
+var listSections;
+listSections = function() {
+    var sections = $('akomaNtoso section[eid],paragraph[eid],subsection[eid],subparagraph[eid]');
+    for (var i = 0; i < sections.length; i++) {
+        if (sections[i].attributes.eid.value.startsWith('sec')) {
+            console.log(sections[i].attributes.eid.value)
+
+        }
+        
+    }
+};
+
+var knownRulesCallback;
+knownRulesCallback = function(workspace) {
+    var xmlList = [];
+    var title_element = $('akomaNtoso preface p.title');
+    title = title_element[0].outerText;
+    var abbreviation = "";
+    var parts = title.split(" ")
+    for (var i = 0; i < parts.length; i++) {
+        if (isNaN(parts[i])) {
+            abbreviation += parts[i].slice(0,1).toUpperCase();
+        }
+    }
+    var sections = $('akomaNtoso section[eid],paragraph[eid],subsection[eid],subparagraph[eid]');
+    for (var i = 0; i < sections.length; i++) {
+        if (sections[i].attributes.eid.value.startsWith('sec')) {
+            var short_ref = sections[i].attributes.eid.value;
+            short_ref = short_ref.replace("sec_","");
+            short_ref = short_ref.replace("__subsec_",".");
+            short_ref = short_ref.replace("__para_",".");
+            short_ref = short_ref.replace("__subpara_",".");
+            var blocktext = '<xml><block type="doc_selector"><field name="doc_part_name">' + abbreviation + " " + short_ref + '</field></block></xml>';
+            var block = Blockly.Xml.textToDom(blocktext).firstChild;
+            xmlList.push(block);
+            console.log("Pushing " + blocktext);
+        }
+        
+    }
+    return xmlList;
+};
+
+demoWorkspace.registerToolboxCategoryCallback('KNOWN_RULES', knownRulesCallback);
