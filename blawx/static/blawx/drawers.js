@@ -254,6 +254,10 @@ knownRulesCallback = function(workspace) {
         }
     }
     var sections = $('akomaNtoso section[eid],paragraph[eid],subsection[eid],subparagraph[eid]');
+
+    var blocktext = '<xml><block type="overrules"></block></xml>';
+    var block = Blockly.Xml.textToDom(blocktext).firstChild;
+    xmlList.push(block);
     for (var i = 0; i < sections.length; i++) {
         if (sections[i].attributes.eid.value.startsWith('sec')) {
             var short_ref = sections[i].attributes.eid.value;
@@ -264,7 +268,7 @@ knownRulesCallback = function(workspace) {
             var blocktext = '<xml><block type="doc_selector"><field name="doc_part_name">' + abbreviation + " " + short_ref + '</field></block></xml>';
             var block = Blockly.Xml.textToDom(blocktext).firstChild;
             xmlList.push(block);
-            console.log("Pushing " + blocktext);
+            // console.log("Pushing " + blocktext);
         }
         
     }

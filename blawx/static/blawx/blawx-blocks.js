@@ -388,7 +388,7 @@ scasp_blockset = [{
     "STATEMENT"
   ],
   "nextStatement": "STATEMENT",
-  "colour": 270,
+  "colour": 165,
   "tooltip": "Use to indicate that one rule overrides another rule.",
   "helpUrl": "/docs/blocks/overrules/"
 },
