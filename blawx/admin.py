@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Workspace
+from .models import Workspace, RuleDoc
 
 class WorkspaceAdmin(admin.ModelAdmin):
     fields = ['ruledoc','workspace_name','xml_content','scasp_encoding']
