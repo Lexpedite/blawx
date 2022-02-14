@@ -250,7 +250,10 @@ knownRulesCallback = function(workspace) {
     var parts = title.split(" ")
     for (var i = 0; i < parts.length; i++) {
         if (isNaN(parts[i])) {
-            abbreviation += parts[i].slice(0,1).toUpperCase();
+            var first_char = parts[i].charAt(0);
+            if (first_char == first_char.toUpperCase()) {
+                abbreviation += first_char;
+            }
         }
     }
     var sections = $('akomaNtoso section[eid],paragraph[eid],subsection[eid],subparagraph[eid]');
