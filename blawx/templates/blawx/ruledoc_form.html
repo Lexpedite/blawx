@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block page_content %}
+<form action="{% url 'blawx:ruledoc_create' %}" method="post">
+    {% csrf_token %}
+    <p>Rule Name:</p><input type="text" name="ruledoc_name">
+    <p>Akoma Ntoso:</p><textarea rows=10 cols=100 name="akoma_ntoso"></textarea>
+    <input type="submit" value="Save">
+    </form>
+{% endblock %}

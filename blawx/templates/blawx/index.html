@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block page_content %}
-{% if workspace_list %}
+{% if ruledoc_list %}
     <ul>
-    {% for workspace in workspace_list %}
-    <li><a href="{% url 'blawx:workspace' workspace.id %}">{{ workspace.workspace_name }}</a></li>
+    {% for ruledoc in ruledoc_list %}
+    <li><a href="{% url 'blawx:ruledoc' ruledoc.id %}">{{ ruledoc.ruledoc_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No workspaces are available.</p>
+    <p>No rules are available.</p>
 {% endif %}
-<div><a href="{% url 'blawx:workspace_create' %}" class="btn btn-success">Create Workspace</a></div>
+<div><a href="{% url 'blawx:ruledoc_create' %}" class="btn btn-success">Create Rule</a></div>
 
 {% endblock %}

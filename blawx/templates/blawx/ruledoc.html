@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_head %}
+<link href="{% static 'blawx/akoma_ntoso.css' %}" rel="stylesheet">
+    
+{% endblock %}
+{% block page_content %}
+
+<h1>Rule {{ ruledoc.pk }}: {{ ruledoc.ruledoc_name }}</h1>
+<div class="row">
+    <!-- <a href="{% url 'blawx:ruledoc_edit' ruledoc.id %}" class="btn btn-secondary">Edit Rule</a> -->
+    <a href="{% url 'blawx:code' ruledoc.id %}" class="btn btn-success">Code Editor</a>
+    <a href="{% url 'blawx:ruledoc_delete' ruledoc.id %}" class="btn btn-danger">Delete Rule</a>
+    <a href="{% url 'blawx:ruledocs' %}" class="btn btn-secondary">Home</a>
+</div>
+<h2>Rule Text:</h2>
+<div class="akoma-ntoso">
+    {{ ruledoc.akoma_ntoso | safe}}
+</div>
+{% endblock %}

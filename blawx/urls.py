@@ -8,12 +8,13 @@ router.register(r'workspaces', views.WorkspaceAPIViewSet)
 
 app_name = 'blawx'
 urlpatterns = [
-    path('', views.WorkspacesView.as_view(), name='workspaces'),
-    path('<int:pk>/', views.WorkspaceView.as_view(), name='workspace'),
+    path('', views.RuleDocsView.as_view(), name='ruledocs'),
+    path('<int:pk>/', views.RuleDocView.as_view(), name='ruledoc'),
+    path('<int:pk>/edit/', views.RuleDocEditView.as_view(), name='ruledoc_edit'),
     path('<int:pk>/code/', views.BlawxView.as_view(), name="code"),
     path('<int:pk>/update/', views.update_code),
-    path('<int:pk>/delete/', views.WorkspaceDeleteView.as_view(), name="workspace_delete"),
-    path('create/', views.WorkspaceCreateView.as_view(), name="workspace_create"),
+    path('<int:pk>/delete/', views.RuleDocDeleteView.as_view(), name="ruledoc_delete"),
+    path('create/', views.RuleDocCreateView.as_view(), name="ruledoc_create"),
     path('docs/<path:pk>/', views.DocumentView.as_view(), name="docs_page"),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),

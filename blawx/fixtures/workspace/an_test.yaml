@@ -1,7 +1,7 @@
-- model: blawx.workspace
+- model: blawx.ruledoc
   pk: 1
   fields:
-    workspace_name: Akoma Ntoso Test
+    ruledoc_name: Data Retention and Investigatory Powers Act 2014
     akoma_ntoso: |
       <akomaNtoso xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://docs.oasis-open.org/legaldocml/ns/akn/3.0/WD17 ../schemas/akomantoso30.xsd " xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0/WD17">
         <!-- Original document http://www.legislation.gov.uk/ukpga/2014/27/pdfs/ukpga_20140027_en.pdf -->
