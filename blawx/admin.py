@@ -10,3 +10,4 @@ class RuleDocAdmin(admin.ModelAdmin):
     fields = ['ruledoc_name','scasp_encoding','akoma_ntoso']
 
 admin.site.register(Workspace,WorkspaceAdmin)
+admin.site.register(RuleDoc,RuleDocAdmin)
