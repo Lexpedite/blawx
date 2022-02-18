@@ -1,8 +1,7 @@
-<akomaNtoso xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://docs.oasis-open.org/legaldocml/ns/akn/3.0/WD17 ../schemas/akomantoso30.xsd " xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0/WD17">
+<akomaNtoso xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://docs.oasis-open.org/legaldocml/ns/akn/3.0 ../schemas/akomantoso30.xsd " xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+	<act name="UnitedKingdomPublicGeneralAct">
 	<!-- Original document http://www.legislation.gov.uk/ukpga/2014/27/pdfs/ukpga_20140027_en.pdf -->
 	<!-- Level of compliance 1 because the FRBR IRI are not compliant with the AKN specs -->
-
-	<act name="UnitedKingdomPublicGeneralAct">
 		<meta>
 			<identification source="#source">
 				<FRBRWork>
