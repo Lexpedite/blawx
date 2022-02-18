@@ -1,0 +1,35 @@
+.subparts {
+    margin-left: 20px;
+    border-left: solid 1px grey;
+}
+.lawpart {
+    padding-left: 20px;
+}
+.lawpart > .form-check > .lawtext > num::before {
+    content: "("
+}
+.lawpart > .form-check > .lawtext > num::after {
+    content: ")"
+}
+.section.lawpart > .form-check > .lawtext > num::before {
+    content: ""
+}
+.section.lawpart > .form-check > .lawtext > num::after {
+    content: " "
+}
+
+.lawtext i::before {
+    transition-duration: 0.7s;
+}
+.lawtext[aria-expanded="true"] > i::before {
+    transform: rotate(90deg);
+}
+div.subparts > div.lawtext {
+    padding-left: 20px;
+}
+.lawtext {
+    display: inline;
+}
+num + content > p:first-child {
+    display: inline;
+}
