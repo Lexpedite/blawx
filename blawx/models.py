@@ -1,4 +1,6 @@
 from django.db import models
+from .parse_an import generate_tree
+from cobalt.hierarchical import Act
 
 # Create your models here.
 class RuleDoc(models.Model):
@@ -8,6 +10,11 @@ class RuleDoc(models.Model):
 
     def __str__(self):
         return self.ruledoc_name
+
+    @property
+    def navtree(self):
+        an_act = Act(self.akoma_ntoso)
+        return generate_tree(an_act.act)
 
 class Workspace(models.Model):
     ruledoc = models.ForeignKey(RuleDoc, on_delete=models.CASCADE)
