@@ -191,10 +191,18 @@
                 onresize();
             };
 
-            $(".akoma-ntoso *[eid]").on("mousemove", "section", function(e) {
-                $(".highlight").removeClass("highlight");
-                $(e.target).addClass("highlight");
-            });
+            var selectors = $('.lawpart input'); // Switch from jQuery
+            var prev_section = 'root_section';
+            for (var i = 0; i < selectors.length; i++) {
+                selectors[i].addEventListener('change', function() {
+                    console.log("Previously, {{ ruledoc.pk }} " + prev_section);
+                    if (this.id !== prev_section) {
+                        prev_section = this.id;
+                    }
+                    console.log(this.id)
+                });
+            }
+
         </script>
         <script src="{% static 'blawx/buttons.js' %}"></script>
         <script src="{% static 'blawx/drawers.js' %}"></script>

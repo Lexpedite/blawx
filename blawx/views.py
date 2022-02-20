@@ -56,6 +56,7 @@ class BlawxView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(BlawxView, self).get_context_data(**kwargs)
         context['templates'] = WorkspaceTemplate.objects.all()
+        context['workspaces'] = Workspace.objects.all() #TODO Filter Better
         return context
 
 # class WorkspaceCreateView(CreateView):

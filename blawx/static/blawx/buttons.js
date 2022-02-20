@@ -194,3 +194,9 @@ getExample = function(example_pk){
     xhttp.send();
     Blockly.hideChaff();   
 }
+var load_section_workspace;
+load_section_workspace = function(ruledoc_id,workspace_id) {
+    console.log("Trying to load workspace " + workspace_id + " from RuleDoc " + ruledoc_id)
+    // Need to grab the workspace from an API endpoint.
+    // Need to insert it into the blockly interface
+}
