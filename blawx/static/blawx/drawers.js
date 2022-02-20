@@ -244,7 +244,7 @@ listSections = function() {
 var knownRulesCallback;
 knownRulesCallback = function(workspace) {
     var xmlList = [];
-    var title_element = $('akomaNtoso preface p.title');
+    var title_element = $('.lawpart.act');
     title = title_element[0].outerText;
     var abbreviation = "";
     var parts = title.split(" ")
@@ -256,23 +256,45 @@ knownRulesCallback = function(workspace) {
             }
         }
     }
-    var sections = $('akomaNtoso section[eid],paragraph[eid],subsection[eid],subparagraph[eid]');
+    var sections = $('.lawpart');
 
     var blocktext = '<xml><block type="overrules"></block></xml>';
     var block = Blockly.Xml.textToDom(blocktext).firstChild;
     xmlList.push(block);
     for (var i = 0; i < sections.length; i++) {
-        if (sections[i].attributes.eid.value.startsWith('sec')) {
-            var short_ref = sections[i].attributes.eid.value;
+        // If the id is "root_section" then just use the abbreviation
+        // If the id starts with crossheading, use the text of the element.
+        // Otherwise, use the hierarchical numbering.
+        var blocktext = '<xml><block type="doc_selector"><field name="doc_part_name">'
+        var raw_id = sections[i].getElementsByTagName('input')[0].id
+        if (raw_id == "root_section") {
+            blocktext += abbreviation
+        } else if (raw_id.startsWith("crossheading")) {
+            blocktext += abbreviation + " "
+            blocktext += sections[i].getElementsByClassName('lawtext')[0].outerText
+        } else {
+            var short_ref = raw_id;
             short_ref = short_ref.replace("sec_","");
             short_ref = short_ref.replace("__subsec_",".");
             short_ref = short_ref.replace("__para_",".");
             short_ref = short_ref.replace("__subpara_",".");
-            var blocktext = '<xml><block type="doc_selector"><field name="doc_part_name">' + abbreviation + " " + short_ref + '</field></block></xml>';
-            var block = Blockly.Xml.textToDom(blocktext).firstChild;
-            xmlList.push(block);
-            // console.log("Pushing " + blocktext);
+            short_ref = short_ref.replace("_section","");
+            blocktext += abbreviation + " " + short_ref;
         }
+        blocktext += "</field></block></xml>"
+        var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        xmlList.push(block);
+        // if (sections[i].attributes.eid.value.startsWith('sec')) {
+        //     var short_ref = sections[i].attributes.eid.value;
+        //     short_ref = short_ref.replace("sec_","");
+        //     short_ref = short_ref.replace("__subsec_",".");
+        //     short_ref = short_ref.replace("__para_",".");
+        //     short_ref = short_ref.replace("__subpara_",".");
+        //     var blocktext = '<xml><block type="doc_selector"><field name="doc_part_name">' + abbreviation + " " + short_ref + '</field></block></xml>';
+        //     var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        //     xmlList.push(block);
+        //     // console.log("Pushing " + blocktext);
+        // }
         
     }
     return xmlList;
