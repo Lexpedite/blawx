@@ -25,6 +25,11 @@ class Workspace(models.Model):
     def __str__(self):
         return self.workspace_name
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['ruledoc','workspace_name'],name='unique_workspace_and_ruledoc')
+        ]
+
 class WorkspaceTemplate(models.Model):
     template_name = models.CharField(max_length=200)
     xml_content = models.TextField(default="")
