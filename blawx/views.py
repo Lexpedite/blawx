@@ -104,14 +104,20 @@ class WorkspaceAPIViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-def update_code(request,pk):
-    target = Workspace.objects.get(pk=pk)
+def update_code(request,pk,workspace):
+    target = Workspace.objects.get(ruledoc=pk,workspace_name=workspace)
     workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
     workspace_serializer.is_valid()
     target.xml_content = workspace_serializer.validated_data.get('xml_content', target.xml_content)
     target.scasp_encoding = workspace_serializer.validated_data.get('scasp_encoding', target.scasp_encoding)
     target.save()
     return Response({"That probably worked."})
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def get_code(request,pk,workspace):
+    (workspace, created) = Workspace.objects.get_or_create(ruledoc=RuleDoc.objects.get(pk=pk),workspace_name=workspace)
+    return Response({workspace.xml_content})
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
