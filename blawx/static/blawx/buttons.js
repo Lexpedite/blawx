@@ -23,7 +23,7 @@ updateWorkspace = function() {
     // Output the current encoding to a variable
     payload.scasp_encoding = Blockly.JavaScript.workspaceToCode(demoWorkspace);
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "../update/", true);
+    xhttp.open("POST", "../" + current_section + "/update/", true);
     xhttp.setRequestHeader('Content-type', 'application/json');
     xhttp.setRequestHeader('X-CSRFToken', csrftoken);
     xhttp.onreadystatechange = function() {
@@ -197,6 +197,22 @@ getExample = function(example_pk){
 var load_section_workspace;
 load_section_workspace = function(ruledoc_id,workspace_id) {
     console.log("Trying to load workspace " + workspace_id + " from RuleDoc " + ruledoc_id)
-    // Need to grab the workspace from an API endpoint.
-    // Need to insert it into the blockly interface
+    // Save the current workspace with a call to /ruledoc_id/workspace_name/update
+    // updateWorkspace();
+    // Get the new workspace with a call to /ruledoc_id/workspace_name/get
+    var xml = "";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../" + workspace_id + "/get/", true);
+    xhttp.setRequestHeader('Content-type', 'application/json');
+    xhttp.setRequestHeader('X-CSRFToken', csrftoken);
+    xhttp.onreadystatechange = function() {
+        console.log("gotten")
+        output_object = JSON.parse(this.responseText);
+        demoWorkspace.clear();
+        xml = Blockly.Xml.textToDom(output_object.xml_content);
+        Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+    }
+    console.log("getting")
+    xhttp.send();
+    Blockly.hideChaff();
 }

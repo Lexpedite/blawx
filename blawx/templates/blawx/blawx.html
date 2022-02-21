@@ -165,17 +165,16 @@
     </div>
 
     <script src="{% static 'blawx/mutators.js' %}"></script>
-        <script>
+    <script src="{% static 'blawx/buttons.js' %}"></script>
+    <script>
             var blocklyArea = document.getElementById('blocklyArea');
             var blocklyDiv = document.getElementById('blocklyDiv');
             var demoWorkspace = Blockly.inject(blocklyDiv,
                 {media: "{% static 'blawx/blockly/media/' %}",
                 toolbox: document.getElementById('toolbox')});
             var importWorkspace = new Blockly.Workspace();
-            var xmlText = '{{ workspace.xml_content | safe | escapejs }}';
-            if (xmlText) {
-                Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xmlText), demoWorkspace);
-            }
+            // Need to load the root workspace.
+            load_section_workspace({{ ruledoc.pk }},'root_section');
             var onresize = function(e) {
                 blocklyDiv.style.left = blocklyArea.offsetLeft + 'px';
                 blocklyDiv.style.top = blocklyArea.offsetTop + 'px';
@@ -193,18 +192,23 @@
 
             var selectors = $('.lawpart input'); // Switch from jQuery
             var prev_section = 'root_section';
+            var current_section = 'root_section';
             for (var i = 0; i < selectors.length; i++) {
                 selectors[i].addEventListener('change', function() {
-                    console.log("Previously, {{ ruledoc.pk }} " + prev_section);
-                    if (this.id !== prev_section) {
-                        prev_section = this.id;
+                    console.log("Current section is " + current_section)
+                    console.log("Previous section is " + prev_section)
+                    console.log("Selected is " + this.id)
+                    if (this.id !== current_section) {
+                        console.log("different section selected " + this.id)
+                        load_section_workspace({{ ruledoc.pk }},this.id)
+                        prev_section = current_section;
+                        current_section = this.id;
                     }
-                    console.log(this.id)
+                    
                 });
             }
 
         </script>
-        <script src="{% static 'blawx/buttons.js' %}"></script>
         <script src="{% static 'blawx/drawers.js' %}"></script>
         <script src="{% static 'blawx/import.js' %}"></script>
         <script src="{% static 'blawx/attributes.js' %}"></script>
@@ -222,7 +226,7 @@
 {% block header_elements %}
     <!-- <div class="col-12"> -->
         <div class="col-10">
-            <a href="javascript:void(0);" class="btn btn-secondary" onclick="getLoadFile()">
+            <!-- <a href="javascript:void(0);" class="btn btn-secondary" onclick="getLoadFile()">
                 
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
@@ -236,14 +240,14 @@
                     <path fill-rule="evenodd" d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"/>
                   </svg>
                 <span class="text">Export</span>
-            </a>
+            </a> -->
             <a href="javascript:void(0);" class="btn btn-secondary" onclick="clearBlocks()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M6.5 1a.5.5 0 0 0-.5.5v1h4v-1a.5.5 0 0 0-.5-.5h-3ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1H3.042l.846 10.58a1 1 0 0 0 .997.92h6.23a1 1 0 0 0 .997-.92l.846-10.58Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                   </svg>
                 <span class="text">Clear</span>
             </a>
-            <a class="dropdown">
+            <!-- <a class="dropdown">
                   <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuExamples" data-bs-toggle="dropdown" aria-expanded="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
                         <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
@@ -256,7 +260,7 @@
                   <li><a class="dropdown-item" href="javascript:void(0);" onclick="getExample({{t.pk}})">{{ t.template_name }}</a></li>
                   {% endfor %}
                 </ul>
-            </a>
+            </a> -->
             <a href="javascript:void(0);" class="btn btn-secondary" onclick="runCode()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square" viewBox="0 0 16 16">
                     <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>

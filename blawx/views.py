@@ -117,7 +117,7 @@ def update_code(request,pk,workspace):
 @permission_classes([AllowAny])
 def get_code(request,pk,workspace):
     (workspace, created) = Workspace.objects.get_or_create(ruledoc=RuleDoc.objects.get(pk=pk),workspace_name=workspace)
-    return Response({workspace.xml_content})
+    return Response({"xml_content": workspace.xml_content})
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
