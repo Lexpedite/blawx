@@ -121,6 +121,15 @@ def get_code(request,pk,workspace):
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
+def get_all_code(request,pk):
+    workspaces = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=pk))
+    output = []
+    for w in workspaces:
+        output.append({"name": w.workspace_name, "xml_content": w.xml_content})
+    return Response(output)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
 def get_example(request,pk):
     target = WorkspaceTemplate.objects.get(pk=pk)
     # template_serializer = TemplateRequestSerializer(data=request.data)
