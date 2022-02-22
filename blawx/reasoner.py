@@ -10,7 +10,7 @@ from contextlib import redirect_stderr
 
 from swiplserver import PrologMQI, PrologError, PrologLaunchError
 
-from .models import Workspace
+from .models import Workspace, RuleDoc
 
 def json_2_scasp(element,higher_order=False):
   output = ""
@@ -140,12 +140,14 @@ throw(jane,scissors)."""
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-def run_workspace(request,pk):
+def run_ruledoc(request,pk):
     translated_facts = ""
     if request.data:
       translated_facts = json_2_scasp(request.data)
-    ws = Workspace.objects.get(pk=pk)
-    ruleset = ws.scasp_encoding
+    wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=pk))
+    ruleset = ""
+    for ws in wss:
+      ruleset += ws.scasp_encoding
     query = "No Query Specified"
     for line in ruleset.splitlines():
         if line.startswith("?- "):

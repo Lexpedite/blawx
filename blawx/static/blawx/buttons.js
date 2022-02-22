@@ -36,65 +36,51 @@ updateWorkspace = function() {
 }
 var runCode
 runCode = function(button) {
-    var payload = {}
-    var main_xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-    // Output the current workspace to a variable
-    payload.xml_content = Blockly.Xml.domToText(main_xml);
-    // Output the current encoding to a variable
-    payload.scasp_encoding = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "../update/", true);
-    xhttp.setRequestHeader('Content-type', 'application/json');
-    xhttp.setRequestHeader('X-CSRFToken', csrftoken);
-    xhttp.onreadystatechange = function() {
-        console.log("Saved")
-        var run_xhttp = new XMLHttpRequest();
-        run_xhttp.open("POST", "../run/", true);
-        run_xhttp.setRequestHeader('Content-type', 'application/json');
-        run_xhttp.setRequestHeader('X-CSRFToken', csrftoken);
-        run_xhttp.onreadystatechange = function() {
-            output_object = JSON.parse(this.responseText);
-            // console.log(output_object);
-            if (output_object.error) {
-                $output.textContent = output_object.error;
-            } else if (output_object.answer == 'false' || output_object.answer == 'true') {
-                if (output_object.answer == 'false') {
-                    $output.textContent = "No models";
-                } else {
-                    $output.textContent = "Yes";
-                }
+    var run_xhttp = new XMLHttpRequest();
+    run_xhttp.open("POST", "../run/", true);
+    run_xhttp.setRequestHeader('Content-type', 'application/json');
+    run_xhttp.setRequestHeader('X-CSRFToken', csrftoken);
+    run_xhttp.onreadystatechange = function() {
+        output_object = JSON.parse(this.responseText);
+        // console.log(output_object);
+        if (output_object.error) {
+            $output.textContent = output_object.error;
+        } else if (output_object.answer == 'false' || output_object.answer == 'true') {
+            if (output_object.answer == 'false') {
+                $output.textContent = "No models";
             } else {
-                var output_content = '<div class="accordion accordion-flush">';
-                var answers = JSON.parse(output_object.answer);
-                for (let i = 0; i < answers.length; i++) {
-                    var count = i+1;
-                    var heading_name = "model_" + count + "_heading";
-                    var collapse_name = "model_" + count + "_collapse";
-                    output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + heading_name + '">';
-                    output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + collapse_name + '" aria-expanded="false" aria-controls="' + collapse_name + '">';
-                    output_content += 'Model #' + count;
-                    output_content += '</button></h2>';
-                    output_content += '<div id="' + collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + heading_name + '" style="">';
-                    output_content += '<pre class="accordion-body">' + answers[i].Human.slice(0,-5) + '</pre>';
-                    output_content += '</div></div>';
-                }
-                output_content += '</div>';
-                $output.innerHTML = output_content;
+                $output.textContent = "Yes";
             }
-            if (output_object.transcript) {
-                $problems.textContent = output_object.transcript;
-            }
-        };
-        // If there is a json_input type block on the workspace, insert its contents into the post
-        // request.
-        json_inputs = demoWorkspace.getBlocksByType('json_textfield');
-        if (json_inputs.length > 0) {
-            run_xhttp.send(body=json_inputs[0].getFieldValue('payload'))
         } else {
-            run_xhttp.send();
+            var output_content = '<div class="accordion accordion-flush">';
+            var answers = JSON.parse(output_object.answer);
+            for (let i = 0; i < answers.length; i++) {
+                var count = i+1;
+                var heading_name = "model_" + count + "_heading";
+                var collapse_name = "model_" + count + "_collapse";
+                output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + heading_name + '">';
+                output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + collapse_name + '" aria-expanded="false" aria-controls="' + collapse_name + '">';
+                output_content += 'Model #' + count;
+                output_content += '</button></h2>';
+                output_content += '<div id="' + collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + heading_name + '" style="">';
+                output_content += '<pre class="accordion-body">' + answers[i].Human.slice(0,-5) + '</pre>';
+                output_content += '</div></div>';
+            }
+            output_content += '</div>';
+            $output.innerHTML = output_content;
+        }
+        if (output_object.transcript) {
+            $problems.textContent = output_object.transcript;
         }
     };
-    console.log("Saving and Running")
+    // If there is a json_input type block on the workspace, insert its contents into the post
+    // request.
+    json_inputs = demoWorkspace.getBlocksByType('json_textfield');
+    if (json_inputs.length > 0) {
+        run_xhttp.send(body=json_inputs[0].getFieldValue('payload'))
+    } else {
+        run_xhttp.send();
+    }
     $output = document.getElementById('nav-output');
     $output.textContent = "Thinking...\n";
     $problems = document.getElementById('problems');
