@@ -193,10 +193,14 @@ load_section_workspace = function(ruledoc_id,workspace_id) {
     xhttp.setRequestHeader('X-CSRFToken', csrftoken);
     xhttp.onreadystatechange = function() {
         console.log("gotten")
-        output_object = JSON.parse(this.responseText);
         demoWorkspace.clear();
-        xml = Blockly.Xml.textToDom(output_object.xml_content);
-        Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+        if (this.responseText) {
+            output_object = JSON.parse(this.responseText);
+            if (output_object.xml_content) {
+                xml = Blockly.Xml.textToDom(output_object.xml_content);
+                Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+            }
+        }
     }
     console.log("getting")
     xhttp.send();

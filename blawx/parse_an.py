@@ -79,7 +79,7 @@ def generate_tree(node,indent=0):
             # If this section has an intro, add the text of the intro to the initial_text
             if NS + "intro" in subtags: # This section has an intro.
                 # print(" "*indent + "Intro: " + node['intro'].text)
-                initial_text += node['intro'].text
+                initial_text += node['intro']['p'].text # This is likely fragile for sections that don't use p in the intro.
             # Get a good name for the current node
             node_name =  node.attrib['eId']
             # print(node_name)
