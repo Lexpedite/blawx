@@ -364,7 +364,8 @@ Blockly.JavaScript['attribute_declaration'] = function(block) {
     } else {
       code += "Y,X";
     }
-    code += ") :: '" + prefix + " @(X) " + infix + " @(Y) " + postfix + "'.\n"
+    add_code = prefix + " @(X) " + infix + " @(Y) " + postfix
+    code += ") :: '" + add_code.trim() + "'.\n"
   }
   return code;
 };
@@ -671,5 +672,5 @@ Blockly.JavaScript['json_textfield'] = function(block) {
   return code;
 };
 
-// Call code generation once when the page loads
-document.getElementById('output').textContent = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+// // Call code generation once when the page loads
+// document.getElementById('output').textContent = Blockly.JavaScript.workspaceToCode(demoWorkspace);

@@ -3,3 +3,4 @@ djangorestframework
 markdown
 swiplserver
 pyyaml
+cobalt

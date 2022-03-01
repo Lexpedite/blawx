@@ -1,8 +1,0 @@
-{% extends "base.html" %}
-{% block page_content %}
-<form action="{% url 'blawx:workspace_create' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="workspace_name">
-    <input type="submit" value="Save">
-    </form>
-{% endblock %}

@@ -10,7 +10,7 @@ from contextlib import redirect_stderr
 
 from swiplserver import PrologMQI, PrologError, PrologLaunchError
 
-from .models import Workspace
+from .models import Workspace, RuleDoc, BlawxTest
 
 def json_2_scasp(element,higher_order=False):
   output = ""
@@ -140,12 +140,14 @@ throw(jane,scissors)."""
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-def run_workspace(request,pk):
+def run_ruledoc(request,pk):
     translated_facts = ""
     if request.data:
       translated_facts = json_2_scasp(request.data)
-    ws = Workspace.objects.get(pk=pk)
-    ruleset = ws.scasp_encoding
+    wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=pk))
+    ruleset = ""
+    for ws in wss:
+      ruleset += ws.scasp_encoding
     query = "No Query Specified"
     for line in ruleset.splitlines():
         if line.startswith("?- "):
@@ -193,5 +195,62 @@ def run_workspace(request,pk):
     return Response({ "answer": json.dumps(query_answer), "transcript": transcript_output })
 
     
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def run_test(request,ruledoc,test_name):
+    translated_facts = ""
+    if request.data:
+      translated_facts = json_2_scasp(request.data)
+    wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
+    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    ruleset = ""
+    for ws in wss:
+      ruleset += "\n\n" + ws.scasp_encoding
+    ruleset += "\n\n" + test.scasp_encoding
+    print(ruleset)
+    query = "No Query Specified"
+    for line in test.scasp_encoding.splitlines():
+        if line.startswith("?- "):
+            query = line[3:-1] # remove query prompt and period.
+    full_query = "scasp(" + query + ",[tree(Tree)]),with_output_to(string(Human), human_justification_tree(Tree,[]))."
+    rulefile = tempfile.NamedTemporaryFile('w',delete=False)
+    rulefile.write(":- use_module(library(scasp)).\n")
+    rulefile.write(":- use_module(library(scasp/human)).\n")
+    rulefile.write(translated_facts)
+    rulefile.write(ruleset)
+    rulefile.close()
+    rulefilename = rulefile.name
 
+    # Start the Prolog "thread"
+    try: 
+      with PrologMQI() as swipl:
+          with swipl.create_thread() as swipl_thread:
+
+              transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
+              transcript_name = transcript.name
+
+              with redirect_stderr(transcript):
+                  load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+              transcript.write(str(load_file_answer) + '\n')
+              if os.path.exists(rulefilename):
+                  os.remove(rulefilename)
+
+              transcript.write(full_query)
+              with redirect_stderr(transcript):
+                  query_answer = swipl_thread.query(full_query)
+              transcript.write(str(query_answer) + '\n')
+
+              transcript.close()
+              transcript = open(transcript_name,'r')
+              # transcript = open("transcript",'r')
+              transcript_output = transcript.read()
+              transcript.close()
+              os.remove(transcript_name)
+    except PrologError as err:
+      return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
+    except PrologLaunchError as err:
+      query_answer = "Blawx could not load the reasoner."
+      return Response({ "error": "Blawx could not load the reasoner." })
+    # Return the results as JSON
+    return Response({ "answer": json.dumps(query_answer), "transcript": transcript_output })
       

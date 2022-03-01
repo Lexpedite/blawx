@@ -10,53 +10,110 @@ from rest_framework.permissions import AllowAny
 # from rest_framework import permissions
 
 from .serializers import WorkspaceSerializer, CodeUpdateRequestSerializer
-from .models import Workspace, DocPage, WorkspaceTemplate
+from .models import Workspace, DocPage, WorkspaceTemplate, RuleDoc, BlawxTest
 
 
 # Create your views here.
 
-class WorkspacesView(generic.ListView):
+class RuleDocsView(generic.ListView):
     template_name = 'blawx/index.html'
-    context_object_name = 'workspace_list'
+    context_object_name = 'ruledoc_list'
 
     def get_queryset(self):
-        """
-        Get the Workspaces on the server
-        """
-        return Workspace.objects.all()
+        return RuleDoc.objects.all()
 
-class WorkspaceView(generic.DetailView):
-    template_name = 'blawx/workspace.html'
-    model = Workspace
+# class WorkspacesView(generic.ListView):
+#     template_name = 'blawx/index.html'
+#     context_object_name = 'workspace_list'
 
-    def get_queryset(self):
-        return Workspace.objects.all()
+#     def get_queryset(self):
+#         """
+#         Get the Workspaces on the server
+#         """
+#         return Workspace.objects.all()
+
+class RuleDocView(generic.DetailView):
+    template_name = 'blawx/ruledoc.html'
+    model = RuleDoc
+
+    # def get_queryset(self):
+    #     return RuleDoc.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(RuleDocView, self).get_context_data(**kwargs)
+        context['tests'] = BlawxTest.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']))
+        return context
+
+# class WorkspaceView(generic.DetailView):
+#     template_name = 'blawx/workspace.html'
+#     model = Workspace
+
+#     def get_queryset(self):
+#         return Workspace.objects.all()
 
 class BlawxView(generic.DetailView):
     template_name = 'blawx/blawx.html'
-    model = Workspace
+    model = RuleDoc
 
     def get_queryset(self):
-        return Workspace.objects.all()
+        return RuleDoc.objects.all()
     
     def get_context_data(self, **kwargs):
         context = super(BlawxView, self).get_context_data(**kwargs)
-        context['templates'] = WorkspaceTemplate.objects.all()
+        context['templates'] = WorkspaceTemplate.objects.all() # TODO I don't think this is being used.
+        context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk'])) #TODO I don't think this is being used.
         return context
 
-class WorkspaceCreateView(CreateView):
-    model = Workspace
-    fields = ['workspace_name']
-    success_url = reverse_lazy('blawx:workspaces')
+class TestView(generic.DetailView):
+    template_name = "blawx/test.html"
+    model = BlawxTest
 
-class WorkspaceDeleteView(DeleteView):
-    model = Workspace
-    success_url = reverse_lazy('blawx:workspaces')
+    def get_object(self):
+        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']),test_name=self.kwargs['test_name'])
 
+class TestCreateView(CreateView):
+    model = BlawxTest
+    fields = ['test_name']
+    # success_url = reverse_lazy('blawx:ruledoc', self.kwargs['pk'])
 
-class WorkspaceUpdateView(UpdateView):
-    model = Workspace
-    fields = ['workspace_name']
+    def get_success_url(self):
+        return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
+    
+    def form_valid(self, form):
+        form.instance.ruledoc = RuleDoc.objects.get(pk=self.kwargs['pk'])
+        return super().form_valid(form)
+
+class TestDeleteView(DeleteView):
+    model = BlawxTest
+
+    def get_success_url(self):
+        return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
+
+# class WorkspaceCreateView(CreateView):
+#     model = Workspace
+#     fields = ['workspace_name']
+#     success_url = reverse_lazy('blawx:workspaces')
+
+class RuleDocCreateView(CreateView):
+    model = RuleDoc
+    fields = ['ruledoc_name','akoma_ntoso']
+    success_url = reverse_lazy('blawx:ruledocs')
+
+class RuleDocDeleteView(DeleteView):
+    model = RuleDoc
+    success_url = reverse_lazy('blawx:ruledocs')
+
+# class WorkspaceDeleteView(DeleteView):
+#     model = Workspace
+#     success_url = reverse_lazy('blawx:workspaces')
+
+class RuleDocEditView(UpdateView):
+    model = RuleDoc
+    fields = ['ruledoc_name','akoma_ntoso']
+
+# class WorkspaceUpdateView(UpdateView):
+#     model = Workspace
+#     fields = ['workspace_name']
 
 
 class DocumentView(generic.DetailView):
@@ -77,14 +134,29 @@ class WorkspaceAPIViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-def update_code(request,pk):
-    target = Workspace.objects.get(pk=pk)
+def update_code(request,pk,workspace):
+    target = Workspace.objects.get(ruledoc=pk,workspace_name=workspace)
     workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
     workspace_serializer.is_valid()
     target.xml_content = workspace_serializer.validated_data.get('xml_content', target.xml_content)
     target.scasp_encoding = workspace_serializer.validated_data.get('scasp_encoding', target.scasp_encoding)
     target.save()
     return Response({"That probably worked."})
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def get_code(request,pk,workspace):
+    (workspace, created) = Workspace.objects.get_or_create(ruledoc=RuleDoc.objects.get(pk=pk),workspace_name=workspace)
+    return Response({"xml_content": workspace.xml_content})
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_all_code(request,pk):
+    workspaces = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=pk))
+    output = []
+    for w in workspaces:
+        output.append({"name": w.workspace_name, "xml_content": w.xml_content})
+    return Response(output)
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -93,3 +165,20 @@ def get_example(request,pk):
     # template_serializer = TemplateRequestSerializer(data=request.data)
     # template_serializer.is_valid()
     return Response({ 'xml_content': target.xml_content })
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def update_test(request,ruledoc,test_name):
+    target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
+    workspace_serializer.is_valid()
+    target.xml_content = workspace_serializer.validated_data.get('xml_content', target.xml_content)
+    target.scasp_encoding = workspace_serializer.validated_data.get('scasp_encoding', target.scasp_encoding)
+    target.save()
+    return Response({"That probably worked."})
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def get_test(request,ruledoc,test_name):
+    (test, created) = BlawxTest.objects.get_or_create(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    return Response({"xml_content": test.xml_content})

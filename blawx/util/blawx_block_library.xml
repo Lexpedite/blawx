@@ -1042,7 +1042,7 @@
     <value name="COLOUR">
       <block type="colour_hue" id="bx2qFEfo118{yIKHo9O6">
         <mutation colour="#805ba5"></mutation>
-        <field name="HUE">270</field>
+        <field name="HUE">165</field>
       </block>
     </value>
   </block><block type="factory_base" id="XD[s|HDtO]t_cAAWxy9}" deletable="false" movable="false" x="10" y="10">
