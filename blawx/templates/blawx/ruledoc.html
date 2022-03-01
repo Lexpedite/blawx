@@ -7,7 +7,7 @@
 {% block page_content %}
 
 <h1>Rule {{ ruledoc.pk }}: {{ ruledoc.ruledoc_name }}</h1>
-<div class="row">
+<div class="col">
     <a href="{% url 'blawx:code' ruledoc.pk %}" class="btn btn-success">Code Editor</a>
     <a href="{% url 'blawx:ruledoc_delete' ruledoc.id %}" class="btn btn-danger">Delete Rule</a>
     <a href="{% url 'blawx:ruledocs' %}" class="btn btn-secondary">Home</a>
@@ -18,7 +18,9 @@
 <li><a href="{% url 'blawx:test' ruledoc.pk t.test_name %}">{{ t.test_name }}</a></li>
 {% endfor %}
 </ul>
+<div class="col">
 <a href="{% url 'blawx:new_test' ruledoc.pk %}" class="btn btn-success">Create Test</a>
+</div>
 <h2>Rule Text:</h2>
 <div class="akoma-ntoso">
     {{ ruledoc.akoma_ntoso | safe}}

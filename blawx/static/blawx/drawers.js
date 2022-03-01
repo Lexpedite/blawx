@@ -354,5 +354,9 @@ getAllWorkspaces = function() {
     xhttp.setRequestHeader('X-CSRFToken', csrftoken);
 
     xhttp.send();
-    return JSON.parse(xhttp.responseText);
+    var objects = JSON.parse(xhttp.responseText);
+    var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+    var xml_text = Blockly.Xml.domToText(xml);
+    objects.push({ 'xml_content': xml_text});
+    return objects;
 }

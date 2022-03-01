@@ -41,7 +41,7 @@ class RuleDocView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(RuleDocView, self).get_context_data(**kwargs)
-        context['tests'] = BlawxTest.objects.all() #TODO Filter Better
+        context['tests'] = BlawxTest.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']))
         return context
 
 # class WorkspaceView(generic.DetailView):
@@ -60,8 +60,8 @@ class BlawxView(generic.DetailView):
     
     def get_context_data(self, **kwargs):
         context = super(BlawxView, self).get_context_data(**kwargs)
-        context['templates'] = WorkspaceTemplate.objects.all()
-        context['workspaces'] = Workspace.objects.all() #TODO Filter Better
+        context['templates'] = WorkspaceTemplate.objects.all() # TODO I don't think this is being used.
+        context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk'])) #TODO I don't think this is being used.
         return context
 
 class TestView(generic.DetailView):
@@ -74,7 +74,10 @@ class TestView(generic.DetailView):
 class TestCreateView(CreateView):
     model = BlawxTest
     fields = ['test_name']
-    success_url = reverse_lazy('blawx:ruledocs') # This is wrong.
+    # success_url = reverse_lazy('blawx:ruledoc', self.kwargs['pk'])
+
+    def get_success_url(self):
+        return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
     
     def form_valid(self, form):
         form.instance.ruledoc = RuleDoc.objects.get(pk=self.kwargs['pk'])
@@ -82,7 +85,9 @@ class TestCreateView(CreateView):
 
 class TestDeleteView(DeleteView):
     model = BlawxTest
-    success_url = reverse_lazy('blawx:ruledoc')
+
+    def get_success_url(self):
+        return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
 
 # class WorkspaceCreateView(CreateView):
 #     model = Workspace
