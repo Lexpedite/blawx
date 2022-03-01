@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+    <act contains="originalVersion" name="act">
+        <preface>
+            <p class="title">
+                <shortTitle>Default Act</shortTitle>
+            </p>
+        </preface>
+        <body>
+        </body>
+    </act>
+</akomaNtoso>

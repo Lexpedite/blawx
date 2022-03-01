@@ -298,7 +298,7 @@
 - model: blawx.ruledoc
   pk: 2
   fields:
-    ruledoc_name: rps
+    ruledoc_name: Rock Paper Scissors Act
     akoma_ntoso: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<akomaNtoso xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">\r\n
       \   <act contains=\"originalVersion\" name=\"act\">\r\n        <meta>\r\n            <identification
       source=\"#slaw\">\r\n                <FRBRWork>\r\n                    <FRBRthis
