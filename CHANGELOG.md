@@ -7,7 +7,7 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## [v1.1.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.6-alpha) 2022-03-01
+## [v1.1.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.1.0-alpha) 2022-03-01
 
 ### Added
 * Code is now organized among Rules, Sections, and Tests
