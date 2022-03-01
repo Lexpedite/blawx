@@ -124,21 +124,7 @@
     
 <main class="flex-grow-1">
     <div class="row flex-row h-100">
-        <div class="collapse-horizontal flex-column card col-6 h-100 p-0 collapse" id="leftbar">
-                    
-            <div class="card-body akoma-ntoso" id="rules">
-                {{ ruledoc.navtree | safe }}
-              
-              
-              
-          </div>
-  </div>
-<div id="lefttoggle" class="col-auto p-1 vh-100 sticky-top">
-  <a href="#" class="btn d-flex align-items-center btn-secondary p-0 h-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#leftbar" aria-expanded="false" aria-controls="leftbar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-<path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"></path>
-</svg></a>
-</div>
-        <div id="interface" class="col-auto flex-grow-1 p-0 vh-100 sticky-top">
+                <div id="interface" class="col-auto flex-grow-1 p-20 vh-100 sticky-top">
                     <div id="blocklyArea" class="p-0 h-100">
                         <div id="blocklyDiv" style="position: absolute;"></div>
                     </div>
@@ -174,7 +160,7 @@
                 toolbox: document.getElementById('toolbox')});
             var importWorkspace = new Blockly.Workspace();
             // Need to load the root workspace.
-            load_section_workspace({{ ruledoc.pk }},'root_section');
+            load_section_workspace({{ blawxtest.ruledoc.id }}, '{{ blawxtest.test_name }}');
             var onresize = function(e) {
                 blocklyDiv.style.left = blocklyArea.offsetLeft + 'px';
                 blocklyDiv.style.top = blocklyArea.offsetTop + 'px';
@@ -185,31 +171,13 @@
             var myob = new ResizeObserver(onresize);
             myob.observe(blocklyArea);
             Blockly.svgResize(demoWorkspace);
-
+            var blawxTestID = '{{ blawxtest.test_name}}';
+            var blawxTestRulePK = {{ blawxtest.ruledoc.pk }};
+            var workspace_is_test = true;
             window.onload = function() {
                 onresize();
                 liveCode(null);
             };
-
-            var selectors = $('.lawpart input'); // Switch from jQuery
-            var prev_section = 'root_section';
-            var current_section = 'root_section';
-            for (var i = 0; i < selectors.length; i++) {
-                selectors[i].addEventListener('change', function() {
-                    console.log("Current section is " + current_section)
-                    console.log("Previous section is " + prev_section)
-                    console.log("Selected is " + this.id)
-                    if (this.id !== current_section) {
-                        console.log("different section selected " + this.id)
-                        load_section_workspace({{ ruledoc.pk }},this.id)
-                        prev_section = current_section;
-                        current_section = this.id;
-                    }
-                    
-                });
-            }
-            var workspace_is_test = false;
-
         </script>
         <script src="{% static 'blawx/drawers.js' %}"></script>
         <script src="{% static 'blawx/import.js' %}"></script>
@@ -263,13 +231,13 @@
                   {% endfor %}
                 </ul>
             </a> -->
-            <!-- <a href="javascript:void(0);" class="btn btn-secondary" onclick="runCode()">
+            <a href="javascript:void(0);" class="btn btn-secondary" onclick="runCode()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square" viewBox="0 0 16 16">
                     <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                     <path d="M5.795 12.456A.5.5 0 0 1 5.5 12V4a.5.5 0 0 1 .832-.374l4.5 4a.5.5 0 0 1 0 .748l-4.5 4a.5.5 0 0 1-.537.082z"/>
                 </svg>
                 <span class="text">Run</span>
-            </a> -->
+            </a>
             <a href="/docs/home" target=_blank class="btn btn-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
                     <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
@@ -277,13 +245,13 @@
                 </svg>
                 <span class="text">Help</span>
             </a>
-            <a href="javascript:void(0);" class="btn btn-secondary" onclick="updateWorkspace()">
+            <a href="javascript:void(0);" class="btn btn-secondary" onclick="updateBlawxTest()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
                     <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
                 </svg>
                 <span class="text">Save</span>
             </a>
-            <a href="{% url 'blawx:ruledoc' ruledoc.id %}" class="btn btn-secondary">
+            <a href="{% url 'blawx:ruledoc' blawxtest.ruledoc.pk %}" class="btn btn-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
                     <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>

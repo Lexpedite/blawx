@@ -54,13 +54,16 @@ def generate_tree(node,indent=0):
         # should appear here if it is a numbered or named section.
         if NS + 'num' in subtags:
             # print(" "*indent + "Num: " + node['num'].text)
-            initial_text += "<num>" + node['num'].text + "</num>"
+            if node['num'].text:
+                initial_text += "<num>" + node['num'].text + "</num>"
         if NS + 'heading' in subtags:
             # print(" "*indent + "Heading: " + node['heading'].text)
-            initial_text += node['heading'].text
+            if node['heading'].text:
+                initial_text += node['heading'].text
         if NS + 'subheading' in subtags:
             # print(" "*indent + "Subheading: " + node['subheading'].text)
-            initial_text += node['subheading'].text
+            if node['subheadin'].text:
+                initial_text += node['subheading'].text
 
         # Now we need to figure out if this is a leaf node, or not
         # It is a leaf node if it contains a content tag.

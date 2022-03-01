@@ -37,7 +37,7 @@ updateWorkspace = function() {
 var runCode
 runCode = function(button) {
     var run_xhttp = new XMLHttpRequest();
-    run_xhttp.open("POST", "../run/", true);
+    run_xhttp.open("POST", "run/", true);
     run_xhttp.setRequestHeader('Content-type', 'application/json');
     run_xhttp.setRequestHeader('X-CSRFToken', csrftoken);
     run_xhttp.onreadystatechange = function() {
@@ -77,14 +77,13 @@ runCode = function(button) {
     // request.
     json_inputs = demoWorkspace.getBlocksByType('json_textfield');
     if (json_inputs.length > 0) {
-        run_xhttp.send(body=json_inputs[0].getFieldValue('payload'))
+        run_xhttp.send(body=json_inputs[0].getFieldValue('payload')) // Only uses the "first"
     } else {
         run_xhttp.send();
     }
     $output = document.getElementById('nav-output');
     $output.textContent = "Thinking...\n";
     $problems = document.getElementById('problems');
-    xhttp.send(body=JSON.stringify(payload));
     Blockly.hideChaff();
 }
 var clearBlocks;
@@ -204,5 +203,50 @@ load_section_workspace = function(ruledoc_id,workspace_id) {
     }
     console.log("getting")
     xhttp.send();
+    Blockly.hideChaff();
+}
+var load_test_workspace;
+load_test_workspace = function(ruledoc_id,test_name) {
+    console.log("Trying to load workspace " + test_name + " from RuleDoc " + ruledoc_id)
+    // Save the current workspace with a call to /ruledoc_id/workspace_name/update
+    // updateWorkspace();
+    // Get the new workspace with a call to /ruledoc_id/workspace_name/get
+    var xml = "";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../test/" + test_name + "/get/", true);
+    xhttp.setRequestHeader('Content-type', 'application/json');
+    xhttp.setRequestHeader('X-CSRFToken', csrftoken);
+    xhttp.onreadystatechange = function() {
+        console.log("gotten")
+        demoWorkspace.clear();
+        if (this.responseText) {
+            output_object = JSON.parse(this.responseText);
+            if (output_object.xml_content) {
+                xml = Blockly.Xml.textToDom(output_object.xml_content);
+                Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+            }
+        }
+    }
+    console.log("getting")
+    xhttp.send();
+    Blockly.hideChaff();
+}
+var updateBlawxTest
+updateBlawxTest = function() {
+    var payload = {}
+    var main_xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+    // Output the current workspace to a variable
+    payload.xml_content = Blockly.Xml.domToText(main_xml);
+    // Output the current encoding to a variable
+    payload.scasp_encoding = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../" + blawxTestID + "/update/", true);
+    xhttp.setRequestHeader('Content-type', 'application/json');
+    xhttp.setRequestHeader('X-CSRFToken', csrftoken);
+    xhttp.onreadystatechange = function() {
+        console.log("Saved")
+    };
+    console.log("Saving")
+    xhttp.send(body=JSON.stringify(payload));
     Blockly.hideChaff();
 }

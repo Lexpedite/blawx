@@ -30,6 +30,20 @@ class Workspace(models.Model):
             models.UniqueConstraint(fields=['ruledoc','workspace_name'],name='unique_workspace_and_ruledoc')
         ]
 
+class BlawxTest(models.Model):
+    ruledoc = models.ForeignKey(RuleDoc, on_delete=models.CASCADE)
+    test_name = models.CharField(max_length=200)
+    xml_content = models.TextField(default="",blank=True)
+    scasp_encoding = models.TextField(default="",blank=True)
+
+    def __str__(self):
+        return self.test_name
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['ruledoc','test_name'],name='unique_test_and_ruledoc')
+        ]
+
 class WorkspaceTemplate(models.Model):
     template_name = models.CharField(max_length=200)
     xml_content = models.TextField(default="")

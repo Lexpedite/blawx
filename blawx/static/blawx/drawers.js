@@ -345,7 +345,11 @@ demoWorkspace.registerToolboxCategoryCallback('KNOWN_RULES', knownRulesCallback)
 var getAllWorkspaces;
 getAllWorkspaces = function() {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "../all/get/", false); // Should be changed to asynch.
+    if (workspace_is_test) {
+        xhttp.open("GET", "../../all/get/", false); // Should be changed to asynch.
+    } else {
+        xhttp.open("GET", "../all/get/", false); // Should be changed to asynch.
+    }
     xhttp.setRequestHeader('Content-type', 'application/json');
     xhttp.setRequestHeader('X-CSRFToken', csrftoken);
 
