@@ -4,20 +4,21 @@ Notable changes to Blawx will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-While alpha, however, any version changes may cause breaking changes that may not be specifically noted as such.
+While alpha, however, any version may include breaking changes that may not be specifically noted as such,
+and breaking changes will not necessarily result in changes to the main version number.
 
-## [Legal Docs Branch]() XXXX-XX-XX
+## [v1.1.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.6-alpha) 2022-03-01
 
 ### Added
-* Rule Display to Code Editor
-* Known Rules Drawer
-* Override Block
-* Can specify Akoma Ntoso when creating Rule
-* Akoma Ntoso Example Rule
+* Code is now organized among Rules, Sections, and Tests
+* Rules can be created using Akoma Ntoso encodings of legislation
+* Complex Akoma Ntoso example
+* Simple Rock Paper Scissors example with encoding and test
 
 ### Changed
-* Rules are now primary objects in the database
-* Workspaces are specific to a section of a rule
+There have been significant changes to almost all aspects of the tool, many of
+which are breaking. You can expect that code created with any previous version
+will not work in this version.
 
 ## [v1.0.6-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.0.6-alpha) 2022-02-08
 
