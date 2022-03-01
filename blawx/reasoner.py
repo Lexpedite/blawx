@@ -205,7 +205,7 @@ def run_test(request,ruledoc,test_name):
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     ruleset = ""
     for ws in wss:
-      ruleset += ws.scasp_encoding
+      ruleset += "\n\n" + ws.scasp_encoding
     ruleset += "\n\n" + test.scasp_encoding
     print(ruleset)
     query = "No Query Specified"
