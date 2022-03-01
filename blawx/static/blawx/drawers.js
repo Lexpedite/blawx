@@ -355,8 +355,10 @@ getAllWorkspaces = function() {
 
     xhttp.send();
     var objects = JSON.parse(xhttp.responseText);
-    var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-    var xml_text = Blockly.Xml.domToText(xml);
-    objects.push({ 'xml_content': xml_text});
+    if (workspace_is_test) {
+        var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+        var xml_text = Blockly.Xml.domToText(xml);
+        objects.push({ 'xml_content': xml_text});
+    }
     return objects;
 }
