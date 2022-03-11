@@ -1,6 +1,7 @@
 from django.db import models
 from .parse_an import generate_tree
 from cobalt.hierarchical import Act
+from clean import generate_akn
 
 # Create your models here.
 class RuleDoc(models.Model):
