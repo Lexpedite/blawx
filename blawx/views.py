@@ -96,7 +96,7 @@ class TestDeleteView(DeleteView):
 
 class RuleDocCreateView(CreateView):
     model = RuleDoc
-    fields = ['ruledoc_name','akoma_ntoso']
+    fields = ['ruledoc_name','rule_text']
     success_url = reverse_lazy('blawx:ruledocs')
 
 class RuleDocDeleteView(DeleteView):
@@ -109,7 +109,7 @@ class RuleDocDeleteView(DeleteView):
 
 class RuleDocEditView(UpdateView):
     model = RuleDoc
-    fields = ['ruledoc_name','akoma_ntoso']
+    fields = ['ruledoc_name','rule_text']
 
 # class WorkspaceUpdateView(UpdateView):
 #     model = Workspace
