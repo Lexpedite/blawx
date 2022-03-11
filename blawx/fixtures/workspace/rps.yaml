@@ -43,7 +43,7 @@
   pk: 12
   fields:
     ruledoc: 2
-    workspace_name: sec_2__paragraph_a_section
+    workspace_name: sec_2__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="kR6ntq@zT`R:z:aNK+f8" x="48" y="67"><statement name="statements"><block
       type="object_declaration" id="Z/]aRICCL7w4Q}.MKhmg"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -54,7 +54,7 @@
   pk: 13
   fields:
     ruledoc: 2
-    workspace_name: sec_2__paragraph_b_section
+    workspace_name: sec_2__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="kR6ntq@zT`R:z:aNK+f8" x="76" y="123"><statement name="statements"><block
       type="object_declaration" id="Z/]aRICCL7w4Q}.MKhmg"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -65,7 +65,7 @@
   pk: 14
   fields:
     ruledoc: 2
-    workspace_name: sec_2__paragraph_c_section
+    workspace_name: sec_2__para_c_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="kR6ntq@zT`R:z:aNK+f8" x="76" y="123"><statement name="statements"><block
       type="object_declaration" id="Z/]aRICCL7w4Q}.MKhmg"><mutation xmlns="http://www.w3.org/1999/xhtml"
