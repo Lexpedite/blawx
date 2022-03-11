@@ -1,14 +1,10 @@
 {% extends "base.html" %}
 {% block page_content %}
-<form action="{% url 'blawx:ruledoc_create' %}" method="post">
-    {% csrf_token %}
-    <p>Rule Name:</p><input type="text" name="ruledoc_name">
-    <p>Legal Text:</p><textarea rows=10 cols=100 name="rule_text">
-Default Law
-    </textarea>
-    <p>Legal documents can be created and edited in the clean format specified
-        in the <a href="https://github.com/lexpedite/clean/readme.md">clean documentation</a>.
-    </p>
+<p>Rule text must be in the format described in the
+    <a href="https://github.com/lexpedite/clean/">CLEAN documentation.</a>
+</p>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
     <input type="submit" value="Save">
-    </form>
+</form>
 {% endblock %}

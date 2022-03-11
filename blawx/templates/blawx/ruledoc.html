@@ -8,6 +8,7 @@
 
 <h1>Rule {{ ruledoc.pk }}: {{ ruledoc.ruledoc_name }}</h1>
 <div class="col">
+    <a href="{% url 'blawx:ruledoc_edit' ruledoc.id %}" class="btn btn-success">Rule Editor</a>
     <a href="{% url 'blawx:code' ruledoc.pk %}" class="btn btn-success">Code Editor</a>
     <a href="{% url 'blawx:ruledoc_delete' ruledoc.id %}" class="btn btn-danger">Delete Rule</a>
     <a href="{% url 'blawx:ruledocs' %}" class="btn btn-secondary">Home</a>
