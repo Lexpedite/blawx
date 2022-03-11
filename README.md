@@ -6,6 +6,9 @@ Blocks + law = Blawx
 
 ![Blawx Front End Screenshot](blawxv1screenshot.png)
 
+## Demonstration Video
+[![thumbnail](https://i9.ytimg.com/vi_webp/d2sxlvU9hlo/mqdefault.webp?sqp=CKS5r5EG&rs=AOn4CLBFexT4jjxYRbqiqvvv9STVs53Cbw)](https://youtu.be/d2sxlvU9hlo)
+
 ## Overview
 
 ### What is "Rules as Code"?
@@ -52,6 +55,8 @@ If you would like to try running Blawx locally, check out [INSTALL.md](INSTALL.m
 ## How Can I Learn More?
 Extensive documentation, including the Blawx Beginner's Guide and several examples, is available from inside the application
 by clicking "Help" in the coding interface. You can also view the [documentation on the live demo site](https://dev.blawx.com/docs).
+
+The most recent video demonstration of Blawx is linked at the top of this file.
 
 ## Is this software production ready?
 No. Blawx is functional, but it is not production-quality software. It is a proof of concept that is intended to motivate
