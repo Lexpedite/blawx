@@ -7,6 +7,24 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.2.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.2.0-alpha) 2022-03-11
+
+The point of this update is to make it easy to edit your natural-language
+legislation inside the Blawx interface. The minor version change indicates
+that fixtures in the previous versions will no longer load in this version of
+blawx because the data structure has changed.
+
+### Added
+* Rule Editing View
+
+### Changed
+* Laws are now specified using the [clean markdown language](https://github.com/lexpedite/clean), instead of in Akoma Ntoso. Akoma Ntoso is still used to generate the user interface, and the ability to export and import Akoma Ntoso
+  will be added later.
+
+### Removed
+* The demonstration Rule demonstrating a complicated Akoma Ntoso example has
+  been removed.
+
 ## [v1.1.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.1.0-alpha) 2022-03-01
 
 ### Added
