@@ -43,7 +43,7 @@
   pk: 12
   fields:
     ruledoc: 2
-    workspace_name: sec_2__paragraph_a_section
+    workspace_name: sec_2__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="kR6ntq@zT`R:z:aNK+f8" x="48" y="67"><statement name="statements"><block
       type="object_declaration" id="Z/]aRICCL7w4Q}.MKhmg"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -54,7 +54,7 @@
   pk: 13
   fields:
     ruledoc: 2
-    workspace_name: sec_2__paragraph_b_section
+    workspace_name: sec_2__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="kR6ntq@zT`R:z:aNK+f8" x="76" y="123"><statement name="statements"><block
       type="object_declaration" id="Z/]aRICCL7w4Q}.MKhmg"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -65,7 +65,7 @@
   pk: 14
   fields:
     ruledoc: 2
-    workspace_name: sec_2__paragraph_c_section
+    workspace_name: sec_2__para_c_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="kR6ntq@zT`R:z:aNK+f8" x="76" y="123"><statement name="statements"><block
       type="object_declaration" id="Z/]aRICCL7w4Q}.MKhmg"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -299,54 +299,23 @@
   pk: 2
   fields:
     ruledoc_name: Rock Paper Scissors Act
-    akoma_ntoso: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<akomaNtoso xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">\r\n
-      \   <act contains=\"originalVersion\" name=\"act\">\r\n        <meta>\r\n            <identification
-      source=\"#slaw\">\r\n                <FRBRWork>\r\n                    <FRBRthis
-      value=\"/za/act/1980/01/main\" />\r\n                    <FRBRuri value=\"/za/act/1980/01\"
-      />\r\n                    <FRBRalias value=\"Short Title\" name=\"title\" />\r\n
-      \                   <FRBRdate date=\"1980-01-01\" name=\"Generation\" />\r\n
-      \                   <FRBRauthor href=\"#council\" />\r\n                    <FRBRcountry
-      value=\"za\" />\r\n                </FRBRWork>\r\n                <FRBRExpression>\r\n
-      \                   <FRBRthis value=\"/za/act/1980/01/eng@/main\" />\r\n                    <FRBRuri
-      value=\"/za/act/1980/01/eng@\" />\r\n                    <FRBRdate date=\"1980-01-01\"
-      name=\"Generation\" />\r\n                    <FRBRauthor href=\"#council\"
-      />\r\n                    <FRBRlanguage language=\"eng\" />\r\n                </FRBRExpression>\r\n
-      \               <FRBRManifestation>\r\n                    <FRBRthis value=\"/za/act/1980/01/eng@/main\"
-      />\r\n                    <FRBRuri value=\"/za/act/1980/01/eng@\" />\r\n                    <FRBRdate
-      date=\"2022-02-24\" name=\"Generation\" />\r\n                    <FRBRauthor
-      href=\"#slaw\" />\r\n                </FRBRManifestation>\r\n            </identification>\r\n
-      \           <references source=\"#this\">\r\n                <TLCOrganization
-      eId=\"slaw\" href=\"https://github.com/longhotsummer/slaw\" showAs=\"Slaw\"
-      />\r\n                <TLCOrganization eId=\"council\" href=\"/ontology/organization/za/council\"
-      showAs=\"Council\" />\r\n            </references>\r\n        </meta>\r\n        <preface>\r\n
-      \           <p class=\"title\">\r\n                <shortTitle>Rock Paper Scissors
-      Act</shortTitle>\r\n            </p>\r\n        </preface>\r\n        <body>\r\n
-      \           <section eId=\"sec_1\">\r\n                <num>1</num>\r\n                <content>\r\n
-      \                   <p>A game of rock, paper, scissors has two players.</p>\r\n
-      \               </content>\r\n            </section>\r\n            <section
-      eId=\"sec_2\">\r\n                <num>2</num>\r\n                <intro>\r\n
-      \                   <p>The possible signs are:</p>\r\n                </intro>\r\n
-      \               <paragraph eId=\"sec_2__paragraph_a\">\r\n                    <num>a</num>\r\n
-      \                   <content>\r\n                        <p>Rock,</p>\r\n                    </content>\r\n
-      \               </paragraph>\r\n                <paragraph eId=\"sec_2__paragraph_b\">\r\n
-      \                   <num>b</num>\r\n                    <content>\r\n                        <p>Paper,
-      and</p>\r\n                    </content>\r\n                </paragraph>\r\n
-      \               <paragraph eId=\"sec_2__paragraph_c\">\r\n                    <num>c</num>\r\n
-      \                   <content>\r\n                        <p>Scissors.</p>\r\n
-      \                   </content>\r\n                </paragraph>\r\n            </section>\r\n
-      \           <section eId=\"sec_3\">\r\n                <num>3</num>\r\n                <intro>\r\n
-      \                   <p>The signs have the following relationships:</p>\r\n                </intro>\r\n
-      \               <paragraph eId=\"sec_3__para_a\">\r\n                    <num>a</num>\r\n
-      \                   <content>\r\n                        <p>Rock beats Scissors,</p>\r\n
-      \                   </content>\r\n                </paragraph>\r\n                <paragraph
-      eId=\"sec_3__para_b\">\r\n                    <num>b</num>\r\n                    <content>\r\n
-      \                       <p>Paper beats Rock, and</p>\r\n                    </content>\r\n
-      \               </paragraph>\r\n                <paragraph eId=\"sec_3__para_c\">\r\n
-      \                   <num>c</num>\r\n                    <content>\r\n                        <p>Scissors
-      beats Paper.</p>\r\n                    </content>\r\n                </paragraph>\r\n
-      \           </section>\r\n            <section eId=\"sec_4\">\r\n                <num>4</num>\r\n
-      \               <content>\r\n                    <p>The winner of a game of
-      rock paper scissor is the player who throws a sign \r\n                        that
-      beats the sign thrown by the other player.</p>\r\n                </content>\r\n
-      \           </section>\r\n        </body>\r\n    </act>\r\n</akomaNtoso>"
+    rule_text: |
+      Rock Paper Scissors Act
+
+      Players
+      1. A game of rock paper scissors has two players.
+      2. There are three signs:
+        (a) Rock,
+        (b) Paper, and
+        (c) Scissors.
+
+      Defeating Relationships
+      3. The signs are related in the following ways:
+        (a) Rock beats Scissors,
+        (b) Scissors beats Paper, and
+        (c) Paper beats Rock.
+
+      Winner
+      4. The winner of a game is the player who throws
+      a sign that beats the sign of the other player.
     scasp_encoding: ''

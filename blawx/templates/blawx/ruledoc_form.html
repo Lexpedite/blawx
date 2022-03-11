@@ -1,27 +1,10 @@
 {% extends "base.html" %}
 {% block page_content %}
-<form action="{% url 'blawx:ruledoc_create' %}" method="post">
-    {% csrf_token %}
-    <p>Rule Name:</p><input type="text" name="ruledoc_name">
-    <p>Akoma Ntoso:</p><textarea rows=10 cols=100 name="akoma_ntoso">
-<?xml version="1.0" encoding="UTF-8"?>
-&lt;akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"&gt;
-    &lt;act contains="originalVersion" name="act"&gt;
-        &lt;preface&gt;
-            &lt;p class="title"&gt;
-                &lt;shortTitle&gt;Default Act&lt;/shortTitle&gt;
-            &lt;/p&gt;
-        &lt;/preface&gt;
-        &lt;body&gt;
-        &lt;/body&gt;
-    &lt;/act&gt;
-&lt;/akomaNtoso&gt;
-    </textarea>
-    <p>If you have an Akoma Ntoso source for the legislation you want to encode,
-        you can paste the Akoma Ntoso source above. Note that it must have an
-        element of class "title" in its preface, which in turn must have a "shortTitle" element.
-        If you do not have a legislative source you want to use, the default above will work.
-    </p>
+<p>Rule text must be in the format described in the
+    <a href="https://github.com/lexpedite/clean/">CLEAN documentation.</a>
+</p>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
     <input type="submit" value="Save">
-    </form>
+</form>
 {% endblock %}

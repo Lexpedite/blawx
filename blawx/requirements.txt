@@ -4,3 +4,4 @@ markdown
 swiplserver
 pyyaml
 cobalt
+clean-law
