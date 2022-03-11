@@ -111,6 +111,9 @@ class RuleDocEditView(UpdateView):
     model = RuleDoc
     fields = ['ruledoc_name','rule_text']
 
+    def get_success_url(self):
+        return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
+
 # class WorkspaceUpdateView(UpdateView):
 #     model = Workspace
 #     fields = ['workspace_name']
