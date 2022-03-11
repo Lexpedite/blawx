@@ -5,11 +5,16 @@ from cobalt.hierarchical import Act
 # Create your models here.
 class RuleDoc(models.Model):
     ruledoc_name = models.CharField(max_length=200)
-    akoma_ntoso = models.TextField(default="",blank=True)
+    rule_text = models.TextField(default="Default Act")
+    # akoma_ntoso = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
 
     def __str__(self):
         return self.ruledoc_name
+
+    @property
+    def akoma_ntoso(self):
+        return generate_akn(self.rule_text)
 
     @property
     def navtree(self):
