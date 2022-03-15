@@ -33,7 +33,6 @@
 opposes(C1,C2) :- opposes(C2,C1).
 
 % A rule is rebutted if it conflicts with another rule, neither is refuted, the rebutting rule is not compromised, and there is no priority between them.
-
 rebutted_by(Rule,Conclusion,Other_Rule,Other_Conclusion) :-
     according_to(Rule,Conclusion),
     according_to(Other_Rule,Other_Conclusion),
