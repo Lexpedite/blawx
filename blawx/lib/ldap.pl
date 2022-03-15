@@ -7,7 +7,7 @@
 % other predicates. For example, to improve the display you can encode
 % #pred according_to(R,flies(X)) :: 'according to rule @(R), @(X) flies'.
 #pred overrides(R1,C1,R2,C2) :: 'the conclusion @(C1) from rule @(R1) overrides the conclusion @(C2) from rule @(R2)'.
-#pred opposes(R1,C1,R2,C2) :: 'the conclusion @(C1) from rule @(R1) conflicts with the conclusion @(C2) from rule @(R2)'.
+#pred opposes(C1,C2) :: 'the conclusion @(C1) conflicts with the conclusion @(C2)'.
 
 #pred legally_holds(Rule,may(Y,accept,Z)) :: 'it holds in accordance with {@(Rule)} that @(Y) is permitted to accept @(Z)'.
 #pred legally_holds(Rule,must_not(Y,accept,Z)) :: 'it holds in accordance with {@(Rule)} that @(Y) is prohibited from accepting @(Z)'.
@@ -30,14 +30,14 @@
 % The argumentation theory is defined below.
 
 % Oppositions must be stated explicitly, and must be ground at evaluation time.
-opposes(R1,C1,R2,C2) :- opposes(R2,C2,R1,C1).
+opposes(C1,C2) :- opposes(C2,C1).
 
 % A rule is rebutted if it conflicts with another rule, neither is refuted, the rebutting rule is not compromised, and there is no priority between them.
 
 rebutted_by(Rule,Conclusion,Other_Rule,Other_Conclusion) :-
     according_to(Rule,Conclusion),
     according_to(Other_Rule,Other_Conclusion),
-    opposes(Rule,Conclusion,Other_Rule,Other_Conclusion),
+    opposes(Conclusion,Other_Conclusion),
     not refuted(Rule,Conclusion),
     not refuted(Other_Rule,Other_Conclusion),
     not compromised(Other_Rule,Other_Conclusion),
@@ -46,7 +46,7 @@ rebutted_by(Rule,Conclusion,Other_Rule,Other_Conclusion) :-
 
 % A rule is refuted if there is another rule that conflicts with it and overrides it.
 refuted_by(Rule,Conclusion,Other_Rule,Other_Conclusion) :-
-    opposes(Rule,Conclusion,Other_Rule,Other_Conclusion),
+    opposes(Conclusion,Other_Conclusion),
     overrides(Other_Rule,Other_Conclusion,Rule,Conclusion),
     according_to(Rule,Conclusion),
     Rule \= Other_Rule,
@@ -80,7 +80,7 @@ defeated_by_closure(Rule,Conclusion,Other_Rule,Other_Conclusion) :-
 unsafe_rebutted_by(Rule,Conclusion,Other_Rule,Other_Conclusion) :-
     according_to(Rule,Conclusion),
     according_to(Other_Rule,Other_Conclusion),
-    opposes(Rule,Conclusion,Other_Rule,Other_Conclusion),
+    opposes(Conclusion,Other_Conclusion),
     not overrides(Rule,Conclusion,Other_Rule,Other_Conclusion),
     not overrides(Other_Rule,Other_Conclusion,Rule,Conclusion).
 
@@ -107,17 +107,17 @@ defeated_by_refutation(Rule,Conclusion,Other_Rule,Other_Conclusion) :-
 defeated(R,C) :-
     R \= OR,
     C \= OC,
-    opposes(R,C,OR,OC),
+    opposes(C,OC),
     defeated_by_disqualification(R,C,OR,OC).
 defeated(R,C) :-
     R \= OR,
     C \= OC,
-    opposes(R,C,OR,OC),
+    opposes(C,OC),
     defeated_by_rebuttal(R,C,OR,OC).
 defeated(R,C) :-
     R \= OR,
     C \= OC,
-    opposes(R,C,OR,OC),
+    opposes(C,OC),
     defeated_by_refutation(R,C,OR,OC).
 
 % a conclusion holds if it is found and not defeated.
