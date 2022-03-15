@@ -194,18 +194,45 @@
             var selectors = $('.lawpart input'); // Switch from jQuery
             var prev_section = 'root_section';
             var current_section = 'root_section';
+            var abbreviation = "";
+            var xmlList = [];
+            var title_element = $('.lawpart.act');
+            title = title_element[0].outerText;
+            var parts = title.split(" ")
+            for (var i = 0; i < parts.length; i++) {
+                if (isNaN(parts[i])) {
+                    var first_char = parts[i].charAt(0);
+                    if (first_char == first_char.toUpperCase()) {
+                        abbreviation += first_char;
+                    }
+                }
+            }
+            var current_doc = abbreviation;
             for (var i = 0; i < selectors.length; i++) {
                 selectors[i].addEventListener('change', function() {
-                    console.log("Current section is " + current_section)
-                    console.log("Previous section is " + prev_section)
-                    console.log("Selected is " + this.id)
+                    // console.log("Current section is " + current_section)
+                    // console.log("Previous section is " + prev_section)
+                    // console.log("Selected is " + this.id)
                     if (this.id !== current_section) {
-                        console.log("different section selected " + this.id)
+                        // console.log("different section selected " + this.id)
                         load_section_workspace({{ ruledoc.pk }},this.id)
                         prev_section = current_section;
                         current_section = this.id;
-                    }
-                    
+                        if (current_section == "root_section") {
+                            current_doc = "";
+                        }
+                        if (current_section.startsWith("crossheading")) {
+                            current_doc = "not_implemented";
+                        } else {
+                            current_doc = current_section;
+                            current_doc = current_doc.replace("sec_","");
+                            current_doc = current_doc.replace("__subsec_",".");
+                            current_doc = current_doc.replace("__para_",".");
+                            current_doc = current_doc.replace("__subpara_",".");
+                            current_doc = current_doc.replace("_section","");
+                        }
+                        current_doc = abbreviation + " " + current_doc
+                    }   
                 });
             }
             var workspace_is_test = false;

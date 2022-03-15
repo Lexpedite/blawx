@@ -175,8 +175,8 @@ Blockly.JavaScript['unattributed_rule'] = function(block) {
   var code = "";
   var currentBlock = this.getInputTargetBlock('conclusion');
   while (currentBlock) {
-    var codeForBlock = getCodeForSingleBlock(currentBlock);
-    currentBlock = currentBlock.getNextBlock();
+    var codeForBlock = 'according_to( ' + current_doc.replace(' ','__').replace('.','_') + ',' + getCodeForSingleBlock(currentBlock) + ')';
+    currentBlock = currentBlock.getNextBlock() ;
     code += codeForBlock;
     if (currentBlock) {
       code += ",\n";

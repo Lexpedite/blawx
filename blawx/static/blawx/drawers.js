@@ -286,7 +286,7 @@ knownRulesCallback = function(workspace) {
     var xmlList = [];
     var title_element = $('.lawpart.act');
     title = title_element[0].outerText;
-    var abbreviation = "";
+    // var abbreviation = "";
     var parts = title.split(" ")
     for (var i = 0; i < parts.length; i++) {
         if (isNaN(parts[i])) {
