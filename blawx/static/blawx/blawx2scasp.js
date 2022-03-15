@@ -143,11 +143,11 @@ Blockly.JavaScript['fact'] = function(block) {
 Blockly.JavaScript['query'] = function(block) {
   var statements_query = Blockly.JavaScript.statementToCode(block, 'query');
   // TODO: Assemble JavaScript into code variable.
-  var code = '?- ' + statements_query + '.\n\n';
+  // var code = '?- ' + statements_query + '.\n\n';
   var code = "?- ";
   var currentBlock = this.getInputTargetBlock('query');
   while (currentBlock) {
-    var codeForBlock = getCodeForSingleBlock(currentBlock);
+    var codeForBlock = 'legally_holds(' + getCodeForSingleBlock(currentBlock) + ')';
     code += codeForBlock
     currentBlock = currentBlock.getNextBlock();
     if (currentBlock) {
