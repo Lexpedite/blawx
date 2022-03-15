@@ -1786,4 +1786,75 @@
   "colour": 270,
   "tooltip": "Use to simulate JSON input for the API.",
   "helpUrl": "/docs/blocks/json_input/"
+},
+{
+  "type": "opposes",
+  "message0": "%1 opposes %2 %3",
+  "args0": [
+    {
+      "type": "input_statement",
+      "name": "first_statement",
+      "check": "OUTER"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "second_statement",
+      "check": "OUTER"
+    }
+  ],
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 165,
+  "tooltip": "Use to indicate that two conclusions are inconsistent for the purpose of override statements",
+  "helpUrl": ""
+},
+{
+  "type": "according_to",
+  "message0": "According to %1 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "rule",
+      "check": [
+        "RULE",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "OUTER"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 165,
+  "tooltip": "Use to determine whether a conclusion was held by a rule, regardless of whether it was later overridden.",
+  "helpUrl": ""
+},
+{
+  "type": "scope",
+  "message0": "anything under %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "NAME",
+      "check": "RULE"
+    }
+  ],
+  "inputsInline": true,
+  "output": null,
+  "colour": 165,
+  "tooltip": "Use to indicate the given section of a written rule and its sub-sections.",
+  "helpUrl": ""
 }]

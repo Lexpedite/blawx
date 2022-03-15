@@ -221,7 +221,8 @@ Blockly.JavaScript['legal_doc_text'] = function(block) {
 
 Blockly.JavaScript['doc_selector'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var value_doc_part_name = block.getFieldValue('doc_part_name');
+  var code = value_doc_part_name.replace(' ','__').replace('.','_');
   // TODO: Change ORDER_ATOMIC to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -230,7 +231,7 @@ Blockly.JavaScript['overrules'] = function(block) {
   var value_defeating_rule = Blockly.JavaScript.valueToCode(block, 'defeating_rule', Blockly.JavaScript.ORDER_ATOMIC);
   var value_defeated_rule = Blockly.JavaScript.valueToCode(block, 'defeated_rule', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  var code = 'overrules(' + value_defeating_rule + ',' + value_defeated_rule + ')';
   return code;
 };
 
@@ -670,6 +671,31 @@ Blockly.JavaScript['json_textfield'] = function(block) {
   // var text_payload = block.getFieldValue('payload');
   var code = '';
   return code;
+};
+
+
+Blockly.JavaScript['opposes'] = function(block) {
+  var statements_first_statement = Blockly.JavaScript.statementToCode(block, 'first_statement');
+  var statements_second_statement = Blockly.JavaScript.statementToCode(block, 'second_statement');
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'opposes(' + statements_first_statement + ',' + statements_second_statement + ')';
+  return code;
+};
+
+Blockly.JavaScript['according_to'] = function(block) {
+  var value_rule = Blockly.JavaScript.valueToCode(block, 'rule', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_statement = Blockly.JavaScript.statementToCode(block, 'statement');
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'according_to(' + value_rule + ',' + statements_statement + ')';
+  return code;
+};
+
+Blockly.JavaScript['scope'] = function(block) {
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'not_implemented';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 // // Call code generation once when the page loads

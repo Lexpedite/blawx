@@ -298,9 +298,13 @@ knownRulesCallback = function(workspace) {
     }
     var sections = $('.lawpart');
 
-    var blocktext = '<xml><block type="overrules"></block></xml>';
-    var block = Blockly.Xml.textToDom(blocktext).firstChild;
-    xmlList.push(block);
+    var blocktypes = ['scope']
+    for (var i = 0; i < blocktypes.length; i++) {
+        var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';
+        var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        xmlList.push(block);
+    }
+
     for (var i = 0; i < sections.length; i++) {
         // If the id is "root_section" then just use the abbreviation
         // If the id starts with crossheading, use the text of the element.

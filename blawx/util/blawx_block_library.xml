@@ -983,7 +983,7 @@
         <field name="INPUTNAME">defeating_rule</field>
         <field name="ALIGN">LEFT</field>
         <value name="TYPE">
-          <shadow type="type_null"></shadow>
+          <shadow type="type_null" id="QUMD94W6Ko}D7zJ/R+#1"></shadow>
           <block type="type_other" id="4_iiW,ZUi5L-a?FprfA?">
             <field name="TYPE">RULE</field>
           </block>
@@ -1041,7 +1041,7 @@
     </value>
     <value name="COLOUR">
       <block type="colour_hue" id="bx2qFEfo118{yIKHo9O6">
-        <mutation colour="#805ba5"></mutation>
+        <mutation colour="#5ba593"></mutation>
         <field name="HUE">165</field>
       </block>
     </value>
@@ -4287,8 +4287,208 @@
     </value>
     <value name="COLOUR">
       <block type="colour_hue" id="z!zqJj_LOovNf10sZ=e(">
-        <mutation colour="#6d5ba5"></mutation>
+        <mutation colour="#805ba5"></mutation>
         <field name="HUE">270</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="vK|Ds@(PeR-N9Du6F_9_" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">opposes</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_statement" id="P]]JTdit=Wegh4Yfdtgn">
+        <field name="INPUTNAME">first_statement</field>
+        <field name="ALIGN">LEFT</field>
+        <value name="TYPE">
+          <shadow type="type_null" id="*Ji[{E[uJ{8pr$w;b#QG"></shadow>
+          <block type="type_other" id="^#,U+UoZa+ZlD`ppOA3c">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="=W)b^t]{3{|x.7zV[GF}">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="zm^Diz=`Soq`7+`+OqGs">
+                <field name="TEXT">opposes</field>
+              </block>
+            </statement>
+            <next>
+              <block type="input_statement" id="JJ_,O)yD575h;#K1UlHk">
+                <field name="INPUTNAME">second_statement</field>
+                <field name="ALIGN">LEFT</field>
+                <value name="TYPE">
+                  <shadow type="type_null" id="[Y%6M/*DgS.hgFxS*j2T"></shadow>
+                  <block type="type_other" id="tYy^do72pRcm3BKT:]!r">
+                    <field name="TYPE">OUTER</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="87I+RR/UUe=kzh5tq,zd" deletable="false" movable="false">
+        <field name="TEXT">Use to indicate that two conclusions are inconsistent for the purpose of override statements</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="2/^22L6KXyvx`Cc/xvlY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="Jvv;;L?^I:B!S/uK~QzJ"></shadow>
+      <block type="type_group" id="s-6tSk-7/sA|_]R!L:Gk">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="t$|=J23.D[;D^%nZqMpM">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="!*|rP)MJG{E?4.SAetW]">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="{HB@#zw:(ddcWehFq!}3"></shadow>
+      <block type="type_other" id="5=+{6CsPD,lT5e/TUBeM">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="ZOa3@fo;!qt8O@LCx]Bp">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="H3tRR+7.d1);E^y8Xd?j" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">according_to</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="Ae`!:MX1GU*Xo*~!mUo!">
+        <field name="INPUTNAME">rule</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="BVu`1q2|6c8X=*bt#?Vo">
+            <field name="TEXT">According to</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="N_kjL.4)Cmvw*BU0Nhow"></shadow>
+          <block type="type_group" id="d1vbQ6Upv]o`mLO^6gIY">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="R9*SfL,BF*i%@#|aEU|F">
+                <field name="TYPE">RULE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="9#Q0sl5rUSh+88MLUMlF">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_statement" id="(79F(%@d)S[it`eM2=D!">
+            <field name="INPUTNAME">statement</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id=":jg!`^*w3Ow_{axvbiK,"></shadow>
+              <block type="type_other" id="AT6rncg6feKyBn4{=+ot">
+                <field name="TYPE">OUTER</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="J*],_Bi(*vqrZ:kG.1}," deletable="false" movable="false">
+        <field name="TEXT">Use to determine whether a conclusion was held by a rule, regardless of whether it was later overridden.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="fxT;0_hFmq?6)G~!y)2." deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="a*_8zd`{z$K,JM8Pg_XI"></shadow>
+      <block type="type_group" id="a:diM5-W1cn#0?_9a!a)">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="[@w]Ofy2W]6#~X?]~h!l">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="PnMyYNMFnY(Y~JBjS1|^">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="lH6*;y3@OWWWszs-5X@P"></shadow>
+      <block type="type_other" id="x)1eku1=1=SH5S:F]@:x">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="NdDV2r7m?A[OE@|/^*%h">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Z#NK~l]SaD;@_qWCpwVg" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">scope</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="ji648^)}IvYk{g+y~b=8">
+        <field name="INPUTNAME">NAME</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="BL+T6+./o+oZ$TPMVS`i">
+            <field name="TEXT">anything under</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="6j,J)fv]tYT]`LGBh`M-"></shadow>
+          <block type="type_other" id="+/Q6YU,M[B?z6hMdKq]1">
+            <field name="TYPE">RULE</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="UJSJD...9ujZUYg^@S(K" deletable="false" movable="false">
+        <field name="TEXT">Use to indicate the given section of a written rule and its sub-sections.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="wleoC=ob^@U.1.zFQUfJ" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="*8hU~RGCrM#zirx92;*V"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="bHtM;rKW97{Q+BGKT4fc">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
       </block>
     </value>
   </block></xml>
