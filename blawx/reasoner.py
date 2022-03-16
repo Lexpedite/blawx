@@ -11,6 +11,7 @@ from contextlib import redirect_stderr
 from swiplserver import PrologMQI, PrologError, PrologLaunchError
 
 from .models import Workspace, RuleDoc, BlawxTest
+from .ldap import ldap_code
 
 def json_2_scasp(element,higher_order=False):
   output = ""
@@ -216,6 +217,10 @@ def run_test(request,ruledoc,test_name):
     rulefile = tempfile.NamedTemporaryFile('w',delete=False)
     rulefile.write(":- use_module(library(scasp)).\n")
     rulefile.write(":- use_module(library(scasp/human)).\n")
+
+    rulefile.write(ldap_code + '\n\n')
+
+
     rulefile.write(translated_facts)
     rulefile.write(ruleset)
     rulefile.close()

@@ -147,7 +147,7 @@ Blockly.JavaScript['query'] = function(block) {
   var code = "?- ";
   var currentBlock = this.getInputTargetBlock('query');
   while (currentBlock) {
-    var codeForBlock = 'legally_holds(' + getCodeForSingleBlock(currentBlock) + ')';
+    var codeForBlock = 'legally_holds(_,' + getCodeForSingleBlock(currentBlock) + ')';
     code += codeForBlock
     currentBlock = currentBlock.getNextBlock();
     if (currentBlock) {
@@ -175,7 +175,7 @@ Blockly.JavaScript['unattributed_rule'] = function(block) {
   var code = "";
   var currentBlock = this.getInputTargetBlock('conclusion');
   while (currentBlock) {
-    var codeForBlock = 'according_to( ' + current_doc.replace(' ','__').replace('.','_') + ',' + getCodeForSingleBlock(currentBlock) + ')';
+    var codeForBlock = 'according_to( ' + current_doc.replace(' ','__').replace('.','_').toLowerCase() + ',' + getCodeForSingleBlock(currentBlock) + ')';
     currentBlock = currentBlock.getNextBlock() ;
     code += codeForBlock;
     if (currentBlock) {
@@ -222,7 +222,7 @@ Blockly.JavaScript['legal_doc_text'] = function(block) {
 Blockly.JavaScript['doc_selector'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var value_doc_part_name = block.getFieldValue('doc_part_name');
-  var code = value_doc_part_name.replace(' ','__').replace('.','_');
+  var code = value_doc_part_name.replace(' ','__').replace('.','_').toLowerCase();
   // TODO: Change ORDER_ATOMIC to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
