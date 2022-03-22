@@ -316,9 +316,17 @@ Blockly.JavaScript['category_declaration'] = function(block) {
     var prefix = nextblock.getFieldValue('prefix');
     var postfix = nextblock.getFieldValue('postfix');
     code += "#pred " + text_category_name + "(X) :: '";
-    code += (prefix + " @(X) " + postfix).trim() + "'.\n"
+    code += (prefix + " @(X) " + postfix).trim() + "'.\n";
+    code += "#pred according_to(R," + text_category_name + "(X)) :: '";
+    code += "according to @(R), " + (prefix + " @(X) " + postfix).trim() + "'.\n";
+    code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
+    code += "it legally holds that " + (prefix + " @(X) " + postfix).trim() + "'.\n";
   } else {
-    code = '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'";
+    code = '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'.\n";
+    code += "#pred according_to(R," + text_category_name + "(X)) :: '";
+    code += "according to @(R), @(X) is a " + text_category_name + "'.\n";
+    code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
+    code += "it legally holds that @(X) is a " + text_category_name + "'.\n";
   }
   return code;
 };
@@ -367,6 +375,21 @@ Blockly.JavaScript['attribute_declaration'] = function(block) {
     }
     add_code = prefix + " @(X) " + infix + " @(Y) " + postfix
     code += ") :: '" + add_code.trim() + "'.\n"
+    code += "#pred according_to(R," + text_attribute_name + "(";
+    if (order == "ov") {
+      code += "X,Y";
+    } else {
+      code += "Y,X";
+    }
+    code += ")) :: 'according to @(R), " + add_code.trim() + "'.\n"
+    code += "#pred legally_holds(_," + text_attribute_name + "(";
+    if (order == "ov") {
+      code += "X,Y";
+    } else {
+      code += "Y,X";
+    }
+    code += ")) :: 'it legally holds that " + add_code.trim() + "'.\n"
+    
   }
   return code;
 };

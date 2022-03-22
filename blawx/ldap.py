@@ -1,8 +1,8 @@
 ldap_code = """
-#pred overrides(R1,C1,R2,C2) :: 'the conclusion @(C1) from rule @(R1) overrides the conclusion @(C2) from rule @(R2)'.
+#pred overrides(R1,_,R2,_) :: 'the conclusion in @(R1) overrides the conclusion in @(R2)'.
 #pred opposes(C1,C2) :: 'the conclusion @(C1) conflicts with the conclusion @(C2)'.
-
-#pred refuted_by(R1,C1,R2,C2) :: 'the conclusion @(C1) from rule @(R1) is refuted by the conclusion @(C2) from rule @(R2)'.
+#pred defeated_by(R,_,OR,_) :: 'the conclusion in @(R) is defeated by the conclusion in @(OR)'.
+#pred refuted_by(R1,_,R2,_) :: 'the conclusion in @(R1) is refuted by the conclusion in @(R2)'.
 
 opposes(C1,C2) :- opposes(C2,C1).
 
