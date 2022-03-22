@@ -175,7 +175,7 @@ Blockly.JavaScript['unattributed_rule'] = function(block) {
   var code = "";
   var currentBlock = this.getInputTargetBlock('conclusion');
   while (currentBlock) {
-    var codeForBlock = 'according_to( ' + current_doc.replace(' ','__').replace('.','_').toLowerCase() + ',' + getCodeForSingleBlock(currentBlock) + ')';
+    var codeForBlock = 'according_to( ' + current_doc.replace(' ','__').replace('.','_').toLowerCase() + '_end,' + getCodeForSingleBlock(currentBlock) + ')';
     currentBlock = currentBlock.getNextBlock() ;
     code += codeForBlock;
     if (currentBlock) {
@@ -222,7 +222,7 @@ Blockly.JavaScript['legal_doc_text'] = function(block) {
 Blockly.JavaScript['doc_selector'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var value_doc_part_name = block.getFieldValue('doc_part_name');
-  var code = value_doc_part_name.replace(' ','__').replace('.','_').toLowerCase();
+  var code = value_doc_part_name.replace(' ','__').replace('.','_').toLowerCase() + "_end";
   // TODO: Change ORDER_ATOMIC to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -686,7 +686,7 @@ Blockly.JavaScript['according_to'] = function(block) {
   var value_rule = Blockly.JavaScript.valueToCode(block, 'rule', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_statement = Blockly.JavaScript.statementToCode(block, 'statement');
   // TODO: Assemble JavaScript into code variable.
-  var code = 'according_to(' + value_rule + ',' + statements_statement + ')';
+  var code = 'according_to(' + value_rule + '_end,' + statements_statement + ')';
   return code;
 };
 

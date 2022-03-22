@@ -238,6 +238,10 @@ def run_test(request,ruledoc,test_name):
                   load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
               transcript.write(str(load_file_answer) + '\n')
               if os.path.exists(rulefilename):
+                  rules = open(rulefilename)
+                  rulestext = rules.read()
+                  transcript.write(rulestext + '\n')
+                  rules.close()
                   os.remove(rulefilename)
 
               transcript.write(full_query)
