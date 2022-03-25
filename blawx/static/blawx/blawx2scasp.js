@@ -701,7 +701,8 @@ Blockly.JavaScript['opposes'] = function(block) {
   var statements_first_statement = Blockly.JavaScript.statementToCode(block, 'first_statement');
   var statements_second_statement = Blockly.JavaScript.statementToCode(block, 'second_statement');
   // TODO: Assemble JavaScript into code variable.
-  var code = 'opposes(' + statements_first_statement + ',' + statements_second_statement + ')';
+  var code = 'opposes(' + statements_first_statement + ',' + statements_second_statement + ').\n';
+  code += 'opposes(' + statements_second_statement + ',' + statements_first_statement + ')';
   return code;
 };
 
