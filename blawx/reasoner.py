@@ -209,14 +209,32 @@ def run_test(request,ruledoc,test_name):
       ruleset += "\n\n" + ws.scasp_encoding
     ruleset += "\n\n" + test.scasp_encoding
     print(ruleset)
+    
+    rulefile = tempfile.NamedTemporaryFile('w',delete=False)
+    rulefile.write("""
+:- use_module(library(scasp)).
+:- use_module(library(scasp/human)).
+:- use_module(library(scasp/output)).
+
+:- meta_predicate
+run(0,-).
+
+run(Query, Human) :-
+    scasp(Query,[tree(Tree)]),
+    ovar_analyze_term(t(A, Tree)),
+    with_output_to(string(Human),
+    human_justification_tree(Tree,[])).
+""")
     query = "No Query Specified"
     for line in test.scasp_encoding.splitlines():
         if line.startswith("?- "):
             query = line[3:-1] # remove query prompt and period.
-    full_query = "scasp(" + query + ",[tree(Tree)]),with_output_to(string(Human), human_justification_tree(Tree,[]))."
-    rulefile = tempfile.NamedTemporaryFile('w',delete=False)
-    rulefile.write(":- use_module(library(scasp)).\n")
-    rulefile.write(":- use_module(library(scasp/human)).\n")
+    rulefile.write("""
+run :-
+    Query = """ + query + """,
+    run(Query, Human),
+    format('Got ~p~nBecause~n~s', [Query, Human]).
+""")
 
     rulefile.write(ldap_code + '\n\n')
 
@@ -246,7 +264,7 @@ def run_test(request,ruledoc,test_name):
 
               transcript.write(full_query)
               with redirect_stderr(transcript):
-                  query_answer = swipl_thread.query(full_query)
+                  query_answer = swipl_thread.query('run.')
               transcript.write(str(query_answer) + '\n')
 
               transcript.close()
