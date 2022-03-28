@@ -328,6 +328,8 @@ Blockly.JavaScript['category_declaration'] = function(block) {
     code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
     code += "it legally holds that @(X) is a " + text_category_name + "'.\n";
   }
+  code += 'opposes(' + text_category_name + '(X),-' + text_category_name + '(X)).\n';
+  code += 'opposes(-' + text_category_name + '(X),' + text_category_name + '(X)).\n';
   return code;
 };
 
@@ -359,7 +361,7 @@ Blockly.JavaScript['category_attribute'] = function(block) {
 
 Blockly.JavaScript['attribute_declaration'] = function(block) {
   var text_attribute_name = block.getFieldValue('attribute_name');
-  // var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  var block_attribute_type = block.getInputTargetBlock('attribute_type');
   var code = '';
   var nextblock = block.getNextBlock();
   if (nextblock && nextblock.type == "attribute_display") {
@@ -389,6 +391,14 @@ Blockly.JavaScript['attribute_declaration'] = function(block) {
       code += "Y,X";
     }
     code += ")) :: 'it legally holds that " + add_code.trim() + "'.\n"
+    if (block_attribute_type.type == "true_false_type_selector") {
+      code += "opposes(" + text_attribute_name + "(X,true)," + text_attribute_name + "(X,false)).\n";
+      code += "opposes(" + text_attribute_name + "(X,false)," + text_attribute_name + "(X,true)).\n";
+      code += "-" + text_attribute_name + "(X,true) :- " + text_attribute_name + "(X,false).\n"
+      code += "-" + text_attribute_name + "(X,false) :- " + text_attribute_name + "(X,true).\n"
+    }
+    code += "opposes(" + text_attribute_name + "(X,Y),-" + text_attribute_name + "(X,Y)).\n";
+    code += "opposes(-" + text_attribute_name + "(X,Y)," + text_attribute_name + "(X,Y)).\n";
     
   }
   return code;

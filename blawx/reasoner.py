@@ -6,6 +6,7 @@ from rest_framework.permissions import AllowAny
 import tempfile
 import os
 import json 
+import re
 from contextlib import redirect_stderr
 
 from swiplserver import PrologMQI, PrologError, PrologLaunchError
@@ -217,23 +218,24 @@ def run_test(request,ruledoc,test_name):
 :- use_module(library(scasp/output)).
 
 :- meta_predicate
-run(0,-).
-
-run(Query, Human) :-
-    scasp(Query,[tree(Tree)]),
-    ovar_analyze_term(t(A, Tree)),
-    with_output_to(string(Human),
-    human_justification_tree(Tree,[])).
+    blawxrun2(0,-).
 """)
+
     query = "No Query Specified"
     for line in test.scasp_encoding.splitlines():
         if line.startswith("?- "):
             query = line[3:-1] # remove query prompt and period.
+
     rulefile.write("""
-run :-
-    Query = """ + query + """,
-    run(Query, Human),
-    format('Got ~p~nBecause~n~s', [Query, Human]).
+blawxrun(Query, Human) :-
+    scasp(Query,[tree(Tree)]),
+""")
+    # For Each Variable in the query
+    for v in get_variables(query):
+      rulefile.write("ovar_analyze_term(t(" + v + ", Tree)),")
+    rulefile.write("""
+    with_output_to(string(Human),
+    human_justification_tree(Tree,[])).
 """)
 
     rulefile.write(ldap_code + '\n\n')
@@ -262,9 +264,9 @@ run :-
                   rules.close()
                   os.remove(rulefilename)
 
-              transcript.write(full_query)
+              #transcript.write(full_query)
               with redirect_stderr(transcript):
-                  query_answer = swipl_thread.query('run.')
+                  query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
               transcript.write(str(query_answer) + '\n')
 
               transcript.close()
@@ -280,4 +282,6 @@ run :-
       return Response({ "error": "Blawx could not load the reasoner." })
     # Return the results as JSON
     return Response({ "answer": json.dumps(query_answer), "transcript": transcript_output })
-      
+
+def get_variables(query):
+  return re.findall(r"[A-Z_]\w*",query)
