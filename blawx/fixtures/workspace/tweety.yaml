@@ -33,11 +33,19 @@
 
       #pred legally_holds(_,bird(X)) :: ''it legally holds that @(X) is a bird''.
 
+      opposes(bird(X),-bird(X)).
+
+      opposes(-bird(X),bird(X)).
+
       #pred penguin(X) :: ''@(X) is a penguin''.
 
       #pred according_to(R,penguin(X)) :: ''according to @(R), @(X) is a penguin''.
 
       #pred legally_holds(_,penguin(X)) :: ''it legally holds that @(X) is a penguin''.
+
+      opposes(penguin(X),-penguin(X)).
+
+      opposes(-penguin(X),penguin(X)).
 
       bird(X) :-
 
@@ -78,6 +86,10 @@
 
       #pred legally_holds(_,thing(X)) :: ''it legally holds that @(X) is a thing''.
 
+      opposes(thing(X),-thing(X)).
+
+      opposes(-thing(X),thing(X)).
+
       #pred flies(Y,X) :: ''it is @(X) that @(Y) flies''.
 
       #pred according_to(R,flies(Y,X)) :: ''according to @(R), it is @(X) that @(Y)
@@ -86,11 +98,52 @@
       #pred legally_holds(_,flies(Y,X)) :: ''it legally holds that it is @(X) that
       @(Y) flies''.
 
+      opposes(flies(X,true),flies(X,false)).
+
+      opposes(flies(X,false),flies(X,true)).
+
+      -flies(X,true) :- flies(X,false).
+
+      -flies(X,false) :- flies(X,true).
+
+      opposes(flies(X,Y),-flies(X,Y)).
+
+      opposes(-flies(X,Y),flies(X,Y)).
+
 
 
       according_to( ba__2_end,flies(A,true)) :-
 
       bird(A).'
+- model: blawx.workspace
+  pk: 23
+  fields:
+    ruledoc: 3
+    workspace_name: sec_3_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="gQ$Vo/y%X7t_AIj]#MQ5" x="44" y="33"><statement name="statements"><block
+      type="overrules" id="Q;r403KpUBqe7a-c]^g2"><value name="defeating_rule"><block
+      type="doc_selector" id="00JUdspJG@ZvY@Sf.ze="><field name="doc_part_name">BA
+      3</field></block></value><value name="defeated_rule"><block type="doc_selector"
+      id="hC.cd~(Ni(~,/q=?5`hH"><field name="doc_part_name">BA 2</field></block></value></block></statement></block><block
+      type="unattributed_rule" id="nYUW@13WKx$7J[o!.;31" x="47" y="251"><statement
+      name="conditions"><block type="object_category" id="6+g}d-K7+YA:N:ZriAal"><value
+      name="object"><block type="variable" id="l?TPM/6NjhWvD3FHa;?d"><field name="variable_name">A</field></block></value><value
+      name="category"><block type="category_selector" id="tl0;S,#(sEB#fFwk|jW;"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
+      name="category_name">penguin</field></block></value></block></statement><statement
+      name="conclusion"><block type="attribute_selector" id="SHN;Hu9oBh|gd!*nxV6f"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="flies" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that</field><field name="postfix">flies</field><value name="first_element"><block
+      type="false_value" id="NmoECeQPU.b,ZEex@o},"></block></value><value name="second_element"><block
+      type="variable" id="@p2YWiY7(k6nm5SLrbcX"><field name="variable_name">A</field></block></value></block></statement></block></xml>
+    scasp_encoding: 'overrules(ba__3_end,ba__2_end).
+
+
+      according_to( ba__3_end,flies(A,false)) :-
+
+      penguin(A).'
 - model: blawx.workspace
   pk: 23
   fields:
