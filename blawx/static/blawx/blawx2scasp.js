@@ -143,11 +143,11 @@ Blockly.JavaScript['fact'] = function(block) {
 Blockly.JavaScript['query'] = function(block) {
   var statements_query = Blockly.JavaScript.statementToCode(block, 'query');
   // TODO: Assemble JavaScript into code variable.
-  var code = '?- ' + statements_query + '.\n\n';
+  // var code = '?- ' + statements_query + '.\n\n';
   var code = "?- ";
   var currentBlock = this.getInputTargetBlock('query');
   while (currentBlock) {
-    var codeForBlock = getCodeForSingleBlock(currentBlock);
+    var codeForBlock =  getCodeForSingleBlock(currentBlock);
     code += codeForBlock
     currentBlock = currentBlock.getNextBlock();
     if (currentBlock) {
@@ -176,7 +176,7 @@ Blockly.JavaScript['unattributed_rule'] = function(block) {
   var currentBlock = this.getInputTargetBlock('conclusion');
   while (currentBlock) {
     var codeForBlock = getCodeForSingleBlock(currentBlock);
-    currentBlock = currentBlock.getNextBlock();
+    currentBlock = currentBlock.getNextBlock() ;
     code += codeForBlock;
     if (currentBlock) {
       code += ",\n";
@@ -221,7 +221,8 @@ Blockly.JavaScript['legal_doc_text'] = function(block) {
 
 Blockly.JavaScript['doc_selector'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var value_doc_part_name = block.getFieldValue('doc_part_name');
+  var code = value_doc_part_name.replace(' ','__').replace('.','_').toLowerCase() + "_end";
   // TODO: Change ORDER_ATOMIC to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -230,7 +231,7 @@ Blockly.JavaScript['overrules'] = function(block) {
   var value_defeating_rule = Blockly.JavaScript.valueToCode(block, 'defeating_rule', Blockly.JavaScript.ORDER_ATOMIC);
   var value_defeated_rule = Blockly.JavaScript.valueToCode(block, 'defeated_rule', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  var code = 'overrules(' + value_defeating_rule + ',' + value_defeated_rule + ')';
   return code;
 };
 
@@ -315,9 +316,17 @@ Blockly.JavaScript['category_declaration'] = function(block) {
     var prefix = nextblock.getFieldValue('prefix');
     var postfix = nextblock.getFieldValue('postfix');
     code += "#pred " + text_category_name + "(X) :: '";
-    code += (prefix + " @(X) " + postfix).trim() + "'.\n"
+    code += (prefix + " @(X) " + postfix).trim() + "'.\n";
+    code += "#pred according_to(R," + text_category_name + "(X)) :: '";
+    code += "according to @(R), " + (prefix + " @(X) " + postfix).trim() + "'.\n";
+    code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
+    code += "it legally holds that " + (prefix + " @(X) " + postfix).trim() + "'.\n";
   } else {
-    code = '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'";
+    code = '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'.\n";
+    code += "#pred according_to(R," + text_category_name + "(X)) :: '";
+    code += "according to @(R), @(X) is a " + text_category_name + "'.\n";
+    code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
+    code += "it legally holds that @(X) is a " + text_category_name + "'.\n";
   }
   return code;
 };
@@ -350,7 +359,7 @@ Blockly.JavaScript['category_attribute'] = function(block) {
 
 Blockly.JavaScript['attribute_declaration'] = function(block) {
   var text_attribute_name = block.getFieldValue('attribute_name');
-  // var value_attribute_type = Blockly.JavaScript.valueToCode(block, 'attribute_type', Blockly.JavaScript.ORDER_ATOMIC);
+  var block_attribute_type = block.getInputTargetBlock('attribute_type');
   var code = '';
   var nextblock = block.getNextBlock();
   if (nextblock && nextblock.type == "attribute_display") {
@@ -366,6 +375,24 @@ Blockly.JavaScript['attribute_declaration'] = function(block) {
     }
     add_code = prefix + " @(X) " + infix + " @(Y) " + postfix
     code += ") :: '" + add_code.trim() + "'.\n"
+    code += "#pred according_to(R," + text_attribute_name + "(";
+    if (order == "ov") {
+      code += "X,Y";
+    } else {
+      code += "Y,X";
+    }
+    code += ")) :: 'according to @(R), " + add_code.trim() + "'.\n"
+    code += "#pred legally_holds(_," + text_attribute_name + "(";
+    if (order == "ov") {
+      code += "X,Y";
+    } else {
+      code += "Y,X";
+    }
+    code += ")) :: 'it legally holds that " + add_code.trim() + "'.\n"
+    if (block_attribute_type.type == "true_false_type_selector") {
+      code += "opposes(" + text_attribute_name + "(X,true)," + text_attribute_name + "(X,false)).\n";
+      code += "opposes(" + text_attribute_name + "(X,false)," + text_attribute_name + "(X,true)).\n";
+    }
   }
   return code;
 };
@@ -669,6 +696,39 @@ Blockly.JavaScript['assume'] = function(block) {
 Blockly.JavaScript['json_textfield'] = function(block) {
   // var text_payload = block.getFieldValue('payload');
   var code = '';
+  return code;
+};
+
+
+Blockly.JavaScript['opposes'] = function(block) {
+  var statements_first_statement = Blockly.JavaScript.statementToCode(block, 'first_statement');
+  var statements_second_statement = Blockly.JavaScript.statementToCode(block, 'second_statement');
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'opposes(' + statements_first_statement + ',' + statements_second_statement + ').\n';
+  code += 'opposes(' + statements_second_statement + ',' + statements_first_statement + ')';
+  return code;
+};
+
+Blockly.JavaScript['according_to'] = function(block) {
+  var value_rule = Blockly.JavaScript.valueToCode(block, 'rule', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_statement = Blockly.JavaScript.statementToCode(block, 'statement');
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'according_to(' + value_rule + ',' + statements_statement + ')';
+  return code;
+};
+
+Blockly.JavaScript['scope'] = function(block) {
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'not_implemented';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['holds'] = function(block) {
+  var statements_statement = Blockly.JavaScript.statementToCode(block, 'statement');
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'legally_holds(_,' + statements_statement + ')';
   return code;
 };
 

@@ -32,26 +32,17 @@
         <!-- <category name="Include" colour="#666666">
             <block type="include"></block>  
         </category>
-        <sep></sep>
-        <category name="Documents" colour="#5ba593">
-            <block type="legal_doc"></block>
-            <block type="legal_doc_node"></block>
-            <block type="silent_legal_doc_node"></block>
-            <block type="legal_doc_text"></block>
-            <block type="legal_doc_text_continuation"></block>
-            <block type="legal_doc_text_parent_continuation"></block>
-            <block type="doc_selector"></block>
-        </category> -->
-        <!-- <category name="Known Rules" custom="KNOWN_RULES" colour="#5ba593">
+        <sep></sep>-->
+        <category name="Primary" custom="PRIMARY" colour="#805ba5">
         </category>
-        <sep></sep> -->
-        <category name="Primary" colour="#805ba5">
-            <block type="unattributed_fact"></block>
-            <block type="unattributed_rule"></block>
-            <block type="unattributed_constraint"></block>
-            <block type="query"></block>
-            <block type="assume"></block>
-            <block type="json_textfield"></block>
+        <sep></sep>
+        <category name="Exceptions" colour="#5ba593">
+            <block type="overrules"></block>
+            <block type="opposes"></block>
+            <block type="according_to"></block>
+            <block type="holds"></block>
+        </category>
+        <category name="Known Sections" custom="KNOWN_RULES" colour="#5ba593">
         </category>
         <sep></sep>
         <category name="Categories" colour="#a55b5b">
@@ -198,18 +189,45 @@
             var selectors = $('.lawpart input'); // Switch from jQuery
             var prev_section = 'root_section';
             var current_section = 'root_section';
+            var abbreviation = "";
+            var xmlList = [];
+            var title_element = $('.lawpart.act');
+            title = title_element[0].outerText;
+            var parts = title.split(" ")
+            for (var i = 0; i < parts.length; i++) {
+                if (isNaN(parts[i])) {
+                    var first_char = parts[i].charAt(0);
+                    if (first_char == first_char.toUpperCase()) {
+                        abbreviation += first_char;
+                    }
+                }
+            }
+            var current_doc = abbreviation;
             for (var i = 0; i < selectors.length; i++) {
                 selectors[i].addEventListener('change', function() {
-                    console.log("Current section is " + current_section)
-                    console.log("Previous section is " + prev_section)
-                    console.log("Selected is " + this.id)
+                    // console.log("Current section is " + current_section)
+                    // console.log("Previous section is " + prev_section)
+                    // console.log("Selected is " + this.id)
                     if (this.id !== current_section) {
-                        console.log("different section selected " + this.id)
+                        // console.log("different section selected " + this.id)
                         load_section_workspace({{ ruledoc.pk }},this.id)
                         prev_section = current_section;
                         current_section = this.id;
-                    }
-                    
+                        if (current_section == "root_section") {
+                            current_doc = "";
+                        }
+                        if (current_section.startsWith("crossheading")) {
+                            current_doc = "not_implemented";
+                        } else {
+                            current_doc = current_section;
+                            current_doc = current_doc.replace("sec_","");
+                            current_doc = current_doc.replace("__subsec_",".");
+                            current_doc = current_doc.replace("__para_",".");
+                            current_doc = current_doc.replace("__subpara_",".");
+                            current_doc = current_doc.replace("_section","");
+                        }
+                        current_doc = abbreviation + " " + current_doc
+                    }   
                 });
             }
             var workspace_is_test = false;
@@ -219,6 +237,7 @@
         <script src="{% static 'blawx/import.js' %}"></script>
         <script src="{% static 'blawx/attributes.js' %}"></script>
         <script src="{% static 'blawx/blawx2scasp.js' %}"></script>
+        <script src="{% static 'blawx/context_menus.js' %}"></script>
    
     <div>
       <input id="loadfile"  onchange="loadBlocksFile(this)" type="file" accept=".blawx" hidden/>
