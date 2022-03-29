@@ -361,7 +361,7 @@ primaryDrawerCallback = function(workspace) {
     } else {
         blocktext = current_doc
     }
-    console.log("Creating drawer using " + blocktext)
+    // console.log("Creating drawer using " + blocktext)
     var querytext = '<xml><block type="unattributed_rule">\
     <statement name="conclusion">\
       <block type="according_to">\

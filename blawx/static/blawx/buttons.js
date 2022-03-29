@@ -181,7 +181,7 @@ getExample = function(example_pk){
 }
 var load_section_workspace;
 load_section_workspace = function(ruledoc_id,workspace_id) {
-    console.log("Trying to load workspace " + workspace_id + " from RuleDoc " + ruledoc_id)
+    // console.log("Trying to load workspace " + workspace_id + " from RuleDoc " + ruledoc_id)
     // Save the current workspace with a call to /ruledoc_id/workspace_name/update
     // updateWorkspace();
     // Get the new workspace with a call to /ruledoc_id/workspace_name/get
@@ -191,7 +191,7 @@ load_section_workspace = function(ruledoc_id,workspace_id) {
     xhttp.setRequestHeader('Content-type', 'application/json');
     xhttp.setRequestHeader('X-CSRFToken', csrftoken);
     xhttp.onreadystatechange = function() {
-        console.log("gotten")
+        // console.log("gotten")
         demoWorkspace.clear();
         if (this.responseText) {
             output_object = JSON.parse(this.responseText);
@@ -201,7 +201,7 @@ load_section_workspace = function(ruledoc_id,workspace_id) {
             }
         }
     }
-    console.log("getting")
+    // console.log("getting")
     xhttp.send();
     Blockly.hideChaff();
 }
