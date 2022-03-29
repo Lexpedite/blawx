@@ -298,12 +298,12 @@ knownRulesCallback = function(workspace) {
     // }
     var sections = $('.lawpart');
 
-    var blocktypes = ['scope']
-    for (var i = 0; i < blocktypes.length; i++) {
-        var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';
-        var block = Blockly.Xml.textToDom(blocktext).firstChild;
-        xmlList.push(block);
-    }
+    // var blocktypes = ['scope']
+    // for (var i = 0; i < blocktypes.length; i++) {
+    //     var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';
+    //     var block = Blockly.Xml.textToDom(blocktext).firstChild;
+    //     xmlList.push(block);
+    // }
 
     for (var i = 0; i < sections.length; i++) {
         // If the id is "root_section" then just use the abbreviation
@@ -345,6 +345,60 @@ knownRulesCallback = function(workspace) {
 };
 
 demoWorkspace.registerToolboxCategoryCallback('KNOWN_RULES', knownRulesCallback);
+
+var primaryDrawerCallback;
+primaryDrawerCallback = function(workspace) {
+    var blocktypes = ['unattributed_fact','unattributed_rule']
+    var xmlList = [];
+    for (var i = 0; i < blocktypes.length; i++) {
+        var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';
+        var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        xmlList.push(block);
+    }
+    var blocktext;
+    if (current_section == "root_section") {
+        blocktext = abbreviation
+    } else {
+        blocktext = current_doc
+    }
+    console.log("Creating drawer using " + blocktext)
+    var querytext = '<xml><block type="unattributed_rule">\
+    <statement name="conclusion">\
+      <block type="according_to">\
+      <value name="rule">\
+      <block type="doc_selector">\
+        <field name="doc_part_name">' + blocktext + '</field>\
+      </block>\
+    </value>\
+      </block>\
+    </statement>\
+  </block></xml>';
+    var queryblock = Blockly.Xml.textToDom(querytext).firstChild;
+    xmlList.push(queryblock)
+    var blocktypes = ['unattributed_constraint','query']
+    for (var i = 0; i < blocktypes.length; i++) {
+        var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';
+        var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        xmlList.push(block);
+    }
+    var querytext = '<xml><block type="query">\
+    <statement name="query">\
+      <block type="holds"></block>\
+    </statement>\
+  </block></xml>';
+    var queryblock = Blockly.Xml.textToDom(querytext).firstChild;
+    xmlList.push(queryblock)
+    var blocktypes = ['assume','json_textfield']
+    for (var i = 0; i < blocktypes.length; i++) {
+        var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';
+        var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        xmlList.push(block);
+    }
+    return xmlList
+};
+
+demoWorkspace.registerToolboxCategoryCallback('PRIMARY', primaryDrawerCallback);
+
 
 var getAllWorkspaces;
 getAllWorkspaces = function() {
