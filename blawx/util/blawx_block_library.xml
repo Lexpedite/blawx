@@ -4491,4 +4491,69 @@
         <field name="HUE">165</field>
       </block>
     </value>
+  </block><block type="factory_base" id="H3tRR+7.d1);E^y8Xd?j" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">holds</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="r@%xNRV-ki,d@w:;KQgz">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="C]_Y/^4uofCaZVWD@hJ_">
+            <field name="TEXT">Holds that</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="(79F(%@d)S[it`eM2=D!">
+            <field name="INPUTNAME">statement</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id=":jg!`^*w3Ow_{axvbiK,"></shadow>
+              <block type="type_other" id="AT6rncg6feKyBn4{=+ot">
+                <field name="TYPE">OUTER</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="J*],_Bi(*vqrZ:kG.1}," deletable="false" movable="false">
+        <field name="TEXT">Use to determine whether a conclusion was held by a rule and not overruled..</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="fxT;0_hFmq?6)G~!y)2." deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="a*_8zd`{z$K,JM8Pg_XI"></shadow>
+      <block type="type_group" id="a:diM5-W1cn#0?_9a!a)">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="[@w]Ofy2W]6#~X?]~h!l">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="PnMyYNMFnY(Y~JBjS1|^">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="lH6*;y3@OWWWszs-5X@P"></shadow>
+      <block type="type_other" id="x)1eku1=1=SH5S:F]@:x">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="NdDV2r7m?A[OE@|/^*%h">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
   </block></xml>

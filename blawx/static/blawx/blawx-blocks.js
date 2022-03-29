@@ -1857,6 +1857,29 @@ scasp_blockset = [{
   "colour": 165,
   "tooltip": "Use to indicate the given section of a written rule and its sub-sections.",
   "helpUrl": ""
+},
+{
+  "type": "holds",
+  "message0": "Holds that %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "OUTER"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 165,
+  "tooltip": "Use to determine whether a conclusion was held by a rule and not overruled..",
+  "helpUrl": ""
 }]
 
 // Make modifications that it is not possible to make in the Developer Tools
@@ -1872,6 +1895,9 @@ for (var i = 0; i < scasp_blockset.length; i++) {
   };
   if (scasp_blockset[i].type == "attribute_declaration") {
     scasp_blockset[i]['mutator'] = "attribute_declaration_mutator";
+    scasp_blockset[i]['customContextMenu'] = function(array) {
+      return array.push({ 'text': "Test", 'enabled': true, 'callback': null})
+    }
   };
   if (scasp_blockset[i].type == "attribute_display") {
     scasp_blockset[i]['extensions'] = ["changeAttributeDisplayText"];

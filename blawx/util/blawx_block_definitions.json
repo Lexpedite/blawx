@@ -1857,4 +1857,27 @@
   "colour": 165,
   "tooltip": "Use to indicate the given section of a written rule and its sub-sections.",
   "helpUrl": ""
+},
+{
+  "type": "holds",
+  "message0": "Holds that %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "OUTER"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 165,
+  "tooltip": "Use to determine whether a conclusion was held by a rule and not overruled..",
+  "helpUrl": ""
 }]

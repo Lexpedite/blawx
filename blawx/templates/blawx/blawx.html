@@ -33,19 +33,14 @@
             <block type="include"></block>  
         </category>
         <sep></sep>-->
-        <category name="Primary" colour="#805ba5">
-            <block type="unattributed_fact"></block>
-            <block type="unattributed_rule"></block>
-            <block type="unattributed_constraint"></block>
-            <block type="query"></block>
-            <block type="assume"></block>
-            <block type="json_textfield"></block>
+        <category name="Primary" custom="PRIMARY" colour="#805ba5">
         </category>
         <sep></sep>
         <category name="Exceptions" colour="#5ba593">
             <block type="overrules"></block>
             <block type="opposes"></block>
             <block type="according_to"></block>
+            <block type="holds"></block>
         </category>
         <category name="Known Sections" custom="KNOWN_RULES" colour="#5ba593">
         </category>
@@ -242,6 +237,7 @@
         <script src="{% static 'blawx/import.js' %}"></script>
         <script src="{% static 'blawx/attributes.js' %}"></script>
         <script src="{% static 'blawx/blawx2scasp.js' %}"></script>
+        <script src="{% static 'blawx/context_menus.js' %}"></script>
    
     <div>
       <input id="loadfile"  onchange="loadBlocksFile(this)" type="file" accept=".blawx" hidden/>
