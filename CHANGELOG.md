@@ -7,6 +7,24 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.2.0-alpha) 2022-03-28
+
+This update adds defeasibility back to the v1 series.
+
+### Added
+* There is now an "Exceptions" drawer in the toolbox, with the blocks required
+  for using the defeasibility system: overrules, opposes, according to, and holds.
+* There is now a "Known Sections" drawer, with rule section selectors for each
+  of the elements in the rule navigation tree, for use in the according to and
+  overrules blocks.
+* A new example has been added called Tweety that shows how the exceptions
+  system works.
+
+### Changed
+* The primary drawer is now dynamically generated, and has two additional
+  entries, a query that includes the "holds" block, and a rule that includes
+  the "according to" block filled in for the currently-selected rule.
+
 ## [v1.2.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.2.0-alpha) 2022-03-11
 
 The point of this update is to make it easy to edit your natural-language
