@@ -7,7 +7,7 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## [v1.3.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.2.0-alpha) 2022-03-28
+## [v1.3.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.0-alpha) 2022-03-28
 
 This update adds defeasibility back to the v1 series.
 
