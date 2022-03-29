@@ -18,7 +18,7 @@
     ruledoc: 3
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="gN~}:M?mP.QwU*v=NvX@" x="24" y="31"><statement name="statements"><block
+      id="gN~}:M?mP.QwU*v=NvX@" x="29" y="37"><statement name="statements"><block
       type="category_declaration" id="B+GuFFAB]X@X,auopp~*"><field name="category_name">bird</field><next><block
       type="category_declaration" id="Kv.V3s6d7cYC_!EWs0`*"><field name="category_name">penguin</field><next><block
       type="category_equivalence" id="7T_t=I4T[D~)ChXjr41z"><value name="first_category"><block
@@ -33,19 +33,11 @@
 
       #pred legally_holds(_,bird(X)) :: ''it legally holds that @(X) is a bird''.
 
-      opposes(bird(X),-bird(X)).
-
-      opposes(-bird(X),bird(X)).
-
       #pred penguin(X) :: ''@(X) is a penguin''.
 
       #pred according_to(R,penguin(X)) :: ''according to @(R), @(X) is a penguin''.
 
       #pred legally_holds(_,penguin(X)) :: ''it legally holds that @(X) is a penguin''.
-
-      opposes(penguin(X),-penguin(X)).
-
-      opposes(-penguin(X),penguin(X)).
 
       bird(X) :-
 
@@ -74,21 +66,20 @@
       name="category"><block type="category_selector" id=")WWqk#y$9+5Lv_NwrMQw"><mutation
       xmlns="http://www.w3.org/1999/xhtml" category_name="bird"></mutation><field
       name="category_name">bird</field></block></value></block></statement><statement
-      name="conclusion"><block type="attribute_selector" id="]pE{$7nc72o}5eTyfr+["><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="flies" attributetype="Checkmark
-      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
-      name="infix">that</field><field name="postfix">flies</field><value name="first_element"><block
-      type="true_value" id="tu/2LyRJlb)~@@=dFcEg"></block></value><value name="second_element"><block
-      type="variable" id=".$M_~`8znUf+0F_#Fc3Y"><field name="variable_name">A</field></block></value></block></statement></block></xml>
+      name="conclusion"><block type="according_to" id="6a%+|6[ZnwV=PU(=Cj8d"><value
+      name="rule"><block type="doc_selector" id="6|`)n6K;TlnJjgx[#z[z"><field name="doc_part_name">BA
+      2</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="]pE{$7nc72o}5eTyfr+["><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
+      name="first_element"><block type="true_value" id="tu/2LyRJlb)~@@=dFcEg"></block></value><value
+      name="second_element"><block type="variable" id=".$M_~`8znUf+0F_#Fc3Y"><field
+      name="variable_name">A</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: '#pred thing(X) :: ''@(X) is a thing''.
 
       #pred according_to(R,thing(X)) :: ''according to @(R), @(X) is a thing''.
 
       #pred legally_holds(_,thing(X)) :: ''it legally holds that @(X) is a thing''.
-
-      opposes(thing(X),-thing(X)).
-
-      opposes(-thing(X),thing(X)).
 
       #pred flies(Y,X) :: ''it is @(X) that @(Y) flies''.
 
@@ -102,17 +93,9 @@
 
       opposes(flies(X,false),flies(X,true)).
 
-      -flies(X,true) :- flies(X,false).
-
-      -flies(X,false) :- flies(X,true).
-
-      opposes(flies(X,Y),-flies(X,Y)).
-
-      opposes(-flies(X,Y),flies(X,Y)).
 
 
-
-      according_to( ba__2_end,flies(A,true)) :-
+      according_to(ba__2_end,  flies(A,true)) :-
 
       bird(A).'
 - model: blawx.workspace
@@ -126,66 +109,25 @@
       type="doc_selector" id="00JUdspJG@ZvY@Sf.ze="><field name="doc_part_name">BA
       3</field></block></value><value name="defeated_rule"><block type="doc_selector"
       id="hC.cd~(Ni(~,/q=?5`hH"><field name="doc_part_name">BA 2</field></block></value></block></statement></block><block
-      type="unattributed_rule" id="nYUW@13WKx$7J[o!.;31" x="47" y="251"><statement
+      type="unattributed_rule" id="nYUW@13WKx$7J[o!.;31" x="46" y="112"><statement
       name="conditions"><block type="object_category" id="6+g}d-K7+YA:N:ZriAal"><value
       name="object"><block type="variable" id="l?TPM/6NjhWvD3FHa;?d"><field name="variable_name">A</field></block></value><value
       name="category"><block type="category_selector" id="tl0;S,#(sEB#fFwk|jW;"><mutation
       xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
       name="category_name">penguin</field></block></value></block></statement><statement
-      name="conclusion"><block type="attribute_selector" id="SHN;Hu9oBh|gd!*nxV6f"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="flies" attributetype="Checkmark
-      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
-      name="infix">that</field><field name="postfix">flies</field><value name="first_element"><block
-      type="false_value" id="NmoECeQPU.b,ZEex@o},"></block></value><value name="second_element"><block
-      type="variable" id="@p2YWiY7(k6nm5SLrbcX"><field name="variable_name">A</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'overrules(ba__3_end,ba__2_end).
-
-
-      according_to( ba__3_end,flies(A,false)) :-
-
-      penguin(A).'
-- model: blawx.workspace
-  pk: 23
-  fields:
-    ruledoc: 3
-    workspace_name: sec_3_section
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="gQ$Vo/y%X7t_AIj]#MQ5" x="44" y="33"><statement name="statements"><block
-      type="overrules" id="Q;r403KpUBqe7a-c]^g2"><value name="defeating_rule"><block
-      type="doc_selector" id="00JUdspJG@ZvY@Sf.ze="><field name="doc_part_name">BA
-      3</field></block></value><value name="defeated_rule"><block type="doc_selector"
-      id="hC.cd~(Ni(~,/q=?5`hH"><field name="doc_part_name">BA 2</field></block></value><next><block
-      type="opposes" id="Rd{WlEhVp!_[X8/NrAg,"><statement name="first_statement"><block
-      type="attribute_selector" id="!Sp8i^8YY+_r/:qKVv{_"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="flies" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="conclusion"><block type="according_to" id="T,mpb69rN]R[PpbYkXC7"><value
+      name="rule"><block type="doc_selector" id="Erz:Dp%!=*`8PZu1dK)D"><field name="doc_part_name">BA
+      3</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="SHN;Hu9oBh|gd!*nxV6f"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
       name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
-      name="first_element"><block type="true_value" id=":rzvo8c-AL/r`tEWc5*7"></block></value><value
-      name="second_element"><block type="variable" id="-{sL6in1,/UV^fLyS]#o"><field
-      name="variable_name">A</field></block></value></block></statement><statement
-      name="second_statement"><block type="attribute_selector" id="1ic,uR4].C(#x|PFd:iI"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="flies" attributetype="Checkmark
-      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
-      name="infix">that</field><field name="postfix">flies</field><value name="first_element"><block
-      type="false_value" id="%m0,Y?F~Up;`N(f+~6(P"></block></value><value name="second_element"><block
-      type="variable" id="~UqYE);;,fQO{m@q/Q]G"><field name="variable_name">A</field></block></value></block></statement></block></next></block></statement></block><block
-      type="unattributed_rule" id="nYUW@13WKx$7J[o!.;31" x="47" y="251"><statement
-      name="conditions"><block type="object_category" id="6+g}d-K7+YA:N:ZriAal"><value
-      name="object"><block type="variable" id="l?TPM/6NjhWvD3FHa;?d"><field name="variable_name">A</field></block></value><value
-      name="category"><block type="category_selector" id="tl0;S,#(sEB#fFwk|jW;"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
-      name="category_name">penguin</field></block></value></block></statement><statement
-      name="conclusion"><block type="attribute_selector" id="SHN;Hu9oBh|gd!*nxV6f"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="flies" attributetype="Checkmark
-      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
-      name="infix">that</field><field name="postfix">flies</field><value name="first_element"><block
-      type="false_value" id="NmoECeQPU.b,ZEex@o},"></block></value><value name="second_element"><block
-      type="variable" id="@p2YWiY7(k6nm5SLrbcX"><field name="variable_name">A</field></block></value></block></statement></block></xml>
+      name="first_element"><block type="false_value" id="NmoECeQPU.b,ZEex@o},"></block></value><value
+      name="second_element"><block type="variable" id="@p2YWiY7(k6nm5SLrbcX"><field
+      name="variable_name">A</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'overrules(ba__3_end,ba__2_end).
 
-      opposes(  flies(A,true),  flies(A,false)).
 
-
-      according_to( ba__3_end,flies(A,false)) :-
+      according_to(ba__3_end,  flies(A,false)) :-
 
       penguin(A).'
 - model: blawx.blawxtest
@@ -198,15 +140,16 @@
       type="object_declaration" id="#ECeq5_*#ES:XL)O:y.d"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="penguin" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">tweety</field><field name="postfix">is a penguin</field></block></statement></block><block
-      type="query" id="qbI@!z}]i{$s=kwN}yF{" x="51" y="176"><statement name="query"><block
-      type="attribute_selector" id="6k[=ARE9s8Iv9v19Li`3"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="flies" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      type="query" id="qbI@!z}]i{$s=kwN}yF{" x="45" y="99"><statement name="query"><block
+      type="holds" id="9M5d/QdH8py!=$9cw|cI"><statement name="statement"><block type="attribute_selector"
+      id="6k[=ARE9s8Iv9v19Li`3"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
       name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
-      name="first_element"><block type="variable" id="uJ*OkcQGlme|{avpQ3yw"><field
+      name="first_element"><block type="variable" id="oKv0e36S%94P}QcE!RCk"><field
       name="variable_name">A</field></block></value><value name="second_element"><block
       type="object_selector" id="OraP~dRJB`]T@^iQzB*z"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      objectname="tweety"></mutation><field name="object_name">tweety</field></block></value></block></statement></block></xml>
+      objectname="tweety"></mutation><field name="object_name">tweety</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'penguin(tweety).
 
 
-      ?- legally_holds(_,flies(tweety,A)).'
+      ?- legally_holds(_,  flies(tweety,A)).'
