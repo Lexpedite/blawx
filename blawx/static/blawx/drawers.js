@@ -355,26 +355,29 @@ primaryDrawerCallback = function(workspace) {
         var block = Blockly.Xml.textToDom(blocktext).firstChild;
         xmlList.push(block);
     }
-    var blocktext;
-    if (current_section == "root_section") {
-        blocktext = abbreviation
-    } else {
-        blocktext = current_doc
-    }
     // console.log("Creating drawer using " + blocktext)
-    var querytext = '<xml><block type="unattributed_rule">\
-    <statement name="conclusion">\
-      <block type="according_to">\
-      <value name="rule">\
-      <block type="doc_selector">\
+    if (typeof current_section !== 'undefined') {
+        var blocktext;
+        if (current_section == "root_section") {
+            blocktext = abbreviation
+        } else {
+            blocktext = current_doc
+        }
+
+        var querytext = '<xml><block type="unattributed_rule">\
+        <statement name="conclusion">\
+        <block type="according_to">\
+        <value name="rule">\
+        <block type="doc_selector">\
         <field name="doc_part_name">' + blocktext + '</field>\
-      </block>\
-    </value>\
-      </block>\
-    </statement>\
-  </block></xml>';
-    var queryblock = Blockly.Xml.textToDom(querytext).firstChild;
-    xmlList.push(queryblock)
+        </block>\
+        </value>\
+        </block>\
+        </statement>\
+        </block></xml>';
+        var queryblock = Blockly.Xml.textToDom(querytext).firstChild;
+        xmlList.push(queryblock)
+    }
     var blocktypes = ['unattributed_constraint','query']
     for (var i = 0; i < blocktypes.length; i++) {
         var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';

@@ -119,6 +119,9 @@
     
 <main class="flex-grow-1">
     <div class="row flex-row h-100">
+        <div class="card-body akoma-ntoso collapse invisible" id="rules">
+            {{ blawxtest.ruledoc.navtree | safe }}
+      </div>
                 <div id="interface" class="col-auto flex-grow-1 p-20 vh-100 sticky-top">
                     <div id="blocklyArea" class="p-0 h-100">
                         <div id="blocklyDiv" style="position: absolute;"></div>
@@ -169,6 +172,18 @@
             var blawxTestID = '{{ blawxtest.test_name}}';
             var blawxTestRulePK = {{ blawxtest.ruledoc.pk }};
             var workspace_is_test = true;
+            var abbreviation = "";
+            var title_element = $('.lawpart.act');
+            title = title_element[0].outerText;
+            var parts = title.split(" ")
+            for (var i = 0; i < parts.length; i++) {
+                if (isNaN(parts[i])) {
+                    var first_char = parts[i].charAt(0);
+                    if (first_char == first_char.toUpperCase()) {
+                        abbreviation += first_char;
+                    }
+                }
+            }
             window.onload = function() {
                 onresize();
                 liveCode(null);
