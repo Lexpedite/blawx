@@ -17,12 +17,38 @@ TAGS = [
 
 LAW_PARTS = [NS + tag for tag in TAGS]
 
-def generate_text():
-    #TODO Insert text and generate spans where required.
-    return None
+# An example of the target look for a content node looks like this:
+# <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+#   <p>The winner of a game is the 
+#       <span class="lawpart span" id="sec_4_section__player_span">
+#           <input class="form-check-inline" type="radio" name="section" id="sec_4_section__player_span">
+#               player who 
+#               <span class="lawpart span" id="sec_4_section__player_span__throws_span">
+#                   <input class="form-check-inline" type="radio" name="section" id="sec_4_section__payer_span__throws_span">
+#                   throws a sign
+#               </span>
+#       </span>
+#       that beats the sign of the other player.
+#   </p>
+# </content>
+# Need to make some changes to the CSS so it displays better, but that should do the trick.
 
-def generate_span():
+def generate_text(node):
+    #TODO Insert text and generate spans where required.
+    html = ""
+    for thing in list:
+        if thing is text:
+            html += thing
+        else: #Can only be a span
+            html += generate_span(thing)
+    return html
+
+def generate_span(node):
     #TODO Generate span and selector and then generate_text for the span body.
+    html = ""
+    html += '<span class="lawpart">'
+    html += generate_text(node.text)
+    html += '</span>'
     return None
 
 def generate_selector(type,name,text,children,checked=False):
@@ -73,7 +99,7 @@ def generate_tree(node,indent=0):
                 initial_text += node['heading'].text
         if NS + 'subheading' in subtags:
             # print(" "*indent + "Subheading: " + node['subheading'].text)
-            if node['subheadin'].text:
+            if node['subheading'].text:
                 initial_text += node['subheading'].text
 
         # Now we need to figure out if this is a leaf node, or not
