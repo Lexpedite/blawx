@@ -1,4 +1,5 @@
 from cobalt.hierarchical import Act
+from django.forms import NullBooleanField
 from lxml import etree
 
 NS = "{http://docs.oasis-open.org/legaldocml/ns/akn/3.0}"
@@ -10,10 +11,19 @@ TAGS = [
     'section',
     'subsection',
     'paragraph',
-    'subparagraph'
+    'subparagraph',
+    'span'
 ]
 
 LAW_PARTS = [NS + tag for tag in TAGS]
+
+def generate_text():
+    #TODO Insert text and generate spans where required.
+    return None
+
+def generate_span():
+    #TODO Generate span and selector and then generate_text for the span body.
+    return None
 
 def generate_selector(type,name,text,children,checked=False):
     html = ""
@@ -34,6 +44,7 @@ def generate_selector(type,name,text,children,checked=False):
     return html
 
 def generate_tree(node,indent=0):
+    #TODO Use generate_text for text sections (intro, wrapup, content, etc.)
     # print(" "*indent + node.tag.replace(NS,""))
     html = ""
     if node.tag == NS + "act":
