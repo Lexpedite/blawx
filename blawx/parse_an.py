@@ -127,8 +127,9 @@ def generate_tree(node,indent=0):
             # If this section has an intro, add the text of the intro to the initial_text
             if NS + "intro" in subtags: # This section has an intro.
                 # print(" "*indent + "Intro: " + node['intro'].text)
-                generate_text(node['intro']['p'].text)
-                initial_text += node['intro']['p'].text # This is likely fragile for sections that don't use p in the intro.
+                generate_text(node['intro'])
+                initial_text = etree.tostring(node['intro'], method="html", encoding="utf-8").decode('utf-8')
+                # initial_text += node['intro']['p'].text # This is likely fragile for sections that don't use p in the intro.
             # Get a good name for the current node
             node_name =  node.attrib['eId']
             # print(node_name)
@@ -142,7 +143,7 @@ def generate_tree(node,indent=0):
             if NS + "wrapup" in subtags:
                 # print(" "*indent + "Wrapup: " + node['wrapup'].text)
                 generate_text(node['wrapup'])
-                html += '<div class="lawtext">' + node['wrapup'].text + "</div>"
+                html += '<div class="lawtext">' + etree.tostring(node['wrapup'], method="html", encoding="utf-8").decode('utf-8') + "</div>"
             # Close the sub-parts
             html += "</div>"
     return html
