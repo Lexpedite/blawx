@@ -35,21 +35,28 @@ LAW_PARTS = [NS + tag for tag in TAGS]
 
 def generate_text(node):
     #TODO Insert text and generate spans where required.
-    html = ""
-    for thing in list:
-        if thing is text:
-            html += thing
-        else: #Can only be a span
-            html += generate_span(thing)
-    return html
-
+    if type(node) != str:
+        for child in node.getchildren():
+            if child.tag == NS + "span":
+                generate_span(child)
+                generate_text(child)
+            else:
+                generate_text(child)
+    return
+    
 def generate_span(node):
     #TODO Generate span and selector and then generate_text for the span body.
-    html = ""
-    html += '<span class="lawpart">'
-    html += generate_text(node.text)
-    html += '</span>'
-    return None
+    # Add 'lawpart span' to the classes for the span node.
+    node.attrib['class'] = "lawpart span"
+    # Add an input node as a first-child for the span.
+    node.addprevious(node.makeelement('input',{
+        'class': "form-check-inline",
+        'type': "radio",
+        'name': "section",
+        'id': node.attrib['eId']
+    }))
+    # Recursively call generate_text on the contents of the span?
+    return
 
 def generate_selector(type,name,text,children,checked=False):
     html = ""
@@ -110,6 +117,7 @@ def generate_tree(node,indent=0):
             content_text = ""
             # for sub_content in node['content'].getchildren():
             #     content_text += str(etree.tostring(sub_content).decode("utf-8"))
+            generate_text(node['content'])
             content_text = etree.tostring(node['content'], method="html", encoding="utf-8").decode('utf-8')
             # Get a good name for the current node
             node_name =  node.attrib['eId']
@@ -119,6 +127,7 @@ def generate_tree(node,indent=0):
             # If this section has an intro, add the text of the intro to the initial_text
             if NS + "intro" in subtags: # This section has an intro.
                 # print(" "*indent + "Intro: " + node['intro'].text)
+                generate_text(node['intro']['p'].text)
                 initial_text += node['intro']['p'].text # This is likely fragile for sections that don't use p in the intro.
             # Get a good name for the current node
             node_name =  node.attrib['eId']
@@ -132,6 +141,7 @@ def generate_tree(node,indent=0):
             # If there is a wrapup tag, add it to the subparts as a lawtext.
             if NS + "wrapup" in subtags:
                 # print(" "*indent + "Wrapup: " + node['wrapup'].text)
+                generate_text(node['wrapup'])
                 html += '<div class="lawtext">' + node['wrapup'].text + "</div>"
             # Close the sub-parts
             html += "</div>"
