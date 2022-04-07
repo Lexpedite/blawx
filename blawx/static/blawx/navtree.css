@@ -21,14 +21,23 @@
 .lawtext i::before {
     transition-duration: 0.7s;
 }
-.lawtext[aria-expanded="true"] > i::before {
+.lawtext > i[aria-expanded="true"]::before {
     transform: rotate(90deg);
 }
 div.subparts > div.lawtext {
     padding-left: 20px;
 }
-.lawtext {
+.lawtext p {
     display: inline;
+}
+.lawtext p::before {
+    content: " "
+}
+.lawtext span input {
+    margin-right: 5px;
+}
+span.lawpart {
+    padding-left: 5px;
 }
 num + content > p:first-child {
     display: inline;

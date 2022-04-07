@@ -1,5 +1,7 @@
 from cobalt.hierarchical import Act
+from django.forms import NullBooleanField
 from lxml import etree
+import lxml
 
 NS = "{http://docs.oasis-open.org/legaldocml/ns/akn/3.0}"
 TAGS = [
@@ -10,10 +12,54 @@ TAGS = [
     'section',
     'subsection',
     'paragraph',
-    'subparagraph'
+    'subparagraph',
+    'span'
 ]
 
 LAW_PARTS = [NS + tag for tag in TAGS]
+
+# An example of the target look for a content node looks like this:
+# <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+#   <p>The winner of a game is the 
+#       <span class="lawpart span" id="sec_4_section__player_span">
+#           <input class="form-check-inline" type="radio" name="section" id="sec_4_section__player_span">
+#               player who 
+#               <span class="lawpart span" id="sec_4_section__player_span__throws_span">
+#                   <input class="form-check-inline" type="radio" name="section" id="sec_4_section__payer_span__throws_span">
+#                   throws a sign
+#               </span>
+#       </span>
+#       that beats the sign of the other player.
+#   </p>
+# </content>
+# Need to make some changes to the CSS so it displays better, but that should do the trick.
+
+def generate_text(node):
+    #TODO Insert text and generate spans where required.
+    if type(node) != str:
+        for child in node.getchildren():
+            if child.tag == NS + "span":
+                generate_span(child)
+                generate_text(child)
+            else:
+                generate_text(child)
+    return
+    
+def generate_span(node):
+    #TODO Generate span and selector and then generate_text for the span body.
+    # Add 'lawpart span' to the classes for the span node.
+    node.attrib['class'] = "lawpart span"
+    # Add an input node as a first-child for the span.
+    node.insert(0,node.makeelement('input',{
+        'class': "form-check-inline",
+        'type': "radio",
+        'name': "section",
+        'id': node.attrib['eId']
+    }))
+    node.getchildren()[0].tail = node.text
+    lxml.objectify.ObjectifiedDataElement._setText(node,'')
+    # Recursively call generate_text on the contents of the span?
+    return
 
 def generate_selector(type,name,text,children,checked=False):
     html = ""
@@ -24,7 +70,7 @@ def generate_selector(type,name,text,children,checked=False):
     html += ">"
     html += '<div class="lawtext"'
     if children:
-        html += ' data-bs-toggle="collapse" data-bs-target="#' + name + '"><i class="bi bi-caret-right"></i>'
+        html += '><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#' + name + '"></i>'
     else:
         html += '>'
     html += text
@@ -34,6 +80,7 @@ def generate_selector(type,name,text,children,checked=False):
     return html
 
 def generate_tree(node,indent=0):
+    #TODO Use generate_text for text sections (intro, wrapup, content, etc.)
     # print(" "*indent + node.tag.replace(NS,""))
     html = ""
     if node.tag == NS + "act":
@@ -62,7 +109,7 @@ def generate_tree(node,indent=0):
                 initial_text += node['heading'].text
         if NS + 'subheading' in subtags:
             # print(" "*indent + "Subheading: " + node['subheading'].text)
-            if node['subheadin'].text:
+            if node['subheading'].text:
                 initial_text += node['subheading'].text
 
         # Now we need to figure out if this is a leaf node, or not
@@ -73,6 +120,7 @@ def generate_tree(node,indent=0):
             content_text = ""
             # for sub_content in node['content'].getchildren():
             #     content_text += str(etree.tostring(sub_content).decode("utf-8"))
+            generate_text(node['content'])
             content_text = etree.tostring(node['content'], method="html", encoding="utf-8").decode('utf-8')
             # Get a good name for the current node
             node_name =  node.attrib['eId']
@@ -82,7 +130,9 @@ def generate_tree(node,indent=0):
             # If this section has an intro, add the text of the intro to the initial_text
             if NS + "intro" in subtags: # This section has an intro.
                 # print(" "*indent + "Intro: " + node['intro'].text)
-                initial_text += node['intro']['p'].text # This is likely fragile for sections that don't use p in the intro.
+                generate_text(node['intro'])
+                initial_text += etree.tostring(node['intro'], method="html", encoding="utf-8").decode('utf-8')
+                # initial_text += node['intro']['p'].text # This is likely fragile for sections that don't use p in the intro.
             # Get a good name for the current node
             node_name =  node.attrib['eId']
             # print(node_name)
@@ -95,7 +145,8 @@ def generate_tree(node,indent=0):
             # If there is a wrapup tag, add it to the subparts as a lawtext.
             if NS + "wrapup" in subtags:
                 # print(" "*indent + "Wrapup: " + node['wrapup'].text)
-                html += '<div class="lawtext">' + node['wrapup'].text + "</div>"
+                generate_text(node['wrapup'])
+                html += '<div class="lawtext">' + etree.tostring(node['wrapup'], method="html", encoding="utf-8").decode('utf-8') + "</div>"
             # Close the sub-parts
             html += "</div>"
     return html
