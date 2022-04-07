@@ -7,6 +7,16 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.2-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.2-alpha) 2022-04-07
+
+This update allows you to use the defeasibility features for defaults
+and exceptions that occur inside a single section of the rules.
+
+### Added
+* Blawx now supports the use of span elements generated in Clean>=0.0.4
+* In the Rule navigator, now only clicking on the "arrow" will open
+  up the sub-parts of a section of a rule.
+
 ## [v1.3.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.1-alpha) 2022-03-29
 
 ### Fixed
