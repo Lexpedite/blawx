@@ -1,6 +1,7 @@
 from cobalt.hierarchical import Act
 from django.forms import NullBooleanField
 from lxml import etree
+import lxml
 
 NS = "{http://docs.oasis-open.org/legaldocml/ns/akn/3.0}"
 TAGS = [
@@ -49,12 +50,14 @@ def generate_span(node):
     # Add 'lawpart span' to the classes for the span node.
     node.attrib['class'] = "lawpart span"
     # Add an input node as a first-child for the span.
-    node.addprevious(node.makeelement('input',{
+    node.insert(0,node.makeelement('input',{
         'class': "form-check-inline",
         'type': "radio",
         'name': "section",
         'id': node.attrib['eId']
     }))
+    node.getchildren()[0].tail = node.text
+    lxml.objectify.ObjectifiedDataElement._setText(node,'')
     # Recursively call generate_text on the contents of the span?
     return
 
@@ -128,7 +131,7 @@ def generate_tree(node,indent=0):
             if NS + "intro" in subtags: # This section has an intro.
                 # print(" "*indent + "Intro: " + node['intro'].text)
                 generate_text(node['intro'])
-                initial_text = etree.tostring(node['intro'], method="html", encoding="utf-8").decode('utf-8')
+                initial_text += etree.tostring(node['intro'], method="html", encoding="utf-8").decode('utf-8')
                 # initial_text += node['intro']['p'].text # This is likely fragile for sections that don't use p in the intro.
             # Get a good name for the current node
             node_name =  node.attrib['eId']
