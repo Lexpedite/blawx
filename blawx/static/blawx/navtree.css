@@ -21,7 +21,7 @@
 .lawtext i::before {
     transition-duration: 0.7s;
 }
-.lawtext[aria-expanded="true"] > i::before {
+.lawtext > i[aria-expanded="true"]::before {
     transform: rotate(90deg);
 }
 div.subparts > div.lawtext {

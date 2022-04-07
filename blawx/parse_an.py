@@ -70,7 +70,7 @@ def generate_selector(type,name,text,children,checked=False):
     html += ">"
     html += '<div class="lawtext"'
     if children:
-        html += ' data-bs-toggle="collapse" data-bs-target="#' + name + '"><i class="bi bi-caret-right"></i>'
+        html += '><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#' + name + '"></i>'
     else:
         html += '>'
     html += text
