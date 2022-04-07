@@ -323,7 +323,7 @@ knownRulesCallback = function(workspace) {
             short_ref = short_ref.replace("__para_",".");
             short_ref = short_ref.replace("__subpara_",".");
             short_ref = short_ref.replace("_section","");
-            short_ref = short_ref.replace("__span_","");
+            short_ref = short_ref.replace("__span_",".");
             blocktext += abbreviation + " " + short_ref;
         }
         blocktext += "</field></block></xml>"
