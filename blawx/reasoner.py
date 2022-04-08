@@ -8,6 +8,7 @@ import os
 import json 
 import re
 from contextlib import redirect_stderr
+import pyparsing as pp
 
 from swiplserver import PrologMQI, PrologError, PrologLaunchError
 
@@ -281,7 +282,40 @@ blawxrun(Query, Human) :-
       query_answer = "Blawx could not load the reasoner."
       return Response({ "error": "Blawx could not load the reasoner." })
     # Return the results as JSON
-    return Response({ "answer": json.dumps(query_answer), "transcript": transcript_output })
+    return Response({ "Answers": generate_answers(query_answer), "Transcript": transcript_output })
 
+pp.ParserElement.set_default_whitespace_chars(' \t')
+answer_line = pp.Combine(pp.OneOrMore(pp.Word(pp.printables)),adjacent=False,join_string=" ") + pp.Suppress(pp.line_end)
+answer = pp.OneOrMore(pp.IndentedBlock(answer_line,recursive=True))
+
+#TODO Check to see if answer works when there is more than one root query element
+
+def generate_answers(answers):
+  models = []
+  result = []
+  for a in answers:
+    new_model = {}
+    new_model['Variables'] = {}
+    for (k,v) in a.items():
+      if k == "Human":
+        new_model['Tree'] = generate_list_of_lists(v[0:-5])
+      else:
+        new_model['Variables'][k] = v
+    models.append(new_model)
+    if new_model['Variables'] not in [r['Variables'] for r in result]:
+      new_answer = {}
+      new_answer['Variables'] = new_model['Variables']
+      new_answer['Models'] = []
+      new_answer['Models'].append(new_model['Tree'])
+      result.append(new_answer)
+    else:
+      for a in result:
+        if new_model['Variables'] == a['Variables']:
+          a['Models'].append(new_model['Tree'])
+  return result
+
+def generate_list_of_lists(string):
+  return answer.parse_string(string,parse_all=True).as_list()
+  
 def get_variables(query):
   return re.findall(r"[A-Z_]\w*",query)
