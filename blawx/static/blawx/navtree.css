@@ -24,6 +24,12 @@
 .lawtext > i[aria-expanded="true"]::before {
     transform: rotate(90deg);
 }
+.explanation_node i::before {
+    transition-duration: 0.7s;
+}
+.explanation_node > i[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+}
 div.subparts > div.lawtext {
     padding-left: 20px;
 }

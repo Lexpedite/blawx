@@ -58,7 +58,7 @@ function convertModelToTree(list,answer,explanation,prefix="",root=true) {
         // of reasons for that piece of text.
         var has_reasons = Array.isArray(list[1]);
         var target = prefix; 
-        output_html += '<div>'
+        output_html += '<div class="explanation_node">'
         if (has_reasons) {
             output_html += '<i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#' + target + '"></i>'
         }

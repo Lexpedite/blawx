@@ -7,6 +7,35 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.3-alpha) 2022-04-12?
+
+This update improves the formatting of explanations in the reasoner, adds links
+to the relevant rules to the output of the reasoner, and makes corresponding
+changes to the API endpoint for running tests.
+
+### Added
+* Answers include the bindings of the variables named in the Question.
+* A new `{rulenumber}/rule/{section_id}` endpoint has been created that will return
+  the XML of a portion of the rule's text document indicated by the `eId`
+  attribute for the AkomaNtoso section.
+
+### Changed
+* If a question returns multiple explanations, they are now grouped according
+  to the bindings for the variables in the question. This allows the user to
+  see which explanations are for the same answer.
+* Explanations are now presented in a nested collapsible tree structure, so
+  that the user can navigate to the portions of the explanation that are
+  most relevant for them.
+* The format of results from the `{rulenumber}/{testname}/run` endpoint has
+  been modified extensively.
+
+### TODO Changed
+* In explanations, when a rule is mentioned, it has a hover property that
+  will show the text of the relevant section of the rule in a pop-up window.
+* We have changed how rule names are displayed in explanations to avoid
+  exposing implementation details not relevant to the user.
+* We have changed how the `opposes` relationship is described in explanations.
+
 ## [v1.3.2-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.2-alpha) 2022-04-07
 
 This update allows you to use the defeasibility features for defaults
