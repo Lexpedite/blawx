@@ -1,0 +1,2115 @@
+- model: blawx.ruledoc
+  pk: 4
+  fields:
+    ruledoc_name: Rule 34
+    rule_text: "Legal Profession Professional Conduct Rules\r\n\r\nExecutive appointments\r\n34.\r\n
+      \ (1) A legal practitioner must not accept any executive appointment associated
+      with any of the following businesses:\r\n    (a) any business which detracts
+      from, is incompatible with, or derogates from the dignity of, the legal profession;\r\n
+      \   (b) any business which materially interferes with -\r\n      (i) the legal
+      practitioner's primary occupation of practising as a lawyer;\r\n      (ii) the
+      legal practitioner's availability to those who may seek the legal practitioner's
+      services as a lawyer; or\r\n      (iii) the representation of the legal practitioner's
+      clients;\r\n    (c) any business which is likely to unfairly attract business
+      in the practice of law;\r\n    (d) any business which involves the sharing of
+      the legal practitioner's fees with, or the payment of a commission to, any unauthorised
+      person for legal work performed by the legal practitioner;\r\n    (e) any business
+      set out in the First Schedule;\r\n    (f) any business which is prohibited by
+      -\r\n      (i) the Act;\r\n      (ii) these Rules or any other subsidiary legislation
+      made under the Act;\r\n      (iii) any practice directions, guidance notes and
+      rulings issued under section 71(6) of the Act; or\r\n      (iv) any practice
+      directions, guidance notes and rulings (relating to professional practice, etiquette,
+      conduct and discipline) issued by the Council or the Society.\r\n  (2) Subject
+      to paragraph (1), a legal practitioner in a Singapore law practice (called in
+      this paragraph the main practice) may accept an executive appointment in another
+      Singapore law practice (called in this paragraph the related practice), if the
+      related practice is connected to the main practice in either of the following
+      ways:\r\n    (a) every legal or beneficial owner of the related practice is
+      the sole proprietor, or a partner or director, of the main practice;\r\n    (b)
+      the legal practitioner accepts the executive appointment as a representative
+      of the main practice in the related practice, and the involvement of the main
+      practice in the related practice is not prohibited by any of the following:\r\n
+      \     (i) the Act;\r\n      (ii) these Rules or any other subsidiary legislation
+      made under the Act;\r\n      (iii) any practice directions, guidance notes and
+      rulings issued under section 71(6) of the Act;\r\n      (iv) any practice directions,
+      guidance notes and rulings (relating to professional practice, etiquette, conduct
+      and discipline) issued by the Council or the Society.\r\n  (3) Subject to paragraph
+      (1), a legal practitioner may accept an executive appointment in a business
+      entity which provides law-related services.\r\n  (4) Subject to paragraph (1),
+      a legal practitioner (not being a locum solicitor) may accept an executive appointment
+      in a business entity which does not provide any legal services or law-related
+      services, if all of the conditions set out in the Second Schedule are satisfied.\r\n
+      \ (5) Despite paragraph (1)(b), but subject to paragraph (1)(a) and (c) to (f),
+      a locum solicitor may accept an executive appointment in a business entity which
+      does not provide any legal services or law-related services, if all of the conditions
+      set out in the Second Schedule are satisfied.\r\n  (6) Except as provided in
+      paragraphs (2) to (5) -\r\n    (a) a legal practitioner in a Singapore law practice
+      must not accept any executive appointment in another Singapore law practice;
+      and\r\n    (b) a legal practitioner must not accept any executive appointment
+      in a business entity.\r\n  (7) To avoid doubt, nothing in this rule prohibits
+      a legal practitioner from accepting any appointment in any institution set out
+      in the Third Schedule.\r\n  (8) To avoid doubt, this rule does not authorise
+      the formation of, or regulate -\r\n    (a) any related practice referred to
+      in paragraph (2); or\r\n    (b) any business entity referred to in paragraph
+      (3), (4) or (5).\r\n  (9) In this rule and the First to Fourth Schedules -\r\n
+      \   (a) \"business\" includes any business, trade or calling in Singapore or
+      elsewhere, whether or not for the purpose of profit, but excludes the practice
+      of law;\r\n    (b) \"business entity\"  -\r\n      (i) includes any company,
+      corporation, partnership, limited liability partnership, sole proprietorship,
+      business trust or other entity that carries on any business; but\r\n      (ii)
+      excludes any Singapore law practice, any Joint Law Venture, any Formal Law Alliance,
+      any foreign law practice and any institution set out in the Third Schedule;\r\n
+      \   (c) \"executive appointment\" means a position associated with a business,
+      or in a business entity or Singapore law practice, which entitles the holder
+      of the position to perform executive functions in relation to the business,
+      business entity or Singapore law practice (as the case may be), but excludes
+      any non-executive director or independent director associated with the business
+      or in the business entity;\r\n    (d) \"law-related service\" means any service
+      set out in the Fourth Schedule, being a service that may reasonably be performed
+      in conjunction with, and that is in substance related to, the provision of any
+      legal service."
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 24
+  fields:
+    ruledoc: 4
+    workspace_name: root_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 25
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="01|FYiw6O8/hI](a~*9." x="25" y="25"><statement name="statements"><block
+      type="category_declaration" id="d@fZeDW-W?$Xbze}mHM."><field name="category_name">legal_practitioner</field><next><block
+      type="category_declaration" id="`Y/h22Us.o6=bvK*[N#|"><field name="category_name">business</field><next><block
+      type="category_declaration" id="dg,o67Ic*#lPSMt?0Cm|"><field name="category_name">executive_appointment</field><next><block
+      type="category_attribute" id="mm0:1x_QC|,cLV}zfY:s"><value name="category"><block
+      type="category_selector" id="%R]c^:A8Q~I_u^61u$NA"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="executive_appointment"></mutation><field name="category_name">executive_appointment</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="Vp6^7==rE#|/[Dvv6KQv"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="associated_with" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">associated_with</field><value name="attribute_type"><block
+      type="category_selector" id="cXq`bQ4`pz=D6|r.2I@Q"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><next><block
+      type="attribute_display" id="*9n{[;t+!I43I=anphlb"><field name="order">ov</field><field
+      name="prefix">the EA</field><field name="first_element">object</field><field
+      name="infix">is associated with the business</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></statement><next><block type="category_attribute"
+      id="f~};mjgC]FBqYVq~.XT("><value name="category"><block type="category_selector"
+      id="*2sbDh~Nz8g+UT_jUqvy"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><statement name="attributes"><block
+      type="attribute_declaration" id="e5:1LkfYaJ5.ALej[mb]"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="described_in_s1" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">described_in_s1</field><value name="attribute_type"><block
+      type="true_false_type_selector" id="OZi7aqnDKph^kv{n9qz!"></block></value><next><block
+      type="attribute_display" id="/d%=Y!qg5iiBZlmX|,Xx"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that
+      </field><field name="second_element">object</field><field name="postfix">is
+      described in section 1</field></block></next></block></statement><next><block
+      type="category_attribute" id="ZQSgtVp-N`tDL:2ZVSLu"><value name="category"><block
+      type="category_selector" id="cDPUmvk!#2.^?|m@lOm*"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="legal_practitioner"></mutation><field name="category_name">legal_practitioner</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="4gBb%k;;jAs4vfqUIS@Y"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="must_not_accept" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">must_not_accept</field><value name="attribute_type"><block
+      type="category_selector" id="5eIJ^J]*E5o7(bCd6%)O"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="executive_appointment"></mutation><field name="category_name">executive_appointment</field></block></value><next><block
+      type="attribute_display" id="kQuQBeRaoi?%%v3y+tzV"><field name="order">ov</field><field
+      name="prefix">legal practitioner</field><field name="first_element">object</field><field
+      name="infix">must not accept the EA</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></statement></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="$DRHg[=J*$W}^B1O6ru2" x="23" y="577"><statement
+      name="conditions"><block type="object_category" id="bu{DK?Qb/}@jR-7h6ihD"><value
+      name="object"><block type="variable" id="#DpZN2~8817:d|_iYuS5"><field name="variable_name">EA</field></block></value><value
+      name="category"><block type="category_selector" id="|E5cWiLz.gpp*vjo.y7K"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="object_category" id="M!a,{{BDjM:dvrcFc-n-"><value name="object"><block
+      type="variable" id="JQ_=bz1%3iH)Lm1=nKp5"><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="CU)2t[_GsV~f.n[i0n7["><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="object_category"
+      id="eN.?b-!5-vUt/nubuFx!"><value name="object"><block type="variable" id="NGP$gvdHU:z~CO4m;oo,"><field
+      name="variable_name">LP</field></block></value><value name="category"><block
+      type="category_selector" id="!w$e_s@CqhNrAD!p]O%3"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="legal_practitioner"></mutation><field name="category_name">legal_practitioner</field></block></value><next><block
+      type="attribute_selector" id="@}Z%^e)L60y#)L;.5[I*"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="associated_with" attributetype="business" attributeorder="ov"></mutation><field
+      name="prefix">the EA</field><field name="infix">is associated with the business</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="Hn+5$0,(8sY48{8xono{"><field
+      name="variable_name">EA</field></block></value><value name="second_element"><block
+      type="variable" id="5Px8/,HX}JD+a_Jq?=K`"><field name="variable_name">B</field></block></value><next><block
+      type="according_to" id="3cQ98IPS+NQm=`HB8=N9"><value name="rule"><block type="unnamed_variable"
+      id="^eZwDL5a5x1lirRB$7mZ"></block></value><statement name="statement"><block
+      type="attribute_selector" id="JWrq%rm!uz1]8_Fuu^-!"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="described_in_s1" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">is
+      described in section 1</field><value name="first_element"><block type="true_value"
+      id="]Bhw/LTS=i$QU.ki=K3^"></block></value><value name="second_element"><block
+      type="variable" id="0geYh=Oif5P^%gblxC.h"><field name="variable_name">B</field></block></value></block></statement></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="e-D_ZJ16*xti8ZLdW;8,"><value
+      name="rule"><block type="doc_selector" id="w^Gp2OqNz=`*!$#=H{V("><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="undefined"></mutation><field name="doc_part_name">LP(CR 34.1</field></block></value><statement
+      name="statement"><block type="attribute_selector" id="OEE=emln?9W)4QO*w)Zy"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="must_not_accept" attributetype="executive_appointment"
+      attributeorder="ov"></mutation><field name="prefix">legal practitioner</field><field
+      name="infix">must not accept the EA</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="Pw:26W?b^R,tSQf~i/jp"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id=".wuoQqzj@((#J,}S~8E%"><field name="variable_name">EA</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#pred legal_practitioner(X) :: ''@(X) is a legal_practitioner''.
+
+      #pred according_to(R,legal_practitioner(X)) :: ''according to @(R), @(X) is
+      a legal_practitioner''.
+
+      #pred legally_holds(_,legal_practitioner(X)) :: ''it legally holds that @(X)
+      is a legal_practitioner''.
+
+      #pred business(X) :: ''@(X) is a business''.
+
+      #pred according_to(R,business(X)) :: ''according to @(R), @(X) is a business''.
+
+      #pred legally_holds(_,business(X)) :: ''it legally holds that @(X) is a business''.
+
+      #pred executive_appointment(X) :: ''@(X) is a executive_appointment''.
+
+      #pred according_to(R,executive_appointment(X)) :: ''according to @(R), @(X)
+      is a executive_appointment''.
+
+      #pred legally_holds(_,executive_appointment(X)) :: ''it legally holds that @(X)
+      is a executive_appointment''.
+
+      #pred associated_with(X,Y) :: ''the EA @(X) is associated with the business
+      @(Y)''.
+
+      #pred according_to(R,associated_with(X,Y)) :: ''according to @(R), the EA @(X)
+      is associated with the business @(Y)''.
+
+      #pred legally_holds(_,associated_with(X,Y)) :: ''it legally holds that the EA
+      @(X) is associated with the business @(Y)''.
+
+
+      #pred described_in_s1(Y,X) :: ''it is @(X) that  @(Y) is described in section
+      1''.
+
+      #pred according_to(R,described_in_s1(Y,X)) :: ''according to @(R), it is @(X)
+      that  @(Y) is described in section 1''.
+
+      #pred legally_holds(_,described_in_s1(Y,X)) :: ''it legally holds that it is
+      @(X) that  @(Y) is described in section 1''.
+
+      opposes(described_in_s1(X,true),described_in_s1(X,false)).
+
+      opposes(described_in_s1(X,false),described_in_s1(X,true)).
+
+
+      #pred must_not_accept(X,Y) :: ''legal practitioner @(X) must not accept the
+      EA @(Y)''.
+
+      #pred according_to(R,must_not_accept(X,Y)) :: ''according to @(R), legal practitioner
+      @(X) must not accept the EA @(Y)''.
+
+      #pred legally_holds(_,must_not_accept(X,Y)) :: ''it legally holds that legal
+      practitioner @(X) must not accept the EA @(Y)''.
+
+
+
+      according_to(undefined,  must_not_accept(LP,EA)) :-
+
+      executive_appointment(EA),
+
+      business(B),
+
+      legal_practitioner(LP),
+
+      associated_with(EA,B),
+
+      according_to(_,  described_in_s1(B,true)).'
+- model: blawx.workspace
+  pk: 26
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_a_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id=";SIBV2iD{)@/~A6M=?V_" x="26" y="-246"><statement name="statements"><block
+      type="category_attribute" id="MP}?rFzlb/;1H51Vk_js"><value name="category"><block
+      type="category_selector" id="l.]6_B/5w=Ief}1D;D]~"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="m)e74p]rY7~.|9a4/qqH"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="detracts" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">detracts</field><value name="attribute_type"><block type="true_false_type_selector"
+      id="bW45z,vJJ4Lj_3TfkMt7"></block></value><next><block type="attribute_display"
+      id="=99~Lmkx)XIFyqx7(N{J"><field name="order">vo</field><field name="prefix">it
+      is </field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">detracts from the
+      dignity of the legal profession</field><next><block type="attribute_declaration"
+      id="IOot4SiRzI+PxCG=AEF:"><mutation xmlns="http://www.w3.org/1999/xhtml" attribute_name="incompatible"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">incompatible</field><value
+      name="attribute_type"><block type="true_false_type_selector" id="wj(BmS@Ei4(pD%$9!qQ]"></block></value><next><block
+      type="attribute_display" id="#=KB^24s8NWRYyo$BI5A"><field name="order">vo</field><field
+      name="prefix">it is </field><field name="first_element">value</field><field
+      name="infix">that</field><field name="second_element">object</field><field name="postfix">is
+      incompatible with the dignity of the legal profession</field><next><block type="attribute_declaration"
+      id="0E!b!@Vy/$V,RSry.ThH"><mutation xmlns="http://www.w3.org/1999/xhtml" attribute_name="derogates"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">derogates</field><value
+      name="attribute_type"><block type="true_false_type_selector" id="O@!iqw[!g~h02jvOx.SN"></block></value><next><block
+      type="attribute_display" id="{qbXO{yj*r^aZ)[/d%_e"><field name="order">vo</field><field
+      name="prefix">it is </field><field name="first_element">value</field><field
+      name="infix">that</field><field name="second_element">object</field><field name="postfix">derogates
+      from the dignity of the legal profession</field></block></next></block></next></block></next></block></next></block></next></block></statement></block></statement></block><block
+      type="unattributed_rule" id="Uo$Q*,|*lx~nq0,zbVJ:" x="22" y="116"><statement
+      name="conditions"><block type="attribute_selector" id="`vuR`k?ht_;Cl@5Y+!t:"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="detracts" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is </field><field
+      name="infix">that</field><field name="postfix">detracts from the dignity of
+      the legal profession</field><value name="first_element"><block type="true_value"
+      id=")BTq}cWuL49NFhwa){zi"></block></value><value name="second_element"><block
+      type="variable" id="Q:(T}JV^0VS!hzy/K}73"><field name="variable_name">B</field></block></value><next><block
+      type="object_category" id="UEw+=u)ZW8[U`FmO=D|T"><value name="object"><block
+      type="variable" id="G5{*-5g!.^gR.BDe.FQi"><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="ks|,TeuKjk%uq~czW;is"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="lOZZK01FiC;3?.Qr;53Z"><value
+      name="rule"><block type="doc_selector" id="tR.F}Ka^@u!DlcRR%)nV"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_1__para_a_section"></mutation><field name="doc_part_name">LPPCR
+      34.1.a</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="q9dvGCfe{H/3*5tD1#Ci"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="described_in_s1"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">is
+      described in section 1</field><value name="first_element"><block type="true_value"
+      id="vZ~__bYfX9ep~%#?_#R$"></block></value><value name="second_element"><block
+      type="variable" id="K3,vT@38Sqcp.OagDwHQ"><field name="variable_name">B</field></block></value></block></statement></block></statement></block><block
+      type="unattributed_rule" id="5{k/h#gor%u7pg1ROrY0" x="21" y="334"><statement
+      name="conditions"><block type="attribute_selector" id="-GC7F^BQL,)~oc1qr68^"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="incompatible" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is </field><field
+      name="infix">that</field><field name="postfix">is incompatible with the dignity
+      of the legal profession</field><value name="first_element"><block type="true_value"
+      id="e83V!`eZ-6RuD4VELw1!"></block></value><value name="second_element"><block
+      type="variable" id="sOl!vJS;-X81^VrcnbAn"><field name="variable_name">B</field></block></value><next><block
+      type="object_category" id="SPx#OcBD5Ncoz9o[hpVj"><value name="object"><block
+      type="variable" id="x=g3#B}CXOn4E@3lF[R]"><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="zLO@}`,uOI4`mfL@+{u$"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="1YQg_koPK}Ixkk#?;4Vb"><value
+      name="rule"><block type="doc_selector" id="16zQj:Vnq7o4H3vU}HXo"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_1__para_a_section"></mutation><field name="doc_part_name">LPPCR
+      34.1.a</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="z7`O0DPVA{NZo]Bw[mGG"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="described_in_s1"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">is
+      described in section 1</field><value name="first_element"><block type="true_value"
+      id="Du7Af-lD]f/Nuj4Y|nLb"></block></value><value name="second_element"><block
+      type="variable" id="+-t{fJ1usc_A.{lt/,__"><field name="variable_name">B</field></block></value></block></statement></block></statement></block><block
+      type="unattributed_rule" id="KM`21%?Q,W2Nab-C^8]f" x="18" y="547"><statement
+      name="conditions"><block type="attribute_selector" id="G,B^C!8I8*hJf{eG)(ki"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="derogates" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is </field><field
+      name="infix">that</field><field name="postfix">derogates from the dignity of
+      the legal profession</field><value name="first_element"><block type="true_value"
+      id="%vV3HA,$Za2:wz8gx;#g"></block></value><value name="second_element"><block
+      type="variable" id="LhXDOv7-jicOH5%~~Pl4"><field name="variable_name">B</field></block></value><next><block
+      type="object_category" id="Qrcf;pggE_H$x-;LkeIk"><value name="object"><block
+      type="variable" id="V)O82eQ^~/$?$/?ndcd~"><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="Ee%II/h~]qjFCX;v)jm+"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="ywKvl;,#~orSArF{S^}M"><value
+      name="rule"><block type="doc_selector" id=")8QE.n(O~;XOz:S;KM_#"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_1__para_a_section"></mutation><field name="doc_part_name">LPPCR
+      34.1.a</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="FA5|{RE:qqu0L3DS3RH7"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="described_in_s1"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">is
+      described in section 1</field><value name="first_element"><block type="true_value"
+      id="M!$FwcOQ%Y2%kD72v/T}"></block></value><value name="second_element"><block
+      type="variable" id="Jx0c^}@2g@he;~nj0dFC"><field name="variable_name">B</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#pred detracts(Y,X) :: ''it is  @(X) that @(Y) detracts from
+      the dignity of the legal profession''.
+
+      #pred according_to(R,detracts(Y,X)) :: ''according to @(R), it is  @(X) that
+      @(Y) detracts from the dignity of the legal profession''.
+
+      #pred legally_holds(_,detracts(Y,X)) :: ''it legally holds that it is  @(X)
+      that @(Y) detracts from the dignity of the legal profession''.
+
+      opposes(detracts(X,true),detracts(X,false)).
+
+      opposes(detracts(X,false),detracts(X,true)).
+
+
+      #pred incompatible(Y,X) :: ''it is  @(X) that @(Y) is incompatible with the
+      dignity of the legal profession''.
+
+      #pred according_to(R,incompatible(Y,X)) :: ''according to @(R), it is  @(X)
+      that @(Y) is incompatible with the dignity of the legal profession''.
+
+      #pred legally_holds(_,incompatible(Y,X)) :: ''it legally holds that it is  @(X)
+      that @(Y) is incompatible with the dignity of the legal profession''.
+
+      opposes(incompatible(X,true),incompatible(X,false)).
+
+      opposes(incompatible(X,false),incompatible(X,true)).
+
+
+      #pred derogates(Y,X) :: ''it is  @(X) that @(Y) derogates from the dignity of
+      the legal profession''.
+
+      #pred according_to(R,derogates(Y,X)) :: ''according to @(R), it is  @(X) that
+      @(Y) derogates from the dignity of the legal profession''.
+
+      #pred legally_holds(_,derogates(Y,X)) :: ''it legally holds that it is  @(X)
+      that @(Y) derogates from the dignity of the legal profession''.
+
+      opposes(derogates(X,true),derogates(X,false)).
+
+      opposes(derogates(X,false),derogates(X,true)).
+
+
+
+      according_to(sec_34__subsec_1__para_a_section,  described_in_s1(B,true)) :-
+
+      detracts(B,true),
+
+      business(B).
+
+
+      according_to(sec_34__subsec_1__para_a_section,  described_in_s1(B,true)) :-
+
+      incompatible(B,true),
+
+      business(B).
+
+
+      according_to(sec_34__subsec_1__para_a_section,  described_in_s1(B,true)) :-
+
+      derogates(B,true),
+
+      business(B).'
+- model: blawx.workspace
+  pk: 27
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_b_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 28
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_b__subpara_i_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="?V6N2.G[kS3aO!@Okpt)" x="10" y="24"><statement name="statements"><block
+      type="category_attribute" id=";AP8n^dBxtHQyTP.)_!0"><value name="category"><block
+      type="category_selector" id="B3;H.ec}QCGWh:kk=oY,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="ODfl%:/,r3XAd/ISjEO%"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="materially_interferes_occupation_of"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">materially_interferes_occupation_of</field><value
+      name="attribute_type"><block type="category_selector" id="!bda+jXfe0C[EUax1OxV"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="attribute_display" id=",(9AQ0CtAMW^kud~$+t("><field name="order">ov</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="infix">materially
+      interferes with</field><field name="second_element">value</field><field name="postfix">'s
+      primary occupation</field></block></next></block></statement><next><block type="category_declaration"
+      id="|nyQN_w$Gh,^%m}1*tRQ"><field name="category_name">occupation</field><next><block
+      type="object_declaration" id="AYM?]d~g8Ypjs$q*4%y$"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="occupation" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">practicing_as_a_lawyer</field><field name="postfix">is a
+      occupation</field><next><block type="category_attribute" id="2V)-albvbZBvR^.)t-A2"><value
+      name="category"><block type="category_selector" id="qlOe;Q?#F^W4i1KJ]y]^"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><statement name="attributes"><block
+      type="attribute_declaration" id="7*[CC;zsr.sKr~59?c[p"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="primary_occupation" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">primary_occupation</field><value name="attribute_type"><block
+      type="category_selector" id="6/r!a%$N^Yzpazg/DfG!"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="occupation"></mutation><field name="category_name">occupation</field></block></value><next><block
+      type="attribute_display" id="gDl$FP8mx9(X;w1M1bEi"><field name="order">ov</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="infix">'s
+      primary occupation is</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></statement></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="#_oy-hybHnt9hox{a6G}" x="9" y="416"><statement
+      name="conditions"><block type="object_category" id="b0V()1hs|Fz=QLfgQ6#r"><value
+      name="object"><block type="variable" id="wk67,V*ToFpgP_OVnAKE"><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="F]ov$ABi4D|Pp,XccQaM"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="object_category"
+      id="^*CR_g}={8WDg*_nzw7Z"><value name="object"><block type="variable" id="!il%iG/Ft%*hUnAE{j?u"><field
+      name="variable_name">LP</field></block></value><value name="category"><block
+      type="category_selector" id=",4^r-nW28bXWpea}`Em2"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="legal_practitioner"></mutation><field name="category_name">legal_practitioner</field></block></value><next><block
+      type="attribute_selector" id="utdl#58fZ[LsKr;BBLM~"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="primary_occupation" attributetype="occupation" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">'s primary occupation is</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="i~{qz;%1v6A|}[C?r`U2"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="object_selector" id="Ky$IgGytMS^*.Txik=,1"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="practicing_as_a_lawyer"></mutation><field name="object_name">practicing_as_a_lawyer</field></block></value><next><block
+      type="attribute_selector" id="i4Sl:Ll!pMk-Ozj0M1?P"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="materially_interferes_occupation_of" attributetype="legal_practitioner"
+      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">materially
+      interferes with</field><field name="postfix">'s primary occupation</field><value
+      name="first_element"><block type="variable" id="Q*wyhRzDMkR1K4a}*-$u"><field
+      name="variable_name">B</field></block></value><value name="second_element"><block
+      type="variable" id="w%Y:vqQ0:3|1rsdvUaLn"><field name="variable_name">LP</field></block></value></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="eky=aIVv=TN;m,ospnBL"><value
+      name="rule"><block type="doc_selector" id="Bxg#,jms3q~=0q[tG^dt"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="undefined"></mutation><field name="doc_part_name">LPPCR 34.1.b.i</field></block></value><statement
+      name="statement"><block type="attribute_selector" id="A/a_JaGIC@L{k_Ib4NVW"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="described_in_s1" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that </field><field name="postfix">is described in section 1</field><value
+      name="first_element"><block type="true_value" id="sGEf*wJ%0FtTpEuz4!,T"></block></value><value
+      name="second_element"><block type="variable" id="4bHI/:80}K?6/`#J:UQ]"><field
+      name="variable_name">B</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#pred materially_interferes_occupation_of(X,Y) :: ''@(X) materially
+      interferes with @(Y) ''s primary occupation''.
+
+      #pred according_to(R,materially_interferes_occupation_of(X,Y)) :: ''according
+      to @(R), @(X) materially interferes with @(Y) ''s primary occupation''.
+
+      #pred legally_holds(_,materially_interferes_occupation_of(X,Y)) :: ''it legally
+      holds that @(X) materially interferes with @(Y) ''s primary occupation''.
+
+
+      #pred occupation(X) :: ''@(X) is a occupation''.
+
+      #pred according_to(R,occupation(X)) :: ''according to @(R), @(X) is a occupation''.
+
+      #pred legally_holds(_,occupation(X)) :: ''it legally holds that @(X) is a occupation''.
+
+      occupation(practicing_as_a_lawyer).
+
+      #pred primary_occupation(X,Y) :: ''@(X) ''s primary occupation is @(Y)''.
+
+      #pred according_to(R,primary_occupation(X,Y)) :: ''according to @(R), @(X) ''s
+      primary occupation is @(Y)''.
+
+      #pred legally_holds(_,primary_occupation(X,Y)) :: ''it legally holds that @(X)
+      ''s primary occupation is @(Y)''.
+
+
+
+      according_to(undefined,  described_in_s1(B,true)) :-
+
+      business(B),
+
+      legal_practitioner(LP),
+
+      primary_occupation(LP,practicing_as_a_lawyer),
+
+      materially_interferes_occupation_of(B,LP).'
+- model: blawx.workspace
+  pk: 29
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_b__subpara_ii_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="?V6N2.G[kS3aO!@Okpt)" x="38" y="80"><statement name="statements"><block
+      type="category_attribute" id=";AP8n^dBxtHQyTP.)_!0"><value name="category"><block
+      type="category_selector" id="B3;H.ec}QCGWh:kk=oY,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="ODfl%:/,r3XAd/ISjEO%"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="materially_interferes_availability_of"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">materially_interferes_availability_of</field><value
+      name="attribute_type"><block type="category_selector" id="!bda+jXfe0C[EUax1OxV"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="attribute_display" id=",(9AQ0CtAMW^kud~$+t("><field name="order">ov</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="infix">materially
+      interferes with</field><field name="second_element">value</field><field name="postfix">'s
+      availability to practice law</field></block></next></block></statement></block></statement></block><block
+      type="unattributed_rule" id="#_oy-hybHnt9hox{a6G}" x="42" y="271"><statement
+      name="conditions"><block type="object_category" id="b0V()1hs|Fz=QLfgQ6#r"><value
+      name="object"><block type="variable" id="wk67,V*ToFpgP_OVnAKE"><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="F]ov$ABi4D|Pp,XccQaM"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="object_category"
+      id="^*CR_g}={8WDg*_nzw7Z"><value name="object"><block type="variable" id="!il%iG/Ft%*hUnAE{j?u"><field
+      name="variable_name">LP</field></block></value><value name="category"><block
+      type="category_selector" id=",4^r-nW28bXWpea}`Em2"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="legal_practitioner"></mutation><field name="category_name">legal_practitioner</field></block></value><next><block
+      type="attribute_selector" id="iz:7vaOiyL$BqQ#/bWw)"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="materially_interferes_availability_of" attributetype="legal_practitioner"
+      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">materially
+      interferes with</field><field name="postfix">'s availability to practice law</field><value
+      name="first_element"><block type="variable" id="Q*wyhRzDMkR1K4a}*-$u"><field
+      name="variable_name">B</field></block></value><value name="second_element"><block
+      type="variable" id="w%Y:vqQ0:3|1rsdvUaLn"><field name="variable_name">LP</field></block></value></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="eky=aIVv=TN;m,ospnBL"><value
+      name="rule"><block type="doc_selector" id="I}UN_[RVZSQK${H`kWDu"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_1__para_b__subpara_ii_section"></mutation><field
+      name="doc_part_name">LPPCR 34.1.b.ii</field></block></value><statement name="statement"><block
+      type="attribute_selector" id="A/a_JaGIC@L{k_Ib4NVW"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="described_in_s1" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">is
+      described in section 1</field><value name="first_element"><block type="true_value"
+      id="sGEf*wJ%0FtTpEuz4!,T"></block></value><value name="second_element"><block
+      type="variable" id="4bHI/:80}K?6/`#J:UQ]"><field name="variable_name">B</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#pred materially_interferes_availability_of(X,Y) :: ''@(X) materially
+      interferes with @(Y) ''s availability to practice law''.
+
+      #pred according_to(R,materially_interferes_availability_of(X,Y)) :: ''according
+      to @(R), @(X) materially interferes with @(Y) ''s availability to practice law''.
+
+      #pred legally_holds(_,materially_interferes_availability_of(X,Y)) :: ''it legally
+      holds that @(X) materially interferes with @(Y) ''s availability to practice
+      law''.
+
+
+
+      according_to(sec_34__subsec_1__para_b__subpara_ii_section,  described_in_s1(B,true))
+      :-
+
+      business(B),
+
+      legal_practitioner(LP),
+
+      materially_interferes_availability_of(B,LP).'
+- model: blawx.workspace
+  pk: 30
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_e_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="T0=2W#^wTAq|v=1t:nZ1" x="44" y="33"><statement name="statements"><block
+      type="category_attribute" id="2sa^?:D7+n4|QymKP0CP"><value name="category"><block
+      type="category_selector" id="oX8GJz}LgcY{7|ZB_WL!"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="x_Rl+nHl*tT-0*A?%UU,"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="first_schedule" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">first_schedule</field><value name="attribute_type"><block
+      type="true_false_type_selector" id="NX%ojK5-103+hFNACMy@"></block></value><next><block
+      type="attribute_display" id="%OS^^v:90nVH@xb[3cny"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that
+      </field><field name="second_element">object</field><field name="postfix">is
+      described in the first schedule</field></block></next></block></statement></block></statement></block><block
+      type="unattributed_rule" id="t}/T59rkh1qe7S6q2t}_" x="43" y="219"><statement
+      name="conditions"><block type="object_category" id="mWTA=q]3YPxrsA47u0s%"><value
+      name="object"><block type="variable" id="_5r:eMHz~%jh;-aBus(."><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="gk}9sp[c42Wi9)S:+z0@"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="attribute_selector"
+      id="Y?1I2S~%N.JsoW3Xi2pR"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="first_schedule"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">is
+      described in the first schedule</field><value name="first_element"><block type="true_value"
+      id="QQeR7`astSM6LPQjc]X@"></block></value><value name="second_element"><block
+      type="variable" id="mL~Ca3cX.I`OVen35kHf"><field name="variable_name">B</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="4nO;2s`=4A{!u71m,.S!"><value
+      name="rule"><block type="doc_selector" id="Z$#ZWc%2EkIKU[u5jjo#"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="undefined"></mutation><field name="doc_part_name">LPPCR 34.1.e</field></block></value><statement
+      name="statement"><block type="attribute_selector" id="*O]{[^q7GLHRl;qQ5Zkc"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="described_in_s1" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that </field><field name="postfix">is described in section 1</field><value
+      name="first_element"><block type="true_value" id="Cmj5KXJ_`Y*KzQ}.[d3W"></block></value><value
+      name="second_element"><block type="variable" id="d/3LAU:hQ=iE}sNyQ1xU"><field
+      name="variable_name">B</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#pred first_schedule(Y,X) :: ''it is @(X) that  @(Y) is described
+      in the first schedule''.
+
+      #pred according_to(R,first_schedule(Y,X)) :: ''according to @(R), it is @(X)
+      that  @(Y) is described in the first schedule''.
+
+      #pred legally_holds(_,first_schedule(Y,X)) :: ''it legally holds that it is
+      @(X) that  @(Y) is described in the first schedule''.
+
+      opposes(first_schedule(X,true),first_schedule(X,false)).
+
+      opposes(first_schedule(X,false),first_schedule(X,true)).
+
+
+
+      according_to(undefined,  described_in_s1(B,true)) :-
+
+      business(B),
+
+      first_schedule(B,true).'
+- model: blawx.workspace
+  pk: 31
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_f_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="~Nudo1-Zf?v:,b~0828)" x="14" y="-103"><statement name="statements"><block
+      type="category_attribute" id="B[I{.?Z@Vu%|XjafYcy|"><value name="category"><block
+      type="category_selector" id="75V**x,n9U$uYGcfS@^y"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="xpm3Bi0hA_Wr/IWyRaQ`"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="prohibited" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">prohibited</field><value name="attribute_type"><block
+      type="true_false_type_selector" id="T2}o=`=_`Hvm;d2c@HGX"></block></value><next><block
+      type="attribute_display" id="GN6I~e510u*=9/pz=cj-"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">is prohibited</field></block></next></block></statement></block></statement></block><block
+      type="unattributed_rule" id="tDA{gIlDi1h$d,JciHbE" x="21" y="119"><statement
+      name="conditions"><block type="object_category" id="V2zfUz?Evv+?g(H*6U(o"><value
+      name="object"><block type="variable" id="lkG{@^4,W2kZw-4El,_`"><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id=":]QB#(CdE{..8(~c/kA%"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="attribute_selector"
+      id="qbuO:s_zR5)sl9}4=-RN"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="prohibited"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      prohibited</field><value name="first_element"><block type="true_value" id="-Vh5wc`:]vVX~ZzgwJI="></block></value><value
+      name="second_element"><block type="variable" id="9oa?.$o_2p~AOf]@Ec{n"><field
+      name="variable_name">B</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="=.1Ys#?w8-QC?:]{=_i`"><value
+      name="rule"><block type="doc_selector" id="!KPK;5Hn0O;$h:?gL!n$"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="undefined"></mutation><field name="doc_part_name">LPPCR 34.1.f</field></block></value><statement
+      name="statement"><block type="attribute_selector" id="UwcCasB+*Ad6P!}d?ph:"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="described_in_s1" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that </field><field name="postfix">is described in section 1</field><value
+      name="first_element"><block type="true_value" id="7v(CFp^jd@wiNGf[%/d3"></block></value><value
+      name="second_element"><block type="variable" id="ymNB3!2TuSnSm9DR8J:W"><field
+      name="variable_name">B</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#pred prohibited(Y,X) :: ''it is @(X) that @(Y) is prohibited''.
+
+      #pred according_to(R,prohibited(Y,X)) :: ''according to @(R), it is @(X) that
+      @(Y) is prohibited''.
+
+      #pred legally_holds(_,prohibited(Y,X)) :: ''it legally holds that it is @(X)
+      that @(Y) is prohibited''.
+
+      opposes(prohibited(X,true),prohibited(X,false)).
+
+      opposes(prohibited(X,false),prohibited(X,true)).
+
+
+
+      according_to(undefined,  described_in_s1(B,true)) :-
+
+      business(B),
+
+      prohibited(B,true).'
+- model: blawx.workspace
+  pk: 32
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_c_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="T0=2W#^wTAq|v=1t:nZ1" x="-10" y="53"><statement name="statements"><block
+      type="category_attribute" id="2sa^?:D7+n4|QymKP0CP"><value name="category"><block
+      type="category_selector" id="oX8GJz}LgcY{7|ZB_WL!"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="x_Rl+nHl*tT-0*A?%UU,"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="unfair" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">unfair</field><value name="attribute_type"><block type="true_false_type_selector"
+      id="NX%ojK5-103+hFNACMy@"></block></value><next><block type="attribute_display"
+      id="%OS^^v:90nVH@xb[3cny"><field name="order">vo</field><field name="prefix">it
+      is</field><field name="first_element">value</field><field name="infix">that
+      </field><field name="second_element">object</field><field name="postfix">is
+      likely to unfairly attract business</field></block></next></block></statement></block></statement></block><block
+      type="unattributed_rule" id="t}/T59rkh1qe7S6q2t}_" x="-2" y="245"><statement
+      name="conditions"><block type="object_category" id="mWTA=q]3YPxrsA47u0s%"><value
+      name="object"><block type="variable" id="_5r:eMHz~%jh;-aBus(."><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="gk}9sp[c42Wi9)S:+z0@"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="attribute_selector"
+      id="8$nw_T=~;H:Se=5c3ITN"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="unfair"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">is
+      likely to unfairly attract business</field><value name="first_element"><block
+      type="true_value" id="QQeR7`astSM6LPQjc]X@"></block></value><value name="second_element"><block
+      type="variable" id="mL~Ca3cX.I`OVen35kHf"><field name="variable_name">B</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="4nO;2s`=4A{!u71m,.S!"><value
+      name="rule"><block type="doc_selector" id="Z$#ZWc%2EkIKU[u5jjo#"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="undefined"></mutation><field name="doc_part_name">LPPCR 34.1.e</field></block></value><statement
+      name="statement"><block type="attribute_selector" id="*O]{[^q7GLHRl;qQ5Zkc"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="described_in_s1" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that </field><field name="postfix">is described in section 1</field><value
+      name="first_element"><block type="true_value" id="Cmj5KXJ_`Y*KzQ}.[d3W"></block></value><value
+      name="second_element"><block type="variable" id="d/3LAU:hQ=iE}sNyQ1xU"><field
+      name="variable_name">B</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#pred unfair(Y,X) :: ''it is @(X) that  @(Y) is likely to unfairly
+      attract business''.
+
+      #pred according_to(R,unfair(Y,X)) :: ''according to @(R), it is @(X) that  @(Y)
+      is likely to unfairly attract business''.
+
+      #pred legally_holds(_,unfair(Y,X)) :: ''it legally holds that it is @(X) that  @(Y)
+      is likely to unfairly attract business''.
+
+      opposes(unfair(X,true),unfair(X,false)).
+
+      opposes(unfair(X,false),unfair(X,true)).
+
+
+
+      according_to(undefined,  described_in_s1(B,true)) :-
+
+      business(B),
+
+      unfair(B,true).'
+- model: blawx.workspace
+  pk: 33
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_b__subpara_iii_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="?V6N2.G[kS3aO!@Okpt)" x="66" y="136"><statement name="statements"><block
+      type="category_attribute" id=";AP8n^dBxtHQyTP.)_!0"><value name="category"><block
+      type="category_selector" id="B3;H.ec}QCGWh:kk=oY,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="ODfl%:/,r3XAd/ISjEO%"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="materially_interferes_representation_by"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">materially_interferes_representation_by</field><value
+      name="attribute_type"><block type="category_selector" id="!bda+jXfe0C[EUax1OxV"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="attribute_display" id=",(9AQ0CtAMW^kud~$+t("><field name="order">ov</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="infix">materially
+      interferes with</field><field name="second_element">value</field><field name="postfix">'s
+      representation of their clients</field></block></next></block></statement></block></statement></block><block
+      type="unattributed_rule" id="#_oy-hybHnt9hox{a6G}" x="72" y="331"><statement
+      name="conditions"><block type="object_category" id="b0V()1hs|Fz=QLfgQ6#r"><value
+      name="object"><block type="variable" id="wk67,V*ToFpgP_OVnAKE"><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="F]ov$ABi4D|Pp,XccQaM"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="object_category"
+      id="^*CR_g}={8WDg*_nzw7Z"><value name="object"><block type="variable" id="!il%iG/Ft%*hUnAE{j?u"><field
+      name="variable_name">LP</field></block></value><value name="category"><block
+      type="category_selector" id=",4^r-nW28bXWpea}`Em2"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="legal_practitioner"></mutation><field name="category_name">legal_practitioner</field></block></value><next><block
+      type="attribute_selector" id="q*|o-Mgn*-p}3Ru}l]+S"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="materially_interferes_representation_by" attributetype="legal_practitioner"
+      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">materially
+      interferes with</field><field name="postfix">'s representation of their clients</field><value
+      name="first_element"><block type="variable" id="Q*wyhRzDMkR1K4a}*-$u"><field
+      name="variable_name">B</field></block></value><value name="second_element"><block
+      type="variable" id="w%Y:vqQ0:3|1rsdvUaLn"><field name="variable_name">LP</field></block></value></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="eky=aIVv=TN;m,ospnBL"><value
+      name="rule"><block type="doc_selector" id="f%@Ns^CWP8cu1/gNWy`("><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_1__para_b__subpara_iii_section"></mutation><field
+      name="doc_part_name">LPPCR 34.1.b.iii</field></block></value><statement name="statement"><block
+      type="attribute_selector" id="A/a_JaGIC@L{k_Ib4NVW"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="described_in_s1" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">is
+      described in section 1</field><value name="first_element"><block type="true_value"
+      id="sGEf*wJ%0FtTpEuz4!,T"></block></value><value name="second_element"><block
+      type="variable" id="4bHI/:80}K?6/`#J:UQ]"><field name="variable_name">B</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#pred materially_interferes_representation_by(X,Y) :: ''@(X)
+      materially interferes with @(Y) ''s representation of their clients''.
+
+      #pred according_to(R,materially_interferes_representation_by(X,Y)) :: ''according
+      to @(R), @(X) materially interferes with @(Y) ''s representation of their clients''.
+
+      #pred legally_holds(_,materially_interferes_representation_by(X,Y)) :: ''it
+      legally holds that @(X) materially interferes with @(Y) ''s representation of
+      their clients''.
+
+
+
+      according_to(sec_34__subsec_1__para_b__subpara_iii_section,  described_in_s1(B,true))
+      :-
+
+      business(B),
+
+      legal_practitioner(LP),
+
+      materially_interferes_representation_by(B,LP).'
+- model: blawx.workspace
+  pk: 34
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_d_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="$1am+WkP(K%K;ozC{L*v" x="23" y="-403"><statement name="statements"><block
+      type="category_declaration" id="7`x^PxAjEH0g?P!JcAu;"><field name="category_name">person</field><next><block
+      type="category_attribute" id="D|7~+5cxoP00}oynmt%p"><value name="category"><block
+      type="category_selector" id="G/:OB$O)K^T%)$l;^d_:"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="S}M_hq)BIJ3_!hQlvsFK"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="authorized" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">authorized</field><value name="attribute_type"><block
+      type="true_false_type_selector" id="jp*eQIn)FDzAL7C3lW!I"></block></value><next><block
+      type="attribute_display" id=":c{UY,}?p~D~IAt4IXni"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">is authorized to provide
+      legal services</field></block></next></block></statement><next><block type="category_equivalence"
+      id="@kfVi@,j5BQbYU-M~b`w"><value name="first_category"><block type="category_selector"
+      id="0rU7Bx0O+Z2NCIokR_mY"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><value name="second_category"><block
+      type="category_selector" id="Qv^*+)GzTXMc3,wtX1Lh"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><next><block
+      type="category_declaration" id="R!NS3Q#y:[@J_LBSZt$%"><field name="category_name">legal_work</field><next><block
+      type="category_attribute" id="a[hNWhh*NFaUACLHdpCV"><value name="category"><block
+      type="category_selector" id="UEf;wX,8As4~.Z^5ug!0"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="legal_work"></mutation><field name="category_name">legal_work</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="+TfXT:~PnsKHjPxXa]|R"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="performed_by" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">performed_by</field><value name="attribute_type"><block
+      type="category_selector" id="J;3v?5[BU)~z8Z~/[K}`"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><next><block
+      type="attribute_display" id="YH{K%(Iint}DGhEtGy%4"><field name="order">ov</field><field
+      name="prefix">legal work</field><field name="first_element">object</field><field
+      name="infix">was done by</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></statement><next><block type="category_attribute"
+      id="owTyGdP2NHy($lS1ZL(F"><value name="category"><block type="category_selector"
+      id="%u5w`h$:,*V2zPk)x/O("><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><statement name="attributes"><block
+      type="attribute_declaration" id="jXaeFEIBUMRpuVcSql$f"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="involves_payment" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">involves_payment</field><value name="attribute_type"><block
+      type="category_selector" id="M?Ul{DCesknDAlYQNGs+"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="payment"></mutation><field name="category_name">payment</field></block></value><next><block
+      type="attribute_display" id="72B5=5(uqs9GEwK*rwYU"><field name="order">ov</field><field
+      name="prefix">business</field><field name="first_element">object</field><field
+      name="infix">involves the payment</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></statement><next><block type="category_declaration"
+      id="LO7xJx|~e}Ncn-I(SHh["><field name="category_name">payment</field><next><block
+      type="category_attribute" id="@0}Fk(0SGhx$Yp9n?T?O"><value name="category"><block
+      type="category_selector" id="e!S~jH:5j8YBCwa^nhW:"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="payment"></mutation><field name="category_name">payment</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="{rils[P4N$+eYwek0@{M"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="payment_type" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">payment_type</field><value name="attribute_type"><block
+      type="category_selector" id="Ufo,)VS+?),]=p5cF]wk"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="payment_type"></mutation><field name="category_name">payment_type</field></block></value><next><block
+      type="attribute_display" id="3|o_4CS|/=]UsHrI7IB!"><field name="order">ov</field><field
+      name="prefix">payment</field><field name="first_element">object</field><field
+      name="infix">is of payment type</field><field name="second_element">value</field><field
+      name="postfix"></field><next><block type="attribute_declaration" id="hD[s?imO/vud5ZLi+~FX"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="recipient" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">recipient</field><value name="attribute_type"><block type="category_selector"
+      id="zIjEQu=G`pHU_%f~@BH$"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="attribute_display"
+      id="^bWUP@:6*oC+P*9haJWp"><field name="order">vo</field><field name="prefix"></field><field
+      name="first_element">value</field><field name="infix">is the recipient of payment</field><field
+      name="second_element">object</field><field name="postfix"></field><next><block
+      type="attribute_declaration" id="lQm#tJrs3v,K8z3/+#_V"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="compensation_type" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">compensation_type</field><value name="attribute_type"><block
+      type="category_selector" id="VK+dfof}fK@aQ.odKvCH"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="compensation_type"></mutation><field name="category_name">compensation_type</field></block></value><next><block
+      type="attribute_display" id="pRRI=O_Shh$:uHBs_D_|"><field name="order">ov</field><field
+      name="prefix">payment</field><field name="first_element">object</field><field
+      name="infix">has the compensation type</field><field name="second_element">value</field><field
+      name="postfix"></field><next><block type="attribute_declaration" id="s-V$#xifvFD1HP;AFZZB"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="payment_reason" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">payment_reason</field><value name="attribute_type"><block
+      type="category_selector" id="c;vF*@@Wrc_?SvT8m4|3"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="payment_reason"></mutation><field name="category_name">payment_reason</field></block></value><next><block
+      type="attribute_display" id="W-)*8BV+8FNJ^K+FKn!`"><field name="order">ov</field><field
+      name="prefix">payment</field><field name="first_element">object</field><field
+      name="infix">is for</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><next><block
+      type="category_declaration" id="b;.XT0z=F(Ro~,sNrcL2"><field name="category_name">payment_reason</field><next><block
+      type="category_equivalence" id="yLdE(p+p?Sz#4Ad`6{ho"><value name="first_category"><block
+      type="category_selector" id="y{:pDzu/WeptSv]JKgcB"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="legal_work"></mutation><field name="category_name">legal_work</field></block></value><value
+      name="second_category"><block type="category_selector" id="Eh@bt8Ju@~^Egw+tdtF;"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="payment_reason"></mutation><field
+      name="category_name">payment_reason</field></block></value><next><block type="category_declaration"
+      id="$J6kFDK-UZ,pR3SM(]Vd"><field name="category_name">payment_type</field><next><block
+      type="object_declaration" id="yK|unKj}4^}VG)gg,_K}"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="payment_type" prefix="null" postfix="null"></mutation><field
+      name="prefix"></field><field name="object_name">sharing</field><field name="postfix">is
+      a payment_type</field><next><block type="object_declaration" id="dCXyqh74)jb,$_U[M!5#"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="payment_type" prefix="null"
+      postfix="null"></mutation><field name="prefix"></field><field name="object_name">paying</field><field
+      name="postfix">is a payment_type</field><next><block type="category_declaration"
+      id="58Yqls`J^F/s,|=mEFwt"><field name="category_name">compensation_type</field><next><block
+      type="object_declaration" id="H3@J|!Gx.uEIfwRdP;uZ"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="compensation_type" prefix="null" postfix="null"></mutation><field
+      name="prefix"></field><field name="object_name">fees</field><field name="postfix">is
+      a compensation_type</field><next><block type="object_declaration" id="KE-d-]L|,z`/xjFo)F.,"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="compensation_type" prefix="null"
+      postfix="null"></mutation><field name="prefix"></field><field name="object_name">commission</field><field
+      name="postfix">is a compensation_type</field></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="gaGF}f}0IP9=e^)fqUI." x="21" y="830"><statement
+      name="conditions"><block type="object_category" id="2WDC:8rZcysC~#!?,!Yx"><value
+      name="object"><block type="variable" id="3.aq*uY^.?N,-fUchO%~"><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="Z(jMYvMp)bg)3sbD1(uk"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="object_category"
+      id="X5eO/s|VS%h2Buwo+$A3"><value name="object"><block type="variable" id="~=+zogm]c{g2F~3{6#My"><field
+      name="variable_name">P</field></block></value><value name="category"><block
+      type="category_selector" id="]TCcAllqtLw;P4gz]QlC"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="payment"></mutation><field name="category_name">payment</field></block></value><next><block
+      type="attribute_selector" id="ZulDv5VRaEn/bB6XeLt$"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="involves_payment" attributetype="payment" attributeorder="ov"></mutation><field
+      name="prefix">business</field><field name="infix">involves the payment</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="_9?htgeE63%Z(YPT?1dl"><field
+      name="variable_name">B</field></block></value><value name="second_element"><block
+      type="variable" id="0Uh_P:X]Ju9.H0)W_cR$"><field name="variable_name">P</field></block></value><next><block
+      type="attribute_selector" id="o)4|=wm:,Q(Q.^;sLQIb"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="recipient" attributetype="person" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is the recipient of payment</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="8A_2_-Vq!n+_BbFZ#g-}"><field
+      name="variable_name">R</field></block></value><value name="second_element"><block
+      type="variable" id="24loVl=ziU9k*#9Vw2d|"><field name="variable_name">P</field></block></value><next><block
+      type="attribute_selector" id="}O;?,$CtJ~$xne4#(kvB"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="authorized" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      authorized to provide legal services</field><value name="first_element"><block
+      type="false_value" id="Pr4*/^BaSNQ5$58MN_$T"></block></value><value name="second_element"><block
+      type="variable" id="[#7/$?t,Lu{!XBJg#tdY"><field name="variable_name">R</field></block></value><next><block
+      type="attribute_selector" id="g?c6k.%|~D[bb@TOjW(D"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="payment_reason" attributetype="payment_reason" attributeorder="ov"></mutation><field
+      name="prefix">payment</field><field name="infix">is for</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="GhDlpyk:y;]C78?1IZ^A"><field
+      name="variable_name">P</field></block></value><value name="second_element"><block
+      type="variable" id="*~aEAR20VVHUaW8|ft;d"><field name="variable_name">W</field></block></value><next><block
+      type="object_category" id="S]0yP*]?qy;{{g,DBLDS"><value name="object"><block
+      type="variable" id="nh?gfbvYN5s|~=Kgu)F1"><field name="variable_name">W</field></block></value><value
+      name="category"><block type="category_selector" id="r5-CSW@wYcg_79UKT[}^"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_work"></mutation><field
+      name="category_name">legal_work</field></block></value><next><block type="attribute_selector"
+      id="tL}m=[HS=djDkV~OGa-F"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="performed_by"
+      attributetype="person" attributeorder="ov"></mutation><field name="prefix">legal
+      work</field><field name="infix">was done by</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="f^?4^6C[uwV$-8}[sw?A"><field
+      name="variable_name">W</field></block></value><value name="second_element"><block
+      type="variable" id="8O-z~vA*[u!!teP3+76f"><field name="variable_name">LP</field></block></value><next><block
+      type="object_category" id="g(D(iHkPD$Ys64hPg--!"><value name="object"><block
+      type="variable" id="CNjlsP29:Sunz0!0=|o]"><field name="variable_name">LP</field></block></value><value
+      name="category"><block type="category_selector" id="_mx;N[+ldKrguq/Q98(W"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="attribute_selector" id="^$J0u@5|44ZjBdW6RJ+)"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="payment_type" attributetype="payment_type" attributeorder="ov"></mutation><field
+      name="prefix">payment</field><field name="infix">is of payment type</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="?ubs^hx0O5r+/*-Dk5R8"><field
+      name="variable_name">P</field></block></value><value name="second_element"><block
+      type="object_selector" id="fX4#R3LjaZNAcp:ha[@?"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="sharing"></mutation><field name="object_name">sharing</field></block></value><next><block
+      type="attribute_selector" id="i1:`+0S:I`Q%CL=8Fc{s"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="compensation_type" attributetype="compensation_type" attributeorder="ov"></mutation><field
+      name="prefix">payment</field><field name="infix">has the compensation type</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="xPf0lCKk$he]H^ttkF6?"><field
+      name="variable_name">P</field></block></value><value name="second_element"><block
+      type="object_selector" id="?UB{k[q(DOuD(YIh5~lP"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="fees"></mutation><field name="object_name">fees</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="E0]IEPO2|nobb$?oEEQ4"><value
+      name="rule"><block type="doc_selector" id="z/+@P}oc_~w`PBd!pPhL"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="undefined"></mutation><field name="doc_part_name">LPPCR 34.1.d</field></block></value><statement
+      name="statement"><block type="attribute_selector" id="cXEa7D?WuToWM5+hge|k"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="described_in_s1" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that </field><field name="postfix">is described in section 1</field><value
+      name="first_element"><block type="true_value" id="=}c;;o]ISZDkC?35m]TB"></block></value><value
+      name="second_element"><block type="variable" id="%-$e`0!:nU32zv?`oD|@"><field
+      name="variable_name">B</field></block></value></block></statement></block></statement></block><block
+      type="unattributed_rule" id="C,K:/oa/c6T${1xRw#HC" x="622" y="832"><statement
+      name="conditions"><block type="object_category" id="M~M*+UOKD}:?VDU(C|g+"><value
+      name="object"><block type="variable" id="tKK$-gRbbRrXX.$@|B(X"><field name="variable_name">B</field></block></value><value
+      name="category"><block type="category_selector" id="jBPzth1h:tg-4mZJDxvt"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="object_category"
+      id="kj8_m!pRy[*)Gh;$p4]K"><value name="object"><block type="variable" id="ZzdkT?l*SX;!hPs_.LZ}"><field
+      name="variable_name">P</field></block></value><value name="category"><block
+      type="category_selector" id="cMWk3/RYMG;N2-3q4KBG"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="payment"></mutation><field name="category_name">payment</field></block></value><next><block
+      type="attribute_selector" id="zXA1phP_9Q/!N^Rz?jnW"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="involves_payment" attributetype="payment" attributeorder="ov"></mutation><field
+      name="prefix">business</field><field name="infix">involves the payment</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="m!aCiBoAxecUV@_M$:T?"><field
+      name="variable_name">B</field></block></value><value name="second_element"><block
+      type="variable" id="17!^~^Bo09ss8w#Us{Mn"><field name="variable_name">P</field></block></value><next><block
+      type="attribute_selector" id="]#@7bH;~{ABQ]J|N5I-+"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="recipient" attributetype="person" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is the recipient of payment</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="861cXKa:SpaQc{lsFLl0"><field
+      name="variable_name">R</field></block></value><value name="second_element"><block
+      type="variable" id="A!1$[OLqk22,.yrr|pL;"><field name="variable_name">P</field></block></value><next><block
+      type="attribute_selector" id="#2@0)z|(*BPlexaMpb+g"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="authorized" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      authorized to provide legal services</field><value name="first_element"><block
+      type="false_value" id="UypD(p}Dp?}[w_^JlTgX"></block></value><value name="second_element"><block
+      type="variable" id="}qAf]`Rg`=)Vz2U`bOEN"><field name="variable_name">R</field></block></value><next><block
+      type="attribute_selector" id="k_lruiha3hJLy=GcWHgk"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="payment_reason" attributetype="payment_reason" attributeorder="ov"></mutation><field
+      name="prefix">payment</field><field name="infix">is for</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="e74L]]px[9;i;}y(+8$("><field
+      name="variable_name">P</field></block></value><value name="second_element"><block
+      type="variable" id="QxaQK~-@:M0i6Kyd!aFA"><field name="variable_name">W</field></block></value><next><block
+      type="object_category" id="e*rwx6.Bc}{R,rjK#m%@"><value name="object"><block
+      type="variable" id="8}pW*w70U2HOUt]lKi[^"><field name="variable_name">W</field></block></value><value
+      name="category"><block type="category_selector" id="-`2^#J~H?xkIxH6?g;hQ"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_work"></mutation><field
+      name="category_name">legal_work</field></block></value><next><block type="attribute_selector"
+      id="UcXfw@q%.{[uY)y7+BUy"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="performed_by"
+      attributetype="person" attributeorder="ov"></mutation><field name="prefix">legal
+      work</field><field name="infix">was done by</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="vP%kqT+kVtq6k/LSUzIV"><field
+      name="variable_name">W</field></block></value><value name="second_element"><block
+      type="variable" id="_oZ%*.t^QD_*vtn[O^i4"><field name="variable_name">LP</field></block></value><next><block
+      type="object_category" id="H9Yh3pAsX%FtjP6oA`Ji"><value name="object"><block
+      type="variable" id=".-)!~|S-}#z+j;E}GgjR"><field name="variable_name">LP</field></block></value><value
+      name="category"><block type="category_selector" id="cz(sP%o_e~5)dJv^R~[F"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="attribute_selector" id="=H7yN!+LgIKO,6IvOmyx"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="payment_type" attributetype="payment_type" attributeorder="ov"></mutation><field
+      name="prefix">payment</field><field name="infix">is of payment type</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="V8c:vMF7LNA1t{t9}~7R"><field
+      name="variable_name">P</field></block></value><value name="second_element"><block
+      type="object_selector" id="EjhUL6?,kLu-#*XUS%Wu"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="paying"></mutation><field name="object_name">paying</field></block></value><next><block
+      type="attribute_selector" id="s_,u:PHqh8%53vCWhOAl"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="compensation_type" attributetype="compensation_type" attributeorder="ov"></mutation><field
+      name="prefix">payment</field><field name="infix">has the compensation type</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="9fF[6$W2GbmXKp:rUl3h"><field
+      name="variable_name">P</field></block></value><value name="second_element"><block
+      type="object_selector" id="VTN{n96]?na8S?oe6!$Q"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="commission"></mutation><field name="object_name">commission</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="YJ%|sHCf8hf1ijF0.ao2"><value
+      name="rule"><block type="doc_selector" id="DAMWdkCCQ:J*tlT(_QI6"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="undefined"></mutation><field name="doc_part_name">LPPCR 34.1.d</field></block></value><statement
+      name="statement"><block type="attribute_selector" id="_mA8PZ@a@q]y%C]r9]oB"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="described_in_s1" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that </field><field name="postfix">is described in section 1</field><value
+      name="first_element"><block type="true_value" id="Vg%*K4hdmi)6+!0j@gM+"></block></value><value
+      name="second_element"><block type="variable" id="+,L!vc*Sc58{r3Fkpg#E"><field
+      name="variable_name">B</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#pred person(X) :: ''@(X) is a person''.
+
+      #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
+
+      #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
+
+      #pred authorized(Y,X) :: ''it is @(X) that @(Y) is authorized to provide legal
+      services''.
+
+      #pred according_to(R,authorized(Y,X)) :: ''according to @(R), it is @(X) that
+      @(Y) is authorized to provide legal services''.
+
+      #pred legally_holds(_,authorized(Y,X)) :: ''it legally holds that it is @(X)
+      that @(Y) is authorized to provide legal services''.
+
+      opposes(authorized(X,true),authorized(X,false)).
+
+      opposes(authorized(X,false),authorized(X,true)).
+
+
+      person(X) :-
+
+      legal_practitioner(X).
+
+      #pred legal_work(X) :: ''@(X) is a legal_work''.
+
+      #pred according_to(R,legal_work(X)) :: ''according to @(R), @(X) is a legal_work''.
+
+      #pred legally_holds(_,legal_work(X)) :: ''it legally holds that @(X) is a legal_work''.
+
+      #pred performed_by(X,Y) :: ''legal work @(X) was done by @(Y)''.
+
+      #pred according_to(R,performed_by(X,Y)) :: ''according to @(R), legal work @(X)
+      was done by @(Y)''.
+
+      #pred legally_holds(_,performed_by(X,Y)) :: ''it legally holds that legal work
+      @(X) was done by @(Y)''.
+
+
+      #pred involves_payment(X,Y) :: ''business @(X) involves the payment @(Y)''.
+
+      #pred according_to(R,involves_payment(X,Y)) :: ''according to @(R), business
+      @(X) involves the payment @(Y)''.
+
+      #pred legally_holds(_,involves_payment(X,Y)) :: ''it legally holds that business
+      @(X) involves the payment @(Y)''.
+
+
+      #pred payment(X) :: ''@(X) is a payment''.
+
+      #pred according_to(R,payment(X)) :: ''according to @(R), @(X) is a payment''.
+
+      #pred legally_holds(_,payment(X)) :: ''it legally holds that @(X) is a payment''.
+
+      #pred payment_type(X,Y) :: ''payment @(X) is of payment type @(Y)''.
+
+      #pred according_to(R,payment_type(X,Y)) :: ''according to @(R), payment @(X)
+      is of payment type @(Y)''.
+
+      #pred legally_holds(_,payment_type(X,Y)) :: ''it legally holds that payment
+      @(X) is of payment type @(Y)''.
+
+
+      #pred recipient(Y,X) :: ''@(X) is the recipient of payment @(Y)''.
+
+      #pred according_to(R,recipient(Y,X)) :: ''according to @(R), @(X) is the recipient
+      of payment @(Y)''.
+
+      #pred legally_holds(_,recipient(Y,X)) :: ''it legally holds that @(X) is the
+      recipient of payment @(Y)''.
+
+
+      #pred compensation_type(X,Y) :: ''payment @(X) has the compensation type @(Y)''.
+
+      #pred according_to(R,compensation_type(X,Y)) :: ''according to @(R), payment
+      @(X) has the compensation type @(Y)''.
+
+      #pred legally_holds(_,compensation_type(X,Y)) :: ''it legally holds that payment
+      @(X) has the compensation type @(Y)''.
+
+
+      #pred payment_reason(X,Y) :: ''payment @(X) is for @(Y)''.
+
+      #pred according_to(R,payment_reason(X,Y)) :: ''according to @(R), payment @(X)
+      is for @(Y)''.
+
+      #pred legally_holds(_,payment_reason(X,Y)) :: ''it legally holds that payment
+      @(X) is for @(Y)''.
+
+
+      #pred payment_reason(X) :: ''@(X) is a payment_reason''.
+
+      #pred according_to(R,payment_reason(X)) :: ''according to @(R), @(X) is a payment_reason''.
+
+      #pred legally_holds(_,payment_reason(X)) :: ''it legally holds that @(X) is
+      a payment_reason''.
+
+      payment_reason(X) :-
+
+      legal_work(X).
+
+      #pred payment_type(X) :: ''@(X) is a payment_type''.
+
+      #pred according_to(R,payment_type(X)) :: ''according to @(R), @(X) is a payment_type''.
+
+      #pred legally_holds(_,payment_type(X)) :: ''it legally holds that @(X) is a
+      payment_type''.
+
+      payment_type(sharing).
+
+      payment_type(paying).
+
+      #pred compensation_type(X) :: ''@(X) is a compensation_type''.
+
+      #pred according_to(R,compensation_type(X)) :: ''according to @(R), @(X) is a
+      compensation_type''.
+
+      #pred legally_holds(_,compensation_type(X)) :: ''it legally holds that @(X)
+      is a compensation_type''.
+
+      compensation_type(fees).
+
+      compensation_type(commission).
+
+
+      according_to(undefined,  described_in_s1(B,true)) :-
+
+      business(B),
+
+      payment(P),
+
+      involves_payment(B,P),
+
+      recipient(P,R),
+
+      authorized(R,false),
+
+      payment_reason(P,W),
+
+      legal_work(W),
+
+      performed_by(W,LP),
+
+      legal_practitioner(LP),
+
+      payment_type(P,sharing),
+
+      compensation_type(P,fees).
+
+
+      according_to(undefined,  described_in_s1(B,true)) :-
+
+      business(B),
+
+      payment(P),
+
+      involves_payment(B,P),
+
+      recipient(P,R),
+
+      authorized(R,false),
+
+      payment_reason(P,W),
+
+      legal_work(W),
+
+      performed_by(W,LP),
+
+      legal_practitioner(LP),
+
+      payment_type(P,paying),
+
+      compensation_type(P,commission).'
+- model: blawx.workspace
+  pk: 35
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_f__subpara_i_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 36
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_f__subpara_ii_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 37
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_f__subpara_iii_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 38
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_1__para_f__subpara_iv_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"></xml>
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 39
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_3_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="$HdV2$a]7k@pu-I#+90R" x="-9" y="-300"><statement name="statements"><block
+      type="category_declaration" id="q^Kkz_zpA,^#y/*yu~R}"><field name="category_name">service</field><next><block
+      type="category_attribute" id="~j|x[QOorw#^#DWVQhjm"><value name="category"><block
+      type="category_selector" id="IY$vaO(8`.6F?PK1jf1R"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="service"></mutation><field name="category_name">service</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="Tr|vXLK9R6;cYI7,gB`o"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="law-related" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">law-related</field><value name="attribute_type"><block
+      type="true_false_type_selector" id="o)RL~TrJuNgbm(/b`]60"></block></value><next><block
+      type="attribute_display" id="3v}D,5ef?*#UiL+5$lwf"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">is a law-related service</field></block></next></block></statement><next><block
+      type="category_declaration" id="6$4AG=BxU|tx`w(vr|s4"><field name="category_name">business_entity</field><next><block
+      type="category_attribute" id="DX-/^!(r*5,.L~Z@WXwQ"><value name="category"><block
+      type="category_selector" id="Wqf;a7+l-y$[~N3Fyx|g"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business_entity"></mutation><field name="category_name">business_entity</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="vR-ia531D)qPtE|C?5EP"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="provides" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">provides</field><value name="attribute_type"><block type="category_selector"
+      id="1Jz3S/lWaR0(p]0YfCO2"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="service"></mutation><field
+      name="category_name">service</field></block></value><next><block type="attribute_display"
+      id="[J{Fy[L,kt+RW?t[S*_Y"><field name="order">ov</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="infix">provides the service</field><field
+      name="second_element">value</field><field name="postfix"></field><next><block
+      type="attribute_declaration" id="6k[VtRy(!w{i7[|?:M}C"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="appointment_in" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">appointment_in</field><value name="attribute_type"><block
+      type="category_selector" id="`z=`}y|-ui4)S1p9wQ~0"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="executive_appointment"></mutation><field name="category_name">executive_appointment</field></block></value><next><block
+      type="attribute_display" id="{cEoiPgvs`as*d@R{,@}"><field name="order">vo</field><field
+      name="prefix"></field><field name="first_element">value</field><field name="infix">is
+      an executive appointment in</field><field name="second_element">object</field><field
+      name="postfix"></field></block></next></block></next></block></next></block></statement></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id=":]b2eBznhwtl=?7^iV@K" x="-3" y="173"><statement
+      name="conditions"><block type="object_category" id="@y4xU(?S8km$1j-n`(z)"><value
+      name="object"><block type="variable" id="y[7CFL.N,-Gy+CbEb:hb"><field name="variable_name">LP</field></block></value><value
+      name="category"><block type="category_selector" id=":;=xdzRV}+2X/XM0PA3K"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="object_category" id="jv/bSjme7@j6l+UuN3N5"><value name="object"><block
+      type="variable" id="XwIX|v^SD^!wuRXD6_PD"><field name="variable_name">EA</field></block></value><value
+      name="category"><block type="category_selector" id="Vs8YTTCcipE2GZ]5MJic"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="object_category" id="YTb+qxnJNeuF4-jG:o)J"><value name="object"><block
+      type="variable" id="U15G2ysS0c.cFhG9siAA"><field name="variable_name">BE</field></block></value><value
+      name="category"><block type="category_selector" id="RVm=aVJ4%6bXALMcZy8-"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business_entity"></mutation><field
+      name="category_name">business_entity</field></block></value><next><block type="object_category"
+      id="~qs,DXXxj@1[aY:)45x+"><value name="object"><block type="variable" id="?lVwaPF1_V]~O,h=]H5B"><field
+      name="variable_name">S</field></block></value><value name="category"><block
+      type="category_selector" id="Rn*Kgk^.;pH!oIauBR+s"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="service"></mutation><field name="category_name">service</field></block></value><next><block
+      type="attribute_selector" id="Iv-!i]o},z^bA|pRee7R"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="appointment_in" attributetype="executive_appointment" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is an executive appointment in</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="gHO]id!G*00rilfKG^Sq"><field
+      name="variable_name">EA</field></block></value><value name="second_element"><block
+      type="variable" id=").JALd%ZTaGD%-|qlgxN"><field name="variable_name">BE</field></block></value><next><block
+      type="attribute_selector" id="EeMC=1UayLg5a14m;(`+"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="provides" attributetype="service" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">provides the service</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="-ZYxd+9#kgK`dL?%|X4?"><field
+      name="variable_name">BE</field></block></value><value name="second_element"><block
+      type="variable" id="Ze:m,|u/Y!FPaVi)HLfW"><field name="variable_name">S</field></block></value><next><block
+      type="attribute_selector" id="UMzIMfwn+i@)*)d5wbQ,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="law-related" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      a law-related service</field><value name="first_element"><block type="true_value"
+      id="Z|w7CGfPfg6dx]G0bdNO"></block></value><value name="second_element"><block
+      type="variable" id=")`DA[R$vzdBNl8eZQ05A"><field name="variable_name">S</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id=";3$lfDT!:7Z/adDKY7_O"><value
+      name="rule"><block type="doc_selector" id="5pW^qej;T$pyg6]Dw~^x"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="undefined"></mutation><field name="doc_part_name">LPPCR 34.3</field></block></value><statement
+      name="statement"><block type="attribute_selector" id="l$LN9,JpSDX{hyC#qg_0"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="may_accept" attributetype="executive_appointment"
+      attributeorder="ov"></mutation><field name="prefix">legal practitioner</field><field
+      name="infix">may accept the EA</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="?t@Elo,YLekbbCiLFZIw"><field name="variable_name">LP</field></block></value><value
+      name="second_element"><block type="variable" id="Mi%nOE=j7eOHHF$$qt2t"><field
+      name="variable_name">EA</field></block></value></block></statement></block></statement></block><block
+      type="unattributed_fact" id=",X.[H3KjKZIW2DrOz^(;" x="-5" y="579"><statement
+      name="statements"><block type="overrules" id="b1j~UCwQ|Gh1LwJ.gudE"><value name="defeating_rule"><block
+      type="doc_selector" id="(*4`O!~f=?2do*]0Jjr_"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_1_section"></mutation><field name="doc_part_name">LPPCR
+      34.1</field></block></value><value name="defeated_rule"><block type="doc_selector"
+      id="8A;3YlRW3_xU4ln{{3=5"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_3_section"></mutation><field
+      name="doc_part_name">LPPCR 34.3</field></block></value></block></statement></block></xml>
+    scasp_encoding: '#pred service(X) :: ''@(X) is a service''.
+
+      #pred according_to(R,service(X)) :: ''according to @(R), @(X) is a service''.
+
+      #pred legally_holds(_,service(X)) :: ''it legally holds that @(X) is a service''.
+
+      #pred law-related(Y,X) :: ''it is @(X) that @(Y) is a law-related service''.
+
+      #pred according_to(R,law-related(Y,X)) :: ''according to @(R), it is @(X) that
+      @(Y) is a law-related service''.
+
+      #pred legally_holds(_,law-related(Y,X)) :: ''it legally holds that it is @(X)
+      that @(Y) is a law-related service''.
+
+      opposes(law-related(X,true),law-related(X,false)).
+
+      opposes(law-related(X,false),law-related(X,true)).
+
+
+      #pred business_entity(X) :: ''@(X) is a business_entity''.
+
+      #pred according_to(R,business_entity(X)) :: ''according to @(R), @(X) is a business_entity''.
+
+      #pred legally_holds(_,business_entity(X)) :: ''it legally holds that @(X) is
+      a business_entity''.
+
+      #pred provides(X,Y) :: ''@(X) provides the service @(Y)''.
+
+      #pred according_to(R,provides(X,Y)) :: ''according to @(R), @(X) provides the
+      service @(Y)''.
+
+      #pred legally_holds(_,provides(X,Y)) :: ''it legally holds that @(X) provides
+      the service @(Y)''.
+
+
+      #pred appointment_in(Y,X) :: ''@(X) is an executive appointment in @(Y)''.
+
+      #pred according_to(R,appointment_in(Y,X)) :: ''according to @(R), @(X) is an
+      executive appointment in @(Y)''.
+
+      #pred legally_holds(_,appointment_in(Y,X)) :: ''it legally holds that @(X) is
+      an executive appointment in @(Y)''.
+
+
+
+      according_to(undefined,  may_accept(LP,EA)) :-
+
+      legal_practitioner(LP),
+
+      executive_appointment(EA),
+
+      business_entity(BE),
+
+      service(S),
+
+      appointment_in(BE,EA),
+
+      provides(BE,S),
+
+      law-related(S,true).
+
+
+      overrules(sec_34__subsec_1_section,sec_34__subsec_3_section).'
+- model: blawx.workspace
+  pk: 40
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_2_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="hWBy+$a(%K]cnzfHerl%" x="6" y="81"><statement name="statements"><block type="category_attribute"
+      id="ZQSgtVp-N`tDL:2ZVSLu"><value name="category"><block type="category_selector"
+      id="cDPUmvk!#2.^?|m@lOm*"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><statement name="attributes"><block
+      type="attribute_declaration" id="4gBb%k;;jAs4vfqUIS@Y"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="may_accept" attribute_type="CATEGORY"></mutation><field name="attribute_name">may_accept</field><value
+      name="attribute_type"><block type="category_selector" id="5eIJ^J]*E5o7(bCd6%)O"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="attribute_display" id="kQuQBeRaoi?%%v3y+tzV"><field name="order">ov</field><field
+      name="prefix">legal practitioner</field><field name="first_element">object</field><field
+      name="infix">may accept the EA</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></statement><next><block type="opposes"
+      id="2EL?gu8N]Kl1v/QH?JyP"><statement name="first_statement"><block type="attribute_selector"
+      id="v$$TL$?qDGML/-)_`HXc"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="must_not_accept"
+      attributetype="executive_appointment" attributeorder="ov"></mutation><field
+      name="prefix">legal practitioner</field><field name="infix">must not accept
+      the EA</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="uDJflokiVS_TGd$~(VI]"><field name="variable_name">LP</field></block></value><value
+      name="second_element"><block type="variable" id="ce2Jvf=:lb3~VMeGM1Ho"><field
+      name="variable_name">EA</field></block></value></block></statement><statement
+      name="second_statement"><block type="attribute_selector" id="gyd+;/ju7+$(?Uakao~0"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="may_accept" attributetype="executive_appointment"
+      attributeorder="ov"></mutation><field name="prefix">legal practitioner</field><field
+      name="infix">may accept the EA</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="+8/b1{.)IeT$HB5@.Gw*"><field name="variable_name">LP</field></block></value><value
+      name="second_element"><block type="variable" id=")t3H/,_k5,x~$w1/n#[F"><field
+      name="variable_name">EA</field></block></value></block></statement></block></next></block></statement></block></xml>
+    scasp_encoding: '#pred may_accept(X,Y) :: ''legal practitioner @(X) may accept
+      the EA @(Y)''.
+
+      #pred according_to(R,may_accept(X,Y)) :: ''according to @(R), legal practitioner
+      @(X) may accept the EA @(Y)''.
+
+      #pred legally_holds(_,may_accept(X,Y)) :: ''it legally holds that legal practitioner
+      @(X) may accept the EA @(Y)''.
+
+
+      opposes(  must_not_accept(LP,EA),  may_accept(LP,EA)).
+
+      opposes(  may_accept(LP,EA),  must_not_accept(LP,EA)).'
+- model: blawx.workspace
+  pk: 41
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_4_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="IKp/s=_6t^$+SRRa|D|o" x="-46" y="-226"><statement name="statements"><block
+      type="category_attribute" id="@]8blH@O.nV7szHbt_2L"><value name="category"><block
+      type="category_selector" id="-n|FP4P|5J{xWSfjO9w="><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="legal_practitioner"></mutation><field name="category_name">legal_practitioner</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="e!2u;OvSPZm/*Lp~-#8A"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="locum_solicitor" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">locum_solicitor</field><value name="attribute_type"><block
+      type="true_false_type_selector" id="P1{!ETIiN(}j3$1.]o#3"></block></value><next><block
+      type="attribute_display" id="lG9^-_K:}RmyMDI(1TmJ"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">is acting as a locum
+      solicitor</field></block></next></block></statement><next><block type="category_attribute"
+      id="(!L:2[rS*ZPeW/}K{qBa"><value name="category"><block type="category_selector"
+      id="NZt7xbgJm_lzq2Q+so?i"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="service"></mutation><field
+      name="category_name">service</field></block></value><statement name="attributes"><block
+      type="attribute_declaration" id="C0OJ0ev5WesoZgN]8r|9"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="legal" attribute_type="CATEGORY"></mutation><field name="attribute_name">legal</field><value
+      name="attribute_type"><block type="true_false_type_selector" id="opBRFGsVWM/aT-%SJ5]l"></block></value><next><block
+      type="attribute_display" id="p}^!#0JVZ`C3HIf.#?8A"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">is a legal service</field></block></next></block></statement><next><block
+      type="category_declaration" id="l=:(Gn1nkL)Gxj(Bs9I_"><field name="category_name">globe</field><next><block
+      type="category_attribute" id="i.aH#PU`gf=OE3n8SOmU"><value name="category"><block
+      type="category_selector" id="{r?N=rc6UwYx1/Re8J]*"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="globe"></mutation><field name="category_name">globe</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="mF0^W_|^PxtW0NC5TxR="><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="second_schedule_satisfied"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">second_schedule_satisfied</field><value
+      name="attribute_type"><block type="true_false_type_selector" id="qJuKr,Agc5~Gyr!^{P-T"></block></value><next><block
+      type="attribute_display" id="HgPrVzB7|ZXSnycdSyho"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that
+      the second schedule is satisfied with regard to</field><field name="second_element">object</field><field
+      name="postfix"></field></block></next></block></statement><next><block type="object_declaration"
+      id="aaQE}BDSXpmO1,lIbg~x"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="globe"
+      prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">global</field><field name="postfix">is a globe</field></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id=":]b2eBznhwtl=?7^iV@K" x="-51" y="302"><statement
+      name="conditions"><block type="object_category" id="@y4xU(?S8km$1j-n`(z)"><value
+      name="object"><block type="variable" id="y[7CFL.N,-Gy+CbEb:hb"><field name="variable_name">LP</field></block></value><value
+      name="category"><block type="category_selector" id=":;=xdzRV}+2X/XM0PA3K"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="object_category" id="jv/bSjme7@j6l+UuN3N5"><value name="object"><block
+      type="variable" id="XwIX|v^SD^!wuRXD6_PD"><field name="variable_name">EA</field></block></value><value
+      name="category"><block type="category_selector" id="Vs8YTTCcipE2GZ]5MJic"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="object_category" id="YTb+qxnJNeuF4-jG:o)J"><value name="object"><block
+      type="variable" id="U15G2ysS0c.cFhG9siAA"><field name="variable_name">BE</field></block></value><value
+      name="category"><block type="category_selector" id="RVm=aVJ4%6bXALMcZy8-"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business_entity"></mutation><field
+      name="category_name">business_entity</field></block></value><next><block type="attribute_selector"
+      id="Iv-!i]o},z^bA|pRee7R"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="appointment_in"
+      attributetype="executive_appointment" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is an executive appointment in</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="gHO]id!G*00rilfKG^Sq"><field
+      name="variable_name">EA</field></block></value><value name="second_element"><block
+      type="variable" id=").JALd%ZTaGD%-|qlgxN"><field name="variable_name">BE</field></block></value><next><block
+      type="default_negation" id="Hqvvt*d]sYG}oTR;qwy?"><statement name="default_negated_statement"><block
+      type="object_category" id="~qs,DXXxj@1[aY:)45x+"><value name="object"><block
+      type="variable" id="?lVwaPF1_V]~O,h=]H5B"><field name="variable_name">S</field></block></value><value
+      name="category"><block type="category_selector" id="Rn*Kgk^.;pH!oIauBR+s"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="service"></mutation><field
+      name="category_name">service</field></block></value><next><block type="attribute_selector"
+      id="EeMC=1UayLg5a14m;(`+"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="provides"
+      attributetype="service" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">provides the service</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="-ZYxd+9#kgK`dL?%|X4?"><field
+      name="variable_name">BE</field></block></value><value name="second_element"><block
+      type="variable" id="Ze:m,|u/Y!FPaVi)HLfW"><field name="variable_name">S</field></block></value><next><block
+      type="attribute_selector" id="UMzIMfwn+i@)*)d5wbQ,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="law-related" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      a law-related service</field><value name="first_element"><block type="true_value"
+      id="Z|w7CGfPfg6dx]G0bdNO"></block></value><value name="second_element"><block
+      type="variable" id=")`DA[R$vzdBNl8eZQ05A"><field name="variable_name">S</field></block></value></block></next></block></next></block></statement><next><block
+      type="default_negation" id="$r%Ul[/@+X(oY)b)Ze4_"><statement name="default_negated_statement"><block
+      type="object_category" id=":6p1~*fL92MoIIjirC*s"><value name="object"><block
+      type="variable" id="y.qY3Rd]SNfi%F7r`Eeo"><field name="variable_name">S</field></block></value><value
+      name="category"><block type="category_selector" id="sUs#[cn,8/vK%^neZzU}"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="service"></mutation><field
+      name="category_name">service</field></block></value><next><block type="attribute_selector"
+      id="GdAE,Y7;ERVAcA$i@xgP"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="provides"
+      attributetype="service" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">provides the service</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="9_S8cbq[Emw.:|e,d1V@"><field
+      name="variable_name">BE</field></block></value><value name="second_element"><block
+      type="variable" id="0saMX6t1uZ-$j@pvCJ7x"><field name="variable_name">S</field></block></value><next><block
+      type="attribute_selector" id=")664i@Lb};QTzq4FN6(^"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="legal" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      a legal service</field><value name="first_element"><block type="true_value"
+      id="pgnmy!+YF2rTZ~*PRA-:"></block></value><value name="second_element"><block
+      type="variable" id="J!lN4x[zCc,9T^@I~jRZ"><field name="variable_name">S</field></block></value></block></next></block></next></block></statement><next><block
+      type="default_negation" id="vM6?0f!=_RsE~C091WQF"><statement name="default_negated_statement"><block
+      type="attribute_selector" id="W_n1#3K_n$$$pa{!znWk"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="locum_solicitor" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      acting as a locum solicitor</field><value name="first_element"><block type="true_value"
+      id="w*8T*E%-e;9@hu0:`|,0"></block></value><value name="second_element"><block
+      type="variable" id="1/ts5dz04Jy/LB]:ly9p"><field name="variable_name">LP</field></block></value></block></statement><next><block
+      type="attribute_selector" id="Je6pGm0^sXDY,!omH+iX"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="second_schedule_satisfied" attributetype="Checkmark True / False"
+      attributeorder="vo"></mutation><field name="prefix">it is</field><field name="infix">that
+      the second schedule is satisfied with regard to</field><field name="postfix"></field><value
+      name="first_element"><block type="true_value" id="q4G~Vu~^DmfYE9u]DWN0"></block></value><value
+      name="second_element"><block type="object_selector" id="(_vxvZ148*M2WEV$aDwQ"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="global"></mutation><field name="object_name">global</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id=";3$lfDT!:7Z/adDKY7_O"><value
+      name="rule"><block type="doc_selector" id="P5:v~UFs7Pe]QeuQ5$+7"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_4_section"></mutation><field name="doc_part_name">LPPCR
+      34.4</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="l$LN9,JpSDX{hyC#qg_0"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_accept"
+      attributetype="executive_appointment" attributeorder="ov"></mutation><field
+      name="prefix">legal practitioner</field><field name="infix">may accept the EA</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="?t@Elo,YLekbbCiLFZIw"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id="Mi%nOE=j7eOHHF$$qt2t"><field name="variable_name">EA</field></block></value></block></statement></block></statement></block><block
+      type="unattributed_fact" id="#KQGox_f|iMlHJG{Lm!I" x="-47" y="985"><statement
+      name="statements"><block type="overrules" id="{mTt;qrs5~}0Y#,q]](6"><value name="defeating_rule"><block
+      type="doc_selector" id="JN)%JkO`pZh}m4GzWzH7"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_1_section"></mutation><field name="doc_part_name">LPPCR
+      34.1</field></block></value><value name="defeated_rule"><block type="doc_selector"
+      id="TGW**zSW#an|!}#hjv+E"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_4_section"></mutation><field
+      name="doc_part_name">LPPCR 34.4</field></block></value></block></statement></block></xml>
+    scasp_encoding: '#pred locum_solicitor(Y,X) :: ''it is @(X) that @(Y) is acting
+      as a locum solicitor''.
+
+      #pred according_to(R,locum_solicitor(Y,X)) :: ''according to @(R), it is @(X)
+      that @(Y) is acting as a locum solicitor''.
+
+      #pred legally_holds(_,locum_solicitor(Y,X)) :: ''it legally holds that it is
+      @(X) that @(Y) is acting as a locum solicitor''.
+
+      opposes(locum_solicitor(X,true),locum_solicitor(X,false)).
+
+      opposes(locum_solicitor(X,false),locum_solicitor(X,true)).
+
+
+      #pred legal(Y,X) :: ''it is @(X) that @(Y) is a legal service''.
+
+      #pred according_to(R,legal(Y,X)) :: ''according to @(R), it is @(X) that @(Y)
+      is a legal service''.
+
+      #pred legally_holds(_,legal(Y,X)) :: ''it legally holds that it is @(X) that
+      @(Y) is a legal service''.
+
+      opposes(legal(X,true),legal(X,false)).
+
+      opposes(legal(X,false),legal(X,true)).
+
+
+      #pred globe(X) :: ''@(X) is a globe''.
+
+      #pred according_to(R,globe(X)) :: ''according to @(R), @(X) is a globe''.
+
+      #pred legally_holds(_,globe(X)) :: ''it legally holds that @(X) is a globe''.
+
+      #pred second_schedule_satisfied(Y,X) :: ''it is @(X) that the second schedule
+      is satisfied with regard to @(Y)''.
+
+      #pred according_to(R,second_schedule_satisfied(Y,X)) :: ''according to @(R),
+      it is @(X) that the second schedule is satisfied with regard to @(Y)''.
+
+      #pred legally_holds(_,second_schedule_satisfied(Y,X)) :: ''it legally holds
+      that it is @(X) that the second schedule is satisfied with regard to @(Y)''.
+
+      opposes(second_schedule_satisfied(X,true),second_schedule_satisfied(X,false)).
+
+      opposes(second_schedule_satisfied(X,false),second_schedule_satisfied(X,true)).
+
+
+      globe(global).
+
+
+      according_to(sec_34__subsec_4_section,  may_accept(LP,EA)) :-
+
+      legal_practitioner(LP),
+
+      executive_appointment(EA),
+
+      business_entity(BE),
+
+      appointment_in(BE,EA),
+
+      not service(S)provides(BE,S)law-related(S,true),
+
+      not service(S)provides(BE,S)legal(S,true),
+
+      not locum_solicitor(LP,true),
+
+      second_schedule_satisfied(global,true).
+
+
+      overrules(sec_34__subsec_1_section,sec_34__subsec_4_section).'
+- model: blawx.workspace
+  pk: 42
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_5_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_rule"
+      id=":]b2eBznhwtl=?7^iV@K" x="-99" y="51"><statement name="conditions"><block
+      type="object_category" id="@y4xU(?S8km$1j-n`(z)"><value name="object"><block
+      type="variable" id="y[7CFL.N,-Gy+CbEb:hb"><field name="variable_name">LP</field></block></value><value
+      name="category"><block type="category_selector" id=":;=xdzRV}+2X/XM0PA3K"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="object_category" id="jv/bSjme7@j6l+UuN3N5"><value name="object"><block
+      type="variable" id="XwIX|v^SD^!wuRXD6_PD"><field name="variable_name">EA</field></block></value><value
+      name="category"><block type="category_selector" id="Vs8YTTCcipE2GZ]5MJic"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="object_category" id="YTb+qxnJNeuF4-jG:o)J"><value name="object"><block
+      type="variable" id="U15G2ysS0c.cFhG9siAA"><field name="variable_name">BE</field></block></value><value
+      name="category"><block type="category_selector" id="RVm=aVJ4%6bXALMcZy8-"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business_entity"></mutation><field
+      name="category_name">business_entity</field></block></value><next><block type="attribute_selector"
+      id="Iv-!i]o},z^bA|pRee7R"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="appointment_in"
+      attributetype="executive_appointment" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is an executive appointment in</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="gHO]id!G*00rilfKG^Sq"><field
+      name="variable_name">EA</field></block></value><value name="second_element"><block
+      type="variable" id=").JALd%ZTaGD%-|qlgxN"><field name="variable_name">BE</field></block></value><next><block
+      type="default_negation" id="Hqvvt*d]sYG}oTR;qwy?"><statement name="default_negated_statement"><block
+      type="object_category" id="~qs,DXXxj@1[aY:)45x+"><value name="object"><block
+      type="variable" id="?lVwaPF1_V]~O,h=]H5B"><field name="variable_name">S</field></block></value><value
+      name="category"><block type="category_selector" id="Rn*Kgk^.;pH!oIauBR+s"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="service"></mutation><field
+      name="category_name">service</field></block></value><next><block type="attribute_selector"
+      id="EeMC=1UayLg5a14m;(`+"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="provides"
+      attributetype="service" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">provides the service</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="-ZYxd+9#kgK`dL?%|X4?"><field
+      name="variable_name">BE</field></block></value><value name="second_element"><block
+      type="variable" id="Ze:m,|u/Y!FPaVi)HLfW"><field name="variable_name">S</field></block></value><next><block
+      type="attribute_selector" id="UMzIMfwn+i@)*)d5wbQ,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="law-related" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      a law-related service</field><value name="first_element"><block type="true_value"
+      id="Z|w7CGfPfg6dx]G0bdNO"></block></value><value name="second_element"><block
+      type="variable" id=")`DA[R$vzdBNl8eZQ05A"><field name="variable_name">S</field></block></value></block></next></block></next></block></statement><next><block
+      type="default_negation" id="$r%Ul[/@+X(oY)b)Ze4_"><statement name="default_negated_statement"><block
+      type="object_category" id=":6p1~*fL92MoIIjirC*s"><value name="object"><block
+      type="variable" id="y.qY3Rd]SNfi%F7r`Eeo"><field name="variable_name">S</field></block></value><value
+      name="category"><block type="category_selector" id="sUs#[cn,8/vK%^neZzU}"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="service"></mutation><field
+      name="category_name">service</field></block></value><next><block type="attribute_selector"
+      id="GdAE,Y7;ERVAcA$i@xgP"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="provides"
+      attributetype="service" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">provides the service</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="9_S8cbq[Emw.:|e,d1V@"><field
+      name="variable_name">BE</field></block></value><value name="second_element"><block
+      type="variable" id="0saMX6t1uZ-$j@pvCJ7x"><field name="variable_name">S</field></block></value><next><block
+      type="attribute_selector" id=")664i@Lb};QTzq4FN6(^"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="legal" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      a legal service</field><value name="first_element"><block type="true_value"
+      id="pgnmy!+YF2rTZ~*PRA-:"></block></value><value name="second_element"><block
+      type="variable" id="J!lN4x[zCc,9T^@I~jRZ"><field name="variable_name">S</field></block></value></block></next></block></next></block></statement><next><block
+      type="attribute_selector" id="W_n1#3K_n$$$pa{!znWk"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="locum_solicitor" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      acting as a locum solicitor</field><value name="first_element"><block type="true_value"
+      id="w*8T*E%-e;9@hu0:`|,0"></block></value><value name="second_element"><block
+      type="variable" id="1/ts5dz04Jy/LB]:ly9p"><field name="variable_name">LP</field></block></value><next><block
+      type="attribute_selector" id="Je6pGm0^sXDY,!omH+iX"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="second_schedule_satisfied" attributetype="Checkmark True / False"
+      attributeorder="vo"></mutation><field name="prefix">it is</field><field name="infix">that
+      the second schedule is satisfied with regard to</field><field name="postfix"></field><value
+      name="first_element"><block type="true_value" id="q4G~Vu~^DmfYE9u]DWN0"></block></value><value
+      name="second_element"><block type="object_selector" id="(_vxvZ148*M2WEV$aDwQ"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="global"></mutation><field name="object_name">global</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id=";3$lfDT!:7Z/adDKY7_O"><value
+      name="rule"><block type="doc_selector" id="@;hDE)D{[4dv#TGDO19a"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_5_section"></mutation><field name="doc_part_name">LPPCR
+      34.5</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="l$LN9,JpSDX{hyC#qg_0"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_accept"
+      attributetype="executive_appointment" attributeorder="ov"></mutation><field
+      name="prefix">legal practitioner</field><field name="infix">may accept the EA</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="?t@Elo,YLekbbCiLFZIw"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id="Mi%nOE=j7eOHHF$$qt2t"><field name="variable_name">EA</field></block></value></block></statement></block></statement></block><block
+      type="unattributed_fact" id="K4@(Muy%vI5}zDv71AAr" x="-97" y="699"><statement
+      name="statements"><block type="overrules" id="VZFZ_o7SYnOWUFLh1);D"><value name="defeating_rule"><block
+      type="doc_selector" id="C|R1(dO?|b_7cX]JO}om"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_5_section"></mutation><field name="doc_part_name">LPPCR
+      34.5</field></block></value><value name="defeated_rule"><block type="doc_selector"
+      id="_1+$r80Z=6h-Mc4Y;U(7"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_1__para_b_section"></mutation><field
+      name="doc_part_name">LPPCR 34.1.b</field></block></value><next><block type="overrules"
+      id="C0y@t+Oom1mD{b5Z*D=8"><value name="defeating_rule"><block type="doc_selector"
+      id="4$i5r}TRH37*xI9#vDNW"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_1__para_a_section"></mutation><field
+      name="doc_part_name">LPPCR 34.1.a</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id="-kGBo1%7lohUXrym}DeY"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_5_section"></mutation><field name="doc_part_name">LPPCR
+      34.5</field></block></value><next><block type="overrules" id=";[Z`h3b,]}q8hw{.ozO6"><value
+      name="defeating_rule"><block type="doc_selector" id="i^D_?R-(w/l,68:yI?]f"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_1__para_c_section"></mutation><field
+      name="doc_part_name">LPPCR 34.1.c</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id="l*DD2lb|IR2R`TSDq0@q"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_5_section"></mutation><field name="doc_part_name">LPPCR
+      34.5</field></block></value><next><block type="overrules" id="z[6e;bPV)iH~9IG3Bo9R"><value
+      name="defeating_rule"><block type="doc_selector" id="^J~evx{_7}yPwQh;USY?"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_1__para_d_section"></mutation><field
+      name="doc_part_name">LPPCR 34.1.d</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id="i/,ZS}:[gmx06Rj!WUrK"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_5_section"></mutation><field name="doc_part_name">LPPCR
+      34.5</field></block></value><next><block type="overrules" id="`;|7{kV1a;cEP@=}w-}1"><value
+      name="defeating_rule"><block type="doc_selector" id="`*E|Va@Ds/%eiuX5yM2H"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_1__para_e_section"></mutation><field
+      name="doc_part_name">LPPCR 34.1.e</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id="c@Y.ncA]#5/s}dhTVgNS"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_5_section"></mutation><field name="doc_part_name">LPPCR
+      34.5</field></block></value><next><block type="overrules" id="#{fd+v(TPs)7$~^pvhM6"><value
+      name="defeating_rule"><block type="doc_selector" id="`z2sKhz)l.Ck:[I(3N$C"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_1__para_f_section"></mutation><field
+      name="doc_part_name">LPPCR 34.1.f</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id="uKBjO`T}.v](,d?U;Pvq"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_5_section"></mutation><field name="doc_part_name">LPPCR
+      34.5</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement></block></xml>
+    scasp_encoding: 'according_to(sec_34__subsec_5_section,  may_accept(LP,EA)) :-
+
+      legal_practitioner(LP),
+
+      executive_appointment(EA),
+
+      business_entity(BE),
+
+      appointment_in(BE,EA),
+
+      not service(S)provides(BE,S)law-related(S,true),
+
+      not service(S)provides(BE,S)legal(S,true),
+
+      locum_solicitor(LP,true),
+
+      second_schedule_satisfied(global,true).
+
+
+      overrules(sec_34__subsec_5_section,sec_34__subsec_1__para_b_section).
+
+      overrules(sec_34__subsec_1__para_a_section,sec_34__subsec_5_section).
+
+      overrules(sec_34__subsec_1__para_c_section,sec_34__subsec_5_section).
+
+      overrules(sec_34__subsec_1__para_d_section,sec_34__subsec_5_section).
+
+      overrules(sec_34__subsec_1__para_e_section,sec_34__subsec_5_section).
+
+      overrules(sec_34__subsec_1__para_f_section,sec_34__subsec_5_section).'
+- model: blawx.workspace
+  pk: 43
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_6__para_a_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="3LUt#oo#fLRf4Sua^vA)" x="-62" y="-22"><statement name="statements"><block
+      type="overrules" id="}EI`9kzF9E,$B2O!q2Bd"><value name="defeating_rule"><block
+      type="doc_selector" id="UIy:nK07|7A=^0?X^Q7="><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_2_section"></mutation><field name="doc_part_name">LPPCR
+      34.2</field></block></value><value name="defeated_rule"><block type="doc_selector"
+      id="F?$gWmq{t?1(,]#t5/a9"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_6__para_a_section"></mutation><field
+      name="doc_part_name">LPPCR 34.6.a</field></block></value><next><block type="overrules"
+      id="fdQzSs;~ZLi=-]xjV=L2"><value name="defeating_rule"><block type="doc_selector"
+      id="!2*%O*,CfA^4IRf^h~:J"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_3_section"></mutation><field
+      name="doc_part_name">LPPCR 34.3</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id="^Q~6+:qWE-^.vc4q?Y?W"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_6__para_a_section"></mutation><field name="doc_part_name">LPPCR
+      34.6.a</field></block></value><next><block type="overrules" id="zv:!:q6uNl2UF=JngW)N"><value
+      name="defeating_rule"><block type="doc_selector" id="s^K7D]Y9ALzBpQza(xgc"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_4_section"></mutation><field
+      name="doc_part_name">LPPCR 34.4</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id="[`;qXan;Zr:Wt^qeJg[#"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_6__para_a_section"></mutation><field name="doc_part_name">LPPCR
+      34.6.a</field></block></value><next><block type="overrules" id="o3pTrUFm#Dkk`w1zEs2V"><value
+      name="defeating_rule"><block type="doc_selector" id="=LzygpELu7XS6=b+`QlP"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_5_section"></mutation><field
+      name="doc_part_name">LPPCR 34.5</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id="qIzhsM;%m#IovIlHy~qX"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_6__para_a_section"></mutation><field name="doc_part_name">LPPCR
+      34.6.a</field></block></value></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_fact" id="0TBAp9~lrt!kjYcsPy^U" x="-66" y="167"><statement
+      name="statements"><block type="category_declaration" id="/T?h^mv!VCwP|ikYkTLo"><field
+      name="category_name">law_practice</field><next><block type="category_attribute"
+      id="BJ(w*F]2+ss4/zr(;q2g"><value name="category"><block type="category_selector"
+      id="=@zq*7z2?[m,Pg:zM(rs"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="law_practice"></mutation><field
+      name="category_name">law_practice</field></block></value><statement name="attributes"><block
+      type="attribute_declaration" id="%gLSPi,CxDfim}.+^$9I"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="practice_jurisdiction" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">practice_jurisdiction</field><value name="attribute_type"><block
+      type="category_selector" id="@_%Dp4N}uHVHmp0fE.^O"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="jurisdiction"></mutation><field name="category_name">jurisdiction</field></block></value><next><block
+      type="attribute_display" id=")5a=`qkk+65HjwP{{$vZ"><field name="order">ov</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="infix">is
+      located in</field><field name="second_element">value</field><field name="postfix"></field><next><block
+      type="attribute_declaration" id="Q,8]95465JHmm-9~020y"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="practitioners" attribute_type="CATEGORY"></mutation><field name="attribute_name">practitioners</field><value
+      name="attribute_type"><block type="category_selector" id="#fj=U~]os2Vf*jI%a3G;"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="attribute_display" id="Cw^kw=-*q1JHpNKrkQ5}"><field name="order">vo</field><field
+      name="prefix"></field><field name="first_element">value</field><field name="infix">is
+      a legal practitioner in</field><field name="second_element">object</field><field
+      name="postfix"></field><next><block type="attribute_declaration" id="gtlmEQe-UnE|~O3K~wD6"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="lp_executive_appointments"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">lp_executive_appointments</field><value
+      name="attribute_type"><block type="category_selector" id="b?bnr,o-$]S0gu9C[f-F"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="attribute_display" id="8xae_JtP?yNd=DIuv]La"><field name="order">vo</field><field
+      name="prefix"></field><field name="first_element">value</field><field name="infix">is
+      an executive appointment in law practice</field><field name="second_element">object</field><field
+      name="postfix"></field></block></next></block></next></block></next></block></next></block></next></block></statement><next><block
+      type="category_declaration" id="MUB|xosjGWlcXbdSAW@b"><field name="category_name">jurisdiction</field><next><block
+      type="object_declaration" id="tGjaKp0J*S8gLxWd[`VT"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="jurisdiction" prefix="null" postfix="null"></mutation><field
+      name="prefix"></field><field name="object_name">singapore</field><field name="postfix">is
+      a jurisdiction</field></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="D=VJRX7C][u%Fc5Li)wc" x="-65" y="611"><statement
+      name="conditions"><block type="object_category" id="ET!ek-2Zi+,=b0f2{i.m"><value
+      name="object"><block type="variable" id="=7gn/qr:27;uRUDN`Nt?"><field name="variable_name">LP</field></block></value><value
+      name="category"><block type="category_selector" id="gqwxZ7,AdzmwtCv{:`V("><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="object_category" id=":.[hOcNXJBan,+zUtyXI"><value name="object"><block
+      type="variable" id="LPWGgSWi?JLE~1*bq3rg"><field name="variable_name">EA</field></block></value><value
+      name="category"><block type="category_selector" id="O;*i37nJ.E)Ad`KyyXy9"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="object_category" id="X?MUW}nF`:0=%(-:ZV^/"><value name="object"><block
+      type="variable" id="l_)R|IW27xq{3ZF7SM;!"><field name="variable_name">OwnPractice</field></block></value><value
+      name="category"><block type="category_selector" id="j5)1J|stNEN9pzS{ANB/"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="law_practice"></mutation><field
+      name="category_name">law_practice</field></block></value><next><block type="attribute_selector"
+      id="h||a35(x?EuaSUO=J]uW"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="practitioners"
+      attributetype="legal_practitioner" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">is a legal practitioner in</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="(DL.WYu=Sff#nfg:ojWs"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id="|32l$$w%$scrNG$_fb)G"><field name="variable_name">OwnPractice</field></block></value><next><block
+      type="attribute_selector" id="BJxBQ}bUOBLDkGZtRvl7"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="practice_jurisdiction" attributetype="jurisdiction" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">is located in</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="N]0uLlX=HKjpDET~Zyc$"><field
+      name="variable_name">OwnPractice</field></block></value><value name="second_element"><block
+      type="object_selector" id="ou{0`qg+:E3efaycG~iT"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="singapore"></mutation><field name="object_name">singapore</field></block></value><next><block
+      type="object_category" id="IQA;Sj$kO3MjrtQzw1R."><value name="object"><block
+      type="variable" id=")zdgYA{jKVl+9g/4Fr.1"><field name="variable_name">OtherPractice</field></block></value><value
+      name="category"><block type="category_selector" id="SFrG^|q=*/y`;)c1|.Yl"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="law_practice"></mutation><field
+      name="category_name">law_practice</field></block></value><next><block type="attribute_selector"
+      id="R`-jT}sX4H$x0v5vN!XO"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="practice_jurisdiction"
+      attributetype="jurisdiction" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">is located in</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="Q]xr$rLeEMlv7zOy,1Ce"><field name="variable_name">OtherPractice</field></block></value><value
+      name="second_element"><block type="object_selector" id="{C=duynk:y8/natVP5`Q"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="singapore"></mutation><field
+      name="object_name">singapore</field></block></value><next><block type="attribute_selector"
+      id="zW=mz`,1)gvMVr/A4wt)"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="lp_executive_appointments"
+      attributetype="executive_appointment" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is an executive appointment in law
+      practice</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="r3s{xbNN9c=}zmA9yHbh"><field name="variable_name">EA</field></block></value><value
+      name="second_element"><block type="variable" id="^;)tlwBEffDJ:mZ(}x~0"><field
+      name="variable_name">OtherPractice</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id=":^4,Cxj{=f8{cO5pQ`YT"><value
+      name="rule"><block type="doc_selector" id="tYLwM7PK)k~}oalvEk)/"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="undefined"></mutation><field name="doc_part_name">LPPCR 34.6.a</field></block></value><statement
+      name="statement"><block type="attribute_selector" id="rZ.K]GxYXC|6}WKy[hXj"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="must_not_accept" attributetype="executive_appointment"
+      attributeorder="ov"></mutation><field name="prefix">legal practitioner</field><field
+      name="infix">must not accept the EA</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="S^^ORyg+f!tjlTcP:me-"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id="CjSRtx9MA`uqp(x8R~KT"><field name="variable_name">EA</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'overrules(sec_34__subsec_2_section,sec_34__subsec_6__para_a_section).
+
+      overrules(sec_34__subsec_3_section,sec_34__subsec_6__para_a_section).
+
+      overrules(sec_34__subsec_4_section,sec_34__subsec_6__para_a_section).
+
+      overrules(sec_34__subsec_5_section,sec_34__subsec_6__para_a_section).
+
+
+      #pred law_practice(X) :: ''@(X) is a law_practice''.
+
+      #pred according_to(R,law_practice(X)) :: ''according to @(R), @(X) is a law_practice''.
+
+      #pred legally_holds(_,law_practice(X)) :: ''it legally holds that @(X) is a
+      law_practice''.
+
+      #pred practice_jurisdiction(X,Y) :: ''@(X) is located in @(Y)''.
+
+      #pred according_to(R,practice_jurisdiction(X,Y)) :: ''according to @(R), @(X)
+      is located in @(Y)''.
+
+      #pred legally_holds(_,practice_jurisdiction(X,Y)) :: ''it legally holds that
+      @(X) is located in @(Y)''.
+
+
+      #pred practitioners(Y,X) :: ''@(X) is a legal practitioner in @(Y)''.
+
+      #pred according_to(R,practitioners(Y,X)) :: ''according to @(R), @(X) is a legal
+      practitioner in @(Y)''.
+
+      #pred legally_holds(_,practitioners(Y,X)) :: ''it legally holds that @(X) is
+      a legal practitioner in @(Y)''.
+
+
+      #pred lp_executive_appointments(Y,X) :: ''@(X) is an executive appointment in
+      law practice @(Y)''.
+
+      #pred according_to(R,lp_executive_appointments(Y,X)) :: ''according to @(R),
+      @(X) is an executive appointment in law practice @(Y)''.
+
+      #pred legally_holds(_,lp_executive_appointments(Y,X)) :: ''it legally holds
+      that @(X) is an executive appointment in law practice @(Y)''.
+
+
+      #pred jurisdiction(X) :: ''@(X) is a jurisdiction''.
+
+      #pred according_to(R,jurisdiction(X)) :: ''according to @(R), @(X) is a jurisdiction''.
+
+      #pred legally_holds(_,jurisdiction(X)) :: ''it legally holds that @(X) is a
+      jurisdiction''.
+
+      jurisdiction(singapore).
+
+
+      according_to(undefined,  must_not_accept(LP,EA)) :-
+
+      legal_practitioner(LP),
+
+      executive_appointment(EA),
+
+      law_practice(OwnPractice),
+
+      practitioners(OwnPractice,LP),
+
+      practice_jurisdiction(OwnPractice,singapore),
+
+      law_practice(OtherPractice),
+
+      practice_jurisdiction(OtherPractice,singapore),
+
+      lp_executive_appointments(OtherPractice,EA).'
+- model: blawx.workspace
+  pk: 44
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_6__para_b_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="3LUt#oo#fLRf4Sua^vA)" x="-87" y="120"><statement name="statements"><block
+      type="overrules" id="}EI`9kzF9E,$B2O!q2Bd"><value name="defeating_rule"><block
+      type="doc_selector" id="UIy:nK07|7A=^0?X^Q7="><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_2_section"></mutation><field name="doc_part_name">LPPCR
+      34.2</field></block></value><value name="defeated_rule"><block type="doc_selector"
+      id="5N(!^.jWynO28.X2yHyw"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_6__para_b_section"></mutation><field
+      name="doc_part_name">LPPCR 34.6.b</field></block></value><next><block type="overrules"
+      id="fdQzSs;~ZLi=-]xjV=L2"><value name="defeating_rule"><block type="doc_selector"
+      id="!2*%O*,CfA^4IRf^h~:J"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_3_section"></mutation><field
+      name="doc_part_name">LPPCR 34.3</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id="Kkw:g1pK?hEMmzrq$~Ws"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_6__para_b_section"></mutation><field name="doc_part_name">LPPCR
+      34.6.b</field></block></value><next><block type="overrules" id="zv:!:q6uNl2UF=JngW)N"><value
+      name="defeating_rule"><block type="doc_selector" id="s^K7D]Y9ALzBpQza(xgc"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_4_section"></mutation><field
+      name="doc_part_name">LPPCR 34.4</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id="U_uw]qb2EGwX$-^jeUz*"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_6__para_b_section"></mutation><field name="doc_part_name">LPPCR
+      34.6.b</field></block></value><next><block type="overrules" id="o3pTrUFm#Dkk`w1zEs2V"><value
+      name="defeating_rule"><block type="doc_selector" id="=LzygpELu7XS6=b+`QlP"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_5_section"></mutation><field
+      name="doc_part_name">LPPCR 34.5</field></block></value><value name="defeated_rule"><block
+      type="doc_selector" id=",CE]FVqEnVErTH/5mfL`"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_6__para_b_section"></mutation><field name="doc_part_name">LPPCR
+      34.6.b</field></block></value></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="I}Hx$fl_R%FEp:Bq(;xB" x="-85" y="312"><statement
+      name="conditions"><block type="object_category" id="T{{y~kVC[sURu$fO|228"><value
+      name="object"><block type="variable" id="Cxjh0j|XmWi98!Gom4y)"><field name="variable_name">LP</field></block></value><value
+      name="category"><block type="category_selector" id="q9|dd,i;H|:Nqq702U,a"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="object_category" id="p!MyzCaH:ew3Yl4NU6M8"><value name="object"><block
+      type="variable" id="jeSz4`M@RPar=@M,z:me"><field name="variable_name">EA</field></block></value><value
+      name="category"><block type="category_selector" id="(}XwuMAz@@7{;?}SnS`P"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="object_category" id="tmHqEZopOOMi~E%B0U`H"><value name="object"><block
+      type="variable" id="v=5$)QNKB]00uNjgs?wE"><field name="variable_name">BE</field></block></value><value
+      name="category"><block type="category_selector" id="~]T(}lUI!hxut=~Pp4,["><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business_entity"></mutation><field
+      name="category_name">business_entity</field></block></value><next><block type="attribute_selector"
+      id="g/E?g_{S82*/_B(uZXFn"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="appointment_in"
+      attributetype="executive_appointment" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is an executive appointment in</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="xU52/h:U/%*aVxPEt.ks"><field
+      name="variable_name">EA</field></block></value><value name="second_element"><block
+      type="variable" id="TgYV#9+bXMyx3/5){W#,"><field name="variable_name">BE</field></block></value></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="B}jtOPMnwB[M1VPhL9#9"><value
+      name="rule"><block type="doc_selector" id="R-s!9AhPC|aYh4HAYId^"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="undefined"></mutation><field name="doc_part_name">LPPCR 34.6.b</field></block></value><statement
+      name="statement"><block type="attribute_selector" id="Zi%.JRi;e8_t`6~|+dj3"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="must_not_accept" attributetype="executive_appointment"
+      attributeorder="ov"></mutation><field name="prefix">legal practitioner</field><field
+      name="infix">must not accept the EA</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id=":4QnW/|BHJFzO3iJr9Jf"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id="-(*b{B.Y|q,Y3sdxyXU^"><field name="variable_name">EA</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'overrules(sec_34__subsec_2_section,sec_34__subsec_6__para_b_section).
+
+      overrules(sec_34__subsec_3_section,sec_34__subsec_6__para_b_section).
+
+      overrules(sec_34__subsec_4_section,sec_34__subsec_6__para_b_section).
+
+      overrules(sec_34__subsec_5_section,sec_34__subsec_6__para_b_section).
+
+
+      according_to(undefined,  must_not_accept(LP,EA)) :-
+
+      legal_practitioner(LP),
+
+      executive_appointment(EA),
+
+      business_entity(BE),
+
+      appointment_in(BE,EA).'
