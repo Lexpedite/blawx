@@ -13,6 +13,9 @@ from .serializers import WorkspaceSerializer, CodeUpdateRequestSerializer
 from .models import Workspace, DocPage, WorkspaceTemplate, RuleDoc, BlawxTest
 
 
+from cobalt.hierarchical import Act
+import lxml
+
 # Create your views here.
 
 class RuleDocsView(generic.ListView):
@@ -50,6 +53,15 @@ class RuleDocView(generic.DetailView):
 
 #     def get_queryset(self):
 #         return Workspace.objects.all()
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def ruleDocLegalTextView(request,pk,section_name):
+    ruledoc=RuleDoc.objects.get(pk=pk)
+    cobalt_parse = Act(ruledoc.akoma_ntoso)
+    target = cobalt_parse.act.find(".//*[@eId='" + section_name + "']")
+    return Response({'xml': lxml.etree.tostring(target),
+                     'text': ' '.join(target.itertext())})
 
 class BlawxView(generic.DetailView):
     template_name = 'blawx/blawx.html'

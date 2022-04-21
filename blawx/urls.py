@@ -10,6 +10,7 @@ app_name = 'blawx'
 urlpatterns = [
     path('', views.RuleDocsView.as_view(), name='ruledocs'),
     path('<int:pk>/', views.RuleDocView.as_view(), name='ruledoc'),
+    path('<int:pk>/rule/<slug:section_name>/', views.ruleDocLegalTextView, name="ruledoc_text"),
     path('<int:pk>/edit/', views.RuleDocEditView.as_view(), name='ruledoc_edit'),
     path('<int:pk>/code/', views.BlawxView.as_view(), name="code"),
     path('<int:pk>/test/new/', views.TestCreateView.as_view(), name="new_test"),

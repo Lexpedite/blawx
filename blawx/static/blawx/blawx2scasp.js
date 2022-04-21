@@ -222,7 +222,9 @@ Blockly.JavaScript['legal_doc_text'] = function(block) {
 Blockly.JavaScript['doc_selector'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var value_doc_part_name = block.getFieldValue('doc_part_name');
-  var code = value_doc_part_name.replace(' ','__').replace('.','_').toLowerCase() + "_end";
+  var value_section_reference = block.section_reference;
+  var code = value_section_reference.toLowerCase();
+  // value_doc_part_name.replace(' ','__').replace('.','_').toLowerCase() + "_end";
   // TODO: Change ORDER_ATOMIC to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };

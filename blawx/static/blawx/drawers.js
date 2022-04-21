@@ -309,7 +309,8 @@ knownRulesCallback = function(workspace) {
         // If the id is "root_section" then just use the abbreviation
         // If the id starts with crossheading, use the text of the element.
         // Otherwise, use the hierarchical numbering.
-        var blocktext = '<xml><block type="doc_selector"><field name="doc_part_name">'
+        var blocktext = '<xml><block type="doc_selector">'
+        blocktext += '<field name="doc_part_name">'
         var raw_id = sections[i].getElementsByTagName('input')[0].id
         if (raw_id == "root_section") {
             blocktext += abbreviation
@@ -326,7 +327,9 @@ knownRulesCallback = function(workspace) {
             short_ref = short_ref.replace("__span_",".");
             blocktext += abbreviation + " " + short_ref;
         }
-        blocktext += "</field></block></xml>"
+        blocktext += "</field>"
+        blocktext += '<mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="' + raw_id + '"></mutation>'
+        blocktext += "</block></xml>"
         var block = Blockly.Xml.textToDom(blocktext).firstChild;
         xmlList.push(block);
         // if (sections[i].attributes.eid.value.startsWith('sec')) {
