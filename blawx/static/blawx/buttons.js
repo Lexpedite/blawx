@@ -35,6 +35,30 @@ updateWorkspace = function() {
 
 }
 
+function addSectionReferences(text) {
+    // Search the string for the list of section references
+    var match = text.match(/according to (sec_.*)_section/);
+    var rule_text = "This will be the text of the act."
+    if (match) {
+        var eId = match[1];
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "../../rule/" + eId + "/", false);
+        xhttp.setRequestHeader('X-CSRFToken', csrftoken);
+        xhttp.send();
+        output_object = JSON.parse(xhttp.responseText);
+        rule_text = output_object['text'];
+        text = text.replace("according to " + eId + "_section",
+        'according to <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="' + rule_text + '">' + eId + '</a>')
+    }
+    var new_text = text.replace(/(sec_.*)_section/g,"$1");
+    new_text = new_text.replace(/sec_/g,"section ");
+    new_text = new_text.replace(/__subsec_/g," subsection ");
+    new_text = new_text.replace(/__para_/g," paragraph ");
+    new_text = new_text.replace(/__subpara_/g,' sub-paragraph ');
+    new_text = new_text.replace(/__span_/g,' span ');
+    return new_text
+}
+
 function convertModelToTree(list,answer,explanation,prefix="",root=true) {
     output_html = "";
     if (root) {
@@ -62,7 +86,7 @@ function convertModelToTree(list,answer,explanation,prefix="",root=true) {
         if (has_reasons) {
             output_html += '<i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#' + target + '"></i>'
         }
-        output_html += list[0]
+        output_html += addSectionReferences(list[0])
         output_html += '</div>'
         // Now we have displayed the text, we optionally display each of the
         // reasons, processing it using this formula if it, too, has reasons.
@@ -84,6 +108,16 @@ function convertModelToTree(list,answer,explanation,prefix="",root=true) {
         }
     }
     return output_html;
+}
+
+var tooltipTriggerList;
+var tooltipList;
+var updateTooltips;
+updateTooltips = function() {
+    tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 }
 
 var runCode
@@ -145,6 +179,8 @@ runCode = function(button) {
         if (output_object.transcript) {
             $problems.textContent = output_object.transcript;
         }
+        
+        updateTooltips();
     };
     // If there is a json_input type block on the workspace, insert its contents into the post
     // request.
