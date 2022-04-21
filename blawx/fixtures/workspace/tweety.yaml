@@ -67,7 +67,8 @@
       xmlns="http://www.w3.org/1999/xhtml" category_name="bird"></mutation><field
       name="category_name">bird</field></block></value></block></statement><statement
       name="conclusion"><block type="according_to" id="6a%+|6[ZnwV=PU(=Cj8d"><value
-      name="rule"><block type="doc_selector" id="6|`)n6K;TlnJjgx[#z[z"><field name="doc_part_name">BA
+      name="rule"><block type="doc_selector" id="JEl.5HlC.3^!Ap6^nbfB"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_2_section"></mutation><field name="doc_part_name">BA
       2</field></block></value><statement name="statement"><block type="attribute_selector"
       id="]pE{$7nc72o}5eTyfr+["><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
       attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
@@ -95,7 +96,7 @@
 
 
 
-      according_to(ba__2_end,  flies(A,true)) :-
+      according_to(sec_2_section,  flies(A,true)) :-
 
       bird(A).'
 - model: blawx.workspace
@@ -106,9 +107,11 @@
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="gQ$Vo/y%X7t_AIj]#MQ5" x="44" y="33"><statement name="statements"><block
       type="overrules" id="Q;r403KpUBqe7a-c]^g2"><value name="defeating_rule"><block
-      type="doc_selector" id="00JUdspJG@ZvY@Sf.ze="><field name="doc_part_name">BA
+      type="doc_selector" id="CKK?uvn%^=b~/6+E4V?`"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_3_section"></mutation><field name="doc_part_name">BA
       3</field></block></value><value name="defeated_rule"><block type="doc_selector"
-      id="hC.cd~(Ni(~,/q=?5`hH"><field name="doc_part_name">BA 2</field></block></value></block></statement></block><block
+      id="E`a5;5xj_y.`mVcdi/*}"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_2_section"></mutation><field
+      name="doc_part_name">BA 2</field></block></value></block></statement></block><block
       type="unattributed_rule" id="nYUW@13WKx$7J[o!.;31" x="46" y="112"><statement
       name="conditions"><block type="object_category" id="6+g}d-K7+YA:N:ZriAal"><value
       name="object"><block type="variable" id="l?TPM/6NjhWvD3FHa;?d"><field name="variable_name">A</field></block></value><value
@@ -116,7 +119,8 @@
       xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
       name="category_name">penguin</field></block></value></block></statement><statement
       name="conclusion"><block type="according_to" id="T,mpb69rN]R[PpbYkXC7"><value
-      name="rule"><block type="doc_selector" id="Erz:Dp%!=*`8PZu1dK)D"><field name="doc_part_name">BA
+      name="rule"><block type="doc_selector" id="ppo_3M0RLaU`.6$o{UG6"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_3_section"></mutation><field name="doc_part_name">BA
       3</field></block></value><statement name="statement"><block type="attribute_selector"
       id="SHN;Hu9oBh|gd!*nxV6f"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
       attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
@@ -124,10 +128,10 @@
       name="first_element"><block type="false_value" id="NmoECeQPU.b,ZEex@o},"></block></value><value
       name="second_element"><block type="variable" id="@p2YWiY7(k6nm5SLrbcX"><field
       name="variable_name">A</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: 'overrules(ba__3_end,ba__2_end).
+    scasp_encoding: 'overrules(sec_3_section,sec_2_section).
 
 
-      according_to(ba__3_end,  flies(A,false)) :-
+      according_to(sec_3_section,  flies(A,false)) :-
 
       penguin(A).'
 - model: blawx.blawxtest
