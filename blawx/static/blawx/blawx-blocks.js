@@ -1893,6 +1893,9 @@ for (var i = 0; i < scasp_blockset.length; i++) {
   if (scasp_blockset[i].type == "category_selector") {
     scasp_blockset[i]['mutator'] = "category_selector_mutator"
   };
+  if (scasp_blockset[i].type == "doc_selector") {
+    scasp_blockset[i]['mutator'] = "rule_selector_mutator"
+  };
   if (scasp_blockset[i].type == "attribute_declaration") {
     scasp_blockset[i]['mutator'] = "attribute_declaration_mutator";
     scasp_blockset[i]['customContextMenu'] = function(array) {

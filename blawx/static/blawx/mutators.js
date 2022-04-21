@@ -152,6 +152,23 @@ ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
   
 Blockly.Extensions.registerMutator('attribute_selector_mutator', ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);
 
+RULE_SELECTOR_MUTATOR_MIXIN = {
+  mutationToDom: function() {
+      var container = document.createElement('mutation');
+      // var section_reference = this.getFieldValue('section_reference');
+      container.setAttribute('section_reference', this.section_reference);
+      return container;
+  },
+
+  domToMutation: function(xmlElement) {
+      var section_reference = xmlElement.getAttribute('section_reference');
+      this.section_reference = section_reference;
+  }
+  }
+
+  Blockly.Extensions.registerMutator('rule_selector_mutator', RULE_SELECTOR_MUTATOR_MIXIN);
+
+
 // Blockly.Extensions.register('changeCategoryDisplayText', function() {
 //   this.setOnChange(function(changeEvent) {
 //       if (this.getFieldValue('order') == "oc") {
