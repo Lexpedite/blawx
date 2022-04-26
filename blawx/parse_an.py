@@ -54,7 +54,7 @@ def generate_span(node):
         'class': "form-check-inline",
         'type': "radio",
         'name': "section",
-        'id': node.attrib['eId']
+        'id': node.attrib['eId'] + "_section"
     }))
     node.getchildren()[0].tail = node.text
     lxml.objectify.ObjectifiedDataElement._setText(node,'')
