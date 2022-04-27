@@ -44,13 +44,13 @@ sCASP.scrub_ = function (block, code, opt_thisOnly) {
         // Collect comment for this block.
         let comment = block.getCommentText();
         if (comment) {
-            comment = stringUtils.wrap(comment, this.COMMENT_WRAP - 2);
+            comment = Blockly.utils.string.wrap(comment, this.COMMENT_WRAP - 2);
             commentCode += this.prefixLines(comment + '\n', '% ');
         }
         // Collect comments for all value arguments.
         // Don't collect comments for nested statements.
         for (let i = 0; i < block.inputList.length; i++) {
-            if (block.inputList[i].type === inputTypes.VALUE) {
+            if (block.inputList[i].type === Blockly.inputTypes.VALUE) {
                 const childBlock = block.inputList[i].connection.targetBlock();
                 if (childBlock) {
                     comment = this.allNestedComments(childBlock);
