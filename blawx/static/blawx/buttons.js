@@ -21,7 +21,7 @@ updateWorkspace = function() {
     // Output the current workspace to a variable
     payload.xml_content = Blockly.Xml.domToText(main_xml);
     // Output the current encoding to a variable
-    payload.scasp_encoding = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+    payload.scasp_encoding = sCASP.workspaceToCode(demoWorkspace);
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "../" + current_section + "/update/", true);
     xhttp.setRequestHeader('Content-type', 'application/json');
@@ -347,7 +347,7 @@ updateBlawxTest = function() {
     // Output the current workspace to a variable
     payload.xml_content = Blockly.Xml.domToText(main_xml);
     // Output the current encoding to a variable
-    payload.scasp_encoding = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+    payload.scasp_encoding = sCASP.workspaceToCode(demoWorkspace);
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "../" + blawxTestID + "/update/", true);
     xhttp.setRequestHeader('Content-type', 'application/json');
