@@ -131,12 +131,8 @@ runCode = function(button) {
         // console.log(output_object);
         if (output_object.error) {
             $output.textContent = output_object.error;
-        } else if (output_object.answer == 'false' || output_object.answer == 'true') {
-            if (output_object.answer == 'false') {
-                $output.textContent = "No models";
-            } else {
-                $output.textContent = "Yes";
-            }
+        } else if (output_object.Answers.length == 0) {
+            $output.textContent = "No models";
         } else {
             var output_content = '<div class="accordion accordion-flush">';
             var answers = output_object.Answers;
