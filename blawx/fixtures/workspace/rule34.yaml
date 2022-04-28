@@ -2113,3 +2113,745 @@
       business_entity(BE),
 
       appointment_in(BE,EA).'
+- model: blawx.workspace
+  pk: 71
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_9__para_c_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="_Uy#=Z|hmjV#oX+VhY)F" x="85" y="25"><statement name="statements"><block
+      type="category_declaration" id="1|a;@WHz?sN.pO0=2T8s"><field name="category_name">position</field><next><block
+      type="category_attribute" id="5z4SdJEtx75yR+=N*ZM_"><value name="category"><block
+      type="category_selector" id="ta[=-Cil3J}[1qt:7v*E"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="position"></mutation><field name="category_name">position</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="MpC/L%6#HEqhNqTyP=:3"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="entitles_holder_to_executive_authority"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">entitles_holder_to_executive_authority</field><value
+      name="attribute_type"><block type="true_false_type_selector" id="BOAW{9s-WANRD1yw5k6|"></block></value><next><block
+      type="attribute_display" id="g*^E:Ur!9^wU_at.9L29"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that
+      </field><field name="second_element">object</field><field name="postfix">entitles
+      the holder to executive authority</field><next><block type="attribute_declaration"
+      id="Ux:;.l(ubM7`!D]K[(j."><mutation xmlns="http://www.w3.org/1999/xhtml" attribute_name="is_executive_directorship"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">is_executive_directorship</field><value
+      name="attribute_type"><block type="true_false_type_selector" id="^/Eg-8yI:xXwU0FLXt$S"></block></value><next><block
+      type="attribute_display" id="NNDQC?Lb;4J_2.l6UIPA"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that
+      </field><field name="second_element">object</field><field name="postfix">is
+      an executive directorship</field><next><block type="attribute_declaration" id="A,so^fQyUW+mzH0P7bys"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="is_independent_directorship"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">is_independent_directorship</field><value
+      name="attribute_type"><block type="true_false_type_selector" id="1w%7zq.Mu,c+hN=[H56N"></block></value><next><block
+      type="attribute_display" id="1Kz7qt~wef=71;-zk.P@"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that
+      </field><field name="second_element">object</field><field name="postfix">is
+      an independent directorship</field><next><block type="attribute_declaration"
+      id="cD~Cs21@FVZd,d!6y{Ax"><mutation xmlns="http://www.w3.org/1999/xhtml" attribute_name="associated_with_a_business"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">associated_with_a_business</field><value
+      name="attribute_type"><block type="category_selector" id=":#,TxXlUJ~/8zoPl8!+^"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="attribute_display"
+      id=";P8[R%BU}@#p(ZiT*k$U"><field name="order">ov</field><field name="prefix">position</field><field
+      name="first_element">object</field><field name="infix">is associated with the
+      business</field><field name="second_element">value</field><field name="postfix"></field><next><block
+      type="attribute_declaration" id="VKi#wGEj7_@;!$biz673"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="in_a_business_entity" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">in_a_business_entity</field><value name="attribute_type"><block
+      type="category_selector" id="s5o1ik/aL3xxTw?UXa:k"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business_entity"></mutation><field name="category_name">business_entity</field></block></value><next><block
+      type="attribute_display" id="TEYWCz{-*MmUmgvnSUME"><field name="order">ov</field><field
+      name="prefix">position</field><field name="first_element">object</field><field
+      name="infix">is in the business entity</field><field name="second_element">value</field><field
+      name="postfix"></field><next><block type="attribute_declaration" id="fOQD(8/R})Gyn]VQTUaB"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="in_a_law_practice" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">in_a_law_practice</field><value name="attribute_type"><block
+      type="category_selector" id=",)rm75NJq(6=T}D.{asF"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="law_practice"></mutation><field name="category_name">law_practice</field></block></value><next><block
+      type="attribute_display" id="z(pZ1`pDT]_QXw!Z~w!C"><field name="order">ov</field><field
+      name="prefix">position</field><field name="first_element">object</field><field
+      name="infix">is in the law practice</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block></next></block></statement></block><block
+      type="unattributed_rule" id="H2D[;6,%/*CS%t++aC7/" x="83" y="715"><statement
+      name="conditions"><block type="object_category" id="Jz7)Q^TH$ITk4@xyym.m"><value
+      name="object"><block type="variable" id="knNVACYoI{MxkLUF(LM5"><field name="variable_name">Position</field></block></value><value
+      name="category"><block type="category_selector" id="c[[)4Y-6K`!(;|kIb@v6"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="position"></mutation><field
+      name="category_name">position</field></block></value><next><block type="attribute_selector"
+      id="QaFE#d+GkQX{3u$-=BhQ"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="entitles_holder_to_executive_authority"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">entitles
+      the holder to executive authority</field><value name="first_element"><block
+      type="true_value" id="(=WTP9745Q1gVAj)JT^f"></block></value><value name="second_element"><block
+      type="variable" id="sp8MBxaD@VTiL?)wLa4V"><field name="variable_name">Position</field></block></value><next><block
+      type="default_negation" id="hnh;J0*Oo-F_b7X#{Q;;"><statement name="default_negated_statement"><block
+      type="attribute_selector" id="6%IV}db*e?e]bKD;D!0`"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="is_executive_directorship" attributetype="Checkmark True / False"
+      attributeorder="vo"></mutation><field name="prefix">it is</field><field name="infix">that
+      </field><field name="postfix">is an executive directorship</field><value name="first_element"><block
+      type="true_value" id="~EfmB=W)VR5PpbLb,l=?"></block></value><value name="second_element"><block
+      type="variable" id="u801}kTo9A_BkezIOk*t"><field name="variable_name">Position</field></block></value></block></statement><next><block
+      type="default_negation" id="L0HWnQL0J}4MfUQ_3E?;"><statement name="default_negated_statement"><block
+      type="attribute_selector" id="g/R;-j@3[g1+_(1WR+xV"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="is_independent_directorship" attributetype="Checkmark True /
+      False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that </field><field name="postfix">is an independent directorship</field><value
+      name="first_element"><block type="true_value" id="~~za|+$!*?R99Pg,/s{v"></block></value><value
+      name="second_element"><block type="variable" id="lXtW!^[:A=#I2*bYLy3I"><field
+      name="variable_name">Position</field></block></value></block></statement><next><block
+      type="object_category" id="^17ATGrYA)Fm:KoDpk|`"><value name="object"><block
+      type="variable" id="D3)z-)_w4v.KZH=;}|6m"><field name="variable_name">Business</field></block></value><value
+      name="category"><block type="category_selector" id="#b-G=zu6)%11a#u-cRZe"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value><next><block type="attribute_selector"
+      id="N-ejDKmXL7%CEEHqIXx="><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="associated_with_a_business"
+      attributetype="business" attributeorder="ov"></mutation><field name="prefix">position</field><field
+      name="infix">is associated with the business</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="URE}v(|msEmzbm*08`Z`"><field
+      name="variable_name">Position</field></block></value><value name="second_element"><block
+      type="variable" id="#B7P=b~ez:D4}]dg(l+F"><field name="variable_name">Business</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="object_category" id="wjV-sbdgI[FETKjY1Hth"><value
+      name="object"><block type="variable" id="N:K^E5YZLTkF(*1b$@5:"><field name="variable_name">Position</field></block></value><value
+      name="category"><block type="category_selector" id="m@duxY;[8%1PE9,`3aFw"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value></block></statement></block><block
+      type="unattributed_rule" id="G_CHe]|w7z)`:?V[M!7}" x="86" y="1082"><statement
+      name="conditions"><block type="object_category" id=",M$uV~wfWAHK^4%Y9!nG"><value
+      name="object"><block type="variable" id=",~6]}mQJUl{(}Qj(9-my"><field name="variable_name">Position</field></block></value><value
+      name="category"><block type="category_selector" id="Dc{Yn99ccb[925{6M!KL"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="position"></mutation><field
+      name="category_name">position</field></block></value><next><block type="attribute_selector"
+      id="sKw#zW_fA5+16%[ZP9*("><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="entitles_holder_to_executive_authority"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">entitles
+      the holder to executive authority</field><value name="first_element"><block
+      type="true_value" id="UB;r/@)`2|doB2]sCE(F"></block></value><value name="second_element"><block
+      type="variable" id="9D08GBnx#]/-^c?@T9~g"><field name="variable_name">Position</field></block></value><next><block
+      type="default_negation" id="?Nvni}s;qE=h{6NZ1_,`"><statement name="default_negated_statement"><block
+      type="attribute_selector" id="O`E:r0bUv;;O1k$Pa+*X"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="is_executive_directorship" attributetype="Checkmark True / False"
+      attributeorder="vo"></mutation><field name="prefix">it is</field><field name="infix">that
+      </field><field name="postfix">is an executive directorship</field><value name="first_element"><block
+      type="true_value" id="gMi`_UX8oPDYPal%B0hh"></block></value><value name="second_element"><block
+      type="variable" id="R*`C0h@-Eo8VAfh_V?t]"><field name="variable_name">Position</field></block></value></block></statement><next><block
+      type="default_negation" id="8{g=jJ[GH0!o@wqw%}MD"><statement name="default_negated_statement"><block
+      type="attribute_selector" id="_Ue?cfnh!-IRw7_nr#yc"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="is_independent_directorship" attributetype="Checkmark True /
+      False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that </field><field name="postfix">is an independent directorship</field><value
+      name="first_element"><block type="true_value" id="h-g|BC1ew`g@ny`Me7`D"></block></value><value
+      name="second_element"><block type="variable" id="/^-o-0O=({_r/9B3[#9["><field
+      name="variable_name">Position</field></block></value></block></statement><next><block
+      type="object_category" id="fKS}iUPT6Y~g9u4x66a}"><value name="object"><block
+      type="variable" id="5E25.l]6?GwaoRR[F6*`"><field name="variable_name">Business_Entity</field></block></value><value
+      name="category"><block type="category_selector" id="[/htWRXZ!Hm7_ZI:?ZDR"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business_entity"></mutation><field
+      name="category_name">business_entity</field></block></value><next><block type="attribute_selector"
+      id="2dCxdL1[~Oz/YnJRfPA`"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="in_a_business_entity"
+      attributetype="business_entity" attributeorder="ov"></mutation><field name="prefix">position</field><field
+      name="infix">is in the business entity</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="fNg1q0WGh$NDIR|T2;$="><field
+      name="variable_name">Position</field></block></value><value name="second_element"><block
+      type="variable" id="dh/LCBI0Eza=-?0Xa~Ux"><field name="variable_name">Business_Entity</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="object_category" id="(~@/B[M5Wda{0(KxX+*9"><value
+      name="object"><block type="variable" id="c{K4-u1/|44Ea2]ST:oR"><field name="variable_name">Position</field></block></value><value
+      name="category"><block type="category_selector" id="0lktu4,O)Y!`2SgAH0%A"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value></block></statement></block><block
+      type="unattributed_rule" id="nvRs~TYu7b[82sT}CF$Q" x="89" y="1463"><statement
+      name="conditions"><block type="object_category" id="O_XjezG%Y$piFc1d;(3h"><value
+      name="object"><block type="variable" id="Tx7rJ?~}T6j}t,LAaIfd"><field name="variable_name">Position</field></block></value><value
+      name="category"><block type="category_selector" id="t9iy~Oj3J:O|$I2X|l%2"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="position"></mutation><field
+      name="category_name">position</field></block></value><next><block type="attribute_selector"
+      id="w2Y)/mGv#hjIGzYUN$-B"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="entitles_holder_to_executive_authority"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that </field><field name="postfix">entitles
+      the holder to executive authority</field><value name="first_element"><block
+      type="true_value" id="SL--9l=:PvdzQX/eqjlI"></block></value><value name="second_element"><block
+      type="variable" id="ss_`K8XY,haieiy^.scK"><field name="variable_name">Position</field></block></value><next><block
+      type="default_negation" id="89Hvv7gU;]SM[E2w:.-q"><statement name="default_negated_statement"><block
+      type="attribute_selector" id="cWT5^ohEPi80aTeywMM_"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="is_executive_directorship" attributetype="Checkmark True / False"
+      attributeorder="vo"></mutation><field name="prefix">it is</field><field name="infix">that
+      </field><field name="postfix">is an executive directorship</field><value name="first_element"><block
+      type="true_value" id=")J_n]pn0O?2DAc^0iY=0"></block></value><value name="second_element"><block
+      type="variable" id="J2=QWH#;}eo0a_tyFv8|"><field name="variable_name">Position</field></block></value></block></statement><next><block
+      type="default_negation" id="qW{j;#O*@bRM6]LL)bEL"><statement name="default_negated_statement"><block
+      type="attribute_selector" id="e+dpvHXpEK}j$sGW`Gzr"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="is_independent_directorship" attributetype="Checkmark True /
+      False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that </field><field name="postfix">is an independent directorship</field><value
+      name="first_element"><block type="true_value" id="bcn_uekmLX;lZNyCzf!:"></block></value><value
+      name="second_element"><block type="variable" id="6%c;GrEd%C)4g!g%JD-v"><field
+      name="variable_name">Position</field></block></value></block></statement><next><block
+      type="object_category" id="NQiBARF)f;EH};Bq``G^"><value name="object"><block
+      type="variable" id="%V)vi3qH$+O1WRC3I-Ph"><field name="variable_name">Law_Practice</field></block></value><value
+      name="category"><block type="category_selector" id="IC_C?0Gqgg4.a4tnRm:6"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="law_practice"></mutation><field
+      name="category_name">law_practice</field></block></value><next><block type="attribute_selector"
+      id="S?jT-;E,jeV,L[EAyn)u"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="in_a_law_practice"
+      attributetype="law_practice" attributeorder="ov"></mutation><field name="prefix">position</field><field
+      name="infix">is in the law practice</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="T{kPmqQH4=?mXbvkpyJB"><field
+      name="variable_name">Position</field></block></value><value name="second_element"><block
+      type="variable" id="6FGCgBBuWmk!qhT46(Rd"><field name="variable_name">Law_Practice</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="object_category" id="[4-$6y8|VGUrA+cZQIKq"><value
+      name="object"><block type="variable" id="OWvIEj`9]_CQ|+L|!X%S"><field name="variable_name">Position</field></block></value><value
+      name="category"><block type="category_selector" id="-w:_]Uy?`o`$:o1J_nR5"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value></block></statement></block></xml>
+    scasp_encoding: '#pred position(X) :: ''@(X) is a position''.
+
+      #pred according_to(R,position(X)) :: ''according to @(R), @(X) is a position''.
+
+      #pred legally_holds(_,position(X)) :: ''it legally holds that @(X) is a position''.
+
+      #pred entitles_holder_to_executive_authority(Y,X) :: ''it is @(X) that  @(Y)
+      entitles the holder to executive authority''.
+
+      #pred according_to(R,entitles_holder_to_executive_authority(Y,X)) :: ''according
+      to @(R), it is @(X) that  @(Y) entitles the holder to executive authority''.
+
+      #pred legally_holds(_,entitles_holder_to_executive_authority(Y,X)) :: ''it legally
+      holds that it is @(X) that  @(Y) entitles the holder to executive authority''.
+
+      opposes(entitles_holder_to_executive_authority(X,true),entitles_holder_to_executive_authority(X,false)).
+
+      opposes(entitles_holder_to_executive_authority(X,false),entitles_holder_to_executive_authority(X,true)).
+
+
+      #pred is_executive_directorship(Y,X) :: ''it is @(X) that  @(Y) is an executive
+      directorship''.
+
+      #pred according_to(R,is_executive_directorship(Y,X)) :: ''according to @(R),
+      it is @(X) that  @(Y) is an executive directorship''.
+
+      #pred legally_holds(_,is_executive_directorship(Y,X)) :: ''it legally holds
+      that it is @(X) that  @(Y) is an executive directorship''.
+
+      opposes(is_executive_directorship(X,true),is_executive_directorship(X,false)).
+
+      opposes(is_executive_directorship(X,false),is_executive_directorship(X,true)).
+
+
+      #pred is_independent_directorship(Y,X) :: ''it is @(X) that  @(Y) is an independent
+      directorship''.
+
+      #pred according_to(R,is_independent_directorship(Y,X)) :: ''according to @(R),
+      it is @(X) that  @(Y) is an independent directorship''.
+
+      #pred legally_holds(_,is_independent_directorship(Y,X)) :: ''it legally holds
+      that it is @(X) that  @(Y) is an independent directorship''.
+
+      opposes(is_independent_directorship(X,true),is_independent_directorship(X,false)).
+
+      opposes(is_independent_directorship(X,false),is_independent_directorship(X,true)).
+
+
+      #pred associated_with_a_business(X,Y) :: ''position @(X) is associated with
+      the business @(Y)''.
+
+      #pred according_to(R,associated_with_a_business(X,Y)) :: ''according to @(R),
+      position @(X) is associated with the business @(Y)''.
+
+      #pred legally_holds(_,associated_with_a_business(X,Y)) :: ''it legally holds
+      that position @(X) is associated with the business @(Y)''.
+
+
+      #pred in_a_business_entity(X,Y) :: ''position @(X) is in the business entity
+      @(Y)''.
+
+      #pred according_to(R,in_a_business_entity(X,Y)) :: ''according to @(R), position
+      @(X) is in the business entity @(Y)''.
+
+      #pred legally_holds(_,in_a_business_entity(X,Y)) :: ''it legally holds that
+      position @(X) is in the business entity @(Y)''.
+
+
+      #pred in_a_law_practice(X,Y) :: ''position @(X) is in the law practice @(Y)''.
+
+      #pred according_to(R,in_a_law_practice(X,Y)) :: ''according to @(R), position
+      @(X) is in the law practice @(Y)''.
+
+      #pred legally_holds(_,in_a_law_practice(X,Y)) :: ''it legally holds that position
+      @(X) is in the law practice @(Y)''.
+
+
+
+      executive_appointment(Position) :-
+
+      position(Position),
+
+      entitles_holder_to_executive_authority(Position,true),
+
+      not is_executive_directorship(Position,true),
+
+      not is_independent_directorship(Position,true),
+
+      business(Business),
+
+      associated_with_a_business(Position,Business).
+
+
+      executive_appointment(Position) :-
+
+      position(Position),
+
+      entitles_holder_to_executive_authority(Position,true),
+
+      not is_executive_directorship(Position,true),
+
+      not is_independent_directorship(Position,true),
+
+      business_entity(Business_Entity),
+
+      in_a_business_entity(Position,Business_Entity).
+
+
+      executive_appointment(Position) :-
+
+      position(Position),
+
+      entitles_holder_to_executive_authority(Position,true),
+
+      not is_executive_directorship(Position,true),
+
+      not is_independent_directorship(Position,true),
+
+      law_practice(Law_Practice),
+
+      in_a_law_practice(Position,Law_Practice).'
+- model: blawx.workspace
+  pk: 72
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_9__para_a_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="W=eWs8=sEd_5d^uO_(jE" x="-1" y="58"><statement name="statements"><block
+      type="category_declaration" id="G8wt1FNO*_~KG!7RrA8k"><field name="category_name">trade</field><next><block
+      type="category_declaration" id="]miOm+y7ZnY[ggCEMpRh"><field name="category_name">calling</field></block></next></block></statement></block><block
+      type="unattributed_rule" id="44SVLB!gI83a8u]St^RR" x="-3" y="145"><statement
+      name="conditions"><block type="object_category" id="~Va~@aX(0qXN_RrdlU%m"><value
+      name="object"><block type="variable" id="wWsAUw~ReHr:33Jac0ah"><field name="variable_name">Trade</field></block></value><value
+      name="category"><block type="category_selector" id="0W-IX{{M+FlDKUJa8J_6"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="trade"></mutation><field
+      name="category_name">trade</field></block></value><next><block type="object_disequality"
+      id="UlT~U[yV~+qHqfahAAf^"><value name="first_object"><block type="variable"
+      id="F/qBia`bkwk65^+~7=?M"><field name="variable_name">Trade</field></block></value><value
+      name="second_object"><block type="object_selector" id="ZhX:0TI(oau*tU8lc(3l"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="practicing_as_a_lawyer"></mutation><field
+      name="object_name">practicing_as_a_lawyer</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="object_category" id="uR;)pU?7c2=1QW2/=MnR"><value
+      name="object"><block type="variable" id="`G$JLZ]J5t6-B(c/N#%V"><field name="variable_name">Trade</field></block></value><value
+      name="category"><block type="category_selector" id="lWoZpB@,DTe3$$`_+XSf"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value></block></statement></block><block
+      type="unattributed_rule" id="HcbIbk.{Y=r/O_G[fnR*" x="0" y="302"><statement
+      name="conditions"><block type="object_category" id="umKa`$GqrU+E4rievVpb"><value
+      name="object"><block type="variable" id="sBES9UfW@65HSQx5Ap%h"><field name="variable_name">Calling</field></block></value><value
+      name="category"><block type="category_selector" id="CY.O`j}v_FiowKnyn#Rd"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="calling"></mutation><field
+      name="category_name">calling</field></block></value><next><block type="object_disequality"
+      id="[qeaBf1(4lZ[zy!ntC2v"><value name="first_object"><block type="variable"
+      id="7(aSKfd|)h~qr*@ecx-l"><field name="variable_name">Calling</field></block></value><value
+      name="second_object"><block type="object_selector" id="AVp:9S(UAg,|BcI`qb:6"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="practicing_as_a_lawyer"></mutation><field
+      name="object_name">practicing_as_a_lawyer</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="object_category" id="u2T:26Mla%Q99iAq~c[%"><value
+      name="object"><block type="variable" id=",(dX94@v|d.s`Im.J}Hw"><field name="variable_name">Calling</field></block></value><value
+      name="category"><block type="category_selector" id="8Z3rvbM4c!yTv|Tzi+3S"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value></block></statement></block><block
+      type="unattributed_rule" id="9;hUjz)@wh4VhAAdW]Tc" x="-1" y="459"><comment pinned="false"
+      h="73.33331298828125" w="263.33331298828125">This is hopelessly circular, but
+      it is what the law says.</comment><statement name="conditions"><block type="object_category"
+      id="n/!Y,j=AM@^CfkWF|d_l"><value name="object"><block type="variable" id="h}J*rjESFU1CGg}W]y[+"><field
+      name="variable_name">Business</field></block></value><value name="category"><block
+      type="category_selector" id="4NXM|SiZaUW|wHtSqK9a"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><next><block
+      type="object_disequality" id="_VSPnBRD(}qM~n+|)dG,"><value name="first_object"><block
+      type="variable" id="APHd30W*TTiQiDV]Y|TV"><field name="variable_name">Business</field></block></value><value
+      name="second_object"><block type="object_selector" id="H(QNPAYawWAVTjbJUP/8"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="practicing_as_a_lawyer"></mutation><field
+      name="object_name">practicing_as_a_lawyer</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="object_category" id="uGsQM8j|Jno_iu,Yicw]"><value
+      name="object"><block type="variable" id="GY(wNVZJD3F+^IjDKK8#"><field name="variable_name">Business</field></block></value><value
+      name="category"><block type="category_selector" id="Alf$9BQA5=WIr!+Ea[oD"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business"></mutation><field
+      name="category_name">business</field></block></value></block></statement></block></xml>
+    scasp_encoding: '#pred trade(X) :: ''@(X) is a trade''.
+
+      #pred according_to(R,trade(X)) :: ''according to @(R), @(X) is a trade''.
+
+      #pred legally_holds(_,trade(X)) :: ''it legally holds that @(X) is a trade''.
+
+      #pred calling(X) :: ''@(X) is a calling''.
+
+      #pred according_to(R,calling(X)) :: ''according to @(R), @(X) is a calling''.
+
+      #pred legally_holds(_,calling(X)) :: ''it legally holds that @(X) is a calling''.
+
+
+      business(Trade) :-
+
+      trade(Trade),
+
+      Trade \= practicing_as_a_lawyer.
+
+
+      business(Calling) :-
+
+      calling(Calling),
+
+      Calling \= practicing_as_a_lawyer.
+
+
+      % This is hopelessly circular, but it is what the law says.
+
+      business(Business) :-
+
+      business(Business),
+
+      Business \= practicing_as_a_lawyer.'
+- model: blawx.workspace
+  pk: 73
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_9__para_d_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 74
+  fields:
+    ruledoc: 4
+    workspace_name: sec_34__subsec_9__para_b_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="XG+^(Jwm@;TfH--ieUi]" x="0" y="0"><statement name="statements"><block type="category_declaration"
+      id="u$193bF]8pc!^nT%Nr7m"><field name="category_name">company</field><next><block
+      type="category_declaration" id="x#-Faw_KTD[9al.d_Fcd"><field name="category_name">corporation</field><next><block
+      type="category_declaration" id="AXn-d?)n0vO{~`~D?tD-"><field name="category_name">partnership</field><next><block
+      type="category_declaration" id="3X8:5D{$h@pr.@=tut9p"><field name="category_name">llp</field><next><block
+      type="category_declaration" id="xI8`}m~IuR-iIo?JT`2!"><field name="category_name">sole_proprietorship</field><next><block
+      type="category_declaration" id=")Wt9/en}e1K;oWkaNf]~"><field name="category_name">business_trust</field><next><block
+      type="category_declaration" id="lFl0Rhul6#~MtP9)?86X"><field name="category_name">entity</field><next><block
+      type="category_declaration" id="pFD^yK5zg]W`l+dN-|EA"><field name="category_name">joint_law_venture</field><next><block
+      type="category_declaration" id="#goRM*g#W_$m|V+g7+hu"><field name="category_name">formal_law_alliance</field><next><block
+      type="category_declaration" id="f88SO;ePc50LQT1?NWlH"><field name="category_name">foreign_law_practice</field><next><block
+      type="category_declaration" id="WN]fCPSW$o9o4K/]Nv0]"><field name="category_name">third_schedule_institution</field><next><block
+      type="category_declaration" id="^`ZvSi=-91wL#`v([wpu"><field name="category_name">singapore_law_practice</field><next><block
+      type="category_attribute" id="#:{`03dha?WUAdxX;d*S"><value name="category"><block
+      type="category_selector" id="B6,foh3|Ntz1y9Vjx+-p"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="entity"></mutation><field name="category_name">entity</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="YU+cG2hv}%=NB_^K@X3f"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="carries_on" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">carries_on</field><value name="attribute_type"><block
+      type="category_selector" id="epe@$cpM649/z*6`Ty.X"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><next><block
+      type="attribute_display" id="e1i)pGOJ((g)+Kq}4668"><field name="order">ov</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="infix">carries
+      on the business</field><field name="second_element">value</field><field name="postfix"></field></block></next></block></statement></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="?S^x0|Ms+gJ6jCJ5-Wmo" x="0" y="515"><statement
+      name="conditions"><block type="object_category" id="R+LM4IY~%6S$i{q@O,)5"><value
+      name="object"><block type="variable" id="|g_OnMr)+%z[,^b%zL|#"><field name="variable_name">Entity</field></block></value><value
+      name="category"><block type="category_selector" id="5ee)a13{lXZ|2)hu;5~."><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="law_practice"></mutation><field
+      name="category_name">law_practice</field></block></value><next><block type="attribute_selector"
+      id="Pll85_|bK+(6QX)r4t@$"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="practice_jurisdiction"
+      attributetype="jurisdiction" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">is located in</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="E6n3ZaoV,#y9g?qTh9@$"><field name="variable_name">Entity</field></block></value><value
+      name="second_element"><block type="object_selector" id="zlN`REC0n3;w_Ee_mtR`"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="singapore"></mutation><field
+      name="object_name">singapore</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="object_category" id="n@mQX7xX.9LKaHOgm4F+"><value
+      name="object"><block type="variable" id=":A)z0%Zg@xcD@]q*vwXd"><field name="variable_name">Entity</field></block></value><value
+      name="category"><block type="category_selector" id="(J_G?G,hj#D}3f}^:CrV"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="singapore_law_practice"></mutation><field
+      name="category_name">singapore_law_practice</field></block></value></block></statement></block><block
+      type="unattributed_fact" id="[{[R1jtqh6fpZ+r~:D?S" x="0" y="690"><statement
+      name="statements"><block type="category_equivalence" id="zZ6G2Ji);dm5Ut]UO%Vb"><value
+      name="first_category"><block type="category_selector" id="tPCtY%7c92oA(CIie8l["><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="company"></mutation><field
+      name="category_name">company</field></block></value><value name="second_category"><block
+      type="category_selector" id="~9kwCG_dRcL0[nNzI)j:"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="entity"></mutation><field name="category_name">entity</field></block></value><next><block
+      type="category_equivalence" id="0#$/a]rg(fcjAY*O.S,:"><value name="first_category"><block
+      type="category_selector" id="}ZnLL*?+Dt~_+W*F/bt."><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="corporation"></mutation><field name="category_name">corporation</field></block></value><value
+      name="second_category"><block type="category_selector" id="MDHvoR1MHV|V9(REtN8l"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="entity"></mutation><field
+      name="category_name">entity</field></block></value><next><block type="category_equivalence"
+      id="#A3{`,PhFVf.H:h)A|Bi"><value name="first_category"><block type="category_selector"
+      id="jq!.`PcCyW~d@r3H)Ob:"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="partnership"></mutation><field
+      name="category_name">partnership</field></block></value><value name="second_category"><block
+      type="category_selector" id="+S0zMd()t[3mY|r#h3bj"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="entity"></mutation><field name="category_name">entity</field></block></value><next><block
+      type="category_equivalence" id=":pk~%481/FVoh,OnNKS{"><value name="first_category"><block
+      type="category_selector" id="iHo|wqKLODsa6R`(tHA-"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="llp"></mutation><field name="category_name">llp</field></block></value><value
+      name="second_category"><block type="category_selector" id="{k1oEy2`QS:}Rd^/LgzQ"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="entity"></mutation><field
+      name="category_name">entity</field></block></value><next><block type="category_equivalence"
+      id="aQBW93Ca@:MZ+tY2MX0d"><value name="first_category"><block type="category_selector"
+      id="}7aERvRZ]sB.y$kG?UK("><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="sole_proprietorship"></mutation><field
+      name="category_name">sole_proprietorship</field></block></value><value name="second_category"><block
+      type="category_selector" id="(/1kZ3_EPiRPofD?tyV["><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="entity"></mutation><field name="category_name">entity</field></block></value><next><block
+      type="category_equivalence" id="F[s5Fsv3P9ZdRQ/Y2Z~~"><value name="first_category"><block
+      type="category_selector" id="[U0|]Z)V-:dEqeIQtfbz"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business_trust"></mutation><field name="category_name">business_trust</field></block></value><value
+      name="second_category"><block type="category_selector" id="]lm+Z`r{H+2}ef7VI`l3"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="entity"></mutation><field
+      name="category_name">entity</field></block></value><next><block type="category_equivalence"
+      id="*+}Xi-#!]`QnZ4,cyQJ~"><value name="first_category"><block type="category_selector"
+      id="5Ifnk$qoCp1XdtjpmV(R"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="joint_law_venture"></mutation><field
+      name="category_name">joint_law_venture</field></block></value><value name="second_category"><block
+      type="category_selector" id="}^P38}IEu?Cf]6mNAp|V"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="entity"></mutation><field name="category_name">entity</field></block></value><next><block
+      type="category_equivalence" id="^2e`^2}[)2_0JRmywo=v"><value name="first_category"><block
+      type="category_selector" id="~GFe}OI_#M:S:uoE^%d/"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="formal_law_alliance"></mutation><field name="category_name">formal_law_alliance</field></block></value><value
+      name="second_category"><block type="category_selector" id="q0`sPkGMr8.]i%Vv[mUV"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="entity"></mutation><field
+      name="category_name">entity</field></block></value><next><block type="category_equivalence"
+      id="h9AwK#)-`k,m?xRI@4:3"><value name="first_category"><block type="category_selector"
+      id=".,-k;O?69)Ibi_;_X7.j"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="foreign_law_practice"></mutation><field
+      name="category_name">foreign_law_practice</field></block></value><value name="second_category"><block
+      type="category_selector" id="C0$~B%faG=;bTpr7e:N?"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="entity"></mutation><field name="category_name">entity</field></block></value><next><block
+      type="category_equivalence" id="ZG-:+w(M3W(eUE}jFBy@"><value name="first_category"><block
+      type="category_selector" id="vA+s!?/FON|Sw/1,}^2N"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="third_schedule_institution"></mutation><field name="category_name">third_schedule_institution</field></block></value><value
+      name="second_category"><block type="category_selector" id="0QjKkT3erE5Caza7)+Ze"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="entity"></mutation><field
+      name="category_name">entity</field></block></value><next><block type="category_equivalence"
+      id="mobsVxI3;aRpfMQWp|fC"><value name="first_category"><block type="category_selector"
+      id="VaD_=Dg#Ai{BDI6/_$5%"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="singapore_law_practice"></mutation><field
+      name="category_name">singapore_law_practice</field></block></value><value name="second_category"><block
+      type="category_selector" id="Ck5s~h,iDv#kY}dvezPQ"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="entity"></mutation><field name="category_name">entity</field></block></value><next><block
+      type="category_equivalence" id="4yt|Gms5FiO-m`UX.B3V"><value name="first_category"><block
+      type="category_selector" id="YEAlzzmV@hq)w]`%94Cs"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="law_practice"></mutation><field name="category_name">law_practice</field></block></value><value
+      name="second_category"><block type="category_selector" id="zv7PG9Tnikhdn{7EP-1="><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="entity"></mutation><field
+      name="category_name">entity</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="Z+{H2W93$I6JH$%]:N/+" x="0" y="1194"><statement
+      name="conditions"><block type="object_category" id="h2q6;q1,rlkT=`(HM_`/"><value
+      name="object"><block type="variable" id="{=@[*s%@fp-.V^H,VJ*G"><field name="variable_name">Entity</field></block></value><value
+      name="category"><block type="category_selector" id="P21K7C{4?PhH)tS|0DLr"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="entity"></mutation><field
+      name="category_name">entity</field></block></value><next><block type="object_category"
+      id="e4tz]pG8Sr?S4al0^1AE"><value name="object"><block type="variable" id="fvZCv2d2e^;6EeujW4EC"><field
+      name="variable_name">Business</field></block></value><value name="category"><block
+      type="category_selector" id="nH#lY_^0;^LN4w}u[C]+"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="business"></mutation><field name="category_name">business</field></block></value><next><block
+      type="attribute_selector" id="![_FyC,QVc@%~-nNbAS)"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="carries_on" attributetype="business" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">carries on the business</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="p(a;8vPqwwnR?;nu[g_$"><field
+      name="variable_name">Entity</field></block></value><value name="second_element"><block
+      type="variable" id="uWnbEV[*wFA)sq5MnF2F"><field name="variable_name">Business</field></block></value><next><block
+      type="default_negation" id="8}(%Vwf/cQ5jI+SZtgv~"><statement name="default_negated_statement"><block
+      type="object_category" id="l|%)*#)l?0NzKYg4-Vgw"><value name="object"><block
+      type="variable" id="d?m@MhUI3l@utpTg)1?T"><field name="variable_name">Entity</field></block></value><value
+      name="category"><block type="category_selector" id="s:*5i{x0{%V/WQ~K%x%q"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="joint_law_venture"></mutation><field
+      name="category_name">joint_law_venture</field></block></value></block></statement><next><block
+      type="default_negation" id="p%Jpj?EJj#.m%Q!aLj7H"><statement name="default_negated_statement"><block
+      type="object_category" id="oH~{.v%jIn^-L,80w`cc"><value name="object"><block
+      type="variable" id="nQ)SRzb,o0e]dpBWJ6q)"><field name="variable_name">Entity</field></block></value><value
+      name="category"><block type="category_selector" id="zUTl#1T*kEyvF%37o1d4"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="formal_law_alliance"></mutation><field
+      name="category_name">formal_law_alliance</field></block></value></block></statement><next><block
+      type="default_negation" id="G@-7^]X6-}T/q=klSHNw"><statement name="default_negated_statement"><block
+      type="object_category" id="f3_(~`B[:2(MeqkW_oiq"><value name="object"><block
+      type="variable" id="FQ[eDn*?-Sm~Z@jYjSs8"><field name="variable_name">Entity</field></block></value><value
+      name="category"><block type="category_selector" id="Wa{A01|!*as$+;nn{bt$"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="foreign_law_practice"></mutation><field
+      name="category_name">foreign_law_practice</field></block></value></block></statement><next><block
+      type="default_negation" id="Q}QX4hnl6Tw7/.EB_e;:"><statement name="default_negated_statement"><block
+      type="object_category" id="z$8e7$}M)UJ]6o}7,@.2"><value name="object"><block
+      type="variable" id="E+F+De=~xaBJRso`~zBs"><field name="variable_name">Entity</field></block></value><value
+      name="category"><block type="category_selector" id="BLgU1pfDHy6?m|:$vq88"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="third_schedule_institution"></mutation><field
+      name="category_name">third_schedule_institution</field></block></value></block></statement><next><block
+      type="default_negation" id="IJ@TWOf[r$aq2B8zKF#V"><statement name="default_negated_statement"><block
+      type="object_category" id="M`s=^!C._vBEuD0q(Y1}"><value name="object"><block
+      type="variable" id="p_0i=8@2~A9-=L8i;59F"><field name="variable_name">Entity</field></block></value><value
+      name="category"><block type="category_selector" id="`d1t(9ZdKmiQr}I=.yga"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="singapore_law_practice"></mutation><field
+      name="category_name">singapore_law_practice</field></block></value></block></statement></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="object_category" id="4e0o6v(Sd/jX}QaU;SKc"><value
+      name="object"><block type="variable" id="g1KsWjZWw0R0=D=WLH(["><field name="variable_name">Entity</field></block></value><value
+      name="category"><block type="category_selector" id="NL6rRLkW59iC}nHuU%oE"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="business_entity"></mutation><field
+      name="category_name">business_entity</field></block></value></block></statement></block></xml>
+    scasp_encoding: '#pred company(X) :: ''@(X) is a company''.
+
+      #pred according_to(R,company(X)) :: ''according to @(R), @(X) is a company''.
+
+      #pred legally_holds(_,company(X)) :: ''it legally holds that @(X) is a company''.
+
+      #pred corporation(X) :: ''@(X) is a corporation''.
+
+      #pred according_to(R,corporation(X)) :: ''according to @(R), @(X) is a corporation''.
+
+      #pred legally_holds(_,corporation(X)) :: ''it legally holds that @(X) is a corporation''.
+
+      #pred partnership(X) :: ''@(X) is a partnership''.
+
+      #pred according_to(R,partnership(X)) :: ''according to @(R), @(X) is a partnership''.
+
+      #pred legally_holds(_,partnership(X)) :: ''it legally holds that @(X) is a partnership''.
+
+      #pred llp(X) :: ''@(X) is a llp''.
+
+      #pred according_to(R,llp(X)) :: ''according to @(R), @(X) is a llp''.
+
+      #pred legally_holds(_,llp(X)) :: ''it legally holds that @(X) is a llp''.
+
+      #pred sole_proprietorship(X) :: ''@(X) is a sole_proprietorship''.
+
+      #pred according_to(R,sole_proprietorship(X)) :: ''according to @(R), @(X) is
+      a sole_proprietorship''.
+
+      #pred legally_holds(_,sole_proprietorship(X)) :: ''it legally holds that @(X)
+      is a sole_proprietorship''.
+
+      #pred business_trust(X) :: ''@(X) is a business_trust''.
+
+      #pred according_to(R,business_trust(X)) :: ''according to @(R), @(X) is a business_trust''.
+
+      #pred legally_holds(_,business_trust(X)) :: ''it legally holds that @(X) is
+      a business_trust''.
+
+      #pred entity(X) :: ''@(X) is a entity''.
+
+      #pred according_to(R,entity(X)) :: ''according to @(R), @(X) is a entity''.
+
+      #pred legally_holds(_,entity(X)) :: ''it legally holds that @(X) is a entity''.
+
+      #pred joint_law_venture(X) :: ''@(X) is a joint_law_venture''.
+
+      #pred according_to(R,joint_law_venture(X)) :: ''according to @(R), @(X) is a
+      joint_law_venture''.
+
+      #pred legally_holds(_,joint_law_venture(X)) :: ''it legally holds that @(X)
+      is a joint_law_venture''.
+
+      #pred formal_law_alliance(X) :: ''@(X) is a formal_law_alliance''.
+
+      #pred according_to(R,formal_law_alliance(X)) :: ''according to @(R), @(X) is
+      a formal_law_alliance''.
+
+      #pred legally_holds(_,formal_law_alliance(X)) :: ''it legally holds that @(X)
+      is a formal_law_alliance''.
+
+      #pred foreign_law_practice(X) :: ''@(X) is a foreign_law_practice''.
+
+      #pred according_to(R,foreign_law_practice(X)) :: ''according to @(R), @(X) is
+      a foreign_law_practice''.
+
+      #pred legally_holds(_,foreign_law_practice(X)) :: ''it legally holds that @(X)
+      is a foreign_law_practice''.
+
+      #pred third_schedule_institution(X) :: ''@(X) is a third_schedule_institution''.
+
+      #pred according_to(R,third_schedule_institution(X)) :: ''according to @(R),
+      @(X) is a third_schedule_institution''.
+
+      #pred legally_holds(_,third_schedule_institution(X)) :: ''it legally holds that
+      @(X) is a third_schedule_institution''.
+
+      #pred singapore_law_practice(X) :: ''@(X) is a singapore_law_practice''.
+
+      #pred according_to(R,singapore_law_practice(X)) :: ''according to @(R), @(X)
+      is a singapore_law_practice''.
+
+      #pred legally_holds(_,singapore_law_practice(X)) :: ''it legally holds that
+      @(X) is a singapore_law_practice''.
+
+      #pred carries_on(X,Y) :: ''@(X) carries on the business @(Y)''.
+
+      #pred according_to(R,carries_on(X,Y)) :: ''according to @(R), @(X) carries on
+      the business @(Y)''.
+
+      #pred legally_holds(_,carries_on(X,Y)) :: ''it legally holds that @(X) carries
+      on the business @(Y)''.
+
+
+
+      singapore_law_practice(Entity) :-
+
+      law_practice(Entity),
+
+      practice_jurisdiction(Entity,singapore).
+
+
+      entity(X) :-
+
+      company(X).
+
+      entity(X) :-
+
+      corporation(X).
+
+      entity(X) :-
+
+      partnership(X).
+
+      entity(X) :-
+
+      llp(X).
+
+      entity(X) :-
+
+      sole_proprietorship(X).
+
+      entity(X) :-
+
+      business_trust(X).
+
+      entity(X) :-
+
+      joint_law_venture(X).
+
+      entity(X) :-
+
+      formal_law_alliance(X).
+
+      entity(X) :-
+
+      foreign_law_practice(X).
+
+      entity(X) :-
+
+      third_schedule_institution(X).
+
+      entity(X) :-
+
+      singapore_law_practice(X).
+
+      entity(X) :-
+
+      law_practice(X).
+
+
+      business_entity(Entity) :-
+
+      entity(Entity),
+
+      business(Business),
+
+      carries_on(Entity,Business),
+
+      not joint_law_venture(Entity),
+
+      not formal_law_alliance(Entity),
+
+      not foreign_law_practice(Entity),
+
+      not third_schedule_institution(Entity),
+
+      not singapore_law_practice(Entity).'
