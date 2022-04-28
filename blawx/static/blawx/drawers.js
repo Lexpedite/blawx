@@ -373,6 +373,7 @@ primaryDrawerCallback = function(workspace) {
         <block type="according_to">\
         <value name="rule">\
         <block type="doc_selector">\
+        <mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="' + current_section + '"></mutation>\
         <field name="doc_part_name">' + blocktext + '</field>\
         </block>\
         </value>\
