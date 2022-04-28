@@ -282,7 +282,10 @@ blawxrun(Query, Human) :-
       query_answer = "Blawx could not load the reasoner."
       return Response({ "error": "Blawx could not load the reasoner." })
     # Return the results as JSON
-    return Response({ "Answers": generate_answers(query_answer), "Transcript": transcript_output })
+    if query_answer == False:
+      return Response({ "Answers": [], "Transcript": transcript_output })
+    else:
+      return Response({ "Answers": generate_answers(query_answer), "Transcript": transcript_output })
 
 pp.ParserElement.set_default_whitespace_chars(' \t')
 answer_line = pp.Combine(pp.OneOrMore(pp.Word(pp.printables)),adjacent=False,join_string=" ") + pp.Suppress(pp.line_end)
