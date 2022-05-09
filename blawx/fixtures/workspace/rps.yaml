@@ -319,3 +319,37 @@
       4. The winner of a game is the player who throws
       a sign that beats the sign of the other player.
     scasp_encoding: ''
+- model: blawx.blawxtest
+  pk: 8
+  fields:
+    ruledoc: 2
+    test_name: hypothetical
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="assume"
+      id="M1{QxvR%?zihG#2A{7Xe" x="100" y="101"><statement name="statements"><block
+      type="attribute_selector" id="5eV-5_wF5=@coGV);z;z"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="player" attributetype="player" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">played in</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="z[nsN;vj68V*I9iuNqKa"><field
+      name="variable_name">A</field></block></value><value name="second_element"><block
+      type="variable" id="plORf)x!X:1pjMrhb%t,"><field name="variable_name">B</field></block></value></block></statement></block><block
+      type="assume" id="H(},Uv!uNIC~@S*)4s6r" x="98" y="188"><statement name="statements"><block
+      type="attribute_selector" id="*b?/IeBFxdpoLt7a~quO"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="throw" attributetype="sign" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">threw</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="BEAS@GnF=3U$x4/5_`8n"><field
+      name="variable_name">A</field></block></value><value name="second_element"><block
+      type="variable" id="OD}H:m;/Zk1wrhZCM+Pi"><field name="variable_name">B</field></block></value></block></statement></block><block
+      type="query" id="~~#dH%nQ*}tcOz=aC_I8" x="102" y="307"><statement name="query"><block
+      type="attribute_selector" id="2PQ|z{/R+t8XL$?{eUC,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="winner" attributetype="player" attributeorder="ov"></mutation><field
+      name="prefix">the winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="WAv,,rpLn6V/^?=DMKW/"><field
+      name="variable_name">A</field></block></value><value name="second_element"><block
+      type="variable" id="=f=IFPO?].3!SX.8NM}E"><field name="variable_name">B</field></block></value></block></statement></block></xml>
+    scasp_encoding: '#abducible player(B,A).
+
+
+      #abducible throw(A,B).
+
+
+      ?- winner(A,B).'
