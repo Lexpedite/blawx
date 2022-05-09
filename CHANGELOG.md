@@ -24,6 +24,7 @@ that were necessary to get those tests running.
 
 ### Fixed
 * Problems with some queries that appeared not to terminate have been corrected.
+* links to rules in a span of text now show up properly in explanations
 
 ## [v1.3.4-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.4-alpha) 2022-04-27
 
