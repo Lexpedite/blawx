@@ -210,7 +210,7 @@ def run_test(request,ruledoc,test_name):
     for ws in wss:
       ruleset += "\n\n" + ws.scasp_encoding
     ruleset += "\n\n" + test.scasp_encoding
-    print(ruleset)
+    # print(ruleset)
     
     rulefile = tempfile.NamedTemporaryFile('w',delete=False)
     rulefile.write("""
@@ -230,14 +230,19 @@ def run_test(request,ruledoc,test_name):
     rulefile.write("""
 blawxrun(Query, Human) :-
     scasp(Query,[tree(Tree)]),
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+    with_output_to(string(Human),
+		           human_justification_tree(Tree,[])).
+    term_attvars(Query, AttVars),
+    maplist(del_attrs, AttVars).
 """)
     # For Each Variable in the query
-    for v in get_variables(query):
-      rulefile.write("ovar_analyze_term(t(" + v + ", Tree)),")
-    rulefile.write("""
-    with_output_to(string(Human),
-    human_justification_tree(Tree,[])).
-""")
+#     for v in get_variables(query):
+#       rulefile.write("ovar_analyze_term(t(" + v + ", Tree),[name_constraints(true)]),")
+#     rulefile.write("""
+#     with_output_to(string(Human),
+#     human_justification_tree(Tree,[])).
+# """)
 
     rulefile.write(ldap_code + '\n\n')
 
@@ -246,6 +251,9 @@ blawxrun(Query, Human) :-
     rulefile.write(ruleset)
     rulefile.close()
     rulefilename = rulefile.name
+    temprulefile = open(rulefilename,'r')
+    print(temprulefile.read())
+    temprulefile.close()
 
     # Start the Prolog "thread"
     try: 
@@ -267,7 +275,9 @@ blawxrun(Query, Human) :-
 
               #transcript.write(full_query)
               with redirect_stderr(transcript):
+                  print("blawxrun(" + query + ",Human).")
                   query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
+                  
               transcript.write(str(query_answer) + '\n')
 
               transcript.close()
@@ -321,4 +331,4 @@ def generate_list_of_lists(string):
   return answer.parse_string(string,parse_all=True).as_list()
   
 def get_variables(query):
-  return re.findall(r"[A-Z_]\w*",query)
+  return re.findall(r"[^\w]([A-Z_]\w*)",query)
