@@ -1451,10 +1451,19 @@
       type="attribute_display" id="kQuQBeRaoi?%%v3y+tzV"><field name="order">ov</field><field
       name="prefix">legal practitioner</field><field name="first_element">object</field><field
       name="infix">may accept the EA</field><field name="second_element">value</field><field
-      name="postfix"></field></block></next></block></statement><next><block type="opposes"
-      id="2EL?gu8N]Kl1v/QH?JyP"><statement name="first_statement"><block type="attribute_selector"
-      id="v$$TL$?qDGML/-)_`HXc"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="must_not_accept"
-      attributetype="executive_appointment" attributeorder="ov"></mutation><field
+      name="postfix"></field><next><block type="attribute_declaration" id="5s3L8GY,c*c8JBVVUZP)"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="accepts_as_representative"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">accepts_as_representative</field><value
+      name="attribute_type"><block type="category_selector" id="(`WrId?jICSq)ns`3|qG"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="attribute_display" id="|V=O5)XwAns5PjtN3lcv"><field name="order">ov</field><field
+      name="prefix">legal practitioner</field><field name="first_element">object</field><field
+      name="infix">accepts</field><field name="second_element">value</field><field
+      name="postfix">as a representative</field></block></next></block></next></block></next></block></statement><next><block
+      type="opposes" id="2EL?gu8N]Kl1v/QH?JyP"><statement name="first_statement"><block
+      type="attribute_selector" id="v$$TL$?qDGML/-)_`HXc"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="must_not_accept" attributetype="executive_appointment" attributeorder="ov"></mutation><field
       name="prefix">legal practitioner</field><field name="infix">must not accept
       the EA</field><field name="postfix"></field><value name="first_element"><block
       type="variable" id="uDJflokiVS_TGd$~(VI]"><field name="variable_name">LP</field></block></value><value
@@ -1466,7 +1475,142 @@
       name="infix">may accept the EA</field><field name="postfix"></field><value name="first_element"><block
       type="variable" id="+8/b1{.)IeT$HB5@.Gw*"><field name="variable_name">LP</field></block></value><value
       name="second_element"><block type="variable" id=")t3H/,_k5,x~$w1/n#[F"><field
-      name="variable_name">EA</field></block></value></block></statement></block></next></block></statement></block></xml>
+      name="variable_name">EA</field></block></value></block></statement><next><block
+      type="category_attribute" id="~AG-*Jf)^t*RE!@?rT[b"><value name="category"><block
+      type="category_selector" id="s?vFmL:3?Kt,KY%LIo^z"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="law_practice"></mutation><field name="category_name">law_practice</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id=")ux/yu]h?M.r?P;^=q=u"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="shares_owners" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">shares_owners</field><value name="attribute_type"><block
+      type="category_selector" id="I0SxI[N$c/QIIG*gLR,W"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="law_practice"></mutation><field name="category_name">law_practice</field></block></value><next><block
+      type="attribute_display" id="75g_EJ9)p^A{+OqH,?*y"><field name="order">ov</field><field
+      name="prefix">every owner of</field><field name="first_element">object</field><field
+      name="infix">is sole prop, partner, or director of</field><field name="second_element">value</field><field
+      name="postfix"></field><next><block type="attribute_declaration" id="p,}Th8vK{|[A*9#+~uyD"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="prohibited_involvement"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">prohibited_involvement</field><value
+      name="attribute_type"><block type="category_selector" id="a_jqLst)?2IO.t479)p6"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="law_practice"></mutation><field
+      name="category_name">law_practice</field></block></value><next><block type="attribute_display"
+      id="EPmRe:RL4T@j.0$QI2NY"><field name="order">ov</field><field name="prefix">it
+      is prohibited for</field><field name="first_element">object</field><field name="infix">to
+      be involved in</field><field name="second_element">value</field><field name="postfix"></field></block></next></block></next></block></next></block></statement></block></next></block></next></block></statement></block><block
+      type="unattributed_fact" id=";RZ.27kfMmux*~^)Qj.0" x="1" y="736"><statement
+      name="statements"><block type="overrules" id="mw9Ys-`3Di/5[N7(xmvV"><value name="defeating_rule"><block
+      type="doc_selector" id="ajc=oeM5t_c1_NhGYpnY"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_1_section"></mutation><field name="doc_part_name">LPPCR
+      34.1</field></block></value><value name="defeated_rule"><block type="doc_selector"
+      id="8IjACHhC!QIUZn8}MN%_"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_34__subsec_2_section"></mutation><field
+      name="doc_part_name">LPPCR 34.2</field></block></value></block></statement></block><block
+      type="unattributed_rule" id="x0?yPTvdUZo;Sj~+Q-bn" x="-1" y="813"><statement
+      name="conditions"><block type="object_category" id="DBvr!@Y!tH@I18JM8$Jk"><value
+      name="object"><block type="variable" id="?W2RrS%g;AT#c3.j`$@B"><field name="variable_name">LP</field></block></value><value
+      name="category"><block type="category_selector" id="8ENr9~sTT(0,I2VB-;6m"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="object_category" id="xC*7pm,qQ%i#2+9y$`7."><value name="object"><block
+      type="variable" id=".=T00^DRcwN5*~9?)fm9"><field name="variable_name">MainPractice</field></block></value><value
+      name="category"><block type="category_selector" id="k_lX{Ni|IU+vR(okte?X"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="singapore_law_practice"></mutation><field
+      name="category_name">singapore_law_practice</field></block></value><next><block
+      type="object_category" id="*%-:yqHwGfKJy*oLBxe6"><value name="object"><block
+      type="variable" id="#9];rS-_m,|v3OKU|?lp"><field name="variable_name">EA</field></block></value><value
+      name="category"><block type="category_selector" id="3H6d3SEzCPpk_D^eUAIK"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="object_category" id="08(B#apdc+yngw-pbMK`"><value name="object"><block
+      type="variable" id="3AeW.Y5UVM,s3vg)L0Ac"><field name="variable_name">RelatedPractice</field></block></value><value
+      name="category"><block type="category_selector" id="-+E_1AjCV)c3@?NwNF6C"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="singapore_law_practice"></mutation><field
+      name="category_name">singapore_law_practice</field></block></value><next><block
+      type="attribute_selector" id="!f7yXiQkJk)y=6sD1QBz"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="practitioners" attributetype="legal_practitioner" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is a legal practitioner in</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id=":JekC`WUQ-zG=}^o}pEp"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id="2?SX1(|FjCT6YUv|7B5Y"><field name="variable_name">MainPractice</field></block></value><next><block
+      type="attribute_selector" id="n2ECS#ueM_6q65LHiIzD"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="appointment_in" attributetype="executive_appointment" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is an executive appointment in</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="B+7L|A]?_WeBdM[5~Kbt"><field
+      name="variable_name">EA</field></block></value><value name="second_element"><block
+      type="variable" id="w!0Rvos6rUL2$24jsiL="><field name="variable_name">RelatedPractice</field></block></value><next><block
+      type="attribute_selector" id="--Q(7+F@Ns:r$RjL_:(v"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="shares_owners" attributetype="law_practice" attributeorder="ov"></mutation><field
+      name="prefix">every owner of</field><field name="infix">is sole prop, partner,
+      or director of</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="z2eNSGNVTmC/Kz]PzIdj"><field name="variable_name">RelatedPractice</field></block></value><value
+      name="second_element"><block type="variable" id="H:nc%0od@vn_A9@Z_SAb"><field
+      name="variable_name">MainPractice</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="*sRGI(~|~{;G(MNvs=u^"><value
+      name="rule"><block type="doc_selector" id="2v!?qad~e]/kZ4cr$f48"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_2_section"></mutation><field name="doc_part_name">LPPCR
+      34.2</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="mu%l{;q{TkDkCA#3Z9-J"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_accept"
+      attributetype="executive_appointment" attributeorder="ov"></mutation><field
+      name="prefix">legal practitioner</field><field name="infix">may accept the EA</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="ybypW|mjmU9{^z*6?|%U"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id="ms/L-2:dOn3$aWx9i:tR"><field name="variable_name">EA</field></block></value></block></statement></block></statement></block><block
+      type="unattributed_rule" id="[T]Rvk?MoNXSc|rLh36[" x="-1" y="1221"><statement
+      name="conditions"><block type="object_category" id="Y,f3JqW[ZBoXsvEM:_r8"><value
+      name="object"><block type="variable" id="g+jc%(_4lsg@H+rLwDHv"><field name="variable_name">LP</field></block></value><value
+      name="category"><block type="category_selector" id="[Z1^RN;fA(8GUbQ{+!n="><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="legal_practitioner"></mutation><field
+      name="category_name">legal_practitioner</field></block></value><next><block
+      type="object_category" id="a{[i/u0^UV8X`]-Ly3*k"><value name="object"><block
+      type="variable" id="V-{kleaN=L1l(?Pk$3p["><field name="variable_name">MainPractice</field></block></value><value
+      name="category"><block type="category_selector" id="Nq-3j-_vACS=gw]I[~v}"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="singapore_law_practice"></mutation><field
+      name="category_name">singapore_law_practice</field></block></value><next><block
+      type="object_category" id="8PA99~,[H;.b$UQ`9Y#}"><value name="object"><block
+      type="variable" id="]e9W*-z;pbKlR=jljb%("><field name="variable_name">EA</field></block></value><value
+      name="category"><block type="category_selector" id="2c0$p%08?8VE50:Z_`yi"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="executive_appointment"></mutation><field
+      name="category_name">executive_appointment</field></block></value><next><block
+      type="object_category" id="n/h#{1[L6m9^M@zmnV)s"><value name="object"><block
+      type="variable" id="V/4NHV@@GyY(!y+Q+IpS"><field name="variable_name">RelatedPractice</field></block></value><value
+      name="category"><block type="category_selector" id="S*1MXuT#C,QRDj[jHB=M"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="singapore_law_practice"></mutation><field
+      name="category_name">singapore_law_practice</field></block></value><next><block
+      type="attribute_selector" id="}|+a2Z1N54:.%^{s(Ca("><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="practitioners" attributetype="legal_practitioner" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is a legal practitioner in</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="iJi4Zs|j|$/L#{k8{h,*"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id="*pk]5-(#O8RT9$rbu2$P"><field name="variable_name">MainPractice</field></block></value><next><block
+      type="attribute_selector" id="49AnthG]%W=1~h{f60$g"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="appointment_in" attributetype="executive_appointment" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is an executive appointment in</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="Jc3Q|jHWs_i8gkW=]bYh"><field
+      name="variable_name">EA</field></block></value><value name="second_element"><block
+      type="variable" id="n6[B=Pg4=yM-%gf@#VC_"><field name="variable_name">RelatedPractice</field></block></value><next><block
+      type="attribute_selector" id="uuJGsXZ+YWP;O#q.znGi"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="accepts_as_representative" attributetype="executive_appointment"
+      attributeorder="ov"></mutation><field name="prefix">legal practitioner</field><field
+      name="infix">accepts</field><field name="postfix">as a representative</field><value
+      name="first_element"><block type="variable" id="VD0y1vwv)JKM.xzww|F3"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id="hy)Gs3)kZx.jAvG17CXP"><field name="variable_name">EA</field></block></value><next><block
+      type="default_negation" id="XZw5A?JkOLSg0ZAdY#eS"><statement name="default_negated_statement"><block
+      type="attribute_selector" id="_bC^cfO%+CVD7hB9e5I/"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="prohibited_involvement" attributetype="law_practice" attributeorder="ov"></mutation><field
+      name="prefix">it is prohibited for</field><field name="infix">to be involved
+      in</field><field name="postfix"></field><value name="first_element"><block type="variable"
+      id="zy4Y,hQLwvK!]M3mt|x9"><field name="variable_name">MainPractice</field></block></value><value
+      name="second_element"><block type="variable" id="QEUFUk0I]^Oirb8WpzeT"><field
+      name="variable_name">RelatedPractice</field></block></value></block></statement></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="gWZ9pdH;h*u8vI7(v|Q0"><value
+      name="rule"><block type="doc_selector" id="$ZxI/b=Km$mrE@T+t*lE"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_34__subsec_2_section"></mutation><field name="doc_part_name">LPPCR
+      34.2</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="aeil.Vd7o%$*~vR(dRKR"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_accept"
+      attributetype="executive_appointment" attributeorder="ov"></mutation><field
+      name="prefix">legal practitioner</field><field name="infix">may accept the EA</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="6:@gpU9W1++[oR)G:G^@"><field
+      name="variable_name">LP</field></block></value><value name="second_element"><block
+      type="variable" id="R:*SPwI7v8Od![S-XMVq"><field name="variable_name">EA</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: '#pred may_accept(X,Y) :: ''legal practitioner @(X) may accept
       the EA @(Y)''.
 
@@ -1477,9 +1621,78 @@
       @(X) may accept the EA @(Y)''.
 
 
+      #pred accepts_as_representative(X,Y) :: ''legal practitioner @(X) accepts @(Y)
+      as a representative''.
+
+      #pred according_to(R,accepts_as_representative(X,Y)) :: ''according to @(R),
+      legal practitioner @(X) accepts @(Y) as a representative''.
+
+      #pred legally_holds(_,accepts_as_representative(X,Y)) :: ''it legally holds
+      that legal practitioner @(X) accepts @(Y) as a representative''.
+
+
       opposes(  must_not_accept(LP,EA),  may_accept(LP,EA)).
 
-      opposes(  may_accept(LP,EA),  must_not_accept(LP,EA)).'
+      opposes(  may_accept(LP,EA),  must_not_accept(LP,EA)).
+
+      #pred shares_owners(X,Y) :: ''every owner of @(X) is sole prop, partner, or
+      director of @(Y)''.
+
+      #pred according_to(R,shares_owners(X,Y)) :: ''according to @(R), every owner
+      of @(X) is sole prop, partner, or director of @(Y)''.
+
+      #pred legally_holds(_,shares_owners(X,Y)) :: ''it legally holds that every owner
+      of @(X) is sole prop, partner, or director of @(Y)''.
+
+
+      #pred prohibited_involvement(X,Y) :: ''it is prohibited for @(X) to be involved
+      in @(Y)''.
+
+      #pred according_to(R,prohibited_involvement(X,Y)) :: ''according to @(R), it
+      is prohibited for @(X) to be involved in @(Y)''.
+
+      #pred legally_holds(_,prohibited_involvement(X,Y)) :: ''it legally holds that
+      it is prohibited for @(X) to be involved in @(Y)''.
+
+
+
+      overrules(sec_34__subsec_1_section,sec_34__subsec_2_section).
+
+
+      according_to(sec_34__subsec_2_section,  may_accept(LP,EA)) :-
+
+      legal_practitioner(LP),
+
+      singapore_law_practice(MainPractice),
+
+      executive_appointment(EA),
+
+      singapore_law_practice(RelatedPractice),
+
+      practitioners(MainPractice,LP),
+
+      appointment_in(RelatedPractice,EA),
+
+      shares_owners(RelatedPractice,MainPractice).
+
+
+      according_to(sec_34__subsec_2_section,  may_accept(LP,EA)) :-
+
+      legal_practitioner(LP),
+
+      singapore_law_practice(MainPractice),
+
+      executive_appointment(EA),
+
+      singapore_law_practice(RelatedPractice),
+
+      practitioners(MainPractice,LP),
+
+      appointment_in(RelatedPractice,EA),
+
+      accepts_as_representative(LP,EA),
+
+      not prohibited_involvement(MainPractice,RelatedPractice).'
 - model: blawx.workspace
   pk: 41
   fields:
