@@ -575,7 +575,7 @@ sCASP['date_difference_days'] = function (block) {
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
     var value_duration_days = sCASP.valueToCode(block, 'duration_days', sCASP.ORDER_ATOMIC);
-    var code = '...;\n';
+    var code = 'days_between(' + value_first_date + ',' + value_second_date + ',' + value_duration_days + ')';
     return code;
 };
 
@@ -583,7 +583,7 @@ sCASP['date_difference'] = function (block) {
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
     var value_duration = sCASP.valueToCode(block, 'duration', sCASP.ORDER_ATOMIC);
-    var code = '...;\n';
+    var code = 'date_diff_duration(' + value_first_date + ',' + value_second_date + ',' + value_duration + ')';
     return code;
 };
 
@@ -591,7 +591,7 @@ sCASP['date_add'] = function (block) {
     var value_duration = sCASP.valueToCode(block, 'duration', sCASP.ORDER_ATOMIC);
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
-    var code = '...;\n';
+    var code = 'date_add(' + value_first_date + ',' + value_duration + ',' + value_second_date + ')';
     return code;
 };
 
