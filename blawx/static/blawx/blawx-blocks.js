@@ -966,11 +966,11 @@ scasp_blockset = [{
       "options": [
         [
           "+",
-          "pos"
+          "1"
         ],
         [
           "-",
-          "neg"
+          "-1"
         ]
       ]
     },
@@ -1111,7 +1111,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "first_date",
-      "check": "DATE"
+      "check": [
+        "VARIABLE",
+        "DATE"
+      ]
     },
     {
       "type": "field_dropdown",
@@ -1150,7 +1153,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "second_date",
-      "check": "DATE"
+      "check": [
+        "VARIABLE",
+        "DATE"
+      ]
     }
   ],
   "inputsInline": true,
@@ -1196,7 +1202,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "date",
-      "check": "DATE"
+      "check": [
+        "VARIABLE",
+        "DATE"
+      ]
     }
   ],
   "inputsInline": true,
@@ -1220,17 +1229,26 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "year",
-      "check": "Number"
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
     },
     {
       "type": "input_value",
       "name": "month",
-      "check": "Number"
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
     },
     {
       "type": "input_value",
       "name": "day",
-      "check": "Number"
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
     }
   ],
   "inputsInline": true,
@@ -1256,23 +1274,32 @@ scasp_blockset = [{
       "name": "sign",
       "check": [
         "Number",
-        "Boolean"
+        "VARIABLE"
       ]
     },
     {
       "type": "input_value",
       "name": "years",
-      "check": "Number"
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
     },
     {
       "type": "input_value",
       "name": "months",
-      "check": "Number"
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
     },
     {
       "type": "input_value",
       "name": "days",
-      "check": "Number"
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
     }
   ],
   "inputsInline": true,
@@ -1318,7 +1345,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "duration",
-      "check": "DURATION"
+      "check": [
+        "DURATION",
+        "VARIABLE"
+      ]
     }
   ],
   "inputsInline": true,
@@ -1342,7 +1372,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "first_date",
-      "check": "DATE"
+      "check": [
+        "DATE",
+        "VARIABLE"
+      ]
     },
     {
       "type": "field_image",
@@ -1355,7 +1388,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "second_date",
-      "check": "DATE"
+      "check": [
+        "DATE",
+        "VARIABLE"
+      ]
     },
     {
       "type": "field_image",
@@ -1368,7 +1404,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "duration_days",
-      "check": "Number"
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
     }
   ],
   "inputsInline": true,
@@ -1396,7 +1435,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "first_date",
-      "check": "DATE"
+      "check": [
+        "DATE",
+        "VARIABLE"
+      ]
     },
     {
       "type": "field_image",
@@ -1409,7 +1451,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "second_date",
-      "check": "DATE"
+      "check": [
+        "DATE",
+        "VARIABLE"
+      ]
     },
     {
       "type": "field_image",
@@ -1422,7 +1467,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "duration",
-      "check": "DURATION"
+      "check": [
+        "DURATION",
+        "VARIABLE"
+      ]
     }
   ],
   "inputsInline": true,
@@ -1450,7 +1498,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "duration",
-      "check": "DURATION"
+      "check": [
+        "DURATION",
+        "VARIABLE"
+      ]
     },
     {
       "type": "field_image",
@@ -1463,7 +1514,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "first_date",
-      "check": "DATE"
+      "check": [
+        "DATE",
+        "VARIABLE"
+      ]
     },
     {
       "type": "field_image",
@@ -1476,7 +1530,10 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "second_date",
-      "check": "DATE"
+      "check": [
+        "DATE",
+        "VARIABLE"
+      ]
     }
   ],
   "inputsInline": true,

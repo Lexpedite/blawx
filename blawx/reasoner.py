@@ -14,6 +14,7 @@ from swiplserver import PrologMQI, PrologError, PrologLaunchError
 
 from .models import Workspace, RuleDoc, BlawxTest
 from .ldap import ldap_code
+from .dates import scasp_dates
 
 def json_2_scasp(element,higher_order=False):
   output = ""
@@ -245,6 +246,7 @@ blawxrun(Query, Human) :-
 # """)
 
     rulefile.write(ldap_code + '\n\n')
+    rulefile.write(scasp_dates + '\n\n')
 
 
     rulefile.write(translated_facts)

@@ -5,13 +5,13 @@ function blawxTypeToBlocklyType(blawxType) {
       return 'Number';
     } else if (blawxType == "Text") {
       return 'String';
-    } else if (blawxType == "Date") {
+    } else if (blawxType == "Calendar Date") {
       return 'DATE';
     } else if (blawxType == "Date and Time") {
       return 'DATETIME';
     } else if (blawxType == "Time") {
       return "TIME";
-    } else if (blawxType == "Duration") {
+    } else if (blawxType == "Stopwatch Duration") {
       return "DURATION";
     } else {
       return 'OBJECT';
