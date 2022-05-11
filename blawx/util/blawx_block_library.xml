@@ -2509,9 +2509,9 @@
             <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
             <field name="FIELDNAME">sign</field>
             <field name="USER0">+</field>
-            <field name="CPU0">pos</field>
+            <field name="CPU0">1</field>
             <field name="USER1">-</field>
-            <field name="CPU1">neg</field>
+            <field name="CPU1">-1</field>
             <next>
               <block type="field_number" id="69T/.miz(1rIaaJpi9HB">
                 <field name="VALUE">0</field>

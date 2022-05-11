@@ -966,11 +966,11 @@ scasp_blockset = [{
       "options": [
         [
           "+",
-          "pos"
+          "1"
         ],
         [
           "-",
-          "neg"
+          "-1"
         ]
       ]
     },
