@@ -593,7 +593,7 @@ sCASP['date_difference'] = function (block) {
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
     var value_duration = sCASP.valueToCode(block, 'duration', sCASP.ORDER_ATOMIC);
-    var code = 'date_diff_duration(' + value_first_date + ',' + value_second_date + ',' + value_duration + ')';
+    var code = 'date_diff(' + value_first_date + ',' + value_second_date + ',' + value_duration + ')';
     return code;
 };
 
