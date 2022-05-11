@@ -475,12 +475,12 @@ sCASP['number_type_selector'] = function (block) {
 };
 
 sCASP['date_type_selector'] = function (block) {
-    var code = '...';
+    var code = '';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
 sCASP['duration_type_selector'] = function (block) {
-    var code = '...';
+    var code = '';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
@@ -504,7 +504,7 @@ sCASP['date_value'] = function (block) {
     var number_year = block.getFieldValue('year');
     var number_month = block.getFieldValue('month');
     var number_day = block.getFieldValue('day');
-    var code = '...';
+    var code = 'date(' + number_year + ',' + number_month + ',' + number_day + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
@@ -513,7 +513,7 @@ sCASP['duration_value'] = function (block) {
     var number_years = block.getFieldValue('years');
     var number_months = block.getFieldValue('months');
     var number_days = block.getFieldValue('days');
-    var code = '...';
+    var code = 'duration(' + dropdown_sign + ',' + number_years + ',' + number_months + ',' + number_days + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
