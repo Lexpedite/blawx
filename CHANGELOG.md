@@ -7,6 +7,16 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.7-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.7-alpha) 2022-05-11)
+
+Dates and Durations.
+
+### Added
+* Date and Duration Data Type Selectors
+* Date and Duration Value Inputs
+* Date and Duration Builders, Comparison, Date Add, Date Difference
+* Net 30 Example
+
 ## [v1.3.6-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.6-alpha) 2022-05-11
 
 This release just finishes a first draft of the code for the Rule 34 example, and adds
