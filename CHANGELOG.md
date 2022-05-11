@@ -7,6 +7,17 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.6-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.6-alpha) 2022-05-11
+
+This release just finishes a first draft of the code for the Rule 34 example, and adds
+a test that replicates the experiment originally done in [Morris, Jason. "Constraint answer set programming as a tool to improve legislative drafting: a rules as code experiment." *Proceedings of the Eighteenth International Conference on Artificial Intelligence and Law*. 2021.](https://dl.acm.org/doi/abs/10.1145/3462757.3466084)
+
+### Changed
+* Rule 34 example is finished
+
+### Added
+* Test for Rule 34 example
+
 ## [v1.3.5-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.5-alpha) 2022-05-09
 
 This release adds some examples, but more importantly makes some changes to the reasoner to
