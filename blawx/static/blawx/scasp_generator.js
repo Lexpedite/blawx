@@ -538,14 +538,14 @@ sCASP['date_comparison'] = function (block) {
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
     if (dropdown_comparison == "lt") {
         var code = 'before(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison = "lte") {
+    } else if (dropdown_comparison == "lte") {
         var code = 'not_after(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison = "gt") {
+    } else if (dropdown_comparison == "gt") {
         var code = 'after(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison = "gte") {
+    } else if (dropdown_comparison == "gte") {
         var code = 'not_before(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison = "eq") {
-        var code = value_first_date + ' = ' + value_second_date;
+    } else if (dropdown_comparison == "eq") {
+        var code = 'eq(' + value_first_date + ',' + value_second_date + ')';
     }
     return code;
 };
