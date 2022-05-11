@@ -551,7 +551,7 @@ sCASP['date_calculate'] = function (block) {
     var value_year = sCASP.valueToCode(block, 'year', sCASP.ORDER_ATOMIC);
     var value_month = sCASP.valueToCode(block, 'month', sCASP.ORDER_ATOMIC);
     var value_day = sCASP.valueToCode(block, 'day', sCASP.ORDER_ATOMIC);
-    var code = '...';
+    var code = 'date(' + value_year + ',' + value_month + ',' + value_day + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
@@ -560,7 +560,7 @@ sCASP['duration_calculate'] = function (block) {
     var value_years = sCASP.valueToCode(block, 'years', sCASP.ORDER_ATOMIC);
     var value_months = sCASP.valueToCode(block, 'months', sCASP.ORDER_ATOMIC);
     var value_days = sCASP.valueToCode(block, 'days', sCASP.ORDER_ATOMIC);
-    var code = '...';
+    var code = 'duration(' + value_sign + ',' + value_years + ',' +value_months + ',' + value_days + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
