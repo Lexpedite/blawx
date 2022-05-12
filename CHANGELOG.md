@@ -7,7 +7,40 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## [v1.3.7-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.7-alpha) 2022-05-11)
+## [v1.3.8-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.8-alpha) 2022-05-12
+
+Updates to the JSON data format expected by the tests/run endpoint.
+
+### Added
+* You can now make "assume" statements in your data payload to
+  the test/run endpoint.
+
+### Changed
+* The format expected by the test/run endpoint now looks like this:
+  ```
+  {
+    "person": {
+      "members_known": false,
+      "attributes_known": {
+        "test_attribute": false
+      },
+      "members": {
+        "jason": {
+          "favourite_number": {
+            "values_known": false,
+            "values": [42]
+          }
+        }
+      }
+    }
+  }
+  ```
+  Detailed documentation will come later, but the 'members_known', 'attributes_known', and 'values_known',
+  give you the ability to add three different sorts of
+  "assume" statements over the JSON Payload.
+
+
+## [v1.3.7-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.7-alpha) 2022-05-11
 
 Dates and Durations.
 
