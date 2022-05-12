@@ -56,7 +56,6 @@ def new_json_2_scasp(payload):
         for value in attribute_values['values']:
           # Add the attribute value
           output += attribute_name + "(" + object_name + ", " + str(value) + ").\n"
-  print(output)
   return output
 
 def json_2_scasp(element,higher_order=False):
