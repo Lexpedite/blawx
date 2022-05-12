@@ -26,31 +26,41 @@ from .dates import scasp_dates
 #         values_known: false,
 #       }
 #     ],
-#     members: [
+#     members: {
 #       jason: {
 #         nerd: {
 #           values_known: true,
 #           values: [ true ],
 #         },
 #       },
-#     ]
+#     }
 #   }
 # }
 
-def json_2_scasp(element,higher_order=False):
+def new_json_2_scasp(payload):
   output = ""
-
   # For Each Category
+  for (category_name,category_contents) in payload.items():
     # Make category membership abducible?
     # For each attribute
       # Make attribute abducible?
     # For each member
+    for (object_name,object_attributes) in category_contents['members'].items():
       # Create the Member
+      output += category_name + "(" + object_name + ").\n"
       # For each property
+      for (attribute_name, attribute_values) in object_attributes.items():
         # Make the partially-ground property abducible?
         # Depends on this value, AND the value for the attribute generally...
         # For each value
+        for value in attribute_values['values']:
           # Add the attribute value
+          output += attribute_name + "(" + object_name + ", " + str(value) + ").\n"
+  print(output)
+  return output
+
+def json_2_scasp(element,higher_order=False):
+  output = ""
   if type(element) is dict:
     # the keys of this dictionary are predicates
     for (k,v) in element.items():
@@ -237,7 +247,7 @@ def run_ruledoc(request,pk):
 def run_test(request,ruledoc,test_name):
     translated_facts = ""
     if request.data:
-      translated_facts = json_2_scasp(request.data)
+      translated_facts = new_json_2_scasp(request.data)
     wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     ruleset = ""
