@@ -16,8 +16,41 @@ from .models import Workspace, RuleDoc, BlawxTest
 from .ldap import ldap_code
 from .dates import scasp_dates
 
+# Proposed format for JSON submissions.
+# {
+#   person: {
+#     members_known: false,
+#     attributes: [
+#       {
+#         name: nerd,
+#         values_known: false,
+#       }
+#     ],
+#     members: [
+#       jason: {
+#         nerd: {
+#           values_known: true,
+#           values: [ true ],
+#         },
+#       },
+#     ]
+#   }
+# }
+
 def json_2_scasp(element,higher_order=False):
   output = ""
+
+  # For Each Category
+    # Make category membership abducible?
+    # For each attribute
+      # Make attribute abducible?
+    # For each member
+      # Create the Member
+      # For each property
+        # Make the partially-ground property abducible?
+        # Depends on this value, AND the value for the attribute generally...
+        # For each value
+          # Add the attribute value
   if type(element) is dict:
     # the keys of this dictionary are predicates
     for (k,v) in element.items():
