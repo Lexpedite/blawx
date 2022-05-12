@@ -20,12 +20,9 @@ from .dates import scasp_dates
 # {
 #   person: {
 #     members_known: false,
-#     attributes: [
-#       {
-#         name: nerd,
-#         values_known: false,
-#       }
-#     ],
+#     attributes_known: {
+#       name: false,
+#     },
 #     members: {
 #       jason: {
 #         nerd: {
@@ -42,8 +39,16 @@ def new_json_2_scasp(payload):
   # For Each Category
   for (category_name,category_contents) in payload.items():
     # Make category membership abducible?
+    if 'members_known' in category_contents:
+      if category_contents['members_known'] == False:
+        output += "#abducible " + category_name + "(X).\n"
+    
     # For each attribute
-      # Make attribute abducible?
+    if 'attributes_known' in category_contents:
+      for (cat_attrib_name,cat_attrib_known) in category_contents['attributes_known'].items():
+        # Make attribute abducible?
+        if cat_attrib_known == False:
+          output += "#abducible " + cat_attrib_name + "(X,Y).\n"
     # For each member
     for (object_name,object_attributes) in category_contents['members'].items():
       # Create the Member
@@ -52,6 +57,9 @@ def new_json_2_scasp(payload):
       for (attribute_name, attribute_values) in object_attributes.items():
         # Make the partially-ground property abducible?
         # Depends on this value, AND the value for the attribute generally...
+        if 'values_known' in attribute_values:
+          if attribute_values['values_known'] == False:
+            output += "#abducible " + attribute_name + "(" + object_name + ",X).\n"
         # For each value
         for value in attribute_values['values']:
           # Add the attribute value
