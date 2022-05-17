@@ -349,13 +349,149 @@ blawxrun(Query, Human) :-
     else:
       return Response({ "Answers": generate_answers(query_answer), "Transcript": transcript_output })
 
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_ontology(request,ruledoc,test_name):
+    wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
+    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    ruleset = ""
+    for ws in wss:
+      ruleset += "\n\n" + ws.scasp_encoding
+    ruleset += "\n\n" + test.scasp_encoding
+    
+    rulefile = tempfile.NamedTemporaryFile('w',delete=False)
+    rulefile.write("""
+:- use_module(library(scasp)).
+:- use_module(library(scasp/human)).
+:- use_module(library(scasp/output)).
+:- meta_predicate
+    blawxrun2(0,-).
+""")
+
+    
+    
+    rulefile.write("""
+blawxrun(Query, Human) :-
+    scasp(Query,[tree(Tree)]),
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+    with_output_to(string(Human),
+		           human_justification_tree(Tree,[])).
+    term_attvars(Query, AttVars),
+    maplist(del_attrs, AttVars).
+""")
+
+    rulefile.write(ldap_code + '\n\n')
+    rulefile.write(scasp_dates + '\n\n')
+
+
+    rulefile.write(ruleset)
+    rulefile.close()
+    rulefilename = rulefile.name
+    temprulefile = open(rulefilename,'r')
+    print(temprulefile.read())
+    temprulefile.close()
+
+    # Start the Prolog "thread"
+    try: 
+      with PrologMQI() as swipl:
+          with swipl.create_thread() as swipl_thread:
+
+              transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
+              transcript_name = transcript.name
+
+              with redirect_stderr(transcript):
+                  load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+              transcript.write(str(load_file_answer) + '\n')
+              if os.path.exists(rulefilename):
+                  rules = open(rulefilename)
+                  rulestext = rules.read()
+                  transcript.write(rulestext + '\n')
+                  rules.close()
+                  os.remove(rulefilename)
+
+              #transcript.write(full_query)
+              with redirect_stderr(transcript):
+                  print("blawxrun(blawx_category(Category),Human).")
+                  category_answers = []
+                  query1_answer = swipl_thread.query("blawxrun(blawx_category(Category),Human).")
+                  query1_answers = generate_answers(query1_answer)
+                  for cat in query1_answers:
+                    category_answers.append(cat['Variables']['Category'])
+                  category_nlg = []
+                  for c in category_answers:
+                    try:
+                      cat_nlg_query_response = swipl_thread.query("blawxrun(blawx_category_nlg(" + c + ",Prefix,Postfix),Human).")
+                    except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        continue
+                    cat_nlg_query_answers = generate_answers(cat_nlg_query_response)
+                    for cnlga in cat_nlg_query_answers:
+                      category_nlg.append({"Category": c, "Prefix": cnlga['Variables']['Prefix'], "Postfix": cnlga['Variables']['Postfix']})
+                  print("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
+                  attribute_answers = []
+                  query2_answer = swipl_thread.query("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
+                  query2_answers = generate_answers(query2_answer)
+                  for att in query2_answers:
+                    attribute_answers.append({"Category": att['Variables']['Category'], "Attribute": att['Variables']['Attribute'], "Type": att['Variables']['ValueType']})
+                  attribute_nlg = []
+                  for a in attribute_answers:
+                    try:
+                      att_nlg_query_response = swipl_thread.query("blawxrun(blawx_attribute_nlg(" + a['Attribute'] + ",Order,Prefix,Infix,Postfix),Human).")
+                    except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        continue
+                    att_nlg_query_answers = generate_answers(att_nlg_query_response)
+                    for anlga in att_nlg_query_answers:
+                      attribute_nlg.append({"Attribute": a['Attribute'], "Order": anlga['Variables']['Order'], "Prefix": anlga['Variables']['Prefix'], "Infix": anlga['Variables']['Infix'], "Postfix": anlga['Variables']['Postfix']})
+
+                  transcript.write(str(query1_answer) + '\n')
+                  transcript.write(str(query2_answer) + '\n')
+                  object_query_answers = []
+                  for cat in query1_answers:
+                    category_name = cat['Variables']['Category']
+                    cat_query_response = swipl_thread.query("blawxrun(" + category_name + "(Object),Human).")
+                    transcript.write(str(cat_query_response) + '\n')
+                    cat_query_answers = generate_answers(cat_query_response)
+                    for answer in cat_query_answers:
+                      object_name = answer['Variables']['Object']
+                      object_query_answers.append({"Category": category_name, "Object": object_name})
+                  value_query_answers = []
+                  for att in query2_answers:
+                    attribute_name = att['Variables']['Attribute']
+                    att_query_response = swipl_thread.query("blawxrun(" + attribute_name + "(Object,Value),Human).")
+                    transcript.write(str(att_query_response) + '\n')
+                    att_query_answers = generate_answers(att_query_response)
+                    for answer in att_query_answers:
+                      object_name = answer['Variables']['Object']
+                      value = answer['Variables']['Value']
+                      value_query_answers.append({"Attribute": attribute_name, "Object": object_name, "Value": value})
+
+              transcript.close()
+              transcript = open(transcript_name,'r')
+              # transcript = open("transcript",'r')
+              transcript_output = transcript.read()
+              transcript.close()
+              os.remove(transcript_name)
+    except PrologError as err:
+      return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
+    except PrologLaunchError as err:
+      return Response({ "error": "Blawx could not load the reasoner." })
+    # Return the results as JSON
+    return Response({ "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output })
+
 pp.ParserElement.set_default_whitespace_chars(' \t')
 answer_line = pp.Combine(pp.OneOrMore(pp.Word(pp.printables)),adjacent=False,join_string=" ") + pp.Suppress(pp.line_end)
 answer = pp.OneOrMore(pp.IndentedBlock(answer_line,recursive=True))
 
 #TODO Check to see if answer works when there is more than one root query element
 
+
+
 def generate_answers(answers):
+  if answers == False:
+    return []
   models = []
   result = []
   for a in answers:
