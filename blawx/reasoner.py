@@ -34,21 +34,22 @@ from .dates import scasp_dates
 #   }
 # }
 
-def new_json_2_scasp(payload):
+def new_json_2_scasp(payload,exclude_assumptions=False):
   output = ""
   # For Each Category
   for (category_name,category_contents) in payload.items():
     # Make category membership abducible?
-    if 'members_known' in category_contents:
-      if category_contents['members_known'] == False:
-        output += "#abducible " + category_name + "(X).\n"
+    if not exclude_assumptions:
+      if 'members_known' in category_contents:
+        if category_contents['members_known'] == False:
+          output += "#abducible " + category_name + "(X).\n"
     
-    # For each attribute
-    if 'attributes_known' in category_contents:
-      for (cat_attrib_name,cat_attrib_known) in category_contents['attributes_known'].items():
-        # Make attribute abducible?
-        if cat_attrib_known == False:
-          output += "#abducible " + cat_attrib_name + "(X,Y).\n"
+      # For each attribute
+      if 'attributes_known' in category_contents:
+        for (cat_attrib_name,cat_attrib_known) in category_contents['attributes_known'].items():
+          # Make attribute abducible?
+          if cat_attrib_known == False:
+            output += "#abducible " + cat_attrib_name + "(X,Y).\n"
     # For each member
     for (object_name,object_attributes) in category_contents['members'].items():
       # Create the Member
@@ -57,9 +58,10 @@ def new_json_2_scasp(payload):
       for (attribute_name, attribute_values) in object_attributes.items():
         # Make the partially-ground property abducible?
         # Depends on this value, AND the value for the attribute generally...
-        if 'values_known' in attribute_values:
-          if attribute_values['values_known'] == False:
-            output += "#abducible " + attribute_name + "(" + object_name + ",X).\n"
+        if not exclude_assumptions:
+          if 'values_known' in attribute_values:
+            if attribute_values['values_known'] == False:
+              output += "#abducible " + attribute_name + "(" + object_name + ",X).\n"
         # For each value
         for value in attribute_values['values']:
           # Add the attribute value
@@ -349,11 +351,7 @@ blawxrun(Query, Human) :-
     else:
       return Response({ "Answers": generate_answers(query_answer), "Transcript": transcript_output })
 
-
-
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def get_ontology(request,ruledoc,test_name):
+def get_ontology_internal(ruledoc,test_name):
     wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     ruleset = ""
@@ -475,18 +473,24 @@ blawxrun(Query, Human) :-
               transcript.close()
               os.remove(transcript_name)
     except PrologError as err:
-      return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
+      return { "error": "There was an error while running the code.", "transcript": err.prolog() }
     except PrologLaunchError as err:
-      return Response({ "error": "Blawx could not load the reasoner." })
+      return { "error": "Blawx could not load the reasoner." }
     # Return the results as JSON
-    return Response({ "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output })
+    return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output }
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_ontology(request,ruledoc,test_name):
+    result = get_ontology_internal(ruledoc,test_name)
+    return Response(result)
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def interview(request,ruledoc,test_name):
     translated_facts = ""
     if request.data:
-      translated_facts = new_json_2_scasp(request.data)
+      translated_facts = new_json_2_scasp(request.data, True) #Generate answers ignoring assumptions in the submitted data
     wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     ruleset = ""
@@ -575,11 +579,21 @@ blawxrun(Query, Human) :-
     except PrologLaunchError as err:
       query_answer = "Blawx could not load the reasoner."
       return Response({ "error": "Blawx could not load the reasoner." })
+    
+    # Now get the ontology information to be able to generate the relevance data
+    # Later, we will need to run the query again with assumptions in order to determine relevance.
+    # For now, we are just filling the data structure with all the categories and attributes.
+    ontology = get_ontology_internal(ruledoc,test_name)
+    relevant_categories = ontology['Categories']
+    relevant_attributes = []
+    for a in ontology['Attributes']:
+      relevant_attributes.append({"Attribute": a['Attribute']})
+    
     # Return the results as JSON
     if query_answer == False:
       return Response({ "Answers": [], "Transcript": transcript_output })
     else:
-      return Response({ "Answers": generate_answers(query_answer), "Transcript": transcript_output })
+      return Response({ "Answers": generate_answers(query_answer), "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
 
 
 
