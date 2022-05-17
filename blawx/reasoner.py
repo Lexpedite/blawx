@@ -449,7 +449,11 @@ blawxrun(Query, Human) :-
                   object_query_answers = []
                   for cat in query1_answers:
                     category_name = cat['Variables']['Category']
-                    cat_query_response = swipl_thread.query("blawxrun(" + category_name + "(Object),Human).")
+                    try:
+                      cat_query_response = swipl_thread.query("blawxrun(" + category_name + "(Object),Human).")
+                    except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        continue
                     transcript.write(str(cat_query_response) + '\n')
                     cat_query_answers = generate_answers(cat_query_response)
                     for answer in cat_query_answers:
@@ -458,7 +462,11 @@ blawxrun(Query, Human) :-
                   value_query_answers = []
                   for att in query2_answers:
                     attribute_name = att['Variables']['Attribute']
-                    att_query_response = swipl_thread.query("blawxrun(" + attribute_name + "(Object,Value),Human).")
+                    try:
+                      att_query_response = swipl_thread.query("blawxrun(" + attribute_name + "(Object,Value),Human).")
+                    except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        continue
                     transcript.write(str(att_query_response) + '\n')
                     att_query_answers = generate_answers(att_query_response)
                     for answer in att_query_answers:
