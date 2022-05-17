@@ -481,6 +481,108 @@ blawxrun(Query, Human) :-
     # Return the results as JSON
     return Response({ "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output })
 
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def interview(request,ruledoc,test_name):
+    translated_facts = ""
+    if request.data:
+      translated_facts = new_json_2_scasp(request.data)
+    wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
+    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    ruleset = ""
+    for ws in wss:
+      ruleset += "\n\n" + ws.scasp_encoding
+    ruleset += "\n\n" + test.scasp_encoding
+    # print(ruleset)
+    
+    rulefile = tempfile.NamedTemporaryFile('w',delete=False)
+    rulefile.write("""
+:- use_module(library(scasp)).
+:- use_module(library(scasp/human)).
+:- use_module(library(scasp/output)).
+
+:- meta_predicate
+    blawxrun2(0,-).
+""")
+
+    query = "No Query Specified"
+    for line in test.scasp_encoding.splitlines():
+        if line.startswith("?- "):
+            query = line[3:-1] # remove query prompt and period.
+
+    rulefile.write("""
+blawxrun(Query, Human) :-
+    scasp(Query,[tree(Tree)]),
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+    with_output_to(string(Human),
+		           human_justification_tree(Tree,[])).
+    term_attvars(Query, AttVars),
+    maplist(del_attrs, AttVars).
+""")
+    # For Each Variable in the query
+#     for v in get_variables(query):
+#       rulefile.write("ovar_analyze_term(t(" + v + ", Tree),[name_constraints(true)]),")
+#     rulefile.write("""
+#     with_output_to(string(Human),
+#     human_justification_tree(Tree,[])).
+# """)
+
+    rulefile.write(ldap_code + '\n\n')
+    rulefile.write(scasp_dates + '\n\n')
+
+
+    rulefile.write(translated_facts)
+    rulefile.write(ruleset)
+    rulefile.close()
+    rulefilename = rulefile.name
+    temprulefile = open(rulefilename,'r')
+    print(temprulefile.read())
+    temprulefile.close()
+
+    # Start the Prolog "thread"
+    try: 
+      with PrologMQI() as swipl:
+          with swipl.create_thread() as swipl_thread:
+
+              transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
+              transcript_name = transcript.name
+
+              with redirect_stderr(transcript):
+                  load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+              transcript.write(str(load_file_answer) + '\n')
+              if os.path.exists(rulefilename):
+                  rules = open(rulefilename)
+                  rulestext = rules.read()
+                  transcript.write(rulestext + '\n')
+                  rules.close()
+                  os.remove(rulefilename)
+
+              #transcript.write(full_query)
+              with redirect_stderr(transcript):
+                  print("blawxrun(" + query + ",Human).")
+                  query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
+                  
+              transcript.write(str(query_answer) + '\n')
+
+              transcript.close()
+              transcript = open(transcript_name,'r')
+              # transcript = open("transcript",'r')
+              transcript_output = transcript.read()
+              transcript.close()
+              os.remove(transcript_name)
+    except PrologError as err:
+      return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
+    except PrologLaunchError as err:
+      query_answer = "Blawx could not load the reasoner."
+      return Response({ "error": "Blawx could not load the reasoner." })
+    # Return the results as JSON
+    if query_answer == False:
+      return Response({ "Answers": [], "Transcript": transcript_output })
+    else:
+      return Response({ "Answers": generate_answers(query_answer), "Transcript": transcript_output })
+
+
+
 pp.ParserElement.set_default_whitespace_chars(' \t')
 answer_line = pp.Combine(pp.OneOrMore(pp.Word(pp.printables)),adjacent=False,join_string=" ") + pp.Suppress(pp.line_end)
 answer = pp.OneOrMore(pp.IndentedBlock(answer_line,recursive=True))
