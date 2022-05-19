@@ -1,0 +1,34 @@
+version: "3.1"
+
+rules:
+
+- rule: tell user what they can Do
+  steps:
+  - intent: options
+  - action: utter_options
+
+- rule: add an object when the user asks you To
+  steps:
+  - intent: add_object
+  - action: action_add_object
+  - action: utter_object_added
+
+- rule: list objects when the user asks you to
+  steps:
+  - intent: list_objects
+  - action: action_list_objects
+
+- rule: say hello
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot

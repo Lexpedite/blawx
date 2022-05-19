@@ -3,3 +3,5 @@
 /blawx/migrations/__pycache__/
 *.pyc
 transcript
+/blawxbot/.rasa/
+/blawxbot/models/

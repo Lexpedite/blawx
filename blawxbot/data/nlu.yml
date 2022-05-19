@@ -1,0 +1,106 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: get_object
+  examples: |
+    - tell me about [bob](object_name)
+    - show me [bob](object_name)
+
+- intent: delete_object
+  examples: |
+    - forget about [bob](object_name)
+    - delete [bob](object_name)
+
+- intent: add_attribute
+  examples: |
+    - add [34](value) as the [age](category_name) for [bob](object_name)
+    - set [bob](object_name) [age](category_name) to [34](value)
+
+- intent: delete_attribute
+  examples: |
+    - remove [sandra](value) as a [friend](category_name) of [bob](object_name)
+    - [bob](object_name) does not have [sandra](value) as a [friend](category_name)
+
+- intent: list_categories
+  examples: |
+    - what categories do you know about?
+    - what types of objects are there?
+    - show me the categories
+
+- intent: list_attributes
+  examples: |
+    - what things can I say about the category [person](category_name)?
+    - show me the attributes associated with the category [car](category_name)?
+    - what values can I set for an object in the [person](category_name) list?
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: add_object
+  examples: |
+    - I would like to add a [person](category_name) called [jason](object_name).
+    - [jason](object_name) is another [person](category_name).
+    - Let's add a [person](category_name), [jason](object_name).
+
+- intent: list_objects
+  examples: |
+    - What [person](category_name) do you know about?
+    - What [person](category_name) have I told you about so far?
+
+- intent: options
+  examples: |
+    - What can I say?
+    - What can you do?
+    - What are my options?
