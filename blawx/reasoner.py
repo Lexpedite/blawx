@@ -51,21 +51,22 @@ def new_json_2_scasp(payload,exclude_assumptions=False):
           if cat_attrib_known == False:
             output += "#abducible " + cat_attrib_name + "(X,Y).\n"
     # For each member
-    for (object_name,object_attributes) in category_contents['members'].items():
-      # Create the Member
-      output += category_name + "(" + object_name + ").\n"
-      # For each property
-      for (attribute_name, attribute_values) in object_attributes.items():
-        # Make the partially-ground property abducible?
-        # Depends on this value, AND the value for the attribute generally...
-        if not exclude_assumptions:
-          if 'values_known' in attribute_values:
-            if attribute_values['values_known'] == False:
-              output += "#abducible " + attribute_name + "(" + object_name + ",X).\n"
-        # For each value
-        for value in attribute_values['values']:
-          # Add the attribute value
-          output += attribute_name + "(" + object_name + ", " + str(value) + ").\n"
+    if 'members' in category_contents and len(category_contents['members']):
+      for (object_name,object_attributes) in category_contents['members'].items():
+        # Create the Member
+        output += category_name + "(" + object_name + ").\n"
+        # For each property
+        for (attribute_name, attribute_values) in object_attributes.items():
+          # Make the partially-ground property abducible?
+          # Depends on this value, AND the value for the attribute generally...
+          if not exclude_assumptions:
+            if 'values_known' in attribute_values:
+              if attribute_values['values_known'] == False:
+                output += "#abducible " + attribute_name + "(" + object_name + ",X).\n"
+          # For each value
+          for value in attribute_values['values']:
+            # Add the attribute value
+            output += attribute_name + "(" + object_name + ", " + str(value) + ").\n"
   return output
 
 def json_2_scasp(element,higher_order=False):
@@ -592,14 +593,14 @@ blawxrun(Query, Human) :-
     # Later, we will need to run the query again with assumptions in order to determine relevance.
     # For now, we are just filling the data structure with all the categories and attributes.
     ontology = get_ontology_internal(ruledoc,test_name)
-    relevant_categories = ontology['Categories']
+    relevant_categories = ontology['Categories'] # This is causing errors in the Socrates demo.
     relevant_attributes = []
     for a in ontology['Attributes']:
       relevant_attributes.append({"Attribute": a['Attribute']})
     
     # Return the results as JSON
     if query_answer == False:
-      return Response({ "Answers": [], "Transcript": transcript_output })
+      return Response({ "Answers": [], "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
     else:
       return Response({ "Answers": generate_answers(query_answer), "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
 
