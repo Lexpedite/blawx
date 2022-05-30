@@ -17,6 +17,18 @@ and breaking changes will not necessarily result in changes to the main version 
   categories and attributes to collect as input. Currently, all categories and attributes are returned
   in all cases.
 
+## DEVELOPMENT CHANGES
+
+Added a simple expert system chat bot for tests.
+
+### Added
+* Demonstration chatbot at `{rule}/test/{testname}/bot/`
+* "Bot" button in test endpoint.
+
+
+### Changed
+* The Copyright notice was amended to be correct.
+
 ## [v1.3.8-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.8-alpha) 2022-05-12
 
 Updates to the JSON data format expected by the tests/run endpoint.
