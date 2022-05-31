@@ -1,94 +1,154 @@
-{% extends "base.html" %}
 {% load static %}
-{% csrf_token %}
-{% block page_head %}
-<script>
-    // This is a script to add a message to the messages div
-    function addChatListener() {
-        var chatinput = document.getElementById("chatinput");
-    
-        chatinput.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                // Cancel the default action, if needed
-                event.preventDefault();
-                addMessage();
-            }
-        });
-    }
-
-    function addMessage(text="",bot=false) {
-        // Get the messages area.
-        if (!bot) {
-            var outer_div_class = "row m-1 justify-content-end";
-            var inner_div_class = "col-10 border bg-light";
-            var input_element = document.getElementById('chatinput')
-            if (input_element.value == "") {
-                return
-            }
-            text = input_element.value
-            input_element.value = ""
-        } else {
-            var outer_div_class = "row m-1 justify-content-start";
-            var inner_div_class = "col-10 border bg-info";
+<!DOCTYPE html>
+<html lang="en" class="vh-100">
+<head>
+    {% csrf_token %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'blawx/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'blawx/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'blawx/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'blawx/site.webmanifest' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <title>Blawx - Drag and Drop Legal AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mina:wght@700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&amp;display=swap" rel="stylesheet">
+    <style type="text/css">
+        #blawxlogo {
+            font-family: 'Mina', sans-serif;
+            font-size: xx-large;
+            color: #5a005a;
         }
-        var new_outer_message = document.createElement('div')
-        var new_outer_att = document.createAttribute('class')
-        new_outer_att.value = outer_div_class
-        new_outer_message.setAttributeNode(new_outer_att)
-        var new_inner_message = document.createElement('div')
-        var new_inner_att = document.createAttribute('class')
-        new_inner_att.value = inner_div_class
-        new_inner_message.setAttributeNode(new_inner_att)
-        new_inner_message.innerText = text;
-        new_outer_message.appendChild(new_inner_message)
-        
 
-        var target = document.getElementById("blawxBotMessages")
-        target.appendChild(new_outer_message)
-        if (!bot) {
-            addMessage("you said: " + text,true)
+        #blawxWordMark {
+            font-family: 'IBM Plex Sans', sans-serif;
         }
-        // <div class="row m-1 justify-content-end">
-        //         <div class="col-10 border bg-light">
-        //             This is a message
-        //         </div>
-        //     </div>
-        
-    }
-</script>
+    </style>
+    <script>
+        // This is a script to add a message to the messages div
+        function addChatListener() {
+            var chatinput = document.getElementById("chatinput");
+
+            chatinput.addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    // Cancel the default action, if needed
+                    event.preventDefault();
+                    addMessage();
+                }
+            });
+        }
+
+        function addMessage(text = "", bot = false) {
+            // Get the messages area.
+            if (!bot) {
+                var outer_div_class = "row m-1 justify-content-end";
+                var inner_div_class = "col-10 border bg-light";
+                var input_element = document.getElementById('chatinput')
+                if (input_element.value == "") {
+                    return
+                }
+                text = input_element.value
+                input_element.value = ""
+            } else {
+                var outer_div_class = "row m-1 justify-content-start";
+                var inner_div_class = "col-10 border bg-info";
+            }
+            var new_outer_message = document.createElement('div')
+            var new_outer_att = document.createAttribute('class')
+            new_outer_att.value = outer_div_class
+            new_outer_message.setAttributeNode(new_outer_att)
+            var new_inner_message = document.createElement('div')
+            var new_inner_att = document.createAttribute('class')
+            new_inner_att.value = inner_div_class
+            new_inner_message.setAttributeNode(new_inner_att)
+            new_inner_message.innerText = text;
+            new_outer_message.appendChild(new_inner_message)
 
 
-<link href="{% static 'blawx/navtree.css' %}" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
-    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-{% endblock %}
+            var target = document.getElementById("blawxBotMessages")
+            target.appendChild(new_outer_message)
+            new_outer_message.scrollIntoView();
 
-{% block page_content %}
-<!-- The bot interface goes here.-->
-<div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
+            if (!bot) {
+                nextMessageCallback(text);
+            }
+        }
+    </script>
 
-    <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
-            <path
-                d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
-            <path
-                d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
-        </svg> Blawx Bot is a demonstration of alpha software, and should not be used for anything, ever. You have been
-        warned.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-</div>
-<div class="d-flex flex-row">
-    <div class="d-flex flex-column col-8 align-items-start">
-        <!-- Convo -->
-        <div class="col-8 w-100 p-1" id="blawxBotMessages">
-            <!-- Messages -->
+
+    <link href="{% static 'blawx/navtree.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body class="d-flex flex-column vh-100">
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+    <header class="py-3 mb-3 border-bottom overflow-hidden">
+        <div class="row">
+            <div class="col-2 align-self-center" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
+            <div class="col-10">
+                <a href="javascript:void(0);" class="btn btn-secondary btn-disabled" onclick="javascript:void(0);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                        <path
+                            d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                    </svg>
+                    <span class="text">Restart</span>
+                </a>
+                <a href="/docs/home" target=_blank class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-question-square" viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                        <path
+                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                    <span class="text">Help</span>
+                </a>
+                <a href="{% url 'blawx:test' blawxtest.ruledoc.id blawxtest %}" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-x-square" viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                        <path
+                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                    <span class="text">Exit</span>
+                </a>
+            </div>
+
         </div>
-        <div class="col-8 w-100 mt-auto border-top p-2">
-            <div class="container">
-                <!-- <form> -->
+    </header>
+    <!-- The bot interface goes here.-->
+    <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
+
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                <path
+                    d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                <path
+                    d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+            </svg> Blawx Bot is a demonstration of alpha software, and should not be used for real-world purposes.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    <div class="d-flex flex-fill flex-row overflow-hidden">
+        <div class="d-flex flex-column col-8 align-items-start">
+            <!-- Convo -->
+            <div class="w-100 overflow-scroll flex-fill flex-column">
+                <div class="col-8 w-100 p-1" id="blawxBotMessages">
+                    <!-- Messages -->
+                </div>
+            </div>
+            <div class="col-8 flex-shrink-0 w-100 mt-auto border-top p-2">
+                <div class="container">
+                    <!-- <form> -->
                     <div class="row">
                         <div class="col-10">
                             <input id="chatinput" class="form-control">
@@ -102,277 +162,408 @@
                                 </svg></button>
                         </div>
                     </div>
-                <!-- </form> -->
+                    <!-- </form> -->
+                </div>
+                <!-- Input -->
             </div>
-            <!-- Input -->
+        </div>
+        <div class="col-4 border-start overflow-scroll">
+            <!-- Meta -->
+            <div class="container py-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Answers</h5>
+                        <div id="answers">
+                            <!-- The answers will go here. -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container py-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Facts</h5>
+                        <div id="user_fact_contents">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container py-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Test Facts</h5>
+                        <div id="onto_fact_contents"></div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-4 border-start">
-        <!-- Meta -->
-        <div class="container py-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Answers</h5>
-                    <div id="answers">
-                        <!-- The answers will go here. -->
-                    </div>
-                </div>
+    <script>
 
-            </div>
-        </div>
-        <div class="container py-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Your Facts</h5>
-                    <div id="user_fact_contents">
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="container py-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Test Facts</h5>
-                    <div id="onto_fact_contents"></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-
-    function addSectionReferences(text) {
-        // Search the string for the list of section references
-        var match = text.match(/according to (sec_.*)_section/);
-        var rule_text = "This will be the text of the act."
-        if (match) {
-            var eId = match[1];
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "../../rule/" + eId + "/", false);
-            xhttp.setRequestHeader('X-CSRFToken', csrftoken);
-            xhttp.send();
-            output_object = JSON.parse(xhttp.responseText);
-            rule_text = output_object['text'];
-            text = text.replace("according to " + eId + "_section",
-            'according to <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="' + rule_text + '">' + eId + '</a>')
+        function addSectionReferences(text) {
+            // Search the string for the list of section references
+            var match = text.match(/according to (sec_.*)_section/);
+            var rule_text = "This will be the text of the act."
+            if (match) {
+                var eId = match[1];
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "../../rule/" + eId + "/", false);
+                xhttp.setRequestHeader('X-CSRFToken', csrftoken);
+                xhttp.send();
+                output_object = JSON.parse(xhttp.responseText);
+                rule_text = output_object['text'];
+                text = text.replace("according to " + eId + "_section",
+                    'according to <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="' + rule_text + '">' + eId + '</a>')
+            }
+            var new_text = text.replace(/(sec_.*)_section/g, "$1");
+            new_text = new_text.replace(/sec_/g, "section ");
+            new_text = new_text.replace(/__subsec_/g, " subsection ");
+            new_text = new_text.replace(/__para_/g, " paragraph ");
+            new_text = new_text.replace(/__subpara_/g, ' sub-paragraph ');
+            new_text = new_text.replace(/__span_/g, ' span ');
+            return new_text
         }
-        var new_text = text.replace(/(sec_.*)_section/g,"$1");
-        new_text = new_text.replace(/sec_/g,"section ");
-        new_text = new_text.replace(/__subsec_/g," subsection ");
-        new_text = new_text.replace(/__para_/g," paragraph ");
-        new_text = new_text.replace(/__subpara_/g,' sub-paragraph ');
-        new_text = new_text.replace(/__span_/g,' span ');
-        return new_text
-    }
 
-    function convertModelToTree(list,answer,explanation,prefix="",root=true) {
-        output_html = "";
-        if (root) {
-            prefix = "ex_" + answer + "_" + explanation
-            output_html += '<div class="explanation">'
-            // An explanation may have more than one root conclusion it
-            // is trying to explain. So at this point it is potentially
-            // a list of lists, with no text elements.
-            // Run this again against each sub-element.
-            output_html += "<ul>"
-            for (var i = 0; i < list.length; i++) {
-                output_html += "<li>"
-                output_html += convertModelToTree(list[i],answer,explanation,prefix + '_' + i,false)
+        function convertModelToTree(list, answer, explanation, prefix = "", root = true) {
+            output_html = "";
+            if (root) {
+                prefix = "ex_" + answer + "_" + explanation
+                output_html += '<div class="explanation">'
+                // An explanation may have more than one root conclusion it
+                // is trying to explain. So at this point it is potentially
+                // a list of lists, with no text elements.
+                // Run this again against each sub-element.
+                output_html += "<ul>"
+                for (var i = 0; i < list.length; i++) {
+                    output_html += "<li>"
+                    output_html += convertModelToTree(list[i], answer, explanation, prefix + '_' + i, false)
+                    output_html += "</li>"
+                }
+                output_html += "</ul>"
+                output_html += "</div>"
+            } else {
+                // Now we are inside a given root explanation.
+                // Each node is a piece of text, optionally followed by an array
+                // of reasons for that piece of text.
+                var has_reasons = Array.isArray(list[1]);
+                var target = prefix;
+                output_html += '<div class="explanation_node">'
+                if (has_reasons) {
+                    output_html += '<i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#' + target + '"></i>'
+                }
+                output_html += addSectionReferences(list[0])
+                output_html += '</div>'
+                // Now we have displayed the text, we optionally display each of the
+                // reasons, processing it using this formula if it, too, has reasons.
+                if (has_reasons) {
+                    output_html += '<div class="subparts collapse" id="' + target + '">'
+                    output_html += "<ul>"
+                    for (var j = 0; j < list[1].length; j++) {
+                        var reason_has_reasons = Array.isArray(list[1][j + 1]);
+                        output_html += "<li>"
+                        if (reason_has_reasons) {
+                            output_html += convertModelToTree(list[1].slice(j), answer, explanation, target + '_' + j, false)
+                            j++;
+                        } else {
+                            output_html += list[1][j]
+                        }
+                        output_html += "</li>"
+                    }
+                    output_html += '</ul></div>'
+                }
+            }
+            return output_html;
+        }
+
+        var close_category_sought = {};
+        var close_attribute_sought = [];
+
+        function poseQuestion() {
+            // Run the interview query with the current fact scenario
+            var interview_request = new XMLHttpRequest();
+            interview_request.onload = function () {
+                parsed_interview_response = JSON.parse(this.responseText);
+                console.log("Interview response received")
+                // If the question is answered
+                if (parsed_interview_response['Answers'].length) {
+                    // Display the answer
+                    addMessage("There is an answer to the question! See the details on the right.", true)
+                    var output_content = '<div class="accordion accordion-flush">';
+                    var answers = parsed_interview_response.Answers;
+                    for (let i = 0; i < answers.length; i++) {
+                        var count = i + 1;
+                        var heading_name = "answer_" + count + "_heading";
+                        var collapse_name = "answer_" + count + "_collapse";
+                        output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + heading_name + '">';
+                        output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + collapse_name + '" aria-expanded="false" aria-controls="' + collapse_name + '">';
+                        output_content += 'Answer #' + count;
+                        var variables = answers[i].Variables;
+                        output_content += '</button></h2>';
+                        output_content += '<div id="' + collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + heading_name + '" style="">';
+                        models = answers[i].Models;
+                        output_content += '<div class="accordian accordian-flush">'
+                        output_content += '<ul>'
+                        for (var key in variables) {
+                            output_content += '<li>' + key + ': ' + variables[key] + '</li>';
+                        }
+                        output_content += '</ul>'
+
+                        for (let j = 0; j < models.length; j++) {
+                            var model_count = j + 1;
+                            var model_heading_name = "answer_" + count + "_model_" + model_count + "_heading";
+                            var model_collapse_name = "answer_" + count + "_model_" + model_count + "_collapse";
+                            output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + model_heading_name + '">';
+                            output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + model_collapse_name + '" aria-expanded="false" aria-controls="' + model_collapse_name + '">';
+                            output_content += 'Explanation #' + model_count;
+                            output_content += '</button></h2>';
+                            output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
+                            output_content += convertModelToTree(models[j], count, model_count);
+                            output_content += '</div></div>';
+
+                        }
+                        output_content += '</div></div></div>';
+                    }
+                    output_content += '</div>';
+                    answer_element = document.getElementById('answers')
+                    answer_element.innerHTML = output_content;
+                    // Set the callback function to null.
+                    nextMessageCallback = void (0);
+                } else { // Otherwise (the question is not answered)
+                    // Loop through the categories in the ontology
+                    var current_category = "";
+                    for (var c = 0; c < parsed_ontology['Categories'].length; c++) {
+                        current_category = parsed_ontology['Categories'][c];
+                        // If the category is not closed
+                        if (!closed_categories.includes(current_category)) { // Start Category is Open
+                            // Go through the objects in the category
+                            var current_object = {}
+                            for (var o = 0; o < fact_scenario['Objects'].length; o++) {
+                                current_object = fact_scenario['Objects'][o];
+                                if (current_object['Category'] == current_category) {
+                                    // Go through the attributes in the object
+                                    var current_attribute = ""
+                                    for (var a = 0; a < parsed_ontology['Attributes'].length; a++) {
+                                        if (parsed_ontology['Attributes'][a]['Category'] == current_category) {
+                                            current_attribute = parsed_ontology['Attributes'][a];
+
+                                            // If the attribute is not closed
+                                            if (!closed_attributes[current_object['Object']].includes(current_attribute['Attribute'])) {
+                                                if (!close_attribute_sought[current_object['Object']].includes(current_attribute['Attribute'])) {
+                                                    addMessage("Do you want to add a value to the object " + current_object['Object'] + " for the attribute " + current_attribute['Attribute'] + "?", true);
+                                                    nextMessageCallback = function (text) {
+                                                        if (text != "yes") {
+                                                            closed_attributes[current_object['Object']].push(current_attribute['Attribute']);
+                                                        }
+                                                        close_attribute_sought[current_object['Object']].push(current_attribute['Attribute']);
+                                                        poseQuestion();
+                                                    }
+                                                    return;
+                                                }
+                                                // Ask for a value for that attribute
+                                                addMessage("What value should we add to the object " + current_object['Object'] + " for the attribute " + current_attribute['Attribute'] + "?", true);
+                                                // Set the callback to
+                                                nextMessageCallback = function (text) {
+                                                    //add a value to that attribute,
+                                                    close_attribute_sought[current_object['Object']].pop(current_attribute['Attribute']);
+                                                    fact_scenario['Values'].push({ "Object": current_object['Object'], "Attribute": current_attribute['Attribute'], "Value": text });
+                                                    display_facts();
+                                                    poseQuestion();
+                                                    // check to see if the attribute is closed, and recurse
+                                                    // ask_close_attribute(current_object['Object'], current_attribute['Attribute']);
+                                                }
+                                                // Break Out
+                                                return;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (!close_category_sought[current_category]) { // Only check if we want new ones if it's not closed already.
+                                addMessage("Do you want to add an object to the category " + current_category + "?", true)
+                                nextMessageCallback = function (text) {
+                                    if (text != "yes") {
+                                        closed_categories.push(current_category);
+                                    }
+                                    close_category_sought[current_category] = true;
+                                    poseQuestion();
+                                }
+                                return;
+                            }
+
+                            // You have gotten to the end of the objects
+                            // Ask for the name of another object.
+                            addMessage("What object should we add to the category " + current_category + "?", true)
+                            // Set the callback to
+                            nextMessageCallback = function (text) {
+                                // add an object,
+                                close_category_sought[current_category] = false;
+                                fact_scenario['Objects'].push({ "Category": current_category, "Object": text });
+                                closed_attributes[text] = [];
+                                close_attribute_sought[text] = [];
+                                display_facts();
+                                poseQuestion();
+                            }
+                            // Break out
+                            return;
+                        } // End Category is Open, go to next for loop?
+                        // if (!closed_categories.includes(current_category)) {
+                        //     close_category_sought = false; // Only reset if we are not skipping a previously-closed category
+                        // }
+                    }
+                    // If we get here, there is no answer, and no more valid inputs
+                    // Display the fact that there is no answer
+                    addMessage("All of the relevant information has been collected, and there is no answer.", true)
+                    // Set the callback to null
+                    nextMessageCallback = void (0);
+                    // Break out
+                    return;
+                }
+            }
+            interview_request.open("POST", "{% url 'blawx:test_interview' blawxtest.ruledoc.id blawxtest %}");
+            interview_request.setRequestHeader("Content-Type", "application/json");
+            console.log("Sending interview request")
+            interview_request.send(JSON.stringify(create_fact_payload(fact_scenario)));
+        }
+
+        function create_fact_payload(fact_scenario) {
+            // Ideally I would just refactor the rest of the code so that this isn't necessary, but screw it.
+
+            // # {
+            // #   person: {
+            // #     members_known: false,
+            // #     attributes_known: {
+            // #       name: false,
+            // #     },
+            // #     members: {
+            // #       jason: {
+            // #         nerd: {
+            // #           values_known: true,
+            // #           values: [ true ],
+            // #         },
+            // #       },
+            // #     }
+            // #   }
+            // # }
+            payload = {}
+            for (var c = 0; c < parsed_ontology['Categories'].length; c++) {
+                current_category = parsed_ontology['Categories'][c];
+                payload[current_category] = {};
+                if (closed_categories.includes(current_category)) {
+                    payload[current_category]['members_known'] = true;
+                } else {
+                    payload[current_category]['members_known'] = false;
+                }
+                // We are not adding an attributes_known because we don't collect that information
+                payload[current_category]['members'] = {};
+                for (var o = 0; o < fact_scenario['Objects'].length; o++) {
+                    current_object = fact_scenario['Objects'][o];
+                    if (current_object['Category'] == current_category) {
+                        payload[current_category]['members'][current_object['Object']] = {};
+                        for (var a = 0; a < parsed_ontology['Attributes'].length; a++) {
+                            current_attribute = parsed_ontology['Attributes'][a];
+                            if (current_attribute['Category'] == current_category) {
+                                payload[current_category]['members'][current_object['Object']][current_attribute['Attribute']] = {}
+                                payload[current_category]['members'][current_object['Object']][current_attribute['Attribute']]['values'] = []
+                                if (closed_attributes[current_object['Object']].includes(current_attribute['Attribute'])) {
+                                    payload[current_category]['members'][current_object['Object']][current_attribute['Attribute']]['values_known'] = true;
+                                } else {
+                                    payload[current_category]['members'][current_object['Object']][current_attribute['Attribute']]['values_known'] = false;
+                                }
+                            }
+                        }
+                        for (var v = 0; v < fact_scenario['Values'].length; v++) {
+                            current_value = fact_scenario['Values'][v];
+                            if (current_value['Object'] == current_object['Object']) {
+                                payload[current_category]['members'][current_object['Object']][current_value['Attribute']]['values'].push(current_value['Value']);
+                            }
+                        }
+                    }
+                }
+            }
+            return payload;
+        }
+
+        function display_facts() {
+            var output_html = '<ul>';
+            for (var category = 0; category < parsed_ontology['Categories'].length; category++) {
+                output_html += "<li>" + parsed_ontology['Categories'][category];
+                for (var object = 0; object < fact_scenario['Objects'].length; object++) {
+                    if (fact_scenario['Objects'][object]['Category'] == parsed_ontology['Categories'][category]) {
+                        output_html += "<ul><li>" + fact_scenario['Objects'][object]['Object'];
+                        for (var value = 0; value < fact_scenario['Values'].length; value++) {
+                            if (fact_scenario['Values'][value]['Object'] == fact_scenario['Objects'][object]['Object']) {
+                                output_html += "<ul><li>" + fact_scenario['Values'][value]['Attribute'] + ": " + fact_scenario['Values'][value]['Value'] + "</li></ul>"
+                            }
+                        }
+                        output_html += "</li></ul>"
+                    }
+                }
                 output_html += "</li>"
             }
             output_html += "</ul>"
-            output_html += "</div>"
-        } else {
-            // Now we are inside a given root explanation.
-            // Each node is a piece of text, optionally followed by an array
-            // of reasons for that piece of text.
-            var has_reasons = Array.isArray(list[1]);
-            var target = prefix; 
-            output_html += '<div class="explanation_node">'
-            if (has_reasons) {
-                output_html += '<i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#' + target + '"></i>'
-            }
-            output_html += addSectionReferences(list[0])
-            output_html += '</div>'
-            // Now we have displayed the text, we optionally display each of the
-            // reasons, processing it using this formula if it, too, has reasons.
-            if (has_reasons) {
-                output_html += '<div class="subparts collapse" id="' + target + '">'
-                output_html += "<ul>"
-                for (var j = 0; j < list[1].length; j++) {
-                    var reason_has_reasons = Array.isArray(list[1][j+1]);
-                    output_html += "<li>"
-                    if (reason_has_reasons) {
-                        output_html += convertModelToTree(list[1].slice(j),answer,explanation,target + '_' + j,false)
-                        j++;
-                    } else {
-                        output_html += list[1][j]
-                    }
-                    output_html += "</li>"
-                }
-                output_html += '</ul></div>'
-            }
+            test_fact_element = document.getElementById('user_fact_contents');
+            test_fact_element.innerHTML = output_html;
         }
-        return output_html;
-    }
 
-    function poseQuestion() {
-        // Run the interview query with the current fact scenario
-        var interview_request = new XMLHttpRequest();
-        interview_request.onload = function() {
-            parsed_interview_response = JSON.parse(this.responseText);
-            console.log("Interview response received")
-            // If the question is answered
-            if(parsed_interview_response['Answers'].length) {
-                // Display the answer
-                addMessage("There is an answer to the question! See the details on the right.",true)
-                var output_content = '<div class="accordion accordion-flush">';
-                var answers = parsed_interview_response.Answers;
-                for (let i = 0; i < answers.length; i++) {
-                    var count = i+1;
-                    var heading_name = "answer_" + count + "_heading";
-                    var collapse_name = "answer_" + count + "_collapse";
-                    output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + heading_name + '">';
-                    output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + collapse_name + '" aria-expanded="false" aria-controls="' + collapse_name + '">';
-                    output_content += 'Answer #' + count;
-                    var variables = answers[i].Variables;
-                    output_content += '</button></h2>';
-                    output_content += '<div id="' + collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + heading_name + '" style="">';
-                    models = answers[i].Models;
-                    output_content += '<div class="accordian accordian-flush">'
-                    output_content += '<ul>'
-                    for (var key in variables) {
-                        output_content += '<li>' + key + ': ' + variables[key] + '</li>';
-                    }
-                    output_content += '</ul>'
-                    
-                    for (let j = 0; j < models.length; j++) {
-                        var model_count = j+1;
-                        var model_heading_name = "answer_" + count + "_model_" + model_count + "_heading";
-                        var model_collapse_name = "answer_" + count + "_model_" + model_count + "_collapse";
-                        output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + model_heading_name + '">';
-                        output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + model_collapse_name + '" aria-expanded="false" aria-controls="' + model_collapse_name + '">';
-                        output_content += 'Explanation #' + model_count;
-                        output_content += '</button></h2>';
-                        output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
-                        output_content += convertModelToTree(models[j],count,model_count);
-                        output_content += '</div></div>';
-                        
-                    }
-                    output_content += '</div></div></div>';
-                }
-                output_content += '</div>';
-                answer_element = document.getElementById('answers')
-                answer_element.innerHTML = output_content;
-                // Set the callback function to null.
-            }
-            // Otherwise (the question is not answered)
-                // Loop through the categories in the ontology
-                    // If the category is not closed
-                        // Go through the objects in the category
-                            // Go through the attributes in the object
-                                // If the attribute is not closed
-                                    // Ask for a value for that attribute
-                                    // Set the callback to add a value to that attribute,
-                                    // check to see if the attribute is closed,
-                                    // and recurse
-                        // You have gotten to the end of the objects
-                        // Ask for the name of another object.
-                        // Set the callback to add an object,
-                        // check to see if the category is closed
-                        // and recurse
-                // If we get here, there is no answer, and no more valid inputs
-                // Display the fact that there is no answer
-                // Set the callback to null
-        }
-        interview_request.open("POST", "{% url 'blawx:test_interview' blawxtest.ruledoc.id blawxtest %}");
-        console.log("Sending interview request")
-        interview_request.send();
-        
-    }
+        addChatListener();
 
-    addChatListener();
-    
-    var parsed_ontology = {};
+        var parsed_ontology = {};
+        var closed_categories = [];
+        var closed_attributes = {};
 
-    console.log("Getting ontology from Blawx Server")
+        console.log("Getting ontology from Blawx Server")
 
-    var fact_scenario = {};
-    fact_scenario['Objects'] = [];
-    fact_scenario['Values'] = [];
-    // Get the ontology
-    const ontology_request = new XMLHttpRequest();
-    ontology_request.onload = function() {
-        parsed_ontology = JSON.parse(this.responseText);
-        console.log("Ontology received");
-        var output_html = '<ul>';
-        for(var category = 0; category < parsed_ontology['Categories'].length; category++) {
-            output_html += "<li>" + parsed_ontology['Categories'][category];
-            for(var object = 0; object < parsed_ontology['Objects'].length; object++) {
-                if (parsed_ontology['Objects'][object]['Category'] == parsed_ontology['Categories'][category]) {
-                    output_html += "<ul><li>" + parsed_ontology['Objects'][object]['Object'];
-                    for(var value = 0; value < parsed_ontology['Values'].length; value++) {
-                        if (parsed_ontology['Values'][value]['Object'] == parsed_ontology['Objects'][object]['Object']) {
-                            output_html += "<ul><li>" + parsed_ontology['Values'][value]['Attribute'] + ": " + parsed_ontology['Values'][value]['Value'] + "</li></ul>"
+        var fact_scenario = {};
+        fact_scenario['Objects'] = [];
+        fact_scenario['Values'] = [];
+        // Get the ontology
+        const ontology_request = new XMLHttpRequest();
+        ontology_request.onload = function () {
+            parsed_ontology = JSON.parse(this.responseText);
+            console.log("Ontology received");
+            var output_html = '<ul>';
+            for (var category = 0; category < parsed_ontology['Categories'].length; category++) {
+                output_html += "<li>" + parsed_ontology['Categories'][category];
+                for (var object = 0; object < parsed_ontology['Objects'].length; object++) {
+                    if (parsed_ontology['Objects'][object]['Category'] == parsed_ontology['Categories'][category]) {
+                        output_html += "<ul><li>" + parsed_ontology['Objects'][object]['Object'];
+                        for (var value = 0; value < parsed_ontology['Values'].length; value++) {
+                            if (parsed_ontology['Values'][value]['Object'] == parsed_ontology['Objects'][object]['Object']) {
+                                output_html += "<ul><li>" + parsed_ontology['Values'][value]['Attribute'] + ": " + parsed_ontology['Values'][value]['Value'] + "</li></ul>"
+                            }
                         }
+                        output_html += "</li></ul>"
                     }
-                    output_html += "</li></ul>"
                 }
+                output_html += "</li>"
             }
-            output_html += "</li>"
+            output_html += "</ul>"
+            test_fact_element = document.getElementById('onto_fact_contents');
+            test_fact_element.innerHTML = output_html;
+
         }
-        output_html += "</ul>"
-        test_fact_element = document.getElementById('onto_fact_contents');
-        test_fact_element.innerHTML = output_html;
-
-    }
-    ontology_request.open("GET", "{% url 'blawx:test_onto' blawxtest.ruledoc.id blawxtest %}");
-    ontology_request.send();
+        ontology_request.open("GET", "{% url 'blawx:test_onto' blawxtest.ruledoc.id blawxtest %}", false); // This is asynchronous because the interview request doesn't work until we have the ontology.
+        ontology_request.send();
 
 
-    addMessage("Welcome to BlawxBot!",true);
-    addMessage("This is a demonstration of how to generate an expert system using Blawx.",true)
-    addMessage("I will ask you some questions, and display an answer on the right when I can find one.",true)
-    addMessage("Let me check what we know so far...",true)
-    // Pose the First Question
-    poseQuestion();
+        addMessage("Welcome to BlawxBot!", true);
+        addMessage("This is a demonstration of how to generate an expert system using Blawx.", true)
+        addMessage("I will ask you some questions, and display an answer on the right when I can find one.", true)
+        addMessage("Let me check what we know so far...", true)
+        // Pose the First Question
+        poseQuestion();
 
-</script>
-{% endblock %}
+    </script>
 
-{% block header_elements %}
-<div class="col-10">
-    <a href="javascript:void(0);" class="btn btn-secondary btn-disabled" onclick="javascript:void(0);">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise"
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
-            <path
-                d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
-        </svg>
-        <span class="text">Restart</span>
-    </a>
-    <a href="/docs/home" target=_blank class="btn btn-secondary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square"
-            viewBox="0 0 16 16">
-            <path
-                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-            <path
-                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
-        </svg>
-        <span class="text">Help</span>
-    </a>
-    <a href="{% url 'blawx:test' blawxtest.ruledoc.id blawxtest %}" class="btn btn-secondary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square"
-            viewBox="0 0 16 16">
-            <path
-                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-            <path
-                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-        </svg>
-        <span class="text">Exit</span>
-    </a>
-</div>
-{% endblock %}
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span>Copyright &copy; Lexpedite Legal Technology Ltd. 2022</span>
+        </div>
+    </footer>
+</body>
+</html>
