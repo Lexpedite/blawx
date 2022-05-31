@@ -9,6 +9,8 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## Future Release
 
+Added ontology and interview endpoints, and demonstrated their use with BlawxBot.
+
 ### Added
 * Each test now has a `/onto/` endpoint from which a list of categories, attributes, and their natural language
   generation expressions can be obtained.
@@ -16,18 +18,11 @@ and breaking changes will not necessarily result in changes to the main version 
   generated, ignoring the "known" entries in the data submitted over JSON, and a list of relevant
   categories and attributes to collect as input. Currently, all categories and attributes are returned
   in all cases.
-
-## DEVELOPMENT CHANGES
-
-Added a simple expert system chat bot for tests.
-
-### Added
-* Demonstration chatbot at `{rule}/test/{testname}/bot/`
+* Demonstration chatbot at `{rule}/test/{test_name}/bot/`
 * "Bot" button in test endpoint.
 
-
 ### Changed
-* The Copyright notice was amended to be correct.
+* The Copyright notice in the footer was corrected.
 
 ## [v1.3.8-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.8-alpha) 2022-05-12
 
