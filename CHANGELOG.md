@@ -21,8 +21,14 @@ Added ontology and interview endpoints, and demonstrated their use with BlawxBot
 * Demonstration chatbot at `{rule}/test/{test_name}/bot/`
 * "Bot" button in test endpoint.
 
+### Fixed
+* The ontology endpoint now works with codebases that have no attributes in them.
+
 ### Changed
 * The Copyright notice in the footer was corrected.
+* The output pane in tests is displayed automatically when the user clicks "Run".
+* The navigation pane in the code interface is displayed automatically when the page opens.
+
 
 ## [v1.3.8-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.8-alpha) 2022-05-12
 
