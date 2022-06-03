@@ -177,6 +177,9 @@ runCode = function(button) {
         }
         
         updateTooltips();
+        // Open the drawer and select Output
+        $('#rightbar').collapse('show');
+        $('#nav-output').tab('show');
     };
     // If there is a json_input type block on the workspace, insert its contents into the post
     // request.
