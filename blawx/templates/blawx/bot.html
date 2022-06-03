@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en" class="vh-100">
 <head>
-    {% csrf_token %}
+    <title>Blawx - Drag and Drop Legal AI</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'blawx/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'blawx/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'blawx/favicon-16x16.png' %}">
@@ -12,7 +12,7 @@
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    <title>Blawx - Drag and Drop Legal AI</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Mina:wght@700&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&amp;display=swap" rel="stylesheet">
     <style type="text/css">
@@ -85,6 +85,8 @@
 
 </head>
 <body class="d-flex flex-column vh-100">
+    {% csrf_token %}
+    
     {# Display django.contrib.messages as Bootstrap alerts #}
     {% bootstrap_messages %}
     <header class="py-3 mb-3 border-bottom overflow-hidden">
@@ -203,7 +205,22 @@
         </div>
     </div>
     <script>
-
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
         function addSectionReferences(text) {
             // Search the string for the list of section references
             var match = text.match(/according to (sec_.*)_section/);
@@ -211,7 +228,7 @@
             if (match) {
                 var eId = match[1];
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "../../rule/" + eId + "/", false);
+                xhttp.open("GET", "../../../rule/" + eId + "/", false);
                 xhttp.setRequestHeader('X-CSRFToken', csrftoken);
                 xhttp.send();
                 output_object = JSON.parse(xhttp.responseText);
