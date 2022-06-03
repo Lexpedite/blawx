@@ -430,10 +430,17 @@ blawxrun(Query, Human) :-
                       category_nlg.append({"Category": c, "Prefix": cnlga['Variables']['Prefix'], "Postfix": cnlga['Variables']['Postfix']})
                   print("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
                   attribute_answers = []
-                  query2_answer = swipl_thread.query("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
-                  query2_answers = generate_answers(query2_answer)
-                  for att in query2_answers:
-                    attribute_answers.append({"Category": att['Variables']['Category'], "Attribute": att['Variables']['Attribute'], "Type": att['Variables']['ValueType']})
+                  query2_answers = []
+                  try:
+                    query2_answer = swipl_thread.query("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
+                    query2_answers = generate_answers(query2_answer)
+                    for att in query2_answers:
+                      attribute_answers.append({"Category": att['Variables']['Category'], "Attribute": att['Variables']['Attribute'], "Type": att['Variables']['ValueType']})
+                    transcript.write(str(query2_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+                  
                   attribute_nlg = []
                   for a in attribute_answers:
                     try:
@@ -446,7 +453,6 @@ blawxrun(Query, Human) :-
                       attribute_nlg.append({"Attribute": a['Attribute'], "Order": anlga['Variables']['Order'], "Prefix": anlga['Variables']['Prefix'], "Infix": anlga['Variables']['Infix'], "Postfix": anlga['Variables']['Postfix']})
 
                   transcript.write(str(query1_answer) + '\n')
-                  transcript.write(str(query2_answer) + '\n')
                   object_query_answers = []
                   for cat in query1_answers:
                     category_name = cat['Variables']['Category']
