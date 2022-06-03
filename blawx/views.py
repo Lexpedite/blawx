@@ -83,6 +83,13 @@ class TestView(generic.DetailView):
     def get_object(self):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']),test_name=self.kwargs['test_name'])
 
+class BlawxBot(generic.DetailView):
+    template_name = "blawx/bot.html"
+    model = BlawxTest
+
+    def get_object(self):
+        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
+
 class TestCreateView(CreateView):
     model = BlawxTest
     fields = ['test_name']

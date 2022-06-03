@@ -7,6 +7,33 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.9-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.9-alpha) 2022-06-03
+
+Added ontology and interview endpoints for tests, and added BlawxBot demonstration expert systems to tests.
+
+Note that there are a lot of improvements to come in BlawxBot, but it will at least run all the existing example tests.
+
+Also made the navigation tree and output pane display automatically, to simplify the interface for new users.
+
+### Added
+* Each test now has a `onto/` endpoint from which a list of categories, attributes, and their natural language
+  generation expressions can be obtained.
+* Each test now has a `interview/` endpoint which will currently return any answers that can be
+  generated, ignoring the "known" entries in the data submitted over JSON, and a list of relevant
+  categories and attributes to collect as input. Currently, all categories and attributes are returned
+  in all cases.
+* Demonstration chatbot at `bot/` for each test
+* "Bot" button in test endpoint.
+
+### Fixed
+* The ontology endpoint now works with codebases that have no attributes in them.
+
+### Changed
+* The Copyright notice in the footer was corrected.
+* The output pane in tests is displayed automatically when the user clicks "Run".
+* The navigation pane in the code interface is displayed automatically when the page opens.
+
+
 ## [v1.3.8-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.8-alpha) 2022-05-12
 
 Updates to the JSON data format expected by the tests/run endpoint.

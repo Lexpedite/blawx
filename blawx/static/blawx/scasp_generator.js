@@ -343,11 +343,13 @@ sCASP['unattributed_constraint'] = function (block) {
 
 sCASP['category_declaration'] = function (block) {
     var text_category_name = block.getFieldValue('category_name');
-    // var code = '';
+    var code = '';
     var nextblock = block.getNextBlock();
+    code += "blawx_category(" + text_category_name + ").\n";
     if (nextblock && nextblock.type == "category_display") {
         var prefix = nextblock.getFieldValue('prefix');
         var postfix = nextblock.getFieldValue('postfix');
+        code += "blawx_category_nlg(" + text_category_name + ",\"" + prefix + "\",\"" + postfix + "\").\n"
         code += "#pred " + text_category_name + "(X) :: '";
         code += (prefix + " @(X) " + postfix).trim() + "'.\n";
         code += "#pred according_to(R," + text_category_name + "(X)) :: '";
@@ -355,7 +357,7 @@ sCASP['category_declaration'] = function (block) {
         code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
         code += "it legally holds that " + (prefix + " @(X) " + postfix).trim() + "'.\n";
     } else {
-        code = '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'.\n";
+        code += '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'.\n";
         code += "#pred according_to(R," + text_category_name + "(X)) :: '";
         code += "according to @(R), @(X) is a " + text_category_name + "'.\n";
         code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
@@ -372,11 +374,17 @@ sCASP['category_equivalence'] = function (block) {
 };
 
 sCASP['category_attribute'] = function (block) {
-    // var value_category = sCASP.valueToCode(block, 'category', sCASP.ORDER_ATOMIC);
+    var value_category = sCASP.valueToCode(block, 'category', sCASP.ORDER_ATOMIC);
     // var statements_attributes = sCASP.statementToCode(block, 'attributes');
     var currentBlock = this.getInputTargetBlock('attributes');
     var code = '';
     while (currentBlock) {
+        if (currentBlock.type == "attribute_declaration") {
+            var text_attribute_name = currentBlock.getFieldValue('attribute_name');
+            // var block_attribute_type = currentBlock.getInputTargetBlock('attribute_type');
+            var text_attribute_type = sCASP.valueToCode(currentBlock,'attribute_type', sCASP.ORDER_ATOMIC);
+            code += 'blawx_attribute(' + value_category + ',' + text_attribute_name + ',' + text_attribute_type + ').\n';
+        }
         var codeForBlock = getCodeForSingleBlock(currentBlock);
         code += codeForBlock
         if (codeForBlock != "") {
@@ -384,8 +392,6 @@ sCASP['category_attribute'] = function (block) {
         }
         currentBlock = currentBlock.getNextBlock();
     }
-    // TODO: Assemble JavaScript into code variable.
-
     return code;
 };
 
@@ -399,6 +405,7 @@ sCASP['attribute_declaration'] = function (block) {
         var prefix = nextblock.getFieldValue('prefix');
         var infix = nextblock.getFieldValue('infix');
         var postfix = nextblock.getFieldValue('postfix');
+        code += "blawx_attribute_nlg(" + text_attribute_name + "," + order + ",\"" + prefix + "\",\"" + infix + "\",\"" + postfix + "\").\n"
         code += "#pred " + text_attribute_name + "(";
         if (order == "ov") {
             code += "X,Y";
@@ -460,27 +467,27 @@ sCASP['category_display'] = function (block) {
     // var text_prefix = block.getFieldValue('prefix');
     // var text_infix = block.getFieldValue('infix');
     // var text_postfix = block.getFieldValue('postfix');
-    // var code = '';
+    var code = '';
     return code;
 };
 
 sCASP['true_false_type_selector'] = function (block) {
-    var code = '';
+    var code = 'boolean';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
 sCASP['number_type_selector'] = function (block) {
-    var code = '';
+    var code = 'number';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
 sCASP['date_type_selector'] = function (block) {
-    var code = '';
+    var code = 'date';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
 sCASP['duration_type_selector'] = function (block) {
-    var code = '';
+    var code = 'duration';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
