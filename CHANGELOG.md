@@ -7,6 +7,11 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## DEV CHANGES
+
+### Changed
+* Inequality and numerical constraints on bound variables are now displayed in the answers.
+
 ## [v1.3.9-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.9-alpha) 2022-06-03
 
 Added ontology and interview endpoints for tests, and added BlawxBot demonstration expert systems to tests.

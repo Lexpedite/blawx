@@ -149,9 +149,33 @@ runCode = function(button) {
                 models = answers[i].Models;
                 output_content += '<div class="accordian accordian-flush">'
                 output_content += '<ul>'
+                var attributes_output = "";
                 for (var key in variables) {
-                    output_content += '<li>' + key + ': ' + variables[key] + '</li>';
+                    if (key == "Attributes") {
+                        for (var attribute in variables['Attributes']) {
+                            if (variables['Attributes'][attribute]['functor'] == "put_attr" && variables['Attributes'][attribute]['args'][1] == 'scasp_output' && variables['Attributes'][attribute]['args'][2]['functor'] == 'name') {
+                                // This is designed to prevent re-printing information about the Attributes that is already displayed.
+                                // If the only thing present int he attributes is the name, just skip it.
+                                continue;
+                            } else if (variables['Attributes'][attribute]['functor'] == "∉") {
+                                // This is an inequality constraint
+                                attributes_output += "<li>where " + variables['Attributes'][attribute]['args'][0] + " is not ";
+                                if (variables['Attributes'][attribute]['args'][1].length > 1) {
+                                    attributes_output += "one of ";
+                                }
+                                attributes_output += variables['Attributes'][attribute]['args'][1].toString() + "</li>"
+                            } else if (variables['Attributes'][attribute]['functor'] == "{}") {
+                                attributes_output += "<li>where" + variables['Attributes'][attribute]['args'][0]['args'][0] + " " + variables['Attributes'][attribute]['args'][0]['functor'] + " " + variables['Attributes'][attribute]['args'][0]['args'][1] + "</li>";
+                            } else {
+                                // It should throw a console warning if there was something else in there.
+                                console.warn("Unrecognized attribute in output: " + attribute['functor'] + ".");
+                            }
+                        }
+                    } else {
+                        output_content += '<li>' + key + ': ' + variables[key] + '</li>';
+                    }
                 }
+                output_content += attributes_output;
                 output_content += '</ul>'
                 
                 for (let j = 0; j < models.length; j++) {
