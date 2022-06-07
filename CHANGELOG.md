@@ -7,6 +7,16 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## Dev Version
+
+### Changed
+* The interview end point now generates relevant category and attribute data on the basis of
+  an abductive query based on the user's input.
+
+### TO DO
+* Update BlawxBot to use the relevance information in deciding what to ask
+* Update the code examples so that the code uses categories, so they will be relevant in tests.
+
 ## [v1.3.10-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.10-alpha) 2022-06-07
 
 Fixing display of attributed variables in answers.
