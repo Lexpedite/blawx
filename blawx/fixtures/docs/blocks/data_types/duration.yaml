@@ -1,0 +1,23 @@
+- model: blawx.docpage
+  pk: blocks/duration
+  fields:
+    title: Duration Datatype Block
+    content: |
+      # Duration Datatype Block
+
+      ![Duration Datatype Block](/static/blawx/docs/images/blocks/duration.png)
+
+      ## Where Is It?
+
+      The duration datatype block is located in the Data Types drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The duration datatype block is used to indicate that an attribute has values that are durations.
+
+      ## Technical Details
+
+      The duration datatype block is a data type, and can only be used in blocks that are expecting
+      a data type, which is usually only a new attribute block.
+
+      ## Tips
