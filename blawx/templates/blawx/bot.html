@@ -393,7 +393,22 @@
 
                                             // If the attribute is not closed
                                             if (!closed_attributes[current_object['Object']].includes(current_attribute['Attribute'])) {
-                                                if (!close_attribute_sought[current_object['Object']].includes(current_attribute['Attribute'])) {
+                                                //This is where we need check for the relevance of an attribute value.
+                                                //It is relevant if attribute(X,Y) is relevant, if attribute(object,X) is relevant, or if attribute(X,value) is relevant.
+                                                //If none of those are relevant, this value can't matter.
+                                                var attribute_value_relevant = false;
+                                                var relatts = parsed_interview_response['Relevant Attributes']
+                                                for (var ra = 0; ra < parsed_interview_response['Relevant Attributes'].length; ra++) {
+                                                    if (relatts[ra]['Attribute'] == current_attribute['Attribute']) {
+                                                        if (relatts[ra]['Arguments'][0] == 'X') { // This accounts for both ungrounded and partially grounded.
+                                                            attribute_value_relevant = true;
+                                                        }
+                                                        if (relatts[ra]['Arguments'][0] == current_object['Object']) { // this accounts for both partially grounded and fully ground.
+                                                            attribute_value_relevant = true;
+                                                        }
+                                                    }
+                                                }
+                                                if (!close_attribute_sought[current_object['Object']].includes(current_attribute['Attribute']) && attribute_value_relevant) {
                                                     addMessage("Do you want to add a value to the object " + current_object['Object'] + " for the attribute " + current_attribute['Attribute'] + "?", true);
                                                     nextMessageCallback = function (text) {
                                                         if (text != "yes") {
@@ -403,27 +418,29 @@
                                                         poseQuestion();
                                                     }
                                                     return;
+                                                } else if (attribute_value_relevant) {
+
+                                                    // Ask for a value for that attribute
+                                                    addMessage("What value should we add to the object " + current_object['Object'] + " for the attribute " + current_attribute['Attribute'] + "?", true);
+                                                    // Set the callback to
+                                                    nextMessageCallback = function (text) {
+                                                        //add a value to that attribute,
+                                                        close_attribute_sought[current_object['Object']].pop(current_attribute['Attribute']);
+                                                        fact_scenario['Values'].push({ "Object": current_object['Object'], "Attribute": current_attribute['Attribute'], "Value": text });
+                                                        display_facts();
+                                                        poseQuestion();
+                                                        // check to see if the attribute is closed, and recurse
+                                                        // ask_close_attribute(current_object['Object'], current_attribute['Attribute']);
+                                                    }
+                                                    // Break Out
+                                                    return;
                                                 }
-                                                // Ask for a value for that attribute
-                                                addMessage("What value should we add to the object " + current_object['Object'] + " for the attribute " + current_attribute['Attribute'] + "?", true);
-                                                // Set the callback to
-                                                nextMessageCallback = function (text) {
-                                                    //add a value to that attribute,
-                                                    close_attribute_sought[current_object['Object']].pop(current_attribute['Attribute']);
-                                                    fact_scenario['Values'].push({ "Object": current_object['Object'], "Attribute": current_attribute['Attribute'], "Value": text });
-                                                    display_facts();
-                                                    poseQuestion();
-                                                    // check to see if the attribute is closed, and recurse
-                                                    // ask_close_attribute(current_object['Object'], current_attribute['Attribute']);
-                                                }
-                                                // Break Out
-                                                return;
                                             }
                                         }
                                     }
                                 }
                             }
-                            if (!close_category_sought[current_category]) { // Only check if we want new ones if it's not closed already.
+                            if (!close_category_sought[current_category] && parsed_interview_response['Relevant Categories'].includes(current_category)) { // Only check if we want new ones if it's not closed already, and it's relevant.
                                 addMessage("Do you want to add an object to the category " + current_category + "?", true)
                                 nextMessageCallback = function (text) {
                                     if (text != "yes") {
@@ -433,23 +450,25 @@
                                     poseQuestion();
                                 }
                                 return;
+                            } else if (parsed_interview_response['Relevant Categories'].includes(current_category)) {
+                                // You have gotten to the end of the objects
+                                // Ask for the name of another object.
+                                addMessage("What object should we add to the category " + current_category + "?", true)
+                                // Set the callback to
+                                nextMessageCallback = function (text) {
+                                    // add an object,
+                                    close_category_sought[current_category] = false;
+                                    fact_scenario['Objects'].push({ "Category": current_category, "Object": text });
+                                    closed_attributes[text] = [];
+                                    close_attribute_sought[text] = [];
+                                    display_facts();
+                                    poseQuestion();
+                                }
+                                // Break out
+                                return;
                             }
 
-                            // You have gotten to the end of the objects
-                            // Ask for the name of another object.
-                            addMessage("What object should we add to the category " + current_category + "?", true)
-                            // Set the callback to
-                            nextMessageCallback = function (text) {
-                                // add an object,
-                                close_category_sought[current_category] = false;
-                                fact_scenario['Objects'].push({ "Category": current_category, "Object": text });
-                                closed_attributes[text] = [];
-                                close_attribute_sought[text] = [];
-                                display_facts();
-                                poseQuestion();
-                            }
-                            // Break out
-                            return;
+                            
                         } // End Category is Open, go to next for loop?
                         // if (!closed_categories.includes(current_category)) {
                         //     close_category_sought = false; // Only reset if we are not skipping a previously-closed category
@@ -497,8 +516,17 @@
                     payload[current_category]['members_known'] = true;
                 } else {
                     payload[current_category]['members_known'] = false;
+                    // We are not adding an attributes_known because we don't collect that information
+                    // Nope that doesn't work. We need to set them unknown to make them abducible, and potentially relevant
+                    // if they end up not being relevant anyway, they won't get asked, so it's not a big deal.
+                    payload[current_category]['attributes_known'] = {};
+                    for (var a = 0; a < parsed_ontology['Attributes'].length; a++) {
+                        if (current_category == parsed_ontology['Attributes'][a]['Category']) {
+                            payload[current_category]['attributes_known'][parsed_ontology['Attributes'][a]['Attribute']] = false; // Just set everything to not known, for now.
+                        }
+                    }
                 }
-                // We are not adding an attributes_known because we don't collect that information
+                
                 payload[current_category]['members'] = {};
                 for (var o = 0; o < fact_scenario['Objects'].length; o++) {
                     current_object = fact_scenario['Objects'][o];
