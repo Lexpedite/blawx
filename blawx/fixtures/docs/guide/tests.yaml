@@ -1,0 +1,13 @@
+- model: blawx.docpage
+  pk: guide/tests
+  fields:
+    title: Incomplete
+    content: |
+      # Incomplete
+
+      The Blawx documentation is a work in progress, and
+      we are currently working on getting it up to speed with version 1.0.0-alpha of
+      the reasoner and interface.
+
+      The page you are seeking has not been completed
+      yet. Thanks for your patience.
