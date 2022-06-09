@@ -7,6 +7,26 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.11-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.11-alpha) 2022-06-08
+
+Milestone: Automated Interviews
+
+This release marks the end of the automated interview milestone. Expect near-future changes
+to focus on updating documentation, adding demonstrations, and occasional bug fixes.
+
+### Changed
+* The interview end point now generates relevant category and attribute data on the basis of
+  an abductive query based on the user's input so far.
+* BlawxBot now uses the relevance information from the interview end point to determine whether
+  or not it needs to ask each question.
+* The Rock Paper Scissors demonstrate code has been modified to ensure that games and players
+  are relevant categories in BlawxBot. This may be undone once
+  BlawxBot is dealing better with category relevance and question order.
+
+### Added
+* A Wills Act demonstration, with a test that can be run in BlawxBot to demonstrate that it
+  is deciding whether to ask questions on the basis of whether they are logically relevant.
+
 ## [v1.3.10-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.10-alpha) 2022-06-07
 
 Fixing display of attributed variables in answers.
