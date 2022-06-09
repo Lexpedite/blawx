@@ -100,6 +100,13 @@
     rule_text: "Net Thirty Act\r\n\r\n1. The payment due date of an invoice is 30
       days after the date the invoice is issued."
     scasp_encoding: ''
+- model: blawx.ruledoc
+  pk: 9
+  fields:
+    ruledoc_name: Wills Act
+    rule_text: "Wills Act\r\n\r\n1. A person over the age of 18 may make a will.\r\n2.
+      An active military member may make a will."
+    scasp_encoding: ''
 - model: blawx.workspace
   pk: 9
   fields:
@@ -4226,6 +4233,181 @@
     workspace_name: sec_34__subsec_8__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"></xml>
     scasp_encoding: ''
+- model: blawx.workspace
+  pk: 92
+  fields:
+    ruledoc: 9
+    workspace_name: root_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 93
+  fields:
+    ruledoc: 9
+    workspace_name: sec_1_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="aECNt(H}#:DQpaQ]yKzK" x="38" y="32"><statement name="statements"><block
+      type="category_declaration" id="5-p;{P{|$nS.@L5%`=O7"><field name="category_name">person</field><next><block
+      type="category_attribute" id="?4cS4kZ=yYEs-1bn`O=o"><value name="category"><block
+      type="category_selector" id="J$*#(M*C7:U^|DIiBYMq"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="JM{@GcMvyBHn^fF[!Mwz"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="eligible" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">eligible</field><value name="attribute_type"><block type="true_false_type_selector"
+      id="dAb:=i,7%|922s!7%Yb]"></block></value><next><block type="attribute_display"
+      id="QVa:LWjhX_@dH09d|o@,"><field name="order">vo</field><field name="prefix">it
+      is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">may make a will</field><next><block
+      type="attribute_declaration" id="FZ{In/lkq?l$H1U[z`C6"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="age" attribute_type="CATEGORY"></mutation><field name="attribute_name">age</field><value
+      name="attribute_type"><block type="number_type_selector" id="x!^(ji)mRjkyW1m(iJuh"></block></value><next><block
+      type="attribute_display" id="SY?GmnA2%KXd~;HDw[W+"><field name="order">ov</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="infix">is</field><field
+      name="second_element">value</field><field name="postfix">years of age</field></block></next></block></next></block></next></block></statement></block></next></block></statement></block><block
+      type="unattributed_rule" id="L[LYC]li52NUh_}lUA2M" x="38" y="374"><statement
+      name="conditions"><block type="object_category" id="9b_ITTUH8{qWXVZJ%;Q!"><value
+      name="object"><block type="variable" id="jho?N`]_2;HUXOYqek;V"><field name="variable_name">Person</field></block></value><value
+      name="category"><block type="category_selector" id="FE2@O92Z|~{ASr:0~+{0"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="attribute_selector"
+      id="epHy#fCq9w*au[SN=*Q*"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="age"
+      attributetype="# Number" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">is</field><field name="postfix">years of age</field><value name="first_element"><block
+      type="variable" id="G@Ys,a73=(/?rx]wlnFY"><field name="variable_name">Person</field></block></value><value
+      name="second_element"><block type="variable" id="uCecYzGU_f8WZ/;^Z%_d"><field
+      name="variable_name">Age</field></block></value><next><block type="numerical_constraint"
+      id="6vV--u~Y[3y3%;tjG_|+"><field name="operator">gte</field><value name="first_comparator"><block
+      type="variable" id="j,e5WF5E$Le^xbU01)NB"><field name="variable_name">Age</field></block></value><value
+      name="second_comparator"><block type="number_value" id="$muy%R..)5M)/W!B}d/0"><field
+      name="value">18</field></block></value></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="?jc|`wwV`[Q9S4$]G0]I"><value
+      name="rule"><block type="doc_selector" id="@q.Yh)n);-35~wJ+[Ug1"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1_section"></mutation><field name="doc_part_name">WA
+      1</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="e|Bl%[1.{)eKXf@RDI$z"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="eligible"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">may
+      make a will</field><value name="first_element"><block type="true_value" id="I2OatJq9xb#Z,.^z7caq"></block></value><value
+      name="second_element"><block type="variable" id="g]^4lzu|)Qp6`!FKFg{h"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(person).
+
+      #pred person(X) :: ''@(X) is a person''.
+
+      #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
+
+      #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
+
+      blawx_attribute(person,eligible,boolean).
+
+      blawx_attribute_nlg(eligible,vo,"it is","that","may make a will").
+
+      #pred eligible(Y,X) :: ''it is @(X) that @(Y) may make a will''.
+
+      #pred according_to(R,eligible(Y,X)) :: ''according to @(R), it is @(X) that
+      @(Y) may make a will''.
+
+      #pred legally_holds(_,eligible(Y,X)) :: ''it legally holds that it is @(X) that
+      @(Y) may make a will''.
+
+      opposes(eligible(X,true),eligible(X,false)).
+
+      opposes(eligible(X,false),eligible(X,true)).
+
+
+      blawx_attribute(person,age,number).
+
+      blawx_attribute_nlg(age,ov,"","is","years of age").
+
+      #pred age(X,Y) :: ''@(X) is @(Y) years of age''.
+
+      #pred according_to(R,age(X,Y)) :: ''according to @(R), @(X) is @(Y) years of
+      age''.
+
+      #pred legally_holds(_,age(X,Y)) :: ''it legally holds that @(X) is @(Y) years
+      of age''.
+
+
+
+      according_to(sec_1_section,  eligible(Person,true)) :-
+
+      person(Person),
+
+      age(Person,Age),
+
+      Age #>= 18.'
+- model: blawx.workspace
+  pk: 94
+  fields:
+    ruledoc: 9
+    workspace_name: sec_2_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="aECNt(H}#:DQpaQ]yKzK" x="66" y="88"><statement name="statements"><block
+      type="category_declaration" id="5-p;{P{|$nS.@L5%`=O7"><field name="category_name">person</field><next><block
+      type="category_attribute" id="?4cS4kZ=yYEs-1bn`O=o"><value name="category"><block
+      type="category_selector" id="J$*#(M*C7:U^|DIiBYMq"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="JM{@GcMvyBHn^fF[!Mwz"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="military" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">military</field><value name="attribute_type"><block type="true_false_type_selector"
+      id="dAb:=i,7%|922s!7%Yb]"></block></value><next><block type="attribute_display"
+      id="QVa:LWjhX_@dH09d|o@,"><field name="order">vo</field><field name="prefix">it
+      is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">is an active military
+      member</field></block></next></block></statement></block></next></block></statement></block><block
+      type="unattributed_rule" id="L[LYC]li52NUh_}lUA2M" x="66" y="430"><statement
+      name="conditions"><block type="object_category" id="9b_ITTUH8{qWXVZJ%;Q!"><value
+      name="object"><block type="variable" id="jho?N`]_2;HUXOYqek;V"><field name="variable_name">Person</field></block></value><value
+      name="category"><block type="category_selector" id="FE2@O92Z|~{ASr:0~+{0"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="attribute_selector"
+      id="alZLa^zu23xm!t$!m^`;"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="military"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      an active military member</field><value name="first_element"><block type="true_value"
+      id="8an%^UB`_/M-Jz(GWBSA"></block></value><value name="second_element"><block
+      type="variable" id="/]|Y#qL#2UjUpVWD4;ol"><field name="variable_name">Person</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="?jc|`wwV`[Q9S4$]G0]I"><value
+      name="rule"><block type="doc_selector" id="w+E*LE/iH]AV`7d{l(O*"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_2_section"></mutation><field name="doc_part_name">WA
+      2</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="e|Bl%[1.{)eKXf@RDI$z"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="eligible"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">may
+      make a will</field><value name="first_element"><block type="true_value" id="I2OatJq9xb#Z,.^z7caq"></block></value><value
+      name="second_element"><block type="variable" id="g]^4lzu|)Qp6`!FKFg{h"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(person).
+
+      #pred person(X) :: ''@(X) is a person''.
+
+      #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
+
+      #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
+
+      blawx_attribute(person,military,boolean).
+
+      blawx_attribute_nlg(military,vo,"it is","that","is an active military member").
+
+      #pred military(Y,X) :: ''it is @(X) that @(Y) is an active military member''.
+
+      #pred according_to(R,military(Y,X)) :: ''according to @(R), it is @(X) that
+      @(Y) is an active military member''.
+
+      #pred legally_holds(_,military(Y,X)) :: ''it legally holds that it is @(X) that
+      @(Y) is an active military member''.
+
+      opposes(military(X,true),military(X,false)).
+
+      opposes(military(X,false),military(X,true)).
+
+
+
+      according_to(sec_2_section,  eligible(Person,true)) :-
+
+      person(Person),
+
+      military(Person,true).'
 - model: blawx.blawxtest
   pk: 2
   fields:
@@ -4558,6 +4740,35 @@
 
 
       ?- legally_holds(_,  payment_due_date(test,date(Year,Month,Day))).'
+- model: blawx.blawxtest
+  pk: 12
+  fields:
+    ruledoc: 9
+    test_name: valid_will
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
+      id="[H%F(8shmmOZ^!_dk%fF" x="49" y="271"><statement name="query"><block type="holds"
+      id="u-3URjiN[]xrf.EsitK6"><statement name="statement"><block type="attribute_selector"
+      id="axl#:K5*d*y)og.1o#E5"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="eligible"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">may
+      make a will</field><value name="first_element"><block type="true_value" id="mN%m|?ebVk5-#5T*5,G["></block></value><value
+      name="second_element"><block type="variable" id="dhkXp21P}xgt!ogYtSTC"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: ?- legally_holds(_,  eligible(Person,true)).
+- model: blawx.blawxtest
+  pk: 13
+  fields:
+    ruledoc: 2
+    test_name: who_wins
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
+      id="#`0/,K1M^tuc:WC7T/5_" x="59" y="258"><statement name="query"><block type="attribute_selector"
+      id="5-kKG$Gar?/5:Y[4$*73"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="c[Uc@Y93q1)O5FYop%5T"><field
+      name="variable_name">Game</field></block></value><value name="second_element"><block
+      type="variable" id="XZhm|F*MHLuzg!~;91x2"><field name="variable_name">Player</field></block></value></block></statement></block></xml>
+    scasp_encoding: ?- winner(Game,Player).
 - model: blawx.workspacetemplate
   pk: 1
   fields:
