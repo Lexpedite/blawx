@@ -20,8 +20,7 @@
       ## Technical Details
 
       The Overrules block is a statement block, and can be stacked with other statement blocks.
-      It accepts to interal connectors, both of which are expecting a variable (only the "any")
-      variable would apply, or a statement selector. The order of the statement selectors is
+      It accepts two internal inputs, both of which are expecting a statement selector. The order of the statement selectors is
       significant. The first section named is superior, the second section named is inferior.
 
       ## Tips

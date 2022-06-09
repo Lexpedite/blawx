@@ -958,7 +958,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="4qOTw%p{HtHJ!0n:C,XL" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/doc_selector/</field>
+        <field name="TEXT">/docs/blocks/section_selector/</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -2248,7 +2248,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="Y{Be/eTl:}WU(K{C!`0$" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/date_type_selector/</field>
+        <field name="TEXT">/docs/blocks/date</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -2294,7 +2294,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="Y{Be/eTl:}WU(K{C!`0$" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/duration_type_selector/</field>
+        <field name="TEXT">/docs/blocks/duration</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -3046,7 +3046,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="[2*cEvCM=z]4Da@$NB}I" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/date_calculate/</field>
+        <field name="TEXT">/docs/blocks/date_constructor</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -3187,7 +3187,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="[2*cEvCM=z]4Da@$NB}I" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/duration_calculate/</field>
+        <field name="TEXT">/docs/blocks/duration_constructor</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -3400,7 +3400,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="[2*cEvCM=z]4Da@$NB}I" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/date_difference_days/</field>
+        <field name="TEXT">/docs/blocks/days_between</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -3551,7 +3551,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="[2*cEvCM=z]4Da@$NB}I" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/date_difference/</field>
+        <field name="TEXT">/docs/blocks/duration_between/</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -3702,7 +3702,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="[2*cEvCM=z]4Da@$NB}I" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/date_difference/</field>
+        <field name="TEXT">/docs/blocks/date_add/</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -4529,7 +4529,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="2/^22L6KXyvx`Cc/xvlY" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/opposes</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -4611,7 +4611,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="fxT;0_hFmq?6)G~!y)2." deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/according_to</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -4717,7 +4717,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="fxT;0_hFmq?6)G~!y)2." deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/holds</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -4746,6 +4746,46 @@
       <block type="colour_hue" id="NdDV2r7m?A[OE@|/^*%h">
         <mutation colour="#5ba593"></mutation>
         <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Y~z3X)fz7|k5GX1nrR/e" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">lexsis_root</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="gT*5didswJ`5j;(HX52E">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]e0Yl]N/^FS^x|3{pv1^">
+            <field name="TEXT">Interview Structure:</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="JBJGk9x}}-~,Uh?q^h%/">
+            <field name="INPUTNAME">nodes</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="qS21v600(d1piSin$OBZ"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="v,Z(=q#Yj_h.oUEB#vHd" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="NI`orR?u(CrZK{{V?82_" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="=N*fM9[~B#`rhLowv]jG">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
       </block>
     </value>
   </block></xml>
