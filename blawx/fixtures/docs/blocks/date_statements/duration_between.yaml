@@ -1,0 +1,21 @@
+- model: blawx.docpage
+  pk: blocks/duration_between
+  fields:
+    title: Duration Between Block
+    content: |
+      # Duration Between Block
+
+      ![Duration Between Block](/static/blawx/docs/images/blocks/duration_between.png)
+
+      ## Where Is It?
+
+      The Duration Between block is located in the data statements drawer of the Blawx toolbox,
+      in the date sub-drawer.
+
+      ## What Does It Do?
+
+      The Duration Between block is used to calculate the duration between two date values.
+
+      ## Technical Details
+
+      ## Tips

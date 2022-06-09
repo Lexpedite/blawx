@@ -1,0 +1,21 @@
+- model: blawx.docpage
+  pk: blocks/holds
+  fields:
+    title: Holds Block
+    content: |
+      # Holds Block
+
+      ![Holds Block](/static/blawx/docs/images/blocks/holds.png)
+
+      ## Where Is It?
+
+      The Holds block is located in the exceptions drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Holds block is used to query whether a conclusion was reached according to
+      any section of the rules, and that conclusion was not overruled.
+
+      ## Technical Details
+
+      ## Tips

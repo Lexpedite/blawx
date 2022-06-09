@@ -1,0 +1,24 @@
+- model: blawx.docpage
+  pk: blocks/according_to
+  fields:
+    title: According To Block
+    content: |
+      # According To Block
+
+      ![According To Block](/static/blawx/docs/images/blocks/according_to.png)
+
+      ## Where Is It?
+
+      The According To block is located in the exceptions drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The According To block is used to state that (or query whether) a given conclusion
+      was reached by a given section of the rules. This is used in order to allow the
+      user to specify how to deal with defaults and exceptions, and do allow the user
+      to see how individual sections of a law would have treated a fact scenario if not
+      for other sections that overrruled them.
+
+      ## Technical Details
+
+      ## Tips

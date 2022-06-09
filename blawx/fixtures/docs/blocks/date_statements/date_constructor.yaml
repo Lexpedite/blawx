@@ -1,0 +1,21 @@
+- model: blawx.docpage
+  pk: blocks/date_constructor
+  fields:
+    title: Date Constructor Block
+    content: |
+      # Date Constructor Block
+
+      ![Date Constructor Block](/static/blawx/docs/images/blocks/date_constructor.png)
+
+      ## Where Is It?
+
+      The Date Constructor block is located in the data statements drawer of the Blawx toolbox,
+      in the date sub-drawer.
+
+      ## What Does It Do?
+
+      The Date Constructor block is used to generate a date value dynamically.
+
+      ## Technical Details
+
+      ## Tips

@@ -1,0 +1,22 @@
+- model: blawx.docpage
+  pk: blocks/days_between
+  fields:
+    title: Days Between Block
+    content: |
+      # Days Between Block
+
+      ![Days Between Block](/static/blawx/docs/images/blocks/days_between.png)
+
+      ## Where Is It?
+
+      The Days Between block is located in the data statements drawer of the Blawx toolbox,
+      in the date sub-drawer.
+
+      ## What Does It Do?
+
+      The Days Between block is used to generate a number value that represents the number
+      of days that passed between two dates.
+
+      ## Technical Details
+
+      ## Tips

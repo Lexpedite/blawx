@@ -1,0 +1,20 @@
+- model: blawx.docpage
+  pk: blocks/date_value
+  fields:
+    title: Date Value Block
+    content: |
+      # Date Value Block
+
+      ![Date Value Block](/static/blawx/docs/images/blocks/date_value.png)
+
+      ## Where Is It?
+
+      The Date Value block is located in the data values drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Date Value block is used to provide a specific date value.
+
+      ## Technical Details
+
+      ## Tips

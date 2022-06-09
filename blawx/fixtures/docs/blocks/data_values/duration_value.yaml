@@ -1,0 +1,20 @@
+- model: blawx.docpage
+  pk: blocks/duration_value
+  fields:
+    title: Duration Value Block
+    content: |
+      # Duration Value Block
+
+      ![Duration Value Block](/static/blawx/docs/images/blocks/duration_value.png)
+
+      ## Where Is It?
+
+      The Duration Value block is located in the data value drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Duration Value block is used to provide a specific duration value.
+
+      ## Technical Details
+
+      ## Tips

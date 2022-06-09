@@ -1,0 +1,21 @@
+- model: blawx.docpage
+  pk: blocks/duration_constructor
+  fields:
+    title: Duration Constructor Block
+    content: |
+      # Duration Constructor Block
+
+      ![Duration Constructor Block](/static/blawx/docs/images/blocks/duration_constructor.png)
+
+      ## Where Is It?
+
+      The Duration Constructor block is located in the data statements drawer of the Blawx toolbox,
+      in the date sub-drawer.
+
+      ## What Does It Do?
+
+      The Duration Constructor block is used to dynamically generate a duration value.
+
+      ## Technical Details
+
+      ## Tips

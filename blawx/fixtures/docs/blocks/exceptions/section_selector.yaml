@@ -1,0 +1,22 @@
+- model: blawx.docpage
+  pk: blocks/section_selector
+  fields:
+    title: Section Selector Block
+    content: |
+      # Section Selector Block
+
+      ![Section Selector Block](/static/blawx/docs/images/blocks/section_selector.png)
+
+      ## Where Is It?
+
+      The Section Selector block is located in the known sections drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Section Selector block is used to refer to a specific section of your rules. It is
+      used in According To blocks, to indicate which section reaches the conclusion, and
+      in Overrules blocks, to indicate which section overrules which other section.
+
+      ## Technical Details
+
+      ## Tips

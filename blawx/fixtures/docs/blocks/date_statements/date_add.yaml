@@ -1,0 +1,22 @@
+- model: blawx.docpage
+  pk: blocks/date_add
+  fields:
+    title: Date Add Block
+    content: |
+      # Date Add Block
+
+      ![Date Add Block](/static/blawx/docs/images/blocks/date_add.png)
+
+      ## Where Is It?
+
+      The Date Add block is located in the data statments drawer of the Blawx toolbox,
+      in the Date sub-drawer.
+
+      ## What Does It Do?
+
+      The Date Add block is used to calculate a new date value by adding a duration to
+      an existing date value.
+
+      ## Technical Details
+
+      ## Tips
