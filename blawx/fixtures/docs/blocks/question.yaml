@@ -26,7 +26,7 @@
 
       ## Technical Details
 
-      The question block accepts a single stack of statements, which is valid if
+      The question block is an outer block, and accepts a single stack of statements, which is valid if
       it is a stack of at least one statement.  The stack is treated as if all
       of its parts were joined together with "and".  All of the statements must
       be true at the same time for an answer to be included. Variables in the

@@ -18,4 +18,12 @@
 
       ## Technical Details
 
+      The Holds block is a statement block which can be stacked with other statements. It accepts
+      an internal statement stack, which should be a single statement block, and is the conclusion
+      that is being sought.
+
       ## Tips
+
+      Even if you are not using exceptions, the combination of "According To" and Holds blocks
+      can be used to insert information about the source of your rules into your natural
+      language explanations.

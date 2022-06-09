@@ -19,4 +19,13 @@
 
       ## Technical Details
 
+      The Overrules block is a statement block, and can be stacked with other statement blocks.
+      It accepts to interal connectors, both of which are expecting a variable (only the "any")
+      variable would apply, or a statement selector. The order of the statement selectors is
+      significant. The first section named is superior, the second section named is inferior.
+
       ## Tips
+
+      For complicated exception relationships, it can be helpful to make an overrules statement
+      conditional on certain other things being true. This can be accomplished by using the
+      overrules statement as the conclusion of a rule.

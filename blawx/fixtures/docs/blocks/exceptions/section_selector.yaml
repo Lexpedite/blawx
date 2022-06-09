@@ -19,4 +19,12 @@
 
       ## Technical Details
 
+      The Section Selector block is a value block that provides a reference to a section in
+      the current rule.  It is used in According To blocks, and Overrules Blocks.
+
       ## Tips
+
+      Section selector blocks will be given a name that is the abbreviation of the title in
+      your rule text, followed by an abbreviation of the section's specific location in the
+      rule. If you are using spans, it can be helpful to use short span names so as to
+      avoid the location references from getting too long to be displayed in the block.

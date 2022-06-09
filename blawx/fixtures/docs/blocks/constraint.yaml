@@ -18,7 +18,7 @@
 
       ## Technical Details
 
-      The constraint block accepts a single stack of statements, which is valid if it
+      The constraint block is an outer block. It accepts a single stack of statements, which is valid if it
       includes at least one statement.
 
       A constraint is used to express a set of facts that cannot all be true at the same

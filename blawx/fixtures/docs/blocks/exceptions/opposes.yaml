@@ -18,6 +18,11 @@
 
       ## Technical Details
 
+      The opposes block is a statement, which can be stacked with other statements. It
+      accepts two internal statement stacks, each of which should be filled with a single statement block,
+      where the two internal statements should be treated as contradictory by the reasoner.
+      The order of the two internal statements is unimportant.
+
       ## Tips
 
       If you have a true/false attribute, it is not necessary to use the opposes block
