@@ -1,5 +1,5 @@
 - model: blawx.docpage
-  pk: guide
+  pk: guide/intro
   fields:
     title: Beginner's Guide
     content: |

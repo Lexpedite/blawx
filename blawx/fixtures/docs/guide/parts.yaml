@@ -1,0 +1,41 @@
+- model: blawx.docpage
+  pk: guide/parts
+  fields:
+    title: Parts of Blawx
+    content: |
+      # Parts of Blawx
+
+      Blawx is divided into Rules, Sections, and Tests.
+      
+      ## Rules
+
+      A Rule in Blawx is a container for a rule text, the encoding of that rule text,
+      and any tests that use that encoding. The Rule is given a name and a rule text
+      when created, and they can be changed in the Rule Editor.
+
+      ## Sections
+
+      Blawx reads the rule text to find all of the sections that are defined in that
+      text. Each section in the text of the rule has a corresponding encoding in Blawx.
+      Encodings for each section are created in the Code Editor for that Rule.
+
+      ## Tests
+
+      A test has a name, and an encoding.
+      The encoding of a test is used to specify facts, and pose a question.
+      Where the encoding of the sections allows you to say what the rule means, it is the encoding
+      of a test that allows you to say you what you want to do with that rule.
+
+      ### Running Tests
+      You can click "Run" in the test code editor
+      to see the answer to the question, if any. Running tests can be used for making sure that
+      your code is behaving as expected. It is also one way of "using" the code to find
+      answers to new questions.
+
+      ### BlawxBot
+      You can also click "Bot" in the test code editor, to convert your test into a
+      chatbot. Tests used for BlawxBot sometimes have only a question, and no facts.
+
+      ### Web API
+      Everything that you can do with a Test in the Blawx interface can also be done
+      automatically in any other interface. All of the features of a test are available as a Web API.
