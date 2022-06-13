@@ -55,7 +55,7 @@
       example, you can say that a Person has a Name, which is a text value, and they
       have a friend, which is a Person.
 
-      ![person friend](/blawx/person_friend.png)
+      ![person friend](/static/blawx/docs/images/person_friend.png)
 
       ##
       <a name="categories"></a>Categories
@@ -66,7 +66,7 @@
       category declaration block can be found under the “Categories” drawer in the
       Toolbox.
 
-      ![default category]({{ site.baseurl }}/img/default_is_category.png)
+      ![default category](/static/blawx/docs/images/default_is_category.png)
 
       When
       you drag a category declaration block onto the workspace, a corresponding category
@@ -74,7 +74,7 @@
       is used in blanks that require or allow a Category as a value.
 
       ![known
-      category default]({{ site.baseurl }}/img/known_category_default.png)
+      category default](/static/blawx/docs/images/known_category_default.png)
 
       Note
       that if you have two category declarations with the same name defined, Blawx
@@ -94,7 +94,7 @@
       block can be found in the “Categories” drawer of the toolbox, and looks like
       this:
 
-      ![attribute declaration]({{ site.baseurl }}/img/attribute_declaration.png)
+      ![attribute declaration](/static/blawx/docs/images/attribute_declaration.png)
 
       To
       complete a category attribute block, you must provide the category that you
@@ -106,8 +106,7 @@
       example, to say that “a person has a name and a best friend” you might set out
       an attribute declaration block like this:
 
-      ![person ontology]({{ site.baseurl
-      }}/img/person_ontology.png)
+      ![person ontology](/static/blawx/docs/images/person_ontology.png)
 
       Remember, all of this needs to be placed
       in a Fact block to work properly. Fact blocks are explained in the next section.
@@ -134,14 +133,12 @@
       number." Using the "any number" block has the same meaning as
       "0 or more."
 
-      ![exactly x]({{ site.baseurl }}/img/attribute_exactly.png)
+      ![exactly x](/static/blawx/docs/images/attribute_exactly.png)
       ![up
-      to X]({{ site.baseurl }}/img/attribute_up_to.png)
-      ![or more]({{ site.baseurl
-      }}/img/attribute_or_more.png)
-      ![between]({{ site.baseurl }}/img/attribute_between.png)
-      ![any]({{
-      site.baseurl }}/img/attribute_any.png)
+      to X](/static/blawx/docs/images/attribute_up_to.png)
+      ![or more](/static/blawx/docs/images/attribute_or_more.png)
+      ![between](/static/blawx/docs/images/attribute_between.png)
+      ![any](/static/blawx/docs/images/attribute_any.png)
 
       Blawx allows you to specify cardinality,
       but it does not
@@ -165,7 +162,7 @@
       selector block will be created that looks like this...
 
       ![default
-      attribute selector]({{site.baseurl}}/img/default_attribute_selector.png)
+      attribute selector](/static/blawx/docs/images/default_attribute_selector.png)
 
       ...
       where the text "attribute_name" is replaced with the text that you have provided.
@@ -184,7 +181,7 @@
       The attribute customization block looks like this:
 
       ![attribute
-      customization block]({{site.baseurl}}/img/attribute_customization.png)
+      customization block](/static/blawx/docs/images/attribute_customization.png)
 
       The
       block allows you to choose the order in which the object and the value are
@@ -198,7 +195,7 @@
       illustration below the dropdown field will be updated,
       like this:
 
-      ![reverse order customization]({{site.baseurl}}/img/reversed_order_attribute_customization.png)
+      ![reverse order customization](/static/blawx/docs/images/reversed_order_attribute_customization.png)
 
       Once
       you have selected the order that you want the object and the value to appear,
@@ -243,13 +240,13 @@
       Here's what the
       second example above looks like in the interface:
 
-      ![customization example]({{site.baseurl}}/img/attribute_customization_example.png)
+      ![customization example](/static/blawx/docs/images/attribute_customization_example.png)
 
       And
       here is what the resulting attribute selector block will look like:
 
       ![customized
-      attribute selector]({{site.baseurl}}/img/customized_attribute_selector.png)
+      attribute selector](/static/blawx/docs/images/customized_attribute_selector.png)
 
       **BE
       CAREFUL!**
@@ -278,14 +275,14 @@
       Blawx you can do this using the category equivalence block, which looks like
       this:
 
-      ![category equivalence]({{ site.baseurl }}/img/category_equivalence.png)
+      ![category equivalence](/static/blawx/docs/images/category_equivalence.png)
 
       The
       category equivalence block requires two category blocks from the “Known Categories”
       drawer of the Toolbox. A complete category equivalence block would look like
       this:
 
-      ![cat is mammal]({{ site.baseurl }}/img/cat_is_mammal.png)
+      ![cat is mammal](/static/blawx/docs/images/cat_is_mammal.png)
 
       Category
       equivalence works in one direction only. In this example, if you create an object,
@@ -301,8 +298,7 @@
       object is created by using the object declaration block, which looks like this,
       and it just takes a name for the object.
 
-      ![bob is object]({{ site.baseurl
-      }}/img/bob_is_object.png)
+      ![bob is object](/static/blawx/docs/images/bob_is_object.png)
 
       Object names should not have spaces in them.
       Blawx will not stop you from creating
@@ -313,7 +309,7 @@
       onto the Workspace, a corresponding Object Block appears in the “Known Objects”
       drawer of the Toolbox.
 
-      ![bob known]({{ site.baseurl }}/img/known_object_bob.png)
+      ![bob known](/static/blawx/docs/images/known_object_bob.png)
 
       The
       object block for “Bob” can be used anywhere a block is expecting an or accepts
@@ -326,7 +322,7 @@
       block. A completed object category block that says “Bob is a Person” looks like
       this.
 
-      ![bob is person]({{ site.baseurl }}/img/bob_is_person.png)
+      ![bob is person](/static/blawx/docs/images/bob_is_person.png)
 
       ###
       Making Two Objects the Same Object
@@ -337,13 +333,13 @@
       found in the “Objects” drawer of the Toolbox, and which looks like this:
 
       ![object
-      identity]({{ site.baseurl }}/img/object_equivalence.png)
+      identity](/static/blawx/docs/images/object_equivalence.png)
 
       The object equivalence
       block takes two object blocks. To say that “Bob” and “Robert” are the same object,
       you could do this:
 
-      ![bob and robert]({{ site.baseurl }}/img/bob_and_robert_identical.png)
+      ![bob and robert](/static/blawx/docs/images/bob_and_robert_identical.png)
 
       Note
       that unlike with the Category Equivalence, which goes in one direction only,
@@ -358,7 +354,7 @@
       Let’s imagine you want to write some rules about cars, and
       you have an ontology like this:
 
-      ![car ontology]({{ site.baseurl }}/img/car_ontology.png)
+      ![car ontology](/static/blawx/docs/images/car_ontology.png)
 
       You
       can see that two attributes have been defined for the category “Car”. One is
@@ -369,15 +365,13 @@
       Blawx will now know about these two attributes, and they will be available in
       the Known Attributes drawer of the toolbox.
 
-      ![known attributes]({{ site.baseurl
-      }}/img/cat_ontology_known_attributes.png)
+      ![known attributes](/static/blawx/docs/images/cat_ontology_known_attributes.png)
 
       The first connector expects
       an object, and the second hole is filled with a value. So to create a Ford Mustang,
       you might use the following blocks in a Fact Block:
 
-      ![ford mustang]({{
-      site.baseurl }}/img/ford_mustang.png)
+      ![ford mustang](/static/blawx/docs/images/ford_mustang.png)
 
       This creates an object called “my_car”,
       places it in the category “Car”, gives it the make “Ford”, and the model “Mustang.”
