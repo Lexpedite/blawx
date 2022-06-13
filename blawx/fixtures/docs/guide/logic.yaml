@@ -3,11 +3,122 @@
   fields:
     title: Incomplete
     content: |
-      # Incomplete
+      # Logic Blocks
 
-      The Blawx documentation is a work in progress, and
-      we are currently working on getting it up to speed with version 1.0.0-alpha of
-      the reasoner and interface.
+      This page describes the basic logic blocks available
+      in the Logic drawer of the Toolbox.
 
-      The page you are seeking has not been completed
-      yet. Thanks for your patience.
+      ## Negation
+
+      Blawx provides
+      you with two different types of negation.
+
+      The first type of negation
+      is a "known false” block. It looks like this:
+
+      ![not]({{ site.baseurl
+      }}/img/not.png)
+
+      The second type of negation is a "not" block. It looks
+      like this:
+
+      ![naf not]({{ site.baseurl }}/img/naf_not.png)
+
+      It is
+      very important to understand the difference between them.
+
+      Inside a Fact
+      or a Rule Conclusion, a "known false" block tells Blawx that the included
+      statement is known with certainty to be false. Inside a Question or a Rule Condition,
+      it asks Blawx to check to see whether it is known with certainty that the statement
+      is false.
+
+      A "not" block does require that a thing is certainly false,
+      but if it is known false, the "not" block will succeed. But a "not" block
+      will also succeed if there is only no facts or rules that can be used to derive
+      that the statement is true.
+
+      "Not" blocks can't be used in facts, or
+      the conclusions of rules. They are used in queries, and in the conditions of
+      rules.
+
+      Let's imagine you want to ask if there are no dogs. You might
+      (incorrectly) write this code:
+
+      ![wrong not any dogs]({{ site.baseurl
+      }}/img/wrong_not_any_dogs.png)
+
+      But this code will not work as expected.
+      A "known false" only returns “true” if its contents are explicitly 
+      stated
+      to be false. But if a fact stated (or a rule concluded) "it is known false
+      that any is in the category Dog", that would mean “it is impossible for an
+      object to be a dog.” That is probably not what you meant to check for.
+
+      You
+      don't want to know if that statement is explicitly false. You want to know
+      whether
+      you can find a specific example in which it is true. Put another way,
+      you
+      don't want to ask "is it true that nothing can be a dog?", you want to ask
+
+      "do you know of any examples of dogs?" So the "not" version
+      is what
+      you need.
+
+      ![correct not any dogs]({{ site.baseurl }}/img/correct_not_any_dogs.png)
+
+      That
+      version of the rule will work as expected.
+
+      Another way to think about
+      the difference is to think of statements as having opposites.
+      "Known false"
+      checks to see if the opposite is true. "Not" checks to see if the opposite
+      is
+      true, *or* if the statement can't be proven.
+
+      In law, we are familiar
+      with this distinction between the two different kinds of negation. In criminal
+      trials, when a court decides that a person is "not guilty", they are using
+      the "not". "Not guilty" means *either* the person is innocent (the opposite
+      of guilty), *or* there was not sufficient proof to
+      find them guilty.
+
+      As
+      a general rule, you usually want to use "not" in questions and in rule
+      conditions.
+      "Known fasle" is the only thing that will work in rule conclusions and facts.
+
+
+      ## Comparison
+
+      ![comparison]({{ site.baseurl }}/img/comparitor.png)
+
+      The
+      comparison operator has 6 different comparisons it can make between two values,
+      or objects.
+
+      They are quite self-explanatory. The block will succeed if
+      the two values provided satisfy the condition, which is one of:
+
+      * "is
+      the same value as"
+      * "is a different value from"
+      * "is less than"
+      *
+      "is greater than"
+      * "is less than or the same value as"
+      * "is greater
+      than or the same value as"
+
+      There are a couple of things to note. First,
+      it will only work if the values are ordered, like numbers, or dates. Second,
+      it compares the values, but it does not know whether the values are coming from
+      the
+      same source.
+
+      If you want to know whether objects referred to by
+      two variables are the same object (they are "identical"), then you don't want
+      to compare their values, you want to check their identities. That is done using
+      the object equivalence or object disequivalence blocks.
