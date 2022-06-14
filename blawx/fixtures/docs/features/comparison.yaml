@@ -1,0 +1,45 @@
+- model: blawx.docpage
+  pk: incomplete
+  fields:
+    title: Incomplete
+    content: |
+      # Incomplete
+
+      The Blawx documentation is a work in progress, and
+      we are currently working on getting it up to speed with version 1.0.0-alpha of
+      the reasoner and interface.
+
+      The page you are seeking has not been completed
+      yet. Thanks for your patience.
+
+      ## Comparison
+
+      ![comparison]({{ site.baseurl }}/img/comparitor.png)
+
+      The
+      comparison operator has 6 different comparisons it can make between two values,
+      or objects.
+
+      They are quite self-explanatory. The block will succeed if
+      the two values provided satisfy the condition, which is one of:
+
+      * "is
+      the same value as"
+      * "is a different value from"
+      * "is less than"
+      *
+      "is greater than"
+      * "is less than or the same value as"
+      * "is greater
+      than or the same value as"
+
+      There are a couple of things to note. First,
+      it will only work if the values are ordered, like numbers, or dates. Second,
+      it compares the values, but it does not know whether the values are coming from
+      the
+      same source.
+
+      If you want to know whether objects referred to by
+      two variables are the same object (they are "identical"), then you don't want
+      to compare their values, you want to check their identities. That is done using
+      the object equivalence or object disequivalence blocks.

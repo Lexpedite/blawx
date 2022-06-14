@@ -1,8 +1,17 @@
 - model: blawx.docpage
-  pk: guide/categories
+  pk: incomplete
   fields:
-    title: Categories, Objects, and Attributes
+    title: Incomplete
     content: |
+      # Incomplete
+
+      The Blawx documentation is a work in progress, and
+      we are currently working on getting it up to speed with version 1.0.0-alpha of
+      the reasoner and interface.
+
+      The page you are seeking has not been completed
+      yet. Thanks for your patience.
+
       # Categories, Objects, and Attributes
 
       Categories, Objects, and
@@ -425,4 +434,4 @@
       the user recall that the attribute may have more than one value. Likewise, a
       category called “world_record_holder” may have an attribute that refers to the
       player holding that record, of which there is only one, so it may make sense
-      to call that attribute “player” instead of “players.”</div>
+      to call that attribute “player” instead of “players.”

@@ -1,10 +1,10 @@
 - model: blawx.docpage
-  pk: guide/tests
+  pk: guide/deploy
   fields:
     title: |
-      Blawx Beginner's Guide: Step 3 - Test Your Code
+      Blawx Beginner's Guide: Step 4 - Deploy Your Code
     content: |
-      # Step 3: Test Your Code
+      # Step 4: Deploy Your Code
 
       The Blawx documentation is a work in progress, and
       we are currently working on getting it up to speed with version 1.0.0-alpha of

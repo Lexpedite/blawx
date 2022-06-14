@@ -1,0 +1,56 @@
+- model: blawx.docpage
+  pk: incomplete
+  fields:
+    title: Incomplete
+    content: |
+      # Incomplete
+
+      The Blawx documentation is a work in progress, and
+      we are currently working on getting it up to speed with version 1.0.0-alpha of
+      the reasoner and interface.
+
+      The page you are seeking has not been completed
+      yet. Thanks for your patience.
+
+      ##
+      Rules
+      Rules are the most important part of encoding in Blawx. They are where
+      you describe the simple logical building blocks that Blawx can combine in complicated
+      ways to generate new insights. That is why the technology that Blawx implements
+      is often referred to as “rules-based artificial intelligence”.
+
+      A rule
+      has two parts. The first part is one or more statements that can be proved true
+      by the rule, called the “conclusions.” The second part is the “conditions” that
+      must be met for the conclusion to be proved true.
+
+      ![rule]({{ site.baseurl
+      }}/img/rule.png)
+
+      A rule block has one slot for the conclusions, one slot
+      for the conditions.
+
+      A rule with no conclusions should be a Question or
+      a Constraint, and a rule with no conditions should be a Fact, so a rule block
+      needs both statement connections filled to work properly.
+
+      ### A Note
+      on If/Then
+      Some people might express rules as `if conditions then conclusions`.
+      \ We prefer to avoid the words “if” and “then” to describe rules, because people
+      who are familiar with imperative programming languages (which is most of the
+      programming languages out there) will have in their minds a different meaning
+      for “if” and “then.”
+
+      In imperative programming, `if conditions then conclusions`
+      means “if right now the conditions are true, then next the computer should do
+      conclusions.”
+
+      Blawx is a declarative logic programming tool, not an imperative
+      one. Which means that the rule `if conditions then conclusions` means “if conditions
+      are true, then conclusions are also true.”
+
+      When using Blawx, remember
+      that you are not describing what steps the computer should follow. You are describing
+      what is known (the fact, or the conclusion for rules), and when it is known
+      (always for facts, when the conditions are true for rules).

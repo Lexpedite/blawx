@@ -1,0 +1,11 @@
+- model: blawx.docpage
+  pk: examples/net30
+  fields:
+    title: Net 30
+    content: |
+      # Net 30
+
+      The Net 30 example included with Blawx is [available here](/8/) (assuming it hasn't been
+      deleted from your system).
+
+      It is used to demonstrate the use of dates and durations in Blawx.

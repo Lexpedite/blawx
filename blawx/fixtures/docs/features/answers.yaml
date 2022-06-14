@@ -1,10 +1,9 @@
 - model: blawx.docpage
-  pk: guide/tests
+  pk: incomplete
   fields:
-    title: |
-      Blawx Beginner's Guide: Step 3 - Test Your Code
+    title: Incomplete
     content: |
-      # Step 3: Test Your Code
+      # Incomplete
 
       The Blawx documentation is a work in progress, and
       we are currently working on getting it up to speed with version 1.0.0-alpha of

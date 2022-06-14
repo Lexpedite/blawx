@@ -47,15 +47,9 @@
 
       ## What does the guide include?
 
-      The guide will take you through the following
-      topics:
+      This guide will take you through the four steps of using Blawx for Rules as Code:
 
-      1. The Parts of Blawx
-      2. Entering Legal Text
-      3. Using the Code Editor
-      4. How Blawx Models Data
-      5. How Blawx Models Facts and Rules
-      6. How Variables Work in Blawx
-      7. Creating and Running Tests
-      8. Using the BlawxBot Expert System
-      9. A Tutorial Encoding
+      1. Enter Legal Text
+      2. Encode Rules
+      3. Test Your Code
+      4. Deploy Your Code

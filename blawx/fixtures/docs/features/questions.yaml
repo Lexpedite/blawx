@@ -1,0 +1,63 @@
+- model: blawx.docpage
+  pk: incomplete
+  fields:
+    title: Incomplete
+    content: |
+      # Incomplete
+
+      The Blawx documentation is a work in progress, and
+      we are currently working on getting it up to speed with version 1.0.0-alpha of
+      the reasoner and interface.
+
+      The page you are seeking has not been completed
+      yet. Thanks for your patience.
+
+      ## Questions
+      Once
+      you have encoded rules and described relevant facts, you will want to ask a
+      question. That is what the question block is for.
+
+      There are two kinds
+      of questions… yes/no questions, and search questions.
+
+      ### Yes/No Questions
+      A
+      question that does not include variables is a “yes/no” question. An example
+      is “Is Socrates Mortal?”
+
+      ![is socrates mortal]({{ site.baseurl }}/img/is_socrates_mortal.png)
+
+      This
+      question will be answered by the Blawx reasoner with either the bare statement
+      "socrates is mortal", or “No”.
+
+      ### Search Question
+      A question that
+      includes variables is a “search” question. Blawx attempts to find any objects
+      that it can place in all the variables used so that the all of the statements
+      will be true. If it can’t find any, it will respond “No.” If it can find any
+      examples, it will provide each combination of objects that made the statements
+      true, and each reason for each combination of objects.
+
+      So the question
+      “is Socrates Mortal” above, which is a “yes or no” question, can be changed
+      into a search by replacing “Socrates” with a variable. We will name the variable
+      “Who”, because it reads better, but the name is unimportant, as long as you
+      use the same variable name everywhere that it is important the rule is referring
+      to the same object.
+
+      ![who is morta]({{ site.baseurl }}/img/who_is_mortal.png)
+
+      If
+      you ask this question of the Reasoner, the answer back will be:
+
+      ```
+      socrates
+      is a mortal, because
+      socrates is a person
+      ```
+
+      Remember that a
+      question requires all of its blocks connected by the And connectors to be true
+      at the same time in order to find any answers. So make sure you are only asking
+      one question at a time.

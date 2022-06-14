@@ -1,10 +1,10 @@
 - model: blawx.docpage
-  pk: guide/tests
+  pk: guide/encode_rules
   fields:
     title: |
-      Blawx Beginner's Guide: Step 3 - Test Your Code
+      Blawx Beginner's Guide: Step 2 - Encode Rules
     content: |
-      # Step 3: Test Your Code
+      # Step 2: Encode Rules
 
       The Blawx documentation is a work in progress, and
       we are currently working on getting it up to speed with version 1.0.0-alpha of

@@ -1,0 +1,11 @@
+- model: blawx.docpage
+  pk: examples/r34
+  fields:
+    title: Rule 34
+    content: |
+      # Rule 34
+
+      The Rule 34 example included with Blawx is [available here](/4/) (assuming it hasn't been
+      deleted from your system).
+
+      It is used to demonstrate the use of Blawx to detect drafting flaws in legislative texts.

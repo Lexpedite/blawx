@@ -1,0 +1,48 @@
+- model: blawx.docpage
+  pk: features/ask_tell
+  fields:
+    title: Asking and Telling
+    content: |
+      ## Understanding the Difference between Asking and Telling
+
+      Declaration blocks for objects and categories
+      have the usual meaning when used in a fact or the conclusions of a Rule block.
+      But they have a different meaning when they are included in the conditions of
+      a Rule block, or in a query.
+
+      A declaration causes the object, category,
+      or attribute to exist when used inside a fact block or the conclusions of a
+      rule. Inside a condition block, they test whether or not those declarations
+      have been made somewhere else.
+
+      So this rule says “we know fruit is a
+      Category if plants are living things.” This rule has the effect of creating
+      a category when its conditions are met.
+
+      ![conclude fruit]({{ site.baseurl
+      }}/img/conclude_fruit.png)
+
+      However, in the next rule, the same Category
+      declaration block “Fruit is a Category” does not create the category fruit,
+      but instead asks whether the category has been created.
+
+      ![query fruit]({{
+      site.baseurl }}/img/query_fruit.png)
+
+      If the category Fruit has not been
+      defined anywhere (in a fact, or the conclusion of a Rule that had true conditions),
+      then the answer to the query “is Fruit a category” will be no.
+
+      This can
+      be confusing, because Blawx still creates a “Known Category”, “Known Object”
+      or “Known Attribute” block in the toolbox regardless of where the relevant block
+      is used. So you may have a Category selector block called “Fruit” while *in
+      the code* the category fruit does not exist.
+
+      So it is important to remember
+      the effect of declaration blocks in different locations:
+
+      > **In Facts
+      and Rule Conclusions, a new object or new category block or new attribute block
+      means “this thing exists”. In Rules Conditions and Queries, a declaration block
+      means “does this thing exist?”**
