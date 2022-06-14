@@ -1,5 +1,5 @@
 - model: blawx.docpage
-  pk: incomplete
+  pk: features/categories
   fields:
     title: Incomplete
     content: |

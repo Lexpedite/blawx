@@ -1,5 +1,5 @@
 - model: blawx.docpage
-  pk: incomplete
+  pk: components/web-api
   fields:
     title: Incomplete
     content: |

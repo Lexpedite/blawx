@@ -1,5 +1,5 @@
 - model: blawx.docpage
-  pk: guide/blawxbot
+  pk: components/blawxbot
   fields:
     title: BlawxBot
     content: |

@@ -1,5 +1,5 @@
 - model: blawx.docpage
-  pk: guide/variables
+  pk: features/variables
   fields:
     title: Variables
     content: |

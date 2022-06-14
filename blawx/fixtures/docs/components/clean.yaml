@@ -1,5 +1,5 @@
 - model: blawx.docpage
-  pk: guide/clean
+  pk: components/clean
   fields:
     title: Entering Rules Into Blawx
     content: |

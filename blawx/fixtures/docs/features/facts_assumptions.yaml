@@ -1,5 +1,5 @@
 - model: blawx.docpage
-  pk: incomplete
+  pk: features/facts_assumptions
   fields:
     title: Incomplete
     content: |

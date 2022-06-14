@@ -1,5 +1,5 @@
 - model: blawx.docpage
-  pk: guide/interface
+  pk: components/interface
   fields:
     title: The Blawx Code Editor Interface
     content: |

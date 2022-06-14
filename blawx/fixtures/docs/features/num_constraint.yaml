@@ -1,5 +1,5 @@
 - model: blawx.docpage
-  pk: incomplete
+  pk: features/num_constraint
   fields:
     title: Incomplete
     content: |
