@@ -6,9 +6,92 @@
     content: |
       # Step 1: Enter Legal Text
 
-      The Blawx documentation is a work in progress, and
-      we are currently working on getting it up to speed with version 1.0.0-alpha of
-      the reasoner and interface.
+      Welcome to step 1 of the Blawx Beginner's Guide, entering legal text.
 
-      The page you are seeking has not been completed
-      yet. Thanks for your patience.
+      To start, let's introduce the piece of legislation that we are going to be encoding
+      in Blawx in this Guide, the "Rock Paper Scissors Act".
+
+      ## Rock Paper Scissors Act
+      ```
+      Rock Paper Scissors Act
+
+      Players
+      1. A game of rock paper scissors has two players.
+      2. There are three signs:
+        (a) Rock,
+        (b) Paper, and
+        (c) Scissors.
+
+      Defeating Relationships
+      3. The signs are related in the following ways:
+        (a) Rock beats Scissors,
+        (b) Scissors beats Paper, and
+        (c) Paper beats Rock.
+
+      Winner
+      4. The winner of a game is the player who throws
+      a sign that beats the sign of the other player.
+      ```
+
+      Hopefully you are familiar with these rules, which are known in different communities
+      by different names, like Rochambeau, and "Boulder, Parchment, Shears."
+
+      ## Why Does Blawx Need the Legal Text?
+
+      The first step is giving Blawx the text of the rule itself.
+      
+      Most Rules as Code tools don't require you to provide the legal text, but Blawx
+      uses the legal text to do two important things. First, as you will see in Step 2,
+      the structure of your encoding matches the structure of the original law.
+      Second, as you will see in steps 3 and 4, Blawx can use the text of the law to
+      help explain its answers.
+
+      ## Creating a New Project
+
+      To begin, go to [the root of your Blawx server](/), which will look something like this:
+      
+      ![Blawx Root Screen](/static/blawx/docs/images/blawx_root_screen.png)
+      
+      Once there, click "Create Rule". This will open the Project Editor screen, which will
+      look like this:
+
+      ![Project Editor Screen](/static/blawx/docs/images/project_editor_screen.png)
+
+      In the Project Editor screen, you can specify a name for your project. Use a name
+      that is different from the "Rock Paper Scissors Act" project that comes with Blawx
+      by default.
+
+      It also allows you to set the "Rule text" for this project.
+
+      Copy the highlighted monospace plain-text version of the law above, and paste it into that
+      field.
+      
+      **Note: Copy only the text in monospace font, and all the text in monospace font, including the title.**
+      
+      Your screen should now look like this:
+      
+      ![Project Editor With Legal Text](/static/blawx/docs/images/project_editor_with_legal_text.png)
+      
+      Then click "Save" to save the Project to your Blawx server.
+
+      You will be taken back to the root of your Blawx server, and the new Project should
+      appear in the list, like this:
+
+      ![Blawx Root With New Project](/static/blawx/docs/images/blawx_root_with_new_project.png)
+
+      ## That's It!
+
+      In Step 1, we talked about how to create a new Project in Blawx, and how to provide
+      Blawx with the text of the law you are encoding.
+
+      Note that not just any plain-text version of a law will work. Your law must be formatted
+      in a way that is consistent with the CLEAN syntax, which is described elsewhere in the
+      documentation. But as you can see, the CLEAN syntax for the Rock Paper Scissors Act is
+      pretty easy to read.
+
+      Next, in Step 2 of the Blawx Beginner's Guide, we will translate the Rock Paper Scissors Act
+      into code.
+
+
+      
+

@@ -6,9 +6,220 @@
     content: |
       # Step 3: Test Your Code
 
-      The Blawx documentation is a work in progress, and
-      we are currently working on getting it up to speed with version 1.0.0-alpha of
-      the reasoner and interface.
+      Welcome to Step 3 of the Blawx Beginner's Guide, which introduces you to testing your
+      code.
 
-      The page you are seeking has not been completed
-      yet. Thanks for your patience.
+      Testing is useful in a number of parts of the Rules as Code process. First, it is a good
+      way of ensuring that you have written the code you intended to write. It will tell you
+      whether or not your code is coming to the right answers and (uniquely to Blawx), whether
+      your code is coming to the right answers for the right reasons, and only the right reasons.
+
+      Once you are confident that your code behaves in the way that you interpret the law to behave,
+      you can test the code in order to test the law. You can run simulations, or you can search for
+      unanticipated and undesireable outcomes.
+
+      In this section of the Beginner's Guide, we're going to give you two examples. We are going
+      to create a test that checks to see if the code behaves as expected, and then we are going
+      to create a test that checks to see if there are any unusual outcomes.
+
+      ## Bob versus Jane
+
+      From the root of your Blawx server, click on the name of your project, and then click "Create Test".
+
+      You will be asked for the name to give this test. Note that test names cannot include spaces.
+
+      Give your new test a short name, and you will be returned to the Project screen, and the new
+      test will be listed there. Click on the name of the test to go into the Test Editor.
+
+      The Test Editor is very similar to the Code editor, except it does not have a navigation tree,
+      and it has addition information available in the right sidebar to show you what your code is doing.
+
+      In this test, we are going to create a fact scenario that represents a game in which bob threw
+      scissors, and jane threw rock. Then we are going to ask who won the game. We expect that the answer
+      should be "jane".
+
+      ### Fact Scenario
+
+      To create our fact scenario, we will drag out a fact block. Inside that fact block, we will drag
+      out a new game object, and two new player objects. We will give the game the name "testgame",
+      and name the players "bob" and "jane".
+
+      Next, we need to make bob and jane players in testgame. So we will drag out two "played in"
+      blocks from the Known Attributes drawer, and add "bob" and "jane" on the left, and "testgame"
+      on the right, dragging object selectors from the Known Objects drawer.
+
+      Lastly, we need to tell Blawx what signs bob and jane threw. To do that we will drag out two
+      "threw" attribute blocks from the Known Attribute drawer, and use the known object selectors for jane,
+      bob, rock, and scissors to fill them out.
+
+      When you are done, your fact block should look like this:
+
+      ![RPS BobJane Facts](/static/blawx/docs/images/rps_14.png)
+
+      ### Question
+
+      To pose a question, we will drag a question block from the Primary drawer. Because our
+      encoding uses the "according to" block in section 4, we will use the "holds" block in
+      our question, and so we will drag out the question block that has a holds block already.
+
+      Then we will grab the winner block from the Known Attributes drawer, add the object selector
+      for testgame from the Known Objects drawer, and then add a variable named "Winner" from the
+      Variables drawer. Make sure the name of the variable is capitalized.
+
+      When you are done your question should look like this:
+
+      ![RPS BobJane Question](/static/blawx/docs/images/rps_15.png)
+
+      Don't forget to save your test by clicking on "Save" in the button bar.
+
+      ### Running Your Test
+
+      Now you can run your test by clicking on the "Run" button in the button bar. When you do,
+      the right bar will expand (if it is not visible already) and will display the "Output" tab.
+
+      If you expand out some of the elements, your Output tab will look like this:
+
+      ![RPS BobJane Answer](/static/blawx/docs/images/rps_16.png)
+
+      Note that there is only one answer, that Jane is the winner of testgame. For that answer
+      there is only one explanation, which is displayed in natural language.
+
+      Because you used the "according to" and "holds" blocks in your code, Blawx knows which
+      section of code led to which conclusion, and reports that the conclusion is based on section 4.
+      If you over your mouse over the highlighted text "section 4", a tooltip appears with the text
+      of that legislative section.
+
+      ![RPS BobJane Tooltip](/static/blawx/docs/images/rps_17.png)
+
+      So Blawx is able to give you the answer to the legal question in your fact scenario,
+      it is able to explain that answer in English, and it is able to link that explanation
+      to the legislative source text.
+
+      ## Using Hypothetical Reasoning
+
+      One of the most useful features of Blawx as compared to other Rules as Code tools
+      is the fact that you can not only generate legal answers from fact scenarios, but
+      you can do the reverse. You can use Blawx to generate fact scenarios from legal conclusions.
+
+      To demonstrate this, create another test in your project called "hypothetical".
+
+      ### Assumptions
+
+      In the Test Editor, drag in four "assume" blocks from the Primary Drawer. We will use
+      these to tell Blawx to assume that:
+
+      * there may be a game
+      * there may be a player
+      * players may have played in games
+      * players may have thrown signs
+
+      When you are using Variables in assumption blocks, it doesn't matter what they are
+      named, so we will use the capital letters A and B. Remember that named variables
+      always need to start with capital letters.
+
+      This is what your assumptions should look like:
+
+      ![RPS Hypothetical Assumptions](/static/blawx/docs/images/rps_18.png)
+
+      ### Question
+
+      In this test we wil ask whether it holds that any player won any games.
+
+      We do this by creating a question that looks like this:
+
+      ![RPS Hypothetical Question](/static/blawx/docs/images/rps_19.png)
+
+      ### Running Your Test
+
+      You can now click "Run" in the button bar to run the test. After a few
+      moments, you will get three answers, with one explanation each. Each
+      explanation will be identical, except for the names assigned to the assumed
+      players and the assumed games, and the signs that were thrown.
+
+      In the first answer, the winner throws rock, and plays against someone else
+      who threw scissors.  In the second, paper beats rock. In the third, scissors beats
+      paper.
+
+      Here's what a part of the first explanation looks like:
+
+      ![RPS Hypothetical Answer](/static/blawx/docs/images/rps_20.png)
+
+      ### Uses for Hypothetical Reasoning
+      
+      Here, we have asked how many different ways a game of Rock Paper Scissors can be won,
+      and what they are. But this same technique can be used to answer questions like "how
+      many ways are there for a person to qualify for this benefit"? Questions like that can
+      be used to debug your code, and your legislation.
+
+      You can also ask questions like "what do I need to do to qualify for this benefit?" This
+      gives your code the ability to say "no, you don't qualify, but if you want to qualify,
+      here are the steps you would need to follow, or the things that you would need to make true."
+
+      It can also be used to ask the question "what matters in terms of qualifying for this
+      benefit?", and using the answer to power an expert system that never asks the user for
+      an irrelevant input.
+
+      ## Asking "Why Not?"
+
+      Often when testing, you will ask Blawx a question for which it has no answers, and
+      you would like to know why not. In Blawx, you can just ask.
+
+      Create another test in your project called "whynot". Duplicate the fact scenario
+      from Bob versus Jane, above, but let's use a different question.
+
+      ### Question
+
+      We'll start by asking a question that we know Blawx should not be able to positively
+      answer. "Is it true that Bob won testgame?"  It isn't, so Blawx will return "no models"
+      in the output screen.  Here's what your question should look like.
+
+      ![RPS Why Not Question](/static/blawx/docs/images/rps_21.png)
+
+      Now, if we were expecting Bob to win, we might want to know why he didn't. To do this,
+      we can reverse the question by dragging a not block from the Logic drawer, and inserting
+      it between the question block and the holds block, like this:
+
+      ![RPS Why Not Question 2](/static/blawx/docs/images/rps_22.png)
+
+      If you run this code, you get one Answer, with two explanations. The answer is
+      that yes, it is true that there is no evidence that Bob won testgame.
+
+      A portion of the output looks like this:
+
+      ![RPS Why Not Answer](/static/blawx/docs/images/rps_23.png)
+
+      The explanations for negated queries like this can be difficult to read.
+      In essence, the first explanation says there is no other way to find a winner
+      but section 4.
+
+      The second explanation says there is no way to use section 4 to find that
+      bob is the winner, because bob and jane are the only players, scissors and rock are
+      the only throws, scissors doesn't beat rock, and scissors doesn't beat scissors.
+
+      ### Uses for "Why Not?"
+
+      Depending on your code, the explanations for negated questions might be useful to users
+      who are interested in knowing why they do not, for example, qualify for some benefit.
+
+      But in its current state, most why not questions generate explanations that are not
+      particularly useful for users. Why not questions are still very valuable when you are
+      writing a test, the test doesn't behave the way you would expect, and you would like to
+      know "why not".
+
+      ## That's It!
+
+      Congrats! You have tested your encoding of the Rock Paper Scissors Act!
+      
+      You have seen how Blawx can be used to answer a question given a fact scenario.
+      You have also seen how Blawx can be used to generate a fact scenario given a
+      conclusion. And you have seen how Blawx is able to answer questions about why things
+      are not a valid answer.
+
+      Notice that you didn't need to write any additional code to deal with "why not" or
+      "hypothetical" questions. Nor did you need to do any extra work to get access to
+      natural language explanations linked to legislative material. It's all built-in, and
+      available by default, without any additional work on the part of the person writing
+      the code.
+
+      Next, check out Step 4 of the Blawx Beginner's Guide, and see how you can ues BlawxBot
+      to turn your encoding into a chatbot-style expert system!

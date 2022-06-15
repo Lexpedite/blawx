@@ -5,7 +5,7 @@
     content: |
       # Beginners Guide to Blawx
 
-      Welcome to Blawx!
+      Welcome to the Beginner's Guide to Blawx!
 
       ## What is Blawx?
 
@@ -13,43 +13,41 @@
       is free, open
       source software provided under the MIT license by Jason Morris.
 
-      ## Experimental Prototype
-      Blawx is an experimental prototype, designed for use in Rules as Code
-      experiments, and as a teaching tool. It is not production-quality software.
+      It is alpha software currently under active development, intended for experimentation
+      and teaching in Rules as Code. **Do not use Blawx for real-world, production purposes.**
 
-      What does that mean?
-
-      * Don't use Blawx in mission-critical applications
-      * Expect design problems
-      * Expect bugs
-      * Expect change
-      
       ## What is Rules As Code?
 
-      Rules as Code is the idea that legislation, regulations,
-      contracts, and other forms
-      of formal written legal rules can and should be
-      written in languages computers can understand and use.
+      Briefly, Rules as Code is an approach to public administration that argues we can improve
+      how rules like legislation and regulations are designed, drafted, and implemented
+      by writing them in natural languages like English and French,
+      and also encoding them in languages that can be used by computers.
 
-      Some adherents
-      want to translate existing laws into code to improve automation of legal services.
+      ## Who is this Beginner's Guide for?
 
-      Others
-      want to write laws and regulations in natural languages and programming languages
-      at the same time, in an interdisciplinary way, to improve legal drafting, public
-      policy, and automation in public administration.
-
-      ## Who is this guide for?
-
-      This guide is written for people who are interested in learning
-      about encoding
+      This guide is written for people who are interested in learning about encoding
       legal knowledge in Blawx. It assumes no experience with programming.
 
-      ## What does the guide include?
+      ## What does the Beginner's Guide Cover?
 
-      This guide will take you through the four steps of using Blawx for Rules as Code:
+      The Beginner's Guide is a short introduction to the four steps of using Blawx
+      for Rules as Code:
 
       1. Enter Legal Text
       2. Encode Rules
       3. Test Your Code
       4. Deploy Your Code
+
+      It will walk you through the process of encoding a small, imaginary piece of
+      legislation called the Rock Paper Scissors Act.
+
+      It will not make you an
+      expert Blawx user, and it will not even show you all of Blawx features.
+      It is intended only to give the reader an intuition as to what
+      Blawx is, how Blawx is used, and the advantages that might come from using it.
+
+      The Beginner's Guide can also be used as a tutorial by creating a new
+      project in Blawx and following along with the four steps in the guide.
+
+      If you're ready to get started, let's go.
+

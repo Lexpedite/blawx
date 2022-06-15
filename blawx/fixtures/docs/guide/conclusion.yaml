@@ -6,9 +6,36 @@
     content: |
       # Conclusion
 
-      The Blawx documentation is a work in progress, and
-      we are currently working on getting it up to speed with version 1.0.0-alpha of
-      the reasoner and interface.
+      That's it! Hopefully this Beginner's Guide has given you an idea of what Blawx is,
+      how it is used, and why it might be useful in Rules as Code.
 
-      The page you are seeking has not been completed
-      yet. Thanks for your patience.
+      ## How is Blawx Different from Other Tools?
+
+      Compared to other Rules as Code tools, Blawx is very unique. Blawx uses a rule-based
+      programming language instead of a language based on functions, or objects. This,
+      and the fact that the structure of the code follows the structure of the law, reduces
+      the amount of mental effort required to turn laws into software.
+
+      This rule-based programming approach also give you capabilities that do not exist
+      in other tools. Blawx code is explainable by default, it
+      can be used to do hypothetical reasoning, to provide multiple justifications for the
+      same conclusion, and can explain the absence of an answer,
+      all without the need to add anything to your code.
+
+      But these rule-based programming languages are uncommon, and unfamiliar even to most
+      professional computer programmers. Blawx's design is therefore also
+      focused on being as approachable to new users as possible.
+
+      ## What's Next?
+
+      If you would like to learn more about how Blawx is used, please review the rest of
+      the documentation provided with Blawx. It includes topic-specific pages on Blawx's
+      components and coding features, examples that you can review, and detailed information
+      about each of the Blawx used in the interface.
+
+      If you have any questions, you can write Jason Morris at jason@lexpedite.ca.
+
+      If you are interested in running Blawx on your own machine, or contributing to the
+      development of Blawx, please head to [the GitHub repository](https://github.com/lexpedite/blawx).
+
+
