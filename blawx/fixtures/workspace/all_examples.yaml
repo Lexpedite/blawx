@@ -312,11 +312,24 @@
       name="first_element">object</field><field name="infix">threw</field><field name="second_element">value</field><field
       name="postfix"></field></block></next></block></statement></block></next></block></statement></block><block
       type="unattributed_rule" id="H[dHxF1dJ#hSkjuHqigN" x="33" y="370"><statement
-      name="conditions"><block type="attribute_selector" id="VgOZjK:YV9qX0s3wFiMP"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="player" attributetype="player"
-      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">played
-      in</field><field name="postfix"></field><value name="first_element"><block type="variable"
-      id="{-(!V(06b9;kn(.OLcsC"><field name="variable_name">Player1</field></block></value><value
+      name="conditions"><block type="object_category" id="k~txF1TzrW76$OOmxrQg"><value
+      name="object"><block type="variable" id="f/=.V8T;{6*PT9EYtwsZ"><field name="variable_name">Game</field></block></value><value
+      name="category"><block type="category_selector" id="LM3-6aTK,BEjI%mIro9G"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="game"></mutation><field
+      name="category_name">game</field></block></value><next><block type="object_category"
+      id="EjD|TUg,WS$@c-?@7_;!"><value name="object"><block type="variable" id="UOF1xQ4)=5E@!P+Qke3|"><field
+      name="variable_name">Player1</field></block></value><value name="category"><block
+      type="category_selector" id="fzMs[)P4F`qxbPK)8Ql7"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="player"></mutation><field name="category_name">player</field></block></value><next><block
+      type="object_category" id="_QrSXmZ8NT,]4N$AuOD:"><value name="object"><block
+      type="variable" id="3}u?Tz:i.]p77oZ(PVP_"><field name="variable_name">Player2</field></block></value><value
+      name="category"><block type="category_selector" id="pK4^v4NnsjH8m0g]II,C"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="category_name">player</field></block></value><next><block type="attribute_selector"
+      id="VgOZjK:YV9qX0s3wFiMP"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="player"
+      attributetype="player" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">played in</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="{-(!V(06b9;kn(.OLcsC"><field name="variable_name">Player1</field></block></value><value
       name="second_element"><block type="variable" id="qK3yDf!t(U]*4w]??a,z"><field
       name="variable_name">Game</field></block></value><next><block type="attribute_selector"
       id="#=6uvG0|VmI1}^[=DFgb"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="player"
@@ -342,14 +355,17 @@
       name="infix">beats</field><field name="postfix"></field><value name="first_element"><block
       type="variable" id="}f6*mn3827#1NFp*y|5C"><field name="variable_name">Throw1</field></block></value><value
       name="second_element"><block type="variable" id="s-}w@zN[~tg2n~@Q9vb%"><field
-      name="variable_name">Throw2</field></block></value></block></next></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="attribute_selector" id="gL4%,Q9wxFBpcf0hod8:"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="winner" attributetype="player"
-      attributeorder="ov"></mutation><field name="prefix">the winner of</field><field
-      name="infix">is</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="//}tGADTWqR;V(9%()KP"><field name="variable_name">Game</field></block></value><value
-      name="second_element"><block type="variable" id="ag,!^lQb:dB}bgV-;vE."><field
-      name="variable_name">Player1</field></block></value></block></statement></block></xml>
+      name="variable_name">Throw2</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="O`0{GLKp!ZsKzRhML{Cm"><value
+      name="rule"><block type="doc_selector" id="NANi!cb7(_xY%HT9WQZ="><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_4_section"></mutation><field name="doc_part_name">RPSA
+      4</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="gL4%,Q9wxFBpcf0hod8:"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="//}tGADTWqR;V(9%()KP"><field
+      name="variable_name">Game</field></block></value><value name="second_element"><block
+      type="variable" id="ag,!^lQb:dB}bgV-;vE."><field name="variable_name">Player1</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(game,winner,player).
 
       blawx_attribute_nlg(winner,ov,"the winner of","is","").
@@ -375,7 +391,13 @@
 
 
 
-      winner(Game,Player1) :-
+      according_to(sec_4_section,  winner(Game,Player1)) :-
+
+      game(Game),
+
+      player(Player1),
+
+      player(Player2),
 
       player(Game,Player1),
 
@@ -4456,13 +4478,14 @@
       xmlns="http://www.w3.org/1999/xhtml" objectname="scissors"></mutation><field
       name="object_name">scissors</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
       type="query" id="7Bvu;d7/sRZH4WYjc2r*" x="45" y="330"><statement name="query"><block
-      type="attribute_selector" id="$Z{Xa^4K^6WI,3_oGh]y"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="winner" attributetype="player" attributeorder="ov"></mutation><field
-      name="prefix">the winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      type="holds" id="RbA1ko|L6D-0y;7We+*H"><statement name="statement"><block type="attribute_selector"
+      id="$Z{Xa^4K^6WI,3_oGh]y"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
       name="first_element"><block type="object_selector" id=":w:oo!Fv!xc:9y5g)EFF"><mutation
       xmlns="http://www.w3.org/1999/xhtml" objectname="testgame"></mutation><field
       name="object_name">testgame</field></block></value><value name="second_element"><block
-      type="variable" id="C/)t1WnespvvssVQmZ{="><field name="variable_name">Winner</field></block></value></block></statement></block></xml>
+      type="variable" id="S1|/bK-O89tiCdahc./E"><field name="variable_name">Winner</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'game(testgame).
 
       player(bob).
@@ -4478,7 +4501,7 @@
       throw(bob,scissors).
 
 
-      ?- winner(testgame,Winner).'
+      ?- legally_holds(_,  winner(testgame,Winner)).'
 - model: blawx.blawxtest
   pk: 4
   fields:
@@ -4551,34 +4574,53 @@
     ruledoc: 2
     test_name: hypothetical
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="assume"
-      id="M1{QxvR%?zihG#2A{7Xe" x="102" y="91"><statement name="statements"><block
+      id="wam:)Jm+$_K%n6QBtW$B" x="94" y="82"><statement name="statements"><block
+      type="object_category" id="B,MZYa9w6M[zM=q@7fr["><value name="object"><block
+      type="variable" id="UG9@_J3Yc8Ik8mQQwg4a"><field name="variable_name">A</field></block></value><value
+      name="category"><block type="category_selector" id="abpTmvTJ,#Im%d8]K$Rj"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="game"></mutation><field
+      name="category_name">game</field></block></value></block></statement></block><block
+      type="assume" id="S`.QpQ0btaNHmnA-H9q8" x="96" y="158"><statement name="statements"><block
+      type="object_category" id="6O|X/};B+?2x#eF9Y|[m"><value name="object"><block
+      type="variable" id="Fsf5c%lT8h-s#%qiF+UI"><field name="variable_name">A</field></block></value><value
+      name="category"><block type="category_selector" id="-|CoFnJd+~E7q}^aweUF"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="category_name">player</field></block></value></block></statement></block><block
+      type="assume" id="M1{QxvR%?zihG#2A{7Xe" x="95" y="229"><statement name="statements"><block
       type="attribute_selector" id="5eV-5_wF5=@coGV);z;z"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="player" attributetype="player" attributeorder="vo"></mutation><field
       name="prefix"></field><field name="infix">played in</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="z[nsN;vj68V*I9iuNqKa"><field
       name="variable_name">A</field></block></value><value name="second_element"><block
       type="variable" id="plORf)x!X:1pjMrhb%t,"><field name="variable_name">B</field></block></value></block></statement></block><block
-      type="assume" id="H(},Uv!uNIC~@S*)4s6r" x="98" y="188"><statement name="statements"><block
+      type="assume" id="H(},Uv!uNIC~@S*)4s6r" x="98" y="323"><statement name="statements"><block
       type="attribute_selector" id="*b?/IeBFxdpoLt7a~quO"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="throw" attributetype="sign" attributeorder="ov"></mutation><field
       name="prefix"></field><field name="infix">threw</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="BEAS@GnF=3U$x4/5_`8n"><field
       name="variable_name">A</field></block></value><value name="second_element"><block
       type="variable" id="OD}H:m;/Zk1wrhZCM+Pi"><field name="variable_name">B</field></block></value></block></statement></block><block
-      type="query" id="~~#dH%nQ*}tcOz=aC_I8" x="102" y="307"><statement name="query"><block
-      type="attribute_selector" id="2PQ|z{/R+t8XL$?{eUC,"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="winner" attributetype="player" attributeorder="ov"></mutation><field
-      name="prefix">the winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      type="query" id="~~#dH%nQ*}tcOz=aC_I8" x="99" y="415"><statement name="query"><block
+      type="holds" id="{}:ll7dYjij;Mm5A*/tB"><statement name="statement"><block type="attribute_selector"
+      id="2PQ|z{/R+t8XL$?{eUC,"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="WAv,,rpLn6V/^?=DMKW/"><field
-      name="variable_name">A</field></block></value><value name="second_element"><block
-      type="variable" id="=f=IFPO?].3!SX.8NM}E"><field name="variable_name">B</field></block></value></block></statement></block></xml>
-    scasp_encoding: '#abducible player(B,A).
+      name="variable_name">Game</field></block></value><value name="second_element"><block
+      type="variable" id="=f=IFPO?].3!SX.8NM}E"><field name="variable_name">Winner</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#abducible game(A).
+
+
+      #abducible player(A).
+
+
+      #abducible player(B,A).
 
 
       #abducible throw(A,B).
 
 
-      ?- winner(A,B).'
+      ?- legally_holds(_,  winner(Game,Winner)).'
 - model: blawx.blawxtest
   pk: 9
   fields:
@@ -4761,11 +4803,12 @@
     ruledoc: 2
     test_name: who_wins
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
-      id="#`0/,K1M^tuc:WC7T/5_" x="59" y="258"><statement name="query"><block type="attribute_selector"
+      id="#`0/,K1M^tuc:WC7T/5_" x="59" y="258"><statement name="query"><block type="holds"
+      id="d=+fC)f#K;L62NQjaN.7"><statement name="statement"><block type="attribute_selector"
       id="5-kKG$Gar?/5:Y[4$*73"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
       attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
       winner of</field><field name="infix">is</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="c[Uc@Y93q1)O5FYop%5T"><field
       name="variable_name">Game</field></block></value><value name="second_element"><block
-      type="variable" id="XZhm|F*MHLuzg!~;91x2"><field name="variable_name">Player</field></block></value></block></statement></block></xml>
-    scasp_encoding: ?- winner(Game,Player).
+      type="variable" id="XZhm|F*MHLuzg!~;91x2"><field name="variable_name">Player</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: ?- legally_holds(_,  winner(Game,Player)).
