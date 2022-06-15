@@ -9,33 +9,22 @@
       That's it! Hopefully this Beginner's Guide has given you an idea of what Blawx is,
       how it is used, and why it might be useful in Rules as Code.
 
-      ## How is Blawx Different from Other Tools?
-
-      Compared to other Rules as Code tools, Blawx is very unique. Blawx uses a rule-based
-      programming language instead of a language based on functions, or objects. This,
-      and the fact that the structure of the code follows the structure of the law, reduces
-      the amount of mental effort required to turn laws into software.
-
-      This rule-based programming approach also give you capabilities that do not exist
-      in other tools. Blawx code is explainable by default, it
-      can be used to do hypothetical reasoning, to provide multiple justifications for the
-      same conclusion, and can explain the absence of an answer,
-      all without the need to add anything to your code.
-
-      But these rule-based programming languages are uncommon, and unfamiliar even to most
-      professional computer programmers. Blawx's design is therefore also
-      focused on being as approachable to new users as possible.
+      * Step 1 - put your legislative text into Blawx using a simple plain-text format
+      * Step 2 - encode your rules - as rules - in a user-friendly tool, in a structure that mirrors the law
+      * Step 3 - Use sophisticated reasoning capabilities to ensure your code - and your law - behaves as intended
+      * Step 4 - Generate explainable, legally compliant apps at the touch of a button
 
       ## What's Next?
 
-      If you would like to learn more about how Blawx is used, please review the rest of
-      the documentation provided with Blawx. It includes topic-specific pages on Blawx's
+      If you would like to learn more about Blawx, please review the rest of
+      the documentation. It includes topic-specific pages on Blawx's
       components and coding features, examples that you can review, and detailed information
-      about each of the Blawx used in the interface.
+      about each of the blocks used in the interface.
 
-      If you have any questions, you can write Jason Morris at jason@lexpedite.ca.
+      This guide was updated in June of 2022 to be up to date with version 1.3.11-alpha of Blawx.
 
-      If you are interested in running Blawx on your own machine, or contributing to the
-      development of Blawx, please head to [the GitHub repository](https://github.com/lexpedite/blawx).
+      If you have any questions, you can write Jason Morris at [jason@lexpedite.ca](mailto:jason@lexpedite.ca).
+
+      Blawx is open source software, available at [the GitHub repository](https://github.com/lexpedite/blawx).
 
 
