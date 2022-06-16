@@ -20,13 +20,13 @@
 
       The known false block is a statement that can be stacked with other statements.
 
-      The known false block accepts an external connection which must be a single statement.
+      The known false block accepts has an internal statement connection which must be a single statement.
 
       The known false block is one of two forms of negation in Blawx. The other is the not block.
 
       The not block and the known false block differ in that the known false block asserts that
-      something is false, while the not block asserts only that it is either false, or the truth
-      of the statement is impossible to prove.
+      something is false, while the not block asserts that it is either false, or the truth
+      of the statement is not known.
 
       ## Tips
 

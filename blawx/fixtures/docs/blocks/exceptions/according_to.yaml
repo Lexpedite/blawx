@@ -17,7 +17,7 @@
       was reached by a given section of the rules. This is used in order to allow the
       user to specify how to deal with defaults and exceptions, and do allow the user
       to see how individual sections of a law would have treated a fact scenario if not
-      for other sections that overrruled them.
+      for other sections that overruled them.
 
       ## Technical Details
       According to is a statement block, which can be stacked vertically with other statements.

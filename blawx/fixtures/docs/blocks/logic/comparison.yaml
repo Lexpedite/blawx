@@ -42,3 +42,5 @@
       If you want to know whether or not two variables have the same value, you can use
       the "is the same value as" comparison. If you want to know whether or not two variables
       refer to the same object, you need to use the object equivalence block.
+
+      Note that there is a different block, the date comparison block, for comparing dates.

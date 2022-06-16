@@ -19,7 +19,7 @@
       ## Technical Details
 
       The Holds block is a statement block which can be stacked with other statements. It accepts
-      an internal statement stack, which should be a single statement block, and is the conclusion
+      an internal statement stack, which should be a single statement block, which is the conclusion
       that is being sought.
 
       ## Tips

@@ -21,3 +21,6 @@
       a data type, which is usually only a new attribute block.
 
       ## Tips
+
+      The use of durations including year and month values is not recommended, as they tend to behave
+      in unpredictable ways, given that months and years are not of a consistent duration.

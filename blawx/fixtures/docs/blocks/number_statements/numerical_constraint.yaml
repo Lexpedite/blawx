@@ -39,4 +39,7 @@
 
       Through the numerical constrain block, Blawx allows you to express those sorts of rules, and get answers
       that are expressed as a range like "16 >= Age < 18".
+
+      There is no numerical constraint for "the same value as", because that constraint can
+      be expressed by just re-using the same variable name.
       

@@ -19,4 +19,15 @@
 
       ## Technical Details
 
+      The Date Add block is a statement block that can be stacked with other statements.
+
+      It accepts three inputs: a duration value, and two date values.
+
+      If the first variable is bound to a duration, and the second value is bound to a
+      date, the third variable will be bound to the date obtained by adding the duration
+      to the first date.  If all three are bound, it will check whether the relationship
+      holds.
+
+      To subtract a duration from a date, use a negative sign in the duration.
+
       ## Tips

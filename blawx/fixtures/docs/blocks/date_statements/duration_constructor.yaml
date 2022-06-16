@@ -18,4 +18,21 @@
 
       ## Technical Details
 
+      The Duration Constructor block is a value block that can be used anywhere a duration value block
+      can be used, and returns a duration value.
+
+      The Duration Constructor block has four inputs, which accept number values or variables.
+
+      While the duration constructor block will accept any numerical values, a duration value
+      will only be valid if:
+
+      * the sign value is either `1` (for into the future) or `-1` (for into the past)
+      * the years, months, and days are positive integers or zero
+
       ## Tips
+
+      If you are not using variables in your duration constructor, you are better off using the duration
+      value block, which will do more validation of your input to make sure it is a valid duration.
+
+      The use of durations including year and month values is not recommended, as they tend to behave
+      in unpredictable ways, given that months and years are not of a consistent duration.

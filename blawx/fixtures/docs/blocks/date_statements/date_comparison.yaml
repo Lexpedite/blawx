@@ -19,4 +19,9 @@
 
       ## Technical Details
 
+      The Date Comparison block is a statement block that can be stacked with other statements.
+
+      It accepts two inputs, both of which are expected to be dates or variables, and has a dropdown
+      field that indicates the type of comparison you want to do.
+
       ## Tips

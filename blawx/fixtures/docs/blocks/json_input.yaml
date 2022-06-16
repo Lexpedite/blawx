@@ -27,22 +27,33 @@
 
       There should be a maximum of one JSON input block per workspace.
 
-      Currently, the JSON input block uses an s(CASP)-specific format, not a Blawx-specific
-      format. The keys of the payload object are translated into predicates. The value of
-      each is a list of lists of parameters. Each outer list is converted into a single fact
-      statement, and each inner list is used as the list of parameters in that fact statement.
 
-      To generate the scasp statement `this(is,complicated).` you would use the following
-      JSON:
-      ```json
-      {
-        "this": [
-          [
-            "is", "complicated"
-          ]
-        ]
-      }
-      ```
+      ### Data Schema for Interview, Run Endpoints
+
+      The data schema expected by the JSON block is as follows:
+      The main JSON object is a dictionary, the keys of which are the names of categories in your code.
+      The values of those dictionary entries are themselves a dictionary with the keys
+      "members_known", "attributes_known", and "members".  `members_known` is either `true` or `false`,
+      and indicates if the list is known to be complete. If it is not, the interview endpoint will
+      cause Blawx to assume that the category might include additional objects.
+      "attributes_known" is a dictionary where the keys are the names of attributes, and the values
+      are either `true` or `false`. If the value is `false` the interview endpoint will
+      generate assumption statements for additional values for that attribute and any object.
+      "members" is a dictionary, where the keys are the names of objects in that category. The value
+      of an entry in members is a dictionary with keys representing the name of an attribute applicable
+      to that category. The values of those entries are a dictionary with keys "values_known", and "values". "values_known"
+      is `true` if there are no other possible values for that attribute in that object, and `false` otherwise.
+      The interview endpoint will generate partially-ground assumptions for additional values for that object
+      if the value is `false`. "values" is a list of the values that are known for that attribute and object.
+
+      "members_known" and "attributes_known" and "values_known" entries are ignored by the Run endpoint, which
+      is the only endpoint available from inside the Test Editor.
 
       ## Tips
 
+      Often, it can be easier to use the API endpoint itself, and type JSON directly into the web form available
+      there. The JSON block also provides no validation of your JSON. The error messages displayed due to mal-formed
+      JSON in the API endpoint pages are more helpful. The JSON block should therefore be used primarily just to
+      demonstrate a query run with known facts and no abducibility.
+
+      The JSON block is likely to be deprecated in future versions of Blawx.

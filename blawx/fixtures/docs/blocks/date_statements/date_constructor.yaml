@@ -18,4 +18,14 @@
 
       ## Technical Details
 
+      The date constructor block is a value block that returns a value of type date.  It can be
+      used anywhere that a date value block can be used.
+
+      It accepts three inputs, each of which must be a number or a variable.
+
       ## Tips
+
+      While the date value block will prevent you from entering invalid months (like 13)
+      and invalid days (like 40), the date constructor block cannot. If you are using
+      number value blocks in all three inputs of the date constructor block (you are not using
+      any variables), it is a better practice to use the date value block instead.
