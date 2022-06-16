@@ -3,374 +3,6 @@
   fields:
     title: The Blawx Code Editor Interface
     content: |
-      # Blawx User Interface Tour
-
-      ## Workspace Components
-      In Blawx
-      you encode laws by sticking puzzle pieces together on a table. The table is
-      called your “workspace”. The place you grab the puzzle pieces from is called
-      the “toolbox.”
-
-      In the picture below, the area on the left is the toolbox,
-      and the area on the right is the workspace.
-
-      ![workspace](/static/blawx/user_interface_v1.png
-      "Blawx Workspace")
-
-      The toolbox is made up of categories. When you click
-      on a category name, the blocks available in that category are displayed. If
-      the category has sub-categories, a black triangle appears before the name of
-      the category.
-
-      Usually, most of the blocks in a category will match the
-      highlight colour on the left side of the category.
-
-      At the top of the
-      workspace is a resizeable, transparent area that shows the results received
-      from the Blawx reasoner.
-
-      ![response area]({{ site.baseurl }}/img/results_area.png
-      "Results Area")
-
-      ## Blocks
-      The individual puzzle pieces that you
-      use to encode laws are called “Blocks”, or “Blawx”. Blocks can include information
-      that you can’t change, like the words “is an Object” in the Object Declaration
-      block shown below, and they can include information that you can change, like
-      the word “rock” in the image below.
-
-      ### Fields
-
-      ![text field]({{
-      site.baseurl }}/img/text_field.png "Text Field")
-
-      Information that you
-      can change in a block is called a field. The field above is a text field that
-      allows you to type information into it. There are also fields for numbers, which
-      is a text field that you can only type numbers into.
-
-      ![number field]({{
-      site.baseurl }}/img/number_field.png "Number Field")
-
-      And there are
-      dropdown fields, that allow you to choose one of several options. One example
-      is the true/false block.
-
-      ![dropdown field]({{ site.baseurl }}/img/dropdown.png
-      "Dropdown Field")
-
-      ### Connectors
-      There are two kinds of connectors
-      on the blocks in in Blawx (say that 5 times fast!): “insert” connectors, and
-      “and” connectors. Each has a positive and negative version.
-
-      The positive
-      “insert” connector looks like the sticky-outie part of a puzzle piece and sticks
-      out of the left side of the block.
-
-      ![positive insert connector]({{ site.baseurl
-      }}/img/positive_insert_connector.png "Positive Insert Connector")
-
-      Th
-      negative insert connector looks like a “hole” where the positive insert connector
-      would fit. Most of these locations show up as a missing puzzle piece inside
-      a larger block.
-
-      ![negative insert connector]({{ site.baseurl }}/img/negative_insert_connector.png
-      "Negative Insert Connector")
-
-      The size of the hole doesn’t matter, and
-      will expand to fit whatever block connects to it.
-
-      ### Add part for when
-      Connectors DO Fit
-
-      ### When Insert Connectors “Don’t Fit”
-      Blawx tries
-      to help make sure that you don’t stick things where they don’t belong. So as
-      an example, if you try to stick a number where Blawx is expecting a string,
-      the blocks won’t “fit properly.” Just like when you’re doing a jigsaw puzzle
-      and you’re trying to stick two pieces together that don’t belong together… it
-      just doesn’t quite work.
-
-      If you’re trying to insert a block and it “won’t
-      fit”, you are probably trying to insert a block that is of the wrong datatype.
-
-      Whenever
-      you use an insert connector, it has the same meaning as “filling in the blank”.
-      Most blocks will not work if any of their negative insert connectors are empty.
-      If there’s a blank, you need to fill it.
-
-      ### And Connectors
-      The “And”
-      connectors, are shown as a divot on the top of a block and a bump on the bottom
-      of a block.
-
-      Blocks with “and” connectors can be stacked with each other
-      vertically. When you stack two things vertically using the “and” connector,
-      that is treated as a statement that they both must be true. You
-      can stack
-      as many statements as you need in this way.
-
-      Some blocks have “internal”
-      and connectors, when they expect to contain other blocks. A block usually won’t
-      work properly if it has any internal "and" connectors that are left empty.
-
-      In
-      any stack of blocks, the bottom block will always have an external "and" connector
-      with nothing attached. That's fine.
-
-      ### Keeping Connected: Outer Blocks
-      For
-      your encoding to work, all of the blocks need to be connected to an outer block
-      that has no empty connectors. The outer blocks are facts, rules, constraints,
-      assumptions, and queries, and look like this:
-
-      ![outer blocks]({{ site.baseurl
-      }}/img/outer_blocks.png "Outer Blocks")
-
-      The Facts, Assumption, Constraint,
-      and Query blocks have only one internal And connector. The Rule query has two.
-      All of them must be connected to a stack of blocks to work properly. And all
-      blocks with connectors must be attached to (or attached to something that is
-      attached to) an outer block with no empty connectors.
-
-      So if you have
-      blocks hanging around with empty negative and connectors, that won’t work. But
-      if you put them inside an outer block, it will.
-
-      So you have well formed
-      code if there are only full outer blocks, and blocks with no empty connections
-      (except for the last "and" in a stack) in the workspace.
-
-      ## Navigating
-      the Blawx User Interface
-
-      ### Scrolling
-      The size of the workspace increases
-      as necessary for however many blocks you add to it. If you can’t see all the
-      blocks on the workspace, you can scroll around the workspace using the vertical
-      and horizontal scroll bars.
-
-      ![workspace]({{ site.baseurl }}/img/workspace.png
-      "Blawx Workspace")
-
-      You can also scroll the workspace by dragging any
-      empty part of the workspace.
-
-      ### Dragging Blocks
-      You drag blocks from
-      the toolbox to the workspace in order to add them to your code, and you drag
-      them around the workspace in order to connect them to one another.
-
-      Dragging
-      a block in a vertical stack will drag that block and any blocks that are connected
-      below it, but not blocks above it or blocks containing it.
-
-      Dragging a
-      block will drag blocks contained in it.
-
-      Because of the different ways
-      in which dragging behaves, it’s important to know which block is currently selected.
-      For that reason, the currently selected block is highlighted with an orange
-      boundary.
-
-      ![block highlighting]({{ site.baseurl }}/img/block_highlighting.png
-      "Block Highlighting")
-
-      ### Block Context Menu
-      If you right-click
-      on a block in the workspace you will get a context menu.
-
-      ![context menu]({{
-      site.baseurl }}/img/context_menu.png "Block Context Menu")
-
-      #### Duplicate
-      The
-      Duplicate menu option will make a copy of the block you have selected (and any
-      blocks that are contained in it, but not any blocks it is vertically stacked
-      with), and put it on the workspace.
-
-      #### Comments
-      Adding a comment
-      opens a bubble that you can type extra information into. That information has
-      no effect on the meaning of the blocks, it is just to allow you to add more
-      useful information to the workspace.
-
-      Comments are typically used by software
-      developers to explain what a piece of code is supposed to do, and why it is
-      built the way it is, so that if anyone else (or the same person, but after a
-      long period of time) needs to make adjustments later, they can get up to speed
-      more quickly.
-
-      That is a very good idea. When encoding legislation, until
-      we add more specific features for it, the comments are also a good place to
-      include information about the source for the rule.
-
-      When a block already
-      has a comment, the context menu will allow you to delete it instead. When a
-      block has a comment, that comment can be hidden or shown by clicking on the
-      blue question mark icon that appears on the top left of the block.
-
-      ![commment]({{
-      site.baseurl }}/img/comment.png "Comment")
-
-      #### Collapsing
-      Collapsing
-      a block reduces it to one line high, and makes the right side of the block look
-      “torn” to show that it is a collapsed block.
-
-      ![collapsed]({{ site.baseurl
-      }}/img/collapsed.png "Collapsed Block")
-
-      In a collapsed block the context
-      menu will allow you to expand it to its normal size again.
-
-      Collapsing
-      blocks can be very helpful when you are dealing with a lot of complicated outer
-      blocks at the same time.
-
-      Note that when a block is collapsed you cannot
-      see whether it has a comment.
-
-      #### Disabling
-      A disabled block will
-      change in colour to a cross-hatch pattern. Disabled blocks remain on the workspace,
-      but they do not mean anything. So it does not matter whether a disabled block
-      has unfilled connectors.
-
-      ![disabled]({{ site.baseurl }}/img/disabled.png
-      "Disabled Blocks")
-
-      Disabling a block disables that block and any blocks
-      it contains.
-
-      For a disabled block, the context menu will allow you to
-      enable it again.
-
-      #### Deleting
-      Deleting a block removes a block and
-      any blocks it contains from the workspace. If you delete a block in a vertical
-      stack, the blocks above and below will become vertically connected with each
-      other.
-
-      The context menu will tell you how many blocks you are about to
-      delete, as shown here:
-
-      ![context menu delete]({{ site.baseurl }}/img/context_menu_delete.png
-      "Context Menu Delete")
-
-      #### Block-Specific Help
-      If there is a help
-      page for the specific kind of block you are using, the Help item in the context
-      menu will take you to that help page. If there isn’t, it will be disabled.
-
-      The
-      help context menu is also the only item that is available when you right click
-      on a block in the toolbox.
-
-      ![context menu toolbox]({{ site.baseurl }}/img/context_menu_in_toolbox.png
-      "Context Menu Toolbox")
-
-      ### Workspace Context Menu
-      There is also
-      a context menu that you can access by right-clicking on an empty part of the
-      workspace.
-
-      ![workspace context menu]({{ site.baseurl }}/img/workspace_context_menu.png
-      "Workspace Context Menu")
-
-      #### Undo and Redo
-      If you make a mistake,
-      you can use the Undo and Redo commands in the workspace context menu to get
-      things back to how they were before the mistake.
-
-      #### Clean Up Blocks
-      Cleaning
-      up blocks will cause all the blocks in the workspace to be organized in a single
-      vertical column along the left side of the workspace. This can be useful if
-      your workspace has gotten out of control.
-
-      #### Collapse and Expand Blocks
-      Collapsing
-      and expanding blocks from the workspace context menu does it to all the blocks
-      in the workspace.
-
-      #### Delete All
-      Deleting blocks from the workspace
-      context menu will delete all the blocks in the workspace, and has the same effect
-      as using the Menu, Clear Workspace command.
-
-      ### Keyboard Shortcuts
-      `CTRL-C`
-      will copy the currently selected block and any blocks that would move with it
-      if you dragged it.
-
-      `CTRL-V` will pase the most recently copied blocks
-      slightly below and to the right of where it was copied (which may not be where
-      you are looking).
-
-      The `Delete` key will delete the currently selected
-      block and any blocks it contains.
-
-      `CTRL-Z` will undo the most recent
-      change to the workspace.
-
-      ### Trash Can
-      The trash can is located in
-      the bottom right of the workspace, no matter where you scroll.
-
-      ![trash
-      can]({{ site.baseurl }}/img/trash.png "Trash Can")
-
-
-      Dragging a block
-      to the trash can deletes it from the workspace.
-
-      Clicking on the trash
-      can will open the trash can and allow you to drag blocks that were deleted back
-      into the workspace.
-
-      ![open trash can]({{ site.baseurl }}/img/open_trash.png
-      "Open Trash Can")
-
-      ### The Command Menu
-      Commands that you can run
-      on an entire workspace are located at the top of the page.
-
-      ![menu]({{
-      site.baseurl }}/img/menu.png "Command Menu")
-
-      #### Clear Workspace
-      The
-      Clear Workspace command will delete all of the blocks in the current workspace.
-
-      ####
-      Import Workspace
-      The Import Workspace command will let you choose a local
-      .blawx file to open in the current workspace. The contents of the uploaded file
-      will overwrite the contents of the workspace.
-
-      #### Export Workspace
-      The
-      Export Workspace command will allow you to save the current workspace to a local
-      .blawx file, so that it can be shared with someone using a different Blawx server.
-
-      ####
-      Run Blawx Code
-      The Run Blawx Code command sends the current workspace to
-      the Blawx reasoner and displays the results in the output area. Note that the
-      Rune Blawx Code command also saves the current workspace to the Blawx server.
-
-      ####
-      Help
-      The Help command brings you to the Blawx.com documentation, which...
-      is what you're reading right now.
-      #### Save and Close
-      The Save and
-      Close command saves the current workspace to the Blawx server, and returns to
-      the Workspace view.
-      
       # The Blawx Code Editor Interface
 
       This page is designed to give you a tour of the Blawx Code Editor, which is
@@ -379,10 +11,8 @@
       ## Main Elements
 
       The main elements of the Code Editor interface are the button bar at the top,
-      the navigation pane on the left, the coding workspace in the middle, and the
+      the navigation pane on the left, the code editor in the middle, and the
       output pane on the right.
-
-      The button bar, navigation pane, and output pane are straightforward.
 
       ### Button Bar
       The Code Editor button bar consists of four buttons:
@@ -391,8 +21,8 @@
       * Save - This will save the currently selected section's code to the Blawx server
       * Exit - This will return you to the Rule screen for the current Rule.
 
-      If you are using the Test interface, there are three additional buttons:
-      * Run - Runs the test in the test interface, opens up the output pane and displays the
+      If you are using the Test Editor, there are three additional buttons:
+      * Run - Runs the test in the test editor, opens up the output pane and displays the
         results.
       * Bot - Starts BlawxBot using the current test.
       * Delete - Deletes the current test from the Rule, and returns you to the Rule screen.
@@ -416,12 +46,12 @@
       The "Problems" tab displays raw output from the Blawx reasoner, and it primarily used for
       troubleshooting.
 
-      ### Coding Editor
+      ### Code Editor
 
-      The Blawx development editor consists of two main sections: the toolbox, and the workspace.
+      The Blawx code editor consists of two main sections: the toolbox, and the workspace.
 
       #### Toolbox
-      The toolbox appears on the left of the development environment, and shows a list of
+      The toolbox appears on the left of the code editor, and shows a list of
       "drawers". Each drawer can be opened to show its contents, which is a set of blocks that
       can be used by dragging them into the workspace.
 
@@ -429,8 +59,8 @@
       at the left side of the drawer name. When you click on the outer drawer, the inner drawers
       are displayed in the toolbox. When you click on an inner drawer, its contents are shown.
 
-      All coding is done by dragging blocks from the drawers of the toolbox, and placing them
-      on the workspace.
+      All coding is done by dragging blocks from the drawers of the toolbox, placing them
+      on the workspace, configuring their fields, and connecting them to other blocks.
 
       #### Workspace
       The workspace is a canvas on which you can arrange and modify blocks in order to write
@@ -443,84 +73,92 @@
 
       Blocks remain in the trash bin so that if they are deleted accidentally they can be recovered.
 
-      ##### Using the Workspace
-
-      This section is designed to help you understand how to create, arrange, edit, and
-      delete blocks inside the Code Editor workspace.
-
-      ###### Using Blocks
+      ##### Using Blocks
 
       Blocks in the Code Editor can have connectors, which is how blocks are combined, and
       they can have fields, which is how a single block is configured. There are three different
       types of block fields used in Blawx: text, number, and drop-down.
 
-      To use a block, you drag it from its drawer to the workspace, set the values in its
-      fields as required, and then connect it to other blocks as required.
+      Text fields and number fields are typed into. Drop-down fields allow you to select an option from a list.
 
-      ###### Vertical Connectors
-      Blocks in Blawx can have vertical connectors on the top or bottom of the block.
+      To use a block, you drag it from its drawer to the workspace, connect it to other blocks in your workspace,
+      and set the values in its fields as desired. All coding is done using blocks in this way.
 
-      Blocks can also have internal vertical connectors, to which other blocks can connect.
+      ##### Vertical Connectors
+      Blocks in Blawx can have outside vertical connectors on the top or bottom of the block.
 
-      A block with no vertical connectors is called an "outer" block, because when you
+      Blocks can also have inside vertical connectors, to make it so that one block can contain a stack
+      of other blocks inside it.
+
+      A block with no outside vertical connectors is called an "outer" block, because when you
       are writing your code, nothing should appear to be connected to its outside.
 
-      A block with vertical connectors is called a "statement" block. Statement blocks can
-      be stacked vertically, and a stack or a single block can be connected to an internal
+      A block with outside vertical connectors is called a "statement" block. Statement blocks can
+      usually be stacked vertically, and a stack or a single block can be connected to an internal
       vertical connector.
 
       Usually, in Blawx, when blocks are connected vertically in a stack, that means that
       the statements are being combined with an "and". So if you stack block A on top of block B,
       together that means "A and B".
 
-      The exceptions to this rule are attribute and category customizations, which affect only
-      the block immediately above them, and fact blocks, in which the stack of statements are
-      all independently true.
-
-      All internal (negative) vertical connectors are mandatory. If you don't have something in them, you
+      All inside vertical connectors are mandatory. If you don't have something in them, you
       have done something wrong. All top vertical connectors are also mandatory. If a statement is
       not connected at the top to something else, you have done something wrong. Only bottom
       vertical connectors are not mandatory.
 
-      ###### Input Connectors
+      ##### Input Connectors
 
       The other kind of connector is an input connector. This is the puzzle-piece shaped
-      connector. A negative input connector is a "hole" where an input piece can be placed.
-      A block with a positive input connector can be placed in those holes.
+      connector. A internal space where a block with an input connector can be added is called an "input".
+      A block with an input connector on its left side can be placed in those input holes.
 
-      Negative input connectors may expect certain kinds of inputs. For example, the category
-      attribute block has a negative input connector that requires a category selector. If you
+      Inputs may expect certain kinds of information. For example, the category
+      attribute block has an input that requires a category selector. If you
       try to use a block that is not a category selector, it will not "fit".
 
-      Negative input connectors must be filled. If you don't have something connected to them,
+      Inputs must be filled. If you don't have something connected to them,
       you have done something wrong.
 
-      ###### Dragging Blocks With the Mouse
+      Inputs grow to fit whatever is placed inside them, and blocks
+      with an input connector can also have inputs inside them, forcing the outer
+      blocks to grow more.
+
+      ##### Dragging Blocks With the Mouse
 
       If you select a block in the interface, and drag it to move it, you will move:
       
       * the block that you clicked on
       * any blocks vertically stacked below that block
-      * any blocks contained in that block
+      * any blocks contained in that block (inside inputs or inside vertical connectors)
 
-      ###### Deleting Blocks
+      ![Drag Stack](/static/blawx/docs/images/drag_stack.gif)
 
-      If you delete a selected block by dragging it, you will delete all the blocks
+      ##### Deleting Blocks
+
+      If you delete a selected block by dragging it to the trash, you will delete all the blocks
       that were moved. If you delete a selected block by using the keyboard shortcut or
       context menu, only the selected block and any blocks it contains will be deleted.
 
       If you only want to delete only one block from the middle of stack, use the keyboard
       shortcuts or the context menus.
 
-      ###### Keyboard Shortcuts
+      If you delete a single block from the middle of a stack, the blocks below it will be
+      moved up into its place, if that is allowed. If it is not allowed, the bottom of the stack
+      will disconnect, and your code will be incorrect.
+
+      ##### Keyboard Shortcuts
 
       * CTRL-C - will copy the currently selected block and any blocks it contains
-      * CTRL-V - will pase the most recently copied block
+      * CTRL-V - will paste the most recently copied block
       * CTRL-Z - will undo the last change to the workspace
       * CTRL-Y - will redo the last undone change to the workspace
       * Delete - will delete the currently selected block and any blocks it contains
 
-      ###### Context Menus
+      Note that the copy and paste commands will work between sections of the same Project,
+      but they will not work between the code editor and the test editor, or between different
+      test editors.
+
+      ##### Context Menus
 
       Right clicking on the workspace will give you a context menu with these options:
       
@@ -533,9 +171,18 @@
 
       Right-clicking on an individual block will give you a context menu with these options:
       
-      * Duplication - copies and pastes the selected block and any blocks it contains.
+      * Duplicate - copies and pastes the selected block and any blocks it contains.
       * Add Comment - allows you to add a text comment to the block
       * Collapse/Expand -  minimizes the appearance of the block, or expands the block out to its normal size
       * Disable Block - marks the block as disabled. Disabled blocks are treated as though they are not in the workspace.
       * Delete X Blocks - deletes the selected block and any blocks it contains
       * Help - opens the Blawx documentation page for the current block type.
+
+      ##### Comments
+
+      Adding comments to your blocks is a very good way of documenting your thinking in how you decided
+      to encode the rules. Note that comments which are created on outer blocks (Fact, Rule, Question, etc.),
+      will also be visible in the s(CASP) code generated by the workspace. Comments which are created on inner
+      blocks do not generate comments in the generated s(CASP) code.
+
+      This is only significant if you plan to share your s(CASP) code outside of Blawx.
