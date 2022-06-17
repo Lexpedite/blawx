@@ -140,7 +140,7 @@ def generate_tree(node,indent=0):
             html += generate_selector(node.tag.replace(NS,""),node_name,initial_text,True)
             # Generate the sub-parts.
             for child in children:
-                if child.tag not in [NS + "num", NS + "heading", NS + "content", NS + "subheading", NS + 'intro',NS + 'wrapUp']:
+                if child.tag not in [NS + "num", NS + "heading", NS + "content", NS + "subheading", NS + 'intro',NS + 'wrapup']:
                     html += generate_tree(child)
             # If there is a wrapup tag, add it to the subparts as a lawtext.
             if NS + "wrapup" in subtags:
