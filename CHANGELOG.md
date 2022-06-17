@@ -7,6 +7,12 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+
+## [v1.3.12-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.11-alpha) 2022-06-17
+
+### Fixed
+* Legal texts with sandwich sections caused the code editor to crash. ([Issue #258](https://github.com/Lexpedite/blawx/issues/258))
+
 ## [v1.3.11-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.11-alpha) 2022-06-08
 
 Milestone: Automated Interviews
