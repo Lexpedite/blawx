@@ -1,70 +1,40 @@
 - model: blawx.docpage
   pk: features/facts_assumptions
   fields:
-    title: Incomplete
+    title: Facts and Assumptions
     content: |
-      # Incomplete
-
-      The Blawx documentation is a work in progress, and
-      we are currently working on getting it up to speed with version 1.0.0-alpha of
-      the reasoner and interface.
-
-      The page you are seeking has not been completed
-      yet. Thanks for your patience.
+      # Facts and Assumptions
 
       ## Facts
       A “Fact” in
       Blawx represents a thing that is known with certainty. If you have a fact, you
       need to put it in a Fact block, which looks like this:
 
-      ![fact]({{ site.baseurl
-      }}/img/fact.png)
+      ![fact](/static/blawx/docs/images/blocks/fact.png)
 
-      So for example, let’s say we have some code that represents
-      the idea that Socrates is a human being. That would be placed in a Fact block.
+      Generally speaking, most of the code that you use to create categories, to create
+      attributes, and to create objects, will be included in a fact block.
 
-      ![socrates_human]({{
-      site.baseurl }}/img/socrates_human.png)
+      Fact blocks are also used in tests to set out the fact scenario for that test, if any.
 
-      As you will see in the documentation
-      around Categories, you may also make statements about Categories of objects,
-      like saying “A dog is an animal.” These are also treated as facts because they
-      are a thing that is known with certainty.
+      Generally speaking, it does not make sense to use variables other than "any" in a fact
+      block. This is because facts are interpreted by Blawx as rules with the condition
+      "always". Imagine, for example, that you made the statement that the variable X is a dog in a fact block,
+      like this:
 
-      A fact block can hold as many
-      unrelated facts as you would like. And you can have as many different fact blocks
-      in your workspace as is useful.
+      ![Bad Fact](/static/blawx/docs/images/bad_fact.png)
 
-      ![socrates and dog]({{ site.baseurl }}/img/socrates_human_dog_animal.png)
-
-      It
-      can be helpful to create separate Fact blocks for pieces of information that
+      That will get interpreted by Blawx as "everything is a dog". That's probably not what
+      you meant.  The only thing that a variable can mean, inside a fact block, is "everything".
+      There are a few cases where it might be reasonable to make that kind of statement, but
+      for the clarity of your code it makes to include those statements as rules, so that it is
+      obvious that it is an inference that applies to anything.
+      
+      It can be helpful to create separate Fact blocks for pieces of information that
       you will be working with at the same time, so that when you are not using them
-      you can Collapse the fact block and leave your workspace a little easier to
-      read. See the documentation on the Blawx User Interface for details on collapsing
-      and expanding blocks.
+      you can Collapse and Disable the fact block and all its contents all at once.
+      See the [documentation on the Blawx User Interface](/docs/components/interface) for
+      details on collapsing and disabling blocks.
 
       If you ask Blawx whether or not something is true
       that you have stated as a Fact, the answer is always yes, without further explanation.
-      Facts explain themselves. In fact, you can imagine a Blawx explanation as saying
-      "because you told me so as a fact", after any line of an explanation that
-      doesn't have further explanations.
-
-      Typically facts are used at two different
-      stages of the encoding process. First, they are used to set out the terms of
-      the conversation (e.g. “Human is a Category”, “Mortal is a Category”). Then
-      fact blocks take a back seat while rules are written using those terms (e.g.
-      “We know a thing is a mortal if we know that thing is a human.”). Then we come
-      back to using fact blocks to describe a specific fact scenario that we want
-      to ask questions about (e.g. “Socrates is a Human”). Then we use queries to
-      ask questions (e.g. “Is Socrates a Mortal?”).
-
-      It can be helpful to separate
-      facts that are always true in the ruleset from facts that are only true in the
-      specific scenario being tested, and multiple fact blocks can be used for that
-      purpose.
-
-      Note that when you use your encoding over the Web API, this
-      second type of fact, the case-specific kind, is provided by the user in the
-      request that is sent to Blawx. Your deployed code should not have testing facts
-      inside it, because the user's data will add to them, not replace them.

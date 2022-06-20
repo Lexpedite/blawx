@@ -1,63 +1,57 @@
 - model: blawx.docpage
   pk: features/questions
   fields:
-    title: Incomplete
+    title: Questions
     content: |
-      # Incomplete
+      # Questions
 
-      The Blawx documentation is a work in progress, and
-      we are currently working on getting it up to speed with version 1.0.0-alpha of
-      the reasoner and interface.
+      Once you have encoded rules and described relevant facts in a test,
+      you will want to ask a question. That is what the question block is for.
 
-      The page you are seeking has not been completed
-      yet. Thanks for your patience.
+      A question looks like this:
 
-      ## Questions
-      Once
-      you have encoded rules and described relevant facts, you will want to ask a
-      question. That is what the question block is for.
+      ![Question Block](/static/blawx/docs/images/blocks/question.png)
 
-      There are two kinds
-      of questions… yes/no questions, and search questions.
+      The question block must be provided with a single statement that is your query.
+
+      There are two kinds of questions... yes/no questions, and search questions.
 
       ### Yes/No Questions
-      A
-      question that does not include variables is a “yes/no” question. An example
+      A question that does not include variables is a “yes/no” question. An example
       is “Is Socrates Mortal?”
 
-      ![is socrates mortal]({{ site.baseurl }}/img/is_socrates_mortal.png)
+      ![is socrates mortal](/static/blawx/docs/images/is_socrates_mortal.png)
 
-      This
-      question will be answered by the Blawx reasoner with either the bare statement
-      "socrates is mortal", or “No”.
+      This question will be answered by the Blawx reasoner with either an Answer with
+      an explanation, and no bindings, or as the answer "no models".
 
-      ### Search Question
+      In the context of a yes/no question, the response "no models" means "no". There can
+      be only one answer, and the existence of an answer (with any number of explanations)
+      means "yes".
+
+      ### Search Questions
       A question that
-      includes variables is a “search” question. Blawx attempts to find any objects
-      that it can place in all the variables used so that the all of the statements
-      will be true. If it can’t find any, it will respond “No.” If it can find any
-      examples, it will provide each combination of objects that made the statements
-      true, and each reason for each combination of objects.
+      includes named variables is a “search” question. Blawx attempts to find any objects
+      or values with which it can replace all the variables used in the question
+      so that the statements in the question will be true.
+      If it can’t find any, it will respond “no models”. If it can find any
+      values that fit, it will provide each combination as an answer, tell you what the bindings
+      were in that answer, and provide all the explanations for each answer.
 
       So the question
       “is Socrates Mortal” above, which is a “yes or no” question, can be changed
-      into a search by replacing “Socrates” with a variable. We will name the variable
-      “Who”, because it reads better, but the name is unimportant, as long as you
-      use the same variable name everywhere that it is important the rule is referring
-      to the same object.
+      into a search by replacing “Socrates” with a variable.
 
-      ![who is morta]({{ site.baseurl }}/img/who_is_mortal.png)
+      ![who is mortal](/static/blawx/docs/images/who_is_mortal.png)
 
-      If
-      you ask this question of the Reasoner, the answer back will be:
+      ### Multiple Statements in One Question
 
-      ```
-      socrates
-      is a mortal, because
-      socrates is a person
-      ```
+      If you want to ask whether several things are true at the same time, that can be done
+      by creating a new rule to make a new conclusion when those things are all true.
 
-      Remember that a
-      question requires all of its blocks connected by the And connectors to be true
-      at the same time in order to find any answers. So make sure you are only asking
-      one question at a time.
+      ### Multiple Questions in One Test
+
+      If you create a test with more than one question, only one question will be used,
+      and it can be difficult to predict which. It is best practice to have only one
+      active question block in your tests.
+

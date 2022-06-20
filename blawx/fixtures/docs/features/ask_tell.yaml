@@ -5,44 +5,26 @@
     content: |
       ## Understanding the Difference between Asking and Telling
 
-      Declaration blocks for objects and categories
-      have the usual meaning when used in a fact or the conclusions of a Rule block.
-      But they have a different meaning when they are included in the conditions of
-      a Rule block, or in a query.
+      You can think of Blawx has having two different categories of statement connectors:
+      asking, and telling.
 
-      A declaration causes the object, category,
-      or attribute to exist when used inside a fact block or the conclusions of a
-      rule. Inside a condition block, they test whether or not those declarations
-      have been made somewhere else.
+      A rule "asks" whether the conditions are true and "tells" that the conclusion is true.
+      A question "asks." A fact "tells".
 
-      So this rule says “we know fruit is a
-      Category if plants are living things.” This rule has the effect of creating
-      a category when its conditions are met.
+      What a block means can change slightly depending on whether you are using it in an
+      "ask", or a "tell", but the differences are usually pretty intuitive.
 
-      ![conclude fruit]({{ site.baseurl
-      }}/img/conclude_fruit.png)
+      What might be less intuitive is that the blocks that you use to create objects and
+      categories can also be used inside an "ask." So a block reading "bob is a person",
+      when used in a "tell", creates the fact that bob is a person. The same block, used
+      in an "ask", checks to see whether that fact has been created somewhere else.
 
-      However, in the next rule, the same Category
-      declaration block “Fruit is a Category” does not create the category fruit,
-      but instead asks whether the category has been created.
+      Many blocks that are typically only used inside a fact can also be used inside the
+      conclusion of a rule. For example, a rule might conclude that "bob is a person",
+      creating that object only when the conditions of the rule are true.
 
-      ![query fruit]({{
-      site.baseurl }}/img/query_fruit.png)
+      ### "Known" Objects and Categories
 
-      If the category Fruit has not been
-      defined anywhere (in a fact, or the conclusion of a Rule that had true conditions),
-      then the answer to the query “is Fruit a category” will be no.
-
-      This can
-      be confusing, because Blawx still creates a “Known Category”, “Known Object”
-      or “Known Attribute” block in the toolbox regardless of where the relevant block
-      is used. So you may have a Category selector block called “Fruit” while *in
-      the code* the category fruit does not exist.
-
-      So it is important to remember
-      the effect of declaration blocks in different locations:
-
-      > **In Facts
-      and Rule Conclusions, a new object or new category block or new attribute block
-      means “this thing exists”. In Rules Conditions and Queries, a declaration block
-      means “does this thing exist?”**
+      Note that right now Blawx cannot differentiate between declarations used in an
+      "ask", and declarations used in a "tell". So if you use "bob is a person" in the
+      conditions of a rule, Blawx will nonetheless include "bob" as a "known object".
