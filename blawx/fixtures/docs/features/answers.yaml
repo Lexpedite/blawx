@@ -1,13 +1,110 @@
 - model: blawx.docpage
   pk: features/answers
   fields:
-    title: Incomplete
+    title: Answers and Explanations
     content: |
-      # Incomplete
+      # Answers and Explanations
 
-      The Blawx documentation is a work in progress, and
-      we are currently working on getting it up to speed with version 1.0.0-alpha of
-      the reasoner and interface.
+      When you ask a question in Blawx, you are asking Blawx to find one or more minimal
+      combination of statements in which a statement matching your question is true.
 
-      The page you are seeking has not been completed
-      yet. Thanks for your patience.
+      It is as though you are saying to Blawx "how might this statement be true?", where "this statement"
+      can be either specific (a yes/no question with no variables) or generic (a search question with variables).
+
+      For example, if you ask "[Who] is in the category mortal", where [Who] is a variable,
+      you are asking Blawx to search for any combination of truth statements that are
+      minimally sufficient to support one another, and include a version of the question
+      where "Who" has been replaced with a value from the database and is true.
+
+      One answer set might be "socrates is in the category mortal", and "socrates is in the category human".
+      Those two statements together are the minimal valid
+      set that includes a true version of the target statement.
+
+      Blawx then displays those answer sets (or models) to you as a set of answers and explanations.
+
+      ### Answers
+
+      First, Blawx looks at the values that were replaced for the variables in your question (called
+      the bindings), if any, and it groups the answer sets by those bindings.  These
+      groups are called "answers", are numbered, and if there are bindings, the bindings are displayed.
+      
+      Note that if your
+      question is a yes/no question, there are no bindings, and so there can only ever by one answer,
+      which represents "yes".
+
+      ### Explanations
+
+      For each answer, Blawx takes each answer set that had those bindings, and displays it as
+      an explanation for that answer. The explanations are reformatted into a tree, so that statements
+      that were used to derive other statements are nested inside one another, and the statements
+      are translated into natural language, to make them readable.
+
+      In the above example, the explanation might read "socrates is mortal, because socrates is human".
+
+      ##  Multiple Answers
+
+      If there is more than one answer provided, that means there is more than one set of values
+      that can be used to make the question statement true. For example, if you ask for children
+      of morticia, you will get two answers, one in which the value of "child" is "wednesday",
+      and another in which the value of "child" is "pugsley".
+
+      ## No Models
+
+      If Blawx is unable to find a set of statements that are consistent with your rules and
+      include the target question statement, Blawx will answer "no models". In a yes/no question,
+      this can be understand to mean that the answer is "no". In a search question, "no models"
+      can be understood to mean "none".
+
+      ## Multiple Explanations
+
+      It is possible for your rules to have more than one way of deriving the same bindings.
+      If that is true, each of the different ways of reaching the same conclusion will appear as
+      different explanations for the same answer.
+
+      This, in combination with hypothetical reasoning, is very helpful when you are encoding
+      your legislation. You can have Blawx generate all the hypothetical scenarios in which a legal
+      conclusion might hold, according to your code. If any of those explanations do not make sense,
+      that may indicate that you have made a mistake in your code.
+
+      ## Minimal Models
+
+      We mentioned that the sets returned by Blawx are "minimal". To be more precise, that means
+      that Blawx does not return any information inside an explanation that is not necessary for
+      that explanation to hold. Anything else that can be said that might also be true without
+      contradicting any of the statements in the explanation could also be true, and that explanation
+      would still hold for that reason.
+
+      ## Asking the Opposite Question
+
+      If you ask Blawx "how might it be true that someone is mortal", it may give you an answer.
+      If you then ask Blawx "how might it not be true that someone is mortal", it may give you
+      a different answer, and perhaps about the same person. Why is that? How can both "yes" and
+      "no" be valid answers at the same time?
+
+      They aren't, because each explanation that Blawx generates is a different possible world.
+
+      Blawx's reasoning deals with uncertainty. It is possible to ask Blawx to simply assume
+      that something is either true, or not, either in your code, or in your tests. If those
+      sorts of assumptions are available, Blawx might very easily find you valid
+      answers and explanations for two opposite questions.
+
+      This means that you have to be careful to consider whether the answer to your question is
+      really available by asking Blawx one question, or whether you need to ask that question
+      and its opposite.
+
+      Consider a situation in which you want to know if age is ever relevant to eligibility for
+      a benefit. You might ask "under what circumstances is a person eligible for this benefit",
+      and discover that nowhere in any of the explanations is age mentioned. But that doesn't
+      actually answer your question. You would also need to ask "under what circumstances is a
+      person *not* eligible for this benefit", and see whether age is mentioned in any of those.
+
+      It is possible that age is a factor that can exclude you, but cannot include you. So you
+      would not really be getting the answer to your question unless you ran both queries.
+
+      
+
+
+
+
+
+      
