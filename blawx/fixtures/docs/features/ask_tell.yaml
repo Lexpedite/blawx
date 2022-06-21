@@ -1,0 +1,30 @@
+- model: blawx.docpage
+  pk: features/ask_tell
+  fields:
+    title: Asking and Telling
+    content: |
+      ## Understanding the Difference between Asking and Telling
+
+      You can think of Blawx has having two different categories of statement connectors:
+      asking, and telling.
+
+      A rule "asks" whether the conditions are true and "tells" that the conclusion is true.
+      A question "asks." A fact "tells".
+
+      What a block means can change slightly depending on whether you are using it in an
+      "ask", or a "tell", but the differences are usually pretty intuitive.
+
+      What might be less intuitive is that the blocks that you use to create objects and
+      categories can also be used inside an "ask." So a block reading "bob is a person",
+      when used in a "tell", creates the fact that bob is a person. The same block, used
+      in an "ask", checks to see whether that fact has been created somewhere else.
+
+      Many blocks that are typically only used inside a fact can also be used inside the
+      conclusion of a rule. For example, a rule might conclude that "bob is a person",
+      creating that object only when the conditions of the rule are true.
+
+      ### "Known" Objects and Categories
+
+      Note that right now Blawx cannot differentiate between declarations used in an
+      "ask", and declarations used in a "tell". So if you use "bob is a person" in the
+      conditions of a rule, Blawx will nonetheless include "bob" as a "known object".

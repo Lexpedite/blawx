@@ -1,0 +1,29 @@
+- model: blawx.docpage
+  pk: blocks/holds
+  fields:
+    title: Holds Block
+    content: |
+      # Holds Block
+
+      ![Holds Block](/static/blawx/docs/images/blocks/holds.png)
+
+      ## Where Is It?
+
+      The Holds block is located in the exceptions drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Holds block is used to query whether a conclusion was reached according to
+      any section of the rules, and that conclusion was not overruled.
+
+      ## Technical Details
+
+      The Holds block is a statement block which can be stacked with other statements. It accepts
+      an internal statement stack, which should be a single statement block, which is the conclusion
+      that is being sought.
+
+      ## Tips
+
+      Even if you are not using exceptions, the combination of "According To" and Holds blocks
+      can be used to insert information about the source of your rules into your natural
+      language explanations.

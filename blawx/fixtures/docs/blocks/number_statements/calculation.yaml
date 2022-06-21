@@ -32,5 +32,7 @@
 
       Calculation blocks are similar to variable assignment blocks, except that the value assigned
       is always a number. If you want to assign a specific number value to a variable, and not
-      the result of a calculation, you can use the variable assignment block instead.
+      the result of a calculation, you can use the variable assignment block instead. Also,
+      if you want to assign the value of one variable that is bound to a number to another variable,
+      you must use the variable assignment block, and not the calculation block.
 

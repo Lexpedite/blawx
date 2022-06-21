@@ -1,0 +1,12 @@
+- model: blawx.docpage
+  pk: examples/bird
+  fields:
+    title: Bird Act
+    content: |
+      # Bird Act
+
+      The Bird Act example included with Blawx is [available here](/6/) (assuming it hasn't been
+      deleted from your system).
+
+      It is used to demonstrate the use of defaults and exceptions, and references to source
+      legislation in explanations.

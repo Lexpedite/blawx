@@ -1,0 +1,33 @@
+- model: blawx.docpage
+  pk: blocks/days_between
+  fields:
+    title: Days Between Block
+    content: |
+      # Days Between Block
+
+      ![Days Between Block](/static/blawx/docs/images/blocks/days_between.png)
+
+      ## Where Is It?
+
+      The Days Between block is located in the data statements drawer of the Blawx toolbox,
+      in the date sub-drawer.
+
+      ## What Does It Do?
+
+      The Days Between block is used to generate a number value that represents the number
+      of days that passed between two dates.
+
+      ## Technical Details
+
+      The days between block is a statement block, that can be stacked with other statement
+      blocks.
+
+      It accepts three inputs, the first two of which must be dates or variables. The third
+      input must be a number or an input.  If the first two inputs are bound, the variable
+      in the third input will be bound to a number indicating the number of calendar days
+      that pass between the two dates.
+
+      ## Tips
+
+      The starting date is not counted, but the ending date is. So the number of days
+      between today and tomorrow is always 1.

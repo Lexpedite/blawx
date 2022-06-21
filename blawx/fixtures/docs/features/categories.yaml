@@ -1,0 +1,301 @@
+- model: blawx.docpage
+  pk: features/categories
+  fields:
+    title: Categories, Objects, and Attributes
+    content: |
+      # Categories, Objects, and Attributes
+
+      Categories, Objects, and
+      Attributes are how Blawx organizes what it knows about the world.
+
+      A Category
+      is a type of object. For example, "Car."
+
+      A Category has Attributes,
+      which are names for things that you can know about things in that Category.
+      Attributes also describe the type of data that can go in that attribute. For
+      example, "a car has a top speed, which is a number."
+
+      An Object is a specific
+      thing in the world you want to model. An object can have
+      any number of categories.
+      An Object has the same attributes as all of the categories it belongs to, which
+      hold that information about the object. For example, "my car's make is Ford,
+      and my car's model is Mustang."
+
+      The information that you put into
+      an object's attribute has to be of
+      the correct type. You can't put a number
+      if the attribute is supposed to hold a true or false value, and vice-versa.
+
+      An easy way
+      to think of a Category is as a description of a blank form. The form might have
+      a name, like “Application for a Permit”. That is like the Category name. A form
+      will also have fields that can be filled in, like “Applicant’s Name". Those are
+      like the category’s attributes.
+
+      When you create and fill out an actual
+      form of that type, that is like creating an Object. The information that gets
+      put into the blanks on the form are like the values that get put into the attributes
+      of an object. Some fields on the form are for checkmarks, others numbers,
+      and others dates. Those are like the types of the category attributes.
+
+      An
+      attribute can hold either a basic data type, or objects in a category.
+
+      The
+      basic data types are numbers, true or false values, dates, and durations.
+
+      Not only can you use your Categories as a type, but you
+      can use your category
+      as the type of an attribute inside itself!
+
+      For example, you can say that a Person has a friend, which is a Person.
+
+      ![person friend](/static/blawx/docs/images/person_friend.png)
+
+      ##Categories
+
+      ### Creating Categories
+      You
+      create a category by putting a category declaration block in a fact block. A
+      category declaration block can be found under the “Categories” drawer in the
+      Toolbox.
+
+      ![Person is Category](/static/blawx/docs/images/person_is_category.png)
+
+      When
+      you drag a category declaration block onto the workspace and click "Save", a corresponding category
+      block is added under the “known categories” drawer of the toolbox. This block
+      is used in blanks that require or allow a Category as a value.
+
+      ![known category person](/static/blawx/docs/images/known_category_person.png)
+
+      Note
+      that if you have two category declarations with the same name defined, Blawx
+      will create two different known category blocks with the same text, using either
+      of them has the same effect. So it is best practice not to have duplicates in
+      category names in order to avoid confusion.
+
+      Category names should not
+      have spaces in them, and must start with a lowercase letter. Blawx will not stop you from creating
+      a category with a space in its name, but they will not work properly.
+
+      ### Adding Attributes to a Category
+      Once you have declared a Category, you can use an
+      category attribute block to give it one or more attributes. The category attribute
+      block can be found in the “Categories” drawer of the toolbox, and looks like
+      this:
+
+      ![category attribute block](/static/blawx/docs/images/blocks/category_attributes.png)
+
+      To
+      complete a category attribute block, you must provide the category that you
+      are defining attributes for, and add new attribute blocks.
+
+      For
+      example, to say that “a person has an age and a best friend” you might set out
+      an attribute declaration block like this:
+
+      ![person ontology](/static/blawx/docs/images/person_ontology.png)
+
+      Remember, all new category, category attribute, and new attribute blocks need to
+      appear inside a Fact block to work properly.
+
+      The name of an attribute must start with a lowercase letter, must not have spaces,
+      and must be unique across all categories.
+
+      ### Attribute Customization
+
+      When you create an attribute using the above
+      blocks, attribute
+      selector blocks will be created that looks like this:
+
+      ![default
+      attribute selector](/static/blawx/docs/images/default_attribute_selector.png)
+
+      In explanations, by default, the assignment of "38" as the value of "age" for the
+      object "bob" will be displayed as "age holds for bob and 38".
+
+      To customize how the attribute is described in the attribute selector and explanations
+      you can use the attribute customization block. The only place an attribute customization
+      block can be used is directly under an attribute declaration block, and it applies only to the attribute
+      declared directly above it.
+
+      The attribute customization block looks like this:
+
+      ![attribute
+      customization block](/static/blawx/docs/images/blocks/attribute_display.png)
+
+      The
+      block allows you to choose the order in which the object and the value are
+      included,
+      and the text that should appear before, between, and after them. By default
+      the
+      order is "object, then value". And the words "object" and "value" appear
+      in that
+      order below. If you change the order to "value, then object" in
+      the dropdown, the
+      illustration below the dropdown field will be updated,
+      like this:
+
+      ![reverse order customization](/static/blawx/docs/images/reversed_order_attribute_customization.png)
+
+      Once
+      you have selected the order that you want the object and the value to appear,
+      you
+      can specify the text that appears before, between, and after them. For example,
+      imagine
+      that you have a category called "Animal" and an attribute called "legs"
+      that
+      was supposed to hold how many legs the animal has.  
+
+      Here are
+      three different ways you might want your
+      customized attribute block to appear,
+      and how to
+      achieve that effect using the attribute customization block:
+
+      ![first example](/static/blawx/docs/images/att_cust_ex_1.png)
+
+      ![second example](/static/blawx/docs/images/att_cust_ex_2.png)
+
+      ![third example](/static/blawx/docs/images/att_cust_ex_3.png)
+
+      All three of these examples mean the same thing.
+
+      **BE CAREFUL!**
+
+      If you leave all three fields blank, Blawx will still know
+      what attribute the
+      block is for, but your users will have no clue. Make sure
+      to customize attribute
+      blocks in ways that sound natural to your users, but
+      are also very clear about which
+      attribute is being modified.
+
+      There is no need for your attribute's name
+      to appear in the text, which
+      can allow you to use
+      more concise attribute names, or attribute names that are easier to keep unique.
+
+      ### Category Equivalence
+      An
+      object can have more than one category. One of the ways you can give an object
+      more than one category is by stating that all objects of one category are also
+      included in another category. For example, “all cats are mammals”.
+
+      In
+      Blawx you can do this using the category equivalence block, which looks like
+      this:
+
+      ![category equivalence](/static/blawx/docs/images/blocks/category_equivalence.png)
+
+      The
+      category equivalence block requires two category blocks from the “Known Categories”
+      drawer of the Toolbox. A complete category equivalence block would look like
+      this:
+
+      ![cat is mammal](/static/blawx/docs/images/cat_is_mammal.png)
+
+      Category
+      equivalence works in one direction only. In this example, if you create an object the category “Cat”, and then ask whether that object is
+      in the category “Mammal”, the answer will be yes. If you create an object in the category of “Mammal”, and then ask whether it is in the category
+      “Cat”, the answer will be no.
+
+      ## Objects
+
+      ### Creating an Object
+      An
+      object is created by using the new object block, which looks like this,
+      and it just takes a name for the object. A different new object block is created
+      for each of the known categories in your code.
+
+      ![bob is person](/static/blawx/docs/images/bob_is_person.png)
+
+      Object names should start with lowercase letters, and should not have spaces in them.
+      Blawx will not stop you from creating
+      an object with a name that has spaces
+      in it, but it won't work properly.
+
+      When you drag an object declaration
+      onto the Workspace, a corresponding Object Block appears in the “Known Objects”
+      drawer of the Toolbox.
+
+      ![bob known](/static/blawx/docs/images/known_object_bob.png)
+
+      The
+      object block for “Bob” can be used anywhere a block is expecting an or accepts
+      an object as a value.
+
+      ### Giving an Object another Category
+      All objects are created inside a category. But it is possible to assign additional
+      categories to objects that have already been created.
+      You can do this using the object category block, which can be found in
+      the “Objects” drawer of the Toolbox. It expects an object block and a category
+      block. For example, if we wanted to say that in addition to being in the category
+      person, "bob" is in the category "mammal", we could create a statement like this:
+
+      ![bob is mammal](/static/blawx/docs/images/bob_is_mammal.png)
+
+      ### Making Two Objects the Same Object
+      Sometimes your Blawx code will get data
+      from more than one source, and each source may create its own versions of the
+      same objects. In those cases, it can be useful to state that two objects are
+      the same object. You can do that using the object equivalence block, which is
+      found in the “Objects” drawer of the Toolbox, and which looks like this:
+
+      ![object identity](/static/blawx/docs/images/blocks/object_equality.png)
+
+      The object identity
+      block takes two object blocks. To say that “Bob” and “Robert” are the same object,
+      you could do this:
+
+      ![bob and robert](/static/blawx/docs/images/bob_and_robert_identical.png)
+
+      Note
+      that unlike with the Category Equivalence, which goes in one direction only,
+      object equivalence goes in both directions. If Bob is the same object as Robert,
+      Robert is the same object as Bob. So if you set out Bob’s age, and then
+      say that Bob and Robert are the same object, asking for Bob’s age and
+      asking for Robert’s age will both work.
+
+      ### Adding Attributes to an Object
+
+      Once there is an object in the database, you can use the attribute selector blocks
+      to assign values to that attribute for that object.
+
+      For example, we have said that "bob" is a person. Now we can say that bob is 35
+      years of age, by taking the attribute selector for "age", and giving it the object
+      selector for bob and the number 35 as inputs, like this:
+
+      ![Bob is 35](/static/blawx/docs/images/bob_age_35.png)
+
+      ### Naming Attributes
+
+      Attribute names must start with a lowercase letter, and must not have spaces in them.
+      They must also be unique across all categories.
+      Blawx will not currently
+      stop you from creating invalid attribute names, but they will cause errors.
+
+      When working with attributes you
+      will want to be careful with how you name them. Blawx will not stop you from
+      applying an attribute defined for “cars” to an object in the category “bicycle”.
+      If you need to know how many seats both categories have, but you want to avoid
+      the implication that bikes have car seats or vice-versa, you may want to name
+      the attributes “bike_seats” and “car_seats” to make it clear what you are referring
+      to.
+
+      If you create two attributes both named “seats”, they will both appear
+      in the Known Attributes drawer of the toolbox, but Blawx will treat
+      them as two copies of the same attribute.
+
+      ### Object Attributes Hold Multiple Values
+
+      Note that in Blawx all Attributes can hold multiple values, but only multiple unique
+      values. So if you create an attribute that holds values that are of the true/false type,
+      that value can hold up to two values. If you create an attribute that holds numbers,
+      like "age", it can hold any number of values, but it cannot hold the same value twice.
+
+      Features for dealing with cardinality in attributes, and for dealing with lists of
+      potentially identical values, will be added at a later date.

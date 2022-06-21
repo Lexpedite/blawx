@@ -1,0 +1,88 @@
+- model: blawx.docpage
+  pk: guide/deploy
+  fields:
+    title: |
+      Blawx Beginner's Guide: Step 4 - Deploy Your Code
+    content: |
+      # Step 4: Deploy Your Code
+
+      Welcome to Step 4 of the Blawx Beginner's Guide, deploying your code!
+
+      In this step, we are going to show you how easy it is to go from a set of rules
+      encoded in Blawx to a sophisticated user-facing application.
+
+      ## The Web API
+
+      When you generate a test in Blawx, that also creates a number of web API endpoints
+      that other applications can use to use your encoding and answer the questions defined
+      in your tests. Using the Web API is not "beginner" material, though, so that's not
+      important here. Just remember that anything that we do below with BlawxBot can also be
+      done anywhere else, because BlawxBot is actually just an example of how to use that API.
+
+      ## BlawxBot
+
+      BlawxBot is a chatbot-style expert system tool.
+      It is very new, only a few weeks old at the time of writing, so it is quite rough
+      around the edges. It is also not intended to build user-facing applications. It 
+      demonstrates how much can be accomplished with just your Blawx
+      encoding, and no additional information or configuration.
+
+      ## Create a ChatBot App
+
+      To create a chatbot app using BlawxBot, go into your Project, and create a new test.
+      Remember that test names can't have spaces in them.
+
+      Once you have created your test, go into the Test Editor, and encode the question you
+      want your chatbot to answer. In our case, we will have it answer the question "did
+      anyone win any games of rock paper scissors?"
+
+      The code for encoding this question we have seen before, and it looks like this:
+
+      ![RPS BlawxBot Question](/static/blawx/docs/images/rps_19.png)
+
+      Don't forget to click "Save" in the button bar when you are done.
+
+      ## You're Done
+
+      No, really, that was it. Click on the "Bot" button in the button bar of the test
+      editor to start your new Chatbot.
+
+      Here's what it will look like:
+
+      ![RPS BlawxBot Interface](/static/blawx/docs/images/rps_24.png)
+
+      Here is an example of what your discussion with BlawxBot might look like:
+
+      <div class="col-8 w-100 p-1" id="blawxBotMessages">
+                    <!-- Messages -->
+                <div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Welcome to BlawxBot!</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">This is a demonstration of how to generate an expert system using Blawx.</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">I will ask you some questions, and display an answer on the right when I can find one.</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Let me check what we know so far...</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add an object to the category game?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What object should we add to the category game?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">testgame</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object testgame for the attribute player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What value should we add to the object testgame for the attribute player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">jane</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object testgame for the attribute player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What value should we add to the object testgame for the attribute player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">bob</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object testgame for the attribute player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">no</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add an object to the category game?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">no</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add an object to the category player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What object should we add to the category player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">jane</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object jane for the attribute throw?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What value should we add to the object jane for the attribute throw?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">rock</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object jane for the attribute throw?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">no</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add an object to the category player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What object should we add to the category player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">bob</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object bob for the attribute throw?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What value should we add to the object bob for the attribute throw?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">scissors</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">There is an answer to the question! See the details on the right.</div></div></div>
+
+
+
+      In the above interview, we have recreated the same fact scenario that we used
+      in the bob versus jane test in Step 3.
+
+      As you are going through the interview, BlawxBot is displaying the facts that it is
+      already aware of on the right side of the interface.  At the end of the above interview,
+      the facts provided by the user look like this:
+
+      ![RPS BlawxBot User Facts](/static/blawx/docs/images/rps_25.png)
+
+      BlawxBot also displays the facts it is aware of from the rules and the test, which
+      looks like this:
+
+      ![RPS BlawxBot Test Facts](/static/blawx/docs/images/rps_26.png)
+
+      Unlike a test in Step 3, which finds all the valid answers and all the valid explanations
+      for each answer, BlawxBot is designed to stop the interview and display the first answer
+      it can find.  The answer is displayed in the same way as it appears in the test editor.
+
+      ![RPS BlawxBot Answer](/static/blawx/docs/images/rps_27.png)
+
+      ## That's It!
+
+      If you want an app, pose a question.
+
+      That is the promise of Rules as Code that Blawx is trying to make real.
+
+      Check out the Conclusion of the Blawx Beginner's Guide before you go!

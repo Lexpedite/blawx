@@ -1,0 +1,161 @@
+- model: blawx.docpage
+  pk: features/variables
+  fields:
+    title: Variables
+    content: |
+      # Variables
+
+      Variables are a fundamental part of how Blawx works.
+      You can't do anything interesting without them. But if you have experience
+      with
+      other programming languages, they probably will not behave as you first expect.
+
+      Don't worry, variables in Blawx are VERY easy to understand.
+
+      ## Understanding Variables in Blawx
+
+      Imagine I asked you "this species is carnivourous,
+      it is four-legged, and it is known as man's best
+      friend, what is it?" What would you
+      answer?
+
+      A dog!
+
+      I gave you a list of things that was true. The list was:
+
+      * it is a species, and
+      * it is carnivorous, and
+      * it is four-legged, and
+      * it is known as man's best friend
+
+      I asked you to think of a specific thing that "it" might be.
+      Or put differently,
+      I asked you to think of a specific thing, where if you
+      put that thing everywhere the word "it"
+      appears, the four statements would
+      all be true.
+
+      **The way we are using "it" is *exactly* how a Blawx variable works.**
+
+      See? Easy!
+
+      A Blawx variable is just
+      a name that you give to an unknown. When you use the same name in the same
+      scope, it refers
+      to the same unknown.
+
+      This is also precisely the way variables are used
+      in math.
+
+      ## Variables In Action
+
+      ### Single Variable
+
+      The dog question above could be stated as the conditions of a rule in Blawx like this:
+
+      ![it rule](/static/blawx/docs/images/it_rule.png)
+
+      This example uses the word "It" as
+      the name of the variable, but you can use any other name you like.
+
+      **Note that
+      variable names should not include spaces, and must start with a capital letter.**
+
+      ### Variables in Rule Conclusions
+
+      Do not use a variable in a rule conclusion
+      that wasn't also used in the conditions of that rule. Otherwise, your variable
+      will match with everything in the database, which probably isn't what you wanted.
+
+      ### Copy, Don't Type
+
+      Because variables are names that you type, and not declared
+      like objects or categories, there is a higher risk of typos using variables
+      that other aspects of Blawx. It is a good practice
+      to copy and paste variable blocks whenever possible to avoid typos.
+
+      See the [Code Editor Interface Guide](/docs/components/interface) for details on copying and pasting code.
+
+      ### Multiple Variables
+      The more complicated your data structure, and the more layers of that data structure
+      you need to navigate in order to reach a conclusion, the more variables you
+      will need in your rules and queries.
+
+      ### Sameness and Differentness
+
+      Blawx is going to automatically find data that can be put in the place of the variable
+      everywhere it appears. And it checks to see if
+      the data is the same in each
+      place the same variable is used.
+
+      You might assume that Blawx also checks
+      to see if a *different* piece of data is used
+      everywhere that *different*
+      variables are used, but **this is not true**.
+
+      Let's imagine we have the
+      following ontology:
+
+      ![family ontology](/static/blawx/docs/images/family_ontology.png)
+
+      And
+      let's say that we have the following rule in order to calculate siblings:
+
+      ![sibling broken](/static/blawx/docs/images/sibling_rule_broken.png)
+
+      If we ask a question searching for Wednesday's siblings, Blawx will incorrectly
+      tell us that there are two answers: Pugsley, and Wednesday. But of course
+      no one is their own sibling. What went wrong?
+
+      Blawx checks to see
+      if there are values that it can put into Parent, Child1, and Child2, using the same values
+      each time each variable is used, and have all of the statements in the condition of the rule
+      be true.
+
+      So here, if Child1 is Wednesday, and if Child2 is Wednesday, and if Parent
+      is Morticia, all the statements are true.
+
+      Therefore Wednesday (Child1) has a sibling Wednesday (Child2) (and vice versa!).
+
+      Blawx is checking to see that the Child1 in the condition
+      is the same as the Child1 in the conclusion, the Child2 in the condition is the same as
+      in the conclusion, and Parent is the same both times it appears in the condition.
+      But is not checking to see if anything is different.
+
+      To force a check for difference, you have to be explicit, like this:
+
+      ![sibling fixed](/static/blawx/docs/images/sibling_rule_fixed.png)
+
+      Now Wednesday has only one
+      sibling, Pugsley.
+
+      ## Types of Variables
+
+      Blawx gives you two different types of variables that you
+      can use:
+
+      ### Named Variables
+
+      ![variable](/static/blawx/docs/images/blocks/variable.png)
+
+      A
+      normal variable is just a name. Blawx will look for an object or value which, if you put it
+      in everywhere the 
+      variable appears, it makes the statement true. And if
+      you used it in a question, it will tell you what that data was.
+
+      A named variable is the only kind of variable that will cause Blawx to give you the specific
+      value in response to a question, outside of the explanation.
+
+      A variable should start with a capital letter, and have no spaces.
+
+      ### Unnamed Variables
+
+      ![unnamed](/static/blawx/docs/images/blocks/unnamed_variable.png)
+
+      If you need to check that *something* can
+      be put into a statement, but you don't need to learn what,
+      and you won't
+      ever need Blawx to make sure it's the same *something* that was used elsewhere,
+      you can use
+      the unnamed variable block.

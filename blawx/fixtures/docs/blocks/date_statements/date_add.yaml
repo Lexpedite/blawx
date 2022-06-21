@@ -1,0 +1,33 @@
+- model: blawx.docpage
+  pk: blocks/date_add
+  fields:
+    title: Date Add Block
+    content: |
+      # Date Add Block
+
+      ![Date Add Block](/static/blawx/docs/images/blocks/date_add.png)
+
+      ## Where Is It?
+
+      The Date Add block is located in the data statments drawer of the Blawx toolbox,
+      in the Date sub-drawer.
+
+      ## What Does It Do?
+
+      The Date Add block is used to calculate a new date value by adding a duration to
+      an existing date value.
+
+      ## Technical Details
+
+      The Date Add block is a statement block that can be stacked with other statements.
+
+      It accepts three inputs: a duration value, and two date values.
+
+      If the first variable is bound to a duration, and the second value is bound to a
+      date, the third variable will be bound to the date obtained by adding the duration
+      to the first date.  If all three are bound, it will check whether the relationship
+      holds.
+
+      To subtract a duration from a date, use a negative sign in the duration.
+
+      ## Tips

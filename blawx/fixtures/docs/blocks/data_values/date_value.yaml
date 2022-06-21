@@ -1,0 +1,30 @@
+- model: blawx.docpage
+  pk: blocks/date_value
+  fields:
+    title: Date Value Block
+    content: |
+      # Date Value Block
+
+      ![Date Value Block](/static/blawx/docs/images/blocks/date_value.png)
+
+      ## Where Is It?
+
+      The Date Value block is located in the data values drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Date Value block is used to provide a specific date value.
+
+      ## Technical Details
+
+      The date value block is a value block, and can be used anywhere that is expecting
+      a value of type "date". This is typically in date statement blocks.
+
+      It has three numerical fields, representing the year, month, and day. Years can be
+      negative integers, or zero. Valid months are integers between 1 and 12, and valid days are integers between 1 and 31.
+
+      ## Tips
+
+      The date value block will allow you
+      to specify invalid dates, such as `2000 2 30`. This will not cause a problem in the
+      Blawx Code Editor, but may result in errors when you run your tests.

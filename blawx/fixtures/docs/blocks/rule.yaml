@@ -22,7 +22,7 @@
 
       The second statement connect, labeled "We also know:", allows you to set
       out the new conclusion that can be drawn when the conditions are known to
-      be true.
+      be true. This should be a single statement.
 
       ## Technical Details
 

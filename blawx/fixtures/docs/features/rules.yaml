@@ -1,0 +1,108 @@
+- model: blawx.docpage
+  pk: features/rules
+  fields:
+    title: Rules
+    content: |
+      # Rules
+
+      Rules are the most important part of encoding in Blawx. They are where
+      you describe the inferences Blawx can make to generate legal conclusions.
+
+      A rule has two parts.  The first part is the “conditions” that
+      must be met for before the inference is valid.
+      The second  part is a statement that can be inferred to be true, in those conditions, called the “conclusion.”
+
+      ![rule](/static/blawx/docs/images/blocks/rule.png)
+
+      A rule block has one connector for the conditions, and another connector
+      for the conclusion. A rule block needs both connections filled to work properly.
+
+      ### A Note on If/Then
+
+      If you are a programmer, or if you have experience with other procedural approaches
+      to formalization, like production rule systems, you might expect that a rule represents an
+      "if/then" relationship. That the semantic meaning of the rule is "check to see if these
+      conditions are true, and if so, do these conclusions".
+
+      Blawx intentionally does not use the words "if/then" to describe rules, because that's
+      not what a rule means. What a rule means is "whenever the conditions are true inside a model,
+      the conclusion is also true inside that model."
+
+      The biggest difference is that a rule in Blawx works in two directions. If
+      a conclusion is not true inside a model (perhaps because you provided that information as a fact),
+      Blawx can infer that the conditions are not all true, also.
+
+      When using Blawx, remember
+      that you are not describing what steps the computer should follow. You are describing
+      what can be inferred (the conclusion), and when it can be inferred
+      (when the conditions are true).
+
+      ### Writing Reversible Rules
+
+      Blawx will take the rules that you provide, and generate a new set of rules for proving
+      the opposite conclusion, so that your encoding will be capable of answering additional
+      questions (like "why not?") without you needing to write more rules.
+
+      However, the method that Blawx uses to do this requires careful design of your rules. To get the
+      best possible use of rules in Blawx, you should design them with this in mind:
+
+      Only include a condition if:
+      
+      1. the condition is *necessary* for the conclusion to be true, and
+      2. the *opposite* of that condition is *sufficient* by itself for the conclusion to be false, assuming
+         that the preceding conditions are true.
+
+      This problem is easier to understand with an example:
+
+      Consider a rule that says a person is a foster parent if they have a child,
+      and if that child is a ward of the state. Using that rule, you might ask whether
+      someone is a foster parent, like this:
+
+      ![Bad Rule](/static/blawx/docs/images/bad_rule.png)
+
+      We know that both conditions are necessary for the conclusion to be true.
+
+      The question is whether they are sufficient to disprove the conclusion when negated,
+      and the preceding conditions are true.
+
+      For the first condition, there are no preceding conditions, so we just need to ask
+      whether when the person does not have a child, they a not foster parent? Yes. That follows.
+      So the first condition reverses nicely.
+
+      For the second condition, we presume the first condition is true. The person has a child.
+      If we reverse the second condition, and say that the child is not a ward of the state,
+      does that imply that the person is not a foster parent? No.
+      They might be a foster parent who also has biological
+      children. So that condition does not reverse properly.
+
+      There are usually multiple ways of resolving this sort of problem. Here, we might
+      choose to conclude rather whether the person is a foster parent to that particular child.
+      Then, in our code, instead of asking whether they are a foster parent generally, we
+      can explicitly ask whether they are a foster parent to anyone. Here is what the code
+      that reverses properly would look like.
+
+      ![Good Rule](/static/blawx/docs/images/good_rule.png)
+
+      If the person has a child, and that child is not a ward of the state, it is reasonable
+      to conclude that the person is not a foster parent to that child. So the negation works
+      properly. And instead of having an attribute that describes being a foster parent,
+      we can ask whether the person has a foster parent relationship to anyone else.
+
+      ### Dealing with Options
+
+      Blawx does not yet have an "or" block, to allow you to set out more than one
+      way that a conclusion might be inferred in your code. In order to represent multiple
+      possible routes for your conclusion to be inferred, you must create multiple rules,
+      one for each possibility.
+
+      Consider the rule "a person must be 18 years of age or in active military service to be
+      able to make a will". That would be implemented like this:
+
+      ![Disjunctive Rule](/static/blawx/docs/images/disjunctive_rule.png)
+
+      Note that when these possibilities are reversed, each is reversed independently. So
+      the conditions for each must be reversible alone, without the conditions in the other
+      alternatives, for negations to work properly.
+
+
+

@@ -1,0 +1,11 @@
+- model: blawx.docpage
+  pk: examples/mortality
+  fields:
+    title: Mortality Act
+    content: |
+      # Mortality Act
+
+      The Mortality Act example included with Blawx is [available here](/5/) (assuming it hasn't been
+      deleted from your system).
+
+      It is used as a minimal example of a Blawx project.

@@ -1,0 +1,14 @@
+- model: blawx.docpage
+  pk: examples/rps
+  fields:
+    title: Rock Paper Scissors Act
+    content: |
+      # Rock Paper Scissors Act
+
+      The Rock Paper Scissors Act example included with Blawx is [available here](/2/) (assuming it hasn't been
+      deleted from your system).
+
+      It is used to demonstrate many different features of Blawx.
+
+      A complete run-through of how to generate the Rule Paper Scissors example from scratch
+      is available as [a tutorial in the Beginner's Guide](/docs/guide/rps).

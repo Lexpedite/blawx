@@ -1,0 +1,57 @@
+- model: blawx.docpage
+  pk: features/questions
+  fields:
+    title: Questions
+    content: |
+      # Questions
+
+      Once you have encoded rules and described relevant facts in a test,
+      you will want to ask a question. That is what the question block is for.
+
+      A question looks like this:
+
+      ![Question Block](/static/blawx/docs/images/blocks/question.png)
+
+      The question block must be provided with a single statement that is your query.
+
+      There are two kinds of questions... yes/no questions, and search questions.
+
+      ### Yes/No Questions
+      A question that does not include variables is a “yes/no” question. An example
+      is “Is Socrates Mortal?”
+
+      ![is socrates mortal](/static/blawx/docs/images/is_socrates_mortal.png)
+
+      This question will be answered by the Blawx reasoner with either an Answer with
+      an explanation, and no bindings, or as the answer "no models".
+
+      In the context of a yes/no question, the response "no models" means "no". There can
+      be only one answer, and the existence of an answer (with any number of explanations)
+      means "yes".
+
+      ### Search Questions
+      A question that
+      includes named variables is a “search” question. Blawx attempts to find any objects
+      or values with which it can replace all the variables used in the question
+      so that the statements in the question will be true.
+      If it can’t find any, it will respond “no models”. If it can find any
+      values that fit, it will provide each combination as an answer, tell you what the bindings
+      were in that answer, and provide all the explanations for each answer.
+
+      So the question
+      “is Socrates Mortal” above, which is a “yes or no” question, can be changed
+      into a search by replacing “Socrates” with a variable.
+
+      ![who is mortal](/static/blawx/docs/images/who_is_mortal.png)
+
+      ### Multiple Statements in One Question
+
+      If you want to ask whether several things are true at the same time, that can be done
+      by creating a new rule to make a new conclusion when those things are all true.
+
+      ### Multiple Questions in One Test
+
+      If you create a test with more than one question, only one question will be used,
+      and it can be difficult to predict which. It is best practice to have only one
+      active question block in your tests.
+

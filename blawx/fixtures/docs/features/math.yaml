@@ -1,0 +1,80 @@
+- model: blawx.docpage
+  pk: features/math
+  fields:
+    title: Numbers and Math
+    content: |
+      # Numbers and Math
+
+      To deal with numbers and math in Blawx code, you need to use the number datatype,
+      number values, calculations, and mathematical operations.
+
+      ## Number Datatype
+
+      The first thing to do when dealing with numbers is to create attributes that can hold
+      the numerical values by using the Number datatype.
+
+      ## Number Values
+
+      Whenever you need to specify a number (as opposed to calculate a number), you can use
+      the number value block. The number value block will accept positive and negative integers,
+      and zero, and numbers with a decimal point.
+
+      ## Calculations
+
+      To perform calculations on numbers in Blawx you need to use a calculation block, and then
+      put math operator blocks inside the right side of the calculation block.
+
+      The calculation block looks like this:
+      
+      ![Calculation Block](/static/blawx/docs/images/blocks/calculation.png)
+
+      The math operator block looks like this:
+
+      ![Math Operator Block](/static/blawx/docs/images/blocks/math_operator.png)
+
+      The calculation block requires you to give it the name of a variable that should hold the value
+      that is obtained from the calculation.
+
+      If you had a rule that calculated the net amount of an invoice using a calculation block,
+      you would draft that rule like this:
+
+      ![Invoice Total Calculation](/static/blawx/docs/images/invoice_total.png)
+
+      Here, we have used the calculation block to set the variable Total to the result of
+      applying the multiplication operator to the values of "amount" and "discount".
+
+      If you are familiar with other kinds of programming, this might seem unfamiliar.
+      In Blawx, the conditions of the rule are things that must be true for the conclusion to hold.
+      A mathematical equation always holds. It is always true. If it is always true, it cannot be
+      a conclusion, because conclusions are only conditionally true. So we put the calculation in
+      the conditions, as a condition that will always be true, (so it will never have the effect of
+      including or excluding possible answers) but which gives us one additional variable
+      that can be used elsewhere in the rule, and that is bound to the result of the calculation.
+
+      A fact scenario and question based on the above rule might look like this:
+
+      ![Math Test](/static/blawx/docs/images/math_test.png)
+
+      Here you can see we are using the number value block to specify a total and a discount rate.
+
+      ### Nesting Math Operators
+
+      If you need to do more complicated math, you can nest math operator blocks inside one another.
+      For example, to subtract 2 from the sum of 7 and the product of 4 and 5, you could encode this:
+
+      ![Nested Math](/static/blawx/docs/images/nested_math.png)
+
+      Nesting math operators in this way can cause your code to become very wide, from left to right,
+      and more difficult to read. To avoid this, you can use multiple calculations, and then
+      reuse the variables, like this:
+
+      ![Unnested Math](/static/blawx/docs/images/unnested_math.png)
+
+      Using either set of blocks should result in the Answer variable being bound to the value
+      25.
+
+      ## Comparisons
+
+      You can compare two numerical values to one another using either logical comparison,
+      or using numerical constraints, both of which are described elsewhere in the documentation.
+

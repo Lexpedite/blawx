@@ -36,11 +36,11 @@
       For example, you may have a category called "animal" and an attribute called "legs", which
       accepts a number.
 
-      By default, your atribute selector block will read "(object) 's legs is (value)."
+      By default, your attribute selector block will read "(object) 's legs is (value)."
 
       If instead you want the block to read "there are (value) legs on a (object), usually"
       you would set the order to "value, then object", and set the three text inputs to "there are",
-      "legs on a", and "usually" respectively.
+      "legs on a", and ", usually" respectively.
 
       ## Tips
 

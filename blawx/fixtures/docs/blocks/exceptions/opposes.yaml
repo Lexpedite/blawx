@@ -1,0 +1,30 @@
+- model: blawx.docpage
+  pk: blocks/opposes
+  fields:
+    title: Opposes Block
+    content: |
+      # Opposes Block
+
+      ![Opposes Block](/static/blawx/docs/images/blocks/opposes.png)
+
+      ## Where Is It?
+
+      The Opposes block is located in the exceptions drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Opposes block is used to specify that two conclusions oppose one another,
+      and if both are found one may overrule the other.
+
+      ## Technical Details
+
+      The opposes block is a statement, which can be stacked with other statements. It
+      accepts two internal statement stacks, each of which should be filled with a single statement block,
+      where the two internal statements should be treated as contradictory by the reasoner.
+      The order of the two internal statements is unimportant.
+
+      ## Tips
+
+      If you have a true/false attribute, it is not necessary to use the opposes block
+      for Blawx to understand that a "true" value and a "false" value for that attribute for
+      the same object are opposing statements.

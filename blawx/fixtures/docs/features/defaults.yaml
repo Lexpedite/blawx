@@ -1,0 +1,279 @@
+- model: blawx.docpage
+  pk: features/defaults
+  fields:
+    title: Defaults and Exceptions
+    content: |
+      # Defaults and Exceptions
+
+      Laws are typically drafted in a style where the rules that apply most generally are stated
+      first, and more specific variations are stated later. Blawx calls this style
+      "defaults and exceptions," and gives you a number of tools you can use to be able to
+      encode defaults and exceptions without needing to modify multiple sections of code when
+      a new exception is created.
+
+      ## Defaults and Exceptions in Blawx
+
+      The basic system of dealing with defaults and exceptions in Blawx can be described by these steps:
+
+      * You indicate which sections of law led to which conclusions.
+      * You can indicate which conclusions contradict one another.
+      * You can indicate which sections overrule which other sections.
+      * You can ask which conclusions are not overruled.
+
+      Blawx provides one block for each of these four capabilities, plus blocks that allow you
+      to specify sections of the law.
+      
+      ## According To
+
+      You indicate that a section of law reached a conclusion by using the "according to" block
+      in the conclusion of your rule, indicating the section that reached the conclusion, and
+      then including the conclusion statement as per usual. A rule with an "according to"
+      conclusion looks like this:
+
+      ![According To Rule](/static/blawx/docs/images/according_to_rule.png)
+
+      ### Pre-Built "According To" Rule Block
+
+      Most of the time, you will be encoding a conclusion that is reached by the current section,
+      so to save you time, Blawx adds a pre-loaded rule block in the Primary drawer that has
+      the according to block and the current section selector block pre-loaded. The pre-loaded
+      according to rule looks like this:
+
+      ![Preloaded According To Rule](/static/blawx/docs/images/preloaded_according_to.png)
+
+      ### According To Must be Used With According To or Holds
+
+      If you want to be able to use the holds block when running a query, the conclusion must
+      be inside an according to block. You might want to use the holds block in order to be able
+      to check whether or not a conclusion was overruled by another conclusion. However, you may
+      just want to include details on the section of law that led to that conclusion in your
+      explanations. (This use is discussed below in the section on the holds block.)
+      In both cases, the according to block must be used with your conclusion.
+
+      ### Asking if Rules Reached a Conclusion
+
+      If you want to use a conclusion wrapped in an according to block as a
+      condition in a different rule, you must use either the according to block or the holds block
+      in that condition. Effectively, the conclusion "socrates is mortal" and "according to MA 1
+      socrates is mortal" are treated by Blawx as two unrelated statements.
+
+      ### Asking If Any Rule Reached a Conclusion
+
+      If you have multiple rules that reach the same conclusion, and all of these rules use the
+      according to block; and if you want to use that conclusion in the conditions of another rule
+      but you are not interested in where the conclusion came from, you can ask whether any
+      section reached that conclusion by using an according to block and using the "any" variable
+      block in place of the section selector. This method can also be used in a question, if what
+      you are interested in knowing is whether that conclusion was reached by any section,
+      regardless of which. That question would look like this:
+
+      ![According to Any Question](/static/blawx/docs/images/according_to_any_question.png)
+
+      ### Asking Which Rules Reached a Conclusion
+
+      If you would like to find out which sections of your law reached a certain conclusion, you can
+      find out by using a named variable in the according to block. This will typically only be
+      useful in a question, and not in the conditions of a rule, because there is not currently
+      a way to generate or use section values other than by using the section selector block, and
+      displaying them in answers.  A question asking "which sections concluded that socrates is mortal"
+      could be posed like this:
+
+      ![According to Which Question](/static/blawx/docs/images/according_to_which_question.png)
+
+      ## Opposes
+
+      When you make a query with the holds block, Blawx will only look to see if a conclusion has
+      been overruled by another conclusion when those two conclusions "oppose" one another.
+      The opposes block looks like this:
+
+      ![Opposes Block](/static/blawx/docs/images/blocks/opposes.png)
+
+      By default, there are two types of statements that automatically oppose one another,
+      without you needing to use an opposes block to say so:
+
+      * If you have a statement, and the same statement wrapped in a "known false" block, those
+        conclusions are automatically opposed.
+      * If you have an attribute that has the "true / false" type, a statement that the value
+        of that attribute is "true" for a given object, and a statement that the value of that
+        attribute is "false" for the same object, are automatically opposed.
+
+      These two cover a majority of the types of opposition that you will usually want to use. The
+      purpose of the opposes block is to allow you to be explicit about statements that oppose one
+      another that Blawx cannot infer.
+
+      ### An Example Opposition
+
+      Consider, for example, that you are modeling rules about pet owners, and in these rules pet
+      owners are deemed either "cat lovers" or "dog lovers", and that they are mutually exclusive.
+      You might have a general rule that a person is a dog lover if they own a dog, and an exception
+      that states a person is a cat lover if they own more cats than dogs.
+
+      To give effect to those rules, your default rule would conclude, using "according to", that the
+      person was in the category dog lover. The exception rule would conclude, using "according to",
+      that the person was in the category cat lover. Somewhere in your code you would need to specify
+      that the statment "X is in the category cat lover" and the statement "X is in the category dog lover"
+      are opposed, using an opposes block.  Your opposes block might look like this:
+
+      ![Dog and Cat Opposed](/static/blawx/docs/images/dog_and_cat_opposed.png)
+
+      ### Opposition is not Inconsistency
+
+      If you make two statements opposing using the opposes block, that applies only to the context of
+      when you query whether either conclusion "holds". Blawx will not impose a general prohibition against
+      concluding both things at the same time.
+
+      If you want to make two statements incompatible with one another, so that Blawx will never find
+      an answer set that includes both statements, and regardless of whether the defaults and exceptions
+      system is used, that is accomplished using the logical constraints block.
+
+      Likewise, Blawx knows that certain statements are inconsistent with one another, and will not allow
+      both statements to be in the same explanation. For example, no explanation will include both
+      the statement "socrates is mortal" and the statement "it is known false that socrates is mortal".
+      If you use "according to" blocks to reach those conclusions, it is necessary for Blawx to be able
+      to consider how these conclusions might both be found at the same time, and how the conflict might
+      be resolved by your rules. So "according to section 1, socrates is mortal" and "according to section 1,
+      it is known false that socrates is mortal" are not inconsistent, even if they come from the same rule.
+
+      ## Overrules
+
+      When calculating which conclusions "hold", Blawx first finds opposing conclusions that are reached
+      by sections of your rules, and then sees whether one of your sections overrules the other. Providing
+      Blawx with these overruling relationships is done with the Overrules block, which looks like this:
+      
+      ![Filled Overrule Block](/static/blawx/docs/images/filled_overrule.png)
+
+      ### Dealing with Multiple Conclusions Per Section
+
+      Overrules are specified as one section overruling another section, and are not specific about which
+      conclusion from that section is overruled. If you have sections that reach multiple conclusions, and
+      the overrule relationships are different by conclusion, you will need to divide that section of your
+      law into multiple sub-sections using the span feature of the CLEAN syntax. That will allow you
+      to get a one-to-one relationship between sections and conclusions, so that your overrules block
+      can be specific about what is and is not overruled in each case.
+
+      If your default reaches multiple conclusions, and your exception reaches multiple opposing conclusions,
+      and the overruling relationship is the same for all of the pairs of conclusions, then a single overrule
+      block will work fine. It is only necessary to break up your sections if there are multiple conclusions
+      and if the overruling relationships are different between pairs of opposing conclusions. That also means
+      that if you have a default that reaches 2 conclusions, and an exception that reaches 3 conclusions,
+      2 of which oppose the 2 conclusions in the default, you can use a single overrule block. An extra
+      conclusion with no opposite will not affect how the overrule operates.
+
+      ### Deciding Where to Put the Overrules Block
+
+      Laws use a large number of different terminology to describe defeating relationships.  Consider that
+      a law might say "the default applies", and then say "despite the default, the exception applies." Here,
+      the relationship between the two rules (exception overrules default) is specified in the exception. This can
+      be called a "despite-style" overrule statement.
+      
+      A law might also say "subject to exceptions, the default applies", and then say "the exception applies".
+      The same overrule relationship (exception overrules default) is specified, but this time it is expressed
+      in the default. This is a "subject-to-style" overrule statement.
+
+      Both of these styles are used regularly in legislative drafting, and the overrules block allows you to 
+      describe this relationship in your code wherever it appears in your law. If you are implementing a
+      "despite-style" overrule statement, the overrule block goes in the code for the exception, and
+      states "this section overrules other section". If you are implementing a "subject-to-style" overrule,
+      the overrule block goes in your default rule, and states "other section overrules this section".
+
+      This flexibility about where the overrule statements are placed gives you the ability to keep your code
+      organized the same way your laws is organized, which makes your code easier to write, verify, and maintain.
+
+      ### Conditional Overrules Blocks
+
+      Sometimes, there are complicated, conditional overrule statements set out in legislation. For example,
+      consider a rule that says "this exception overrules the default for events occurring prior to date".
+
+      Because overrules blocks are statements, then can be used as the conclusions of rules. This makes
+      it possible to create a rule that will conditionally determine whether an overrule statement applies,
+      depending on facts like whether an event is prior to a date.
+
+      Note that the conclusion that the overrule exists can only be true or false in a given explanation.
+      If you need the overrule to be active for some aspects of an explanation and not for others, such
+      as when a rule states "this exception applies for the purposes of calculating salary in this section",
+      you may not be able to get that effect by making a conditional overrule statement.
+
+      ## Holds
+
+      Once you have rules that set out which sections reach which conclusions using the according to block,
+      describe any unusual oppositions using the opposes block, and set out which sections should prevail
+      using the overrules block, you are now ready to ask whether a conclusion legally "holds". An example
+      question looks like this:
+
+      ![Holds Question](/static/blawx/docs/images/holds_question.png)
+
+      This is done using the "holds" block in a question or condition, and then putting the conclusion inside
+      the holds block. In order to save you time, the Primary drawer of the toolbox includes a question block
+      with the "holds" block added for you.
+
+      ![Pre-Loaded Holds Question](/static/blawx/docs/images/preloaded_holds.png)
+
+      ### The Meaning of Holds
+
+      In the current version of Blawx, "holds" has a very simple definition.
+
+      A conclusion holds if:
+
+      * it was concluded, according to a section, and
+      * it is not defeated.
+
+      A conclusion is defeated if:
+
+      * it was concluded by an original section,
+      * an opposing conclusion was concluded by another section, and
+      * the other section overrules the original section.
+
+      #### Complicated Overruling Relationships
+
+      We have plans to expand the definition of "holds" in future version of Blawx to be able to deal with
+      more complicated scenarios, but for now, the definition above is all that Blawx uses. One important
+      shortcoming to note is that Blawx does not currently check to see whether the defeating section is itself
+      defeated. As a result, if C defeats B, and B defeats A, and all three are concluded, C will hold as would
+      be expected, and A will hold, which is likely not what your legislation meant.
+
+      To get around this in the meantime, it would be necessary to say explicitly in your code
+      that C opposes A, and C overrules A.
+
+      ### Using Holds for Better Explanations
+
+      If you use "according to" to describe your rules, and you use "holds" in your question, your
+      explanations will have access to information about the sections of your law by which those
+      conclusions were reached.
+
+      For example, if you have a rule that says "humans are mortal", and a test that says "socrates is human"
+      and asks "who is mortal", your explanation will read "socrates is mortal because socrates is human".
+
+      ![Explanation Without Holds](/static/blawx/docs/images/explanation_without_holds.png)
+
+      If, instead, you encode "according to section 1, humans are mortal", and in the question you ask
+      "does it hold that anyone is mortal", your explanation will read "according to section 1 socrates
+      is mortal because socrates is human."  Also, the words "section 1" in the explanation will be
+      highlighted, and when you hover over them you will have access to the text of the source rule.
+
+      ![Explanation With Holds](/static/blawx/docs/images/explanation_with_holds.png)
+
+      Currently, the defaults and exceptions system is the only way to get access to legislative text
+      in your conclusions, so it can be a good idea to use the "according to" blocks and "holds" blocks
+      in your code for that reason alone, even if you have no use for "overrules" or "opposes".
+
+      ## Making Implicit Overrules Explicit
+
+      An important thing to remember about how Blawx deals with defaults and exceptions is that
+      it requires you to be explicit about which conclusions oppose one another, and which sections
+      of the law overrule which other sections of the law.
+
+      In legislation, this relationship may not always be explicit. It may arise from a difference
+      in the age of two rules, the jurisdiction of two rules, or the author of two rules. If your
+      rules include these sorts of implicit overruling relationships, those relationships will need
+      to be made explicit in your code.
+
+      ## Future Work: Choosing Sections
+
+      Currently, the only way to select sections for use in an overrule statement is using the section selector.
+      If one rule is "despite section 1 subsections (1), (2), and (3)", the code for that rule will require three overrule statements.
+      We have plans to add features to allow you to select sections and their subsections at the same time
+      (scope selectors). We also want to allow entire rules to be organized hierarchically with regard to one another,
+      so that you can easily encode and overrule by "any rule in a regulation made under this Act." Those features
+      have not yet been implemented.
+
+
