@@ -1,0 +1,30 @@
+- model: blawx.docpage
+  pk: blocks/overrules
+  fields:
+    title: Overrules Block
+    content: |
+      # Overrules Block
+
+      ![Overrules Block](/static/blawx/docs/images/blocks/overrules.png)
+
+      ## Where Is It?
+
+      The Overrules block is located in the exceptions drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Overrules block is used to specify that conclusions reached by one section of law
+      overrule the conclusions reached by another section of law, when those conclusions
+      are opposed.
+
+      ## Technical Details
+
+      The Overrules block is a statement block, and can be stacked with other statement blocks.
+      It accepts two internal inputs, both of which are expecting a statement selector. The order of the statement selectors is
+      significant. The first section named is superior, the second section named is inferior.
+
+      ## Tips
+
+      For complicated exception relationships, it can be helpful to make an overrules statement
+      conditional on certain other things being true. This can be accomplished by using the
+      overrules statement as the conclusion of a rule.

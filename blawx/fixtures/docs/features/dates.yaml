@@ -1,0 +1,136 @@
+- model: blawx.docpage
+  pk: features/dates
+  fields:
+    title: Dates and Durations
+    content: |
+      # Dates and Durations
+
+      Blawx allows you to record and deal with information about dates, and durations of time.
+
+      It does this by providing two data types, date and duration, by providing value blocks for
+      each, to allow you to type in specific dates and durations, by providing calculator blocks
+      that allow you to generate a date or a duration from other information in your code, and 
+      by providing date and duration statements that you can use to manipulate dates and durations.
+
+      ## Date and Duration Types and Values
+
+      The date and duration data types are available in the Data Types drawer of the toolbox, and
+      can be used when creating attributes on a category. For example, in the Net 30 example that
+      comes with Blawx, Invoices are defined as having an invoice date and a payment due date.
+      That code looks like this:
+
+      ![Invoice Ontology](/static/blawx/docs/images/invoice_ontology.png)
+
+      There are two ways of creating date and duration values in Blawx. One is to simply type them
+      in using the date value and duration value blocks that appear in the Data Values drawer of
+      the toolbox.
+
+      A test in the Net 30 example uses the date value block to specify a date like this:
+      ![Date Value Example](/static/blawx/docs/images/date_value_filled.png)
+
+      The other way is to use the date value or duration value calculator blocks, which allow
+      you to take numbers you have obtained elsewhere, and use them to generate dates.
+
+      You can also use the calculator blocks to simply type values by putting number values into
+      all of the inputs, like this:
+
+      ![Date Calculator Example](/static/blawx/docs/images/date_calculator_filled.png)
+
+      But using number values in all of the inputs is not what the date calculator is for. For a
+      more realistic example, imagine that you want to calculate the first day of the month on which
+      an invoice was issued. You might do that like this:
+
+      ![Calculate First of Month](/static/blawx/docs/images/calculate_first_of_month.png)
+
+      You can see that in the conditions, the date calculator block allows you to take a date
+      value and break it down into its constituent parts, one variable for each. In the conclusion,
+      the date calculator block allows you to construct a new date using a combination of number
+      values and variables.
+
+      The same difference applies to the duration value and the duration calculator blocks.
+
+      ## Understanding Dates
+
+      Blawx represents dates as a set of three numbers, indicating the year, month, and day.
+      The year is an integer, which means that it can be zero, or a negative number. In Blawx,
+      the year zero is the year prior to the year 1, and the year -1 is the year prior to zero.
+
+      Months can only be integers between 1 and 12, and days can only be integers between 1 and 31.
+      If you specify an invalid date, such as February 30, or February 29 on a year that was not
+      a leap year, Blawx will not notice when you specify the date value, but calculations may
+      fail when you attempt to calculate something with it.
+
+      ## Understanding Durations
+
+      Durations are represented as a sign, and three whole numbers. The sign is 
+      either "+" or "-", indicating whether it is a duration
+      forward in time, or a duration backward in time.  The three whole numbers
+      represent the number of years, months, and days, respectively, in the duration.
+
+      If you use the duration calculation block, the sign is also represented by a number,
+      which is either 1, to indicate into the future, or -1, to indicate into the past.
+
+      These two durations both say "1 year and three months into the future".
+
+      ![Duration Examples](/static/blawx/docs/images/duration_examples.png)
+
+      ## Date and Duration Statements
+
+      There are currently four addition date and duration statements: date comparison, date addition,
+      days between, and duration between.
+
+      ### Date Comparison
+
+      The date comparison block allows you to check whether one date is before, after, the same as,
+      no earlier than or no later than the other date.
+
+      ![Date Comparison](/static/blawx/docs/images/blocks/date_comparison.png)
+
+      ### Date Addition (and subtraction)
+
+      The date addition block allows you to provide a date, and a duration, and it adds the duration
+      to that date to generate a new date.  If the duration provided represents a duration "into the past, the date addition block
+      will subtract that amount of time from a date.
+
+      For example, the Net 30 example uses a date addition block to determine the due date of
+      an invoice by adding a duration of 30 days to its date of issue, like this:
+
+      ![Net 30 Addition](/static/blawx/docs/images/net_30_addition.png)
+
+      ### Days and Duration Between
+
+      The days and duration between blocks both allow you to specify two dates, and will
+      tell you how much time has passed between them. The days between block returns that
+      information as a number of days. The duration block returns that information as a
+      duration.  Currently, using the duration between block returns a duration that only
+      has a days value. In future, this duration will be translated into a number of years,
+      months, and days.
+
+      ## Blawx Understands Leap Years
+
+      When calculating days and durations between dates, and when adding durations to dates,
+      Blawx is aware of the effect of leap years. If you ask for the date that is one day
+      after February 28, 2004, you will get Feburary 29, 2004. If you ask for the date one day
+      after February 28, 2000, you will get March 1, 2000.
+
+      ## How Blawx Understands Months
+
+      If you add a number of months to a date, the result will not change by more than one month.
+      For example, if you add a month to January 28, you will get February 28, if you add a month to January 30
+      you get February 28, and if you add a month
+      to February 1, you will get March 1. This, despite the fact that the number of days between the first
+      two dates is 31, 29, and 28, respectively.
+
+      ## Months and Years Considered Dangerous
+
+      If you are using Blawx to do date math, it would be wise to confirm that the way that
+      Blawx does date math is consistent with the interpretation rules used for the law you are
+      encoding, because there is some inconsistency between jurisdictions, and Blawx's assumptions
+      may not match the assumptions that apply to your law.
+
+      As a general rule, if it is possible to accurately encode the date math in your legislation
+      using only days, that should be preferred, as it will have a more predictable result.
+
+
+
+

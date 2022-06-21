@@ -1,0 +1,354 @@
+- model: blawx.docpage
+  pk: guide/encode_rules
+  fields:
+    title: |
+      Blawx Beginner's Guide: Step 2 - Encode Rules
+    content: |
+      # Step 2: Encode Rules
+
+      In Step 1 of the Blawx Beginner's Guide, we showed you how to create a project, and
+      provide Blawx with the legal text that your code will be based on.
+
+      In Step 2, we will cover the process of generating Blawx code that represents your sections
+      of code.
+
+      We will start with a brief introduction to the process of encoding a section of law in
+      Blawx, and then we will go through all the sections of the Rock Paper Scissors Act and
+      generate code for each.
+
+      ## The Blawx Encoding Process
+
+      When you are encoding a section of law in Blawx, there are two steps:
+
+      1. Describe the vocabulary used in that section to Blawx in terms Blawx understands, if needed.
+      2. Use that vocabulary to model the facts and rules in that section of law.
+
+      ### Creating Vocabulary
+
+      If you are interested in the details of how we give Blawx our vocabulary, other sections
+      of the documentation that talk about Categories, Attributes, and Objects will give you
+      the details.
+
+      The short version is that Blawx only knows about categories of objects, the attributes that
+      those categories have, and the type of value that can be placed in those attributes. The
+      types of values can be true or false, numbers, dates, durations, or another category of object.
+
+      For each category and attribute, we also describe for Blawx how that category or attribute
+      should be described in English. This is used by Blawx to design the blocks that will allow
+      you to use those categories and attributes. It is also used by Blawx when generating
+      natural language explanations for answers, which you will see in Step 3.
+
+      So the task is to take the real-world things that are being discussed in the rule, and
+      model them as categories and attributes and objects.
+
+      ### Creating Facts and Rules
+
+      Once that is done, you use Blawx to model the conclusions of that section of law as facts
+      and rules. Facts are things that are always true, and rules are things that are true only when
+      other things are true.
+
+      If you want more information about how Blawx uses Facts and Rules, it is available in the
+      documentation.
+
+      In the real world, these two things do not happen only once,
+      and in a specific order. In real projects you may realize when writing a rule that you
+      do not have the vocabulary you need, and go back to change the vocabulary.
+
+      Similarly, you may find that you need to come back to either or both of these things
+      when writing tests in Step 3. The process is iterative, not linear. But for the purpose
+      of an introduction, we'll pretend that we got it exactly right on the first try.
+
+      ## Encoding the Rock Paper Scissors Act
+
+      Now let's go through how we might encode the Rock Paper Scissors Act in Blawx.
+
+      If you would like to follow a long, click on the name of your Project in the root
+      of your Blawx server, and then click on the "Code Editor" button. You should see a screen
+      that looks like this:
+
+      ![RPS Code Editor](/static/blawx/docs/images/rps_1.png)
+
+      The left side of the screen is a nested, collapsible navigation tree of sections
+      of your legal text, with
+      radio button selectors. The right side of the screen is the Blawx code for the
+      currently selected section. If you click on the arrows in the navigation tree to expand
+      the tree, it will look like this:
+
+      ![RPS Expanded Navigation Tree](/static/blawx/docs/images/rps_2.png)
+
+      You can hide the navigation tree by clicking on the boundary between the two sections,
+      and click it again to reveal it.
+
+      ### Encoding Section 1
+
+      To start encoding section 1, click on the selector next to section 1 in your navigation tree.
+
+      #### Vocabulary: Players and Games
+
+      The text of section 1 is as follows:
+
+      ```A game of rock paper scissors has two players.```
+
+      We want to be able to represent games, and represent players. And we want to be
+      able to associate a player with the game they played in. So we will create
+      two Categories: game, and player. We will give the category called "game" an
+      attribute called "player" that can have values which are objects in the category
+      called "player".
+
+      We want our block (and our explanations) to read "{player name} played in {game name}."
+
+      So we will drag a fact block (the purple outer block reading "We know") from the Primary
+      drawer onto our workspace. We will then drag two new category blocks from the Categories
+      drawer onto the workspace, and edit them to read "game" and "player".
+
+      **Note: all attributes, objects, and categories should start with lowercase letters.**
+
+      The new category blocks will be added to our fact block. We will then click "Save"
+      at the top of the screen, so that Blawx will add the new categories to the "Known
+      Categories" drawer.
+
+      **Note: If something you expect to appear in Known Categories, Known Attributes, or Known
+      Objects doesn't appear, try saving your workspace.**
+
+      Next we will grab a category attribute block from the Categories drawer, and add the
+      category selector block for "game" from the Known Categories drawer to the open input.
+
+      Now, we will drag a new attribute block from the Categories drawer, and add it inside
+      the category attribute block. We will give our new attribute the name "player", and
+      specify that its values should be objects in the category "player" by dragging the "player"
+      category selector from the Known Categories Drawer, and adding it to the open input.
+
+      Now we only need to explain to Blawx how to display this relationship. To do that,
+      we grab an attribute customization block from the Categories drawer, and add it directly
+      below the new attribute block. Then, we set the dropdown to "Appearing as value, then object",
+      so that the text will use the name of the player first, and the name of the game second.
+      Then we set the text between the value and the object to be "played in".
+
+      Your finished code will look like this.
+
+      ![RPS Section 1](/static/blawx/docs/images/rps_3.png)
+
+      You might note that in some cases, if you try to put things where they don't belong,
+      they don't "fit. For instance, you can try taking the attribute customization block,
+      and dragging it to be anywhere else. There is only one spot it will "fit".
+
+      When you place it back, it will show that it fits there with a highlight, and it will
+      make a clicking noise when you drop it in place.
+
+      You might have noticed that we haven't encoded the rule that a game has two players.
+      We're going to leave that out of our encoding, just because we want to keep the encoding
+      short. It's also normal. There are almost always aspects of legislation that you
+      will choose not to encode, when doing so isn't helpful.
+
+      ### Encoding Section 2
+
+      To begin encoding section 2, click on the selector for section 2 in the navigation tree.
+
+      The text of section 2 is:
+
+      ```
+      2. There are three signs:
+        (a) Rock,
+        (b) Paper, and
+        (c) Scissors.
+      ```
+      
+      We will define the term "signs" where it first appear in the root of section 2, and we will create each specific
+      sign in the code for the section where it is named.
+
+      #### Vocabulary: Signs
+
+      We need to be able to speak about signs, so in the root of section 2, we will drag out
+      a fact block, and a new category block, and set the name of the new category to "sign".
+      Click "Save", so Blawx is aware of the category.
+
+      Your code will look like this.
+
+      ![RPS Section 2](/static/blawx/docs/images/rps_4.png)
+
+      #### Facts: Rock, Paper, and Scissors
+
+      Now that we have created the category "sign", we can create specific sign objects.
+      For each of sections 2(a), (b), and (c), click on the section selector in the navigation
+      tree, then drag out a fact block, and a new object block for
+      signs. Customize the names of the new objects to "rock", "paper", and "scissors" as
+      appropriate. Make sure to use lowercase. Then click "Save" before moving to the next
+      section.
+
+      Section 2(a) will look like this:
+
+      ![RPS Section 2(a)](/static/blawx/docs/images/rps_5.png)
+
+      Section 2(b) will look like this:
+
+      ![RPS Section 2(b)](/static/blawx/docs/images/rps_6.png)
+
+      Section 2(c) will look like this:
+
+      ![RPS Section 2(c)](/static/blawx/docs/images/rps_7.png)
+
+      ### Encoding Section 3
+
+      To start encoding section 3, click on the selector for section 3 in the navigation tree.
+
+      The text of section 3 is:
+
+      ```
+      3. The signs are related in the following ways:
+        (a) Rock beats Scissors,
+        (b) Scissors beats Paper, and
+        (c) Paper beats Rock.
+      ```
+
+      Despite the fact that word "beats" doesn't actually appear until section 3(a), we
+      will add it to our vocabulary in the root of section 3, and then use it in each of
+      the sub-sections.
+
+      #### Vocabulary: Signs "beat" other Signs
+
+      Here, we know that the category "sign" already exists. So we don't need to create it
+      again. We just need to give it a new attribute, which is the other sign that it beats.
+
+      To do that, we will drag out a fact block, and a category attribute block. We will
+      fill the category attribute's input with the "sign" category selector from the Known
+      Categories drawer. Then, we will add a new attribute block,
+      give it the name "beats",
+      and use the sign category selector again to indicate that this is a relationship that
+      goes from one sign to another sign.
+
+      We then customize how this relationship is displayed in the interface by adding
+      an attribute customization block below the "beats" attribute block, and setting the
+      text between the object and value to just "beats".
+
+      Then we click "Save" to be able to use this attribute in our code.  Your code should
+      look like this:
+
+      ![RPS Section 3](/static/blawx/docs/images/rps_8.png)
+
+      #### Facts: Nothing Beats Rock
+
+      For each of sections 3(a), (b), and (c), we will click on the selector, drag out a
+      fact block, drag the newly-created "beats" block from the Known Attributes drawer,
+      and then insert the two object selector blocks from the Known Objects Drawer. Remember
+      to click on "Save" when you have finished each section.
+
+      Your code for section 3(a) should look like this:
+
+      ![RPS Section 3(a)](/static/blawx/docs/images/rps_9.png)
+
+      Your code for section 3(b) should look like this:
+
+      ![RPS Section 3(b)](/static/blawx/docs/images/rps_10.png)
+
+      Your code for section 3(c) should look like this:
+
+      ![RPS Section 3(c)](/static/blawx/docs/images/rps_11.png)
+
+      ### Encoding Section 4
+
+      To get started encoding section 4, click on its selector in the navigation tree.
+
+      The text of section 4 is as follows:
+
+      ```
+      4. The winner of a game is the player who throws
+      a sign that beats the sign of the other player.
+      ```
+
+      #### Vocabulary: Winners and Throws
+
+      There are two new ideas in this section that we need to add to our Vocabulary:
+      the winner of a game, and the player's throw.
+
+      We will model "winner" as an attribute of the category "game", and "throw" as an
+      attribute of the category "player".
+
+      Again, these two categories already exist, so we don't need to create them again.
+      We need to create attributes for them, or in the case of the "game" category, we
+      need to *add* an attribute to it. In Blawx, you are free to add attributes and
+      categories wherever you want to, so you do not need to go back to where "game"
+      was defined in order to give it another attribute.
+
+      You have seen how to do this above, so we won't give you the instructions,
+      but here is how your vocabulary should look.
+
+      ![RPS Section 4 Vocab](/static/blawx/docs/images/rps_12.png)
+
+      Don't forget to click "Save" when you
+      are done creating these new attributes, so that you can use them in the same section
+      of code.
+
+      #### Rules: Who is the Winner?
+
+      While the rest of our law has been encoded using facts, this is where we need to use
+      a rule. Section 4 tells us how to infer who the winner of a game is from other facts.
+
+      Note that the code for this appears in the same workspace as the code for the vocabulary,
+      above. If you would like to make more room in the workspace, you can right-click on
+      the fact block for your vocabulary, and choose "collapse" to minimize the size of that
+      block. You can also just drag and drop the background of the workspace to a clear area,
+      and create your new rule there.
+
+      To start, we are going to grab a rule block from the Primary drawer. In order to be able
+      to show you how Blawx includes the text of the law in its explanations, we're going to
+      use the version of the rule block that is pre-populated with the "According to RPSA 4"
+      blocks included.
+
+      The rule block has two statement connectors, the first is a list of conditions, and the
+      second is the conclusion that can be reached if those conditions are true. The
+      conclusion is simpler, so let's start there. Inside the "according to" block, we will drag
+      and drop a "winner" attribute block from the Known Attributes drawer.  In its two inputs we
+      will place variable blocks from the Variables drawer, and change their names to "Game", and
+      "Player1" in that order.
+      
+      **Note: Make sure to use capitalized names for variables.**
+
+      Now we need to describe the situation in which it is true that "Player1" is the winner of "Game",
+      using only the terms that are available to us in the vocabulary we have described to Blawx.
+
+      We can reformulate section 4 like this:
+
+      Player1 is the winner of Game if:
+
+      * Player1 is in the category player,
+      * Player2 is in the category player,
+      * Game is in the category game,
+      * Player1 played in Game,
+      * Player2 played in Game,
+      * Player1 threw Throw1,
+      * Player2 threw Throw2, and
+      * Throw1 beats Throw2.
+
+      If that feels unnatural and strange, it's because it's pretty unnatural and strange.
+
+      Notice, for example, that the original legal text doesn't explicitly say
+      that the two players played in the game that was won. That's something that
+      human beings can infer from the context, but that sort of inference is currently
+      beyond the capabilities of computers, so we need to be explicit in code about
+      things that it is not necessary to say in natural language.
+
+      That task of converting something expressed in a natural language to something
+      expressed in a formal, restricted language, is called "formalization." 
+      Formalization is inherently difficult. But Blawx attempts to make it as easy as it
+      can be. And as you will see in Step 3 and Step 4, the effort is worth it.
+
+      Luckily, because Blawx allows us to customize our attribute blocks, the code you
+      need to create in Blawx to implement the above list of requirements reads identically
+      to the above list!
+
+      This is what your rule should look like when you are done. Don't forget to click "Save".
+      
+      ![RPS Section 4 Rule](/static/blawx/docs/images/rps_13.png)
+
+      **Note: It is good practice to include category checks for your variables, like we
+      do here for Game, Player1, and Player2, for two
+      reasons. First, it helps tools like BlawxBot understand what questions are relevant.
+      Second, it can make your code faster, and avoid bugs, when your code gets more
+      complicated.**
+
+      ## That's It!
+
+      Congratulations. You have encoded the Rock Paper Scissors Act!
+
+      Next, check out Step 3 in the Blawx Beginner's Guide, which will show you how to
+      test to see if your code is working the way you expect.

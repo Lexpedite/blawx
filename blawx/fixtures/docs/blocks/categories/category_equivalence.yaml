@@ -23,11 +23,11 @@
       equivalence block is that all members of the first category are members of the second
       category.
 
-      In fact, a category equivalence block is a short-form of a rule with two object category
-      blocks referring to the same variable and different categories.
-
       ## Tips
 
-      Using a category equivalence block happens in one direction only. If you want to say
+      A category equivalence block is a short-form of a rule that states "when we know
+      X is in category A, we also know X is in category B".
+
+      Category equivalence happens in one direction only. If you want to say
       something like "all tolkien books are great books, and all great books are tolkien books",
       you will need two category equivalence blocks.

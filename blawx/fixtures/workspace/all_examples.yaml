@@ -107,6 +107,150 @@
     rule_text: "Wills Act\r\n\r\n1. A person over the age of 18 may make a will.\r\n2.
       An active military member may make a will."
     scasp_encoding: ''
+- model: blawx.ruledoc
+  pk: 11
+  fields:
+    ruledoc_name: Siblings Act
+    rule_text: "Siblings Act\r\n\r\n1. A person's sibling is another person with whom
+      the person shares a parent.\r\n2. With regard to wards of the state, parent
+      includes the Office of the Public Guardian."
+    scasp_encoding: ''
+- model: blawx.ruledoc
+  pk: 12
+  fields:
+    ruledoc_name: Motor Breakdown Policy
+    rule_text: "Motor Breakdown Policy\r\n\r\nMEANING OF WORDS \r\n1. Wherever the
+      following words and phrases appear in bold in this document, they will always
+      have the following meanings.\r\n  (1) We, us, our - the insurer\r\n  (2) Excess
+      - If you have selected this to apply to your policy, means the amount that you
+      must pay as contribution towards any valid claim under this policy, at the point
+      of requesting assistance before we provide our service. \r\n  You will be charged
+      this amount, as shown on your Policy Schedule, for each breakdown call-out,
+      regardless of the nature or total cost of your breakdown.\r\n  (3) Vehicle policy
+      - This policy covers breakdown assistance for the specific vehicle (or vehicles)
+      shown on your policy schedule. These are the only vehicles that this cover applies
+      to.\r\n  (4) You, your, driver - The policyholder named on the schedule or any
+      person driving an insured vehicle, and any passengers in the insured vehicle.
+      (We will only help up to seven people, including the driver.)\r\n  (8) Vehicles
+      - Vehicle means the private car or motorcycle which is less than 16 years old
+      and which is: \r\n    (a) no longer than 5.5 meters including tow bar;\r\n    (b)
+      no heavier than 3,500 kilograms; \r\n    (c) no higher than 3 meters; \r\n    (d)
+      and no wider than 2.3 meters including wing mirrors; \r\n    (a) not used for
+      commercial purposes;\r\n  Please note that vehicles that exceed these dimensions
+      are not covered. The vehicle you are traveling in must carry a serviceable spare
+      tyre and wheel, and a key that will let us remove a wheel secured by wheel nuts
+      for the vehicle, caravan or trailer, if it is designed to carry one. If the
+      vehicle does not have a spare tyre by design then you must provide the manufacturer's
+      approved repair kit supplied.\r\n  (9) Your home - The last address (in the
+      UK) you gave to us as being where you permanently live or where you keep your
+      vehicle.\r\n  (10) Breakdown - Not being able to use the vehicle because of:
+      \r\n    (a) a mechanical breakdown; \r\n    (b) vandalism; \r\n    (c) a fire;
+      \ \r\n    (d) a theft or an attempted theft; \r\n    (e) a flat tyre; \r\n    (f)
+      a flat battery;  \r\n    (g) an accident;  \r\n    (h) it having no fuel; \r\n
+      \   (i) or putting the wrong fuel into it \r\n    (j) unable to access your
+      vehicle due to your keys being faulty, lost, or broken in the lock, or locked
+      in the vehicle.\r\n  (11) Territorial limits - UK, which is Great Britain, Northern
+      Ireland, the Isle of Man and the Channel Islands.\r\n  (12) Period of cover
+      - The period of time which the insurance applies to that is shown on your policy
+      schedule. \r\n  (14) Misfuelling - Accidentally filling the fuel tank with incorrect
+      fuel for the vehicle.\r\n\r\nSection A - Local\r\n2. The cover in this section
+      will only apply if you have paid the premium as shown on your policy schedule.\r\n
+      \ (1) WHAT IS COVERED\r\n    (a) If the vehicle breaks down more than one mile
+      from your home, we will arrange and pay for a breakdown vehicle to come to the
+      vehicle (for up to one hour) to try to get it working again. \r\n    (b) If
+      the vehicle cannot be made safe to drive at the place you have broken down,
+      we will arrange for the vehicle, the driver and passengers to be recovered to
+      a repairer or a destination of your choice within 20 miles of where you have
+      broken down.\r\n    (c) If you lose or break your vehicle keys, we will recover
+      your vehicle, the driver and passengers to our Authorized Operator's base or
+      home/local repairer within 20 miles. You will have to pay all other costs.\r\n
+      \   (d) We will pass on up to two messages to either your home or place of work
+      to tell them about your situation.\r\n  (2) WHAT IS NOT COVERED\r\n    (a) A
+      breakdown at or within one mile from your home.  \r\n    (b) Travel outside
+      the UK.  \r\n    (c) You will need to pay any additional mileage over 20 miles.
+      \r\n    (d) Anything mentioned in the general exclusions.\r\n\r\nSection B -
+      Misfuelling\r\n3.\r\n  (1) WHAT IS COVERED - We will pay for the following if
+      your vehicle is subject to misfuelling in the United Kingdom. The following
+      services are available both on the forecourt, where safe and achievable to do
+      so, and once the vehicle has been driven away: \r\n    (a) Draining and flushing
+      the fuel tank using a specialist roadside vehicle or recovery of the vehicle,
+      the driver and up to six passengers to the nearest repairer to drain and flush
+      the fuel tank. Refueling the fuel tank with up to 10 liters of the correct fuel.
+      A maximum value of $250 per claim applies in any period of cover. You will be
+      responsible for paying any costs in excess of $250 per claim.  \r\n    (b) We
+      will only cover up to two misfuelling claims each year.\r\n  (2) WHAT IS NOT
+      COVERED - The following are not covered under this insurance: \r\n    (a) Where
+      the misfuelling occurs outside the United Kingdom. \r\n    (b) Any claim resulting
+      from foreign matter entering the fuel system except for diesel or petrol.  \r\n
+      \   (c) Mechanical or component damage to your vehicle whether or not caused
+      as a result of misfuelling, the cost of hiring an alternative vehicle in the
+      event mechanical or component damage is sustained. \r\n    (d) Any defect arising
+      directly and/or indirectly as a result of misfuelling or a defect which existed
+      before the incident of misfuelling.\r\n    (e) Fuel above the first 10 liters.
+      \ \r\n    (f) Anything mentioned in Exclusions and General Conditions.\r\n\r\nSection
+      C - General exclusions \r\n4. We will not cover the following: \r\n    (1) Any
+      excess payable on your policy, if you have chosen to include this, as shown
+      on your Policy Schedule \r\n    (2) Any breakdown that happens during the first
+      24 hours after you take out cover for the first time, except for benefits shown
+      under section A, which are available immediately. \r\n    (3) The cost of fuel
+      or any spare parts needed to get the vehicle working again, or any costs that
+      arise from not being able to get replacement parts. \r\n    (4) Any breakdown
+      or recovery outside the period of cover. \r\n    (5) The cost (and guaranteeing
+      the quality) of repairs when the vehicle is repaired in any garage the vehicle
+      is taken to. \r\n    (6) Any costs for vehicles that have not been maintained
+      and used in line with the manufacturer's recommendations. \r\n    (7) Help or
+      recovery if the vehicle is partly or completely buried in snow, mud, sand or
+      water. \r\n    (8) Loss or damage to personal possessions you leave in your
+      vehicle. \r\n    (9) The costs of getting a spare wheel or tyre for a roadside
+      repair if the vehicle does not have one. We will not pay the costs of arranging
+      for a wheel that is secured by locking wheel nuts to be removed, if the driver
+      is not able to provide a key to do this. \r\n    (10) Any costs if the vehicle
+      has been altered for, or is taking part in, racing, trials or rallying. \r\n
+      \   (11) Recovering the vehicle when it is carrying more than a driver and the
+      recommended number of passengers according to the manufacturers' specifications,
+      if there is more weight in the vehicle than it was designed to carry or you
+      are driving on unsuitable ground. \r\n    (12) Recovery or help if the vehicle
+      is heavier than 3,500 kilograms, longer than 5.5 meters including tow bar, higher
+      than 3 meters or wider than 2.3 meters including wing mirrors. \r\n    (13)
+      Recovery or help if you are hiring the vehicle out to carry people in return
+      for money. \r\n    (14) Recovery or help if the vehicle is being used to carry
+      commercial goods. \r\n    (15) Any loss or damage caused to the vehicle or any
+      loss or cost arising from or contributed to by:     \r\n    ionizing radiation
+      or radioactive contamination from any nuclear fuel or from any nuclear waste
+      which results from burning nuclear fuel; or     \r\n    the radioactive, toxic,
+      explosive or other dangerous properties of any nuclear machinery or any part
+      of it. \r\n    (16) Loss or damage caused by war, revolution or any similar
+      event. \r\n\r\nSection D - General conditions\r\n5.\r\n    (1) If you have chosen
+      to include an excess on your policy, this must be paid before we arrange any
+      assistance in the event of breakdown. We will take payment at the point when
+      you notify us that you require our services. If we take payment and arrange
+      assistance at your request and you subsequently cancel the call-out, but we
+      have already dispatched one of our recovery operators, we will not refund the
+      excess money you have paid. If your vehicle then has another breakdown and you
+      call us for assistance, you will be charged the excess amount for this second
+      breakdown and any further callouts thereafter. \r\n    (2) The vehicle must
+      be permanently registered in the UK and, if appropriate, have a current MOT
+      certificate and valid road fund license or tax disc on display. The vehicle
+      should be kept in a good condition and have been serviced regularly in line
+      with the manufacturer's recommendations. It must be less than 16 years old since
+      first registration.\r\n    (3) You will have to pay the cost of moving the vehicle
+      or a repair vehicle coming out to you if, after asking for help which you are
+      entitled to, the vehicle is moved or repaired in any other way, or you have
+      provided location details which are incorrect. The payment must be by credit
+      or debit card. \r\n    (4) The vehicle must carry a serviceable spare tyre and
+      wheel for the vehicle. This condition does not apply if the vehicle is not designed
+      to carry a spare wheel. If the vehicle is not designed to carry a spare wheel,
+      you will need to carry the appropriate aerosol repair kit. \r\n    (5) If the
+      vehicle needs to be taken to a garage after a breakdown, the vehicle must be
+      in a position that makes it reasonable for a recovery vehicle to pick it up.
+      If this is not the case, you will have to pay any specialist recovery fees by
+      credit or debit card. \r\n    (6) We will not arrange for help if we think that
+      it would be dangerous or illegal to repair or move the vehicle. \r\n    (7)
+      If you are not willing to accept our decision or our agents' decision on the
+      most suitable type of help, we will not pay more than $100 for any one breakdown
+      and you will be responsible for any other costs due in recovering and repairing
+      your vehicle."
+    scasp_encoding: ''
 - model: blawx.workspace
   pk: 9
   fields:
@@ -312,11 +456,24 @@
       name="first_element">object</field><field name="infix">threw</field><field name="second_element">value</field><field
       name="postfix"></field></block></next></block></statement></block></next></block></statement></block><block
       type="unattributed_rule" id="H[dHxF1dJ#hSkjuHqigN" x="33" y="370"><statement
-      name="conditions"><block type="attribute_selector" id="VgOZjK:YV9qX0s3wFiMP"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="player" attributetype="player"
-      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">played
-      in</field><field name="postfix"></field><value name="first_element"><block type="variable"
-      id="{-(!V(06b9;kn(.OLcsC"><field name="variable_name">Player1</field></block></value><value
+      name="conditions"><block type="object_category" id="k~txF1TzrW76$OOmxrQg"><value
+      name="object"><block type="variable" id="f/=.V8T;{6*PT9EYtwsZ"><field name="variable_name">Game</field></block></value><value
+      name="category"><block type="category_selector" id="LM3-6aTK,BEjI%mIro9G"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="game"></mutation><field
+      name="category_name">game</field></block></value><next><block type="object_category"
+      id="EjD|TUg,WS$@c-?@7_;!"><value name="object"><block type="variable" id="UOF1xQ4)=5E@!P+Qke3|"><field
+      name="variable_name">Player1</field></block></value><value name="category"><block
+      type="category_selector" id="fzMs[)P4F`qxbPK)8Ql7"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="player"></mutation><field name="category_name">player</field></block></value><next><block
+      type="object_category" id="_QrSXmZ8NT,]4N$AuOD:"><value name="object"><block
+      type="variable" id="3}u?Tz:i.]p77oZ(PVP_"><field name="variable_name">Player2</field></block></value><value
+      name="category"><block type="category_selector" id="pK4^v4NnsjH8m0g]II,C"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="category_name">player</field></block></value><next><block type="attribute_selector"
+      id="VgOZjK:YV9qX0s3wFiMP"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="player"
+      attributetype="player" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">played in</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="{-(!V(06b9;kn(.OLcsC"><field name="variable_name">Player1</field></block></value><value
       name="second_element"><block type="variable" id="qK3yDf!t(U]*4w]??a,z"><field
       name="variable_name">Game</field></block></value><next><block type="attribute_selector"
       id="#=6uvG0|VmI1}^[=DFgb"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="player"
@@ -342,14 +499,17 @@
       name="infix">beats</field><field name="postfix"></field><value name="first_element"><block
       type="variable" id="}f6*mn3827#1NFp*y|5C"><field name="variable_name">Throw1</field></block></value><value
       name="second_element"><block type="variable" id="s-}w@zN[~tg2n~@Q9vb%"><field
-      name="variable_name">Throw2</field></block></value></block></next></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="attribute_selector" id="gL4%,Q9wxFBpcf0hod8:"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="winner" attributetype="player"
-      attributeorder="ov"></mutation><field name="prefix">the winner of</field><field
-      name="infix">is</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="//}tGADTWqR;V(9%()KP"><field name="variable_name">Game</field></block></value><value
-      name="second_element"><block type="variable" id="ag,!^lQb:dB}bgV-;vE."><field
-      name="variable_name">Player1</field></block></value></block></statement></block></xml>
+      name="variable_name">Throw2</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="O`0{GLKp!ZsKzRhML{Cm"><value
+      name="rule"><block type="doc_selector" id="NANi!cb7(_xY%HT9WQZ="><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_4_section"></mutation><field name="doc_part_name">RPSA
+      4</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="gL4%,Q9wxFBpcf0hod8:"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="//}tGADTWqR;V(9%()KP"><field
+      name="variable_name">Game</field></block></value><value name="second_element"><block
+      type="variable" id="ag,!^lQb:dB}bgV-;vE."><field name="variable_name">Player1</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(game,winner,player).
 
       blawx_attribute_nlg(winner,ov,"the winner of","is","").
@@ -375,7 +535,13 @@
 
 
 
-      winner(Game,Player1) :-
+      according_to(sec_4_section,  winner(Game,Player1)) :-
+
+      game(Game),
+
+      player(Player1),
+
+      player(Player2),
 
       player(Game,Player1),
 
@@ -4408,6 +4574,189 @@
       person(Person),
 
       military(Person,true).'
+- model: blawx.workspace
+  pk: 97
+  fields:
+    ruledoc: 11
+    workspace_name: root_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 98
+  fields:
+    ruledoc: 11
+    workspace_name: sec_1_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="[c~Rd-p+ESGuzAe6,Y1|" x="85" y="3"><statement name="statements"><block type="category_declaration"
+      id=":/JaMeA+Z:7!F?qKh#q="><field name="category_name">person</field><next><block
+      type="category_attribute" id="NnLPk2is3.~M}J8dyrGj"><value name="category"><block
+      type="category_selector" id="1.~fI$q/CjKMjLbpKfjk"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="E3tjYERvts_GouTmPIjj"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="parent" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">parent</field><value name="attribute_type"><block type="category_selector"
+      id="3BX,HTzM$eLlJ0CCCP$L"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="attribute_display"
+      id="HRn+IbI[iguvj@yLcJR3"><field name="order">vo</field><field name="prefix"></field><field
+      name="first_element">value</field><field name="infix">is a parent of</field><field
+      name="second_element">object</field><field name="postfix"></field><next><block
+      type="attribute_declaration" id="mL52w+@)2K$D=KJ;L$Y:"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="sibling" attribute_type="CATEGORY"></mutation><field name="attribute_name">sibling</field><value
+      name="attribute_type"><block type="category_selector" id="1JP(QzBe8ao~Z|/(LLr2"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="attribute_display"
+      id=",hX?[aVb$AoVxSSS3$f1"><field name="order">vo</field><field name="prefix"></field><field
+      name="first_element">value</field><field name="infix">is a sibling of</field><field
+      name="second_element">object</field><field name="postfix"></field></block></next></block></next></block></next></block></statement></block></next></block></statement></block><block
+      type="unattributed_rule" id="@Hcd)Dck[F1Y%.ElVI(-" x="87" y="318"><statement
+      name="conditions"><block type="object_category" id="=noH3(SBLc*~UIDatY,z"><value
+      name="object"><block type="variable" id="2j[wkJ*%%9l/8s/pt`J("><field name="variable_name">A</field></block></value><value
+      name="category"><block type="category_selector" id="NOxMnZYY[8?XW;dR^ly2"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="object_category"
+      id="HE3UmiXA,T.LVhv6+O8^"><value name="object"><block type="variable" id=",3yJ5u+u.-X;qags3E5S"><field
+      name="variable_name">B</field></block></value><value name="category"><block
+      type="category_selector" id="pwetRW!h@oRk=bVRk/{9"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><next><block
+      type="object_category" id="_NpF7`cNQ-aJ:-u+HFv("><value name="object"><block
+      type="variable" id="]M^?({Re|o|D@Nk}x6NR"><field name="variable_name">C</field></block></value><value
+      name="category"><block type="category_selector" id="8|Co}1QX%=||A,UD6Wlv"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="attribute_selector"
+      id="$sPG7g=5$3+%gL_KaH(!"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="parent"
+      attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">is a parent of</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="VyvQxqe43y0}d%VFF+Je"><field name="variable_name">C</field></block></value><value
+      name="second_element"><block type="variable" id="U~;x=t%+{Vc./D-sFUGE"><field
+      name="variable_name">A</field></block></value><next><block type="attribute_selector"
+      id="$r,xC5X_JCH_,HwihcPD"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="parent"
+      attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">is a parent of</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="=Kup|l@KZHGVy~2D5)4C"><field name="variable_name">C</field></block></value><value
+      name="second_element"><block type="variable" id="zUStH[^Jx)=NZM1/kg]@"><field
+      name="variable_name">B</field></block></value></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="CIFkE7FORt9(;ANq6yjo"><value
+      name="rule"><block type="doc_selector" id="+55h_sucK0V9S1l[CLgc"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1_section"></mutation><field name="doc_part_name">SA
+      1</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="F*TKyhINsYLQa@PyYJ6b"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sibling"
+      attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">is a sibling of</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="$AN?Q-Yo|MrAA$tWecb0"><field name="variable_name">B</field></block></value><value
+      name="second_element"><block type="variable" id="@1Cr^9lovIX5H]b$v;a`"><field
+      name="variable_name">A</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(person).
+
+      #pred person(X) :: ''@(X) is a person''.
+
+      #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
+
+      #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
+
+      blawx_attribute(person,parent,person).
+
+      blawx_attribute_nlg(parent,vo,"","is a parent of","").
+
+      #pred parent(Y,X) :: ''@(X) is a parent of @(Y)''.
+
+      #pred according_to(R,parent(Y,X)) :: ''according to @(R), @(X) is a parent of
+      @(Y)''.
+
+      #pred legally_holds(_,parent(Y,X)) :: ''it legally holds that @(X) is a parent
+      of @(Y)''.
+
+
+      blawx_attribute(person,sibling,person).
+
+      blawx_attribute_nlg(sibling,vo,"","is a sibling of","").
+
+      #pred sibling(Y,X) :: ''@(X) is a sibling of @(Y)''.
+
+      #pred according_to(R,sibling(Y,X)) :: ''according to @(R), @(X) is a sibling
+      of @(Y)''.
+
+      #pred legally_holds(_,sibling(Y,X)) :: ''it legally holds that @(X) is a sibling
+      of @(Y)''.
+
+
+
+      according_to(sec_1_section,  sibling(A,B)) :-
+
+      person(A),
+
+      person(B),
+
+      person(C),
+
+      parent(A,C),
+
+      parent(B,C).'
+- model: blawx.workspace
+  pk: 99
+  fields:
+    ruledoc: 11
+    workspace_name: sec_3_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"></xml>
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 100
+  fields:
+    ruledoc: 11
+    workspace_name: sec_2_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="[c~Rd-p+ESGuzAe6,Y1|" x="38" y="60"><statement name="statements"><block
+      type="category_attribute" id="NnLPk2is3.~M}J8dyrGj"><value name="category"><block
+      type="category_selector" id="1.~fI$q/CjKMjLbpKfjk"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="AI8^@Jh+F=*@NZcOVi[["><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="ward" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">ward</field><value name="attribute_type"><block type="true_false_type_selector"
+      id="+Bq]#Cvb+Dh/2iEZT|{b"></block></value><next><block type="attribute_display"
+      id="5w9D];(1yv.*6[8dsj@/"><field name="order">vo</field><field name="prefix">it
+      is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">is a ward of the state</field></block></next></block></statement><next><block
+      type="object_declaration" id="G9FO|!mQ(^z;;,U),C1j"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">opg</field><field name="postfix">is a person</field></block></next></block></statement></block><block
+      type="unattributed_rule" id="[*A?iH,J2jRh_.|}^3UQ" x="31" y="303"><statement
+      name="conditions"><block type="attribute_selector" id="_mXWj4{[{v+iiuLWg6|y"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="ward" attributetype="Checkmark
+      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
+      name="infix">that</field><field name="postfix">is a ward of the state</field><value
+      name="first_element"><block type="true_value" id="_:s@JhyJMGzqL~p~UG%e"></block></value><value
+      name="second_element"><block type="variable" id="1EwRwdbQYJkDpY,?(4aP"><field
+      name="variable_name">Person</field></block></value></block></statement><statement
+      name="conclusion"><block type="attribute_selector" id="~(L(D;L.(G)n4y8^2MEK"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="parent" attributetype="person"
+      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">is
+      a parent of</field><field name="postfix"></field><value name="first_element"><block
+      type="object_selector" id="C]qQP3?ngy3*9tsj;@20"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="opg"></mutation><field name="object_name">opg</field></block></value><value
+      name="second_element"><block type="variable" id="X;a.*JNt_mX(;Ht9(81|"><field
+      name="variable_name">Person</field></block></value></block></statement></block></xml>
+    scasp_encoding: 'blawx_attribute(person,ward,boolean).
+
+      blawx_attribute_nlg(ward,vo,"it is","that","is a ward of the state").
+
+      #pred ward(Y,X) :: ''it is @(X) that @(Y) is a ward of the state''.
+
+      #pred according_to(R,ward(Y,X)) :: ''according to @(R), it is @(X) that @(Y)
+      is a ward of the state''.
+
+      #pred legally_holds(_,ward(Y,X)) :: ''it legally holds that it is @(X) that
+      @(Y) is a ward of the state''.
+
+      opposes(ward(X,true),ward(X,false)).
+
+      opposes(ward(X,false),ward(X,true)).
+
+
+      person(opg).
+
+
+      parent(Person,opg) :-
+
+      ward(Person,true).'
 - model: blawx.blawxtest
   pk: 2
   fields:
@@ -4456,13 +4805,14 @@
       xmlns="http://www.w3.org/1999/xhtml" objectname="scissors"></mutation><field
       name="object_name">scissors</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
       type="query" id="7Bvu;d7/sRZH4WYjc2r*" x="45" y="330"><statement name="query"><block
-      type="attribute_selector" id="$Z{Xa^4K^6WI,3_oGh]y"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="winner" attributetype="player" attributeorder="ov"></mutation><field
-      name="prefix">the winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      type="holds" id="RbA1ko|L6D-0y;7We+*H"><statement name="statement"><block type="attribute_selector"
+      id="$Z{Xa^4K^6WI,3_oGh]y"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
       name="first_element"><block type="object_selector" id=":w:oo!Fv!xc:9y5g)EFF"><mutation
       xmlns="http://www.w3.org/1999/xhtml" objectname="testgame"></mutation><field
       name="object_name">testgame</field></block></value><value name="second_element"><block
-      type="variable" id="C/)t1WnespvvssVQmZ{="><field name="variable_name">Winner</field></block></value></block></statement></block></xml>
+      type="variable" id="S1|/bK-O89tiCdahc./E"><field name="variable_name">Winner</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'game(testgame).
 
       player(bob).
@@ -4478,7 +4828,7 @@
       throw(bob,scissors).
 
 
-      ?- winner(testgame,Winner).'
+      ?- legally_holds(_,  winner(testgame,Winner)).'
 - model: blawx.blawxtest
   pk: 4
   fields:
@@ -4551,34 +4901,53 @@
     ruledoc: 2
     test_name: hypothetical
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="assume"
-      id="M1{QxvR%?zihG#2A{7Xe" x="102" y="91"><statement name="statements"><block
+      id="wam:)Jm+$_K%n6QBtW$B" x="94" y="82"><statement name="statements"><block
+      type="object_category" id="B,MZYa9w6M[zM=q@7fr["><value name="object"><block
+      type="variable" id="UG9@_J3Yc8Ik8mQQwg4a"><field name="variable_name">A</field></block></value><value
+      name="category"><block type="category_selector" id="abpTmvTJ,#Im%d8]K$Rj"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="game"></mutation><field
+      name="category_name">game</field></block></value></block></statement></block><block
+      type="assume" id="S`.QpQ0btaNHmnA-H9q8" x="96" y="158"><statement name="statements"><block
+      type="object_category" id="6O|X/};B+?2x#eF9Y|[m"><value name="object"><block
+      type="variable" id="Fsf5c%lT8h-s#%qiF+UI"><field name="variable_name">A</field></block></value><value
+      name="category"><block type="category_selector" id="-|CoFnJd+~E7q}^aweUF"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="category_name">player</field></block></value></block></statement></block><block
+      type="assume" id="M1{QxvR%?zihG#2A{7Xe" x="95" y="229"><statement name="statements"><block
       type="attribute_selector" id="5eV-5_wF5=@coGV);z;z"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="player" attributetype="player" attributeorder="vo"></mutation><field
       name="prefix"></field><field name="infix">played in</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="z[nsN;vj68V*I9iuNqKa"><field
       name="variable_name">A</field></block></value><value name="second_element"><block
       type="variable" id="plORf)x!X:1pjMrhb%t,"><field name="variable_name">B</field></block></value></block></statement></block><block
-      type="assume" id="H(},Uv!uNIC~@S*)4s6r" x="98" y="188"><statement name="statements"><block
+      type="assume" id="H(},Uv!uNIC~@S*)4s6r" x="98" y="323"><statement name="statements"><block
       type="attribute_selector" id="*b?/IeBFxdpoLt7a~quO"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="throw" attributetype="sign" attributeorder="ov"></mutation><field
       name="prefix"></field><field name="infix">threw</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="BEAS@GnF=3U$x4/5_`8n"><field
       name="variable_name">A</field></block></value><value name="second_element"><block
       type="variable" id="OD}H:m;/Zk1wrhZCM+Pi"><field name="variable_name">B</field></block></value></block></statement></block><block
-      type="query" id="~~#dH%nQ*}tcOz=aC_I8" x="102" y="307"><statement name="query"><block
-      type="attribute_selector" id="2PQ|z{/R+t8XL$?{eUC,"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="winner" attributetype="player" attributeorder="ov"></mutation><field
-      name="prefix">the winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      type="query" id="~~#dH%nQ*}tcOz=aC_I8" x="99" y="415"><statement name="query"><block
+      type="holds" id="{}:ll7dYjij;Mm5A*/tB"><statement name="statement"><block type="attribute_selector"
+      id="2PQ|z{/R+t8XL$?{eUC,"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="WAv,,rpLn6V/^?=DMKW/"><field
-      name="variable_name">A</field></block></value><value name="second_element"><block
-      type="variable" id="=f=IFPO?].3!SX.8NM}E"><field name="variable_name">B</field></block></value></block></statement></block></xml>
-    scasp_encoding: '#abducible player(B,A).
+      name="variable_name">Game</field></block></value><value name="second_element"><block
+      type="variable" id="=f=IFPO?].3!SX.8NM}E"><field name="variable_name">Winner</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#abducible game(A).
+
+
+      #abducible player(A).
+
+
+      #abducible player(B,A).
 
 
       #abducible throw(A,B).
 
 
-      ?- winner(A,B).'
+      ?- legally_holds(_,  winner(Game,Winner)).'
 - model: blawx.blawxtest
   pk: 9
   fields:
@@ -4761,2836 +5130,172 @@
     ruledoc: 2
     test_name: who_wins
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
-      id="#`0/,K1M^tuc:WC7T/5_" x="59" y="258"><statement name="query"><block type="attribute_selector"
+      id="#`0/,K1M^tuc:WC7T/5_" x="59" y="258"><statement name="query"><block type="holds"
+      id="d=+fC)f#K;L62NQjaN.7"><statement name="statement"><block type="attribute_selector"
       id="5-kKG$Gar?/5:Y[4$*73"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
       attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
       winner of</field><field name="infix">is</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="c[Uc@Y93q1)O5FYop%5T"><field
       name="variable_name">Game</field></block></value><value name="second_element"><block
-      type="variable" id="XZhm|F*MHLuzg!~;91x2"><field name="variable_name">Player</field></block></value></block></statement></block></xml>
-    scasp_encoding: ?- winner(Game,Player).
-- model: blawx.workspacetemplate
-  pk: 1
+      type="variable" id="XZhm|F*MHLuzg!~;91x2"><field name="variable_name">Player</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: ?- legally_holds(_,  winner(Game,Player)).
+- model: blawx.blawxtest
+  pk: 17
   fields:
-    template_name: Rock Paper Scissors
-    xml_content: '<xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-
-      id="?)ApQNg1jB.,IM(o!mA`" x="0" y="0"><statement name="statements"><block type="category_declaration"
-
-      id="Ca4Cx,@OTy5zEz,%,tJA"><field name="category_name">game</field><next><block
-
-      type="category_declaration" id="v0=@GdjA}rF@yIj)Ftd]"><field name="category_name">player</field><next><block
-
-      type="category_declaration" id="?c2mZnwZs0IUi)0z8+IU"><field name="category_name">sign</field><next><block
-
-      type="category_attribute" id="[/_3l2-yD+xPk)5T2y1,"><value name="category"><block
-
-      type="category_selector" id="OKH+)fJT,QtsSSXTqLr("><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      category_name="game"></mutation><field name="category_name">game</field></block></value><statement
-
-      name="attributes"><block type="attribute_declaration" id="Et_OB798^[uEzM?Xqw#$"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="participant" attribute_type="CATEGORY"></mutation><field
-
-      name="attribute_name">participant</field><value name="attribute_type"><block
-
-      type="category_selector" id="lZ$NI19p0KN8ulAi+MYS"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      category_name="player"></mutation><field name="category_name">player</field></block></value><next><block
-
-      type="attribute_display" id="}2^zm4OiGS5roNT:4wpB"><field name="order">vo</field><field
-
-      name="prefix"></field><field name="first_element">value</field><field name="infix">played
-
-      in</field><field name="second_element">object</field><field name="postfix"></field><next><block
-
-      type="attribute_declaration" id="]{~uCkQD:RQnu0ES1]nA"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      attribute_name="winner" attribute_type="CATEGORY"></mutation><field name="attribute_name">winner</field><value
-
-      name="attribute_type"><block type="category_selector" id="vLVE|soc2_y`*uEd!;US"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
-
-      name="category_name">player</field></block></value><next><block type="attribute_display"
-
-      id="D8)2_}IaRsEzL0mMJo@["><field name="order">vo</field><field name="prefix"></field><field
-
-      name="first_element">value</field><field name="infix">won</field><field name="second_element">object</field><field
-
-      name="postfix"></field><next><block type="attribute_declaration" id="(QU?3C!5dU$KXr8Kh^IF"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="tied" attribute_type="CATEGORY"></mutation><field
-
-      name="attribute_name">tied</field><value name="attribute_type"><block type="true_false_type_selector"
-
-      id=";|yXi*L-:TBVyD,xd*V#"></block></value><next><block type="attribute_display"
-
-      id="uYIRPY~MMFWK=_YVIz4v"><field name="order">vo</field><field name="prefix">it
-
-      is</field><field name="first_element">value</field><field name="infix">that</field><field
-
-      name="second_element">object</field><field name="postfix">was a tied game</field></block></next></block></next></block></next></block></next></block></next></block></statement><next><block
-
-      type="category_attribute" id="gm[h;FTmjCL3V-/{wRon"><value name="category"><block
-
-      type="category_selector" id="vE})_,ppO|0{GVZvD-%J"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      category_name="player"></mutation><field name="category_name">player</field></block></value><statement
-
-      name="attributes"><block type="attribute_declaration" id="r^XK`,0eF8bVy$ys=tvP"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="sign_thrown" attribute_type="CATEGORY"></mutation><field
-
-      name="attribute_name">sign_thrown</field><value name="attribute_type"><block
-
-      type="category_selector" id="2m#H%O*?klUxuPDw$Nu4"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      category_name="sign"></mutation><field name="category_name">sign</field></block></value><next><block
-
-      type="attribute_display" id="Tmc%dF4d1%Q.-Lak,hk@"><field name="order">ov</field><field
-
-      name="prefix"></field><field name="first_element">object</field><field name="infix">threw</field><field
-
-      name="second_element">value</field><field name="postfix"></field></block></next></block></statement><next><block
-
-      type="category_attribute" id=".D2Y~u}uLPmANw:J~XIu"><value name="category"><block
-
-      type="category_selector" id="SkhJL4W?=cgO{-XR0b=8"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      category_name="sign"></mutation><field name="category_name">sign</field></block></value><statement
-
-      name="attributes"><block type="attribute_declaration" id="ug$?H}w7N@L0h-B{]5-y"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="defeats" attribute_type="CATEGORY"></mutation><field
-
-      name="attribute_name">defeats</field><value name="attribute_type"><block type="category_selector"
-
-      id="nah![LZlWL/;J^a:.yJK"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="sign"></mutation><field
-
-      name="category_name">sign</field></block></value><next><block type="attribute_display"
-
-      id="T{hJgsj8p$A~v~bI.q#d"><field name="order">ov</field><field name="prefix"></field><field
-
-      name="first_element">object</field><field name="infix">beats</field><field name="second_element">value</field><field
-
-      name="postfix"></field></block></next></block></statement></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
-
-      type="unattributed_fact" id="LPkSXf.IF`3#b.lM[^t$" x="0" y="742"><statement
-
-      name="statements"><block type="object_declaration" id=",|pBANh:gS):Gw%_yoeY"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" category_name="sign"></mutation><field
-
-      name="prefix"></field><field name="object_name">rock</field><field name="postfix">is
-
-      a sign</field><next><block type="object_declaration" id="EMYgslSW7#N?Wk,Edly%"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" category_name="sign"></mutation><field
-
-      name="prefix"></field><field name="object_name">paper</field><field name="postfix">is
-
-      a sign</field><next><block type="object_declaration" id="rOa9oZJD0}~h?Q$|ElcY"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" category_name="sign"></mutation><field
-
-      name="prefix"></field><field name="object_name">scissors</field><field name="postfix">is
-
-      a sign</field><next><block type="attribute_selector" id="_Kfa*!Rr1Pg+,VqU*;n:"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" attributename="defeats" attributetype="sign"
-
-      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">beats</field><field
-
-      name="postfix"></field><value name="first_element"><block type="object_selector"
-
-      id="=Fm_i5p07vm+W}j-=9)U"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field
-
-      name="object_name">rock</field></block></value><value name="second_element"><block
-
-      type="object_selector" id=":ek^lJq98={m)Z@~%/=g"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      objectname="scissors"></mutation><field name="object_name">scissors</field></block></value><next><block
-
-      type="attribute_selector" id=")lrFRjxvs[:`tGh`Qo)K"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      attributename="defeats" attributetype="sign" attributeorder="ov"></mutation><field
-
-      name="prefix"></field><field name="infix">beats</field><field name="postfix"></field><value
-
-      name="first_element"><block type="object_selector" id="Lg$W1|18C@A-RqBVA/D|"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" objectname="scissors"></mutation><field
-
-      name="object_name">scissors</field></block></value><value name="second_element"><block
-
-      type="object_selector" id="HOR5R.[SbdS+K)dG%*2x"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      objectname="paper"></mutation><field name="object_name">paper</field></block></value><next><block
-
-      type="attribute_selector" id="uUyNYWu7^c!sHh*yX/M$"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      attributename="defeats" attributetype="sign" attributeorder="ov"></mutation><field
-
-      name="prefix"></field><field name="infix">beats</field><field name="postfix"></field><value
-
-      name="first_element"><block type="object_selector" id="UGK$1N:;9R5DWJd7B$t_"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" objectname="paper"></mutation><field name="object_name">paper</field></block></value><value
-
-      name="second_element"><block type="object_selector" id="g(F+(J%P*}/xv.LK!4V7"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field name="object_name">rock</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
-
-      type="unattributed_rule" id="l$0tozh.ygLj6=TCLXKG" x="-1" y="967"><statement
-
-      name="conditions"><block type="attribute_selector" id="zF_;2HW,[=9]V6MgdY5m"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" attributename="participant" attributetype="player"
-
-      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">played
-
-      in</field><field name="postfix"></field><value name="first_element"><block type="variable"
-
-      id="2|fK7{}cX}fqs1/fxq9K"><field name="variable_name">PlayerOne</field></block></value><value
-
-      name="second_element"><block type="variable" id="Tk!P^QFy_,Nah2:g(szx"><field
-
-      name="variable_name">Game</field></block></value><next><block type="attribute_selector"
-
-      id="H)c@@(jtxF.hi9*bn?a}"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="participant"
-
-      attributetype="player" attributeorder="vo"></mutation><field name="prefix"></field><field
-
-      name="infix">played in</field><field name="postfix"></field><value name="first_element"><block
-
-      type="variable" id="I}UKs(([]rCVNWfNUU1#"><field name="variable_name">PlayerTwo</field></block></value><value
-
-      name="second_element"><block type="variable" id="va??6/dBW+r~F/W1`W`1"><field
-
-      name="variable_name">Game</field></block></value><next><block type="attribute_selector"
-
-      id="ZHRcqfk1QXQ,uj./i@0B"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sign_thrown"
-
-      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
-
-      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
-
-      type="variable" id="5/0gm=(DDGMOr3*:|/UC"><field name="variable_name">PlayerOne</field></block></value><value
-
-      name="second_element"><block type="variable" id="MkGh/!=O:h_qK`I9nYz~"><field
-
-      name="variable_name">ThrowOne</field></block></value><next><block type="attribute_selector"
-
-      id="!m*3jr5Md;z.pGX5s.H7"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sign_thrown"
-
-      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
-
-      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
-
-      type="variable" id="WUqJ-]e7NVf?pyt@@xgl"><field name="variable_name">PlayerTwo</field></block></value><value
-
-      name="second_element"><block type="variable" id="2j2#5gTV-3mwUc}$F?V}"><field
-
-      name="variable_name">ThrowTwo</field></block></value><next><block type="attribute_selector"
-
-      id="H=nx)a-XK,0He1jM{DY{"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="defeats"
-
-      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
-
-      name="infix">beats</field><field name="postfix"></field><value name="first_element"><block
-
-      type="variable" id="4Q?6%|;6yA3g~4@O9mf}"><field name="variable_name">ThrowOne</field></block></value><value
-
-      name="second_element"><block type="variable" id="|#_lm%SX6]u)]pO91QSW"><field
-
-      name="variable_name">ThrowTwo</field></block></value></block></next></block></next></block></next></block></next></block></statement><statement
-
-      name="conclusion"><block type="attribute_selector" id="-.G6KK3LmO3E~}N`+BPz"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" attributename="winner" attributetype="player"
-
-      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">won</field><field
-
-      name="postfix"></field><value name="first_element"><block type="variable" id="ZVSA2}.0sbUX0X4c4;]Q"><field
-
-      name="variable_name">PlayerOne</field></block></value><value name="second_element"><block
-
-      type="variable" id="PBJZy@$?cWw].Z3@GFMI"><field name="variable_name">Game</field></block></value></block></statement></block><block
-
-      type="unattributed_fact" id="Df%=NpOiHOH:^IkDE~RP" x="6" y="1275"><statement
-
-      name="statements"><block type="object_declaration" id="o=DP8WlhG/Qz$j~c!}ZD"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" category_name="game"></mutation><field
-
-      name="prefix"></field><field name="object_name">testgame</field><field name="postfix">is
-
-      a game</field><next><block type="object_declaration" id="eY/g@rZelIxtbiHGS6b["><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
-
-      name="prefix"></field><field name="object_name">jane</field><field name="postfix">is
-
-      a player</field><next><block type="object_declaration" id="X?G[!QyV2,l4zQbge+PD"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
-
-      name="prefix"></field><field name="object_name">bob</field><field name="postfix">is
-
-      a player</field><next><block type="attribute_selector" id="^Q^VDN(S@(xB-3IAf@|C"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" attributename="participant" attributetype="player"
-
-      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">played
-
-      in</field><field name="postfix"></field><value name="first_element"><block type="object_selector"
-
-      id="3e,_#5:fwb6}0o.6[V6)"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field
-
-      name="object_name">bob</field></block></value><value name="second_element"><block
-
-      type="object_selector" id="G%#:F^rFhJHy5-6ymyB_"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      objectname="testgame"></mutation><field name="object_name">testgame</field></block></value><next><block
-
-      type="attribute_selector" id="-OAgA5tr(ffL3Q_hU_G;"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      attributename="participant" attributetype="player" attributeorder="vo"></mutation><field
-
-      name="prefix"></field><field name="infix">played in</field><field name="postfix"></field><value
-
-      name="first_element"><block type="object_selector" id="GzQN/NQhACSN$Ib,A{cC"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" objectname="jane"></mutation><field name="object_name">jane</field></block></value><value
-
-      name="second_element"><block type="object_selector" id="U3/bA$/+A)jx~5{wXr^C"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" objectname="testgame"></mutation><field
-
-      name="object_name">testgame</field></block></value><next><block type="attribute_selector"
-
-      id="wM.^p69cTx;{~K/!yuMA"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sign_thrown"
-
-      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
-
-      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
-
-      type="object_selector" id="uX/^/z=c@DOk(r5{plW7"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
-
-      name="second_element"><block type="object_selector" id="56u}Nko-eSB{;FG!N:nR"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field name="object_name">rock</field></block></value><next><block
-
-      type="attribute_selector" id="Vu1}z3W.SAFH9D8EuQ6k"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      attributename="sign_thrown" attributetype="sign" attributeorder="ov"></mutation><field
-
-      name="prefix"></field><field name="infix">threw</field><field name="postfix"></field><value
-
-      name="first_element"><block type="object_selector" id="q1(25}vj*M$im=KuQttQ"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" objectname="jane"></mutation><field name="object_name">jane</field></block></value><value
-
-      name="second_element"><block type="object_selector" id="mD=3kgU@9G67uq`S5xmR"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" objectname="scissors"></mutation><field
-
-      name="object_name">scissors</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
-
-      type="assume" id="h:=ER{_1-8EsWFVtwnR#" disabled="true" x="401" y="1349"><statement
-
-      name="statements"><block type="attribute_selector" id="LH~i%LWRbSq9H-]Gi.+)"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" attributename="participant" attributetype="player"
-
-      attributeorder="vo"></mutation><field name="prefix"></field><field name="infix">played
-
-      in</field><field name="postfix"></field><value name="first_element"><block type="variable"
-
-      id="BP,L-1hoKO)i!(Us@:;n"><field name="variable_name">Player</field></block></value><value
-
-      name="second_element"><block type="variable" id="3t12^iY:g_D8~qxrp8a9"><field
-
-      name="variable_name">Game</field></block></value><next><block type="attribute_selector"
-
-      id="|)2+x%uP~1]0dxg+!kRW"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sign_thrown"
-
-      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
-
-      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
-
-      type="variable" id="5f2n|)`k?bd9AE*+=s[X"><field name="variable_name">Player</field></block></value><value
-
-      name="second_element"><block type="variable" id="Us|=c84Q#_,Cf]M4Y^ai"><field
-
-      name="variable_name">Throw</field></block></value></block></next></block></statement></block><block
-
-      type="query" id="9c?FE/.BD?j`|}cvX4@]" x="-3" y="1563"><statement name="query"><block
-
-      type="attribute_selector" id=":RJM?oz)/jI@l)6?pQ%J"><mutation xmlns="http://www.w3.org/1999/xhtml"
-
-      attributename="winner" attributetype="player" attributeorder="vo"></mutation><field
-
-      name="prefix"></field><field name="infix">won</field><field name="postfix"></field><value
-
-      name="first_element"><block type="variable" id="K3`AK?ZU]w|20?|Wlv]{"><field
-
-      name="variable_name">PlayerOne</field></block></value><value name="second_element"><block
-
-      type="variable" id="$b[k|x!cFz%TIz@@8_;("><field name="variable_name">Game</field></block></value></block></statement></block></xml>
-
-      '
-- model: blawx.workspacetemplate
-  pk: 2
+    ruledoc: 11
+    test_name: broken_test
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="{uq~dDoY2iMkP`)vDk(N" x="75" y="69"><statement name="statements"><block
+      type="object_declaration" id=",m^y#e8u@v-jR40b`IF,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">wednesday</field><field name="postfix">is a person</field><next><block
+      type="object_declaration" id="s-1{]DYaEFc]z|4A_w-0"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">pugsley</field><field name="postfix">is a person</field><next><block
+      type="object_declaration" id="^B]KS;RfzTX0mppY3uPg"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">mortricia</field><field name="postfix">is a person</field><next><block
+      type="attribute_selector" id="N*0K;Qf.b^#)b5Cs?v)y"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="parent" attributetype="person" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is a parent of</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="D,U=?7y/^6SK[*Re/hO%"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="mortricia"></mutation><field
+      name="object_name">mortricia</field></block></value><value name="second_element"><block
+      type="object_selector" id="3{c2r-Q0qH[JP~P|%`tI"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="wednesday"></mutation><field name="object_name">wednesday</field></block></value><next><block
+      type="attribute_selector" id="eik%4HV@8+1PRC@ZyYl1"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="parent" attributetype="person" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is a parent of</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="WFIW~z[+jr/6Vc6$R]I]"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="wednesday"></mutation><field
+      name="object_name">wednesday</field></block></value><value name="second_element"><block
+      type="object_selector" id="/MLVya;Y%YsM}1P9)#3?"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="pugsley"></mutation><field name="object_name">pugsley</field></block></value></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="query" id="w~sH[hb;1^*`]!U_Sqxk" x="50" y="298"><statement name="query"><block
+      type="holds" id="cC`Q#8ncwyLL7N-KZj?H"><statement name="statement"><block type="attribute_selector"
+      id="5v~$RO(9p1[|n(Isv4o["><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sibling"
+      attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">is a sibling of</field><field name="postfix"></field><value name="first_element"><block
+      type="object_selector" id="-glO|KOAS#so8!.I6hQh"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="wednesday"></mutation><field name="object_name">wednesday</field></block></value><value
+      name="second_element"><block type="object_selector" id="QugbM%Qy3y}bb*DLej7["><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="pugsley"></mutation><field
+      name="object_name">pugsley</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'person(wednesday).
+
+      person(pugsley).
+
+      person(mortricia).
+
+      parent(wednesday,mortricia).
+
+      parent(pugsley,wednesday).
+
+
+      ?- legally_holds(_,  sibling(pugsley,wednesday)).'
+- model: blawx.blawxtest
+  pk: 18
   fields:
-    template_name: Mortality
-    xml_content: '<xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+    ruledoc: 11
+    test_name: broken_code
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id=".-K|3Fqk+|D?g2x+%y1q" x="101" y="71"><statement name="statements"><block
+      type="object_declaration" id="_G-Fq/{fpD`An`DOW{/@"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">morticia</field><field name="postfix">is a person</field><next><block
+      type="object_declaration" id="o-;DMhRUq4OVIQ3oC`GF"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">wednesday</field><field name="postfix">is a person</field><next><block
+      type="object_declaration" id="xxoi?61Ji~`-}bOL`wI#"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">pugsley</field><field name="postfix">is a person</field><next><block
+      type="attribute_selector" id="cR)_@LQdMN[{rCo^09IX"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="parent" attributetype="person" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is a parent of</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="40}n${:uvRi/CGR%BZi/"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="morticia"></mutation><field
+      name="object_name">morticia</field></block></value><value name="second_element"><block
+      type="object_selector" id="/=lR((XHzz74%!;$Ij`q"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="wednesday"></mutation><field name="object_name">wednesday</field></block></value><next><block
+      type="attribute_selector" id="Rsm#A~{=fH$zV}$,{kLZ"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="parent" attributetype="person" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is a parent of</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="I(I=uaRTN2c!i6Xy%SnV"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="morticia"></mutation><field
+      name="object_name">morticia</field></block></value><value name="second_element"><block
+      type="object_selector" id="k}#4L9^O!R5;-XaTsx[l"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="pugsley"></mutation><field name="object_name">pugsley</field></block></value></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="query" id="R?6A*cyrc1C^dnH@j@mx" x="100" y="271"><statement name="query"><block
+      type="holds" id="(ehJe+cHTAW!,a{YhVUt"><statement name="statement"><block type="attribute_selector"
+      id="RgOh0W$A^bv+HA0m#jG|"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sibling"
+      attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">is a sibling of</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="6u(wk)_$v#FaztBBk1]Y"><field name="variable_name">Anyone</field></block></value><value
+      name="second_element"><block type="object_selector" id="oD,?MM*w=DeTdlCQBPg?"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="wednesday"></mutation><field
+      name="object_name">wednesday</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'person(morticia).
 
-      id="va9hJj%n~=#-V$OG$4pg" x="78" y="83"><statement name="statements"><block
+      person(wednesday).
 
-      type="category_declaration" id="H^Ztllbvm3V:W=vlHRvn"><field name="category_name">person</field><next><block
+      person(pugsley).
 
-      type="category_declaration" id="t8H8iM9nTeQ,xMd/u9T]"><field name="category_name">mortal</field><next><block
+      parent(wednesday,morticia).
 
-      type="category_equivalence" id="G`8,y#Vd.Vim,`kCH!KV"><value name="first_category"><block
+      parent(pugsley,morticia).
 
-      type="category_selector" id="JNoe;$f2hmnRO!E@8_-+"><mutation xmlns="http://www.w3.org/1999/xhtml"
 
-      category_name="person"></mutation><field name="category_name">person</field></block></value><value
-
-      name="second_category"><block type="category_selector" id="AvgZmAYdp(f:$uM2#%U3"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" category_name="mortal"></mutation><field
-
-      name="category_name">mortal</field></block></value><next><block type="object_declaration"
-
-      id="M)gze_+jcT|ipaN3y,Dk"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-
-      name="prefix"></field><field name="object_name">socrates</field><field name="postfix">is
-
-      a person</field></block></next></block></next></block></next></block></statement></block><block
-
-      type="query" id="U)D@HF1126Ah$}s8[zAg" x="79" y="259"><statement name="query"><block
-
-      type="object_category" id="?HLOpyE7B16]h#mt#UeU"><value name="object"><block
-
-      type="variable" id="f(|5$wZM61#NLY8!*;9v"><field name="variable_name">Anything</field></block></value><value
-
-      name="category"><block type="category_selector" id="9hMs8I*3wQ_=7w:!@Y)L"><mutation
-
-      xmlns="http://www.w3.org/1999/xhtml" category_name="mortal"></mutation><field
-
-      name="category_name">mortal</field></block></value></block></statement></block></xml>'
-- model: blawx.docpage
-  pk: about
+      ?- legally_holds(_,  sibling(wednesday,Anyone)).'
+- model: blawx.blawxtest
+  pk: 19
   fields:
-    title: About
-    content: '# About Blawx
+    ruledoc: 11
+    test_name: broken_rule
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="Q:{b=FC*B%+VR?ZyS+]y" x="91" y="109"><statement name="statements"><block
+      type="object_declaration" id="tn!zHx[|M/0jbob[`l]J"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">person1</field><field name="postfix">is a person</field><next><block
+      type="object_declaration" id="ENw~D/?Oq/!ms`-]G{!,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">person2</field><field name="postfix">is a person</field></block></next></block></statement></block><block
+      type="assume" id="SDUR?hrgy1ELISqt3R(P" x="93" y="202"><statement name="statements"><block
+      type="attribute_selector" id="AFq?Mx}ScR)r#MzuFROr"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="ward" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      a ward of the state</field><value name="first_element"><block type="variable"
+      id="8_0nefF4`,V`*-(pSl[k"><field name="variable_name">A</field></block></value><value
+      name="second_element"><block type="variable" id=")K3uK05Y+hoil[]SYK,L"><field
+      name="variable_name">B</field></block></value></block></statement></block><block
+      type="query" id="0IQ1tLx$+Q2=p]!Qn3=G" x="92" y="283"><statement name="query"><block
+      type="holds" id="U_=CI_ln4}CR+zE5!^7n"><statement name="statement"><block type="attribute_selector"
+      id="ApY5f;s.rkTxU0Dbt].K"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sibling"
+      attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">is a sibling of</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="p+(:ZYX7,IimnbS]P+Xj"><field name="variable_name">Sibling1</field></block></value><value
+      name="second_element"><block type="variable" id="pWBd[eDR!{Bw?%qDG|BY"><field
+      name="variable_name">Sibling2</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'person(person1).
+
+      person(person2).
 
 
-      Blawx is an open source, web-based, user-friendly
-
-      interface
-
-      to the [s(CASP) programming language](http://ceur-ws.org/Vol-2970/gdeinvited4.pdf)
-
-      built
-
-      on [Google''s Blockly library](https://developers.google.com/blockly),
-
-      intended
-
-      for use in encoding legislation and contracts.
+      #abducible ward(B,A).
 
 
-      Blocks + Law = Blawx.
-
-
-      It
-
-      is maintained by [Jason Morris](https://github.com/Gauntlet173) of Lexpedite
-
-      Legal Technologies, Ltd.
-
-
-      An article featuring an earlier version of Blawx
-
-      is available at the [MIT Computational Law Report](https://law.mit.edu/pub/blawxrulesascodedemonstration/release/1).'
-- model: blawx.docpage
-  pk: blocks/assumption
+      ?- legally_holds(_,  sibling(Sibling2,Sibling1)).'
+- model: blawx.blawxtest
+  pk: 20
   fields:
-    title: Assumption Block
-    content: '# Assumption Block
-
-
-      ![Assumption Block](/static/blawx/docs/images/blocks/assumption.png)
-
-
-      ## Where Is It?
-
-
-      The assumption block is found in the Primary drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The assumption block is used to tell Blawx to assume that the included statement
-
-      may or may not be true, and enables Blawx to answer questions on the basis of
-
-      those assumptions.
-
-
-      ## Technical Details
-
-
-      An assumption block is valid if it has exactly one statement block connected
-      to it.
-
-
-      In the background, the assumption block is implemented as a set of two rules
-      which
-
-      say, essentially, "statement is true if it is not known false; statement is
-      false if not true."
-
-      This creates two possible sets of scenarios for Blawx to consider, and Blawx
-      will
-
-      provide answers from either scenario if the assumption is required in order
-      to
-
-      answer the question.
-
-
-      Note that because Blawx generates both scenarios, when you are using an assumption
-      block
-
-      it is typical for a question and it''s opposite to both be answerable at the
-      same time.
-
-
-      For instance, if you ask Blawx to assume eligibility, it will be able to find
-      a scenario
-
-      in which the person is entitled to payment (because they are assumed to be eligible),
-      and a scenario in
-
-      which they are not (because they are not to be eligible).
-
-
-      ## Tips
-
-
-      Note that if you use a large number of assumptions at the same time, you create
-      exponentially
-
-      more fact scenarios for Blawx to consider. That may slow down processing of
-      your consider.'
-- model: blawx.docpage
-  pk: blocks/attribute_display
-  fields:
-    title: Attribute Display Block
-    content: '# Attribute Display Block
-
-
-      ![Attribute Display Block](/static/blawx/docs/images/blocks/attribute_display.png)
-
-
-      ## Where Is It?
-
-
-      The attribute display block is located in the Categories drawer of the Blawx
-      toolbox.
-
-
-      ## What Does It Do?
-
-
-      The attribute display block is used to customize how attributes are described
-      in
-
-      attribute selector blocks and explanations.
-
-
-      ## Technical Details
-
-
-      The attribute display block can only be placed immediately following a new attribute
-      block,
-
-      and only applies to the attribute it immediately follows.
-
-
-      The attribute display block accepts four inputs.
-
-
-      The first input is an order. An attribute is the name of a relationship between
-      an object
-
-      and a value for that attribute. The order indicates whether in the text describing
-      that
-
-      relationship, the object or the value should appear first.
-
-
-      When you change this field, the corresponding text on the bottom of the attribute
-      display
-
-      block changes also.
-
-
-      The other three values are text that should go before both values, text that
-      should go
-
-      between them, and text that should go after them.
-
-
-      For example, you may have a category called "animal" and an attribute called
-      "legs", which
-
-      accepts a number.
-
-
-      By default, your atribute selector block will read "(object) ''s legs is (value)."
-
-
-      If instead you want the block to read "there are (value) legs on a (object),
-      usually"
-
-      you would set the order to "value, then object", and set the three text inputs
-      to "there are",
-
-      "legs on a", and "usually" respectively.
-
-
-      ## Tips
-
-
-      There is no requirement that you use the name of the attribute in the text.
-      This
-
-      can make your code easier to read by allowing for shorter attribute names, but
-      it can also
-
-      make it more difficult to tell what attribute your attribute selector blocks
-      are related to.'
-- model: blawx.docpage
-  pk: blocks/attribute_selector
-  fields:
-    title: Attribute Selector Block
-    content: '# Attribute Selector Block
-
-
-      ![Attribute Selector Block](/static/blawx/docs/images/blocks/attribute_selector.png)
-
-
-      ## Where Is It?
-
-
-      The attribute selector block is located in the Known Attributes drawer of the
-      Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The attribute selector block is used to set or test a value for an attribute
-      of a given object.
-
-
-      ## Technical Details
-
-
-      The attribute selector block''s appearance can vary due to the attribute display
-      block.
-
-
-      It always has two internal connectors, one for the object, and one for the value.
-      The object
-
-      connector accepts an object or a variable. The value connector accepts a variable,
-      or a value
-
-      of the correct type if the attribute has a datatype, or an object, if the attribute''s
-      datatype is
-
-      a category.
-
-
-      ## Tips
-
-
-      Most of the work that you will do setting out rules in Blawx will be done using
-      attribute
-
-      selector blocks and variables.'
-- model: blawx.docpage
-  pk: blocks/calculation
-  fields:
-    title: Calculation Block
-    content: "# Calculation Block\n\n![Calculation Block](/static/blawx/docs/images/blocks/calculation.png)\n\n##
-      Where Is It?\n\nThe calculation block is located in the Number section of the
-      \nData Statements drawer of the Blawx toolbox.\n\n## What Does It Do?\n\nThe
-      calculation block is used to provide a mathematical calculation of a numerical
-      value.\n\n## Technical Details\n\nThe calculation block is a statement block,
-      and can be stacked with other statement blocks.\nIt always evaluates to true.\n\nThe
-      calculation block has two internal connectors. The first requires a variable
-      to which\nthe result of the calculation will be assigned. The second requires
-      a block that returns\na number, which might include either a number value, or
-      a math operation.\n\n## Tips\n\nAny time that you want to perform a mathematical
-      operation, it needs to be surrounded by\na calculation block.\n\nCalculation
-      blocks are similar to variable assignment blocks, except that the value assigned\nis
-      always a number. If you want to assign a specific number value to a variable,
-      and not\nthe result of a calculation, you can use the variable assignment block
-      instead.\n"
-- model: blawx.docpage
-  pk: blocks/category_attribute
-  fields:
-    title: Category Attribute Block
-    content: '# Category Attribute Block
-
-
-      ![Category Attribute Block](/static/blawx/docs/images/blocks/category_attributes.png)
-
-
-      ## Where Is It?
-
-
-      The category attribute block is located in the Categories drawer of the Blawx
-      toolbox.
-
-
-      ## What Does It Do?
-
-
-      The category attribute block is used to create new attributes associated with
-      a category.
-
-
-      ## Technical Details
-
-
-      The category attribute block accepts one internal input, which must be a category
-      selector.
-
-      It also has an external connector which must be a stack of new attribute blocks,
-      optionally
-
-      with attribute display blocks included.
-
-
-      ## Tips
-
-
-      Multiple category attribute blocks can be created for the same category, so
-      it is possible
-
-      to add attributes to a category in multiple places in your code.'
-- model: blawx.docpage
-  pk: blocks/category_display
-  fields:
-    title: Category Display Block
-    content: '# Category Display Block
-
-
-      ![Category Display Block](/static/blawx/docs/images/blocks/category_display.png)
-
-
-      ## Where Is It?
-
-
-      The category display block is located in the Categories drawer of the Blawx
-      toolbox.
-
-
-      ## What Does It Do?
-
-
-      The category display block is used to change how categories are described in
-      new object
-
-      blocks and in explanations.
-
-
-      ## Technical Details
-
-
-      The category display block is a custom block type that can only be placed immediately
-
-      below a new category block.  It applies only to the new category block it is
-      immediately
-
-      below.
-
-
-      The category display block accepts 2 inputs, the text that should appear the
-      object name,
-
-      and the text that should appear after the object name when referring to a member
-      of that
-
-      category.
-
-
-      For example, if you have a category named "person", the default new object block
-      will read
-
-      "(object name) is a person". However, using the category display block, you
-      could change
-
-      this text to read "we know (object name) is human". To do this "we know" would
-      be placed
-
-      in the first text field, and "is human" would be placed in the second text field.
-
-
-      The revised display for the category will be used in new object blocks, and
-      in explanations.
-
-
-      ## Tips
-
-
-      It is possible to change the way that a category is displayed in such a way
-      as to leave out
-
-      the name of the category. In the example above, the word "person" is still the
-      name of the
-
-      category, but it no longer appears in the new object blocks or in the explanations.
-      This can
-
-      make things easier for people using your code, but it can also make your code
-      harder to
-
-      maintain, because it is more difficult to determine what category is being changed.'
-- model: blawx.docpage
-  pk: blocks/category_equivalence
-  fields:
-    title: Category Equivalence Block
-    content: '# Category Equivalence Block
-
-
-      ![Category Equivalence Block](/static/blawx/docs/images/blocks/category_equivalence.png)
-
-
-      ## Where Is It?
-
-
-      The category equivalence block is located in the Categories drawer of the Blawx
-      toolbox.
-
-
-      ## What Does It Do?
-
-
-      The category equivalence block is used to indicate that all members of one category
-      are
-
-      also members of another category.
-
-
-      ## Technical Details
-
-
-      The category equivalence block is a statement, and can be stacked with other
-      statements.
-
-      It accepts two inputs, both of which must be categories. The effect of the category
-
-      equivalence block is that all members of the first category are members of the
-      second
-
-      category.
-
-
-      In fact, a category equivalence block is a short-form of a rule with two object
-      category
-
-      blocks referring to the same variable and different categories.
-
-
-      ## Tips
-
-
-      Using a category equivalence block happens in one direction only. If you want
-      to say
-
-      something like "all tolkien books are great books, and all great books are tolkien
-      books",
-
-      you will need two category equivalence blocks.'
-- model: blawx.docpage
-  pk: blocks/category_selector
-  fields:
-    title: Category Selector Block
-    content: '# Category Selector Block
-
-
-      ![Category Selector Block](/static/blawx/docs/images/blocks/category_selector.png)
-
-
-      ## Where Is It?
-
-
-      The category selector block is located in the Known Categories drawer of the
-      Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The category selector block is used to specify a category.
-
-
-      ## Technical Details
-
-
-      The category block can be placed only on inputs that
-
-      are expecting a category,
-
-      such as in a category attribute block,
-
-      a category equivalence block, an object category block, or a new attribute block.
-
-
-      ## Tips'
-- model: blawx.docpage
-  pk: blocks/comparison
-  fields:
-    title: Comparison Block
-    content: '# Comparison Block
-
-
-      ![Comparison Block](/static/blawx/docs/images/blocks/comparison.png)
-
-
-      ## Where Is It?
-
-
-      The comparison block is located in the Logic drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The comparison block is used to determine the relative order of two values.
-
-
-      ## Technical Details
-
-
-      The comparison block accepts two variables, or two values of the same type,
-
-      which are ordered. It also requires you
-
-      to select a comparison between them, one of:
-
-      * the same value as
-
-      * a different value than
-
-      * less than
-
-      * greater than
-
-      * less than or the same value as
-
-      * greater than or the same value as
-
-
-      The comparison returns true if the comparison between the two values is true.
-
-
-      ## Tips
-
-
-      Note that a comparison between two values is different from a numerical constraint,
-
-      because a comparison requires that the values being compared be known specifically.
-
-
-      If the value of a variable X is not known, the numerical constraint X > 10 will
-      result
-
-      in an answer of "X > 10". A comparison of `X > 10` while X is unknown will result
-      in
-
-      "no models", because an unknown amount is not larger than 10.
-
-
-      Note also that a comparison between two values is different from a test of equivalence.
-
-      If you want to know whether or not two variables have the same value, you can
-      use
-
-      the "is the same value as" comparison. If you want to know whether or not two
-      variables
-
-      refer to the same object, you need to use the object equivalence block.'
-- model: blawx.docpage
-  pk: blocks/constraint
-  fields:
-    title: Constraint Block
-    content: '# Constraint Block
-
-
-      ![Constraint Block](/static/blawx/docs/images/blocks/constraint.png)
-
-
-      ## Where Is It?
-
-
-      The constraint block is found in the Primary drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The constraint block is used to set out a combination of statements that cannot
-
-      all be true at the same time.
-
-
-      ## Technical Details
-
-
-      The constraint block accepts a single stack of statements, which is valid if
-      it
-
-      includes at least one statement.
-
-
-      A constraint is used to express a set of facts that cannot all be true at the
-      same
-
-      time in any of the models returned by any question block.
-
-
-      For example, you might use a constraint block to indicate that a person cannot
-
-      be both the testator of a will and the trustee named in the will at the same
-      time.
-
-
-      ## Tips
-
-
-      Using the constraint block can cause your code to run more slowly.'
-- model: blawx.docpage
-  pk: blocks/fact
-  fields:
-    title: Fact Block
-    content: "# Fact Block\n\n![Fact Block](/static/blawx/docs/images/blocks/fact.png)\n\n##
-      Where Is It?\n\nThe fact block is found in the Primary drawer of the Blawx toolbox.\n\n##
-      What Does It Do?\n\nThe fact block is used to set out things that are known
-      with certainty.\n\nThis includes statements about what categories and attributes
-      exist,\nas well as statements about what objects are known to exist and what
-      values\nthey have in their attributes.\n\n## Technical Details\n\nThe fact block
-      is an outer block.\n\nThe fact block accepts a single stack of statements. Unlike
-      most blocks in\nBlawx, the stack is **not** treated as a list of conjoined statements.
-      Instead,\neach statement is given its own scope, and does not share variable
-      names with the\nother statements in the stack.\n\nYou can have as many fact
-      blocks in your workspace as you like.\n\nA fact block is complete if it has
-      a stack of at least one statement on its\nstatement connector. A fact block
-      without at least one statement is incomplete,\nbut Blawx may ignore it.\n\n##
-      Tips\n\nIt is a good idea to use multiple fact blocks to separate out different
-      types\nof facts that you may need to deal with at different times. This allows
-      you to\ncollapse fact blocks that you don't need at the moment, and make your
-      workspace\na little easier to read.\n\nFor instance, you might have one fact
-      block you are using to create categories\nand attributes, and another fact block
-      you are using to specify the facts of a test\nscenario. \n"
-- model: blawx.docpage
-  pk: blocks/false
-  fields:
-    title: False Value Block
-    content: '# False Value Block
-
-
-      ![False Value Block](/static/blawx/docs/images/blocks/false_value.png)
-
-
-      ## Where Is It?
-
-
-      The false value block is located in the Data Values drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The false value block is used to indicate that the value of a true or false
-      attribute
-
-      is false.
-
-
-      ## Technical Details
-
-
-      The false value block is a boolean value, and can be placed only in locations
-      that
-
-      are expecting a boolean value. That is typically limited to the value input
-      of
-
-      an attribute selector block, where the attribute is using the "True / False"
-      data type.
-
-
-      ## Tips'
-- model: blawx.docpage
-  pk: blocks/json_input
-  fields:
-    title: JSON Input Block
-    content: "# JSON Input Block\n\n![JSON Input Block](/static/blawx/docs/images/blocks/json_input.png)\n\n##
-      Where Is It?\n\nThe JSON input block is found in the Primary drawer of the Blawx
-      toolbox.\n\n## What Does It Do?\n\nThe JSON input block is used to simulate
-      an input request that might be\nsent to an API endpoint when running your code.\n\n##
-      Technical Details\n\nThe JSON input block is an outer block.\n\nThe JSON input
-      block accepts a single multi-line text field (you can hit\n`enter` on your keyboard
-      to start a new line of text). To be valid the contents\nof the JSON input block's
-      text field should be valid JSON in a schema\nunderstood by the Blawx API.\n\nThere
-      should be a maximum of one JSON input block per workspace.\n\nCurrently, the
-      JSON input block uses an s(CASP)-specific format, not a Blawx-specific\nformat.
-      The keys of the payload object are translated into predicates. The value of\neach
-      is a list of lists of parameters. Each outer list is converted into a single
-      fact\nstatement, and each inner list is used as the list of parameters in that
-      fact statement.\n\nTo generate the scasp statement `this(is,complicated).` you
-      would use the following\nJSON:\n```json\n{\n  \"this\": [\n    [\n      \"is\",
-      \"complicated\"\n    ]\n  ]\n}\n```\n\n## Tips\n"
-- model: blawx.docpage
-  pk: blocks/known_false
-  fields:
-    title: Known False Block
-    content: '# Known False Block
-
-
-      ![Known False Block](/static/blawx/docs/images/blocks/known_false.png)
-
-
-      ## Where Is It?
-
-
-      The known false block is located in the Logic drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The known false block is used to specify that the statement it contains is known
-
-      with certainty to be false.
-
-
-      ## Technical Details
-
-
-      The known false block is a statement that can be stacked with other statements.
-
-
-      The known false block accepts an external connection which must be a single
-      statement.
-
-
-      The known false block is one of two forms of negation in Blawx. The other is
-      the not block.
-
-
-      The not block and the known false block differ in that the known false block
-      asserts that
-
-      something is false, while the not block asserts only that it is either false,
-      or the truth
-
-      of the statement is impossible to prove.
-
-
-      ## Tips
-
-
-      The known false block is not usually going to be used in rules, and is more
-      common to use in facts.
-
-
-      If you are not sure which negation block to use, start with "not."
-
-
-      One way to think of the difference between "known false" and "not" is by looking
-      at the difference
-
-      between "not guilty" and "innocent" in criminal law.
-
-
-      Courts don''t typically find accused "innocent", because that would be to say
-      that they know, as
-
-      a fact, that it is not true that the party is guilty. They typically find people
-      "not guilty", which
-
-      means they may or may not be guilty, but there was not enough evidence to prove
-      it.
-
-
-      If "guilty" was an attribute in Blawx, "not guilty" would be wrapping the "guilty"
-      attribute In
-
-      a "not" block, and "innocent" would be wrapping guilty in a "known false" block.'
-- model: blawx.docpage
-  pk: blocks/math_operator
-  fields:
-    title: Math Operator Block
-    content: "# Math Operator Block\n\n![Math Operator Block](/static/blawx/docs/images/blocks/math_operator.png)\n\n##
-      Where Is It?\n\nThe math operator block is found in the Number section of the
-      Data Statements\ndrawer in the Blawx toolbox.\n\n## What Does It Do?\n\nThe
-      math operator block is used to perform a mathematical operation to two\nnumerical
-      values.\n\n## Technical Details\n\nThe mathematical operator block can only
-      be used inside a calculation block.\n\nIt returns a number. It accepts two internal
-      inputs both of which must be \nvariables or numbers, or blocks that return a
-      number, like another math operator block.\n\nIt performs the operation selected
-      in the drop-down, either addition, subtraction,\nmultiplication, or division.\n\nNormal
-      mathematical order of operations does not apply. Each input to a math operator\nblock
-      is treated as if it was surrounded by parentheses.  So `(2 * (3 + 4))` will
-      always\nbe evaluated to 14.\n\n## Tips\n\nSome complicated calculations can
-      require nesting multiple math operator blocks inside\none another. If your calculation
-      is becoming difficult to visually read, you can\nbreak it into steps by using
-      multiple calculation blocks, and re-using variables between them."
-- model: blawx.docpage
-  pk: blocks/new_attribute
-  fields:
-    title: New Attribute Block
-    content: '# New Attribute Block
-
-
-      ![New Attribute Block](/static/blawx/docs/images/blocks/new_attribute.png)
-
-
-      ## Where Is It?
-
-
-      The new attribute block is located in the Categories drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The new attribute block is used to add an attribute to a category.
-
-
-      ## Technical Details
-
-
-      The new attribute block must be placed inside a category attribute block, and
-      applies
-
-      to the category named in the category attribute block. It requires an attribute
-      name,
-
-      which must begin with a lowercase letter and not include spaces. It also requires
-      a
-
-      data type, which must be one of the datatype blocks in the Data Types drawer
-      of the Blawx
-
-      toolbox, or a category.
-
-
-      ## Tips
-
-
-      Note that if you specify a data type, and not a category, your attribute selector
-      blocks
-
-      for that attribute will only accept the right type of value, and variables.
-      If you choose
-
-      a category as the data type, your attribute selector blocks will accept any
-      object, or variables.
-
-
-      Attribute names should be unique, even as between different categories.'
-- model: blawx.docpage
-  pk: blocks/new_category
-  fields:
-    title: New Category Block
-    content: '# New Category Block
-
-
-      ![New Category Block](/static/blawx/docs/images/blocks/new_category.png)
-
-
-      ## Where Is It?
-
-
-      The new category block is found in the Categories drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The new category block is used to create a new category of objects.
-
-
-      ## Technical Details
-
-
-      The new category block is a statement, and can be stacked with other statements.
-
-
-      The new category block accepts a single field, which is the name of the category.
-
-      To be valid, the name of the category must begin with a lower-case letter and
-      not
-
-      include any spaces.
-
-
-      ## Tips
-
-
-      Multiple new category blocks with the same category
-
-      name will have no effect.'
-- model: blawx.docpage
-  pk: blocks/new_object
-  fields:
-    title: New Object Block
-    content: "# New Object Block\n\n![New Object Block](/static/blawx/docs/images/blocks/new_object.png)\n\n##
-      Where Is It?\n\nThe new object block is found in the Objects drawer of the Blawx
-      toolbox.\n\n## What Does It Do?\n\nThe new object block is used to create a
-      new object in a given category.\n\n## Technical Details\n\nThe Objects drawer
-      of the Blawx toolbox will include one new object block\nfor each defined category.
-      By default, the new object block will read \n\"(input) is a (category name)\".
-      However, the appearance of the new object \nblock can be customized using the
-      category display block. As such, the\nnew object block may not actually include
-      the name of the category to which\nit applies.\n\nFor instance, you might have
-      a category \"person\", which has a new object\nblock that reads \"(input) is
-      a human being\".\n\nThe new object block asserts that the named object is in
-      the category.\n\nThe text field must be the name of the object, which must not
-      include spaces\nand must start with a lower-case letter.\n\nThe new object block
-      is a statement, and can be stacked with other statements.\n\nWhen used in the
-      conditions of a rule or a question, it checks to see whether the\nnamed object
-      is a member of the category. But typically, you will want to use\nthe object
-      category block to test for category membership in rules and questions,\nbecause
-      it allows you to use variables for the object, instead of needing to type\nthe
-      object's name.\n\nWhen used in a fact or in the conclusion of a rule, it asserts
-      that the object is\na member of the category. But in the conclusion of a rule,
-      you are probably going\nto want to use the object category block so as to be
-      able to draw that conclusion\nabout more than one thing.\n\nTypically, therefore,
-      the new object block is used only in facts.\n\n## Tips\n\nYou will usually only
-      need to create a large number of objects when you are testing\nyour rules, but
-      there are some circumstances where there are a limited number of\nobjects in
-      a category and you can define them in advance. In that case, it can be helpful\nto
-      combine the new object blocks in a single fact block, so that it can be collapsed
-      to\nmake your workspaces easier to read.\n\nNote that it is not possible to
-      declare that an object exists without assigning it to\nat least one category.
-      But it is possible to take an object that has been created in one\ncategory
-      and add it to additional categories later. This can be done by using the\nnew
-      object block from more than one category, but with the same object name. The
-      safer\nmethod, however, is to create the object once, and then use the object
-      category block\nto assign additional categories to it."
-- model: blawx.docpage
-  pk: blocks/not
-  fields:
-    title: Not Block
-    content: '# Not Block
-
-
-      ![Not Block](/static/blawx/docs/images/blocks/not.png)
-
-
-      ## Where Is It?
-
-
-      The not block is located in the Logic drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The not block is used to indicate that either the included statement is known
-      to be false,
-
-      or it cannot be proven from the facts and the rules.
-
-
-      ## Technical Details
-
-
-      The not block is a statement that can be stacked with other statements. It cannot
-      be used
-
-      in the conclusion of a rule, or in a fact block.
-
-
-      It accepts a single external connector, which must be a single statement.
-
-
-      It returns true if the connected statement is known false, or if it is not possible
-      to prove
-
-      that statement on the basis of the facts and rules.
-
-
-      ## Tips
-
-
-      The not block is one of two kinds of negation in Blawx, the other is the "known
-      false" block.
-
-
-      The difference between them is that the known false block is true only when
-      Blawx is certain
-
-      of the falsehood of the statement. The not block is true when Blawx is certain
-      of the falsehood,
-
-      but also when Blawx is not certain of the falsehood, and can''t prove the truth.
-
-
-      If you are not sure which negation block to use, start with "not" in rules conditions
-      and
-
-      questions.
-
-
-      One way to think of the difference between "known false" and "not" is by looking
-      at the difference
-
-      between "not guilty" and "innocent" in criminal law.
-
-
-      Courts don''t typically find accused "innocent", because that would be to say
-      that they know, as
-
-      a fact, that it is not true that the party is guilty. They typically find people
-      "not guilty", which
-
-      means they may or may not be guilty, but there was not enough evidence to prove
-      it.
-
-
-      If "guilty" was an attribute in Blawx, "not guilty" would be wrapping the "guilty"
-      attribute In
-
-      a "not" block, and "innocent" would be wrapping guilty in a "known false" block.'
-- model: blawx.docpage
-  pk: blocks/number
-  fields:
-    title: Number Datatype Block
-    content: '# Number Datatype Block
-
-
-      ![Number Datatype Block](/static/blawx/docs/images/blocks/number.png)
-
-
-      ## Where Is It?
-
-
-      The number datatype block is located in the Data Types drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The number datatype block is used to indicate that an attribute has values that
-      are numbers.
-
-
-      ## Technical Details
-
-
-      The number datatype block is a data type, and can only be used in blocks that
-      are expecting
-
-      a data type, which is usually only a new attribute block.
-
-
-      The number datatype can be used for integers or real numbers.
-
-
-      ## Tips'
-- model: blawx.docpage
-  pk: blocks/number_value
-  fields:
-    title: Number Value Block
-    content: "# Number Value Block\n\n![Number Value Block](/static/blawx/docs/images/blocks/number_value.png)\n\n##
-      Where Is It?\n\nThe number value block is located in the Data Values drawer
-      of the Blawx toolbox.\n\n## What Does It Do?\n\nThe number value block is used
-      to provide a specific numerical value.\n\n## Technical Details\n\nThe number
-      value block can be used to provide an Integer or a Real number (with \ndecimal
-      point values).\n\n## Tips"
-- model: blawx.docpage
-  pk: blocks/numerical_constraint
-  fields:
-    title: Numerical Constraint Block
-    content: '# Numerical Constraint Block
-
-
-      ![Numerical Constraint Block](/static/blawx/docs/images/blocks/numerical_constraint.png)
-
-
-      ## Where Is It?
-
-
-      The numerical constraint block is found in the Number section of the
-
-      Data Statements drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The numerical constraint block is used to specify that a numerical value must
-      be
-
-      in a given range.
-
-
-      ## Technical Details
-
-
-      The numerical constraint block is a statement, and can be stacked with other
-      statements.
-
-
-      It requires two internal connectors, both of which must be variables or numbers.
-
-
-      It allows the user to choose the restriction to be applied to the left input,
-      relative
-
-      to the right input, either "less than", "greater than", "less than or the same
-      value as",
-
-      or "greater than or the same value as".
-
-
-      ## Tips
-
-
-      The numerical constraint block is a very powerful tool when dealing with numbers
-      that
-
-      are constrainted to be greater, equal to, or less than other numbers.
-
-
-      If a person at least 16 must pay taxes, and a person at least 18 may vote, then
-      we know
-
-      the age of a person who is required to pay taxes and cannot vote is at least
-      16 and less
-
-      than 18. That is a numerical constraint that can be calculated by combining
-      two other
-
-      numerical constraints.
-
-
-      Through the numerical constrain block, Blawx allows you to express those sorts
-      of rules, and get answers
-
-      that are expressed as a range like "16 >= Age < 18".
-
-      '
-- model: blawx.docpage
-  pk: blocks/object_category
-  fields:
-    title: Object Category Block
-    content: '# Object Category Block
-
-
-      ![Object Category Block](/static/blawx/docs/images/blocks/object_category.png)
-
-
-      ## Where Is It?
-
-
-      The object category block is found in the Objects drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The object category block is used to assert (or check) that an object is a member
-      of
-
-      a category.
-
-
-      ## Technical Details
-
-
-      The object category block is a statement block, and can be stacked with other
-      statements.
-
-
-      The first internal connector expects an object or a variable. The second internal
-      connector
-
-      expects a category selector.
-
-
-      In a question or in the conditions of a rule or constraint, the block checks
-      to see whether the object is
-
-      a member of the category. In a conclusion or in a fact, it asserts that the
-      membership is true.
-
-
-      ## Tips
-
-
-      Generally, in facts you will want to use the new object block, unless the object
-      has already been
-
-      declared as a member of a different category, and you are adding an additional
-      category for that
-
-      object.
-
-      '
-- model: blawx.docpage
-  pk: blocks/object_disequality
-  fields:
-    title: Object Disequality Block
-    content: "# Object Disequality Block\n\n![Object Disequality Block](/static/blawx/docs/images/blocks/object_disequality.png)\n\n##
-      Where Is It?\n\nThe object disequality block is located in the Objects drawer
-      of the Blawx toolbox.\n\n## What Does It Do?\n\nThe object disequality block
-      is used to check that two objects are not the same object.\n\n## Technical Details\n\nThe
-      object disequlaity block is a statement, and can be stacked with other statements.\n\nIt
-      expects two inputs, both of which need to be objects or variables.\n\nWhen used
-      in a question, or in the conditions of a rule or constraint, the block is\ntrue
-      only if the things referred to are not identical. Two objects are identical
-      if\nthey are literally the same object (i.e. \"bob is the same object as bob\"),
-      or if an\nobject equality block has declared them to be identical (i.e. \"bob
-      is the same object\nas robert\").\n\n## Tips\n\nObject disequality blocks are
-      very useful when you have a rule that is dealing with\nmore than one object
-      in the same category, and you need to know that they are different\nobjects.\n\nThis
-      happens quite frequently.\n\nFor example, the definition of a \"sibling\" is
-      \"a person who shares parents\nwith another person\". Implicitly, it is understood
-      that the reference to \n\"a person\" and the reference to \"another person\"
-      exclude the possibility that\nthe two people are the same person.\n\nIn Blawx,
-      you might use \"Person\" and \"Other_Person\" as the\nnames of the variables.
-      If you do, Blawx will make sure that every reference to \"Person\"\nis a reference
-      to the same object, and every reference to \"Other_Person\" is a reference\nto
-      the same object. But Blawx will not automatically ensure that \"Person\" and
-      \"Other_Person\"\nrefer to different objects, merely because you gave them different
-      names.\n\nThat's where the\nobject disequality block is useful. In Blawx, the
-      definition of \"sibling\" might be\na rule that says:\n\n```\nWhen we know:\n(Person)
-      has a parent (Parent)\n(Other_Person) has a parent (Parent)\n(Person) is not
-      the same object as (Other_Person) <- object disequality block\nWe also know:\n(Person)
-      is a sibling of (Other_Person)\n```\n\nWithout the object disequality, that
-      rule would conclude that everyone was their own sibling.\n"
-- model: blawx.docpage
-  pk: blocks/object_equality
-  fields:
-    title: Object Equality Block
-    content: '# Object Equality Block
-
-
-      ![Object Equality Block](/static/blawx/docs/images/blocks/object_equality.png)
-
-
-      ## Where Is It?
-
-
-      The object equality block is located in the Objects drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The object equality block is used to assert that two objects are references
-      to
-
-      the same real-world concept.
-
-
-      ## Technical Details
-
-
-      The object equality block is a statement, and can be stacked with other statements.
-
-
-      It accepts two internal inputs. Both inputs are expected to be objects, or variables.
-
-
-      It can be used in conditions of rules and constraints, and in questions, but
-      in most
-
-      cases you will want to just re-use the same variable name, which will have the
-      same
-
-      effect.
-
-
-      ## Tips
-
-
-      The object equality block is used relatively rarely. You are most likely to
-      need it
-
-      if you are combining inputs from more than one source, and you want to specify
-      that
-
-      an object that was received from one source is identical to an object received
-      from
-
-      another. For example, you might have a ruleset for determining the winner of
-      a game
-
-      of Rock, Paper, Scissors, and you might import data from a system that plays
-      the
-
-      game "Boulder, Parchment, Shears". In that case, it would make sense to say
-      "the
-
-      parchment object is the same thing as the paper object", etc.
-
-
-      Note that saying that two objects are the same thing is different from asserting
-      that
-
-      to variables hold the same value. To check to see whether or not two different
-      values
-
-      are equal, use the comparison block.'
-- model: blawx.docpage
-  pk: blocks/object_selector
-  fields:
-    title: Object Selector Block
-    content: '# Object Selector Block
-
-
-      ![Object Selector Block](/static/blawx/docs/images/blocks/object_selector.png)
-
-
-      ## Where Is It?
-
-
-      The object selector block is found in the Known Objects drawer of the Blawx
-      toolbox.
-
-
-      ## What Does It Do?
-
-
-      The object selector block is used to refer to an object that has already been
-      declared
-
-      by a new object block.
-
-
-      ## Technical Details
-
-
-      The new object block has no inputs. It can be placed anywhere that an object
-      is expected.
-
-
-      ## Tips
-
-
-      N/A.'
-- model: blawx.docpage
-  pk: blocks/question
-  fields:
-    title: Question Block
-    content: "# Question Block\n\n![Question Block](/static/blawx/docs/images/blocks/question.png)\n\n##
-      Where Is It?\n\nThe question block is found in the Primary drawer of the Blawx
-      toolbox.\n\n## What Does It Do?\n\nThe question block is used to send a question
-      to the Blawx reasoner, and\nget one or more answers based on the code provided.\n\nIn
-      most programming languages, all of the code that you write tells the\ncomputer
-      what to \"do\". In Blawx, that's not true. Most of the code tells\nthe computer
-      what it \"knows,\" and only question blocks ask the computer\nto do anything.\n\nSo
-      if you have code, but no question block, when you click \"Run\", nothing\nmuch
-      will happen!\n\n## Technical Details\n\nThe question block accepts a single
-      stack of statements, which is valid if\nit is a stack of at least one statement.
-      \ The stack is treated as if all\nof its parts were joined together with \"and\".
-      \ All of the statements must\nbe true at the same time for an answer to be included.
-      Variables in the\nstack share a single scope, so anywhere you are using the
-      same variable name\nyou are referring to the same object.\n\n(Remember that
-      the opposite is not true. If you use different variable names,\nthat does not
-      necessarily mean you are referring to different objects. To\nensure that you
-      include results only where two variables do not refer to the\nsame object, use
-      the object disequality block.)\n\nThe question block will return a number of
-      models, where each model represents\na combination of an answer to the question,
-      and a way of obtaining that answer.\nIf there are two possible answers, and
-      three ways of obtaining each answer, you\nwill get six models.\n\nWhile it is
-      possible to have more than one question block in a workspace, only\nthe last
-      active question block will actually be used by the software.\n\n## Tips\n\nIf
-      your question block returns the answer \"no models found\", but you think that
-      it should\nbe finding answers, here are a few good troubleshooting tricks:\n\n1.
-      Try removing statements from the question block until you get an answer, and\n
-      \  then adding them back in until you find which statement is failing.\n2. Try
-      removing variables from the question block and replacing them with object\n
-      \  selectors that you think should have been returned.\n3. Try using assumption
-      blocks to see if adding or removing assumptions from your\n   code changes the
-      result.\n4. If your query is a single statement, try surrounding it with a not
-      block, to\n   see if Blawx can explain why no answer was found."
-- model: blawx.docpage
-  pk: blocks/rule
-  fields:
-    title: Rule Block
-    content: '# Rule Block
-
-
-      ![Rule Block](/static/blawx/docs/images/blocks/rule.png)
-
-
-      ## Where Is It?
-
-
-      The rule block is found in the Primary drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The rule block is used to set out rules with which Blawx can infer new
-
-      information from facts.  Most legislative provisions will be modeled as
-
-      one or more rules.
-
-
-      The first statement connector, labeled "When we know:", allows you to set
-
-      out the conditions in which the rule is true.
-
-
-      The second statement connect, labeled "We also know:", allows you to set
-
-      out the new conclusion that can be drawn when the conditions are known to
-
-      be true.
-
-
-      ## Technical Details
-
-
-      The rule block is an outer block.
-
-
-      Its top statement connector accepts a stack of one or more condition statements.
-
-      These statements are treated as though they are all connected with an "and"
-
-      operator, and all variable names are shared among them, and with the conclusion.
-
-
-      Its bottom statement connector accepts exactly one conclusion statement.
-
-
-      ## Tips
-
-
-      Blawx does not currently support an "or" operator. In the meantime, if the same
-
-      conclusion can be reached in multiple ways, that should be represented by
-
-      multiple rules with the same conclusion.
-
-
-      Typically, you will want to avoid having variables in the conclusion that are
-      not
-
-      also present in the conditions.
-
-      '
-- model: blawx.docpage
-  pk: blocks/true
-  fields:
-    title: True Value Block
-    content: '# True Value Block
-
-
-      ![True Value Block](/static/blawx/docs/images/blocks/true_value.png)
-
-
-      ## Where Is It?
-
-
-      The true value block is located in the Data Values drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The true value block is used to indicate that the value of a true / false attribute
-      is true.
-
-
-      ## Technical Details
-
-
-      The true value block is a boolean value, and can be placed only in locations
-      that
-
-      are expecting a boolean value. That is typically limited to the value input
-      of
-
-      an attribute selector block, where the attribute is using the "True / False"
-      data type.
-
-
-      ## Tips'
-- model: blawx.docpage
-  pk: blocks/true_false
-  fields:
-    title: True / False Datatype Block
-    content: '# True / False Datatype Block
-
-
-      ![True / False Datatype Block](/static/blawx/docs/images/blocks/true_false.png)
-
-
-      ## Where Is It?
-
-
-      The true / false datatype block is located in the Data Types drawer of the Blawx
-      toolbox.
-
-
-      ## What Does It Do?
-
-
-      The true / false datatype block is used to indicate that the datatype of an
-      attribute is a
-
-      boolean, or true or false value.
-
-
-      ## Technical Details
-
-
-      The true / false datatype block is a datatype block, and can only be used where
-      a datatype
-
-      is expected, which is typically limited to the datatype input of a new attribute
-      block.
-
-
-      ## Tips
-
-
-      The true / false datatype is used to represent concepts that are either true
-      or false, but
-
-      don''t hold any other value.'
-- model: blawx.docpage
-  pk: blocks/unnamed_variable
-  fields:
-    title: Unnamed Variable Block
-    content: '# Unnamed Variable Block
-
-
-      ![Unnamed Variable Block](/static/blawx/docs/images/blocks/unnamed_variable.png)
-
-
-      ## Where Is It?
-
-
-      The unnamed variable block is located in the Variables drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The unnamed variable block is used when you need a variable, but you do not
-      need to
-
-      use the variable more than once in the same scope, and you don''t care what
-      object
-
-      was bound to that variable.
-
-
-      For instance, you might have a rule that makes conclusions about an attribute
-      called "has_a_sibling".
-
-      In that rule, you might use an attribute called "sibling_of" to check to see
-      if someone has
-
-      a relationship to at least one sibling, but you don''t care who the sibling
-      is. In that
-
-      case you might write a condition using the unnamed variable, which reads "(Person)
-      is
-
-      the sibling of (any)".
-
-
-      ## Technical Details
-
-
-      The unnamed variable block accepts no inputs, and has no fields.
-
-
-      It can be used anywhere an object or a value is expected.
-
-
-      ## Tips
-
-
-      It''s a good idea to start with named variables, and switch to unnamed variables
-      only when you
-
-      are sure your rules are working as anticipated.
-
-
-      The Blawx reasoner will warn you if you have a rule in which a variable name
-      is used only once.
-
-      Those are places where the unnamed variable may be appropriate, or where you
-      may have accidentally
-
-      misspelled a variable name. If you start with too many unnamed variables, Blawx
-      cannot warn you
-
-      that you might have made a mistake.
-
-      '
-- model: blawx.docpage
-  pk: blocks/variable
-  fields:
-    title: Variable Block
-    content: '# Variable Block
-
-
-      ![Variable Block](/static/blawx/docs/images/blocks/variable.png)
-
-
-      ## Where Is It?
-
-
-      The variable block is located in the Variables drawer of the Blawx toolbox.
-
-
-      ## What Does It Do?
-
-
-      The variable block is used to create an unknown, and give it a name. Any time
-      the same
-
-      variable name is used inside the same scope, Blawx will return answers only
-      where those
-
-      statements are true when the same object is used in all of those places.
-
-
-      Note that the opposite is not true. Blawx does not guarantee that variables
-      with different
-
-      names refer to different objects. To force it to do that, you need to use an
-      object
-
-      disequality block.
-
-
-      ## Technical Details
-
-
-      The variable block requires you to enter a variable name into the text field,
-
-      which must not include spaces and must start with a capital letter to be valid.
-
-
-      The variable block can be entered anywhere an object or a value is expected.
-
-
-      ## Tips
-
-
-      The actual names given to your variables are meaningless to Blawx, but they
-      can be helpful
-
-      to the reader of your encoding. A variable name like "X" will work perfectly
-      well for
-
-      answering questions, but a variable name like "Winner" might be more helpful
-      for making
-
-      it obvious why a rule or question was written the way it was.'
-- model: blawx.docpage
-  pk: blocks/variable_assignment
-  fields:
-    title: Variable Assignment Block
-    content: '# Variable Assignment Block
-
-
-      ![Variable Assignment Block](/static/blawx/docs/images/blocks/variable_assignment.png)
-
-
-      ## Where Is It?
-
-
-      The variable assignment block is found in the Variables drawer of the Blawx
-      toolbox.
-
-
-      ## What Does It Do?
-
-
-      The variable assignment block is used to assign an object or value to a variable.
-
-
-      ## Technical Details
-
-
-      The variable assignment block is a statement, and can be stacked with other
-      statements.
-
-      In the conditions of rules, in a constraint, and in a question block, it is
-      always true, and simply changes
-
-      the value of a variable in that scope.
-
-
-      Its first internal connector expects a variable. Its second internal connector
-      expects
-
-      either a variable, an object, or a value.
-
-
-      It should not be used in facts, or in the conclusions of rules.
-
-
-      ## Tips
-
-
-      The variable assignment block is used to assign a value to a variable explicitly.
-      This
-
-      can be useful in situations where, for example, you would like to re-run a question
-      where
-
-      the same value is being used over and over, and needs to be changed. Using the
-
-      variable assignment block would allow you to assign the variable once, and then
-      re-use
-
-      it by referring to the same variable name repeatedly.
-
-      '
-- model: blawx.docpage
-  pk: guide
-  fields:
-    title: Beginner's Guide
-    content: "# Beginners Guide to Blawx\n\nWelcome to Blawx!\n\n## What is\nBlawx?\n\nBlawx
-      is a web-based, user-friendly tool for Rules as Code. It\nis free, open\nsource
-      software provided under the MIT license by Jason Morris.\n\nIt\nis alpha software,
-      and not yet appropriate for use in production environments.\n\n## What is Rules
-      As Code?\n\nRules as Code is the idea that legislation, regulations,\ncontracts,
-      and other forms\nof formal written legal rules can and should be\nwritten in
-      languages computers can understand and use.\n\nSome adherents\nwant to translate
-      existing laws into code to improve automation of legal services.\n\nOthers\nwant
-      to write laws and regulations in natural languages and programming languages\nat
-      the same time, in an interdisciplinary way, to improve legal drafting, public\npolicy,
-      and automation in public administration.\n\n## Who is this guide for?\n\nThis
-      guide is written for people who are interested in learning\nabout encoding\nlegal
-      knowledge in Blawx. It assumes no experience with programming.\n\n## What does
-      the guide include?\n\nThe guide will take you through the following\nchapters:\n\n1.
-      The User Interface\n  This section will show you what\n  the Blawx interface
-      looks like, and explain\n  how to get around.\n2. Categories, Objects, and Attributes\n
-      \ This section of the guide explains how you record\n  information about the
-      world\n  in Blawx.\n3. Facts, Rules, and Questions\n  This section introduces
-      you to the three main elements of a Blawx workspace.\n4. Logic\n  This section
-      will explain the various ways in which you can combine\n  statements in Blawx
-      to create more complicated statements.\n5. Variables\n  This section explains
-      how variables work in Blawx, and how to use them.\n6. Rock, Paper, Scissors\n
-      \ This final section of the guide introduces you to\n  the three-step process
-      used in legal knowledge representation, and takes you\n  step-by-step through
-      the process of modelling the rules of \"Rock, Paper, Scissors\"\n  in Blawx."
-- model: blawx.docpage
-  pk: guide/categories
-  fields:
-    title: Categories, Objects, and Attributes
-    content: "# Categories, Objects, and Attributes\n\nCategories, Objects, and\nAttributes
-      are how Blawx organizes what it knows about the world.\n\nA Category\nis a type
-      of object. For example, \"Car.\"\n\nA Category has Attributes,\nwhich are names
-      for things that you can know about things in that Category.\nAttributes also
-      describe the type of data that can go in that attribute. For\nexample, \"a car
-      has a model name, which is text.\"\n\nAn Object is a specific\nthing in the
-      world you want to model. An object can have\nany number of categories.\nAn Object
-      has the same attributes as all of the categories it belongs to, which\nhold
-      that information about the object. For example, \"my car's make is Ford,\nand
-      my car's model is 'mustang'.\"\n\nThe information that you put into\nan object's
-      attribute has to be of\nthe correct type. You can't put a number\nif the attribute
-      is supposed to hold text, and vice-versa.\n\nAn easy way\nto think of a Category
-      is as a description of a blank form. The form might have\na name, like “Application
-      for a Permit”. That is like the Category name. A form\nwill also have fields
-      that can be filled in, like “Applicant’s Name. Those are\nlike the category’s
-      attributes.\n\nWhen you create and fill out an actual\nform of that type, that
-      is like creating an Object. The information that gets\nput into the blanks on
-      the form are like the values that get put into the attributes\nof an object.
-      Some fields on the form are for writing words, others numbers,\nand others dates.
-      Those are like the types of the category attributes.\n\nAn\nattribute can hold
-      either a basic data type, or objects in a category.\n\nThe\nbasic data types
-      are text, numbers, yes/no values, dates, times, datetimes,\nand durations.\n\nNot
-      only can you use your Categories as a type, but you\ncan use your category\nas
-      the type of an attribute inside itself!\n\nFor\nexample, you can say that a
-      Person has a Name, which is a text value, and they\nhave a friend, which is
-      a Person.\n\n![person friend](/blawx/person_friend.png)\n\n##\n<a name=\"categories\"></a>Categories\n\n###
-      Creating Categories\nYou\ncreate a category by putting a category declaration
-      block in a fact block. A\ncategory declaration block can be found under the
-      “Categories” drawer in the\nToolbox.\n\n![default category]({{ site.baseurl
-      }}/img/default_is_category.png)\n\nWhen\nyou drag a category declaration block
-      onto the workspace, a corresponding category\nblock is added under the “known
-      categories” drawer of the toolbox. This block\nis used in blanks that require
-      or allow a Category as a value.\n\n![known\ncategory default]({{ site.baseurl
-      }}/img/known_category_default.png)\n\nNote\nthat if you have two category declarations
-      with the same name defined, Blawx\nwill create two different known category
-      blocks with the same text, using either\nof them has the same effect. So it
-      is best practice not to have duplicates in\ncategory names in order to avoid
-      confusion.\n\nCategory names should not\nhave spaces in them. Blawx will not
-      stop you from creating\na category with\na space in its name, but it is unlikely
-      to work properly.\n\n### Adding\nAttributes to a Category\nOnce you have declared
-      a Category, you can use an\ncategory attribute block to give it one or more
-      attributes. The category attribute\nblock can be found in the “Categories” drawer
-      of the toolbox, and looks like\nthis:\n\n![attribute declaration]({{ site.baseurl
-      }}/img/attribute_declaration.png)\n\nTo\ncomplete a category attribute block,
-      you must provide the category that you\nare defining attributes for, and add
-      new attribute blocks. The category attribute\nblock comes with new attribute
-      block by default, but you can add more by dragging\nadditional new attribute
-      blocks from the “Categories” drawer of the toolbox.\n\nFor\nexample, to say
-      that “a person has a name and a best friend” you might set out\nan attribute
-      declaration block like this:\n\n![person ontology]({{ site.baseurl\n}}/img/person_ontology.png)\n\nRemember,
-      all of this needs to be placed\nin a Fact block to work properly. Fact blocks
-      are explained in the next section.\n\n###\nAttribute Cardinality\n\nIt is sometimes
-      important to have an answer to\nthe question \"how many values\nis this attribute
-      supposed to have?\" For\nexample, if a person has more than one\nbirthdate,
-      something has probably\ngone wrong. But if they have more than one\nfriend,
-      that is just good news.\n\nBlawx\nprovides five different new attribute blocks
-      to allow you to specify\ndifferent\nanswers to the question of \"how many value
-      should this attribute have\"?\n\nThe\noptions are \"exactly X\", \"up to X\",
-      \"X or more\", \"between X and Y\",\nor \"any\nnumber.\" Using the \"any number\"
-      block has the same meaning as\n\"0 or more.\"\n\n![exactly x]({{ site.baseurl
-      }}/img/attribute_exactly.png)\n![up\nto X]({{ site.baseurl }}/img/attribute_up_to.png)\n![or
-      more]({{ site.baseurl\n}}/img/attribute_or_more.png)\n![between]({{ site.baseurl
-      }}/img/attribute_between.png)\n![any]({{\nsite.baseurl }}/img/attribute_any.png)\n\nBlawx
-      allows you to specify cardinality,\nbut it does not\ndo anything to enforce
-      it in your code. That encorcement\ncan be done,\nbut is an advanced technique,
-      and doesn't happen\nby default.\nThe primary motivation for including cardinality
-      in your\ndata structures\nis for automatically generating user interfaces. Without
-      this\ninformation\na tool that was generating a user interface on the basis
-      of your\nBlawx code\nmight ask something like \"do you have any *other* birthdays?\"\n\n###
-      Attribute\nCustomization\n\nBy default, when you create an attribute using the
-      above\nblocks, an attribute\nselector block will be created that looks like
-      this...\n\n![default\nattribute selector]({{site.baseurl}}/img/default_attribute_selector.png)\n\n...\nwhere
-      the text \"attribute_name\" is replaced with the text that you have provided.\n\nThis\nmay
-      not be the most intuitive way of describing the relationship, however. If\nyou\nwant
-      to customize how the attribute selector will appear, you can use the\nattribute\ncustomization
-      block. The only place an attribute customization block can\nbe\nused is under
-      an attribute declaration block, and it applies only to the attribute\ndeclared\ndirectly
-      above it.\n\nThe attribute customization block looks like this:\n\n![attribute\ncustomization
-      block]({{site.baseurl}}/img/attribute_customization.png)\n\nThe\nblock allows
-      you to choose the order in which the object and the value are\nincluded,\nand
-      the text that should appear before, between, and after them. By default\nthe\norder
-      is \"object, then value\". And the words \"object\" and \"value\" appear\nin
-      that\norder below. If you change the order to \"value, then object\" in\nthe
-      dropdown, the\nillustration below the dropdown field will be updated,\nlike
-      this:\n\n![reverse order customization]({{site.baseurl}}/img/reversed_order_attribute_customization.png)\n\nOnce\nyou
-      have selected the order that you want the object and the value to appear,\nyou\ncan
-      specify the text that appears before, between, and after them. For example,\nimagine\nthat
-      you have a category called \"Animal\" and an attribute called \"legs\"\nthat\nwas
-      supposed to hold how many legs the animal has.  \n\nHere are\nthree different
-      ways you might want your\ncustomized attribute block to appear,\nand how to\nachieve
-      that effect using the attribute customization block:\n\n*\n\n\"The animal has
-      N legs\n\"\n* Order: object, then value\n* Before: \n\"The\"\n\n\\ * Between:
-      \"has\"\n* After: \"legs\"\n* \"There are N legs on a(n)\nanimal\"\n* Order:
-      value, then object\n* Before: \"There are\"\n*\nBetween: \"legs on a(n)\"\n*
-      After: Empty\n* \"N is the number of legs\non a(n)\"\n* Order: value, then object\n*
-      Before: Empty\n* Between:\n\"is the number of legs on a(n)\"\n* After: Empty\n\nHere's
-      what the\nsecond example above looks like in the interface:\n\n![customization
-      example]({{site.baseurl}}/img/attribute_customization_example.png)\n\nAnd\nhere
-      is what the resulting attribute selector block will look like:\n\n![customized\nattribute
-      selector]({{site.baseurl}}/img/customized_attribute_selector.png)\n\n**BE\nCAREFUL!**\n\nIf
-      you leave all three fields blank, Blawx will still know\nwhat attribute the\nblock
-      is for, but your users will have no clue. Make sure\nto customize attribute\nblocks
-      in ways that sound natural to your users, but\nare also very clear about which\nattribute
-      is being modified.\n\nThat\nsaid, there is no need for your attribute name\nto
-      appear in the text, which\ncan allow you to use\nmore concise attribute names.\n\n###
-      Category Equivalence\nAn\nobject can have more than one category. One of the
-      ways you can give an object\nmore than one category is by stating that all objects
-      of one category are also\nincluded in another category. For example, “all cats
-      are mammals”.\n\nIn\nBlawx you can do this using the category equivalence block,
-      which looks like\nthis:\n\n![category equivalence]({{ site.baseurl }}/img/category_equivalence.png)\n\nThe\ncategory
-      equivalence block requires two category blocks from the “Known Categories”\ndrawer
-      of the Toolbox. A complete category equivalence block would look like\nthis:\n\n![cat
-      is mammal]({{ site.baseurl }}/img/cat_is_mammal.png)\n\nCategory\nequivalence
-      works in one direction only. In this example, if you create an object,\nand
-      give that object the category “Cat”, and then ask whether that object is\nin
-      the category “Mammal”, the answer will be yes. If you create an object and\ngive
-      it only the category of “Mammal”, and then ask whether it is in the category\n“Cat”,
-      the answer will be no.\n\n## Objects\n\n### Creating an Object\nAn\nobject is
-      created by using the object declaration block, which looks like this,\nand it
-      just takes a name for the object.\n\n![bob is object]({{ site.baseurl\n}}/img/bob_is_object.png)\n\nObject
-      names should not have spaces in them.\nBlawx will not stop you from creating\nan
-      object with a name that has spaces\nin it, but it is unlikely to work properly.\n\nWhen
-      you drag an object declaration\nonto the Workspace, a corresponding Object Block
-      appears in the “Known Objects”\ndrawer of the Toolbox.\n\n![bob known]({{ site.baseurl
-      }}/img/known_object_bob.png)\n\nThe\nobject block for “Bob” can be used anywhere
-      a block is expecting an or accepts\nan object as a value.\n\n### Giving an Object
-      a Category\nYou give an\nobject a category by using the object category block,
-      which can be found in\nthe “Objects” drawer of the Toolbox. It expects an object
-      block and a category\nblock. A completed object category block that says “Bob
-      is a Person” looks like\nthis.\n\n![bob is person]({{ site.baseurl }}/img/bob_is_person.png)\n\n###\nMaking
-      Two Objects the Same Object\nSometimes your Blawx code will get data\nfrom more
-      than one source, and each source may create its own versions of the\nsame objects.
-      In those cases, it can be useful to state that two objects are\nthe same object.
-      You can do that using the object equivalence block, which is\nfound in the “Objects”
-      drawer of the Toolbox, and which looks like this:\n\n![object\nidentity]({{
-      site.baseurl }}/img/object_equivalence.png)\n\nThe object equivalence\nblock
-      takes two object blocks. To say that “Bob” and “Robert” are the same object,\nyou
-      could do this:\n\n![bob and robert]({{ site.baseurl }}/img/bob_and_robert_identical.png)\n\nNote\nthat
-      unlike with the Category Equivalence, which goes in one direction only,\nobject
-      equivalence goes in both directions. If Bob is the same object as Robert,\nRobert
-      is the same object as Bob. So if you set out Bob’s Middle name, and then\nsay
-      that Bob and Robert are the same object, asking for Bob’s middle name and\nasking
-      for Robert’s middle name will both work.\n\n### Adding Attributes\nto an Object\n\nLet’s
-      imagine you want to write some rules about cars, and\nyou have an ontology like
-      this:\n\n![car ontology]({{ site.baseurl }}/img/car_ontology.png)\n\nYou\ncan
-      see that two attributes have been defined for the category “Car”. One is\n“make”,
-      and its type is “Manufacturer”, which is a category. The other attribute\nis
-      “model”, which has a data type of text.\n\nIf you make these declarations,\nBlawx
-      will now know about these two attributes, and they will be available in\nthe
-      Known Attributes drawer of the toolbox.\n\n![known attributes]({{ site.baseurl\n}}/img/cat_ontology_known_attributes.png)\n\nThe
-      first connector expects\nan object, and the second hole is filled with a value.
-      So to create a Ford Mustang,\nyou might use the following blocks in a Fact Block:\n\n![ford
-      mustang]({{\nsite.baseurl }}/img/ford_mustang.png)\n\nThis creates an object
-      called “my_car”,\nplaces it in the category “Car”, gives it the make “Ford”,
-      and the model “Mustang.”\nIf you try to place something in the value of the
-      make attribute block that\nis not an object or a variable, it will not fit because
-      Blwx knows that value\nis supposed to be an object in the category Manufacturer.\n\nIf
-      you try\nto place something other than a string or an object or variable into
-      the “model”\nattribute block, it will not fit, because Blawx knows that attribute
-      is supposed\nto have a text value. Objects can still be provided because Blawx
-      treats objects\nand variables as the same “type”, and a variable may contain
-      a text value.\n\n###\nNaming Attributes\n\nAttribute names should not have spaces
-      in them. Blawx\nwill not currently\nstop you from creting attribute names with
-      spaces, but\nthey are unlikely to work\nproperly.\n\nWhen working with attributes
-      you\nwill want to be careful with how you name them. Blawx will not stop you
-      from\napplying an attribute defined for “cars” to an object inthe category “bicycle”.\nIf
-      you need to know how many seats both categories have, but you want to avoid\nthe
-      implication that bikes have car seats or vice-versa, you may want to name\nthe
-      attributes “Bike_seats” and “car_seats” to make it clear what you are referring\nto.\n\nIf
-      you create two attributes both named “seats”, they will both appear\nin the
-      Known Attributes drawer of the toolbox, but it will not be possible to\ntell
-      which attribute belongs to which category, and in fact, Blawx will treat\nthem
-      as two copies of the same attribute.\n\nYou may also want to name attributes\nso
-      that their names fit more comfortably into the syntax of the attribute block,\nwhich
-      is “object’s attribute is value”. For example, an attribute named “father”\nmakes
-      sense, if you have objects named Anakin and Luke: “Luke’s father is Anakin.”\nBut
-      it may be more difficult to read a yes/no attribute named “Jedi”. “Luke’s\nJedi
-      is True.” Something like “is_a_Jedi” might read more clearly.\n\n###\nObject
-      Attributes Hold Multiple Values By Default\n\nIn Blawx, because cardinality\nis
-      not enforced by default, all object attributes can hold more than one value.\nAs
-      a result, it can be helpful to name your attributes in a way that implies\nhow
-      many values they are supposed to have. For instance, a game may have many\nplayers.
-      So a game category might have an attribute called “players” to help\nthe user
-      recall that the attribute may have more than one value. Likewise, a\ncategory
-      called “world_record_holder” may have an attribute that refers to the\nplayer
-      holding that record, of which there is only one, so it may make sense\nto call
-      that attribute “player” instead of “players.”</div><div class=\"col-3\nbd-toc\">\n<strong
-      class=\"d-block h6 my-2 pb-2 border-bottom\">On this page</strong>\n<nav\nid=\"TableOfContents\">\n<ul>\n<li><a
-      href=\"#example\">Example</a></li>\n\n   <li><a href=\"#how-it-works\">How it
-      works</a></li>\n<li><a href=\"#grid-options\">Grid\noptions</a></li>\n<li><a
-      href=\"#auto-layout-columns\">Auto-layout columns</a>\n\n     <ul>\n  <li><a
-      href=\"#equal-width\">Equal-width</a></li>\n\n       <li><a href=\"#setting-one-column-width\">Setting
-      one column width</a></li>\n\n       <li><a href=\"#variable-width-content\">Variable
-      width content</a></li>\n\n     </ul>\n</li>\n<li><a href=\"#responsive-classes\">Responsive\nclasses</a>\n<ul>\n
-      \ <li><a href=\"#all-breakpoints\">All breakpoints</a></li>\n\n       <li><a
-      href=\"#stacked-to-horizontal\">Stacked to horizontal</a></li>\n\n       <li><a
-      href=\"#mix-and-match\">Mix and match</a></li>\n  <li><a\nhref=\"#row-columns\">Row
-      columns</a></li>\n</ul>\n</li>\n<li><a\nhref=\"#nesting\">Nesting</a></li>\n<li><a
-      href=\"#sass\">Sass</a>\n\n     <ul>\n  <li><a href=\"#variables\">Variables</a></li>\n
-      \ <li><a\nhref=\"#mixins\">Mixins</a></li>\n  <li><a href=\"#example-usage\">Example\nusage</a></li>\n</ul>\n</li>\n<li><a
-      href=\"#customizing-the-grid\">Customizing\nthe grid</a>\n<ul>\n  <li><a href=\"#columns-and-gutters\">Columns\nand
-      gutters</a></li>\n  <li><a href=\"#grid-tiers\">Grid tiers</a></li>\n\n     </ul>\n</li>\n</ul>\n</nav>\n</div>"
-- model: blawx.docpage
-  pk: guide/facts_rules_questions
-  fields:
-    title: Facts, Rules, and Questions
-    content: "# Facts, Rules and Questions\n\nThe vast majority of the encoding\nthat
-      you do in Blawx will be done setting out Facts, Rules, and Questions. They\nare
-      the starting points for the encoding process.\n\nWhen you encode laws,\nyou
-      will do it by setting out facts and rules. Then, when you want to use the\nlaws
-      you have encoded, you will use questions.\n\n## Facts\nA “Fact” in\nBlawx represents
-      a thing that is known with certainty. If you have a fact, you\nneed to put it
-      in a Fact block, which looks like this:\n\n![fact]({{ site.baseurl\n}}/img/fact.png)\n\nSo
-      for example, let’s say we have some code that represents\nthe idea that Socrates
-      is a human being. That would be placed in a Fact block.\n\n![socrates_human]({{\nsite.baseurl
-      }}/img/socrates_human.png)\n\nAs you will see in the documentation\naround Categories,
-      you may also make statements about Categories of objects,\nlike saying “A dog
-      is an animal.” These are also treated as facts because they\nare a thing that
-      is known with certainty.\n\nA fact block can hold as many\nunrelated facts as
-      you would like. And you can have as many different fact blocks\nin your workspace
-      as is useful.\n\n![socrates and dog]({{ site.baseurl }}/img/socrates_human_dog_animal.png)\n\nIt\ncan
-      be helpful to create separate Fact blocks for pieces of information that\nyou
-      will be working with at the same time, so that when you are not using them\nyou
-      can Collapse the fact block and leave your workspace a little easier to\nread.
-      See the documentation on the Blawx User Interface for details on collapsing\nand
-      expanding blocks.\n\nIf you ask Blawx whether or not something is true\nthat
-      you have stated as a Fact, the answer is always yes, without further explanation.\nFacts
-      explain themselves. In fact, you can imagine a Blawx explanation as saying\n\"because
-      you told me so as a fact\", after any line of an explanation that\ndoesn't have
-      further explanations.\n\nTypically facts are used at two different\nstages of
-      the encoding process. First, they are used to set out the terms of\nthe conversation
-      (e.g. “Human is a Category”, “Mortal is a Category”). Then\nfact blocks take
-      a back seat while rules are written using those terms (e.g.\n“We know a thing
-      is a mortal if we know that thing is a human.”). Then we come\nback to using
-      fact blocks to describe a specific fact scenario that we want\nto ask questions
-      about (e.g. “Socrates is a Human”). Then we use queries to\nask questions (e.g.
-      “Is Socrates a Mortal?”).\n\nIt can be helpful to separate\nfacts that are always
-      true in the ruleset from facts that are only true in the\nspecific scenario
-      being tested, and multiple fact blocks can be used for that\npurpose.\n\nNote
-      that when you use your encoding over the Web API, this\nsecond type of fact,
-      the case-specific kind, is provided by the user in the\nrequest that is sent
-      to Blawx. Your deployed code should not have testing facts\ninside it, because
-      the user's data will add to them, not replace them.\n\n##\nRules\nRules are
-      the most important part of encoding in Blawx. They are where\nyou describe the
-      simple logical building blocks that Blawx can combine in complicated\nways to
-      generate new insights. That is why the technology that Blawx implements\nis
-      often referred to as “rules-based artificial intelligence”.\n\nA rule\nhas two
-      parts. The first part is one or more statements that can be proved true\nby
-      the rule, called the “conclusions.” The second part is the “conditions” that\nmust
-      be met for the conclusion to be proved true.\n\n![rule]({{ site.baseurl\n}}/img/rule.png)\n\nA
-      rule block has one slot for the conclusions, one slot\nfor the conditions.\n\nA
-      rule with no conclusions should be a Question or\na Constraint, and a rule with
-      no conditions should be a Fact, so a rule block\nneeds both statement connections
-      filled to work properly.\n\n### A Note\non If/Then\nSome people might express
-      rules as `if conditions then conclusions`.\n\\ We prefer to avoid the words
-      “if” and “then” to describe rules, because people\nwho are familiar with imperative
-      programming languages (which is most of the\nprogramming languages out there)
-      will have in their minds a different meaning\nfor “if” and “then.”\n\nIn imperative
-      programming, `if conditions then conclusions`\nmeans “if right now the conditions
-      are true, then next the computer should do\nconclusions.”\n\nBlawx is a declarative
-      logic programming tool, not an imperative\none. Which means that the rule `if
-      conditions then conclusions` means “if conditions\nare true, then conclusions
-      are also true.”\n\nWhen using Blawx, remember\nthat you are not describing what
-      steps the computer should follow. You are describing\nwhat is known (the fact,
-      or the conclusion for rules), and when it is known\n(always for facts, when
-      the conditions are true for rules).\n\n## Questions\nOnce\nyou have encoded
-      rules and described relevant facts, you will want to ask a\nquestion. That is
-      what the question block is for.\n\nThere are two kinds\nof questions… yes/no
-      questions, and search questions.\n\n### Yes/No Questions\nA\nquestion that does
-      not include variables is a “yes/no” question. An example\nis “Is Socrates Mortal?”\n\n![is
-      socrates mortal]({{ site.baseurl }}/img/is_socrates_mortal.png)\n\nThis\nquestion
-      will be answered by the Blawx reasoner with either the bare statement\n\"socrates
-      is mortal\", or “No”.\n\n### Search Question\nA question that\nincludes variables
-      is a “search” question. Blawx attempts to find any objects\nthat it can place
-      in all the variables used so that the all of the statements\nwill be true. If
-      it can’t find any, it will respond “No.” If it can find any\nexamples, it will
-      provide each combination of objects that made the statements\ntrue, and each
-      reason for each combination of objects.\n\nSo the question\n“is Socrates Mortal”
-      above, which is a “yes or no” question, can be changed\ninto a search by replacing
-      “Socrates” with a variable. We will name the variable\n“Who”, because it reads
-      better, but the name is unimportant, as long as you\nuse the same variable name
-      everywhere that it is important the rule is referring\nto the same object.\n\n![who
-      is morta]({{ site.baseurl }}/img/who_is_mortal.png)\n\nIf\nyou ask this question
-      of the Reasoner, the answer back will be:\n\n```\nsocrates\nis a mortal, because\nsocrates
-      is a person\n```\n\nRemember that a\nquestion requires all of its blocks connected
-      by the And connectors to be true\nat the same time in order to find any answers.
-      So make sure you are only asking\none question at a time.\n\n## Declarations
-      in Facts and Rule Conclusions\nvs Rule Conditions and Queries\nDeclaration blocks
-      for objects and categories\nhave the usual meaning when used in a fact or the
-      conclusions of a Rule block.\nBut they have a different meaning when they are
-      included in the conditions of\na Rule block, or in a query.\n\nA declaration
-      causes the object, category,\nor attribute to exist when used inside a fact
-      block or the conclusions of a\nrule. Inside a condition block, they test whether
-      or not those declarations\nhave been made somewhere else.\n\nSo this rule says
-      “we know fruit is a\nCategory if plants are living things.” This rule has the
-      effect of creating\na category when its conditions are met.\n\n![conclude fruit]({{
-      site.baseurl\n}}/img/conclude_fruit.png)\n\nHowever, in the next rule, the same
-      Category\ndeclaration block “Fruit is a Category” does not create the category
-      fruit,\nbut instead asks whether the category has been created.\n\n![query fruit]({{\nsite.baseurl
-      }}/img/query_fruit.png)\n\nIf the category Fruit has not been\ndefined anywhere
-      (in a fact, or the conclusion of a Rule that had true conditions),\nthen the
-      answer to the query “is Fruit a category” will be no.\n\nThis can\nbe confusing,
-      because Blawx still creates a “Known Category”, “Known Object”\nor “Known Attribute”
-      block in the toolbox regardless of where the relevant block\nis used. So you
-      may have a Category selector block called “Fruit” while *in\nthe code* the category
-      fruit does not exist.\n\nSo it is important to remember\nthe effect of declaration
-      blocks in different locations:\n\n> **In Facts\nand Rule Conclusions, a new
-      object or new category block or new attribute block\nmeans “this thing exists”.
-      In Rules Conditions and Queries, a declaration block\nmeans “does this thing
-      exist?”**\n- model: blawx.docpage\npk: guide/interface\nfields:\ntitle: User
-      Interface Tour\ncontent: # Blawx User Interface Tour\n\n## Workspace Components\nIn
-      Blawx\nyou encode laws by sticking puzzle pieces together on a table. The table
-      is\ncalled your “workspace”. The place you grab the puzzle pieces from is called\nthe
-      “toolbox.”\n\nIn the picture below, the area on the left is the toolbox,\nand
-      the area on the right is the workspace.\n\n![workspace](/static/blawx/user_interface_v1.png\n\"Blawx
-      Workspace\")\n\nThe toolbox is made up of categories. When you click\non a category
-      name, the blocks available in that category are displayed. If\nthe category
-      has sub-categories, a black triangle appears before the name of\nthe category.\n\nUsually,
-      most of the blocks in a category will match the\nhighlight colour on the left
-      side of the category.\n\nAt the top of the\nworkspace is a resizeable, transparent
-      area that shows the results received\nfrom the Blawx reasoner.\n\n![response
-      area]({{ site.baseurl }}/img/results_area.png\n\"Results Area\")\n\n## Blocks\nThe
-      individual puzzle pieces that you\nuse to encode laws are called “Blocks”, or
-      “Blawx”. Blocks can include information\nthat you can’t change, like the words
-      “is an Object” in the Object Declaration\nblock shown below, and they can include
-      information that you can change, like\nthe word “rock” in the image below.\n\n###
-      Fields\n\n![text field]({{\nsite.baseurl }}/img/text_field.png \"Text Field\")\n\nInformation
-      that you\ncan change in a block is called a field. The field above is a text
-      field that\nallows you to type information into it. There are also fields for
-      numbers, which\nis a text field that you can only type numbers into.\n\n![number
-      field]({{\nsite.baseurl }}/img/number_field.png \"Number Field\")\n\nAnd there
-      are\ndropdown fields, that allow you to choose one of several options. One example\nis
-      the true/false block.\n\n![dropdown field]({{ site.baseurl }}/img/dropdown.png\n\"Dropdown
-      Field\")\n\n### Connectors\nThere are two kinds of connectors\non the blocks
-      in in Blawx (say that 5 times fast!): “insert” connectors, and\n“and” connectors.
-      Each has a positive and negative version.\n\nThe positive\n“insert” connector
-      looks like the sticky-outie part of a puzzle piece and sticks\nout of the left
-      side of the block.\n\n![positive insert connector]({{ site.baseurl\n}}/img/positive_insert_connector.png
-      \"Positive Insert Connector\")\n\nTh\nnegative insert connector looks like a
-      “hole” where the positive insert connector\nwould fit. Most of these locations
-      show up as a missing puzzle piece inside\na larger block.\n\n![negative insert
-      connector]({{ site.baseurl }}/img/negative_insert_connector.png\n\"Negative
-      Insert Connector\")\n\nThe size of the hole doesn’t matter, and\nwill expand
-      to fit whatever block connects to it.\n\n### Add part for when\nConnectors DO
-      Fit\n\n### When Insert Connectors “Don’t Fit”\nBlawx tries\nto help make sure
-      that you don’t stick things where they don’t belong. So as\nan example, if you
-      try to stick a number where Blawx is expecting a string,\nthe blocks won’t “fit
-      properly.” Just like when you’re doing a jigsaw puzzle\nand you’re trying to
-      stick two pieces together that don’t belong together… it\njust doesn’t quite
-      work.\n\nIf you’re trying to insert a block and it “won’t\nfit”, you are probably
-      trying to insert a block that is of the wrong datatype.\n\nWhenever\nyou use
-      an insert connector, it has the same meaning as “filling in the blank”.\nMost
-      blocks will not work if any of their negative insert connectors are empty.\nIf
-      there’s a blank, you need to fill it.\n\n### And Connectors\nThe “And”\nconnectors,
-      are shown as a divot on the top of a block and a bump on the bottom\nof a block.\n\nBlocks
-      with “and” connectors can be stacked with each other\nvertically. When you stack
-      two things vertically using the “and” connector,\nthat is treated as a statement
-      that they both must be true. You\ncan stack\nas many statements as you need
-      in this way.\n\nSome blocks have “internal”\nand connectors, when they expect
-      to contain other blocks. A block usually won’t\nwork properly if it has any
-      internal \"and\" connectors that are left empty.\n\nIn\nany stack of blocks,
-      the bottom block will always have an external \"and\" connector\nwith nothing
-      attached. That's fine.\n\n### Keeping Connected: Outer Blocks\nFor\nyour encoding
-      to work, all of the blocks need to be connected to an outer block\nthat has
-      no empty connectors. The outer blocks are facts, rules, constraints,\nassumptions,
-      and queries, and look like this:\n\n![outer blocks]({{ site.baseurl\n}}/img/outer_blocks.png
-      \"Outer Blocks\")\n\nThe Facts, Assumption, Constraint,\nand Query blocks have
-      only one internal And connector. The Rule query has two.\nAll of them must be
-      connected to a stack of blocks to work properly. And all\nblocks with connectors
-      must be attached to (or attached to something that is\nattached to) an outer
-      block with no empty connectors.\n\nSo if you have\nblocks hanging around with
-      empty negative and connectors, that won’t work. But\nif you put them inside
-      an outer block, it will.\n\nSo you have well formed\ncode if there are only
-      full outer blocks, and blocks with no empty connections\n(except for the last
-      \"and\" in a stack) in the workspace.\n\n## Navigating\nthe Blawx User Interface\n\n###
-      Scrolling\nThe size of the workspace increases\nas necessary for however many
-      blocks you add to it. If you can’t see all the\nblocks on the workspace, you
-      can scroll around the workspace using the vertical\nand horizontal scroll bars.\n\n![workspace]({{
-      site.baseurl }}/img/workspace.png\n\"Blawx Workspace\")\n\nYou can also scroll
-      the workspace by dragging any\nempty part of the workspace.\n\n### Dragging
-      Blocks\nYou drag blocks from\nthe toolbox to the workspace in order to add them
-      to your code, and you drag\nthem around the workspace in order to connect them
-      to one another.\n\nDragging\na block in a vertical stack will drag that block
-      and any blocks that are connected\nbelow it, but not blocks above it or blocks
-      containing it.\n\nDragging a\nblock will drag blocks contained in it.\n\nBecause
-      of the different ways\nin which dragging behaves, it’s important to know which
-      block is currently selected.\nFor that reason, the currently selected block
-      is highlighted with an orange\nboundary.\n\n![block highlighting]({{ site.baseurl
-      }}/img/block_highlighting.png\n\"Block Highlighting\")\n\n### Block Context
-      Menu\nIf you right-click\non a block in the workspace you will get a context
-      menu.\n\n![context menu]({{\nsite.baseurl }}/img/context_menu.png \"Block Context
-      Menu\")\n\n#### Duplicate\nThe\nDuplicate menu option will make a copy of the
-      block you have selected (and any\nblocks that are contained in it, but not any
-      blocks it is vertically stacked\nwith), and put it on the workspace.\n\n####
-      Comments\nAdding a comment\nopens a bubble that you can type extra information
-      into. That information has\nno effect on the meaning of the blocks, it is just
-      to allow you to add more\nuseful information to the workspace.\n\nComments are
-      typically used by software\ndevelopers to explain what a piece of code is supposed
-      to do, and why it is\nbuilt the way it is, so that if anyone else (or the same
-      person, but after a\nlong period of time) needs to make adjustments later, they
-      can get up to speed\nmore quickly.\n\nThat is a very good idea. When encoding
-      legislation, until\nwe add more specific features for it, the comments are also
-      a good place to\ninclude information about the source for the rule.\n\nWhen
-      a block already\nhas a comment, the context menu will allow you to delete it
-      instead. When a\nblock has a comment, that comment can be hidden or shown by
-      clicking on the\nblue question mark icon that appears on the top left of the
-      block.\n\n![commment]({{\nsite.baseurl }}/img/comment.png \"Comment\")\n\n####
-      Collapsing\nCollapsing\na block reduces it to one line high, and makes the right
-      side of the block look\n“torn” to show that it is a collapsed block.\n\n![collapsed]({{
-      site.baseurl\n}}/img/collapsed.png \"Collapsed Block\")\n\nIn a collapsed block
-      the context\nmenu will allow you to expand it to its normal size again.\n\nCollapsing\nblocks
-      can be very helpful when you are dealing with a lot of complicated outer\nblocks
-      at the same time.\n\nNote that when a block is collapsed you cannot\nsee whether
-      it has a comment.\n\n#### Disabling\nA disabled block will\nchange in colour
-      to a cross-hatch pattern. Disabled blocks remain on the workspace,\nbut they
-      do not mean anything. So it does not matter whether a disabled block\nhas unfilled
-      connectors.\n\n![disabled]({{ site.baseurl }}/img/disabled.png\n\"Disabled Blocks\")\n\nDisabling
-      a block disables that block and any blocks\nit contains.\n\nFor a disabled block,
-      the context menu will allow you to\nenable it again.\n\n#### Deleting\nDeleting
-      a block removes a block and\nany blocks it contains from the workspace. If you
-      delete a block in a vertical\nstack, the blocks above and below will become
-      vertically connected with each\nother.\n\nThe context menu will tell you how
-      many blocks you are about to\ndelete, as shown here:\n\n![context menu delete]({{
-      site.baseurl }}/img/context_menu_delete.png\n\"Context Menu Delete\")\n\n####
-      Block-Specific Help\nIf there is a help\npage for the specific kind of block
-      you are using, the Help item in the context\nmenu will take you to that help
-      page. If there isn’t, it will be disabled.\n\nThe\nhelp context menu is also
-      the only item that is available when you right click\non a block in the toolbox.\n\n![context
-      menu toolbox]({{ site.baseurl }}/img/context_menu_in_toolbox.png\n\"Context
-      Menu Toolbox\")\n\n### Workspace Context Menu\nThere is also\na context menu
-      that you can access by right-clicking on an empty part of the\nworkspace.\n\n![workspace
-      context menu]({{ site.baseurl }}/img/workspace_context_menu.png\n\"Workspace
-      Context Menu\")\n\n#### Undo and Redo\nIf you make a mistake,\nyou can use the
-      Undo and Redo commands in the workspace context menu to get\nthings back to
-      how they were before the mistake.\n\n#### Clean Up Blocks\nCleaning\nup blocks
-      will cause all the blocks in the workspace to be organized in a single\nvertical
-      column along the left side of the workspace. This can be useful if\nyour workspace
-      has gotten out of control.\n\n#### Collapse and Expand Blocks\nCollapsing\nand
-      expanding blocks from the workspace context menu does it to all the blocks\nin
-      the workspace.\n\n#### Delete All\nDeleting blocks from the workspace\ncontext
-      menu will delete all the blocks in the workspace, and has the same effect\nas
-      using the Menu, Clear Workspace command.\n\n### Keyboard Shortcuts\n`CTRL-C`\nwill
-      copy the currently selected block and any blocks that would move with it\nif
-      you dragged it.\n\n`CTRL-V` will pase the most recently copied blocks\nslightly
-      below and to the right of where it was copied (which may not be where\nyou are
-      looking).\n\nThe `Delete` key will delete the currently selected\nblock and
-      any blocks it contains.\n\n`CTRL-Z` will undo the most recent\nchange to the
-      workspace.\n\n### Trash Can\nThe trash can is located in\nthe bottom right of
-      the workspace, no matter where you scroll.\n\n![trash\ncan]({{ site.baseurl
-      }}/img/trash.png \"Trash Can\")\n\n\nDragging a block\nto the trash can deletes
-      it from the workspace.\n\nClicking on the trash\ncan will open the trash can
-      and allow you to drag blocks that were deleted back\ninto the workspace.\n\n![open
-      trash can]({{ site.baseurl }}/img/open_trash.png\n\"Open Trash Can\")\n\n###
-      The Command Menu\nCommands that you can run\non an entire workspace are located
-      at the top of the page.\n\n![menu]({{\nsite.baseurl }}/img/menu.png \"Command
-      Menu\")\n\n#### Clear Workspace\nThe\nClear Workspace command will delete all
-      of the blocks in the current workspace.\n\n####\nImport Workspace\nThe Import
-      Workspace command will let you choose a local\n.blawx file to open in the current
-      workspace. The contents of the uploaded file\nwill overwrite the contents of
-      the workspace.\n\n#### Export Workspace\nThe\nExport Workspace command will
-      allow you to save the current workspace to a local\n.blawx file, so that it
-      can be shared with someone using a different Blawx server.\n\n####\nRun Blawx
-      Code\nThe Run Blawx Code command sends the current workspace to\nthe Blawx reasoner
-      and displays the results in the output area. Note that the\nRune Blawx Code
-      command also saves the current workspace to the Blawx server.\n\n####\nHelp\nThe
-      Help command brings you to the Blawx.com documentation, which...\nis what you're
-      reading right now.\n#### Save and Close\nThe Save and\nClose command saves the
-      current workspace to the Blawx server, and returns to\nthe Workspace view.\n-
-      model: blawx.docpage\npk: guide/logic\nfields:\ntitle: Logic Blocks\ncontent:
-      # Logic Blocks\n\nThis page describes the basic logic blocks available\nin the
-      Logic drawer of the Toolbox.\n\n## Negation\n\nBlawx provides\nyou with two
-      different types of negation.\n\nThe first type of negation\nis a \"known false”
-      block. It looks like this:\n\n![not]({{ site.baseurl\n}}/img/not.png)\n\nThe
-      second type of negation is a \"not\" block. It looks\nlike this:\n\n![naf not]({{
-      site.baseurl }}/img/naf_not.png)\n\nIt is\nvery important to understand the
-      difference between them.\n\nInside a Fact\nor a Rule Conclusion, a \"known false\"
-      block tells Blawx that the included\nstatement is known with certainty to be
-      false. Inside a Question or a Rule Condition,\nit asks Blawx to check to see
-      whether it is known with certainty that the statement\nis false.\n\nA \"not\"
-      block does require that a thing is certainly false,\nbut if it is known false,
-      the \"not\" block will succeed. But a \"not\" block\nwill also succeed if there
-      is only no facts or rules that can be used to derive\nthat the statement is
-      true.\n\n\"Not\" blocks can't be used in facts, or\nthe conclusions of rules.
-      They are used in queries, and in the conditions of\nrules.\n\nLet's imagine
-      you want to ask if there are no dogs. You might\n(incorrectly) write this code:\n\n![wrong
-      not any dogs]({{ site.baseurl\n}}/img/wrong_not_any_dogs.png)\n\nBut this code
-      will not work as expected.\nA \"known false\" only returns “true” if its contents
-      are explicitly \nstated\nto be false. But if a fact stated (or a rule concluded)
-      \"it is known false\nthat any is in the category Dog\", that would mean “it
-      is impossible for an\nobject to be a dog.” That is probably not what you meant
-      to check for.\n\nYou\ndon't want to know if that statement is explicitly false.
-      You want to know\nwhether\nyou can find a specific example in which it is true.
-      Put another way,\nyou\ndon't want to ask \"is it true that nothing can be a
-      dog?\", you want to ask\n\n\"do you know of any examples of dogs?\" So the \"not\"
-      version\nis what\nyou need.\n\n![correct not any dogs]({{ site.baseurl }}/img/correct_not_any_dogs.png)\n\nThat\nversion
-      of the rule will work as expected.\n\nAnother way to think about\nthe difference
-      is to think of statements as having opposites.\n\"Known false\"\nchecks to see
-      if the opposite is true. \"Not\" checks to see if the opposite\nis\ntrue, *or*
-      if the statement can't be proven.\n\nIn law, we are familiar\nwith this distinction
-      between the two different kinds of negation. In criminal\ntrials, when a court
-      decides that a person is \"not guilty\", they are using\nthe \"not\". \"Not
-      guilty\" means *either* the person is innocent (the opposite\nof guilty), *or*
-      there was not sufficient proof to\nfind them guilty.\n\nAs\na general rule,
-      you usually want to use \"not\" in questions and in rule\nconditions.\n\"Known
-      fasle\" is the only thing that will work in rule conclusions and facts.\n\n\n##
-      Comparison\n\n![comparison]({{ site.baseurl }}/img/comparitor.png)\n\nThe\ncomparison
-      operator has 6 different comparisons it can make between two values,\nor objects.\n\nThey
-      are quite self-explanatory. The block will succeed if\nthe two values provided
-      satisfy the condition, which is one of:\n\n* \"is\nthe same value as\"\n* \"is
-      a different value from\"\n* \"is less than\"\n*\n\"is greater than\"\n* \"is
-      less than or the same value as\"\n* \"is greater\nthan or the same value as\"\n\nThere
-      are a couple of things to note. First,\nit will only work if the values are
-      ordered, like numbers, or dates. Second,\nit compares the values, but it does
-      not know whether the values are coming from\nthe\nsame source.\n\nIf you want
-      to know whether objects referred to by\ntwo variables are the same object (they
-      are \"identical\"), then you don't want\nto compare their values, you want to
-      check their identities. That is done using\nthe object equivalence or object
-      disequivalence blocks."
-- model: blawx.docpage
-  pk: guide/rps
-  fields:
-    title: Rock, Paper, Scissors
-    content: 'The Blawx documentation is currently under active re-development to
-
-      catch up with significant changes in version 1.0.0-alpha of the tool.
-
-
-      This
-
-      page isn''t finished yet. Thanks for your patience.'
-- model: blawx.docpage
-  pk: guide/variables
-  fields:
-    title: Variables
-    content: "# Variables\n\nVariables are a fundamental part of how Blawx works.\nYou
-      can't do anything interesting without them. But if you have experience\nwith\nother
-      programming languages, they probably will not behave as you first expect.\n\nDon't\nworry,
-      variables in Blawx are VERY easy to understand.\n\n## Understanding\nVariables
-      in Blawx\n\nImagine I asked you \"this species is carnivourous,\nit is four-legged,
-      and it is known as man's best\nfriend.\" What would you\nanswer?\n\nA dog!\n\nSo
-      what happened, there?\n\nI gave you a list\nof things that was true. The list
-      was:\n\n* it is a species, and\n* it\nis carnivorous, and\n* it is four-legged,
-      and\n* it is known as man's best\nfriend\n\nI asked you to think of a specific
-      thing that \"it\" might be.\nOr put differently,\nI asked you to think of a
-      specific thing, where if you\nput that thing everywhere the word \"it\"\nappears,
-      the four statement would\nbe true.\n\n**The way we are using \"it\" in that
-      list is *exactly* how\na Blawx variable works.**\n\nSee? Easy!\n\nA Blawx variable
-      is just\na name that you give to an unknown. When you use the same name, you\nare
-      referring\nto the same unknown.\n\nThis is also precisely the way variables
-      are used\nin math.\n\nIt's just different from how they are used in most programming\nlangauges.\n\n##
-      Variables In Action\n\n### Single Variable\n\nThe\nfirst and most obvious place
-      that you will use variables is in questions. The\ndog question above could be
-      posed in Blawx like this:\n\n![it query]({{\nsite.baseurl }}/img/it_query.png)\n\nThis
-      example uses the word \"It\" as\nthe name of the variable, but you can use anything
-      you like.\n\nNote that\nvariable names should not include spaces, and should
-      start with a capital letter.\n\n###\nVariables in Rule Conclusions\n\nDo not
-      use a variable in a rule conclusion\nthat wasn't also used in the conditions
-      of that rule. Otherwise, your variable\nwill match with everything in the database,
-      which probably isn't what you wanted.\n\n###\nCopy, Don't Type\n\nBecause variables
-      are names that you type, and not declared\nlike objects or categories, there
-      is a higher risk of typos. It is a good practice\nto copy and paste variable
-      blocks whenever possible to avoid typos.\n\n###\nMultiple Variables\n\nWhere
-      Blawx gets very powerful is in its ability to\nmatch multiple variables at the
-      same time.\n\nFor example, let's take this\nrule that defines the winner of
-      a game of rock-paper-scissors:\n\n![rock\npaper scissors]({{ site.baseurl }}/img/rps_winner.png)\n\nThis
-      rule uses\n5 variables in the conditions, and only 2 of them in the conclusion.\n\nBlawx\nsearches
-      for a set of 5 data points that can fill in for the variables \"game\",\n\"player\",
-      \"other_player\", \"player_throw\", and \"other_player_throw\",\nwhich will
-      make all of those 10 statements in the condition true.\n\nThe\nmore complicated
-      your data structure, and the more layers of that data structure\nyou need to
-      navigate in order to reach a conclusion, the more variables you\nwill need in
-      your rules and queries.\n\n### Sameness and Differentness\n\nBlawx\nis going
-      to automatically find data that can be put in the place of the variable\neverywhere
-      it appears. So it checks to see if\nthe data is the same in each\nplace the
-      same variable is used.\n\nYou might assume that Blawx also checks\nto see if
-      a *different* piece of data is used\neverywhere that *different*\nvariables
-      are used, but **this is not true**.\n\nLet's imagine we have the\nfollowing
-      ontology:\n\n![family ontology]({{ site.baseurl }}/img/family_ontology.png)\n\nAnd\nlet's
-      say that we have the following rule in order to calculate siblings:\n\n![sibling\nbroken]({{
-      site.baseurl }}/img/sibling_rule_broken.png)\n\nThis will incorrectly\ntell
-      us that Wednesday is her own sibling. Why?\n\nBecause Blawx will see\nif there
-      are values that it can put into A, B, and C, using the same values\neach time
-      each variable is used, and have all of the statements in the condition\nbe true.\n\nSo
-      here, if A is Wednesday, and if B is Wednesday, and if C\nis Morticia, all three
-      statements are true.\n\nTherefore Wednesday (A) has\na sibling Wednesday (B).\n\nBlawx
-      is checking to see that the A in the condition\nis the same as the A in the
-      conclusion, the B in the condition is the same as\nin the conclusion, and the
-      C is the same both times it appears in the condition.\nBut is not checking to
-      see if anything is different.\n\nTo force a check\nfor difference, you have
-      to be explicit, like this:\n\n![sibling fixed]({{\nsite.baseurl }}/img/sibling_rule_fixed.png)\n\nNow
-      Wednesday has only one\nsibling, Pugsley, and Pugsley has only one sibling,
-      Wednesday.\n\n## Types\nof Variables\n\nBlawx gives you two different types
-      of variables that you\ncan use:\n\n### Named Variables\n\n![variable]({{ site.baseurl
-      }}/img/variable_selector.png)\n\nA\nnormal variable is just a name. Blawx will
-      look for data which, if you put it\nin everywhere the \nvariable appears, it
-      makes the statement true. And if\nyou used it in a question, it will tell you
-      what that data was.\n\nIn fact,\nthis is the only kind of variable that will
-      cause Blawx to give you the specifics\nin response to a question.\n\nA variable
-      should start with a capital letter,\nand have no spaces.\n\n### Unnamed Variables\n\n![unnamed]({{
-      site.baseurl\n}}/img/unnamed_variable.png)\n\nIf you need to check that *something*
-      can\nbe put into a statement, but you don't need to learn what,\nand you won't\never
-      need Blawx to make sure it's the same *something* that was used elsewhere,\nyou
-      can use\nthe unnamed variable block.\n\nUsing an unnamed variable\nis the same
-      as using a named variable only one time in a question or rule condition,\nexcept
-      that Blawx will warn you about using a variable only once, but it will\nnot
-      warn you if the variable is unnamed.\n\n## Variable Scope\n\nTwo\nvariables
-      with the same name  refer to the same thing if they are both in the\nsame rule
-      or question. Variables in different rules or questions can reuse the\nsame names,
-      and it does not affect the meaning.\n\nThis is an example of\nvariable \"scope\".
-      A variable's \"scope\" is the part of the code in which\nanother variable with
-      the same name will be matched to the same thing.\n\nUsually,\nscope is not an
-      issue. Every rule is its own scope. Every query is its own scope.\nThe one other
-      thing to keep in mind is that a Fact block gives a new scope to\neach of the
-      statements included in it. So re-using the same variable name in\nmultiple statements
-      in a Fact block will not make those things true simultaneously."
-- model: blawx.docpage
-  pk: home
-  fields:
-    title: Blawx Documentation Home
-    content: '# Blawx Documentation Home
-
-
-      This documentation can be reached
-
-      at any time by choosing "Help" in the menu
-
-      of the Blawx interface.
-
-
-      The
-
-      Blawx documentation is divided into a guide section, and a reference section.
-
-      The guide section includes the Beginner''s Guide to Blawx,
-
-      an Advanced Topics
-
-      section,
-
-      and an Examples section.
-
-
-      Details on specific interface elements
-
-      and how they work are included in the "Specific Blocks" section. The pages
-
-      in this section are also accessible by
-
-      right-clicking on a block in the Blawx
-
-      interface and choosing "Help."
-
-
-      Blawx is under active development. The
-
-      documentation is a work in progress. Some pages may not include much detail,
-
-      and some examples may be out of date compared to the interface. If there is
-
-      something missing that you need, or something incorrect, please file an issue
-
-      at the [Blawx GitHub repository](https://github.com/Blawx/blawx).'
-- model: blawx.docpage
-  pk: incomplete
-  fields:
-    title: Incomplete
-    content: '# Incomplete
-
-
-      The Blawx documentation is a work in progress, and
-
-      we are currently working on getting it up to speed with version 1.0.0-alpha
-      of
-
-      the reasoner and interface.
-
-
-      The page you are seeking has not been completed
-
-      yet. Thanks for your patience.'
+    ruledoc: 11
+    test_name: automation
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
+      id="Uo/x(VqDHl^Bb1yFAZHz" x="111" y="141"><statement name="query"><block type="holds"
+      id="C)mW/pZ`x}c1R5)ovpq="><statement name="statement"><block type="attribute_selector"
+      id="T$|haRh6=rHDYaz~a6t@"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sibling"
+      attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">is a sibling of</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="t5wLM78K1!O.1KXgL~JG"><field name="variable_name">Person</field></block></value><value
+      name="second_element"><block type="variable" id="vnm~Aw+Gwcd,sO!Ly=d_"><field
+      name="variable_name">OtherPerson</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: ?- legally_holds(_,  sibling(OtherPerson,Person)).

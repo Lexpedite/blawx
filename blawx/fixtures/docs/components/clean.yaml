@@ -1,0 +1,214 @@
+- model: blawx.docpage
+  pk: components/clean
+  fields:
+    title: Entering Rules Into Blawx
+    content: |
+      # Entering Law Into Blawx
+
+      The first step in encoding a rule is to tell Blawx what the text of the rule is.
+
+      This is done in the "rule editing" screen, which is displayed when you create a
+      new Rule in Blawx, or when you click "Rule Editor" in an existing Rule.
+
+      The Rule Editor allows you to specify two things: the name of the Rule, and the
+      text of the rule. You can name your rules however is convenient to you.
+
+      To give the user a friendly way of entering in the text of a law, Blawx uses a
+      plain-text format for typing in laws called "CLEAN" (Canadian Legal Enactments in Akoma
+      Ntoso).
+
+      CLEAN is implemented in [an open source library that is available on GitHub](https://github.com/lexpedite/clean).
+
+      ## CLEAN Format Explained
+
+      A CLEAN-formatted piece of legislation has the following features:
+
+      ### Title
+
+      The title of the act is the first line of the file, and must be followed by
+      a blank line.
+      
+      Note that in Blawx
+      the first character of each word in the text title (not the name given to the Rule)
+      will be used to create an abbreviation for the rule, which will be used in the
+      section selectors for that rule. You may therefore want to avoid words that start with
+      punctuation, as that punctuation will appear in your section selectors.
+
+      For example, if the title of your rule is "The (Very) Good Act", the generated
+      abbreviation will be "T(GA", which is probably not what you want.
+
+      ### Headers
+
+      Sections and Sub-Sections can have headers, which is a single line of text
+      immediately above the section or subsection, preceded by a blank line.
+
+      It is necessary to precede headers with a blank line in order to distinguish
+      them from sandwich text, described below.
+
+      Note that if you have a section title after a title, only one blank line needs to
+      appear between them.
+
+      ### Sections
+
+      Sections are indicated by a section index which is an arabic number followed
+      by a period.
+
+      A section may have a header.
+
+      A section index may be followed by the text of the section. If it is, it may
+      also have an indented list of sub-sections, or paragraphs (but not both). If
+      it has an indented list of sub-sections or paragraphs, it can also have
+      "sandwich text" at the bottom.
+
+      Here are some valid sections:
+
+      ```text
+      1. This is a section.
+      2. This is a section with
+        (1) a subsection.
+
+      Section Three
+      3. This is a section with a header, and
+        (a) paragraphs
+      and sandwich text.
+      3.1 As with all text, it
+      can be spread across multiple lines.
+      ```
+
+      Note that you can use indexes, such as in a cross-reference, 
+      inside the text of a section, but only if the index does not 
+      appear at the start of a line.
+
+      ```text
+      1. If you want to refer to sub-section (2), this
+      will work just fine.
+
+      2. If you want to refer to sub-section
+      (1) this will not work.
+      ```
+      ### Sub-Sections
+
+      Sub-sections are indicated with an index of an arabic number in parentheses.
+      They must be indented from their parent section. They can have a header,
+      which also must be indented the same amount. They must be followed by legal
+      text, and may also then have an indented list of paragraphs. If there is an
+      indented list of paragraphs, it may be followed by sandwich text.
+
+      Legal text can go across multiple lines, but if they appear at the start
+      of a line, that will cause confusion.
+
+      ```text
+      1. This is a section.
+        (1) This is the first sub-section.
+          (a) the first subsection has paragraphs.
+        with sandwich text.
+
+        Named Sub-Subection
+        (2) This is a subsection with a header, and
+        which refers to subsection (1) in a way
+        that works. 
+      ```
+
+      ### Paragraphs
+
+      Paragraphs are indented from a section or sub-section, and are indicated
+      with a lower-case alphabetic character or characters surrounded by 
+      parenthesis. They must then have legal text, which can span across lines
+      in the same way as in sections and sub-sections. A paragraph can have
+      an indented list of sub-paragraphs. Paragraphs cannot have a header.
+
+      ### Sub-Paragraphs
+
+      Sub-paragraphs are indented from a paragraph, and are indicated wth a
+      lower-case roman numeral surrounded in parentheses. They must have
+      legal text, which can span across lines in the usual way.
+      Sub-paragraphs cannot have further sub-divisions, and cannot have a header.
+
+      ### Spans
+
+      You can identify 
+      a sub-part of a block of text inside a rule using the following syntax: `[name]{contents}`.
+
+      ```text
+      1. This is an example of the text of a section [name]{with
+      a named span of text} included in it.
+      ```
+
+      The name given to a span is placed between the square brackets and must not have any
+      spaces in it. It should be unique across the entire rule. Spans can be 
+      nested inside one another.
+
+      ### Insert Indexes
+
+      When making amendments to legislation, drafters often want to be able to insert parts
+      without changing the numbering of the existing parts. This is accomplished by using insert
+      indexes, which are always a period, followed by an arabic number, which increases
+      sequentially. The CLEAN syntax supports these indexes for all indexed parts of a rule.
+
+      ```text
+      1.
+        (1)
+        (1.1) - first inserted sub-section. 
+        (1.1.1) - third inserted sub-section.
+        (1.2) - second inserted sub-section
+        (2)
+      ```
+
+      For all of the index types (i.e. sections, sub-sections, paragraphs, and
+      sub-paragraphs) the insert indexes appear to the right of the index
+      number, and before any closing punctuation, as follows:
+
+      ```text
+      1.1.
+        (1.1)
+          (a.1)
+            (i.1)
+      ```
+
+      ## An Example
+
+      An example act might look like this:
+      ```text
+      Rock Paper Scissors Act
+
+      Players
+      1. A game of rock paper scissors has two players.
+      2. There are three signs:
+        (a) Rock,
+        (b) Paper, and
+        (c) Scissors.
+
+      Defeating Relationships
+      3.
+        (1) Rock beats Scissors,
+        (2) Scissors beats Paper, and
+        (3) Paper beats Rock.
+
+      Winner
+      4. The winner of a game is the player who throws
+      a sign that beats the sign of the other player.
+      ```
+
+      ## Troubleshooting
+
+      Currently, if Blawx is able to parse any of the text entered, it will proceed with
+      whatever portions it can parse, and ignore the rest without giving an error message.
+
+      It's therefore important to double-check that all of what you typed was recognized
+      by Blawx. You can do this by checking to see if all the sections in your code editing
+      interface are available to be selected.
+
+      If there is a problem, it will usually be visible because some portion of your law
+      does not appear in the interface.
+
+      We will be working on improving the feedback that Blawx can give you about problems
+      with your CLEAN rule text. In the meantime, the best troubleshooting technique is
+      to follow these steps:
+
+      1. Make sure that there are no non-ASCII text characters in the text. Examples include
+         fancy quotation marks, en- and em-dashes, characters with accents, non-English
+         alphabet characters, etc. (The limitation of CLEAN to ASCII text is something we will be fixing in future.)
+      2. Save your legal text somewhere, and instead of the entire text enter only the top half.
+         Check to see if that works. If not, enter only the top half of that. Repeat until you have
+         a portion of your law that is working, or you have a very small section that the problem
+         must be inside. Once you have solved that problem, repeat the process with the remainder.

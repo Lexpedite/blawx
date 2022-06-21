@@ -26,25 +26,27 @@
 
       ## Technical Details
 
-      The question block accepts a single stack of statements, which is valid if
-      it is a stack of at least one statement.  The stack is treated as if all
-      of its parts were joined together with "and".  All of the statements must
-      be true at the same time for an answer to be included. Variables in the
-      stack share a single scope, so anywhere you are using the same variable name
-      you are referring to the same object.
+      The question block is an outer block, and accepts a single stack of statements, which is valid if
+      it is a stack of exactly one statement. 
 
-      (Remember that the opposite is not true. If you use different variable names,
-      that does not necessarily mean you are referring to different objects. To
-      ensure that you include results only where two variables do not refer to the
-      same object, use the object disequality block.)
+      Running your code in the Test Editor with a question block in the code will make
+      Blawx attempt to find any values that can be placed into any variables in your question,
+      so as to make the statement in the question true.
 
-      The question block will return a number of models, where each model represents
-      a combination of an answer to the question, and a way of obtaining that answer.
-      If there are two possible answers, and three ways of obtaining each answer, you
-      will get six models.
+      If there are no values which can be used to make the statement true, the server will return
+      the text "No Models" in the Test Editor Output Pane.
 
-      While it is possible to have more than one question block in a workspace, only
-      the last active question block will actually be used by the software.
+      If the statement is true for any number of values, each combination of values will be
+      returned as an answer. Each reason those values make the statement true will be returned
+      as an explanation for that answer. One answer may have more than one explanation.
+
+      Note that a question with no variables can only have either one answer which indicates the
+      statement is true, or "no models" which indicates that it is not.
+      
+      If you have more than one question block in your Test Editor when you run your test, Blawx
+      will use only one of them, and it can be difficult to predict which. If you want to have
+      multiple questions, but use only one at a time, it is best to mark the question blocks
+      you are not using as "disabled" in the context menu for that question block.
 
       ## Tips
 

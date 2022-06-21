@@ -1,0 +1,27 @@
+- model: blawx.docpage
+  pk: blocks/date_comparison
+  fields:
+    title: Date Comparison Block
+    content: |
+      # Date Comparison Block
+
+      ![Date Comparison Block](/static/blawx/docs/images/blocks/date_comparison.png)
+
+      ## Where Is It?
+
+      The Date Comparison block is located in the data statements drawer of the Blawx toolbox,
+      in the date sub-drawer.
+
+      ## What Does It Do?
+
+      The Date Comparison block is used to find out if one date is before, after, or the same
+      as another date value.
+
+      ## Technical Details
+
+      The Date Comparison block is a statement block that can be stacked with other statements.
+
+      It accepts two inputs, both of which are expected to be dates or variables, and has a dropdown
+      field that indicates the type of comparison you want to do.
+
+      ## Tips

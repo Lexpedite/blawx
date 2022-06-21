@@ -1,0 +1,36 @@
+- model: blawx.docpage
+  pk: blocks/section_selector
+  fields:
+    title: Section Selector Block
+    content: |
+      # Section Selector Block
+
+      ![Section Selector Block](/static/blawx/docs/images/blocks/section_selector.png)
+
+      ## Where Is It?
+
+      The Section Selector block is located in the known sections drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Section Selector block is used to refer to a specific section of your rules. It is
+      used in According To blocks, to indicate which section reaches the conclusion, and
+      in Overrules blocks, to indicate which section overrules which other section.
+
+      ## Technical Details
+
+      The Section Selector block is a value block that provides a reference to a section in
+      the current rule.  It is used in According To blocks, and Overrules Blocks.
+
+      ## Tips
+
+      Section selector blocks will be given a name that is the abbreviation of the title in
+      your rule text, followed by an abbreviation of the section's specific location in the
+      rule. If you are using spans, it can be helpful to use short span names so as to
+      avoid the location references from getting too long to be displayed in the block.
+
+      Because the abbreviation used in the section selector block is based on the first
+      character of the title provided in your legal text, it is advisable not to use punctuation
+      and numerals at the start of words in the title of your legal text, to ensure that the section
+      selectors are readable. For example, if your title is "The (Very) Good Act 2004", the
+      section selector for section 1 of that act will read "T(GA2 1".

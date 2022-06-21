@@ -1,0 +1,12 @@
+- model: blawx.docpage
+  pk: examples/wills
+  fields:
+    title: Wills Act
+    content: |
+      # Wills Act
+
+      The Wills Act example included with Blawx is [available here](/9/) (assuming it hasn't been
+      deleted from your system).
+
+      It is used to demonstrate the relevance reasoning features of the interview endpoint
+      for Blawx tests, as seen in BlawxBot.

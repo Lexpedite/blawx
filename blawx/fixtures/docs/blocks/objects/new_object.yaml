@@ -30,7 +30,7 @@
       The new object block asserts that the named object is in the category.
 
       The text field must be the name of the object, which must not include spaces
-      and must start with a lower-case letter.
+      and must start with a lower-case letter. Names for objects must also be unique.
 
       The new object block is a statement, and can be stacked with other statements.
 

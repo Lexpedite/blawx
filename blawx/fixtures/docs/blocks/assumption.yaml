@@ -19,10 +19,10 @@
 
       ## Technical Details
 
-      An assumption block is valid if it has exactly one statement block connected to it.
+      An assumption block is an outer block, and is valid if it has exactly one statement block connected to it.
 
       In the background, the assumption block is implemented as a set of two rules which
-      say, essentially, "statement is true if it is not known false; statement is false if not true."
+      say, essentially, "statement is true if it is not known false; statement is known false if not true."
       This creates two possible sets of scenarios for Blawx to consider, and Blawx will
       provide answers from either scenario if the assumption is required in order to
       answer the question.
@@ -37,4 +37,4 @@
       ## Tips
 
       Note that if you use a large number of assumptions at the same time, you create exponentially
-      more fact scenarios for Blawx to consider. That may slow down processing of your consider.
+      more fact scenarios for Blawx to consider. That may slow down processing of your code.

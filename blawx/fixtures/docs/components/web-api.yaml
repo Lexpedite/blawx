@@ -1,0 +1,127 @@
+- model: blawx.docpage
+  pk: components/web-api
+  fields:
+    title: The Blawx Web API
+    content: |
+      # The Blawx Web API
+
+      There are three endpoints available for each test defined in your Blawx project:
+
+      * The "Run" Endpoint
+      * The "Ontology" Endpoint
+      * The "Interview" Endpoint
+
+      One additional endpoint is available for each Project in Blawx:
+
+      * The "Rule" Endpoint
+
+      ## The Run Endpoint
+
+      The run endpoint is the endpoint used by the test editor when you click "Run".
+
+      It can accept data in the JSON format described in the JSON Block, but ignores
+      information about known objects, attributes, and values.
+      
+      It returns a JSON object which is a dictionary containing two keys, "Answers" and "Transcript".
+
+      Both are in the format described below for the Interview endpoint.
+
+      The Run endpoint can be obtained by adding `/run` to the end of the URL displayed when in the test editor, and
+      if you go to that address in your browser, you will see a web interface to allow you to specify JSON inputs and review the responses.
+      The endpoint accepts only `POST` requests.
+
+      ## The "Ontology" Endpoint
+
+      The ontology endpoint is available at the address obtained by adding `/onto` to the end of the URL displayed when in the test
+      editor.  If you go to that address in your browser, you will see a web interface to allow you to specify JSON inputs and review responses.
+      The endpoint accepts only `GET` requests.
+
+      The response is a JSON object which is a dictionary, the keys of which are "Categories", "CategoryNLG", "Attributes", "AttributeNLG", "Objects", "Values", and "Transcript".
+
+      "Transcript" is in the format described below for the interview endpoint.
+
+      "Categories" is a list of category names.
+
+      "CategoryNLG" is a list of dictionaries, each of which has the keys "Category", "Prefix" and "Postfix", describing the details provided in a category customization block, if any.
+
+      "Attributes" is a list of dictionaries, each of which has the keys "Category", "Attribute", and "Type". The Category is the name of the category for which the attribute is defined.
+      The Attribute is the name given to the attribute. The Type is the type specified, which will either be the name of a category, or one of "boolean", "number", "date", or "duration".
+
+      "AttributeNLG" is a list of dictionaries, each of which has the keys "Attribute", "Order", "Prefix", "Infix" and "Postfix", describing the details provided in an attribute customization block,
+      if any. Order will be either "vo" or "ov", indicating the order in which the object and the order appear.
+
+      "Objects" is a list of dictionaries, each with the keys "Category" and "Object", describing the category and the name of the object in that category.
+
+      "Values" is a list of dictionaries, each with the keys "Object", "Attribute", and "Value", describing a known value for that object and attribute.
+
+      The ontology endpoint is intended to be used at the start of an interaction between Blawx and another application, to provide the other application with information about what data structure is
+      used in the encoding, and to provide hints about how to collect items into that data structure.
+
+      ## The "Interview" Endpoint
+
+      The interview endpoint is available at the address obtained by adding `/interview` to the end of the URL displayed when in the test
+      editor. If you go to that address in your browser, you will see a web interface to allow you to specify JSON inputs and review responses.
+      The endpoint accepts only `POST` requests.
+
+      This endpoint expects a data payload in the following format:
+
+      The main JSON object is a dictionary, the keys of which are the names of categories in your code.
+      The values of those dictionary entries are dictionaries with the keys
+      "members_known", "attributes_known", and "members".  `members_known` is either `true` or `false`,
+      and indicates if the list is known to be complete. If it is not, the interview endpoint will
+      cause Blawx to assume that the category might include additional objects when calculating relevance.
+      "attributes_known" is a dictionary where the keys are the names of attributes, and the values
+      are either `true` or `false`. If the value is `false` the interview endpoint will
+      generate assumption statements for additional values for that attribute and any object when calculating relevance.
+      "members" is a dictionary, where the keys are the names of objects in that category. The value
+      of an entry in members is a dictionary with keys representing the name of an attribute applicable
+      to that category. The values of those entries are a dictionary with keys "values_known", and "values". "values_known"
+      is `true` if there are no other possible values for that attribute in that object, and `false` otherwise.
+      The interview endpoint will generate partially-ground assumptions for additional values for that object while calculating
+      relevance if the value is `false`. "values" is a list of the values that are known for that attribute and object.
+
+      Note that the interview endpoint does two calculations, one seeking answers, and the other seeking relevance. Only the search
+      for relevance uses the assumptions arising from the "members_known", "attributes_known", and "values_known" entries in the payload.
+
+      The output from the interview endpoint is a JSON dictionary with keys "Answers", "Relevant Categories", "Relevant Attributes", and "Transcript".
+
+      "Answers" is a list of answers, which will be empty if the same question would have returned "no models" in the test editor.
+      An Answer is a dictionary with keys "Variables", and "Models". "Variables" is a dictionary of variable names used in the question, and the values
+      bound to that variable name in the current answer. "Models" is a dictionary with keys "Tree" and "Terms". "Tree" is a list of nested lists providing
+      the text value of the explanation displayed to the user in the output pane of the Test Editor. Section names are not resolved in this data. "Terms"
+      is reserved for future use.
+
+      "Relevant Categories" is a list of categories that it would still be relevant to seek additional objects for.
+
+      "Relevant Attributes" is a list of dictionaries, each with the key "Attribute", and optionally keys "Object" and "Value". The value of the Attribute
+      key is the name of the attribute. If there are no objects and values specified, that attribute may be relevant with regard to any object.
+      If there is an object name in the value of the Object key, that indicates that the values of the attribute for that object are relevant.
+      If there is a value specified, and no object, that indicates that the objects for which that value is true are relevant.
+      If there is both an object and a value specified, that indicates that it is relevant whether or not that object has that value for that attribute.
+
+      "Transcript" is a string showing the data that was returned from the SWI-Prolog reasoner while executing the web API request, and is
+      used primarily for debugging problems with Blawx, and Blawx encodings.
+
+      Note that there is not currently a way to specify assumptions that should be used both in calculating answers and in calculating relevance.
+
+      ## The "Rule" Endpoint
+
+      The Rule endpoint is available at the address obtained by adding `/rule/{section_id}` to the end of the address shown when you are in the Project
+      page for a given project. Section ids are the section identifies generated by Blawx on the basis of the Project's legal text, and correspond to the
+      `eId` attribute value generated in the corresponding Akoma Ntoso version of the legislation, displayed at the bottom of the Project page.
+
+      The format of a section_id will be something like one of the following:
+
+      * sec_1
+      * sec_1__subsec_2
+      * sec_1__subsec_2__para_a
+      * sec_1__subsec_2__para_a__subpara_i
+      * sec_1__para_a
+      * sec_1__para_a__subpara_i__span_spanname
+      * etc...
+
+      The endpoint accepts only GET requests, and returns a JSON dictionary with keys "xml" and "text". The value of the text key is the Akoma Ntoso code
+      for that section and its sub-components. The value of the text entry is a plain-text representation of the content of that section of the law.
+
+      
+

@@ -1,0 +1,163 @@
+- model: blawx.docpage
+  pk: features/negation
+  fields:
+    title: Negation and Uncertainty
+    content: |
+      # Negation and Uncertainty
+
+      ##
+
+      Blawx provides you with two different types of negation.
+
+      The first type of negation is expressed with the "known false” block. It looks like this:
+
+      ![known false](/static/blawx/docs/images/blocks/known_false.png)
+
+      The second type of negation is expressed with the "not" block. It looks
+      like this:
+
+      ![not](/static/blawx/docs/images/blocks/not.png)
+
+      It is very important to understand the difference between them.
+
+      "Known False" means it the statement is certainly false.
+
+      "Not" means there is no evidence the statement is true.
+
+      Inside a "tell" statement, a "known false" block tells Blawx that the included
+      statement is known with certainty to be false. Inside an "ask" statement,
+      "known false" asks Blawx to check to see whether it is known with certainty that the statement
+      is false.
+
+      In an ask statement, "not" checks whether we can derive that something is true.
+
+      In an ask statement, if "known false X" succeeds, "not X" will also succeed. But
+      "not X" can also succeed if there is no way to conclude that X is true.
+
+      ### Example Negation
+
+      Let's imagine you want to ask if there are no dogs. You might
+      (incorrectly) write this code:
+
+      ![wrong not any dogs](/static/blawx/docs/images/wrong_not_any_dogs.png)
+
+      But this code will not work as expected.
+      A "known false" only returns “true” if its contents are explicitly 
+      stated
+      to be false. But if a fact stated (or a rule concluded) "it is known false
+      that any is in the category Dog", that would mean “it is impossible for an
+      object to be a dog.” That is not what you meant to check for.
+
+      You don't want to know if that statement is explicitly false. You want to know
+      whether you can find a specific example in which it is true. Put another way,
+      you don't want to ask "is it true that nothing can be a dog?", you want to ask
+      "do you know of any examples of dogs?" So the "not" version of negation is what
+      you need.
+
+      ![correct not any dogs](/static/blawx/docs/images/correct_not_any_dogs.png)
+
+      That
+      version of the rule will work as expected.
+
+      Another way to think about
+      the difference between "known false" and "not"
+      is to think of statements as having opposites.
+      "Known false" checks to see if the opposite is true.
+      "Not" checks to see if the opposite is
+      true, *or* if the statement can't be proven.
+
+      ### Not Guilty vs. Innocent
+      
+      Lawyers are actually often familiar
+      with this distinction between the two different kinds of negation. In criminal
+      trials, when a court decides that a person is "not guilty", they are using
+      the "not" style of negation. "Not guilty" means *either* the person is innocent (the opposite
+      of guilty), *or* there was not sufficient proof to
+      find them guilty.
+
+      ### Rule of Thumb
+
+      As a general rule, you usually want to use "not" in questions and in rule
+      conditions. "Known false" is the only thing that will work in rule conclusions and facts.
+
+      ## Uncertainty
+
+      Uncertainty is complicated, and we are still working on communicating how it works
+      clearly. The good news is that understanding it in detail is usually not required in
+      order to use Blawx effectively.
+
+      Blawx is based on answer set programming, which allows for five different levels of
+      certainty about a statement *inside a single explanation*:
+
+      * Certainly True
+      * Possibly True
+      * Unknown
+      * Possibly False
+      * Certainly False
+
+      Let us imagine that the statement is "socrates is a mortal." Here are the five levels of
+      certainty expressed in Blawx:
+
+      ![5 Levels of Uncertainty](/static/blawx/docs/images/5_levels.png)
+
+      It can be helpful to understand that under the covers, Blawx is creating an "opposite"
+      for "socrates is mortal". It gives it a generic name like "the opposite of socrates is mortal".
+      But for illustration purposes, we can call the opposite "socrates is immortal".
+
+      "Known false" just stands in for "the opposite is true".
+
+      We can still say "not", and we can describe it as "there is no evidence that".
+
+      Having done that, there's now a small list of single statements it is possible to make:
+
+      * socrates is mortal
+      * socrates is immortal
+      * there is no evidence that socrates is mortal
+      * there is no evidence that socrates is immortal
+      
+      Of course, we might be able to derive more than one of those things at the same time.
+      If we assume that there cannot be no evidence for something that is true,
+      and we cannot conclude something and its opposite at the same time, we are left
+      with only 5 possible combinations of those four statements
+      we can reasonably believe at the same time:
+
+      * socrates is mortal
+      * there is no evidence that socrates is immortal
+      * there is no evidence that socrates is mortal, and there is no evidence that socrates is immortal
+      * there is no evidence that socrates is mortal
+      * socrates is immortal
+
+      These are the same 5 categories we have above.
+
+      So the 5 levels of certainty that can exist in an explanation are the 5 possible combinations
+      of things we can say about a statement and its opposite.
+
+      ### Using Uncertainty Levels in Explanations
+
+      Uncertainty levels are mostly useful for interpreting the meaning of
+      an explanation provided by Blawx, which, for any single statement,
+      will express one of those 5 degrees of certainty.
+
+      Let's say there is a single answer to a question, and the only explanation
+      for that answer includes both "there is no evidence that socrates is mortal", and
+      "there is no evidence that socrates is immortal".
+
+      That means that that reasoning only holds true, and the question only has a valid answer,
+      when socrates mortality is unknown.  That is very different from saying that socrates'
+      mortality is unimportant. If socrates' mortality is unimportant, neither of those
+      statements would appear in the explanation, because neither would be relevant to anything.
+
+      So if the explanation depends on both of those statements, it holds only when socrates'
+      mortality is unknown, and it no longer is a valid explanation when we learn socrates' mortality.
+
+      Consider now a question that has only one answer, and only one explanation, and in that
+      explanation appears only the statement "there is no evidence socrates is immortal".
+
+      That would mean that the reasoning in that explanation can hold when socrates is mortal, and when
+      socrates' immortality is unknown.  It is allowed, in that scenario, for the statement to be
+      true, or for it to be unknown. Because if it is unknown, there is still no evidence it is false.
+      Only false doesn't work. That is a scenario in which socrates' mortality is "possibly true".
+
+
+
+

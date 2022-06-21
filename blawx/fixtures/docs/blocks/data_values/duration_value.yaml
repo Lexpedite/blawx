@@ -1,0 +1,32 @@
+- model: blawx.docpage
+  pk: blocks/duration_value
+  fields:
+    title: Duration Value Block
+    content: |
+      # Duration Value Block
+
+      ![Duration Value Block](/static/blawx/docs/images/blocks/duration_value.png)
+
+      ## Where Is It?
+
+      The Duration Value block is located in the data value drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Duration Value block is used to provide a specific duration value.
+
+      ## Technical Details
+
+      The duration value block is a value block, and can be placed anywhere that is expecting
+      a value of the duration type. This is typically in date statement blocks.
+
+      A duration is a combination of a sign, and three numbers representing the years, months,
+      and days. If the sign is positive ("+"), the duration is "into the future." If the sign
+      is negative ("-"), the duration is "into the past." The idea "two months hence"
+      could be expressed using the values `+ 0 2 0`. The idea "one year ago" could be expressed
+      using the values `- 1 0 0`.
+
+      ## Tips
+
+      The use of durations including year and month values is not recommended, as they tend to behave
+      in unpredictable ways, given that months and years are not of a consistent duration.

@@ -1,0 +1,30 @@
+- model: blawx.docpage
+  pk: guide/conclusion
+  fields:
+    title: |
+      Blawx Beginner's Guide: Conclusion
+    content: |
+      # Conclusion
+
+      That's it! Hopefully this Beginner's Guide has given you an idea of what Blawx is,
+      how it is used, and why it might be useful in Rules as Code.
+
+      * Step 1 - put your legislative text into Blawx using a simple plain-text format
+      * Step 2 - encode your rules - as rules - in a user-friendly tool, in a structure that mirrors the law
+      * Step 3 - Use sophisticated reasoning capabilities to ensure your code - and your law - behaves as intended
+      * Step 4 - Generate explainable, legally compliant apps at the touch of a button
+
+      ## What's Next?
+
+      If you would like to learn more about Blawx, please review the rest of
+      the documentation. It includes topic-specific pages on Blawx's
+      components and coding features, examples that you can review, and detailed information
+      about each of the blocks used in the interface.
+
+      This guide was updated in June of 2022 to be up to date with version 1.3.11-alpha of Blawx.
+
+      If you have any questions, you can write Jason Morris at [jason@lexpedite.ca](mailto:jason@lexpedite.ca).
+
+      Blawx is open source software, available at [the GitHub repository](https://github.com/lexpedite/blawx).
+
+

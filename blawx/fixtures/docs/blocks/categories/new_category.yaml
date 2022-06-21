@@ -27,3 +27,6 @@
 
       Multiple new category blocks with the same category
       name will have no effect.
+
+      Names of categories should be unique, but can safely
+      overlap with the names of attributes.

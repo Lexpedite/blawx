@@ -7,6 +7,34 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.13-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.13-alpha) 2022-06-21
+
+This update brings all of the documentation included up to speed with the current version
+of the software, taking into account outstanding bugs.  
+
+### Added
+* Documentation for Answers and Explanations
+* Documentation for Dates and Durations
+* Documentation for Defaults and Exceptions
+* Documentation for Logical Constraints
+* Documentation for Numerical Constraints
+* Documentation for Numbers and Math
+* Documentation for BlawxBot
+* Documentation for Web API
+* Documentation for CLEAN
+* Several Example Documentation Pages
+* Linked new blocks to their own help pages
+
+### Changed
+* Completely re-organized and re-wrote the Beginner's Guide to Blawx
+* Updated all other documentation to current version.
+* User interface documentation now uses animated gifs
+
+## [v1.3.12-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.12-alpha) 2022-06-17
+
+### Fixed
+* Legal texts with sandwich sections caused the code editor to crash. ([Issue #258](https://github.com/Lexpedite/blawx/issues/258))
+
 ## [v1.3.11-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.11-alpha) 2022-06-08
 
 Milestone: Automated Interviews

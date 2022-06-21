@@ -33,8 +33,3 @@
 
       It's a good idea to start with named variables, and switch to unnamed variables only when you
       are sure your rules are working as anticipated.
-
-      The Blawx reasoner will warn you if you have a rule in which a variable name is used only once.
-      Those are places where the unnamed variable may be appropriate, or where you may have accidentally
-      misspelled a variable name. If you start with too many unnamed variables, Blawx cannot warn you
-      that you might have made a mistake.
