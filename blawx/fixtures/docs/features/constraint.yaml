@@ -1,13 +1,48 @@
 - model: blawx.docpage
   pk: features/constraint
   fields:
-    title: Incomplete
+    title: Logical Constraints
     content: |
-      # Incomplete
+      # Logical Constraints
 
-      The Blawx documentation is a work in progress, and
-      we are currently working on getting it up to speed with version 1.0.0-alpha of
-      the reasoner and interface.
+      **Note: The logical constraints feature is not currently working properly. This
+      documentation describes how it is anticipated to work, but using logical constraints is
+      not currently recommended.**
 
-      The page you are seeking has not been completed
-      yet. Thanks for your patience.
+      Whereas a fact allows you to say what is always true, and a rule allows you to say what
+      is sometimes true, a logical constraint allows you to say what is never true.
+
+      Imagine, as a small example, a situation where we are considering all possible combinations
+      of a person and a house. The people are albert, bernice, and charles, and the houes are red, blue, and green.
+      We might encode that ontology like this:
+
+      ![House Ontology](/static/blawx/docs/images/house_ontology.png)
+
+      Now we might want to consider all possible combinations. So we create a rule that any
+      house and any person constitute a possible residence. The rule looks like this:
+
+      ![Possible Residence Rule](/static/blawx/docs/images/possible_residence_rule.png)
+
+      If we now query the possible residences, we will get 9 answers. albert might
+      live in red, blue or green, bernice might live in red, blue or green, and charles might
+      live in red, blue or green.
+
+      ![House Answers 9](/static/blawx/docs/images/house_answers_9.png)
+
+      Now imagine that there is a rule that albert cannot live in blue. We might implement that
+      rule by creating a default, which is that every combination is possible, and then imposing
+      an exception, which is that the combination of albert and blue is not possible. But that
+      would require using the defaults and exceptions method, which means that it would require
+      changing the rule and query above to use "according to" and "holds".
+
+      What we can do, instead, is to make a logical constraint, and simply say the thing that cannot
+      be true, like this:
+
+      ![Albert Blue Constraint](/static/blawx/docs/images/albert_blue_constraint.png)
+      
+      If we run the code with that logical constraint added, the number of answers we receive is
+      reduced to 8.
+      
+      ![House Answers 8](/static/blawx/docs/images/house_answers_8.png)
+      
+
