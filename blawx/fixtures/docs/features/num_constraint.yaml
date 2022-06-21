@@ -1,13 +1,67 @@
 - model: blawx.docpage
   pk: features/num_constraint
   fields:
-    title: Incomplete
+    title: Numerical Constraints
     content: |
-      # Incomplete
+      # Numerical Constraints
 
-      The Blawx documentation is a work in progress, and
-      we are currently working on getting it up to speed with version 1.0.0-alpha of
-      the reasoner and interface.
+      **Note: This documentation describes a feature of Blawx that is not yet working
+      as intended. This documentation will be updated when that problem is resolved.
+      In the meantime, please do not rely on the numerical constraint blocks.**
 
-      The page you are seeking has not been completed
-      yet. Thanks for your patience.
+      In Blawx, the value of a number in an answer can be a specific value, or it can be
+      a range of values. These ranges of values can be logically combined to generate
+      new ranges of values. The method used for doing this is called numerical constraints.
+
+      ## The Numerical Constraint Block
+
+      The numerical constraint block is very much like the comparison block, except that it
+      does not have a way to check for equality. It allows you to impose, as a requirement,
+      that a variable is constrainted to be greater than, greater than or equal to, less than,
+      or less than or equal to another numerical value.
+
+      This block works on integers and real numbers.
+
+      ## Taxation Without Representation
+
+      To show how numerical constraints can be used, we will create a codebase to find out
+      whether people are ever subject to taxation without representation.  We will start
+      with an ontology in which there are people, and a person has four attributes:
+
+      * age, which is a number
+      * can vote, which is true or false
+      * must pay tax, which is true or false
+      * taxation without representation age, which is a number
+
+      The ontology looks like this:
+
+      ![Tax Without Rep Ontology](/static/blawx/docs/images/tax_without_rep_ontology.png)
+
+      Now we will create rules using the numerical constraints block. The first will indicate that
+      a person can vote if their age is at least 18.
+
+      ![Voting Age Rule](/static/blawx/docs/images/voting_age_rule.png)
+
+      Next we will indicate that a person must pay tax if they are at least 18.
+
+      ![Must Pay Tax Rule](/static/blawx/docs/images/must_pay_tax_rule.png)
+
+      Lastly, we will say that a persons taxation without representation age is the age
+      at which they must pay taxes, but are not entitled to vote.
+
+      ![TWR Rule](/static/blawx/docs/images/twr_rule.png)
+
+      Now, we will tell Blawx to assume that people have ages, and ask Blawx what a person's
+      taxation without representation age is.
+
+      ![TWR Query](/static/blawx/docs/images/twr_query.png)
+
+      The answer, we know, is the person must pay taxes and may not vote when they are at least 16
+      and not yet 18.  The "not yet 18" comes from the negation of "can vote", and the "at least 16"
+      comes from the "must pay taxes". Blawx can combine those two ranges of values into a new range,
+      "at least 16 and less than 18".
+
+      And that is the answer that Blawx provides, indicating that a person can have a
+      taxation without representation age that is at least 16 and less than 18.
+
+      ![TWR Answer](/static/blawx/docs/images/twr_answer.png)
