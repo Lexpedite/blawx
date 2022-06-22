@@ -72,7 +72,8 @@
       cause Blawx to assume that the category might include additional objects when calculating relevance.
       "attributes_known" is a dictionary where the keys are the names of attributes, and the values
       are either `true` or `false`. If the value is `false` the interview endpoint will
-      generate assumption statements for additional values for that attribute and any object when calculating relevance.
+      generate assumption statements with regard to any objects in that category, including potential
+      new objects, for which the values assigned to that attribute are not yet known.
       "members" is a dictionary, where the keys are the names of objects in that category. The value
       of an entry in members is a dictionary with keys representing the name of an attribute applicable
       to that category. The values of those entries are a dictionary with keys "values_known", and "values". "values_known"

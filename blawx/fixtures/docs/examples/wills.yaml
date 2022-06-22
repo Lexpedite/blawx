@@ -10,3 +10,53 @@
 
       It is used to demonstrate the relevance reasoning features of the interview endpoint
       for Blawx tests, as seen in BlawxBot.
+
+      The rules set out that a person is entitled to make a will if they are over the age of 18,
+      or if they are over the age of 14 and in active military service.
+
+      The "valid_will" test in that project can be used to show that BlawxBot will not ask for
+      irrelevant inputs. Click on the Bot button in that example, and you can follow these
+      three scripts:
+
+      ```
+      Is there a person? yes
+      What person? bob
+      Does bob have an age? yes
+      What age? 20
+      There is an answer!
+      ```
+      
+      One of the ways that BlawxBot determines if a question is relevant is if it is require in
+      order to get an answer. Here, the rule that a person over the age of 18 is entitled to make
+      a will is sufficient, so the interview stops.
+
+      Now let's see if it asks about military service when the person's age is too low.
+
+      ```
+      Is there a person? yes
+      What person? bob
+      Does bob have an age? yes
+      What age? 12
+      Does bob have another age? no
+      Is there another person?
+      ```
+
+      You will note that despite the fact it has not asked you whether bob is in the military, and
+      it has not asked you whether bob is entitled to make a will, both of which questions it would
+      usually include, it has concluded that no more questions about bob are relevant, and has
+      moved on to the next person.
+
+      If bob is 15, the conversation goes like this:
+
+      ```
+      Is there a person? yes
+      What person? bob
+      Deos bob have an age? yes
+      What age? 15
+      Does bob have another age? no
+      Does bob have a value for military service? yes
+      What value for military service? true
+      There is an answer!
+      ```
+
+      Here, asking about bob's military service was relevant, and so it was asked.
