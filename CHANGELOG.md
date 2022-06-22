@@ -7,6 +7,16 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.14-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.14-alpha) 2022-06-22
+
+Removing temporary fix for problems with SWI-Prolog. If you experience problems using
+this version, you may need to rebuild the docker container using the `--no-cache` option,
+to ensure that Docker grabs the latest release of SWI-Prolog when building.
+
+### Changed
+* The MQI.pl file and the steps in the Dockerfile for installing it have been removed,
+  as the problems with MQI have now been resolved in the latest version of SWI-Prolog.
+
 ## [v1.3.13-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.13-alpha) 2022-06-21
 
 This update brings all of the documentation included up to speed with the current version
