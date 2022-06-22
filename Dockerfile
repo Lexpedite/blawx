@@ -25,10 +25,6 @@ ADD ./blawx/requirements.txt blawx/blawx/requirements.txt
 
 RUN pip3 install -r blawx/blawx/requirements.txt
 
-ADD ./blawx/util/mqi.pl blawx/blawx/util/mqi.pl
-
-RUN swipl -s blawx/blawx/util/mqi.pl -g "mqi:install_to_library('blawx/blawx/util/mqi.pl')" -t halt
-
 ADD . blawx
 
 WORKDIR blawx

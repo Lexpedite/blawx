@@ -151,21 +151,21 @@ runCode = function(button) {
                 output_content += '<ul>'
                 var attributes_output = "";
                 for (var key in variables) {
-                    if (key == "Attributes") {
-                        for (var attribute in variables['Attributes']) {
-                            if (variables['Attributes'][attribute]['functor'] == "put_attr" && variables['Attributes'][attribute]['args'][1] == 'scasp_output' && variables['Attributes'][attribute]['args'][2]['functor'] == 'name') {
+                    if (key == "$residuals") {
+                        for (var attribute in variables['$residuals']) {
+                            if (variables['$residuals'][attribute]['functor'] == "put_attr" && variables['$residuals'][attribute]['args'][1] == 'scasp_output' && variables['$residuals'][attribute]['args'][2]['functor'] == 'name') {
                                 // This is designed to prevent re-printing information about the Attributes that is already displayed.
                                 // If the only thing present int he attributes is the name, just skip it.
                                 continue;
-                            } else if (variables['Attributes'][attribute]['functor'] == "∉") {
+                            } else if (variables['$residuals'][attribute]['functor'] == "∉") {
                                 // This is an inequality constraint
-                                attributes_output += "<li>where " + variables['Attributes'][attribute]['args'][0] + " is not ";
-                                if (variables['Attributes'][attribute]['args'][1].length > 1) {
+                                attributes_output += "<li>where " + variables['$residuals'][attribute]['args'][0] + " is not ";
+                                if (variables['$residuals'][attribute]['args'][1].length > 1) {
                                     attributes_output += "one of ";
                                 }
-                                attributes_output += variables['Attributes'][attribute]['args'][1].toString() + "</li>"
-                            } else if (variables['Attributes'][attribute]['functor'] == "{}") {
-                                attributes_output += "<li>where" + variables['Attributes'][attribute]['args'][0]['args'][0] + " " + variables['Attributes'][attribute]['args'][0]['functor'] + " " + variables['Attributes'][attribute]['args'][0]['args'][1] + "</li>";
+                                attributes_output += variables['$residuals'][attribute]['args'][1].toString() + "</li>"
+                            } else if (variables['$residuals'][attribute]['functor'] == "{}") {
+                                attributes_output += "<li>where" + variables['$residuals'][attribute]['args'][0]['args'][0] + " " + variables['$residuals'][attribute]['args'][0]['functor'] + " " + variables['$residuals'][attribute]['args'][0]['args'][1] + "</li>";
                             } else {
                                 // It should throw a console warning if there was something else in there.
                                 console.warn("Unrecognized attribute in output: " + attribute['functor'] + ".");
