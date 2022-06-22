@@ -63,8 +63,28 @@ def new_json_2_scasp(payload,exclude_assumptions=False):
       if 'attributes_known' in category_contents:
         for (cat_attrib_name,cat_attrib_known) in category_contents['attributes_known'].items():
           # Make attribute abducible?
+          # If the attribute is not known
           if cat_attrib_known == False:
-            output += "#abducible " + cat_attrib_name + "(X,Y).\n"
+            # generate a list of objects for which the values of this attribute are known
+            known_value_objects = []
+            if 'members' in category_contents and len(category_contents['members']):
+              for (object_name,object_attributes) in category_contents['members'].items():
+                for (attribute_name,attribute_values) in object_attributes.items():
+                  if attribute_name == cat_attrib_name:
+                    if 'values_known' in attribute_values and attribute_values['values_known']:
+                      known_value_objects.append(object_name)
+            # Now generate the code to make the value abducible for objects other than the
+            # ones for which it is known.
+            output += "-" + cat_attrib_name + "(X,Y) :- not " + cat_attrib_name + "(X,Y)"
+            for kvo in known_value_objects:
+              output += ", X \= " + kvo
+            output += ".\n"
+            output += "" + cat_attrib_name + "(X,Y) :- not -" + cat_attrib_name + "(X,Y)"
+            for kvo in known_value_objects:
+              output += ", X \= " + kvo
+            output += ".\n"
+            
+            #output += "#abducible " + cat_attrib_name + "(X,Y).\n"
     # For each member
     if 'members' in category_contents and len(category_contents['members']):
       for (object_name,object_attributes) in category_contents['members'].items():
@@ -804,9 +824,10 @@ def get_variables(query):
   return re.findall(r"[^\w]([A-Z_]\w*)",query)
 
 def find_assumptions(Tree): # Pulls the assumptions out of a Prolog-formatted explanation tree
+  print(Tree)
   assumptions = []
   # If we are on "query", which is the first argument of the root "because", return nothing.
-  if Tree == "query":
+  if Tree == "query" or Tree == "o_nmr_check":
     return []
   # If we are on a list of terms, which is the second arguemnt of the root "because", go through the list.
   elif type(Tree) == list:
