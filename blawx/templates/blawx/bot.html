@@ -378,8 +378,47 @@
                     var current_category = "";
                     for (var c = 0; c < parsed_ontology['Categories'].length; c++) {
                         current_category = parsed_ontology['Categories'][c];
-                        // If the category is not closed
-                        if (!closed_categories.includes(current_category)) { // Start Category is Open
+                        // Determine if the current category is relevant.
+                        // it is relevant if it exists in relevant categories.
+                        // It is also relevant if there is an attribute that is relevant
+                        // with regard to an unground object for this category.
+                        // It is also relevant if there is an attribute that is relevant
+                        // for an unground value of this category.
+                        // TODO This algorithm is just atrociously slow, and should be tidied up.
+                        var current_category_relevant = false;
+                        for (var oc=0; oc < parsed_interview_response['Relevant Categories'].length; oc++) {
+                            if (parsed_interview_response['Relevant Categories'][oc] == current_category) {
+                                current_category_relevant = true;
+                            }
+                        }
+                        for (var a=0; a < parsed_interview_response['Relevant Attributes'].length; a++) {
+                            var attr = parsed_interview_response['Relevant Attributes'][a]['Attribute']
+                            var object = parsed_interview_response['Relevant Attributes'][a]['Arguments'][0];
+                            var value = parsed_interview_response['Relevant Attributes'][a]['Arguments'][1];
+                            if (object[0] === object[0].toUpperCase()) {
+                                // Check to see if the category for this attribute is the current category.
+                                for (var oa=0; oa < parsed_ontology['Attributes'].length; oa++) {
+                                    if (parsed_ontology['Attributes'][oa]['Attribute'] == attr) {
+                                        if (parsed_ontology['Attributes'][oa]['Category'] == current_category) {
+                                            current_category_relevant = true;
+                                        }
+                                    }
+                                }
+                            }
+                            if (value[0] === value[0].toUpperCase()) {
+                                // Check to see if the type for this attribute is the current category.
+                                for (var oa=0; oa < parsed_ontology['Attributes'].length; oa++) {
+                                    if (parsed_ontology['Attributes'][oa]['Attribute'] == attr) {
+                                        if (parsed_ontology['Attributes'][oa]['Type'] == current_category) {
+                                            current_category_relevant = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // If the category is not closed and is relevant:
+                        if (!closed_categories.includes(current_category) && current_category_relevant) { // Start Category is Open
                             // Go through the objects in the category
                             var current_object = {}
                             for (var o = 0; o < fact_scenario['Objects'].length; o++) {
@@ -400,10 +439,15 @@
                                                 var relatts = parsed_interview_response['Relevant Attributes']
                                                 for (var ra = 0; ra < parsed_interview_response['Relevant Attributes'].length; ra++) {
                                                     if (relatts[ra]['Attribute'] == current_attribute['Attribute']) {
-                                                        if (relatts[ra]['Arguments'][0] == 'X') { // This accounts for both ungrounded and partially grounded.
-                                                            attribute_value_relevant = true;
-                                                        }
-                                                        if (relatts[ra]['Arguments'][0] == current_object['Object']) { // this accounts for both partially grounded and fully ground.
+                                                        // This is removed because it determines the category's relevance,
+                                                        // not the relevance of the value for this attribute.
+                                                        // if (relatts[ra]['Arguments'][0] == 'X') { // This accounts for both ungrounded and partially grounded.
+                                                        //     attribute_value_relevant = true;
+                                                        // }
+                                                        // We need to consider both partially and fully-grounded here, because they are both being assumed.
+                                                        // In future, if there are only fully-ground options, we should be able to customize the input
+                                                        // so the user can select from only the valid options.
+                                                        if (relatts[ra]['Arguments'][0] == current_object['Object']) { 
                                                             attribute_value_relevant = true;
                                                         }
                                                     }
@@ -519,10 +563,31 @@
                     // We are not adding an attributes_known because we don't collect that information
                     // Nope that doesn't work. We need to set them unknown to make them abducible, and potentially relevant
                     // if they end up not being relevant anyway, they won't get asked, so it's not a big deal.
+                    // Okay, updating this again. We are currently reporting them all not known, but we need to
+                    // clean that up so certain things that are not relevant don't show up as relevant,
+                    // because unground abducibles are now being used to determine category relevance.
+                    // So, with regard to a category, in general, the attribute should be abducible in an
+                    // unground way if:
+                    // the category to which the attribute applies is not closed, because we need to be
+                    // able to abduce values of objects that may not yet exist.
+                    // And that's it?
+                    // And then it should be known with regard to a specific object only if the values
+                    // for that object are closed.
+                    // So I think we just need to change this to test for whether the category is closed
                     payload[current_category]['attributes_known'] = {};
                     for (var a = 0; a < parsed_ontology['Attributes'].length; a++) {
                         if (current_category == parsed_ontology['Attributes'][a]['Category']) {
-                            payload[current_category]['attributes_known'][parsed_ontology['Attributes'][a]['Attribute']] = false; // Just set everything to not known, for now.
+                            var cc_closed = false;
+                            for (var cc = 0; cc < closed_categories.length; cc++) {
+                                if (closed_categories[cc] == current_category) {
+                                    cc_closed = true;
+                                }
+                            }
+                            if (cc_closed) {
+                                payload[current_category]['attributes_known'][parsed_ontology['Attributes'][a]['Attribute']] = true;
+                            } else {
+                                payload[current_category]['attributes_known'][parsed_ontology['Attributes'][a]['Attribute']] = false;
+                            }
                         }
                     }
                 }

@@ -7,6 +7,22 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+
+## [v1.3.15-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.15-alpha) 2022-06-22
+
+This release improves the interview endpoint's method of determining which attributes and categories
+are relevant, and also improves BlawxBot's ability to describe fact scenarios and derive relevant
+categories from relevant attributes. The Wills Act example has been modified to demonstrate
+these capabilities, and the documentation updated.
+
+### Changed
+* The interview endpoint was modified to calculate question relevance better, and BlawxBot was
+  revised to match.
+* The Wills Act example and documentation was updated to demonstrate the new reasoning capabilities.
+
+### Removed
+* An example project was temporarily removed.
+
 ## [v1.3.14-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.14-alpha) 2022-06-22
 
 Removing temporary fix for problems with SWI-Prolog. If you experience problems using

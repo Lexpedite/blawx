@@ -72,7 +72,8 @@
       cause Blawx to assume that the category might include additional objects when calculating relevance.
       "attributes_known" is a dictionary where the keys are the names of attributes, and the values
       are either `true` or `false`. If the value is `false` the interview endpoint will
-      generate assumption statements for additional values for that attribute and any object when calculating relevance.
+      generate assumption statements with regard to any objects in that category, including potential
+      new objects, for which the values assigned to that attribute are not yet known.
       "members" is a dictionary, where the keys are the names of objects in that category. The value
       of an entry in members is a dictionary with keys representing the name of an attribute applicable
       to that category. The values of those entries are a dictionary with keys "values_known", and "values". "values_known"
@@ -92,9 +93,13 @@
       is reserved for future use.
 
       "Relevant Categories" is a list of categories that it would still be relevant to seek additional objects for.
+      Note that this does not include a list of categories that are relevant because they are the category associated with
+      an attribute, or because they are the type of a relevant attribute. Your application must derive categories that are
+      relevant because they are being used with attributes, if your interface needs to do so.
 
       "Relevant Attributes" is a list of dictionaries, each with the key "Attribute", and optionally keys "Object" and "Value". The value of the Attribute
-      key is the name of the attribute. If there are no objects and values specified, that attribute may be relevant with regard to any object.
+      key is the name of the attribute. If there are no objects and values specified, the value of attribute is relevant with regard to any new objects in
+      its category, but not necessarily with regard to any known objects.
       If there is an object name in the value of the Object key, that indicates that the values of the attribute for that object are relevant.
       If there is a value specified, and no object, that indicates that the objects for which that value is true are relevant.
       If there is both an object and a value specified, that indicates that it is relevant whether or not that object has that value for that attribute.
