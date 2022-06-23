@@ -1,0 +1,15 @@
+- model: blawx.docpage
+  pk: examples/bta
+  fields:
+    title: Beard Tax Act
+    content: |
+      # Beard Tax Act
+
+      The Beard Tax Act example included with Blawx is [available here](/12/) (assuming it hasn't been
+      deleted from your system).
+
+      It is an implemention inside Blawx of the Beard Tax Act rules as code demonstration task
+      described at [the Better Rules github page](https://github.com/BetterRules/example-rules-as-code).
+
+      It includes a single test designed to be run inside BlawxBot. Open the project, click on the name
+      of the test, and click Bot to run the demo.
