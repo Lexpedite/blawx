@@ -4657,7 +4657,7 @@
     ruledoc: 12
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="(^5.:,lX5N1?~UIArJEP" x="31" y="45"><statement name="statements"><block
+      id="(^5.:,lX5N1?~UIArJEP" x="29" y="38"><statement name="statements"><block
       type="category_declaration" id="PaXZmnxi$Xhou${r@jQA"><field name="category_name">person</field><next><block
       type="category_attribute" id="`Wryd,*XhMH2Q41TnO0?"><value name="category"><block
       type="category_selector" id="]%rM`}27?HlPRcRj!Gp!"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -4727,13 +4727,13 @@
       blawx_attribute_nlg(facial_hair_length_mm,ov,"","''s facial hair is","mm in
       length").
 
-      #pred facial_hair_length_mm(X,Y) :: ''@(X) ''s facial hair is @(Y) mm in length''.
+      #pred facial_hair_length_mm(X,Y) :: ''@(X) \''s facial hair is @(Y) mm in length''.
 
       #pred according_to(R,facial_hair_length_mm(X,Y)) :: ''according to @(R), @(X)
-      ''s facial hair is @(Y) mm in length''.
+      \''s facial hair is @(Y) mm in length''.
 
       #pred legally_holds(_,facial_hair_length_mm(X,Y)) :: ''it legally holds that
-      @(X) ''s facial hair is @(Y) mm in length''.
+      @(X) \''s facial hair is @(Y) mm in length''.
 
 
 
@@ -4750,7 +4750,7 @@
     ruledoc: 12
     workspace_name: sec_1__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="(^5.:,lX5N1?~UIArJEP" x="59" y="101"><statement name="statements"><block
+      id="(^5.:,lX5N1?~UIArJEP" x="55" y="110"><statement name="statements"><block
       type="category_attribute" id="`Wryd,*XhMH2Q41TnO0?"><value name="category"><block
       type="category_selector" id="]%rM`}27?HlPRcRj!Gp!"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="person"></mutation><field name="category_name">person</field></block></value><statement
@@ -4838,14 +4838,14 @@
       blawx_attribute_nlg(facial_hair_on_chin,vo,"it is","that","''s facial hair is
       on the chin").
 
-      #pred facial_hair_on_chin(Y,X) :: ''it is @(X) that @(Y) ''s facial hair is
+      #pred facial_hair_on_chin(Y,X) :: ''it is @(X) that @(Y) \''s facial hair is
       on the chin''.
 
       #pred according_to(R,facial_hair_on_chin(Y,X)) :: ''according to @(R), it is
-      @(X) that @(Y) ''s facial hair is on the chin''.
+      @(X) that @(Y) \''s facial hair is on the chin''.
 
       #pred legally_holds(_,facial_hair_on_chin(Y,X)) :: ''it legally holds that it
-      is @(X) that @(Y) ''s facial hair is on the chin''.
+      is @(X) that @(Y) \''s facial hair is on the chin''.
 
       opposes(facial_hair_on_chin(X,true),facial_hair_on_chin(X,false)).
 
@@ -4857,14 +4857,14 @@
       blawx_attribute_nlg(facial_hair_below_chin,vo,"it is","that","''s facial hair
       is below the chin").
 
-      #pred facial_hair_below_chin(Y,X) :: ''it is @(X) that @(Y) ''s facial hair
+      #pred facial_hair_below_chin(Y,X) :: ''it is @(X) that @(Y) \''s facial hair
       is below the chin''.
 
       #pred according_to(R,facial_hair_below_chin(Y,X)) :: ''according to @(R), it
-      is @(X) that @(Y) ''s facial hair is below the chin''.
+      is @(X) that @(Y) \''s facial hair is below the chin''.
 
       #pred legally_holds(_,facial_hair_below_chin(Y,X)) :: ''it legally holds that
-      it is @(X) that @(Y) ''s facial hair is below the chin''.
+      it is @(X) that @(Y) \''s facial hair is below the chin''.
 
       opposes(facial_hair_below_chin(X,true),facial_hair_below_chin(X,false)).
 
@@ -4898,7 +4898,7 @@
     ruledoc: 12
     workspace_name: sec_1__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="(^5.:,lX5N1?~UIArJEP" x="59" y="101"><statement name="statements"><block
+      id="(^5.:,lX5N1?~UIArJEP" x="59" y="112"><statement name="statements"><block
       type="category_attribute" id="`Wryd,*XhMH2Q41TnO0?"><value name="category"><block
       type="category_selector" id="]%rM`}27?HlPRcRj!Gp!"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="person"></mutation><field name="category_name">person</field></block></value><statement
@@ -4947,14 +4947,14 @@
       blawx_attribute_nlg(facial_hair_continuous,vo,"it is","that","''s facial hair
       is ear to ear below the nose").
 
-      #pred facial_hair_continuous(Y,X) :: ''it is @(X) that @(Y) ''s facial hair
+      #pred facial_hair_continuous(Y,X) :: ''it is @(X) that @(Y) \''s facial hair
       is ear to ear below the nose''.
 
       #pred according_to(R,facial_hair_continuous(Y,X)) :: ''according to @(R), it
-      is @(X) that @(Y) ''s facial hair is ear to ear below the nose''.
+      is @(X) that @(Y) \''s facial hair is ear to ear below the nose''.
 
       #pred legally_holds(_,facial_hair_continuous(Y,X)) :: ''it legally holds that
-      it is @(X) that @(Y) ''s facial hair is ear to ear below the nose''.
+      it is @(X) that @(Y) \''s facial hair is ear to ear below the nose''.
 
       opposes(facial_hair_continuous(X,true),facial_hair_continuous(X,false)).
 
