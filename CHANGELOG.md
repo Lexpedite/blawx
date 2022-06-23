@@ -7,6 +7,14 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.16-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.16-alpha) 2022-06-23
+
+### Added
+* Beard Tax Act example project
+
+### Fixed
+* Code runs properly when single quotes occur in the text fields of a category or attribute customize block
+
 
 ## [v1.3.15-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.15-alpha) 2022-06-22
 

@@ -351,17 +351,17 @@ sCASP['category_declaration'] = function (block) {
         var postfix = nextblock.getFieldValue('postfix');
         code += "blawx_category_nlg(" + text_category_name + ",\"" + prefix + "\",\"" + postfix + "\").\n"
         code += "#pred " + text_category_name + "(X) :: '";
-        code += (prefix + " @(X) " + postfix).trim() + "'.\n";
+        code += (prefix.replace(/'/g, '\\\'') + " @(X) " + postfix.replace(/'/g, '\\\'')).trim() + "'.\n";
         code += "#pred according_to(R," + text_category_name + "(X)) :: '";
-        code += "according to @(R), " + (prefix + " @(X) " + postfix).trim() + "'.\n";
+        code += "according to @(R), " + (prefix.replace(/'/g, '\\\'') + " @(X) " + postfix.replace(/'/g, '\\\'')).trim() + "'.\n";
         code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
-        code += "it legally holds that " + (prefix + " @(X) " + postfix).trim() + "'.\n";
+        code += "it legally holds that " + (prefix.replace(/'/g, '\\\'') + " @(X) " + postfix.replace(/'/g, '\\\'')).trim() + "'.\n";
     } else {
-        code += '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name + "'.\n";
+        code += '#pred ' + text_category_name + "(X) :: '@(X) is a " + text_category_name.replace(/'/g, '\\\'') + "'.\n";
         code += "#pred according_to(R," + text_category_name + "(X)) :: '";
-        code += "according to @(R), @(X) is a " + text_category_name + "'.\n";
+        code += "according to @(R), @(X) is a " + text_category_name.replace(/'/g, '\\\'') + "'.\n";
         code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
-        code += "it legally holds that @(X) is a " + text_category_name + "'.\n";
+        code += "it legally holds that @(X) is a " + text_category_name.replace(/'/g, '\\\'') + "'.\n";
     }
     return code;
 };
@@ -412,7 +412,7 @@ sCASP['attribute_declaration'] = function (block) {
         } else {
             code += "Y,X";
         }
-        add_code = prefix + " @(X) " + infix + " @(Y) " + postfix
+        add_code = prefix.replace(/'/g, '\\\'') + " @(X) " + infix.replace(/'/g, '\\\'') + " @(Y) " + postfix.replace(/'/g, '\\\'')
         code += ") :: '" + add_code.trim() + "'.\n"
         code += "#pred according_to(R," + text_attribute_name + "(";
         if (order == "ov") {
