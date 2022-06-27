@@ -7,6 +7,20 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## Development Version
+
+This version adds a first attempt at user authentication. Currently, one admin user `admin` and one non-admin user `demo`
+are created by default, each with the password `blawx2022`. The admin account can use the admin interface at `/admin`
+to add and remove users. All authenticated users can access all features of the site. Unauthenticated users cannot
+access any of the server's capabilities. Exposing Web API end-points for public use will be implemented in a future version.
+
+### Added
+* User Authentication - you will be prompted to log in in order to access most functions except documentation.
+* Documentation - The documentation has been updated to advise about how to create user accounts.
+
+### Changed
+* By default, only authenticated users have access to the published Web API end points.
+
 ## [v1.3.16-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.16-alpha) 2022-06-23
 
 ### Added
