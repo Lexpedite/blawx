@@ -4,10 +4,14 @@ A user-friendly web-based tool for Rules as Code written by Jason Morris of [Lex
 
 Blocks + law = Blawx
 
-![Blawx Front End Screenshot](blawxv1screenshot.png)
+![Blawx Front End Screenshot](blawx_v1.3.16-alpha_screenshot.png)
 
 ## Demonstration Video
-[![thumbnail](https://i9.ytimg.com/vi_webp/d2sxlvU9hlo/mqdefault.webp?sqp=CKS5r5EG&rs=AOn4CLBFexT4jjxYRbqiqvvv9STVs53Cbw)](https://youtu.be/d2sxlvU9hlo)
+
+Click on the thumbnail below for a recent (but probably not 100% up to date)
+video demonstration of how Blawx is used.
+
+[![thumbnail](thumbnail.png)](https://youtu.be/d2sxlvU9hlo)
 
 ## Overview
 
@@ -40,14 +44,13 @@ It provides:
 * Publish Code as an API
 * Explainability
 * Hypothetical reasoning
-* More to come soon.
+* Automatically-generated Expert Systems
 
-In it's pre-v1.0.0 state, Blawx is the only open source Rules as Code programming environment with
-explanations for answers, and hypothetical reasoning.
+As of v1.3.16-alpha, Blawx is the only open source Rules as Code programming environment with
+automatic chatbot-style expert systems, explanations for answers, and hypothetical reasoning.
 
 ## How Can I Try It?
-The easiest way to try Blawx is to go to [www.blawx.com](https://www.blawx.com). The latest public release of Blawx is always available
-to try, there.
+The easiest way to try Blawx is to go to [www.blawx.com](https://www.blawx.com). I try to keep a recent version running there for people to play with.
 
 ## How do I Install It Myself?
 If you would like to try running Blawx locally, check out [INSTALL.md](INSTALL.md) for instructions.
@@ -56,13 +59,10 @@ If you would like to try running Blawx locally, check out [INSTALL.md](INSTALL.m
 Extensive documentation, including the Blawx Beginner's Guide and several examples, is available from inside the application
 by clicking "Help" in the coding interface. You can also view the [documentation on the live demo site](https://dev.blawx.com/docs).
 
-The most recent video demonstration of Blawx is linked at the top of this file.
-
 ## Is this software production ready?
 No. Blawx is functional, but it is not production-quality software. It is a proof of concept that is intended to motivate
 investment in similar technologies in the future by demonstrating what they are capable of.
 
 ## Contributions
-If you have questions on how to use Blawx, please consider joining the [Blawx Slack server](https://blawx.slack.com).
 If you have issues or concerns with the package, please open an Issue here in the [GitHub Repository](https://github.com/Lexpedite/blawx).
 Contributions to the code and documentation are welcome. Please contribute responsibly.
