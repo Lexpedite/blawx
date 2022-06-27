@@ -1,0 +1,34 @@
+- model: blawx.docpage
+  pk: components/admin
+  fields:
+    title: Blawx Admin Interface
+    content: |
+      # Blawx Administration Interface
+
+      The Blawx Administration Interface is available by navigating to `/admin` on your
+      Blawx Server.
+
+      ## User Accounts
+
+      The primary purpose of accessing the admin interface is currently to be able to create
+      user accounts. This can be done by logging into the admin interface using an
+      admin username and password, click on users on the left side of the screen, and clicking
+      "add user" on the top right of the users screen.
+
+      Once you have created an account here, it will be possible for users to log in using that
+      account in the main Blawx Interface.
+
+      Note that Blawx' user permissions currently require that the user be logged in to be able
+      to access anything other than the main page, the login screen, or the documentation. However,
+      all users have access to all functions of the server.
+
+      More fine-grained user control will be implemented in future versions.
+
+      By default, on a new installation of Blawx, there is an admin account created with the user
+      name `admin` and the password `blawx2022`. When installing a server to which you want to
+      restrict access, make sure to change the admin password immediately.
+
+      Servers will also be created with a demo account with the username `demo` and the password
+      `blawx2022`. This user account should be deleted in the admin interface if you are trying
+      to restrict access to your server. The demo account is capable of doing anything inside
+      the system except add and remove users and access the admin interface.

@@ -27,12 +27,14 @@
     <td>{{ form.password }}</td>
 </tr>
 </table>
-
+<p>If you are attempting to log in as a demonstration user,
+    the default demonstration user account is username `demo` and password `blawx2022`.
+</p>
 <input type="submit" value="login">
 <input type="hidden" name="next" value="{{ next }}">
 </form>
 
-{# Assumes you set up the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<!-- {# Assumes you set up the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Lost password?</a></p> -->
 
 {% endblock %}
