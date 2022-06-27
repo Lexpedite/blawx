@@ -34,7 +34,11 @@
     <div class="row">
         <div class="col-2 align-self-center" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
         {% block header_elements %}{% endblock %}
-
+        {% if user.is_authenticated %}
+            <div>{{ user.username }} | <a href="{% url 'password_change' %}">Change Password</a> | <a href="{% url 'logout' %}">Logout</a></div>
+        {% else %}
+            <div><a href="{% url 'login' %}">Login</a></div>
+        {% endif %}
         </div>
   </header>
 {% block page_content %}{% endblock %}
