@@ -92,7 +92,7 @@
     <header class="py-3 mb-3 border-bottom overflow-hidden">
         <div class="row">
             <div class="col-2 align-self-center" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
-            <div class="col-10">
+            <div class="col-8">
                 <a href="javascript:void(0);" class="btn btn-secondary btn-disabled" onclick="javascript:void(0);">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
@@ -123,7 +123,11 @@
                     <span class="text">Exit</span>
                 </a>
             </div>
-
+            {% if user.is_authenticated %}
+            <div class="col-2">{{ user.username }} | <a href="{% url 'password_change' %}">Change Password</a> | <a href="{% url 'logout' %}">Logout</a></div>
+        {% else %}
+            <div class="col-2"><a href="{% url 'login' %}">Login</a></div>
+        {% endif %}
         </div>
     </header>
     <!-- The bot interface goes here.-->
