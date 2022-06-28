@@ -8,9 +8,11 @@
     <link rel="manifest" href="{% static 'blawx/site.webmanifest' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+    <!-- {% load bootstrap5 %} -->
+    <link rel="stylesheet" href="{% static 'blawx/bootstrap.min.css' %}">
+    <script src="{% static 'blawx/bootstrap.bundle.min.js' %}"></script>
+    <!-- {% bootstrap_css %}
+    {% bootstrap_javascript %} -->
     <title>Blawx - Drag and Drop Legal AI</title>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Mina:wght@700&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&amp;display=swap" rel="stylesheet"> -->
@@ -29,8 +31,8 @@
     
 </head>
 <body class="d-flex flex-column h-100">
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
+<!-- {# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %} -->
 <header class="py-3 mb-3 border-bottom">
     <div class="row">
         <div class="col-2 align-self-center" id="blawxlogo"><a href="/" style="text-decoration: none; color: #5a005a;">§<span id="blawxWordMark">Blawx</span></a></div>

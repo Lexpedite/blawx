@@ -32,6 +32,10 @@ RUN mv /node_modules/jquery/dist/jquery.min.js /blawx/blawx/static/blawx/jquery.
 
 RUN npm install bootstrap
 
+RUN mv /node_modules/bootstrap/dist/css/bootstrap.min.css /blawx/blawx/static/blawx/bootstrap.min.css
+
+RUN mv /node_modules/bootstrap/dist/js/bootstrap.bundle.min.js /blawx/blawx/static/blawx/bootstrap.bundle.min.js
+
 ADD . blawx
 
 WORKDIR blawx
