@@ -1,8 +1,10 @@
 from django.http import Http404
 
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+# from rest_framework.permissions import AllowAny
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 import tempfile
 import os
 import json 
@@ -122,7 +124,8 @@ def json_2_scasp(element,higher_order=False):
     return str(element)
 
 @api_view(['GET', 'POST'])
-@permission_classes([AllowAny])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
 def run_query(request,workspace,query):
   
   # Collect the rules based on the ruleset specified
@@ -231,7 +234,8 @@ throw(jane,scissors)."""
       return Response({ "answer": query_output, "transcript": transcript_output })
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
 def run_ruledoc(request,pk):
     translated_facts = ""
     if request.data:
@@ -288,7 +292,8 @@ def run_ruledoc(request,pk):
 
     
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
 def run_test(request,ruledoc,test_name):
     translated_facts = ""
     if request.data:
@@ -530,13 +535,15 @@ blawxrun(Query, Human) :-
     return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output }
 
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
 def get_ontology(request,ruledoc,test_name):
     result = get_ontology_internal(ruledoc,test_name)
     return Response(result)
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
 def interview(request,ruledoc,test_name):
     translated_facts = ""
     if request.data:
