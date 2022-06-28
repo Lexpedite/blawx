@@ -8,10 +8,10 @@ While alpha, however, any version may include breaking changes that may not be s
 and breaking changes will not necessarily result in changes to the main version number.
 
 
-## [v1.3.18-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.18-alpha) ?????
+## Since Last Release
 
 ### Removed
-* SQLite database
+* Pre-generated database
 
 ### Changed
 * Dockerfile generates superuser and database at build time
