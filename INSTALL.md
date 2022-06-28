@@ -32,7 +32,8 @@ and should be deleted in the admin interface if you want to restrict access to y
 
 ## Updating Blawx
 
-Blawx is under active development. In order to run the most recent version of Blawx, go to the directory
+Blawx is under active development. Currently, updates are being sent to GitHub only, there is no published
+python module or docker container. In order to run the most recent version of Blawx, go to the directory
 in which you installed it, and run these commands:
 
 ```
@@ -50,3 +51,10 @@ docker stop $(docker ps -qf "ancestor=blawx")
 docker build --no-cache -t blawx .
 ./update.sh
 ```
+
+## Deployment
+
+Blawx is alpha software that should not be used for production purposes. However, if you want to deploy
+it for learning or experimental purposes, the provided docker configuration should not be used. Instead,
+it should be modified to follow the process for deploying a Django app. See [the Django documentation](https://docs.djangoproject.com/en/4.0/howto/deployment/)
+for more details.
