@@ -24,6 +24,7 @@ them.
 We have also made a number of improvements to the user interface designed to make it easier to use and more consistent.
 
 ### Added
+* The version of Blawx currently installed is now visible in the footer of each page after the copyright notice
 * User Authentication - you will be prompted to log in when required
 * Username, Change Password, and Logout/Login are displayed on header.
 * Documentation - New Page on admin interface for adding users
