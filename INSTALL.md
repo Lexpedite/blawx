@@ -27,7 +27,13 @@ The Blawx server will now be available at [http://127.0.0.1:8000](http://127.0.0
 and the administrative console will be available at [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin).
 
 You can log into the admin console using the username "admin" and the password "blawx2022", which should be
-changed immediately on logging in. A demo account with username "demo" and password "blawx2022" is also created,
+changed immediately on logging in. 
+
+If you would like to configure the name of the admin user, you can do that by changing the default value
+in the Dockerfile, or by providing the flag `--build-arg SU_PASSWORD=password` to `docker build` instead
+of running the `./update.sh` script.
+
+A demo account with username "demo" and password "blawx2022" is also created,
 and should be deleted in the admin interface if you want to restrict access to your server.
 
 ## Updating Blawx
