@@ -19,6 +19,7 @@ and breaking changes will not necessarily result in changes to the main version 
 * Google fonts are now installed locally to the Docker container to facilitate off-line use
 * jQuery is now installed locally to the Docker container to facilitate off-line use
 * bootstrap is now installed locally to the Docker container to facilitate off-line use
+* bootstrap-icons is now installed locally to the Docker container to facilitate off-line use
 
 ## [v1.3.17-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.17-alpha) 2022-06-28
 

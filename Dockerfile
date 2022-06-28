@@ -26,6 +26,8 @@ ADD ./blawx/requirements.txt blawx/blawx/requirements.txt
 
 RUN pip3 install -r blawx/blawx/requirements.txt
 
+ADD . blawx
+
 RUN npm install jquery
 
 RUN mv /node_modules/jquery/dist/jquery.min.js /blawx/blawx/static/blawx/jquery.min.js
@@ -34,9 +36,21 @@ RUN npm install bootstrap
 
 RUN mv /node_modules/bootstrap/dist/css/bootstrap.min.css /blawx/blawx/static/blawx/bootstrap.min.css
 
+RUN mv /node_modules/bootstrap/dist/css/bootstrap.min.css.map /blawx/blawx/static/blawx/bootstrap.min.css.map
+
 RUN mv /node_modules/bootstrap/dist/js/bootstrap.bundle.min.js /blawx/blawx/static/blawx/bootstrap.bundle.min.js
 
-ADD . blawx
+RUN mv /node_modules/bootstrap/dist/js/bootstrap.bundle.min.js.map /blawx/blawx/static/blawx/bootstrap.bundle.min.js.map
+
+RUN npm install bootstrap-icons
+
+RUN mv /node_modules/bootstrap-icons/font/bootstrap-icons.css /blawx/blawx/static/blawx/bootstrap-icons.css
+
+RUN mv /node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff /blawx/blawx/static/blawx/fonts/bootstrap-icons.woff
+
+RUN mv /node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2 /blawx/blawx/static/blawx/fonts/bootstrap-icons.woff2
+
+
 
 WORKDIR blawx
 

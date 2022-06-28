@@ -9,9 +9,7 @@
     <link rel="manifest" href="{% static 'blawx/site.webmanifest' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %} -->
+    
     <link rel="stylesheet" href="{% static 'blawx/bootstrap.min.css' %}">
     <script src="{% static 'blawx/bootstrap.bundle.min.js' %}"></script>
 <!--     
@@ -83,6 +81,7 @@
 
     <link href="{% static 'blawx/navtree.css' %}" rel="stylesheet">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet"> -->
+    <link href="{% static 'blawx/bootstrap-icons.css' %}" rel="stylesheet">
 
     <script src="{% static 'blawx/jquery.min.js' %}"></script>
 
@@ -90,8 +89,7 @@
 <body class="d-flex flex-column vh-100">
     {% csrf_token %}
     
-    <!-- {# Display django.contrib.messages as Bootstrap alerts #}
-    {% bootstrap_messages %} -->
+   
     <header class="py-3 mb-3 border-bottom overflow-hidden">
         <div class="row">
             <div class="col-2 align-self-center" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
