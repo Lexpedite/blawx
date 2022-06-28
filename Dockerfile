@@ -11,7 +11,8 @@ RUN apt-add-repository --yes ppa:swi-prolog/stable && \
 	python3 \
 	python3-pip \
 	git \
-	swi-prolog
+	swi-prolog \
+	npm
 
 RUN pip3 install Django
 
@@ -24,6 +25,12 @@ RUN git clone https://github.com/google/blockly blawx/blawx/static/blawx/blockly
 ADD ./blawx/requirements.txt blawx/blawx/requirements.txt
 
 RUN pip3 install -r blawx/blawx/requirements.txt
+
+RUN npm install jquery
+
+RUN mv /node_modules/jquery/dist/jquery.min.js /blawx/blawx/static/blawx/jquery.min.js
+
+RUN npm install bootstrap
 
 ADD . blawx
 
