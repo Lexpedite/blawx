@@ -7,6 +7,34 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.16-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.17-alpha) 2022-06-28
+
+This version adds a first attempt at user authentication. Currently, one admin user `admin` and one non-admin user `demo`
+are created by default, each with the password `blawx2022`. The admin account can use the admin interface at `/admin`
+to add and remove users. All authenticated users can access all features of the site. Unauthenticated users cannot
+access any of the server's capabilities. Exposing Web API end-points for public use will be implemented in a future version.
+
+This version also re-implements the import/export features that were available prior to v1. If you are in the rule page,
+you can now hit the "Export" button to download your rule, all of its associated code, and all of its associated tests,
+as a single `.blawx` file. If you are on the main page, you can use the "Import" button to upload a `.blawx` file to your
+server. Note that while Blawx is in alpha, there is no guarantee that `.blawx` files made with one version of Blawx
+will work in a later version. We will do our best to indicate when there are breaking changes and how you might resolve
+them.
+
+We have also made a number of improvements to the user interface designed to make it easier to use and more consistent.
+
+### Added
+* User Authentication - you will be prompted to log in when required
+* Username, Change Password, and Logout/Login are displayed on header.
+* Documentation - New Page on admin interface for adding users
+* Import/Export - It is now possible to save your rule to a `.blawx` file from inside the rule screen,
+  and to import a `.blawx` file from the main Blawx screen, allowing you to save and share your work
+  even if the server goes down.
+
+### Changed
+* By default, only authenticated users have access to anything other than the rule index and the documentation
+* Changes to the user interface on several pages
+
 ## [v1.3.16-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.16-alpha) 2022-06-23
 
 ### Added

@@ -32,9 +32,13 @@
 {% bootstrap_messages %}
 <header class="py-3 mb-3 border-bottom">
     <div class="row">
-        <div class="col-2 align-self-center" id="blawxlogo">§<span id="blawxWordMark">Blawx</span></div>
+        <div class="col-2 align-self-center" id="blawxlogo"><a href="/" style="text-decoration: none; color: #5a005a;">§<span id="blawxWordMark">Blawx</span></a></div>
         {% block header_elements %}{% endblock %}
-
+        {% if user.is_authenticated %}
+            <div class="col-2">{{ user.username }} | <a href="{% url 'password_change' %}">Change Password</a> | <a href="{% url 'logout' %}">Logout</a></div>
+        {% else %}
+            <div class="col-2"><a href="{% url 'login' %}">Login</a></div>
+        {% endif %}
         </div>
   </header>
 {% block page_content %}{% endblock %}

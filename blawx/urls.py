@@ -9,10 +9,12 @@ router.register(r'workspaces', views.WorkspaceAPIViewSet)
 app_name = 'blawx'
 urlpatterns = [
     path('', views.RuleDocsView.as_view(), name='ruledocs'),
+    path('import/', views.ruleDocImportView, name="import"),
     path('<int:pk>/', views.RuleDocView.as_view(), name='ruledoc'),
     path('<int:pk>/rule/<slug:section_name>/', views.ruleDocLegalTextView, name="ruledoc_text"),
     path('<int:pk>/edit/', views.RuleDocEditView.as_view(), name='ruledoc_edit'),
     path('<int:pk>/code/', views.BlawxView.as_view(), name="code"),
+    path('<int:pk>/export/', views.ruleDocExportView, name="export"),
     path('<int:pk>/test/new/', views.TestCreateView.as_view(), name="new_test"),
     path('<int:pk>/test/<slug:test_name>/', views.TestView.as_view(), name="test"),
     path('<int:pk>/test/<slug:test_name>/delete/', views.TestDeleteView.as_view(), name="delete_test"),
