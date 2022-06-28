@@ -55,6 +55,7 @@ docker build --no-cache -t blawx .
 ## Deployment
 
 Blawx is alpha software that should not be used for production purposes. However, if you want to deploy
-it for learning or experimental purposes, the provided docker configuration should not be used. Instead,
+it in a public or shared environment for learning or experimental purposes,
+the provided docker configuration may not be appropriate. Instead,
 it should be modified to follow the process for deploying a Django app. See [the Django documentation](https://docs.djangoproject.com/en/4.0/howto/deployment/)
 for more details.
