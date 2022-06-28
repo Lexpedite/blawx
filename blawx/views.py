@@ -3,6 +3,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core import serializers
+from django.http import FileResponse
 
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
@@ -18,6 +20,7 @@ from .models import Workspace, DocPage, WorkspaceTemplate, RuleDoc, BlawxTest
 
 from cobalt.hierarchical import Act
 import lxml
+import tempfile
 
 # Create your views here.
 
@@ -66,6 +69,22 @@ def ruleDocLegalTextView(request,pk,section_name):
     target = cobalt_parse.act.find(".//*[@eId='" + section_name + "']")
     return Response({'xml': lxml.etree.tostring(target),
                      'text': ' '.join(target.itertext())})
+
+@api_view(['GET'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def ruleDocExportView(request,pk):
+    download = tempfile.NamedTemporaryFile('w',delete=False,prefix="blawx_rule_" + str(pk) + "_")
+    download_filename = download.name
+    ruledoc = RuleDoc.objects.filter(pk=pk)
+    download.write(serializers.serialize('yaml',ruledoc))
+    sections = Workspace.objects.filter(ruledoc=pk)
+    download.write(serializers.serialize('yaml',sections))
+    tests = BlawxTest.objects.filter(ruledoc=pk)
+    download.write(serializers.serialize('yaml',tests))
+    download.close()
+    response = FileResponse(open(download_filename,'rb'),as_attachment=True,filename="blawx_rule_" + str(pk) + ".yaml")
+    return response
 
 class BlawxView(LoginRequiredMixin, generic.DetailView):
     template_name = 'blawx/blawx.html'
