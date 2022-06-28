@@ -7,6 +7,16 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+
+## Since Last Release
+
+### Removed
+* Pre-generated database
+
+### Changed
+* Dockerfile generates superuser and database at build time
+* Password for admin user can be set by providing `--build-arg SU_PASSWORD=password` as a parameter to `docker build`.
+
 ## [v1.3.17-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.17-alpha) 2022-06-28
 
 This version adds a first attempt at user authentication. Currently, one admin user `admin` and one non-admin user `demo`

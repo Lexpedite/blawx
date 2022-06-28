@@ -29,6 +29,14 @@ ADD . blawx
 
 WORKDIR blawx
 
+ARG SU_PASSWORD=blawx2022
+
+ENV DJANGO_SUPERUSER_PASSWORD=$SU_PASSWORD
+
+RUN python3 manage.py migrate
+
+RUN python3 manage.py createsuperuser --noinput --username admin --email admin@admin.com
+
 RUN python3 load_data.py
 
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
