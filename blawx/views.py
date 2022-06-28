@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core import serializers
-from django.http import FileResponse
+from django.http import FileResponse, HttpResponseRedirect, HttpResponseNotAllowed
 
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
@@ -83,8 +83,34 @@ def ruleDocExportView(request,pk):
     tests = BlawxTest.objects.filter(ruledoc=pk)
     download.write(serializers.serialize('yaml',tests))
     download.close()
-    response = FileResponse(open(download_filename,'rb'),as_attachment=True,filename="blawx_rule_" + str(pk) + ".yaml")
+    response = FileResponse(open(download_filename,'rb'),as_attachment=True,filename="blawx_rule_" + str(pk) + ".blawx")
     return response
+
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def ruleDocImportView(request):
+    if request.method == "POST":
+
+        # The request should include a file.
+        upload = request.FILES['loadfile']
+
+        # Deserialize the contents of the file.
+        new_objects = serializers.deserialize('yaml',upload.read())
+
+        new_object_list = list(new_objects)
+        # Get the RuleDoc, remove the PK, save it, and get the PK of the saved version.
+        new_object_list[0].pk = None
+        new_object_list[0].save()
+        new_pk = new_object_list[0].pk
+
+        # Use the PK of the saved version to save the workspaces and tests
+        for o in new_object_list[1:]:
+            o.ruledoc = new_pk
+            o.save()
+        # Send the user back to root.
+        return HttpResponseRedirect('/')
+    else:
+        return HttpResponseNotAllowed('POST')
 
 class BlawxView(LoginRequiredMixin, generic.DetailView):
     template_name = 'blawx/blawx.html'
