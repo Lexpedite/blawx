@@ -11,7 +11,7 @@ Blocks + law = Blawx
 Click on the thumbnail below for a recent (but probably not 100% up to date)
 video demonstration of how Blawx is used.
 
-[![thumbnail](thumbnail.png)](https://youtu.be/d2sxlvU9hlo)
+[![thumbnail](thumbnail.png | width=100)](https://youtu.be/d2sxlvU9hlo)
 
 ## Overview
 
