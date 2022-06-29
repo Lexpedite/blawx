@@ -8,19 +8,16 @@ While alpha, however, any version may include breaking changes that may not be s
 and breaking changes will not necessarily result in changes to the main version number.
 
 
-## Since Last Release
+## [v1.3.18-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.18-alpha) 2022-06-29
 
 ### Added
 * Rules can now have associated tutorials, which can be accessed in the right sidebar of the code editor when present
 
 ### Fixed
 * A change in how the s(CASP) library reports reasons broke the interview endpoint's relevance calculations.
-* Saving rules with no tests defines caused a malformed .blawx file
+* Saving rules with no tests defined caused a malformed .blawx file
 * Crash in New Rule screen
 * Headers in doc sidebar were linked to root of blawx server
-
-### Removed
-* Pre-generated database
 
 ### Changed
 * Dockerfile generates superuser and database at build time
@@ -29,8 +26,8 @@ and breaking changes will not necessarily result in changes to the main version 
 * jQuery is now installed locally to the Docker container to facilitate off-line use
 * bootstrap is now installed locally to the Docker container to facilitate off-line use
 * bootstrap-icons is now installed locally to the Docker container to facilitate off-line use
-* What the exit and cancel buttons do (and whether they appear) in the rule editor depends on whether you got
-  to it from an existing rule, or while trying to create a new one
+* What the exit and cancel buttons do (and whether they appear) in the rule editor now depends on whether you got
+  to it from an existing rule, or while trying to create a new rule
 
 ## [v1.3.17-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.17-alpha) 2022-06-28
 
