@@ -749,8 +749,8 @@ blawxrun(Query, Tree, Model) :-
     for a in relevance_answers_processed:
       for m in a['Models']:
         assumptions.extend(find_assumptions(m['Tree']))
-    print("Found Assumptions:")
-    pprint(assumptions)
+    # print("Found Assumptions:")
+    # pprint(assumptions)
     for a in assumptions:
       if a['functor'] == 'not' and a['args'][0]['functor'] == 'abducible$$':
         pass
