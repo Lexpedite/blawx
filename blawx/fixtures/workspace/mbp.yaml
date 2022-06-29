@@ -2200,4 +2200,3 @@
       cause(Claim,wrong_fuel),
 
       cause_accidental(Claim,true).'
-[]

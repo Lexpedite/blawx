@@ -11,3 +11,5 @@ source = Path.cwd() / "blawx" / "fixtures"
 
 for file in source.rglob("*.yaml"):
     management.call_command('loaddata', file)
+for file in source.rglob("*.blawx"):
+    management.call_command('loaddata', file)

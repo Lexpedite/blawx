@@ -1,0 +1,481 @@
+- model: blawx.ruledoc
+  pk: 2
+  fields:
+    ruledoc_name: Rock Paper Scissors Act
+    rule_text: "Rock Paper Scissors Act\n\nPlayers\n1. A game of rock paper scissors
+      has two players.\n2. There are three signs:\n  (a) Rock,\n  (b) Paper, and\n
+      \ (c) Scissors.\n\nDefeating Relationships\n3. The signs are related in the
+      following ways:\n  (a) Rock beats Scissors,\n  (b) Scissors beats Paper, and\n
+      \ (c) Paper beats Rock.\n\nWinner\n4. The winner of a game is the player who
+      throws\na sign that beats the sign of the other player.\n"
+    scasp_encoding: ''
+    tutorial: "<div id=\"carouselExampleIndicators\" class=\"carousel carousel-dark
+      slide h-100\" data-bs-interval=\"false\">\r\n                            <div
+      class=\"carousel-indicators\">\r\n                              <button type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"0\" class=\"active\"
+      aria-current=\"true\" aria-label=\"Slide 1\"></button>\r\n                              <button
+      type=\"button\" data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"1\"
+      aria-label=\"Slide 2\"></button>\r\n                              <button type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"2\" aria-label=\"Slide
+      3\"></button>\r\n                            </div>\r\n                            <div
+      class=\"carousel-inner h-100\">\r\n                              <div class=\"carousel-item
+      active\">\r\n                                <div class=\"p-4 d-block w-100\">\r\n
+      \                               <h3>Testing</h3>\r\n                                <p>This
+      is a test</p>\r\n                                </div>\r\n                              </div>\r\n
+      \                             <div class=\"carousel-item\">\r\n                                <div
+      class=\"p-4 d-block w-100\">\r\n                                    <h3>Testing</h3>\r\n
+      \                                   <p>This is a test</p>\r\n                                    </div>\r\n
+      \                             </div>\r\n                              <div class=\"carousel-item\">\r\n
+      \                               <div class=\"p-4 d-block w-100\">\r\n                                    <h3>Testing</h3>\r\n
+      \                                   <p>This is a test</p>\r\n                                    </div>\r\n
+      \                             </div>\r\n                            </div>\r\n
+      \                           <button class=\"carousel-control-prev\" type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide=\"prev\">\r\n                              <span
+      class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\r\n                              <span
+      class=\"visually-hidden\">Previous</span>\r\n                            </button>\r\n
+      \                           <button class=\"carousel-control-next\" type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide=\"next\">\r\n                              <span
+      class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\r\n                              <span
+      class=\"visually-hidden\">Next</span>\r\n                            </button>\r\n
+      \                         </div>"
+- model: blawx.workspace
+  pk: 9
+  fields:
+    ruledoc: 2
+    workspace_name: root_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 10
+  fields:
+    ruledoc: 2
+    workspace_name: sec_1_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="2sJ?lZ1.8;mu-;5-j@LZ" x="31" y="33"><statement name="statements"><block
+      type="category_declaration" id="xf1BaL$j!*84Xv8o]F|w"><field name="category_name">game</field><next><block
+      type="category_declaration" id="_[FW`C[R!:){kUvNH|v="><field name="category_name">player</field><next><block
+      type="category_attribute" id="]?KiIRg!(WYw-a?qd/eC"><value name="category"><block
+      type="category_selector" id="Ilc,G`ts~p{lewQ*aZ2?"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="game"></mutation><field name="category_name">game</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="x`O]j:y-FG.%jc!l#XSo"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="player" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">player</field><value name="attribute_type"><block type="category_selector"
+      id="?XY(LhZQQl(gs#]JvCuv"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="category_name">player</field></block></value><next><block type="attribute_display"
+      id="ZiVl$+ydU9H69JA#%MQm"><field name="order">vo</field><field name="prefix"></field><field
+      name="first_element">value</field><field name="infix">played in</field><field
+      name="second_element">object</field><field name="postfix"></field></block></next></block></statement></block></next></block></next></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(game).
+
+      #pred game(X) :: ''@(X) is a game''.
+
+      #pred according_to(R,game(X)) :: ''according to @(R), @(X) is a game''.
+
+      #pred legally_holds(_,game(X)) :: ''it legally holds that @(X) is a game''.
+
+      blawx_category(player).
+
+      #pred player(X) :: ''@(X) is a player''.
+
+      #pred according_to(R,player(X)) :: ''according to @(R), @(X) is a player''.
+
+      #pred legally_holds(_,player(X)) :: ''it legally holds that @(X) is a player''.
+
+      blawx_attribute(game,player,player).
+
+      blawx_attribute_nlg(player,vo,"","played in","").
+
+      #pred player(Y,X) :: ''@(X) played in @(Y)''.
+
+      #pred according_to(R,player(Y,X)) :: ''according to @(R), @(X) played in @(Y)''.
+
+      #pred legally_holds(_,player(Y,X)) :: ''it legally holds that @(X) played in
+      @(Y)''.'
+- model: blawx.workspace
+  pk: 11
+  fields:
+    ruledoc: 2
+    workspace_name: sec_2_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="cE}Gdp4x}z`nuu[FE?*D" x="45" y="53"><statement name="statements"><block
+      type="category_declaration" id="/{Ie_y.VAv)@D-{`$F+|"><field name="category_name">sign</field></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(sign).
+
+      #pred sign(X) :: ''@(X) is a sign''.
+
+      #pred according_to(R,sign(X)) :: ''according to @(R), @(X) is a sign''.
+
+      #pred legally_holds(_,sign(X)) :: ''it legally holds that @(X) is a sign''.'
+- model: blawx.workspace
+  pk: 12
+  fields:
+    ruledoc: 2
+    workspace_name: sec_2__para_a_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="kR6ntq@zT`R:z:aNK+f8" x="48" y="67"><statement name="statements"><block
+      type="object_declaration" id="Z/]aRICCL7w4Q}.MKhmg"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="sign" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">rock</field><field name="postfix">is a sign</field></block></statement></block></xml>
+    scasp_encoding: sign(rock).
+- model: blawx.workspace
+  pk: 13
+  fields:
+    ruledoc: 2
+    workspace_name: sec_2__para_b_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="kR6ntq@zT`R:z:aNK+f8" x="76" y="123"><statement name="statements"><block
+      type="object_declaration" id="Z/]aRICCL7w4Q}.MKhmg"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="sign" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">paper</field><field name="postfix">is a sign</field></block></statement></block></xml>
+    scasp_encoding: sign(paper).
+- model: blawx.workspace
+  pk: 14
+  fields:
+    ruledoc: 2
+    workspace_name: sec_2__para_c_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="kR6ntq@zT`R:z:aNK+f8" x="76" y="123"><statement name="statements"><block
+      type="object_declaration" id="Z/]aRICCL7w4Q}.MKhmg"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="sign" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">scissors</field><field name="postfix">is a sign</field></block></statement></block></xml>
+    scasp_encoding: sign(scissors).
+- model: blawx.workspace
+  pk: 15
+  fields:
+    ruledoc: 2
+    workspace_name: sec_3__para_a_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="3[uOLF:N)6)k]x/;NZvj" x="25" y="82"><statement name="statements"><block
+      type="attribute_selector" id="UH.zSPK=u37GL%@k@B5C"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="beats" attributetype="sign" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">beats</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="P3;dA:MtEb)7Upr)2Q+|"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field name="object_name">rock</field></block></value><value
+      name="second_element"><block type="object_selector" id="RpH}d;|33,hn-{B(w.J5"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="scissors"></mutation><field
+      name="object_name">scissors</field></block></value></block></statement></block></xml>
+    scasp_encoding: beats(rock,scissors).
+- model: blawx.workspace
+  pk: 16
+  fields:
+    ruledoc: 2
+    workspace_name: sec_3_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="KzwckYwCfb;sxMxL8(0M" x="67" y="107"><statement name="statements"><block
+      type="category_attribute" id="z*^7[-W;MeQJCCo};P~2"><value name="category"><block
+      type="category_selector" id="^=?Vw27W=mILTcg_EA}:"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="sign"></mutation><field name="category_name">sign</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id=".y{2elhmWwOrd#]KA4-n"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="beats" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">beats</field><value name="attribute_type"><block type="category_selector"
+      id="y#Z*C`9tn?fOI`O:`fWw"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="sign"></mutation><field
+      name="category_name">sign</field></block></value><next><block type="attribute_display"
+      id="N31(W[c?,(.3=tW3lHo?"><field name="order">ov</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="infix">beats</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></statement></block></statement></block></xml>
+    scasp_encoding: 'blawx_attribute(sign,beats,sign).
+
+      blawx_attribute_nlg(beats,ov,"","beats","").
+
+      #pred beats(X,Y) :: ''@(X) beats @(Y)''.
+
+      #pred according_to(R,beats(X,Y)) :: ''according to @(R), @(X) beats @(Y)''.
+
+      #pred legally_holds(_,beats(X,Y)) :: ''it legally holds that @(X) beats @(Y)''.'
+- model: blawx.workspace
+  pk: 17
+  fields:
+    ruledoc: 2
+    workspace_name: sec_3__para_b_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="f1x`uP`6Sd0}I{/2/*^{" x="43" y="78"><statement name="statements"><block
+      type="attribute_selector" id="UB)rSeGrtR7h]G=vO=kO"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="beats" attributetype="sign" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">beats</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="f/I8$]wMHJ5Sh0}Rc[.C"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="paper"></mutation><field name="object_name">paper</field></block></value><value
+      name="second_element"><block type="object_selector" id="Pu]TfR*s9NXorX$3`pns"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field name="object_name">rock</field></block></value></block></statement></block></xml>
+    scasp_encoding: beats(paper,rock).
+- model: blawx.workspace
+  pk: 18
+  fields:
+    ruledoc: 2
+    workspace_name: sec_3__para_c_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="F@sk:Y46TJ_jv1qQNHhq" x="77" y="71"><statement name="statements"><block
+      type="attribute_selector" id="z:K`{L1(%yIb{eC?n3=f"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="beats" attributetype="sign" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">beats</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="nQ)vA#~*XOYK}V(kQds:"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="scissors"></mutation><field
+      name="object_name">scissors</field></block></value><value name="second_element"><block
+      type="object_selector" id=",xAfj9OzWO}cz61[p2mB"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="paper"></mutation><field name="object_name">paper</field></block></value></block></statement></block></xml>
+    scasp_encoding: beats(scissors,paper).
+- model: blawx.workspace
+  pk: 19
+  fields:
+    ruledoc: 2
+    workspace_name: sec_4_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="g.Id=VBrj/glOW.7M-k_" x="31" y="33"><statement name="statements"><block
+      type="category_attribute" id="jiOdGHW/zmd3VYNR|zNi"><value name="category"><block
+      type="category_selector" id=":fZ6aV|3S8$P-@Czs9MI"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="game"></mutation><field name="category_name">game</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="/gF!-9q(42z[2po]iVP/"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="winner" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">winner</field><value name="attribute_type"><block type="category_selector"
+      id="?Edi*K|.v?[|HZL(9oEq"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="category_name">player</field></block></value><next><block type="attribute_display"
+      id="iJ{?8+`[%ifvnh4,,F.N"><field name="order">ov</field><field name="prefix">the
+      winner of</field><field name="first_element">object</field><field name="infix">is</field><field
+      name="second_element">value</field><field name="postfix"></field></block></next></block></statement><next><block
+      type="category_attribute" id="zbs_W{$}MKCWAC4S++0."><value name="category"><block
+      type="category_selector" id="qJHSV$3o.!5u)VHhHIa;"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="player"></mutation><field name="category_name">player</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="P)cE=4Ql8GwRfLLn9TBN"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="throw" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">throw</field><value name="attribute_type"><block type="category_selector"
+      id="*UNPOrkO;dKR{G3aekD5"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="sign"></mutation><field
+      name="category_name">sign</field></block></value><next><block type="attribute_display"
+      id="vY=5|`H4R80Yk*8TN0,h"><field name="order">ov</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="infix">threw</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></statement></block></next></block></statement></block><block
+      type="unattributed_rule" id="H[dHxF1dJ#hSkjuHqigN" x="33" y="370"><statement
+      name="conditions"><block type="object_category" id="k~txF1TzrW76$OOmxrQg"><value
+      name="object"><block type="variable" id="f/=.V8T;{6*PT9EYtwsZ"><field name="variable_name">Game</field></block></value><value
+      name="category"><block type="category_selector" id="LM3-6aTK,BEjI%mIro9G"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="game"></mutation><field
+      name="category_name">game</field></block></value><next><block type="object_category"
+      id="EjD|TUg,WS$@c-?@7_;!"><value name="object"><block type="variable" id="UOF1xQ4)=5E@!P+Qke3|"><field
+      name="variable_name">Player1</field></block></value><value name="category"><block
+      type="category_selector" id="fzMs[)P4F`qxbPK)8Ql7"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="player"></mutation><field name="category_name">player</field></block></value><next><block
+      type="object_category" id="_QrSXmZ8NT,]4N$AuOD:"><value name="object"><block
+      type="variable" id="3}u?Tz:i.]p77oZ(PVP_"><field name="variable_name">Player2</field></block></value><value
+      name="category"><block type="category_selector" id="pK4^v4NnsjH8m0g]II,C"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="category_name">player</field></block></value><next><block type="attribute_selector"
+      id="VgOZjK:YV9qX0s3wFiMP"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="player"
+      attributetype="player" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">played in</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="{-(!V(06b9;kn(.OLcsC"><field name="variable_name">Player1</field></block></value><value
+      name="second_element"><block type="variable" id="qK3yDf!t(U]*4w]??a,z"><field
+      name="variable_name">Game</field></block></value><next><block type="attribute_selector"
+      id="#=6uvG0|VmI1}^[=DFgb"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="player"
+      attributetype="player" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">played in</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="^WvP_fO$L]x`T_BtV4ZH"><field name="variable_name">Player2</field></block></value><value
+      name="second_element"><block type="variable" id="A)senUgOQr|hPNOaHOqk"><field
+      name="variable_name">Game</field></block></value><next><block type="attribute_selector"
+      id="v@lv6R_LL^^pgjSEIL_W"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="throw"
+      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="g)?_=aQDu:JivW,xfI=v"><field name="variable_name">Player1</field></block></value><value
+      name="second_element"><block type="variable" id="Lu$]-o*X*RjwXBhmMhuv"><field
+      name="variable_name">Throw1</field></block></value><next><block type="attribute_selector"
+      id="K8-#,!4#U_-{zVkit(18"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="throw"
+      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="fxS}`sB[IC#0Xx.vhvQ["><field name="variable_name">Player2</field></block></value><value
+      name="second_element"><block type="variable" id="t87!IS*$R6pv(5:b$_#S"><field
+      name="variable_name">Throw2</field></block></value><next><block type="attribute_selector"
+      id="H-@fu`8IREm4Ix|q+h?R"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="beats"
+      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">beats</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="}f6*mn3827#1NFp*y|5C"><field name="variable_name">Throw1</field></block></value><value
+      name="second_element"><block type="variable" id="s-}w@zN[~tg2n~@Q9vb%"><field
+      name="variable_name">Throw2</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="O`0{GLKp!ZsKzRhML{Cm"><value
+      name="rule"><block type="doc_selector" id="NANi!cb7(_xY%HT9WQZ="><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_4_section"></mutation><field name="doc_part_name">RPSA
+      4</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="gL4%,Q9wxFBpcf0hod8:"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="//}tGADTWqR;V(9%()KP"><field
+      name="variable_name">Game</field></block></value><value name="second_element"><block
+      type="variable" id="ag,!^lQb:dB}bgV-;vE."><field name="variable_name">Player1</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'blawx_attribute(game,winner,player).
+
+      blawx_attribute_nlg(winner,ov,"the winner of","is","").
+
+      #pred winner(X,Y) :: ''the winner of @(X) is @(Y)''.
+
+      #pred according_to(R,winner(X,Y)) :: ''according to @(R), the winner of @(X)
+      is @(Y)''.
+
+      #pred legally_holds(_,winner(X,Y)) :: ''it legally holds that the winner of
+      @(X) is @(Y)''.
+
+
+      blawx_attribute(player,throw,sign).
+
+      blawx_attribute_nlg(throw,ov,"","threw","").
+
+      #pred throw(X,Y) :: ''@(X) threw @(Y)''.
+
+      #pred according_to(R,throw(X,Y)) :: ''according to @(R), @(X) threw @(Y)''.
+
+      #pred legally_holds(_,throw(X,Y)) :: ''it legally holds that @(X) threw @(Y)''.
+
+
+
+      according_to(sec_4_section,  winner(Game,Player1)) :-
+
+      game(Game),
+
+      player(Player1),
+
+      player(Player2),
+
+      player(Game,Player1),
+
+      player(Game,Player2),
+
+      throw(Player1,Throw1),
+
+      throw(Player2,Throw2),
+
+      beats(Throw1,Throw2).'
+- model: blawx.blawxtest
+  pk: 2
+  fields:
+    ruledoc: 2
+    test_name: bobjane
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="kK5*xh$(wL@8o2T+rpZa" x="50" y="45"><statement name="statements"><block
+      type="object_declaration" id="`./YiJD`YeQ$}B|`%,13"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="game" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">testgame</field><field name="postfix">is a game</field><next><block
+      type="object_declaration" id="%v]nW-abFkQCYD_T_BTS"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="player" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">bob</field><field name="postfix">is a player</field><next><block
+      type="object_declaration" id="yuZ,7c7F038}=69TW8ke"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="player" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">jane</field><field name="postfix">is a player</field><next><block
+      type="attribute_selector" id="4Ar;]Lg5_?@V:L{b!5[@"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="player" attributetype="player" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">played in</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="2!lDj-TE)}WkLs5xfFyn"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
+      name="second_element"><block type="object_selector" id="~k)`kpzE2%-J8K+Aln?/"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="testgame"></mutation><field
+      name="object_name">testgame</field></block></value><next><block type="attribute_selector"
+      id="p7:w73V1zpFbXg|^ZaP]"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="player"
+      attributetype="player" attributeorder="vo"></mutation><field name="prefix"></field><field
+      name="infix">played in</field><field name="postfix"></field><value name="first_element"><block
+      type="object_selector" id="{9[oSV=x=FZD%S2}6xO|"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="jane"></mutation><field name="object_name">jane</field></block></value><value
+      name="second_element"><block type="object_selector" id="S#:1}-2^J+BwSBluLPZA"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="testgame"></mutation><field
+      name="object_name">testgame</field></block></value><next><block type="attribute_selector"
+      id="kN$M_}tBn6-wfP26{Mm0"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="throw"
+      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
+      type="object_selector" id=":^KR*e_qTk)LaJNNg844"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="jane"></mutation><field name="object_name">jane</field></block></value><value
+      name="second_element"><block type="object_selector" id=";YbW#a3=T!rN(%ixl!g:"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field name="object_name">rock</field></block></value><next><block
+      type="attribute_selector" id="HrTDKJ:obf9U;+hM09uk"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="throw" attributetype="sign" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">threw</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="9fAIQ)cO.|HiiY,=h|Ee"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
+      name="second_element"><block type="object_selector" id="R7rAMI(Rb2@~!$IunHn`"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="scissors"></mutation><field
+      name="object_name">scissors</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="query" id="7Bvu;d7/sRZH4WYjc2r*" x="45" y="330"><statement name="query"><block
+      type="holds" id="RbA1ko|L6D-0y;7We+*H"><statement name="statement"><block type="attribute_selector"
+      id="$Z{Xa^4K^6WI,3_oGh]y"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id=":w:oo!Fv!xc:9y5g)EFF"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="testgame"></mutation><field
+      name="object_name">testgame</field></block></value><value name="second_element"><block
+      type="variable" id="S1|/bK-O89tiCdahc./E"><field name="variable_name">Winner</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'game(testgame).
+
+      player(bob).
+
+      player(jane).
+
+      player(testgame,bob).
+
+      player(testgame,jane).
+
+      throw(jane,rock).
+
+      throw(bob,scissors).
+
+
+      ?- legally_holds(_,  winner(testgame,Winner)).'
+- model: blawx.blawxtest
+  pk: 8
+  fields:
+    ruledoc: 2
+    test_name: hypothetical
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="assume"
+      id="wam:)Jm+$_K%n6QBtW$B" x="94" y="82"><statement name="statements"><block
+      type="object_category" id="B,MZYa9w6M[zM=q@7fr["><value name="object"><block
+      type="variable" id="UG9@_J3Yc8Ik8mQQwg4a"><field name="variable_name">A</field></block></value><value
+      name="category"><block type="category_selector" id="abpTmvTJ,#Im%d8]K$Rj"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="game"></mutation><field
+      name="category_name">game</field></block></value></block></statement></block><block
+      type="assume" id="S`.QpQ0btaNHmnA-H9q8" x="96" y="158"><statement name="statements"><block
+      type="object_category" id="6O|X/};B+?2x#eF9Y|[m"><value name="object"><block
+      type="variable" id="Fsf5c%lT8h-s#%qiF+UI"><field name="variable_name">A</field></block></value><value
+      name="category"><block type="category_selector" id="-|CoFnJd+~E7q}^aweUF"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="player"></mutation><field
+      name="category_name">player</field></block></value></block></statement></block><block
+      type="assume" id="M1{QxvR%?zihG#2A{7Xe" x="95" y="229"><statement name="statements"><block
+      type="attribute_selector" id="5eV-5_wF5=@coGV);z;z"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="player" attributetype="player" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">played in</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="z[nsN;vj68V*I9iuNqKa"><field
+      name="variable_name">A</field></block></value><value name="second_element"><block
+      type="variable" id="plORf)x!X:1pjMrhb%t,"><field name="variable_name">B</field></block></value></block></statement></block><block
+      type="assume" id="H(},Uv!uNIC~@S*)4s6r" x="98" y="323"><statement name="statements"><block
+      type="attribute_selector" id="*b?/IeBFxdpoLt7a~quO"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="throw" attributetype="sign" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">threw</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="BEAS@GnF=3U$x4/5_`8n"><field
+      name="variable_name">A</field></block></value><value name="second_element"><block
+      type="variable" id="OD}H:m;/Zk1wrhZCM+Pi"><field name="variable_name">B</field></block></value></block></statement></block><block
+      type="query" id="~~#dH%nQ*}tcOz=aC_I8" x="99" y="415"><statement name="query"><block
+      type="holds" id="{}:ll7dYjij;Mm5A*/tB"><statement name="statement"><block type="attribute_selector"
+      id="2PQ|z{/R+t8XL$?{eUC,"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="WAv,,rpLn6V/^?=DMKW/"><field
+      name="variable_name">Game</field></block></value><value name="second_element"><block
+      type="variable" id="=f=IFPO?].3!SX.8NM}E"><field name="variable_name">Winner</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: '#abducible game(A).
+
+
+      #abducible player(A).
+
+
+      #abducible player(B,A).
+
+
+      #abducible throw(A,B).
+
+
+      ?- legally_holds(_,  winner(Game,Winner)).'
+- model: blawx.blawxtest
+  pk: 13
+  fields:
+    ruledoc: 2
+    test_name: who_wins
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
+      id="#`0/,K1M^tuc:WC7T/5_" x="59" y="258"><statement name="query"><block type="holds"
+      id="d=+fC)f#K;L62NQjaN.7"><statement name="statement"><block type="attribute_selector"
+      id="5-kKG$Gar?/5:Y[4$*73"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="winner"
+      attributetype="player" attributeorder="ov"></mutation><field name="prefix">the
+      winner of</field><field name="infix">is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="c[Uc@Y93q1)O5FYop%5T"><field
+      name="variable_name">Game</field></block></value><value name="second_element"><block
+      type="variable" id="XZhm|F*MHLuzg!~;91x2"><field name="variable_name">Player</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: ?- legally_holds(_,  winner(Game,Player)).
