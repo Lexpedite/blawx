@@ -52,7 +52,7 @@ RUN mv /node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2 /blawx/bla
 
 
 
-WORKDIR blawx
+WORKDIR /blawx
 
 ARG SU_PASSWORD=blawx2022
 
