@@ -9,6 +9,35 @@
       \ (c) Paper beats Rock.\n\nWinner\n4. The winner of a game is the player who
       throws\na sign that beats the sign of the other player.\n"
     scasp_encoding: ''
+    tutorial: "<div id=\"carouselExampleIndicators\" class=\"carousel carousel-dark
+      slide h-100\" data-bs-interval=\"false\">\r\n                            <div
+      class=\"carousel-indicators\">\r\n                              <button type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"0\" class=\"active\"
+      aria-current=\"true\" aria-label=\"Slide 1\"></button>\r\n                              <button
+      type=\"button\" data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"1\"
+      aria-label=\"Slide 2\"></button>\r\n                              <button type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"2\" aria-label=\"Slide
+      3\"></button>\r\n                            </div>\r\n                            <div
+      class=\"carousel-inner h-100\">\r\n                              <div class=\"carousel-item
+      active\">\r\n                                <div class=\"p-4 d-block w-100\">\r\n
+      \                               <h3>Testing</h3>\r\n                                <p>This
+      is a test</p>\r\n                                </div>\r\n                              </div>\r\n
+      \                             <div class=\"carousel-item\">\r\n                                <div
+      class=\"p-4 d-block w-100\">\r\n                                    <h3>Testing</h3>\r\n
+      \                                   <p>This is a test</p>\r\n                                    </div>\r\n
+      \                             </div>\r\n                              <div class=\"carousel-item\">\r\n
+      \                               <div class=\"p-4 d-block w-100\">\r\n                                    <h3>Testing</h3>\r\n
+      \                                   <p>This is a test</p>\r\n                                    </div>\r\n
+      \                             </div>\r\n                            </div>\r\n
+      \                           <button class=\"carousel-control-prev\" type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide=\"prev\">\r\n                              <span
+      class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\r\n                              <span
+      class=\"visually-hidden\">Previous</span>\r\n                            </button>\r\n
+      \                           <button class=\"carousel-control-next\" type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide=\"next\">\r\n                              <span
+      class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\r\n                              <span
+      class=\"visually-hidden\">Next</span>\r\n                            </button>\r\n
+      \                         </div>"
 - model: blawx.ruledoc
   pk: 4
   fields:
