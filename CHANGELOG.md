@@ -10,8 +10,12 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## Since Last Release
 
+### Added
+* Rules can now have associated tutorials, which can be accessed in the right sidebar of the code editor when present
+
 ### Fixed
 * A change in how the s(CASP) library reports reasons broke the interview endpoint's relevance calculations.
+* Saving rules with no tests defines caused a malformed .blawx file
 
 ### Removed
 * Pre-generated database
