@@ -9,6 +9,7 @@ class RuleDoc(models.Model):
     rule_text = models.TextField(default="Default Act")
     # akoma_ntoso = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
+    tutorial = models.TextField(default="",blank=True)
 
     def __str__(self):
         return self.ruledoc_name

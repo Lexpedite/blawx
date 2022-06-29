@@ -79,9 +79,11 @@ def ruleDocExportView(request,pk):
     ruledoc = RuleDoc.objects.filter(pk=pk)
     download.write(serializers.serialize('yaml',ruledoc))
     sections = Workspace.objects.filter(ruledoc=pk)
-    download.write(serializers.serialize('yaml',sections))
+    if len(sections):
+        download.write(serializers.serialize('yaml',sections))
     tests = BlawxTest.objects.filter(ruledoc=pk)
-    download.write(serializers.serialize('yaml',tests))
+    if len(tests):
+        download.write(serializers.serialize('yaml',tests))
     download.close()
     response = FileResponse(open(download_filename,'rb'),as_attachment=True,filename="blawx_rule_" + str(pk) + ".blawx")
     return response

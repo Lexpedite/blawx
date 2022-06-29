@@ -1,0 +1,352 @@
+- model: blawx.ruledoc
+  pk: 12
+  fields:
+    ruledoc_name: Beard Tax Act
+    rule_text: "Beard Tax Act\r\n\r\n1. In this Act, beard means any facial hair no
+      shorter than 5 millimetres in\r\nlength that:\r\n  (a) occurs on or below the
+      chin, or\r\n  (b) exists in an uninterrupted line from the front of one ear
+      to the front of the other ear below the nose."
+    scasp_encoding: ''
+    tutorial: ''
+- model: blawx.workspace
+  pk: 101
+  fields:
+    ruledoc: 12
+    workspace_name: root_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 102
+  fields:
+    ruledoc: 12
+    workspace_name: sec_1_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="(^5.:,lX5N1?~UIArJEP" x="29" y="38"><statement name="statements"><block
+      type="category_declaration" id="PaXZmnxi$Xhou${r@jQA"><field name="category_name">person</field><next><block
+      type="category_attribute" id="`Wryd,*XhMH2Q41TnO0?"><value name="category"><block
+      type="category_selector" id="]%rM`}27?HlPRcRj!Gp!"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="|=9~_MbYbEkN19rrIX;r"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="bearded" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">bearded</field><value name="attribute_type"><block type="true_false_type_selector"
+      id="*KA2#eA)Y2XMK1LofT?g"></block></value><next><block type="attribute_display"
+      id="CPW5k62,RAC1{@H~AY/l"><field name="order">vo</field><field name="prefix">it
+      is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">is bearded</field><next><block
+      type="attribute_declaration" id="LUaT.7LUTZ1eS^zUSQ]@"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attribute_name="facial_hair_length_mm" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">facial_hair_length_mm</field><value name="attribute_type"><block
+      type="number_type_selector" id="L!p{/iz6];T_ycpgxBt("></block></value><next><block
+      type="attribute_display" id="HHlT{$/}p{?zJP6sr.}8"><field name="order">ov</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="infix">'s
+      facial hair is</field><field name="second_element">value</field><field name="postfix">mm
+      in length</field></block></next></block></next></block></next></block></statement></block></next></block></statement></block><block
+      type="unattributed_rule" id="s=wncGB.;*X;Ej(E{18l" x="29" y="358"><statement
+      name="conditions"><block type="object_category" id="k#-_uN3z|%NXbv=a-+5-"><value
+      name="object"><block type="variable" id="V@j/%I/jFZ/W=:9~cAYk"><field name="variable_name">Person</field></block></value><value
+      name="category"><block type="category_selector" id="~21Aa4B.ef)+2@Bcz7ha"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="numerical_constraint"
+      id="G~(qo:fF5^82{m~n7X|H"><field name="operator">gte</field><value name="first_comparator"><block
+      type="variable" id="!um=uC^vD*;VHaC!#;Fp"><field name="variable_name">Length</field></block></value><value
+      name="second_comparator"><block type="number_value" id=";o!iOa7.[}/uV_jBE(C?"><field
+      name="value">5</field></block></value><next><block type="attribute_selector"
+      id="X3r*p]s!#ydNvfKaOsp."><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="facial_hair_length_mm"
+      attributetype="# Number" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s facial hair is</field><field name="postfix">mm in length</field><value
+      name="first_element"><block type="variable" id="C/^+|Tb4tlwR*?ROV~45"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="S9v;/dbPWK_gQSD/kx}_"><field name="variable_name">Length</field></block></value></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="j}U@]u|^uG{fZ+]kA:*?"><value
+      name="rule"><block type="doc_selector" id="-{]KO2D25$a./rE{XZYQ"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1_section"></mutation><field name="doc_part_name">BTA
+      1</field></block></value></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(person).
+
+      #pred person(X) :: ''@(X) is a person''.
+
+      #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
+
+      #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
+
+      blawx_attribute(person,bearded,boolean).
+
+      blawx_attribute_nlg(bearded,vo,"it is","that","is bearded").
+
+      #pred bearded(Y,X) :: ''it is @(X) that @(Y) is bearded''.
+
+      #pred according_to(R,bearded(Y,X)) :: ''according to @(R), it is @(X) that @(Y)
+      is bearded''.
+
+      #pred legally_holds(_,bearded(Y,X)) :: ''it legally holds that it is @(X) that
+      @(Y) is bearded''.
+
+      opposes(bearded(X,true),bearded(X,false)).
+
+      opposes(bearded(X,false),bearded(X,true)).
+
+
+      blawx_attribute(person,facial_hair_length_mm,number).
+
+      blawx_attribute_nlg(facial_hair_length_mm,ov,"","''s facial hair is","mm in
+      length").
+
+      #pred facial_hair_length_mm(X,Y) :: ''@(X) \''s facial hair is @(Y) mm in length''.
+
+      #pred according_to(R,facial_hair_length_mm(X,Y)) :: ''according to @(R), @(X)
+      \''s facial hair is @(Y) mm in length''.
+
+      #pred legally_holds(_,facial_hair_length_mm(X,Y)) :: ''it legally holds that
+      @(X) \''s facial hair is @(Y) mm in length''.
+
+
+
+      according_to(sec_1_section,) :-
+
+      person(Person),
+
+      Length #>= 5,
+
+      facial_hair_length_mm(Person,Length).'
+- model: blawx.workspace
+  pk: 103
+  fields:
+    ruledoc: 12
+    workspace_name: sec_1__para_a_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="(^5.:,lX5N1?~UIArJEP" x="55" y="110"><statement name="statements"><block
+      type="category_attribute" id="`Wryd,*XhMH2Q41TnO0?"><value name="category"><block
+      type="category_selector" id="]%rM`}27?HlPRcRj!Gp!"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="UuS.Omf{sH8YM:}6-m`("><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="facial_hair_on_chin" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">facial_hair_on_chin</field><value name="attribute_type"><block
+      type="true_false_type_selector" id="+R:4-xZvPNJ_pxrIAmqq"></block></value><next><block
+      type="attribute_display" id="pQ#N0uS`7P^_%i;c0Yxz"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">'s facial hair is
+      on the chin</field><next><block type="attribute_declaration" id="#r/K1W[6P7i2Pwdx^#)Z"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="facial_hair_below_chin"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">facial_hair_below_chin</field><value
+      name="attribute_type"><block type="true_false_type_selector" id="PY{=RB93D._JgAC?v_@."></block></value><next><block
+      type="attribute_display" id="MnyGCbJsyb%Gq9Po6_TT"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">'s facial hair is
+      below the chin</field></block></next></block></next></block></next></block></statement></block></statement></block><block
+      type="unattributed_rule" id="s=wncGB.;*X;Ej(E{18l" x="57" y="414"><statement
+      name="conditions"><block type="object_category" id="k#-_uN3z|%NXbv=a-+5-"><value
+      name="object"><block type="variable" id="V@j/%I/jFZ/W=:9~cAYk"><field name="variable_name">Person</field></block></value><value
+      name="category"><block type="category_selector" id="~21Aa4B.ef)+2@Bcz7ha"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="numerical_constraint"
+      id="G~(qo:fF5^82{m~n7X|H"><field name="operator">gte</field><value name="first_comparator"><block
+      type="variable" id="!um=uC^vD*;VHaC!#;Fp"><field name="variable_name">Length</field></block></value><value
+      name="second_comparator"><block type="number_value" id=";o!iOa7.[}/uV_jBE(C?"><field
+      name="value">5</field></block></value><next><block type="attribute_selector"
+      id="X3r*p]s!#ydNvfKaOsp."><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="facial_hair_length_mm"
+      attributetype="# Number" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s facial hair is</field><field name="postfix">mm in length</field><value
+      name="first_element"><block type="variable" id="C/^+|Tb4tlwR*?ROV~45"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="S9v;/dbPWK_gQSD/kx}_"><field name="variable_name">Length</field></block></value><next><block
+      type="attribute_selector" id=")_hkv?}_$/8`.0I;!nWf"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="facial_hair_on_chin" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">'s
+      facial hair is on the chin</field><value name="first_element"><block type="true_value"
+      id=")kl*gduf+^J;D*pgz_vG"></block></value><value name="second_element"><block
+      type="variable" id="O[R`xyfiIHY6q%MGr6+:"><field name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="j}U@]u|^uG{fZ+]kA:*?"><value
+      name="rule"><block type="doc_selector" id="jQV0xsua)cg-gqkXp`XK"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1__para_a_section"></mutation><field name="doc_part_name">BTA
+      1.a</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="dSh)r%m/OUuzdH!5E(=v"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="bearded"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      bearded</field><value name="first_element"><block type="true_value" id="p0fA9|yTmsFXyFFCdb0s"></block></value><value
+      name="second_element"><block type="variable" id="]`*{A)#%/p/.80o)uq3;"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block><block
+      type="unattributed_rule" id=".b+25}Y|v%Esib7nk;G}" x="61" y="724"><statement
+      name="conditions"><block type="object_category" id=":l/vQ=nqv@3Ro1!T#NA!"><value
+      name="object"><block type="variable" id="RU/blf(_aPpM-4G/lH,4"><field name="variable_name">Person</field></block></value><value
+      name="category"><block type="category_selector" id="s=d6!]njP,2x$~dLC0#)"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="numerical_constraint"
+      id="leD%h7tna3=-Ci)`n!d9"><field name="operator">gte</field><value name="first_comparator"><block
+      type="variable" id="bwgx(.snT[Rh(15{-CpE"><field name="variable_name">Length</field></block></value><value
+      name="second_comparator"><block type="number_value" id="HS!Hgh;|^Q;)eYSADbHa"><field
+      name="value">5</field></block></value><next><block type="attribute_selector"
+      id="tH:G=1h?JW:Iy*Gx%(Vj"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="facial_hair_length_mm"
+      attributetype="# Number" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s facial hair is</field><field name="postfix">mm in length</field><value
+      name="first_element"><block type="variable" id="EH/zNC)G[Lul1OEX3mOl"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="Q)Vr+.MXpr(SzXr)@!:x"><field name="variable_name">Length</field></block></value><next><block
+      type="attribute_selector" id="8xZ?^C,F+rxI(6uYj{4p"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="facial_hair_below_chin" attributetype="Checkmark True / False"
+      attributeorder="vo"></mutation><field name="prefix">it is</field><field name="infix">that</field><field
+      name="postfix">'s facial hair is below the chin</field><value name="first_element"><block
+      type="true_value" id="1%xRpf^@N#!A+ACX=8X:"></block></value><value name="second_element"><block
+      type="variable" id="Eiq/Lun!6w~?=!1H1W;R"><field name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="-.VNZ9Gi~N+!eS0=cb=m"><value
+      name="rule"><block type="doc_selector" id="Ii//]iPm*Ku/hu8otxNL"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1__para_a_section"></mutation><field name="doc_part_name">BTA
+      1.a</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="3h~4Ouy/+U=}3ybVW~.w"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="bearded"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      bearded</field><value name="first_element"><block type="true_value" id="wmq#qX*LR(Psz:5r3kY_"></block></value><value
+      name="second_element"><block type="variable" id="b2R622/9VFV7=G_K};BW"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'blawx_attribute(person,facial_hair_on_chin,boolean).
+
+      blawx_attribute_nlg(facial_hair_on_chin,vo,"it is","that","''s facial hair is
+      on the chin").
+
+      #pred facial_hair_on_chin(Y,X) :: ''it is @(X) that @(Y) \''s facial hair is
+      on the chin''.
+
+      #pred according_to(R,facial_hair_on_chin(Y,X)) :: ''according to @(R), it is
+      @(X) that @(Y) \''s facial hair is on the chin''.
+
+      #pred legally_holds(_,facial_hair_on_chin(Y,X)) :: ''it legally holds that it
+      is @(X) that @(Y) \''s facial hair is on the chin''.
+
+      opposes(facial_hair_on_chin(X,true),facial_hair_on_chin(X,false)).
+
+      opposes(facial_hair_on_chin(X,false),facial_hair_on_chin(X,true)).
+
+
+      blawx_attribute(person,facial_hair_below_chin,boolean).
+
+      blawx_attribute_nlg(facial_hair_below_chin,vo,"it is","that","''s facial hair
+      is below the chin").
+
+      #pred facial_hair_below_chin(Y,X) :: ''it is @(X) that @(Y) \''s facial hair
+      is below the chin''.
+
+      #pred according_to(R,facial_hair_below_chin(Y,X)) :: ''according to @(R), it
+      is @(X) that @(Y) \''s facial hair is below the chin''.
+
+      #pred legally_holds(_,facial_hair_below_chin(Y,X)) :: ''it legally holds that
+      it is @(X) that @(Y) \''s facial hair is below the chin''.
+
+      opposes(facial_hair_below_chin(X,true),facial_hair_below_chin(X,false)).
+
+      opposes(facial_hair_below_chin(X,false),facial_hair_below_chin(X,true)).
+
+
+
+      according_to(sec_1__para_a_section,  bearded(Person,true)) :-
+
+      person(Person),
+
+      Length #>= 5,
+
+      facial_hair_length_mm(Person,Length),
+
+      facial_hair_on_chin(Person,true).
+
+
+      according_to(sec_1__para_a_section,  bearded(Person,true)) :-
+
+      person(Person),
+
+      Length #>= 5,
+
+      facial_hair_length_mm(Person,Length),
+
+      facial_hair_below_chin(Person,true).'
+- model: blawx.workspace
+  pk: 104
+  fields:
+    ruledoc: 12
+    workspace_name: sec_1__para_b_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="(^5.:,lX5N1?~UIArJEP" x="59" y="112"><statement name="statements"><block
+      type="category_attribute" id="`Wryd,*XhMH2Q41TnO0?"><value name="category"><block
+      type="category_selector" id="]%rM`}27?HlPRcRj!Gp!"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="Ni5lPc9/!V[v^X%Y@.HZ"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="facial_hair_continuous"
+      attribute_type="CATEGORY"></mutation><field name="attribute_name">facial_hair_continuous</field><value
+      name="attribute_type"><block type="true_false_type_selector" id="W8WTx5lusW5CMLZFz~Pt"></block></value><next><block
+      type="attribute_display" id="yu/jjzzIIc%V@YTRm|?2"><field name="order">vo</field><field
+      name="prefix">it is</field><field name="first_element">value</field><field name="infix">that</field><field
+      name="second_element">object</field><field name="postfix">'s facial hair is
+      ear to ear below the nose</field></block></next></block></statement></block></statement></block><block
+      type="unattributed_rule" id="z%K7H:2GbPpBT@fw|Q)V" x="63" y="349"><statement
+      name="conditions"><block type="object_category" id="FWyGmaitb@{Ye0_[qZx]"><value
+      name="object"><block type="variable" id="IrC%DsH!.Qumn:1r}n?G"><field name="variable_name">Person</field></block></value><value
+      name="category"><block type="category_selector" id="vs#E?~I:Go_[Z[7zq7},"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="numerical_constraint"
+      id="twC)6rmgQkCfIz.)=Ikk"><field name="operator">gte</field><value name="first_comparator"><block
+      type="variable" id="+/]Qt27w.~T2.@=;:@ur"><field name="variable_name">Length</field></block></value><value
+      name="second_comparator"><block type="number_value" id="5r+uuAcB,3qQ?VxSwEL7"><field
+      name="value">5</field></block></value><next><block type="attribute_selector"
+      id="dUt_w/Uqvh~G;W|$[.Yr"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="facial_hair_length_mm"
+      attributetype="# Number" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s facial hair is</field><field name="postfix">mm in length</field><value
+      name="first_element"><block type="variable" id="cJ+($zKB-ReWPL+ysaqC"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="K$s!7OT.ox5CE6Yx,d3i"><field name="variable_name">Length</field></block></value><next><block
+      type="attribute_selector" id="TDy3oH^mH`h;yBk9O-|g"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="facial_hair_continuous" attributetype="Checkmark True / False"
+      attributeorder="vo"></mutation><field name="prefix">it is</field><field name="infix">that</field><field
+      name="postfix">'s facial hair is ear to ear below the nose</field><value name="first_element"><block
+      type="true_value" id=")kl*gduf+^J;D*pgz_vG"></block></value><value name="second_element"><block
+      type="variable" id="O[R`xyfiIHY6q%MGr6+:"><field name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="N(]x%qpJjsngAq0U;x`9"><value
+      name="rule"><block type="doc_selector" id="@JlH4IQn]Ri,9Fk!~z$|"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1__para_b_section"></mutation><field name="doc_part_name">BTA
+      1.b</field></block></value><statement name="statement"><block type="attribute_selector"
+      id="dSh)r%m/OUuzdH!5E(=v"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="bearded"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      bearded</field><value name="first_element"><block type="true_value" id="p0fA9|yTmsFXyFFCdb0s"></block></value><value
+      name="second_element"><block type="variable" id="]`*{A)#%/p/.80o)uq3;"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'blawx_attribute(person,facial_hair_continuous,boolean).
+
+      blawx_attribute_nlg(facial_hair_continuous,vo,"it is","that","''s facial hair
+      is ear to ear below the nose").
+
+      #pred facial_hair_continuous(Y,X) :: ''it is @(X) that @(Y) \''s facial hair
+      is ear to ear below the nose''.
+
+      #pred according_to(R,facial_hair_continuous(Y,X)) :: ''according to @(R), it
+      is @(X) that @(Y) \''s facial hair is ear to ear below the nose''.
+
+      #pred legally_holds(_,facial_hair_continuous(Y,X)) :: ''it legally holds that
+      it is @(X) that @(Y) \''s facial hair is ear to ear below the nose''.
+
+      opposes(facial_hair_continuous(X,true),facial_hair_continuous(X,false)).
+
+      opposes(facial_hair_continuous(X,false),facial_hair_continuous(X,true)).
+
+
+
+      according_to(sec_1__para_b_section,  bearded(Person,true)) :-
+
+      person(Person),
+
+      Length #>= 5,
+
+      facial_hair_length_mm(Person,Length),
+
+      facial_hair_continuous(Person,true).'
+- model: blawx.blawxtest
+  pk: 21
+  fields:
+    ruledoc: 12
+    test_name: are_they_bearded
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
+      id="oKTTPr8cFQ4jJLk|pBs]" x="101" y="233"><statement name="query"><block type="holds"
+      id=";~X+I|nCRz9OHErS9qlh"><statement name="statement"><block type="attribute_selector"
+      id="y`Mhq!RB0JYPP!9%tJD)"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="bearded"
+      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
+      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
+      bearded</field><value name="first_element"><block type="true_value" id="!OPSdTvd~eS,l[$@(8,u"></block></value><value
+      name="second_element"><block type="variable" id="1Yiokzjr!U)`JJ|*BHb/"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: ?- legally_holds(_,  bearded(Person,true)).

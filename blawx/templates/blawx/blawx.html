@@ -147,15 +147,19 @@
         <div class="collapse-horizontal flex-column card col-3 vh-100 p-0 collapse sticky-top" id="rightbar">
                 <nav class="card-header">
                     <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
-                      <button class="nav-link active" id="nav-output-tab" data-bs-toggle="tab" data-bs-target="#nav-output" type="button" role="tab" aria-controls="nav-output" aria-selected="true">Output</button>
-                      <button class="nav-link" id="nav-problems-tab" data-bs-toggle="tab" data-bs-target="#nav-problems" type="button" role="tab" aria-controls="nav-problems" aria-selected="false">Problems</button>
-                      <button class="nav-link" id="nav-code-tab" data-bs-toggle="tab" data-bs-target="#nav-code" type="button" role="tab" aria-controls="nav-code" aria-selected="false">Code</button>
+                        <button class="nav-link active" id="nav-code-tab" data-bs-toggle="tab" data-bs-target="#nav-code" type="button" role="tab" aria-controls="nav-code" aria-selected="false">Code</button>
+                      {% if ruledoc.tutorial %}
+                        <button class="nav-link" id="nav-tutorial-tab" data-bs-toggle="tab" data-bs-target="#nav-tutorial" type="button" role="tab" aria-controls="nav-tutorial" aria-selected="true">Tutorial</button>
+                        {% endif %}
                     </div>
                   </nav>
                   <div class="tab-content card-body" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-output" role="tabpanel" aria-labelledby="nav-output-tab"></div>
-                    <div class="tab-pane fade" id="nav-problems" role="tabpanel" aria-labelledby="nav-problems-tab"><pre id="problems"></pre></div>
-                    <div class="tab-pane fade " id="nav-code" role="tabpanel" aria-labelledby="nav-code-tab"><pre id="code"></pre></div>
+                      <div class="tab-pane fade show active" id="nav-code" role="tabpanel" aria-labelledby="nav-code-tab"><pre id="code"></pre></div>
+                    {% if ruledoc.tutorial %}
+                    <div class="tab-pane fade h-100" id="nav-tutorial" role="tabpanel" aria-labelledby="nav-tutorial-tab">
+                       {{ ruledoc.tutorial | safe }}
+                    </div>
+                    {% endif %}
                 </div>
         </div>
     </div>
