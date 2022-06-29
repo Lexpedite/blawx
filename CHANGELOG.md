@@ -10,6 +10,9 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## Since Last Release
 
+### Fixed
+* A change in how the s(CASP) library reports reasons broke the interview endpoint's relevance calculations.
+
 ### Removed
 * Pre-generated database
 
