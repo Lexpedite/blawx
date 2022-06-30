@@ -382,3 +382,11 @@ updateBlawxTest = function() {
     xhttp.send(body=JSON.stringify(payload));
     Blockly.hideChaff();
 }
+
+var show_tutorial;
+show_tutorial = function() {
+    $('#rightbar').collapse('show');
+    var tutorial_tab = $('#nav-tutorial-tab');
+    var bootstrap_tab = new bootstrap.Tab(tutorial_tab)
+    bootstrap_tab.show();
+}
