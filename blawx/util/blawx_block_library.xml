@@ -984,8 +984,18 @@
         <field name="ALIGN">LEFT</field>
         <value name="TYPE">
           <shadow type="type_null" id="QUMD94W6Ko}D7zJ/R+#1"></shadow>
-          <block type="type_other" id="4_iiW,ZUi5L-a?FprfA?">
-            <field name="TYPE">RULE</field>
+          <block type="type_group" id=".ps0g+GXsTlE7|5`GOW*">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="4_iiW,ZUi5L-a?FprfA?">
+                <field name="TYPE">RULE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="`H(ouuXwccPu8VOzJ2D%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
           </block>
         </value>
         <next>
@@ -999,8 +1009,18 @@
             </statement>
             <value name="TYPE">
               <shadow type="type_null" id="Np-MS|xxhgaP0Qep0.-j"></shadow>
-              <block type="type_other" id="S^//H2S9oeWg3,7rp/xM">
-                <field name="TYPE">RULE</field>
+              <block type="type_group" id="Ul07N:E:$kS`n-Lo{8aI">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="}k}WHC(O_~a4UX,%:9$s">
+                    <field name="TYPE">RULE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="rNV]k=Kg$M,n09qG]7{{">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
               </block>
             </value>
           </block>
