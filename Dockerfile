@@ -20,13 +20,21 @@ RUN git clone https://github.com/JanWielemaker/sCASP.git && \
 	cd sCASP && \
 	swipl -g "pack_install('.',[interactive(false)])" -t halt
 
-RUN git clone https://github.com/google/blockly blawx/blawx/static/blawx/blockly
 
 ADD ./blawx/requirements.txt blawx/blawx/requirements.txt
 
 RUN pip3 install -r blawx/blawx/requirements.txt
 
 ADD . blawx
+
+# RUN npm install blockly@8.0.1
+
+# RUN mv /node_modules/blockly /blawx/blawx/static/blawx/blockly
+
+RUN git clone https://github.com/google/blockly --branch blockly-v8.0.2 blawx/blawx/static/blawx/blockly 
+
+RUN cp /blawx/blawx/static/blawx/blockly/msg/js/en.js /blawx/blawx/static/blawx/en.js
+
 
 RUN npm install jquery
 

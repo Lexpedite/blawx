@@ -11,7 +11,10 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### Fixed
 * Overrule blocks will now accept variables in addition to section selector blocks.
+* Comments work again.
 
+### Changed
+* Blockly version temporarily fixed at 8.0.2 until comments work in current.
 
 ## [v1.3.18-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.18-alpha) 2022-06-29
 
