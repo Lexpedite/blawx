@@ -374,12 +374,18 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "defeating_rule",
-      "check": "RULE"
+      "check": [
+        "RULE",
+        "VARIABLE"
+      ]
     },
     {
       "type": "input_value",
       "name": "defeated_rule",
-      "check": "RULE"
+      "check": [
+        "RULE",
+        "VARIABLE"
+      ]
     }
   ],
   "inputsInline": true,

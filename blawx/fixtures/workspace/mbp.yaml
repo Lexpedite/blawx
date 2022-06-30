@@ -645,8 +645,8 @@
       name="statements"><block type="overrules" id="{^;b6W6Ee:j!]agO?673"><value name="defeating_rule"><block
       type="doc_selector" id="|wN0#TiJ$-CX?dP=0$+7"><mutation xmlns="http://www.w3.org/1999/xhtml"
       section_reference="sec_1__subsec_3_section"></mutation><field name="doc_part_name">MBP
-      1.3</field></block></value></block></statement></block><block type="unnamed_variable"
-      id="fQ[lJ(`[1DiNWVt*i~p~" x="365" y="939"></block></xml>
+      1.3</field></block></value><value name="defeated_rule"><block type="unnamed_variable"
+      id="fQ[lJ(`[1DiNWVt*i~p~"></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_category(vehicle).
 
       #pred vehicle(X) :: ''@(X) is a vehicle''.
@@ -716,10 +716,7 @@
       not vehicles_shown_on_schedule(Policy,Vehicle).
 
 
-      overrules(sec_1__subsec_3_section,).
-
-
-      _.'
+      overrules(sec_1__subsec_3_section,_).'
 - model: blawx.workspace
   pk: 110
   fields:
