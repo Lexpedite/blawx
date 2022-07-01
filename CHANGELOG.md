@@ -9,9 +9,13 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## Since Last Release
 
+### Added
+* A tutorial based on a simplified version of the Wills example
+
 ### Fixed
 * Overrule blocks will now accept variables in addition to section selector blocks.
 * Comments work again.
+* Long contents in the rightbar makes it scrollable
 
 ### Changed
 * Blockly version temporarily fixed at 8.0.2 until comments work in current.

@@ -37,14 +37,14 @@
       the left of the screen you should see a navigation tree that shows you the sections
       of legislation\r\n                    that you will be encoding. The navigation
       tree can be hidden and revealed by clicking on its right\r\n                    border,
-      like this.</p>\r\n                <p>GIF</p>\r\n                <p>Inside the
-      navigation tree are radio buttons that allow you to choose the section you want
-      to work\r\n                    on. For this tutorial, there are only two sections,
-      the root, and section 1.</p>\r\n                <p>When you’re ready, click
-      the arrow on the right.</p>\r\n            </div>\r\n        </div>\r\n        <div
-      class=\"carousel-item\">\r\n            <div class=\"p-4 d-block w-100\">\r\n
-      \               <h3>The Encoding Process</h3>\r\n                <p>There are
-      four steps in the encoding process:</p>\r\n                <ul>\r\n                    <li>Encode
+      like this.</p>\r\n                <img class=\"w-100 d-block\" src=\"/static/blawx/docs/images/collapsing_sidebars.gif\"></img>\r\n
+      \               <p>Inside the navigation tree are radio buttons that allow you
+      to choose the section you want to work\r\n                    on. For this tutorial,
+      there are only two sections, the root, and section 1.</p>\r\n                <p>When
+      you’re ready, click the arrow on the right.</p>\r\n            </div>\r\n        </div>\r\n
+      \       <div class=\"carousel-item\">\r\n            <div class=\"p-4 d-block
+      w-100\">\r\n                <h3>The Encoding Process</h3>\r\n                <p>There
+      are four steps in the encoding process:</p>\r\n                <ul>\r\n                    <li>Encode
       the vocabulary of your law</li>\r\n                    <li>Use that vocabulary
       to encode facts, and rules</li>\r\n                    <li>Test your code</li>\r\n
       \                   <li>Use your code</li>\r\n                </ul>\r\n                <p>This
@@ -63,12 +63,11 @@
       class=\"carousel-item\">\r\n            <div class=\"p-4 d-block w-100\">\r\n
       \               <h3>Step 1: The Person Category</h3>\r\n                <p>To
       start, open the “Primary” drawer and drag a fact block onto the workspace.</p>\r\n\r\n
-      \               <p> GIF</p>\r\n\r\n                <p> Then open the “Categories”
-      drawer and drag a new category block onto the workspace.</p>\r\n\r\n                <p>
-      GIF</p>\r\n\r\n                <p> Now change the text in the new category block
-      to read “person”. Note that it must start with a\r\n                    lowercase
-      letter.</p>\r\n\r\n                <p> Your code should now look like this:</p>\r\n\r\n
-      \               <p> PNG</p>\r\n\r\n                <p> Click the “Save” button
+      \               <p> Then open the “Categories” drawer and drag a new category
+      block onto the workspace.</p>\r\n\r\n                <p> Now change the text
+      in the new category block to read “person”. Note that it must start with a\r\n
+      \                   lowercase letter.</p>\r\n\r\n                <img src=\"/static/blawx/tutorials/wills/person_category.gif\"
+      class=\"d-block w-100\"></img>\r\n\r\n                <p> Click the “Save” button
       at the top of the screen before you continue.</p>\r\n            </div>\r\n
       \       </div>\r\n\r\n\r\n        <div class=\"carousel-item\">\r\n            <div
       class=\"p-4 d-block w-100\">\r\n                <h3>Step 1: The Age Attribute</h3>\r\n
