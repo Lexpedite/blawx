@@ -1,0 +1,303 @@
+- model: blawx.ruledoc
+  pk: 14
+  fields:
+    ruledoc_name: Wills Tutorial
+    rule_text: "Wills Act\r\n\r\n1. A person over the age of 18 may make a will."
+    scasp_encoding: ''
+    tutorial: "<div id=\"carouselExampleIndicators\" class=\"carousel carousel-dark
+      slide h-100\" data-bs-interval=\"false\">\r\n    <div class=\"carousel-indicators\">\r\n
+      \       <button type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide-to=\"0\" class=\"active\"\r\n            aria-current=\"true\"
+      aria-label=\"Slide 1\"></button>\r\n        <button type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide-to=\"1\"\r\n            aria-label=\"Slide 2\"></button>\r\n        <button
+      type=\"button\" data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"2\"\r\n
+      \           aria-label=\"Slide 3\"></button>\r\n        <button type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"3\"\r\n            aria-label=\"Slide
+      4\"></button>\r\n        <button type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide-to=\"4\"\r\n            aria-label=\"Slide 5\"></button>\r\n        <button
+      type=\"button\" data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"5\"\r\n
+      \           aria-label=\"Slide 6\"></button>\r\n        <button type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"6\"\r\n            aria-label=\"Slide
+      7\"></button>\r\n        <button type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide-to=\"7\"\r\n            aria-label=\"Slide 8\"></button>\r\n        <button
+      type=\"button\" data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"8\"\r\n
+      \           aria-label=\"Slide 9\"></button>\r\n        <button type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"9\"\r\n            aria-label=\"Slide
+      10\"></button>\r\n        <button type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide-to=\"10\"\r\n            aria-label=\"Slide 11\"></button>\r\n
+      \       <button type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide-to=\"11\"\r\n            aria-label=\"Slide 12\"></button>\r\n
+      \   </div>\r\n    <div class=\"carousel-inner h-100\">\r\n        <div class=\"carousel-item
+      active\">\r\n            <div class=\"p-4 d-block w-100\">\r\n                <h3>Welcome</h3>\r\n
+      \               <p>Welcome to this brief tutorial for Blawx!</p>\r\n                <p>It
+      should take about 15 minutes to complete.</p>\r\n                <p>When you’re
+      ready, click the arrow on the right.</p>\r\n            </div>\r\n        </div>\r\n
+      \       <div class=\"carousel-item\">\r\n            <div class=\"p-4 d-block
+      w-100\">\r\n                <h3>The Navigation Tree</h3>\r\n                <p>On
+      the left of the screen you should see a navigation tree that shows you the sections
+      of legislation\r\n                    that you will be encoding. The navigation
+      tree can be hidden and revealed by clicking on its right\r\n                    border,
+      like this.</p>\r\n                <img class=\"w-100 d-block\" src=\"/static/blawx/tutorials/wills/images/navigation_tree.gif\"></img>\r\n
+      \               <p>Inside the navigation tree are radio buttons that allow you
+      to choose the section you want to work\r\n                    on. For this tutorial,
+      there are only two sections, the root, and section 1.</p>\r\n                <p>When
+      you’re ready, click the arrow on the right.</p>\r\n            </div>\r\n        </div>\r\n
+      \       <div class=\"carousel-item\">\r\n            <div class=\"p-4 d-block
+      w-100\">\r\n                <h3>The Encoding Process</h3>\r\n                <p>There
+      are four steps in the encoding process:</p>\r\n                <ul>\r\n                    <li>Encode
+      the vocabulary of your law</li>\r\n                    <li>Use that vocabulary
+      to encode facts, and rules</li>\r\n                    <li>Test your code</li>\r\n
+      \                   <li>Use your code</li>\r\n                </ul>\r\n                <p>This
+      tutorial will take you through all of those steps.</p>\r\n            </div>\r\n
+      \       </div>\r\n        <div class=\"carousel-item\">\r\n            <div
+      class=\"p-4 d-block w-100\">\r\n                <h3>Step 1: Encoding Vocabulary</h3>\r\n
+      \               <p>Blawx models the vocabulary of your law using categories
+      and attributes. You create categories\r\n                    (like “dog”) with
+      attributes (like “size” and “colour”), and then you can use those to describe\r\n
+      \                   objects (like “clifford”) with values (like “big” and “red”).</p>\r\n\r\n
+      \               <p> Open the navigation tree, and select section 1. It reads
+      “A person over the age of 18 may make a\r\n                    will.”</p>\r\n\r\n
+      \               <p> We will model this as a single category for people, and
+      two attributes for age and whether the\r\n                    user is entitled
+      to make a will.</p>\r\n            </div>\r\n        </div>\r\n\r\n\r\n        <div
+      class=\"carousel-item\">\r\n            <div class=\"p-4 d-block w-100\">\r\n
+      \               <h3>Step 1: The Person Category</h3>\r\n                <p>To
+      start, open the “Primary” drawer and drag a fact block onto the workspace.</p>\r\n\r\n
+      \               <p> Then open the “Categories” drawer and drag a new category
+      block onto the workspace.</p>\r\n\r\n                <p> Now change the text
+      in the new category block to read “person”. Note that it must start with a\r\n
+      \                   lowercase letter.</p>\r\n\r\n                <img src=\"/static/blawx/tutorials/wills/images/person_category.gif\"
+      class=\"d-block w-100\"></img>\r\n\r\n                <p> Click the “Save” button
+      at the top of the screen before you continue.</p>\r\n            </div>\r\n
+      \       </div>\r\n\r\n\r\n        <div class=\"carousel-item\">\r\n            <div
+      class=\"p-4 d-block w-100\">\r\n                <h3>Step 1: The Age Attribute</h3>\r\n
+      \               <p>Now we need to describe for Blawx that the category of Person
+      has an attribute called “age”.</p>\r\n                <img src=\"/static/blawx/tutorials/wills/images/age_attribute.gif\"
+      class=\"d-block w-100\"></img>\r\n\r\n                <p> Start by dragging
+      a category attribute block from the Categories drawer, and adding it below the\r\n
+      \                   new category block. To tell this block what category we
+      are adding attributes to, open the Known Categories drawer\r\n                    and
+      connect the “person” category selector block.</p>\r\n\r\n                <p>
+      To create the age attribute, open the “categories” drawer, drag out a new attribute
+      block and\r\n                    put it inside the category attribute block.
+      Then change the text for the name of the attribute from “attribute name” to
+      “age”. Note that it\r\n                    must start with a lowercase letter.</p>\r\n\r\n
+      \               <p> Next, to indicate that the values in the age attribute should
+      be numbers, open the “Data Types” drawer of the toolbox, and drag out and connect\r\n
+      \                   the “Number” datatype selector block.</p>\r\n\r\n            </div>\r\n
+      \       </div>\r\n\r\n\r\n        <div class=\"carousel-item\">\r\n            <div
+      class=\"p-4 d-block w-100\">\r\n                <h3>Step 1: The Eligible Attribute</h3>\r\n
+      \               <p>Now we need to describe for Blawx that the category of Person
+      has an attribute called “eligible”.\r\n                </p>\r\n                <img
+      src=\"/static/blawx/tutorials/wills/images/eligible_attribute.gif\" class=\"d-block
+      w-100\"></img>\r\n\r\n                <p> To create the “eligible” attribute,
+      open the “categories” drawer, and drag a new attribute block\r\n                    and
+      put it inside the existing category attribute block below the “age” new attribute
+      block. Now change the text for the name of the attribute from “attribute name”
+      to “eligible”. Note that\r\n                    it must start with a lowercase
+      letter.</p>\r\n\r\n                <p> Next, to indicate that the values in
+      the age attribute should be either true or false, open the “Data Types” drawer
+      of the toolbox, and drag out and connect the “True / False” datatype\r\n                    selector
+      block.</p>\r\n\r\n                <p> Click the “Save” button at the top of
+      the screen before you continue.</p>\r\n            </div>\r\n        </div>\r\n\r\n\r\n
+      \       <div class=\"carousel-item\">\r\n            <div class=\"p-4 d-block
+      w-100\">\r\n                <h3>Step 1: Customizing Attributes</h3>\r\n\r\n
+      \               <img src=\"/static/blawx/tutorials/wills/images/customize_attributes.gif\"
+      class=\"d-block w-100\"></img>\r\n\r\n                <p>If you click on the
+      “Known Attributes” drawer (remember to click “Save” first), you should see\r\n
+      \                   two default blocks for the age and eligible attributes.
+      We will now customize how these blocks appear in the interface, and in explanations,
+      to make\r\n                    them easier to understand.</p>\r\n\r\n                <p>
+      Start by dragging two attribute display blocks from the Categories drawer, and
+      placing them\r\n                    directly below each of the two new attribute
+      blocks.</p>\r\n                \r\n                <p> Under the “age” attribute,
+      leave the first text field black, set the second text field to “is”,\r\n                        and
+      set the last text field to “years of age”. Your code should now look like this:</p>\r\n
+      \   \r\n                <p> For the attribute display block under the “eligible”
+      attribute, change the value for “Appearing\r\n                    as” to “value,
+      then object”, to indicate that we want the word “true” or “false” to appear\r\n
+      \                   before the name of the person object. Then change the text
+      of the three fields to read “it is”,\r\n                    “that”, and “is
+      eligible to make a will”, respectively.</p>\r\n\r\n                <p> Click
+      the “Save” button at the top of the screen, and \r\n                    click
+      on the “Known Attributes” drawer of the toolbox to see how the attribute blocks
+      have\r\n                    been changed.</p>\r\n            </div>\r\n        </div>\r\n\r\n\r\n
+      \       <div class=\"carousel-item\">\r\n            <div class=\"p-4 d-block
+      w-100\">\r\n                <h3>Step 2: Encoding Rules</h3>\r\n                <p>Now
+      that we have encoded the vocabulary present in section 1, we can encode the
+      rule in section\r\n                    1. Section 1 reads “A person over the
+      age of 18 may make a will.” Because we have told Blawx\r\n                    about
+      people, ages, and eligibility, we can create a rule that expresses this idea.</p>\r\n\r\n
+      \               <p> The rule has conditions, and a conclusion. The conditions
+      of our rule\r\n                    are that there is a person over the age of
+      18. To express that idea in Blawx, we break it into\r\n                    three
+      parts that are possible using the vocabulary provided.</p>\r\n                <ul>\r\n
+      \                   <li>\"Someone\" is a person</li>\r\n                    <li>That
+      \"someone\" has an \"age\"</li>\r\n                    <li>That \"age\" is at
+      least 18</li>\r\n                </ul>\r\n\r\n                <p> The conclusion
+      can be expressed like this:</p>\r\n                <ul>\r\n                    <li>It
+      is true that \"someone\" is eligible to make a will</li>\r\n                </ul>\r\n
+      \           </div>\r\n        </div>\r\n\r\n\r\n        <div class=\"carousel-item\">\r\n
+      \           <div class=\"p-4 d-block w-100\">\r\n                <h3>Step 2:
+      Rule Conditions</h3>\r\n\r\n                <img src=\"/static/blawx/tutorials/wills/images/rule.gif\"
+      class=\"d-block w-100\"></img>\r\n\r\n\r\n                <p> To start drafting
+      our rule, we drag a rule block pre-loaded with an\r\n                    according
+      to block from the Primary drawer.\r\n                </p>\r\n\r\n                <p>To
+      encode the idea “someone is a person” as a condition, we will use an object
+      category block\r\n                    from the Objects drawer, and add it to
+      the conditions of our rule. We will then take the\r\n                    category
+      selector for the “person” category from the Known Categories drawer, and a named\r\n
+      \                   variable from the Variables” drawer, and use them to fill
+      in the inputs in the object category\r\n                    block. We will then
+      change the name of the named Variable to “Someone”.\r\n                </p>\r\n\r\n
+      \               <p> Note that the name of the variable must start with a capital
+      letter.</p>\r\n\r\n                <p> To encode the idea “that someone has
+      an age”, we will use the age attribute block we created in\r\n                    the
+      Known Attributes drawer, with two named variable blocks from the Variables drawer,
+      named\r\n                    “Someone” and “Age”, respectively.\r\n\r\n                <p>
+      To encode the idea “that age is at least 18”, we will use the numerical constraint
+      block from\r\n                    the Data Statements / Number drawer of the
+      toolbox, a named Variable from the variables drawer\r\n                    named
+      “Age”, and a number value from the Data Values drawer set to 18. We will choose
+      “greater\r\n                    than or the same value as” as the comparison
+      type.</p>\r\n            </div>\r\n        </div>\r\n\r\n\r\n        <div class=\"carousel-item\">\r\n
+      \           <div class=\"p-4 d-block w-100\">\r\n                <h3>Step 2:
+      Rule Conclusion</h3>\r\n\r\n                <img src=\"/static/blawx/tutorials/wills/images/rule.gif\"
+      class=\"d-block w-100\"></img>\r\n\r\n                <p>\r\n                    To
+      encode the conclusion, that this “someone” is entitled to make a will, we will
+      use the\r\n                    “entitled” attribute block from the Known Attributes
+      drawer, a named variable block named\r\n                    “Someone”, and the
+      True value block from the Data Values drawer.</p>\r\n\r\n                <p>
+      Click “Save” at the top of the screen before continuing.</p>\r\n            </div>\r\n
+      \       </div>\r\n\r\n        <div class=\"carousel-item\">\r\n            <div
+      class=\"p-4 d-block w-100\">\r\n                <h3>Step 3: Testing</h3>\r\n
+      \               <p>Make sure that you have clicked “Save” at the top of the
+      screen.</p>\r\n\r\n                <p> Then, click “Exit” at the top of the
+      screen, and then click the link named “example”\r\n                    under
+      the heading “Tests” in the project screen.</p>\r\n\r\n                <p> Once
+      there, click the “Tutorial” at the top of the page to continue this tutorial.</p>\r\n
+      \           </div>\r\n        </div>\r\n\r\n\r\n\r\n    </div>\r\n<button class=\"carousel-control-prev\"
+      type=\"button\" data-bs-target=\"#carouselExampleIndicators\" data-bs-slide=\"prev\">\r\n
+      \   <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\r\n
+      \   <span class=\"visually-hidden\">Previous</span>\r\n</button>\r\n<button
+      class=\"carousel-control-next\" type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide=\"next\">\r\n    <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\r\n
+      \   <span class=\"visually-hidden\">Next</span>\r\n</button>\r\n</div>"
+- model: blawx.workspace
+  pk: 121
+  fields:
+    ruledoc: 14
+    workspace_name: root_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 122
+  fields:
+    ruledoc: 14
+    workspace_name: sec_1_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"></xml>
+    scasp_encoding: ''
+- model: blawx.blawxtest
+  pk: 22
+  fields:
+    ruledoc: 14
+    test_name: example
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"></xml>
+    scasp_encoding: ''
+    tutorial: "<div id=\"carouselExampleIndicators\" class=\"carousel carousel-dark
+      slide h-100\" data-bs-interval=\"false\">\r\n    <div class=\"carousel-indicators\">\r\n
+      \       <button type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide-to=\"0\" class=\"active\"\r\n            aria-current=\"true\"
+      aria-label=\"Slide 1\"></button>\r\n        <button type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide-to=\"1\"\r\n            aria-label=\"Slide 2\"></button>\r\n        <button
+      type=\"button\" data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"2\"\r\n
+      \           aria-label=\"Slide 3\"></button>\r\n        <button type=\"button\"
+      data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"3\"\r\n            aria-label=\"Slide
+      4\"></button>\r\n        <button type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide-to=\"4\"\r\n            aria-label=\"Slide 5\"></button>\r\n        <button
+      type=\"button\" data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"5\"\r\n
+      \           aria-label=\"Slide 6\"></button>\r\n        \r\n    </div>\r\n    <div
+      class=\"carousel-inner h-100\">\r\n        <div class=\"carousel-item active\">\r\n
+      \           <div class=\"p-4 d-block w-100\">\r\n                <h3>Step 3:
+      Testing</h3>\r\n                <p>Now that you have encoded the vocabulary,
+      and used that vocabulary to encode rules,\r\n                    you can use
+      the same vocabulary to set out a fact scenario, and ask a question about that\r\n
+      \                   fact scenario.</p>\r\n                <p>This can be used
+      to see if the rules are behaving in the way expected.</p>\r\n                <p>In
+      this example, we will create a person, give them an age, ask if they can make
+      a will,\r\n                    and see what happens when we change their age.</p>\r\n
+      \               <p>Click the arrow on the right when you are ready to get started.</p>\r\n
+      \           </div>\r\n        </div>\r\n        <div class=\"carousel-item\">\r\n
+      \           <div class=\"p-4 d-block w-100\">\r\n                <h3>Step 3:
+      Creating Objects and Attributes</h3>\r\n                <img src=\"/static/blawx/tutorials/wills/images/jane_is_12.gif\"
+      class=\"d-block w-100\"></img>\r\n                <p>To describe our fact scenario,
+      that there is a person named Jane who is 12 years of age,\r\n                    we
+      will drag a Fact block from the Primary drawer. Then we will add a new object
+      block from\r\n                    the Objects drawer, and edit the field to
+      give the new object the name \"jane\".</p>\r\n                    <p>Note that
+      the names of objects must start with lowercase letters.</p>\r\n                    <p>To
+      say that Jane is 12 years of age, we will drag the age attribute block from
+      the Known\r\n                        Attributes drawer, and add it to the fact
+      block. In its two inputs, we will add the \"jane\"\r\n                        object
+      selector block from the known objects drawer, and a number value from the data
+      Values\r\n                        drawer. The number field will then be set
+      to 12.</p>\r\n                        <p>Click \"save\" at the top of the screen,
+      and then click on the right to continue.</p>\r\n            </div>\r\n        </div>\r\n
+      \       <div class=\"carousel-item\">\r\n            <div class=\"p-4 d-block
+      w-100\">\r\n                <h3>Step 3: Asking Questions</h3>\r\n                <img
+      src=\"/static/blawx/tutorials/wills/images/jane_question_1.gif\" class=\"d-block
+      w-100\"></img>\r\n                <p>Now that we have our fact scenario, we
+      can ask whether jane is eligible to write a will.\r\n                    To
+      do that, we grab a question block with an attacked holds block from the primary
+      drawer.\r\n                    Then we drag the eligible attribute block from
+      the known attributes drawer and add it to the holds block.\r\n                    For
+      the two inputs we choose the true block from the data values drawer, and the
+      jane object selector\r\n                    block from the known objects block.\r\n
+      \               </p>\r\n                <p>Having posed the question, we can
+      click \"Save\" at the top of the screen, and then click \"Run\" to have blawx\r\n
+      \                   answer the question. The answer will be \"no models\" as
+      there is no way to prove the statement in the question\r\n                    is
+      true. Click on the \"Output\" tab above to see that the answer is \"No models\",
+      and then return to the tutorial\r\n                    tab.\r\n                </p>\r\n
+      \           </div>\r\n        </div>\r\n        <div class=\"carousel-item\">\r\n
+      \           <div class=\"p-4 d-block w-100\">\r\n                <h3>Step 3:
+      Getting Answers</h3>\r\n                <img src=\"/static/blawx/tutorials/wills/images/jane_question_2.gif\"
+      class=\"d-block w-100\"></img>\r\n                <p>Now let's see what happens
+      when we change Jane's age to 20. Click on the number value block\r\n                    for
+      Jane's age in the facts, and change it to 20. Click \"Save\", click \"Run\",
+      and click on the \"Output\"\r\n                    tab above to see the response.
+      An answer is provided with a natural language explanation, and links\r\n                    to
+      the text of the rule that generated that result.\r\n                </p>\r\n
+      \           </div>\r\n        </div>\r\n        <div class=\"carousel-item\">\r\n
+      \           <div class=\"p-4 d-block w-100\">\r\n                <h3>Step 4:
+      Building An App</h3>\r\n                <img src=\"/static/blawx/tutorials/wills/images/blawxbot.gif\"
+      class=\"d-block w-100\"></img>\r\n                <p>Now that we have written
+      and tested our code, we can build an app.</p>\r\n                <p>Start by
+      deleting the fact block from your test. This can be done by clicking on the
+      fact block\r\n                    and clicking the \"delete\" key on your keyboard,
+      or by right-clicking on the fact block and choosing\r\n                    \"Delete
+      6 Blocks.\"\r\n                </p>\r\n                <p>Now, delete the jane
+      object selector block in the question, and replace it with a named variable.
+      Set the\r\n                    name of the variable to \"Someone\". Note that
+      the name must start with an uppercase letter.\r\n                </p>\r\n                <p>Click
+      \"Save\", and click \"Bot\". This will start a blawxbot user interface. If you
+      give the answers \"yes\", \"jane\",\r\n                    \"yes\", and \"20\"
+      in that order, (note that they all must be lowercase), Blawxbot will answer
+      that Jane is\r\n                    eligible to make a will, and explain why.\r\n
+      \               </p>\r\n            </div>\r\n        </div>\r\n\r\n        <div
+      class=\"carousel-item\">\r\n            <div class=\"p-4 d-block w-100\">\r\n
+      \               <h3>Congratulations!</h3>\r\n                <p>You have completed
+      the Blawx tutorial!</p>\r\n                <p>Hopefully this tutorial has given
+      you an idea how you can use Blawx to encode the terms\r\n                    used
+      in legislation, encode the rules expressed in that legislation, test that encoding,\r\n
+      \                   and then use that encoding to power applications.\r\n                </p>\r\n
+      \               <p>Your feedback is extremely valued, and welcome. Please feel
+      free to write\r\n                    <a href=\"mailto:info@lexpedite.ca\">info@lexpedite.ca</a>
+      and let us know if you have any questions or concerns with Blawx or\r\n                    this
+      tutorial.\r\n                </p>\r\n            </div>\r\n        </div>\r\n\r\n\r\n\r\n
+      \   </div>\r\n<button class=\"carousel-control-prev\" type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide=\"prev\">\r\n    <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\r\n
+      \   <span class=\"visually-hidden\">Previous</span>\r\n</button>\r\n<button
+      class=\"carousel-control-next\" type=\"button\" data-bs-target=\"#carouselExampleIndicators\"
+      data-bs-slide=\"next\">\r\n    <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\r\n
+      \   <span class=\"visually-hidden\">Next</span>\r\n</button>\r\n</div>"

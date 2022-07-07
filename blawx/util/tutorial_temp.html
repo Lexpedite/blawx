@@ -40,7 +40,7 @@
                 <p>On the left of the screen you should see a navigation tree that shows you the sections of legislation
                     that you will be encoding. The navigation tree can be hidden and revealed by clicking on its right
                     border, like this.</p>
-                <img class="w-100 d-block" src="/static/blawx/docs/images/collapsing_sidebars.gif"></img>
+                <img class="w-100 d-block" src="/static/blawx/tutorials/wills/images/navigation_tree.gif"></img>
                 <p>Inside the navigation tree are radio buttons that allow you to choose the section you want to work
                     on. For this tutorial, there are only two sections, the root, and section 1.</p>
                 <p>When you’re ready, click the arrow on the right.</p>
@@ -135,33 +135,27 @@
         <div class="carousel-item">
             <div class="p-4 d-block w-100">
                 <h3>Step 1: Customizing Attributes</h3>
+
+                <img src="/static/blawx/tutorials/wills/images/customize_attributes.gif" class="d-block w-100"></img>
+
                 <p>If you click on the “Known Attributes” drawer (remember to click “Save” first), you should see
-                    these two default blocks.</p>
-
-                <p> PNG</p>
-
-                <p> We will now customize how these blocks appear in the interface, and in explanations, to make
+                    two default blocks for the age and eligible attributes. We will now customize how these blocks appear in the interface, and in explanations, to make
                     them easier to understand.</p>
 
                 <p> Start by dragging two attribute display blocks from the Categories drawer, and placing them
-                    directly below each of the two new attribute blocks, like this:</p>
-
-                <p> GIF</p>
-
+                    directly below each of the two new attribute blocks.</p>
+                
+                <p> Under the “age” attribute, leave the first text field black, set the second text field to “is”,
+                        and set the last text field to “years of age”. Your code should now look like this:</p>
+    
                 <p> For the attribute display block under the “eligible” attribute, change the value for “Appearing
                     as” to “value, then object”, to indicate that we want the word “true” or “false” to appear
                     before the name of the person object. Then change the text of the three fields to read “it is”,
-                    “that”, and “eligible to make a will”, respectively.</p>
+                    “that”, and “is eligible to make a will”, respectively.</p>
 
-                <p> Under the “age” attribute, leave the first text field black, set the second text field to “is”,
-                    and set the last text field to “years of age”. Your code should now look like this:</p>
-
-                <p> PNG</p>
-
-                <p> Click the “Save” button at the top of the screen.</p>
-
-                <p> Now click on the “Known Attributes” drawer of the toolbox to see how the attribute blocks have
-                    been reformatted to make them easier to read.</p>
+                <p> Click the “Save” button at the top of the screen, and 
+                    click on the “Known Attributes” drawer of the toolbox to see how the attribute blocks have
+                    been changed.</p>
             </div>
         </div>
 
@@ -173,23 +167,18 @@
                     1. Section 1 reads “A person over the age of 18 may make a will.” Because we have told Blawx
                     about people, ages, and eligibility, we can create a rule that expresses this idea.</p>
 
-                <p> Start by opening the Primary drawer of the toolbox and dragging out an rule block pre-filled
-                    with an according to block, like this:</p>
-
-                <p> GIF</p>
-
-                <p> The rule starts with the conditions, and ends with the conclusions. The conditions of our rule
+                <p> The rule has conditions, and a conclusion. The conditions of our rule
                     are that there is a person over the age of 18. To express that idea in Blawx, we break it into
                     three parts that are possible using the vocabulary provided.</p>
                 <ul>
-                    <li>Someone is a person</li>
-                    <li>That someone has an age</li>
-                    <li>That age is at least 18</li>
+                    <li>"Someone" is a person</li>
+                    <li>That "someone" has an "age"</li>
+                    <li>That "age" is at least 18</li>
                 </ul>
 
                 <p> The conclusion can be expressed like this:</p>
                 <ul>
-                    <li>That someone is eligible to make a will</li>
+                    <li>It is true that "someone" is eligible to make a will</li>
                 </ul>
             </div>
         </div>
@@ -198,29 +187,31 @@
         <div class="carousel-item">
             <div class="p-4 d-block w-100">
                 <h3>Step 2: Rule Conditions</h3>
+
+                <img src="/static/blawx/tutorials/wills/images/rule.gif" class="d-block w-100"></img>
+
+
+                <p> To start drafting our rule, we drag a rule block pre-loaded with an
+                    according to block from the Primary drawer.
+                </p>
+
                 <p>To encode the idea “someone is a person” as a condition, we will use an object category block
                     from the Objects drawer, and add it to the conditions of our rule. We will then take the
                     category selector for the “person” category from the Known Categories drawer, and a named
                     variable from the Variables” drawer, and use them to fill in the inputs in the object category
-                    block. We will then change the name of the named Variable to “Someone”. It will look like this:
+                    block. We will then change the name of the named Variable to “Someone”.
                 </p>
-
-                <p> GIF</p>
 
                 <p> Note that the name of the variable must start with a capital letter.</p>
 
                 <p> To encode the idea “that someone has an age”, we will use the age attribute block we created in
                     the Known Attributes drawer, with two named variable blocks from the Variables drawer, named
-                    “Someone” and “Age”, respectively. That looks like this:</p>
-
-                <p> GIF</p>
+                    “Someone” and “Age”, respectively.
 
                 <p> To encode the idea “that age is at least 18”, we will use the numerical constraint block from
                     the Data Statements / Number drawer of the toolbox, a named Variable from the variables drawer
                     named “Age”, and a number value from the Data Values drawer set to 18. We will choose “greater
-                    than or the same value as” as the comparison type. That looks like this:</p>
-
-                <p> GIF</p>
+                    than or the same value as” as the comparison type.</p>
             </div>
         </div>
 
@@ -228,16 +219,13 @@
         <div class="carousel-item">
             <div class="p-4 d-block w-100">
                 <h3>Step 2: Rule Conclusion</h3>
+
+                <img src="/static/blawx/tutorials/wills/images/rule.gif" class="d-block w-100"></img>
+
                 <p>
                     To encode the conclusion, that this “someone” is entitled to make a will, we will use the
                     “entitled” attribute block from the Known Attributes drawer, a named variable block named
-                    “Someone”, and the True value block from the Data Values drawer, like this:</p>
-
-                <p> GIF</p>
-
-                <p> Your rule should now look like this:</p>
-
-                <p> PNG</p>
+                    “Someone”, and the True value block from the Data Values drawer.</p>
 
                 <p> Click “Save” at the top of the screen before continuing.</p>
             </div>
@@ -248,12 +236,10 @@
                 <h3>Step 3: Testing</h3>
                 <p>Make sure that you have clicked “Save” at the top of the screen.</p>
 
-                <p> Then, click here to go to the example test in this tutorial project.</p>
-
-                <p> Or, you can click “Exit” at the top of the screen”, and then click the link named “example”
+                <p> Then, click “Exit” at the top of the screen, and then click the link named “example”
                     under the heading “Tests” in the project screen.</p>
 
-                <p> Once there, click the “Tutorial button” at the top of the page to continue this tutorial.</p>
+                <p> Once there, click the “Tutorial” at the top of the page to continue this tutorial.</p>
             </div>
         </div>
 

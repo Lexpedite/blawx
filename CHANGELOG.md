@@ -19,6 +19,7 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### Changed
 * Blockly version temporarily fixed at 8.0.2 until comments work in current.
+* The rightbor in the Code Editor has been made wider to make reading the tutorial content easier.
 
 ## [v1.3.18-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.18-alpha) 2022-06-29
 
