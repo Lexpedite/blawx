@@ -11,6 +11,7 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### Added
 * A tutorial based on a simplified version of the Wills example
+* Documentation for the Wills tutorial.
 
 ### Fixed
 * Overrule blocks will now accept variables in addition to section selector blocks.
@@ -18,6 +19,7 @@ and breaking changes will not necessarily result in changes to the main version 
 * Long contents in the rightbar makes it scrollable
 
 ### Changed
+* Documentation was updated to add the "Tutorial" button in the interface.
 * Blockly version temporarily fixed at 8.0.2 until comments work in current.
 * The rightbor in the Code Editor has been made wider to make reading the tutorial content easier.
 
