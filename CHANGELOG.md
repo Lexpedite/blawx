@@ -7,14 +7,21 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## Since Last Release
+## [v1.3.19-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.19-alpha) 2022-07-07
+
+### Added
+* A tutorial based on a simplified version of the Wills example
+* Documentation for the Wills tutorial.
 
 ### Fixed
 * Overrule blocks will now accept variables in addition to section selector blocks.
 * Comments work again.
+* Long contents in the rightbar makes it scrollable
 
 ### Changed
+* Documentation was updated to add the "Tutorial" button in the interface.
 * Blockly version temporarily fixed at 8.0.2 until comments work in current.
+* The rightbor in the Code Editor has been made wider to make reading the tutorial content easier.
 
 ## [v1.3.18-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.18-alpha) 2022-06-29
 

@@ -26,6 +26,8 @@
       * Help - This will open the Blawx Documentation
       * Save - This will save the currently selected section's code to the Blawx server
       * Exit - This will return you to the Rule screen for the current Rule.
+      * Tutorial - This appears only if the current workspace includes tutorial content, and will display
+        the tutorial pane on the right side of the screen.
 
       If you are using the Test Editor, there are three additional buttons:
 

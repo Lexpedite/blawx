@@ -42,6 +42,7 @@ class BlawxTest(models.Model):
     test_name = models.CharField(max_length=200)
     xml_content = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
+    tutorial = models.TextField(default="",blank=True)
 
     def __str__(self):
         return self.test_name

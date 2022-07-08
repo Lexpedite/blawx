@@ -1,0 +1,15 @@
+- model: blawx.docpage
+  pk: examples/wills_tutorial
+  fields:
+    title: Wills Act Tutorial
+    content: |
+      # Wills Act Tutorial
+
+      The Wills Act Tutorial  included with Blawx is [available here](/14/) (assuming it hasn't been
+      deleted from your system).
+
+      It contains a single-section rule, a single test, and no code. Instead, if you click the "Tutorial"
+      button in the button bar, it will take you through a short tutorial of how to encode your rule,
+      test it, and deploy it using BlawxBot.
+
+      If you are new to Blawx, this tutorial is a good place to start.
