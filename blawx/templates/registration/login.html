@@ -27,12 +27,11 @@
     <td>{{ form.password }}</td>
 </tr>
 </table>
-<p>If you are attempting to log in as a demonstration user,
-    the default demonstration user account is username `demo` and password `blawx2022`.
-</p>
-<input type="submit" value="login">
+<input class="btn btn-primary" type="submit" value="Login">
 <input type="hidden" name="next" value="{{ next }}">
 </form>
+<p>If you do not have an account, you can create one by clicking "Register" below!</p>
+<a href="{% url 'blawx:register' %}"><button class="btn btn-primary" >Register</button></a>
 
 <!-- {# Assumes you set up the password_reset view in your URLconf #}
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p> -->

@@ -35,4 +35,5 @@ urlpatterns = [
     path('query/<str:workspace>/<str:query>/', reasoner.run_query),
     path('<int:pk>/run/', reasoner.run_ruledoc, name="runcode"),
     path('example/<int:pk>/', views.get_example),
+    path("register/", views.register_request, name="register"),
 ]

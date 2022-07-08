@@ -3,8 +3,12 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 from django.core import serializers
 from django.http import FileResponse, HttpResponseRedirect, HttpResponseNotAllowed
+from django.shortcuts import  render, redirect
+from django.contrib.auth import login
+from django.contrib import messages
 
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
@@ -23,6 +27,18 @@ import lxml
 import tempfile
 
 # Create your views here.
+
+def register_request(request):
+	if request.method == "POST":
+		form = UserCreationForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			login(request, user)
+			messages.success(request, "Registration successful." )
+			return redirect("blawx:ruledocs")
+		messages.error(request, "Unsuccessful registration. Invalid information.")
+	form = UserCreationForm()
+	return render (request=request, template_name="registration/register.html", context={"register_form":form})
 
 class RuleDocsView(generic.ListView):
     template_name = 'blawx/index.html'
