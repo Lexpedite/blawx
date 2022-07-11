@@ -48,11 +48,13 @@
 
       ## Creating a New Project
 
-      To begin, go to [the root of your Blawx server](/), which will look something like this:
+      To begin, go to [the root of your Blawx server](/). You may need to create a user account if
+      you have not done so already. When you are logged in, the root of the server will look something like this:
       
       ![Blawx Root Screen](/static/blawx/docs/images/blawx_root_screen.png)
       
-      Once there, click "Create Rule". This will open the Project Editor screen, which will
+      Once there, click "New Project", and in the resulting drop-down choose "New Blank Project".
+      This will open the Project Editor screen, which will
       look like this:
 
       ![Project Editor Screen](/static/blawx/docs/images/project_editor_screen.png)
