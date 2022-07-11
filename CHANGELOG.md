@@ -14,6 +14,11 @@ and allows the user to create new projects from templates and tutorials.
 
 These features make it possible for Blawx to be used in a multi-user environment.
 
+### Breaking Changes
+* Note that `.blawx` files from previous versions will not work with this version. You can address this problem
+  by editing your `.blawx` files to add an `owner` field to your `ruledoc` objects, only. You can set the value
+  to any number, it will be ignored on import.
+
 ### Added
 * User registration - non-admin users can create user accounts for themselves.
 * Users can now only see and interact with projects they created.
