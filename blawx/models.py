@@ -54,12 +54,12 @@ class BlawxTest(models.Model):
             models.UniqueConstraint(fields=['ruledoc','test_name'],name='unique_test_and_ruledoc')
         ]
 
-class RuleDocTemplate(models.Model):
-    template_name = models.CharField(max_length=200)
-    yaml_content = models.TextField(default="")
+# class RuleDocTemplate(models.Model):
+#     template_name = models.CharField(max_length=200)
+#     yaml_content = models.TextField(default="")
 
-    def __str__(self):
-        return self.template_name
+#     def __str__(self):
+#         return self.template_name
 
 class Query(models.Model):
     ruledoc = models.ForeignKey(Workspace, on_delete=models.CASCADE)

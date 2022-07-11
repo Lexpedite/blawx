@@ -19,7 +19,7 @@ from rest_framework.permissions import IsAuthenticated
 # from rest_framework import permissions
 
 from .serializers import WorkspaceSerializer, CodeUpdateRequestSerializer
-from .models import Workspace, DocPage, RuleDocTemplate, RuleDoc, BlawxTest
+from .models import Workspace, DocPage, RuleDoc, BlawxTest
 
 
 from cobalt.hierarchical import Act
