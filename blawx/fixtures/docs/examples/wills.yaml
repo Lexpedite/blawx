@@ -5,10 +5,9 @@
     content: |
       # Wills Act
 
-      The Wills Act example included with Blawx is [available here](/9/) (assuming it hasn't been
-      deleted from your system).
+      All the example projects are available under the New Project button.
 
-      It is used to demonstrate the relevance reasoning features of the interview endpoint
+      The Wills Act example is used to demonstrate the relevance reasoning features of the interview endpoint
       for Blawx tests, as seen in BlawxBot.
 
       The rules set out that a person is entitled to make a will if they are over the age of 18,

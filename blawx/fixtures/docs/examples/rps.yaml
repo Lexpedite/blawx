@@ -5,10 +5,9 @@
     content: |
       # Rock Paper Scissors Act
 
-      The Rock Paper Scissors Act example included with Blawx is [available here](/2/) (assuming it hasn't been
-      deleted from your system).
+      All the example projects are available under the New Project button.
 
-      It is used to demonstrate many different features of Blawx.
+      The Rock Paper Scissors Act example is used to demonstrate many different features of Blawx.
 
       A complete run-through of how to generate the Rule Paper Scissors example from scratch
       is available as [a tutorial in the Beginner's Guide](/docs/guide/rps).
