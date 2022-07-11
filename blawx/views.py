@@ -121,19 +121,44 @@ def ruleDocImportView(request):
 
         new_object_list = list(new_objects)
         # Get the RuleDoc, remove the PK, save it, and get the PK of the saved version.
-        new_object_list[0].pk = None
-        new_object_list[0].owner = request.user
+        new_object_list[0].object.pk = None
+        new_object_list[0].object.owner = request.user
         new_object_list[0].save()
-        new_pk = new_object_list[0].pk
+        # new_pk = new_object_list[0].pk
 
         # Use the PK of the saved version to save the workspaces and tests
         for o in new_object_list[1:]:
-            o.ruledoc = new_pk
+            o.object.ruledoc = new_object_list[0].object
             o.save()
         # Send the user back to root.
         return HttpResponseRedirect('/')
     else:
         return HttpResponseNotAllowed('POST')
+
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def exampleLoadView(request,example_name):
+    # Load that file
+    example = open('/blawx/blawx/static/blawx/examples/' + example_name + ".yaml")
+    # Do the stuff in import.
+    new_objects = serializers.deserialize('yaml',example.read())
+    # print(new_objects)
+    new_object_list = list(new_objects)
+    # print(new_object_list)
+    # Get the RuleDoc, remove the PK, save it, and get the PK of the saved version.
+    new_object_list[0].object.pk = None
+    new_object_list[0].object.owner = request.user
+    new_object_list[0].save()
+    # print(new_object_list[0].object)
+    # new_pk = new_object_list[0].object.pk
+    # print(new_pk)
+    # Use the PK of the saved version to save the workspaces and tests
+    for o in new_object_list[1:]:
+        o.object.ruledoc = new_object_list[0].object
+        o.save()
+    # Send the user back to root.
+    return HttpResponseRedirect('/')
+
 
 class BlawxView(LoginRequiredMixin, generic.DetailView):
     template_name = 'blawx/blawx.html'

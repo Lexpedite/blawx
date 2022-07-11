@@ -10,11 +10,14 @@ and breaking changes will not necessarily result in changes to the main version 
 ## Since Last Release
 
 ### Added
-* User registration
+* User registration - non-admin users can create user accounts for themselves.
 * Users can now only see and interact with projects they created.
 
 ### Changed
-* Ownership of demonstration projects/tutorials has been given to the demo user (this is temporary).
+* Tutorials and Examples are now available from the New Project button.
+
+### Fixed
+* A bug in the project import method has been fixed.
 
 ## [v1.3.19-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.19-alpha) 2022-07-07
 
