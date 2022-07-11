@@ -11,6 +11,10 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### Added
 * User registration
+* Users can now only see and interact with projects they created.
+
+### Changed
+* Ownership of demonstration projects/tutorials has been given to the demo user (this is temporary).
 
 ## [v1.3.19-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.19-alpha) 2022-07-07
 

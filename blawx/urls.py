@@ -32,8 +32,8 @@ urlpatterns = [
     path('docs/<path:pk>/', views.DocumentView.as_view(), name="docs_page"),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('query/<str:workspace>/<str:query>/', reasoner.run_query),
-    path('<int:pk>/run/', reasoner.run_ruledoc, name="runcode"),
-    path('example/<int:pk>/', views.get_example),
+    # path('query/<str:workspace>/<str:query>/', reasoner.run_query),
+    # path('<int:pk>/run/', reasoner.run_ruledoc, name="runcode"),
+    # path('example/<int:pk>/', views.get_example),
     path("register/", views.register_request, name="register"),
 ]

@@ -1,6 +1,7 @@
 - model: blawx.ruledoc
   pk: 8
   fields:
+    owner: 3
     ruledoc_name: Net 30
     rule_text: "Net Thirty Act\r\n\r\n1. The payment due date of an invoice is 30
       days after the date the invoice is issued."

@@ -1,6 +1,7 @@
 - model: blawx.ruledoc
   pk: 12
   fields:
+    owner: 3
     ruledoc_name: Beard Tax Act
     rule_text: "Beard Tax Act\r\n\r\n1. In this Act, beard means any facial hair no
       shorter than 5 millimetres in\r\nlength that:\r\n  (a) occurs on or below the

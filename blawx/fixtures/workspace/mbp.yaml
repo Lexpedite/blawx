@@ -1,6 +1,7 @@
 - model: blawx.ruledoc
   pk: 13
   fields:
+    owner: 3
     ruledoc_name: Motor Breakdown Policy
     rule_text: "Motor Breakdown Policy\r\n\r\nMEANING OF WORDS \r\n1. Wherever the
       following words and phrases appear in bold in this document, they will always

@@ -1,6 +1,7 @@
 - model: blawx.ruledoc
   pk: 9
   fields:
+    owner: 3
     ruledoc_name: Wills Act
     rule_text: "Wills Act\r\n\r\n1. A person over the age of 18 may make a will.\r\n2.
       An active military member over the age of 14 may make a will."

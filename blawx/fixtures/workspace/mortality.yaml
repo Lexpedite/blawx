@@ -1,6 +1,7 @@
 - model: blawx.ruledoc
   pk: 5
   fields:
+    owner: 3
     ruledoc_name: Mortality Act
     rule_text: "Mortality Act\r\n\r\n1. Humans are mortal."
     scasp_encoding: ''
