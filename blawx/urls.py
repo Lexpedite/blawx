@@ -10,6 +10,7 @@ app_name = 'blawx'
 urlpatterns = [
     path('', views.RuleDocsView.as_view(), name='ruledocs'),
     path('import/', views.ruleDocImportView, name="import"),
+    path('load_example/<slug:example_name>/',views.exampleLoadView, name="load"),
     path('<int:pk>/', views.RuleDocView.as_view(), name='ruledoc'),
     path('<int:pk>/rule/<slug:section_name>/', views.ruleDocLegalTextView, name="ruledoc_text"),
     path('<int:pk>/edit/', views.RuleDocEditView.as_view(), name='ruledoc_edit'),
@@ -32,8 +33,8 @@ urlpatterns = [
     path('docs/<path:pk>/', views.DocumentView.as_view(), name="docs_page"),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('query/<str:workspace>/<str:query>/', reasoner.run_query),
-    path('<int:pk>/run/', reasoner.run_ruledoc, name="runcode"),
-    path('example/<int:pk>/', views.get_example),
+    # path('query/<str:workspace>/<str:query>/', reasoner.run_query),
+    # path('<int:pk>/run/', reasoner.run_ruledoc, name="runcode"),
+    # path('example/<int:pk>/', views.get_example),
     path("register/", views.register_request, name="register"),
 ]

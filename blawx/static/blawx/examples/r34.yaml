@@ -1,6 +1,7 @@
 - model: blawx.ruledoc
   pk: 4
   fields:
+    owner: 3
     ruledoc_name: Rule 34
     rule_text: "Legal Profession Professional Conduct Rules\r\n\r\nExecutive appointments\r\n34.\r\n
       \ (1) A legal practitioner must not accept any executive appointment associated

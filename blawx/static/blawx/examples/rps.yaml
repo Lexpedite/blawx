@@ -1,6 +1,7 @@
 - model: blawx.ruledoc
   pk: 2
   fields:
+    owner: 3
     ruledoc_name: Rock Paper Scissors Act
     rule_text: "Rock Paper Scissors Act\n\nPlayers\n1. A game of rock paper scissors
       has two players.\n2. There are three signs:\n  (a) Rock,\n  (b) Paper, and\n

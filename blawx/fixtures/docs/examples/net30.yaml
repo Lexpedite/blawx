@@ -5,7 +5,6 @@
     content: |
       # Net 30
 
-      The Net 30 example included with Blawx is [available here](/8/) (assuming it hasn't been
-      deleted from your system).
+      All the example projects are available under the New Project button.
 
-      It is used to demonstrate the use of dates and durations in Blawx.
+      The Net 30 example is used to demonstrate the use of dates and durations in Blawx.

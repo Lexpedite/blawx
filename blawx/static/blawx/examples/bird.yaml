@@ -1,6 +1,7 @@
 - model: blawx.ruledoc
   pk: 6
   fields:
+    owner: 3
     ruledoc_name: Bird Act
     rule_text: "Bird Act\r\n\r\n1. A Penguin is a Bird.\r\n2. If a thing is a bird,
       it flies, [penguin]{unless it is a penguin}."

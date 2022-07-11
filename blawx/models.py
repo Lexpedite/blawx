@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from .parse_an import generate_tree
 from cobalt.hierarchical import Act
 from clean.clean import generate_akn
@@ -10,6 +11,7 @@ class RuleDoc(models.Model):
     # akoma_ntoso = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
     tutorial = models.TextField(default="",blank=True)
+    owner = models.ForeignKey(User,on_delete=models.CASCADE,)
 
     def __str__(self):
         return self.ruledoc_name
@@ -52,12 +54,12 @@ class BlawxTest(models.Model):
             models.UniqueConstraint(fields=['ruledoc','test_name'],name='unique_test_and_ruledoc')
         ]
 
-class WorkspaceTemplate(models.Model):
-    template_name = models.CharField(max_length=200)
-    xml_content = models.TextField(default="")
+# class RuleDocTemplate(models.Model):
+#     template_name = models.CharField(max_length=200)
+#     yaml_content = models.TextField(default="")
 
-    def __str__(self):
-        return self.template_name
+#     def __str__(self):
+#         return self.template_name
 
 class Query(models.Model):
     ruledoc = models.ForeignKey(Workspace, on_delete=models.CASCADE)

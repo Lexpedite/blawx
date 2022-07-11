@@ -2,12 +2,39 @@
 
 {% block header_elements %}
 <div class="col-8">
-    <a href="{% url 'blawx:ruledoc_create' %}" class="btn btn-success">
+    {% comment %} <a href="{% url 'blawx:ruledoc_create' %}" class="btn btn-success">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
             <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
           </svg>
         <span class="text">New Rule</span>
+    </a> {% endcomment %}
+    <a class="dropdown">
+        <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownNewLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
+              <span class="text">New Project</span>
+        </a>
+      
+        <ul class="dropdown-menu" aria-labelledby="dropdownNewLink">
+          <li><a class="dropdown-item" href="{% url 'blawx:ruledoc_create' %}">New Blank Project</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><h6 class="dropdown-header">Tutorials</h6></li>
+          <li><a class="dropdown-item" href="/load_example/wills_tutorial/">Wills Tutorial</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><h6 class="dropdown-header">Examples</h6></li>
+          <li><a class="dropdown-item" href="/load_example/rps/">Rock Paper Scissors Act</a></li>
+          <li><a class="dropdown-item" href="/load_example/mortality/">Mortality Act</a></li>
+          <li><a class="dropdown-item" href="/load_example/beard_tax/">Beard Tax Act</a></li>
+          <li><a class="dropdown-item" href="/load_example/bird/">Bird Act</a></li>
+          <li><a class="dropdown-item" href="/load_example/net30/">Net 30</a></li>
+          <li><a class="dropdown-item" href="/load_example/r34/">Rule 34 Legal Profession Rules</a></li>
+          <li><a class="dropdown-item" href="/load_example/siblings/">Siblings Act</a></li>
+          <li><a class="dropdown-item" href="/load_example/wills/">Wills Act</a></li>
+          <li><a class="dropdown-item" href="/load_example/mbp/">Motor Breakdown Policy</a></li>
+        </ul>
     </a>
     <a href="javascript:void(0);" class="btn btn-secondary" onclick="getLoadFile()">
                 
