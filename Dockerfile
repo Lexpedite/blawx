@@ -18,6 +18,7 @@ RUN pip3 install Django
 
 RUN git clone https://github.com/JanWielemaker/sCASP.git && \
 	cd sCASP && \
+	git checkout 4a75bdaddbe17ad46b68f9a715d138fbddb83b78 && \
 	swipl -g "pack_install('.',[interactive(false)])" -t halt
 
 
