@@ -28,17 +28,21 @@ import tempfile
 
 # Create your views here.
 
+
 def register_request(request):
-	if request.method == "POST":
-		form = UserCreationForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			login(request, user)
-			messages.success(request, "Registration successful." )
-			return redirect("blawx:ruledocs")
-		messages.error(request, "Unsuccessful registration. Invalid information.")
-	form = UserCreationForm()
-	return render (request=request, template_name="registration/register.html", context={"register_form":form})
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registration successful.")
+            return redirect("blawx:ruledocs")
+        messages.error(request, "Unsuccessful registration. Invalid information.")
+    if 'X-Forwarded-Email' in request.headers:
+        form = UserCreationForm(initial={'username': request.headers['X-Forwarded-Email']})
+    else:
+        form = UserCreationForm()
+    return render (request=request, template_name="registration/register.html", context={"register_form":form})
 
 class RuleDocsView(LoginRequiredMixin, generic.ListView):
     template_name = 'blawx/index.html'

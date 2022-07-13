@@ -7,6 +7,11 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## Since Last Release
+
+### Added
+* The user registration page will set the default username based on an X-Forwarded-Email header if present.
+
 ## [v1.3.20-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.20-alpha) 2022-07-11
 
 This release adds user registration, restricts access to projects that the user created,
