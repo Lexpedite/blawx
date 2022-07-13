@@ -638,9 +638,15 @@
                             if (fact_scenario['Values'][value]['Object'] == fact_scenario['Objects'][object]['Object']) {
                                 output_html += "<ul><li>" + fact_scenario['Values'][value]['Attribute'] + ": " + fact_scenario['Values'][value]['Value'] + "</li></ul>"
                             }
+                            if (closed_attributes[fact_scenario['Values'][value]['Object']].includes(fact_scenario['Values'][value]['Attribute'])) {
+                                output_html += "<ul><li>no further values</li></ul>"
+                            }
                         }
                         output_html += "</li></ul>"
                     }
+                }
+                if (closed_categories.includes(parsed_ontology['Categories'][category])) {
+                    output_html += "<ul><li>no further members</li></ul>"
                 }
                 output_html += "</li>"
             }
