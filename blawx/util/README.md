@@ -1,5 +1,7 @@
 # Util Files
 
+## Block Definitions
+
 Blawx's user interface elements are implemented using Blockly Developer Tools, and
 online eat-your-own-dogfood graphical approach to generating block definitions.
 
@@ -29,6 +31,10 @@ what we need to be able to use the Developer Tools.
 Note that the developer tools are buggy. You will frequently need to refresh in order
 to get the workspace generator to display the blocks correctly. Also, the workspace
 generator is not used to generate Blawx's workspace, or toolbox, because the workspace
-is always blank to start, and the toolbox includes nested and customzied drawers, neither
+is always blank to start, and the toolbox includes nested and customized drawers, neither
 of which can be built inside BDT.
 
+## LDAP.pl
+
+LDAP.pl is a more complicated version of the defeasibility library that is provided for
+reference when we eventually upgrade ldap.py.
