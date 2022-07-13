@@ -275,13 +275,13 @@ class DocumentView(generic.DetailView):
         return DocPage.objects.all()
 
 
-class WorkspaceAPIViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows Workspaces to be viewed or edited.
-    """
-    queryset = Workspace.objects.all()
-    serializer_class = WorkspaceSerializer
-    permission_classes = [permissions.IsAuthenticated]
+# class WorkspaceAPIViewSet(viewsets.ModelViewSet):
+#     """
+#     API endpoint that allows Workspaces to be viewed or edited.
+#     """
+#     queryset = Workspace.objects.all()
+#     serializer_class = WorkspaceSerializer
+#     permission_classes = [permissions.IsAuthenticated]
 
 
 @api_view(['POST'])
