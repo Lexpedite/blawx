@@ -18,8 +18,6 @@ from .models import Workspace, RuleDoc, BlawxTest
 from .ldap import ldap_code
 from .dates import scasp_dates
 
-# from pprint import pprint
-
 # Proposed format for JSON submissions.
 # {
 #   person: {
@@ -88,7 +86,6 @@ def new_json_2_scasp(payload,exclude_assumptions=False):
               output += ", X \= " + kvo
             output += ".\n"
             
-            #output += "#abducible " + cat_attrib_name + "(X,Y).\n"
     # For each member
     if 'members' in category_contents and len(category_contents['members']):
       for (object_name,object_attributes) in category_contents['members'].items():
@@ -125,173 +122,6 @@ def json_2_scasp(element,higher_order=False):
   else:
     return str(element)
 
-# @api_view(['GET', 'POST'])
-# @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
-# def run_query(request,workspace,query):
-  
-#   # Collect the rules based on the ruleset specified
-#   if workspace == "rps":
-#     scasp_ruleset = """
-# :- use_module(library(scasp)).
-
-# #pred player(X) :: '@(X) is a player'.
-# #pred participate_in(Game,Player) :: '@(Player) participated in @(Game)'.
-# #pred winner(Game,Player) :: '@(Player) is the winner of @(Game)'.
-# #pred throw(Player,Sign) :: '@(Player) threw @(Sign)'.
-# #pred beat(Sign,OtherSign) :: '@(Sign) beats @(OtherSign)'.
-# #pred game(G) :: '@(G) is a game of rock-paper-scissors'.
-# #pred not_same_player(X,Y) :: '@(X) and @(Y) are not the same player'.
-
-# beat(rock,scissors).
-# beat(scissors,paper).
-# beat(paper,rock).
-
-# not_same_player(X,Y) :-
-#     X \= Y.
-
-# game_has_two_different_players(Game,Player,OtherPlayer) :-
-#     game(Game),
-#     player(Player),
-#     not_same_player(Player,OtherPlayer),
-#     player(OtherPlayer),
-#     participate_in(Game,Player),
-#     participate_in(Game,OtherPlayer).
-
-# winner(Game,Player) :-
-#   game_has_two_different_players(Game,Player,OtherPlayer),
-#   throw(Player,Sign),
-#   throw(OtherPlayer,OtherSign),
-#   beat(Sign,OtherSign).
-# """
-#     rulefile = tempfile.NamedTemporaryFile('w',delete=False)
-#     rulefile.write(scasp_ruleset)
-#     rulefile.close()
-#     rulefilename = rulefile.name
-#   else:
-#     return Http404("Workspace not found")
-
-#   # Collect the query based on the query specified in the URL
-#   if query == "winner":
-#     scasp_query = "winner(G,P)"
-#   else:
-#     return Http404("Query not found")
-  
-#   # Collect the data provided, and convert it into s(CASP) statements.
-#   if request.method == "GET":
-#     translated_facts = """
-# game(testgame).
-# player(bob).
-# player(jane).
-# participate_in(testgame,bob).
-# participate_in(testgame,jane).
-# throw(bob,rock).
-# throw(jane,scissors)."""
-
-#   elif request.method == "POST":
-#     translated_facts = json_2_scasp(request.get_json())
-    
-#   # Start the Prolog "thread"
-#   with PrologMQI() as swipl:
-#     with swipl.create_thread() as swipl_thread:
-      
-#       file = open(rulefilename,'a')
-      
-      
-#       file.write(translated_facts)        
-        
-#       file.close()
-#       file = open(rulefilename,'r')
-#       transcript = open("transcript","w")
-#       transcript.write("Loading " + rulefilename + ", the contents of which are:\n")
-#       transcript.write(file.read() + '\n')
-#     #   print(file.read())
-#       file.close()
-      
-
-#       with redirect_stderr(transcript):
-#         load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
-#       transcript.write(str(load_file_answer) + '\n')
-#       if os.path.exists(rulefilename):
-#         os.remove(rulefilename)
-
-#       # Execute the requested query.
-#       transcript.write("scasp(" + scasp_query + "),scasp_embed:scasp_justification(J,[]),with_output_to(string(JOut), scasp_just_human:human_justification_tree(J,[])).\n")
-#       with redirect_stderr(transcript):
-#         query_answer = swipl_thread.query("scasp(" + scasp_query + "),scasp_embed:scasp_justification(J,[]),with_output_to(string(JOut), scasp_just_human:human_justification_tree(J,[])).")
-#       transcript.write(str(query_answer) + '\n')
-      
-#       transcript.close()
-#       transcript = open("transcript",'r')
-#       transcript_output = transcript.read()
-#       transcript.close()
-#       os.remove('transcript')
-      
-#       if type(query_answer) is not list:
-#         query_output = query_answer
-#       else:
-#         query_output = query_answer[0]
-
-#       # Return the results as JSON
-#       return Response({ "answer": query_output, "transcript": transcript_output })
-
-# @api_view(['POST'])
-# @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
-# def run_ruledoc(request,pk):
-#     translated_facts = ""
-#     if request.data:
-#       translated_facts = json_2_scasp(request.data)
-#     wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=pk))
-#     ruleset = ""
-#     for ws in wss:
-#       ruleset += ws.scasp_encoding
-#     query = "No Query Specified"
-#     for line in ruleset.splitlines():
-#         if line.startswith("?- "):
-#             query = line[3:-1] # remove query prompt and period.
-#     full_query = "scasp(" + query + ",[tree(Tree)]),with_output_to(string(Human), human_justification_tree(Tree,[]))."
-#     rulefile = tempfile.NamedTemporaryFile('w',delete=False)
-#     rulefile.write(":- use_module(library(scasp)).\n")
-#     rulefile.write(":- use_module(library(scasp/human)).\n")
-#     rulefile.write(translated_facts)
-#     rulefile.write(ruleset)
-#     rulefile.close()
-#     rulefilename = rulefile.name
-
-#     # Start the Prolog "thread"
-#     try: 
-#       with PrologMQI() as swipl:
-#           with swipl.create_thread() as swipl_thread:
-
-#               transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
-#               transcript_name = transcript.name
-
-#               with redirect_stderr(transcript):
-#                   load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
-#               transcript.write(str(load_file_answer) + '\n')
-#               if os.path.exists(rulefilename):
-#                   os.remove(rulefilename)
-
-#               transcript.write(full_query)
-#               with redirect_stderr(transcript):
-#                   query_answer = swipl_thread.query(full_query)
-#               transcript.write(str(query_answer) + '\n')
-
-#               transcript.close()
-#               transcript = open(transcript_name,'r')
-#               # transcript = open("transcript",'r')
-#               transcript_output = transcript.read()
-#               transcript.close()
-#               os.remove(transcript_name)
-#     except PrologError as err:
-#       return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
-#     except PrologLaunchError as err:
-#       query_answer = "Blawx could not load the reasoner."
-#       return Response({ "error": "Blawx could not load the reasoner." })
-#     # Return the results as JSON
-#     return Response({ "answer": json.dumps(query_answer), "transcript": transcript_output })
-
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
@@ -307,7 +137,6 @@ def run_test(request,ruledoc,test_name):
       for ws in wss:
         ruleset += "\n\n" + ws.scasp_encoding
       ruleset += "\n\n" + test.scasp_encoding
-      # print(ruleset)
       
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
@@ -333,14 +162,7 @@ def run_test(request,ruledoc,test_name):
       term_attvars(Query, AttVars),
       maplist(del_attrs, AttVars).
   """)
-      # For Each Variable in the query
-  #     for v in get_variables(query):
-  #       rulefile.write("ovar_analyze_term(t(" + v + ", Tree),[name_constraints(true)]),")
-  #     rulefile.write("""
-  #     with_output_to(string(Human),
-  #     human_justification_tree(Tree,[])).
-  # """)
-
+  
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
 
@@ -565,7 +387,6 @@ def interview(request,ruledoc,test_name):
       for ws in wss:
         ruleset += "\n\n" + ws.scasp_encoding
       ruleset += "\n\n" + test.scasp_encoding
-      # print(ruleset)
       
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
@@ -591,14 +412,7 @@ def interview(request,ruledoc,test_name):
       term_attvars(Query, AttVars),
       maplist(del_attrs, AttVars).
   """)
-      # For Each Variable in the query
-  #     for v in get_variables(query):
-  #       rulefile.write("ovar_analyze_term(t(" + v + ", Tree),[name_constraints(true)]),")
-  #     rulefile.write("""
-  #     with_output_to(string(Human),
-  #     human_justification_tree(Tree,[])).
-  # """)
-
+  
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
 
@@ -629,7 +443,6 @@ def interview(request,ruledoc,test_name):
                     rules.close()
                     os.remove(rulefilename)
 
-                #transcript.write(full_query)
                 with redirect_stderr(transcript):
                     print("blawxrun(" + query + ",Human).")
                     query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
@@ -638,7 +451,6 @@ def interview(request,ruledoc,test_name):
 
                 transcript.close()
                 transcript = open(transcript_name,'r')
-                # transcript = open("transcript",'r')
                 transcript_output = transcript.read()
                 transcript.close()
                 os.remove(transcript_name)
@@ -649,15 +461,6 @@ def interview(request,ruledoc,test_name):
         return Response({ "error": "Blawx could not load the reasoner." })
       
       # Now get the ontology information to be able to generate the relevance data
-      # Later, we will need to run the query again with assumptions in order to determine relevance.
-      # For now, we are just filling the data structure with all the categories and attributes.
-      #
-      # Old Version:
-      #  ontology = get_ontology_internal(ruledoc,test_name)
-      # relevant_categories = ontology['Categories'] 
-      # relevant_attributes = []
-      # for a in ontology['Attributes']:
-      #   relevant_attributes.append({"Attribute": a['Attribute']})
       # Effectively, we're going to start over.
       translated_facts = ""
       if request.data:
@@ -729,7 +532,6 @@ def interview(request,ruledoc,test_name):
 
                 transcript.close()
                 transcript = open(transcript_name,'r')
-                # transcript = open("transcript",'r')
                 transcript_output += transcript.read()  # Adding to the transcript instead of setting it.
                 transcript.close()
                 os.remove(transcript_name)
@@ -758,8 +560,6 @@ def interview(request,ruledoc,test_name):
       for a in relevance_answers_processed:
         for m in a['Models']:
           assumptions.extend(find_assumptions(m['Tree']))
-      # print("Found Assumptions:")
-      # pprint(assumptions)
       for a in assumptions:
         if a['functor'] == 'not' and a['args'][0]['functor'] == 'abducible$$':
           pass
@@ -787,7 +587,6 @@ pp.ParserElement.set_default_whitespace_chars(' \t')
 answer_line = pp.Combine(pp.OneOrMore(pp.Word(pp.printables)),adjacent=False,join_string=" ") + pp.Suppress(pp.line_end)
 answer = pp.OneOrMore(pp.IndentedBlock(answer_line,recursive=True))
 
-#TODO Check to see if answer works when there is more than one root query element
 
 def simplify_term(term):
   simplified = {}
@@ -846,30 +645,24 @@ def get_variables(query):
   return re.findall(r"[^\w]([A-Z_]\w*)",query)
 
 def find_assumptions(Tree): # Pulls the assumptions out of a Prolog-formatted explanation tree
-  # pprint(Tree)
   assumptions = []
   # If we are on "query", which is the first argument of the root "because", return nothing.
   if Tree == "query" or Tree == "o_nmr_check":
-    # print("query or o_nmr_check, returning nothing")
     return []
   # If we are on a list of terms, which is the second arguemnt of the root "because", go through the list.
   elif type(Tree) == list:
-    # print("Tree is a list, doing elements")
     for t in Tree:
       assumptions.extend(find_assumptions(t))
     return assumptions
   # If we have received a "because" functor, add all of the assumptions in each of the reasons.
   elif Tree['functor'] == '-':
-    # print("functor is 'because', doing arguments")
     for a in Tree['args']:
       assumptions.extend(find_assumptions(a))
     return assumptions
   # If it is a chs, the assumption is the only argument.
   elif Tree['functor'] == 'abduced' or Tree['functor'] == 'chs':
-    # print("functor is chs or abduced, returning first argument, which is " + str(Tree['args'][0]))
     return [Tree['args'][0]]
   # CHS does not appear as an internal term. So if this is an outside term that is not chs and not because, we can ignore its contents.
   else:
-    # print("something else, returning nothing")
     return []
 

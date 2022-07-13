@@ -12,10 +12,7 @@ class RuleDocAdmin(admin.ModelAdmin):
 class BlawxTestAdmin(admin.ModelAdmin):
     fields = ['ruledoc','test_name','xml_content','scasp_encoding', 'tutorial']
 
-# class RuleDocTemplateAdmin(admin.ModelAdmin):
-#     fields = ['template_name','yaml_content']
 
 admin.site.register(Workspace,WorkspaceAdmin)
 admin.site.register(RuleDoc,RuleDocAdmin)
 admin.site.register(BlawxTest,BlawxTestAdmin)
-# admin.site.register(RuleDocTemplate,RuleDocTemplateAdmin)
