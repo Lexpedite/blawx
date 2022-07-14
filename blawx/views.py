@@ -1,7 +1,7 @@
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import UserPassesTestMixin
+# from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.core import serializers
@@ -10,15 +10,15 @@ from django.shortcuts import  render, redirect
 from django.contrib.auth import login
 from django.contrib import messages
 
-from rest_framework import viewsets, permissions
+# from rest_framework import viewsets, permissions
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+# from rest_framework.permissions import AllowAny
+from rest_framework.authentication import SessionAuthentication #, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 # from rest_framework import permissions
 
-from .serializers import WorkspaceSerializer, CodeUpdateRequestSerializer
+from .serializers import CodeUpdateRequestSerializer
 from .models import Workspace, DocPage, RuleDoc, BlawxTest
 
 
@@ -50,18 +50,7 @@ class RuleDocsView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return RuleDoc.objects.filter(owner=self.request.user)
-        # return RuleDoc.objects.all()
-
-# class WorkspacesView(generic.ListView):
-#     template_name = 'blawx/index.html'
-#     context_object_name = 'workspace_list'
-
-#     def get_queryset(self):
-#         """
-#         Get the Workspaces on the server
-#         """
-#         return Workspace.objects.all()
-
+        
 class RuleDocView(LoginRequiredMixin, generic.DetailView):
     template_name = 'blawx/ruledoc.html'
     model = RuleDoc
@@ -69,20 +58,10 @@ class RuleDocView(LoginRequiredMixin, generic.DetailView):
     def get_queryset(self):
         return RuleDoc.objects.filter(pk=self.kwargs['pk'],owner=self.request.user)
       
-    # def get_queryset(self):
-    #     return RuleDoc.objects.all()
-
     def get_context_data(self, **kwargs):
         context = super(RuleDocView, self).get_context_data(**kwargs)
         context['tests'] = BlawxTest.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']))
         return context
-
-# class WorkspaceView(generic.DetailView):
-#     template_name = 'blawx/workspace.html'
-#     model = Workspace
-
-#     def get_queryset(self):
-#         return Workspace.objects.all()
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
@@ -128,8 +107,7 @@ def ruleDocImportView(request):
         new_object_list[0].object.pk = None
         new_object_list[0].object.owner = request.user
         new_object_list[0].save()
-        # new_pk = new_object_list[0].pk
-
+        
         # Use the PK of the saved version to save the workspaces and tests
         for o in new_object_list[1:]:
             o.object.ruledoc = new_object_list[0].object
@@ -146,16 +124,11 @@ def exampleLoadView(request,example_name):
     example = open('/blawx/blawx/static/blawx/examples/' + example_name + ".yaml")
     # Do the stuff in import.
     new_objects = serializers.deserialize('yaml',example.read())
-    # print(new_objects)
     new_object_list = list(new_objects)
-    # print(new_object_list)
     # Get the RuleDoc, remove the PK, save it, and get the PK of the saved version.
     new_object_list[0].object.pk = None
     new_object_list[0].object.owner = request.user
     new_object_list[0].save()
-    # print(new_object_list[0].object)
-    # new_pk = new_object_list[0].object.pk
-    # print(new_pk)
     # Use the PK of the saved version to save the workspaces and tests
     for o in new_object_list[1:]:
         o.object.ruledoc = new_object_list[0].object
@@ -173,7 +146,6 @@ class BlawxView(LoginRequiredMixin, generic.DetailView):
     
     def get_context_data(self, **kwargs):
         context = super(BlawxView, self).get_context_data(**kwargs)
-        # context['templates'] = WorkspaceTemplate.objects.all() # TODO I don't think this is being used.
         context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(owner=self.request.user,pk=self.kwargs['pk'])) 
         return context
 
@@ -194,8 +166,7 @@ class BlawxBot(LoginRequiredMixin, generic.DetailView):
 class TestCreateView(LoginRequiredMixin, CreateView):
     model = BlawxTest
     fields = ['test_name']
-    # success_url = reverse_lazy('blawx:ruledoc', self.kwargs['pk'])
-
+    
     def get_success_url(self):
         return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
     
@@ -216,11 +187,6 @@ class TestDeleteView(LoginRequiredMixin, DeleteView):
             return redirect(self.success_url) # This is sub-optimal.
         return super().post(request, *args, **kwargs)
 
-# class WorkspaceCreateView(CreateView):
-#     model = Workspace
-#     fields = ['workspace_name']
-#     success_url = reverse_lazy('blawx:workspaces')
-
 class RuleDocCreateView(LoginRequiredMixin, CreateView):
     model = RuleDoc
     fields = ['ruledoc_name','rule_text']
@@ -229,7 +195,6 @@ class RuleDocCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
-
 
 class RuleDocDeleteView(LoginRequiredMixin, DeleteView):
     model = RuleDoc
@@ -242,19 +207,6 @@ class RuleDocDeleteView(LoginRequiredMixin, DeleteView):
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)
 
-
-    # def delete(self, request, *args, **kwargs):
-    #     target = RuleDoc.objects.get(owner=self.request.user,pk=request.pk)
-    #     if target.exists():
-    #         target.delete()
-    #         return redirect(self.success_url)
-    #     else:
-    #         return HttpResponseNotFound()
-
-# class WorkspaceDeleteView(DeleteView):
-#     model = Workspace
-#     success_url = reverse_lazy('blawx:workspaces')
-
 class RuleDocEditView(LoginRequiredMixin, UpdateView):
     model = RuleDoc
     fields = ['ruledoc_name','rule_text']
@@ -262,27 +214,12 @@ class RuleDocEditView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
 
-# class WorkspaceUpdateView(UpdateView):
-#     model = Workspace
-#     fields = ['workspace_name']
-
-
 class DocumentView(generic.DetailView):
     model = DocPage
     template_name = "blawx/docs.html"
 
     def get_queryset(self):
         return DocPage.objects.all()
-
-
-class WorkspaceAPIViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows Workspaces to be viewed or edited.
-    """
-    queryset = Workspace.objects.all()
-    serializer_class = WorkspaceSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
@@ -324,13 +261,6 @@ def get_all_code(request,pk):
         return Response(output)
     else:
         return HttpResponseNotFound()
-
-# @api_view(['GET'])
-# @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
-# def get_example(request,pk):
-#     target = RuleDocTemplate.objects.get(pk=pk)
-#     return Response({ 'yaml_content': target.yaml_content })
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])

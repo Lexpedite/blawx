@@ -1,5 +1,3 @@
-from cobalt.hierarchical import Act
-from django.forms import NullBooleanField
 from lxml import etree
 import lxml
 
@@ -35,7 +33,6 @@ LAW_PARTS = [NS + tag for tag in TAGS]
 # Need to make some changes to the CSS so it displays better, but that should do the trick.
 
 def generate_text(node):
-    #TODO Insert text and generate spans where required.
     if type(node) != str:
         for child in node.getchildren():
             if child.tag == NS + "span":
@@ -46,7 +43,6 @@ def generate_text(node):
     return
     
 def generate_span(node):
-    #TODO Generate span and selector and then generate_text for the span body.
     # Add 'lawpart span' to the classes for the span node.
     node.attrib['class'] = "lawpart span"
     # Add an input node as a first-child for the span.
@@ -58,7 +54,6 @@ def generate_span(node):
     }))
     node.getchildren()[0].tail = node.text
     lxml.objectify.ObjectifiedDataElement._setText(node,'')
-    # Recursively call generate_text on the contents of the span?
     return
 
 def generate_selector(type,name,text,children,checked=False):
@@ -80,18 +75,14 @@ def generate_selector(type,name,text,children,checked=False):
     return html
 
 def generate_tree(node,indent=0):
-    #TODO Use generate_text for text sections (intro, wrapup, content, etc.)
-    # print(" "*indent + node.tag.replace(NS,""))
     html = ""
     if node.tag == NS + "act":
         # Add the header, the do the same to the body.
         title = node.preface.find(NS + "p[@class='title']")
-        # print(" "*indent + "Act: " + title.shortTitle.text)
         html += '<nav class="column">\n'
         html += generate_selector("act","root",title.shortTitle.text,True,True)
         for child in node.body.getchildren():
             html += generate_tree(child)
-        # html += generate_tree(node.body,indent+1)
         html += "</div></nav>"
     else:
         children = node.getchildren()
@@ -100,15 +91,12 @@ def generate_tree(node,indent=0):
         # First, we are going to generate the text that
         # should appear here if it is a numbered or named section.
         if NS + 'num' in subtags:
-            # print(" "*indent + "Num: " + node['num'].text)
             if node['num'].text:
                 initial_text += "<num>" + node['num'].text + "</num>"
         if NS + 'heading' in subtags:
-            # print(" "*indent + "Heading: " + node['heading'].text)
             if node['heading'].text:
                 initial_text += node['heading'].text
         if NS + 'subheading' in subtags:
-            # print(" "*indent + "Subheading: " + node['subheading'].text)
             if node['subheading'].text:
                 initial_text += node['subheading'].text
 
@@ -118,24 +106,18 @@ def generate_tree(node,indent=0):
             # the initial text should be added to the HTML as a lawtext part, followed
             # by the content of the internal text elements.
             content_text = ""
-            # for sub_content in node['content'].getchildren():
-            #     content_text += str(etree.tostring(sub_content).decode("utf-8"))
             generate_text(node['content'])
             content_text = etree.tostring(node['content'], method="html", encoding="utf-8").decode('utf-8')
             # Get a good name for the current node
             node_name =  node.attrib['eId']
-            # print(node_name)
             html += generate_selector(node.tag.replace(NS,""),node_name,initial_text + " " + content_text,False)
         else: # This is a node with optional intro and wrapup, and list of sub-elements.
             # If this section has an intro, add the text of the intro to the initial_text
             if NS + "intro" in subtags: # This section has an intro.
-                # print(" "*indent + "Intro: " + node['intro'].text)
                 generate_text(node['intro'])
                 initial_text += etree.tostring(node['intro'], method="html", encoding="utf-8").decode('utf-8')
-                # initial_text += node['intro']['p'].text # This is likely fragile for sections that don't use p in the intro.
             # Get a good name for the current node
             node_name =  node.attrib['eId']
-            # print(node_name)
             # Generate the selector, and the start of the sub-parts
             html += generate_selector(node.tag.replace(NS,""),node_name,initial_text,True)
             # Generate the sub-parts.
@@ -144,7 +126,6 @@ def generate_tree(node,indent=0):
                     html += generate_tree(child)
             # If there is a wrapup tag, add it to the subparts as a lawtext.
             if NS + "wrapup" in subtags:
-                # print(" "*indent + "Wrapup: " + node['wrapup'].text)
                 generate_text(node['wrapup'])
                 html += '<div class="lawtext">' + etree.tostring(node['wrapup'], method="html", encoding="utf-8").decode('utf-8') + "</div>"
             # Close the sub-parts
