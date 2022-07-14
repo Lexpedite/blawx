@@ -34,7 +34,7 @@ def register_request(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            login(request, user, 'django.contrib.auth.backends.ModelBackend')
             messages.success(request, "Registration successful.")
             return redirect("blawx:ruledocs")
         messages.error(request, "Unsuccessful registration. Invalid information.")
