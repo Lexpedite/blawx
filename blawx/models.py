@@ -12,6 +12,7 @@ class RuleDoc(models.Model):
     scasp_encoding = models.TextField(default="",blank=True)
     tutorial = models.TextField(default="",blank=True)
     owner = models.ForeignKey(User,on_delete=models.CASCADE,)
+    published = models.BooleanField(default=False)
 
     def __str__(self):
         return self.ruledoc_name
@@ -40,7 +41,7 @@ class Workspace(models.Model):
         ]
 
 class BlawxTest(models.Model):
-    ruledoc = models.ForeignKey(RuleDoc, on_delete=models.CASCADE)
+    ruledoc = models.ForeignKey(RuleDoc, related_name='tests', on_delete=models.CASCADE)
     test_name = models.CharField(max_length=200)
     xml_content = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
