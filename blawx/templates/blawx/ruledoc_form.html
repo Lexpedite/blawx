@@ -14,7 +14,7 @@
         <div class="row">
         <textarea name="rule_text" rows="10" required="" id="id_rule_text" style="width: 60%">{{ ruledoc.rule_text }}</textarea>
 </div>
-<div class="row"><input type="checkbox" name="published" {% if ruledoc.published %}checked {% endif %}id="id_published"><label for="id_published">Published</label></div>
+<div><input type="checkbox" name="published" {% if ruledoc.published %}checked {% endif %}id="id_published"><label for="id_published">Published</label></div>
 <div class="container">
     <button class="btn btn-success" type="submit">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
