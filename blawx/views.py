@@ -189,7 +189,7 @@ class TestDeleteView(LoginRequiredMixin, DeleteView):
 
 class RuleDocCreateView(LoginRequiredMixin, CreateView):
     model = RuleDoc
-    fields = ['ruledoc_name','rule_text']
+    fields = ['ruledoc_name','rule_text','published']
     success_url = reverse_lazy('blawx:ruledocs')
 
     def form_valid(self, form):
@@ -209,7 +209,7 @@ class RuleDocDeleteView(LoginRequiredMixin, DeleteView):
 
 class RuleDocEditView(LoginRequiredMixin, UpdateView):
     model = RuleDoc
-    fields = ['ruledoc_name','rule_text']
+    fields = ['ruledoc_name','rule_text','published']
 
     def get_success_url(self):
         return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
