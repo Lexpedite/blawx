@@ -53,6 +53,10 @@ class BlawxTest(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['ruledoc','test_name'],name='unique_test_and_ruledoc')
         ]
+        permissions = [
+            ('run', 'Run Test'),
+        ]
+        
 
 class Query(models.Model):
     ruledoc = models.ForeignKey(Workspace, on_delete=models.CASCADE)
