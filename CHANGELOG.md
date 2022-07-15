@@ -9,8 +9,19 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## Since Last Release
 
+Users other than the owner of a project can now be given access to view legal text, view
+code, view and run tests, run BlawxBot against tests, and access the various WebAPI endpoints
+for a project by setting the project to "Published" in the Rule Editor screen. This read-only
+mode is designed to allow you to show off what you have built, without allowing people to
+break it.
+
 ### Added
 * The user registration page will set the default username based on an X-Forwarded-Email header if present.
+* Projects can now be set to "published" in the Rule Editor screen and admin interface.
+* Anonymous users and users other than the owner of the project have read and execute
+  access to published rules and their associated tests.
+* The admin interface now allows permissions to be set for users and groups with regard
+  to specific rules, workspaces, and tests.
 
 ## [v1.3.20-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.20-alpha) 2022-07-11
 
