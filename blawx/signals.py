@@ -12,7 +12,7 @@ def user_post_save(sender, **kwargs):
     """
     user = kwargs['instance']
     if user != get_anonymous_user():
-        assign_perm('add_ruledoc')
+        assign_perm('add_ruledoc',user)
 
 @receiver(post_save,sender=BlawxTest)
 def blawxtest_post_save(sender, **kwargs):
@@ -22,7 +22,7 @@ def blawxtest_post_save(sender, **kwargs):
     test = kwargs['instance']
     perms = ['view_blawxtest','change_blawxtest','delete_blawxtest','run']
     for p in perms:
-        assign_perm(p,test.ruledoc.owner) #Interested to see if this works.
+        assign_perm(p,test.ruledoc.owner,test) #Interested to see if this works.
 
 @receiver(post_save,sender=Workspace)
 def workspace_post_save(sender, **kwargs):
@@ -32,7 +32,7 @@ def workspace_post_save(sender, **kwargs):
     workspace = kwargs['instance']
     perms = ['view_workspace','change_workspace','delete_workspace']
     for p in perms:
-        assign_perm(p,workspace.ruledoc.owner)
+        assign_perm(p,workspace.ruledoc.owner,workspace)
 
 
 @receiver(post_save, sender=RuleDoc)
