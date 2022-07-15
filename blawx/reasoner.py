@@ -122,19 +122,17 @@ def new_json_2_scasp(payload,exclude_assumptions=False):
 #   else:
 #     return str(element)
 
-#TODO Add Permissions
-
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def run_test(request,ruledoc,test_name):
-    ruledoctest = RuleDoc.objects.filter(pk=ruledoc,owner=request.user)
-    if ruledoctest.exists():
+    # ruledoctest = RuleDoc.objects.filter(pk=ruledoc,owner=request.user)
+    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    if request.user.has_perm('run',test):
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data)
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
-      test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
       ruleset = ""
       for ws in wss:
         ruleset += "\n\n" + ws.scasp_encoding
@@ -142,13 +140,13 @@ def run_test(request,ruledoc,test_name):
       
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
-  :- use_module(library(scasp)).
-  :- use_module(library(scasp/human)).
-  :- use_module(library(scasp/output)).
+:- use_module(library(scasp)).
+:- use_module(library(scasp/human)).
+:- use_module(library(scasp/output)).
 
-  :- meta_predicate
-      blawxrun2(0,-).
-  """)
+:- meta_predicate
+    blawxrun2(0,-).
+""")
 
       query = "No Query Specified"
       for line in test.scasp_encoding.splitlines():
@@ -156,14 +154,14 @@ def run_test(request,ruledoc,test_name):
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-  blawxrun(Query, Human) :-
-      scasp(Query,[tree(Tree)]),
-      ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
-      with_output_to(string(Human),
-                human_justification_tree(Tree,[])).
-      term_attvars(Query, AttVars),
-      maplist(del_attrs, AttVars).
-  """)
+blawxrun(Query, Human) :-
+    scasp(Query,[tree(Tree)]),
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+    with_output_to(string(Human),
+              human_justification_tree(Tree,[])).
+    term_attvars(Query, AttVars),
+    maplist(del_attrs, AttVars).
+""")
   
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
@@ -219,7 +217,7 @@ def run_test(request,ruledoc,test_name):
       else:
         return Response({ "Answers": generate_answers(query_answer), "Transcript": transcript_output })
     else:
-      return HttpResponseNotFound()
+      return HttpResponseForbidden()
 
 def get_ontology_internal(ruledoc,test_name):
     wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
@@ -363,32 +361,28 @@ blawxrun(Query, Human) :-
     # Return the results as JSON
     return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output }
 
-#TODO Add Permissions
-
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def get_ontology(request,ruledoc,test_name):
     ruledoctest = RuleDoc.objects.filter(owner=request.user,pk=ruledoc)
-    if ruledoctest.exists():
+    if request.user.has_perm('view_ruledoc',ruledoctest):
       result = get_ontology_internal(ruledoc,test_name)
       return Response(result)
     else:
-      return HttpResponseNotFound()
+      return HttpResponseForbidden()
 
-#TODO Add Permissions
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def interview(request,ruledoc,test_name):
-    ruledoctest = RuleDoc.objects.filter(owner=request.user,pk=ruledoc)
-    if ruledoctest.exists():
+    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    if request.user.has_perm('run',test):
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data, True) #Generate answers ignoring assumptions in the submitted data
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
-      test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
       ruleset = ""
       for ws in wss:
         ruleset += "\n\n" + ws.scasp_encoding
@@ -396,13 +390,13 @@ def interview(request,ruledoc,test_name):
       
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
-  :- use_module(library(scasp)).
-  :- use_module(library(scasp/human)).
-  :- use_module(library(scasp/output)).
+:- use_module(library(scasp)).
+:- use_module(library(scasp/human)).
+:- use_module(library(scasp/output)).
 
-  :- meta_predicate
-      blawxrun2(0,-).
-  """)
+:- meta_predicate
+    blawxrun2(0,-).
+""")
 
       query = "No Query Specified"
       for line in test.scasp_encoding.splitlines():
@@ -410,14 +404,14 @@ def interview(request,ruledoc,test_name):
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-  blawxrun(Query, Human) :-
-      scasp(Query,[tree(Tree)]),
-      ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
-      with_output_to(string(Human),
-                human_justification_tree(Tree,[])).
-      term_attvars(Query, AttVars),
-      maplist(del_attrs, AttVars).
-  """)
+blawxrun(Query, Human) :-
+    scasp(Query,[tree(Tree)]),
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+    with_output_to(string(Human),
+              human_justification_tree(Tree,[])).
+    term_attvars(Query, AttVars),
+    maplist(del_attrs, AttVars).
+""")
   
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
@@ -480,13 +474,13 @@ def interview(request,ruledoc,test_name):
       
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
-  :- use_module(library(scasp)).
-  :- use_module(library(scasp/human)).
-  :- use_module(library(scasp/output)).
+:- use_module(library(scasp)).
+:- use_module(library(scasp/human)).
+:- use_module(library(scasp/output)).
 
-  :- meta_predicate
-      blawxrun2(0,-).
-  """)
+:- meta_predicate
+    blawxrun2(0,-).
+""")
 
       query = "No Query Specified"
       for line in test.scasp_encoding.splitlines():
@@ -494,10 +488,10 @@ def interview(request,ruledoc,test_name):
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-  blawxrun(Query, Tree, Model) :-
-      scasp(Query,[tree(Tree),model(Model)]),
-      ovar_analyze_term(t(Query, Tree),[name_constraints(true)]).
-  """)
+blawxrun(Query, Tree, Model) :-
+    scasp(Query,[tree(Tree),model(Model)]),
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]).
+""")
 
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
@@ -585,7 +579,7 @@ def interview(request,ruledoc,test_name):
       else:
         return Response({ "Answers": generate_answers(query_answer), "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
     else:
-      return HttpResponseNotFound()
+      return HttpResponseForbidden()
 
 
 
