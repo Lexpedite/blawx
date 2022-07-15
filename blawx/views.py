@@ -302,7 +302,7 @@ def get_all_code(request,pk):
 # @permission_classes([IsAuthenticated])
 def update_test(request,ruledoc,test_name):
     target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
-    if request.user.get_perm('change_workspace',target):
+    if request.user.get_perm('change_blawxtest',target):
         workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
         workspace_serializer.is_valid()
         target.xml_content = workspace_serializer.validated_data.get('xml_content', target.xml_content)
@@ -320,7 +320,7 @@ def get_test(request,ruledoc,test_name):
     # Checking permissions here is weird. If it already exists, I need to check if they can change it.
     # If it doesn't exist, I need to check if they can add one.
     target = BlawxTest.objects.filter(ruledoc=ruledoctest,test_name=test_name)
-    if (len(target) and request.user.has_perm('blawx.change_blawxtest',target[0])) or (not len(target) and request.user.has_perm('blawx.add_blawxtest_to_ruldoc',ruledoctest)):
+    if (len(target) and request.user.has_perm('blawx.view_blawxtest',target[0])) or (not len(target) and request.user.has_perm('blawx.add_blawxtest_to_ruldoc',ruledoctest)):
         (test, created) = BlawxTest.objects.get_or_create(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
         return Response({"xml_content": test.xml_content})
     else:
