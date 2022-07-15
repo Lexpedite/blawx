@@ -278,7 +278,7 @@ def update_code(request,pk,workspace):
 def get_code(request,pk,workspace):
     ruledoctest = RuleDoc.objects.get(pk=pk)
     target = Workspace.objects.filter(ruledoc=ruledoctest,workspace_name=workspace)
-    if (len(target) and request.user.has_perm('blawx.change_workspace',target[0])) or (not len(target) and request.user.has_perm('blawx.add_workspace_to_ruledoc',ruledoctest)):
+    if (len(target) and request.user.has_perm('blawx.view_workspace',target[0])) or (not len(target) and request.user.has_perm('blawx.add_workspace_to_ruledoc',ruledoctest)):
         (workspace, created) = Workspace.objects.get_or_create(ruledoc=ruledoctest,workspace_name=workspace)
         return Response({"xml_content": workspace.xml_content})
     else:
