@@ -187,7 +187,7 @@ class BlawxBot(PermissionRequiredMixin, generic.DetailView):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
 
 class TestCreateView(PermissionRequiredMixin, CreateView):
-    permission_required = "blawx.add_blawxtest"
+    permission_required = "blawx.add_blawxtest_to_ruledoc"
     model = BlawxTest
     fields = ['test_name']
     
