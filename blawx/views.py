@@ -49,14 +49,14 @@ class RuleDocsView(generic.ListView):
     context_object_name = 'ruledoc_list'
 
     def get_queryset(self):
-        return RuleDoc.objects.filter(owner=self.request.user)
+        return RuleDoc.objects.all()
         
 class RuleDocView(generic.DetailView):
     template_name = 'blawx/ruledoc.html'
     model = RuleDoc
 
     def get_queryset(self):
-        return RuleDoc.objects.filter(pk=self.kwargs['pk'],owner=self.request.user)
+        return RuleDoc.objects.filter(pk=self.kwargs['pk'])
       
     def get_context_data(self, **kwargs):
         context = super(RuleDocView, self).get_context_data(**kwargs)
@@ -67,7 +67,7 @@ class RuleDocView(generic.DetailView):
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def ruleDocLegalTextView(request,pk,section_name):
-    ruledoc=RuleDoc.objects.get(owner=request.user,pk=pk)
+    ruledoc=RuleDoc.objects.get(pk=pk)
     cobalt_parse = Act(ruledoc.akoma_ntoso)
     target = cobalt_parse.act.find(".//*[@eId='" + section_name + "']")
     return Response({'xml': lxml.etree.tostring(target),
@@ -79,7 +79,7 @@ def ruleDocLegalTextView(request,pk,section_name):
 def ruleDocExportView(request,pk):
     download = tempfile.NamedTemporaryFile('w',delete=False,prefix="blawx_rule_" + str(pk) + "_")
     download_filename = download.name
-    ruledoc = RuleDoc.objects.filter(owner=request.user,pk=pk)
+    ruledoc = RuleDoc.objects.filter(pk=pk)
     download.write(serializers.serialize('yaml',ruledoc))
     sections = Workspace.objects.filter(ruledoc=pk)
     if len(sections):
@@ -92,7 +92,7 @@ def ruleDocExportView(request,pk):
     return response
 
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def ruleDocImportView(request):
     if request.method == "POST":
 
@@ -120,7 +120,7 @@ def ruleDocImportView(request):
         return HttpResponseNotAllowed('POST')
 
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def exampleLoadView(request,example_name):
     # Load that file
     example = open('/blawx/blawx/static/blawx/examples/' + example_name + ".yaml")
@@ -146,11 +146,11 @@ class BlawxView(generic.DetailView):
     model = RuleDoc
 
     def get_queryset(self):
-        return RuleDoc.objects.filter(owner=self.request.user)
+        return RuleDoc.objects.filter(pk=self.kwargs['pk'])
     
     def get_context_data(self, **kwargs):
         context = super(BlawxView, self).get_context_data(**kwargs)
-        context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(owner=self.request.user,pk=self.kwargs['pk'])) 
+        context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk'])) 
         return context
 
 class TestView(generic.DetailView):
@@ -158,14 +158,14 @@ class TestView(generic.DetailView):
     model = BlawxTest
 
     def get_object(self):
-        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(owner=self.request.user,pk=self.kwargs['pk']),test_name=self.kwargs['test_name'])
+        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']),test_name=self.kwargs['test_name'])
 
 class BlawxBot(generic.DetailView):
     template_name = "blawx/bot.html"
     model = BlawxTest
 
     def get_object(self):
-        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(owner=self.request.user,pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
+        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
 
 class TestCreateView(CreateView):
     model = BlawxTest
@@ -175,7 +175,7 @@ class TestCreateView(CreateView):
         return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
     
     def form_valid(self, form):
-        form.instance.ruledoc = RuleDoc.objects.get(owner=self.request.user,pk=self.kwargs['pk'])
+        form.instance.ruledoc = RuleDoc.objects.get(pk=self.kwargs['pk'])
         return super().form_valid(form)
 
 class TestDeleteView(DeleteView):
@@ -191,7 +191,7 @@ class TestDeleteView(DeleteView):
             return redirect(self.success_url) # This is sub-optimal.
         return super().post(request, *args, **kwargs)
 
-class RuleDocCreateView(CreateView):
+class RuleDocCreateView(LoginRequiredMixin, CreateView):
     model = RuleDoc
     fields = ['ruledoc_name','rule_text','published']
     success_url = reverse_lazy('blawx:ruledocs')
@@ -229,7 +229,7 @@ class DocumentView(generic.DetailView):
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def update_code(request,pk,workspace):
-    ruledoctest = RuleDoc.objects.get(owner=request.user,pk=pk)
+    ruledoctest = RuleDoc.objects.get(pk=pk)
     if ruledoctest:
         target = Workspace.objects.get(ruledoc=pk,workspace_name=workspace)
         workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
@@ -245,7 +245,7 @@ def update_code(request,pk,workspace):
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def get_code(request,pk,workspace):
-    ruledoctest = RuleDoc.objects.get(owner=request.user,pk=pk)
+    ruledoctest = RuleDoc.objects.get(pk=pk)
     if ruledoctest:
         (workspace, created) = Workspace.objects.get_or_create(ruledoc=RuleDoc.objects.get(pk=pk),workspace_name=workspace)
         return Response({"xml_content": workspace.xml_content})
@@ -256,7 +256,7 @@ def get_code(request,pk,workspace):
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def get_all_code(request,pk):
-    ruledoctest = RuleDoc.objects.get(owner=request.user,pk=pk)
+    ruledoctest = RuleDoc.objects.get(pk=pk)
     if ruledoctest:
         workspaces = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=pk))
         output = []
@@ -270,7 +270,7 @@ def get_all_code(request,pk):
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def update_test(request,ruledoc,test_name):
-    ruledoctest = RuleDoc.objects.get(owner=request.user,pk=ruledoc)
+    ruledoctest = RuleDoc.objects.get(pk=ruledoc)
     if ruledoctest:
         target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
         workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
@@ -286,7 +286,7 @@ def update_test(request,ruledoc,test_name):
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def get_test(request,ruledoc,test_name):
-    ruledoctest = RuleDoc.objects.get(owner=request.user,pk=ruledoc)
+    ruledoctest = RuleDoc.objects.get(pk=ruledoc)
     if ruledoctest:
         (test, created) = BlawxTest.objects.get_or_create(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
         return Response({"xml_content": test.xml_content})
