@@ -24,6 +24,7 @@
 
 {% block page_content %}
 
+{% get_obj_perms request.user for ruledoc as 'ruledoc_perms' %}
     <script src="{% static 'blawx/blockly/blockly_compressed.js' %}"></script>
     <script src="{% static 'blawx/en.js' %}"></script>
     <script src="{% static 'blawx/blockly/javascript_compressed.js' %}"></script>
@@ -175,7 +176,9 @@
             var blocklyDiv = document.getElementById('blocklyDiv');
             var demoWorkspace = Blockly.inject(blocklyDiv,
                 {media: "{% static 'blawx/blockly/media/' %}",
-                toolbox: document.getElementById('toolbox')});
+                toolbox: document.getElementById('toolbox'),
+                {% if not 'change_ruledoc' in ruledoc_perms %}readOnly: true,{% endif %}
+                });
             var importWorkspace = new Blockly.Workspace();
             // Need to load the root workspace.
             load_section_workspace({{ ruledoc.pk }},'root_section');
