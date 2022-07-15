@@ -365,7 +365,7 @@ blawxrun(Query, Human) :-
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def get_ontology(request,ruledoc,test_name):
-    ruledoctest = RuleDoc.objects.filter(owner=request.user,pk=ruledoc)
+    ruledoctest = RuleDoc.objects.get(pk=ruledoc)
     if request.user.has_perm('blawx.view_ruledoc',ruledoctest):
       result = get_ontology_internal(ruledoc,test_name)
       return Response(result)
