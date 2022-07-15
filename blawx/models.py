@@ -25,9 +25,9 @@ class RuleDoc(models.Model):
     def navtree(self):
         an_act = Act(self.akoma_ntoso)
         return generate_tree(an_act.act)
-
+    
 class Workspace(models.Model):
-    ruledoc = models.ForeignKey(RuleDoc, on_delete=models.CASCADE)
+    ruledoc = models.ForeignKey(RuleDoc, related_name='workspaces', on_delete=models.CASCADE)
     workspace_name = models.CharField(max_length=200)
     xml_content = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)

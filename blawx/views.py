@@ -106,12 +106,14 @@ def ruleDocImportView(request):
         # Get the RuleDoc, remove the PK, save it, and get the PK of the saved version.
         new_object_list[0].object.pk = None
         new_object_list[0].object.owner = request.user
-        new_object_list[0].save()
+        new_object_list[0].object.save()
         
         # Use the PK of the saved version to save the workspaces and tests
         for o in new_object_list[1:]:
             o.object.ruledoc = new_object_list[0].object
-            o.save()
+            o.object.save()
+        # Now trigger the post-save for the RuleDoc object to set permissions on sub-objects.
+        new_object_list[0].object.save()
         # Send the user back to root.
         return HttpResponseRedirect('/')
     else:
@@ -128,11 +130,13 @@ def exampleLoadView(request,example_name):
     # Get the RuleDoc, remove the PK, save it, and get the PK of the saved version.
     new_object_list[0].object.pk = None
     new_object_list[0].object.owner = request.user
-    new_object_list[0].save()
+    new_object_list[0].object.save()
     # Use the PK of the saved version to save the workspaces and tests
     for o in new_object_list[1:]:
         o.object.ruledoc = new_object_list[0].object
-        o.save()
+        o.object.save()
+    # Now trigger the post-save for the RuleDoc object to set permissions on sub-objects.
+    new_object_list[0].object.save()
     # Send the user back to root.
     return HttpResponseRedirect('/')
 
