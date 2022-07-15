@@ -8,6 +8,18 @@
       BlawxBot is a chatbot-style expert system that you can use in conjunction with any
       test you have defined on Blawx.
 
+      ## Controlling Access to BlawxBot
+
+      If your project is not published, only the owner of the project will be able to run
+      BlawxBot from inside the test interface. If your project is set to published in the
+      Rule Editor screen, all tests are available for use inside the Blawx interface,
+      through BlawxBot, and over API.
+
+      So to allow users other than yourself to use BlawxBot with your encoding, you must
+      set the Project to "Published".
+
+      ## Starting BlawxBot
+
       ![Bot Button](/static/blawx/docs/images/bot_button.png)
 
       To start BlawxBot, click on the "Bot" button in the test editor screen.

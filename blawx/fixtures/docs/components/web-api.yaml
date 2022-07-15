@@ -5,9 +5,18 @@
     content: |
       # The Blawx Web API
 
-      **Note that in the current version of Blawx, all Web API endpoints are restricted to authenticated users.
-      The ability to configure certain interview endpoints to be publicly available so that they can be accessed
-      from other systems will be implemented in a future version.**
+      ## Controlling Access to the Web API
+
+      By default, when you create a project in Blawx, that project is "unpublished". This
+      means that the project can be viewed and used only by the user that created it. The
+      contents of the project are also accessible to server admins.
+
+      If you go into the Rule Editor from your Project, you can set your project to "Published".
+      Doing so gives anonymous users access to view and execute your code, but not to modify it.
+      **If you want your code to be usable in BlawxBot for un-authenticated users, you must set your
+      project to Published in the Rule Editor screen.**
+
+      ## API Endpoints
 
       There are three endpoints available for each test defined in your Blawx project:
 

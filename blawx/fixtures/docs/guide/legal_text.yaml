@@ -53,7 +53,10 @@
       
       ![Blawx Root Screen](/static/blawx/docs/images/blawx_root_screen.png)
       
-      Once there, click "New Project", and in the resulting drop-down choose "New Blank Project".
+      If there are other users on your server who have set their projects to "Published", those
+      projects will appear here, and you will have read-only access to them.
+
+      Click "New Project", and in the resulting drop-down choose "New Blank Project".
       This will open the Project Editor screen, which will
       look like this:
 
@@ -74,6 +77,8 @@
       
       ![Project Editor With Legal Text](/static/blawx/docs/images/project_editor_with_legal_text.png)
       
+      Leave the "Published" checkbox unchecked.
+
       Then click "Save" to save the Project to your Blawx server.
 
       You will be taken back to the root of your Blawx server, and the new Project should
