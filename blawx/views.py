@@ -54,7 +54,7 @@ class RuleDocsView(generic.ListView):
         return RuleDoc.objects.all()
         
 class RuleDocView(PermissionRequiredMixin, generic.DetailView):
-    permission_required = 'view_ruledoc'
+    permission_required = 'blawx.view_ruledoc'
     template_name = 'blawx/ruledoc.html'
     model = RuleDoc
 
@@ -158,7 +158,7 @@ def exampleLoadView(request,example_name):
 
 
 class BlawxView(PermissionRequiredMixin, generic.DetailView):
-    permission_required = "view_ruledoc"
+    permission_required = "blawx.view_ruledoc"
     template_name = 'blawx/blawx.html'
     model = RuleDoc
 
@@ -171,7 +171,7 @@ class BlawxView(PermissionRequiredMixin, generic.DetailView):
         return context
 
 class TestView(PermissionRequiredMixin, generic.DetailView):
-    permission_required = "view_blawxtest"
+    permission_required = "blawx.view_blawxtest"
     template_name = "blawx/test.html"
     model = BlawxTest
 
@@ -179,7 +179,7 @@ class TestView(PermissionRequiredMixin, generic.DetailView):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']),test_name=self.kwargs['test_name'])
 
 class BlawxBot(PermissionRequiredMixin, generic.DetailView):
-    permission_required = "view_blawxtest"
+    permission_required = "blawx.view_blawxtest"
     template_name = "blawx/bot.html"
     model = BlawxTest
 
@@ -187,7 +187,7 @@ class BlawxBot(PermissionRequiredMixin, generic.DetailView):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
 
 class TestCreateView(PermissionRequiredMixin, CreateView):
-    permission_required = "add_blawxtest"
+    permission_required = "blawx.add_blawxtest"
     model = BlawxTest
     fields = ['test_name']
     
@@ -199,7 +199,7 @@ class TestCreateView(PermissionRequiredMixin, CreateView):
         return super().form_valid(form)
 
 class TestDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = "delete_blawxtest"
+    permission_required = "blawx.delete_blawxtest"
     model = BlawxTest
 
     def get_success_url(self):
@@ -213,7 +213,8 @@ class TestDeleteView(PermissionRequiredMixin, DeleteView):
         return super().post(request, *args, **kwargs)
 
 class RuleDocCreateView(PermissionRequiredMixin, CreateView):
-    permission_required = 'add_ruledoc'
+    accept_global_perms = True
+    permission_required = 'blawx.add_ruledoc'
     model = RuleDoc
     fields = ['ruledoc_name','rule_text','published']
     success_url = reverse_lazy('blawx:ruledocs')
@@ -223,7 +224,7 @@ class RuleDocCreateView(PermissionRequiredMixin, CreateView):
         return super().form_valid(form)
 
 class RuleDocDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'delete_ruledoc'
+    permission_required = 'blawx.delete_ruledoc'
     model = RuleDoc
     success_url = reverse_lazy('blawx:ruledocs')
 
@@ -235,7 +236,7 @@ class RuleDocDeleteView(PermissionRequiredMixin, DeleteView):
         return super().post(request, *args, **kwargs)
 
 class RuleDocEditView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'change_ruledoc'
+    permission_required = 'blawx.change_ruledoc'
     model = RuleDoc
     fields = ['ruledoc_name','rule_text','published']
 
