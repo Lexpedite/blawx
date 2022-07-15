@@ -12,7 +12,7 @@ def user_post_save(sender, **kwargs):
     """
     user = kwargs['instance']
     if user != get_anonymous_user():
-        assign_perm('add_ruledoc',user)
+        assign_perm('blawx.add_ruledoc',user)
 
 @receiver(post_save,sender=BlawxTest)
 def blawxtest_post_save(sender, **kwargs):
