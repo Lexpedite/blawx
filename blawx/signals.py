@@ -60,8 +60,8 @@ def ruledoc_post_save(sender, **kwargs):
             remove_perm('run', anon, t)
     # Assign all permissions to the owner.
     ruledoc_permissions = ['view_ruledoc','add_ruledoc','change_ruledoc','delete_ruledoc', 'add_blawxtest_to_ruledoc', 'add_workspace_to_ruledoc']
-    workspace_permissions = ['view_workspace','add_workspace','change_workspace','delete_workspace']
-    test_permissions = ['view_blawxtest','add_blawxtest','change_blawxtest','delete_blawxtest','run']
+    workspace_permissions = ['view_workspace','change_workspace','delete_workspace']
+    test_permissions = ['view_blawxtest','change_blawxtest','delete_blawxtest','run']
     for rp in ruledoc_permissions:
         assign_perm(rp,ruledoc.owner,ruledoc)
     # Resetting the permissions on all the associated objects MIGHT be necessary if the owner was the thing that changed,
