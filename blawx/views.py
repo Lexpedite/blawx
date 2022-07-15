@@ -197,6 +197,9 @@ class TestCreateView(PermissionRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.ruledoc = RuleDoc.objects.get(pk=self.kwargs['pk'])
         return super().form_valid(form)
+    
+    # This is a workaround to get the PermissionRequiredMixin to work with CreateView
+    def get_object(self): return None
 
 class TestDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = "blawx.delete_blawxtest"
@@ -218,6 +221,9 @@ class RuleDocCreateView(PermissionRequiredMixin, CreateView):
     model = RuleDoc
     fields = ['ruledoc_name','rule_text','published']
     success_url = reverse_lazy('blawx:ruledocs')
+
+    # This is a workaround to get the PermissionRequiredMixin to work with CreateView
+    def get_object(self): return None
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
