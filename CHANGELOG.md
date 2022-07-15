@@ -23,6 +23,7 @@ for a project by setting the project to "Published" in the Rule Editor screen.
 
 ### Changed
 * User interface elements that require permissions you do not have will appear disabled.
+* The coding interface in Code Editor and Test Editor will be read-only if you do not have permissions to change the code.
 
 ## [v1.3.20-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.20-alpha) 2022-07-11
 
