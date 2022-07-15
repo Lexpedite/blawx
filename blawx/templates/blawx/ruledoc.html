@@ -57,6 +57,7 @@
 
 {% block header_elements %}
 
+{% get_obj_perms request.user for ruledoc as 'ruledoc_perms' %}
 <div class="col-8">
     <a href="{% url 'blawx:ruledocs' %}" class="btn btn-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
