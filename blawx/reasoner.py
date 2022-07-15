@@ -128,7 +128,7 @@ def new_json_2_scasp(payload,exclude_assumptions=False):
 def run_test(request,ruledoc,test_name):
     # ruledoctest = RuleDoc.objects.filter(pk=ruledoc,owner=request.user)
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
-    if request.user.has_perm('run',test):
+    if request.user.has_perm('blawx.run',test):
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data)
@@ -366,7 +366,7 @@ blawxrun(Query, Human) :-
 # @permission_classes([IsAuthenticated])
 def get_ontology(request,ruledoc,test_name):
     ruledoctest = RuleDoc.objects.filter(owner=request.user,pk=ruledoc)
-    if request.user.has_perm('view_ruledoc',ruledoctest):
+    if request.user.has_perm('blawx.view_ruledoc',ruledoctest):
       result = get_ontology_internal(ruledoc,test_name)
       return Response(result)
     else:
@@ -378,7 +378,7 @@ def get_ontology(request,ruledoc,test_name):
 # @permission_classes([IsAuthenticated])
 def interview(request,ruledoc,test_name):
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
-    if request.user.has_perm('run',test):
+    if request.user.has_perm('blawx.run',test):
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data, True) #Generate answers ignoring assumptions in the submitted data

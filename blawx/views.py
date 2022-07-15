@@ -71,7 +71,7 @@ class RuleDocView(PermissionRequiredMixin, generic.DetailView):
 # @permission_classes([IsAuthenticated])
 def ruleDocLegalTextView(request,pk,section_name):
     ruledoc=RuleDoc.objects.get(pk=pk)
-    if request.user.has_perm('view_ruledoc',ruledoc):
+    if request.user.has_perm('blawx.view_ruledoc',ruledoc):
         cobalt_parse = Act(ruledoc.akoma_ntoso)
         target = cobalt_parse.act.find(".//*[@eId='" + section_name + "']")
         return Response({'xml': lxml.etree.tostring(target),
@@ -84,7 +84,7 @@ def ruleDocLegalTextView(request,pk,section_name):
 # @permission_classes([IsAuthenticated])
 def ruleDocExportView(request,pk):
     ruledoc = RuleDoc.objects.filter(pk=pk)
-    if request.user.has_perm('view_ruledoc',ruledoc):
+    if request.user.has_perm('blawx.view_ruledoc',ruledoc):
         download = tempfile.NamedTemporaryFile('w',delete=False,prefix="blawx_rule_" + str(pk) + "_")
         download_filename = download.name
         download.write(serializers.serialize('yaml',ruledoc))
@@ -261,7 +261,7 @@ class DocumentView(generic.DetailView):
 # @permission_classes([IsAuthenticated])
 def update_code(request,pk,workspace):
     target = Workspace.objects.get(ruledoc=pk,workspace_name=workspace)
-    if request.user.has_perm('change_workspace',target):
+    if request.user.has_perm('blawx.change_workspace',target):
         workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
         workspace_serializer.is_valid()
         target.xml_content = workspace_serializer.validated_data.get('xml_content', target.xml_content)
@@ -278,7 +278,7 @@ def update_code(request,pk,workspace):
 def get_code(request,pk,workspace):
     ruledoctest = RuleDoc.objects.get(pk=pk)
     target = Workspace.objects.filter(ruledoc=ruledoctest,workspace_name=workspace)
-    if (len(target) and request.user.has_perm('change_workspace',target[0])) or (not len(target) and request.user.has_perm('add_workspace_to_ruledoc',ruledoctest)):
+    if (len(target) and request.user.has_perm('blawx.change_workspace',target[0])) or (not len(target) and request.user.has_perm('blawx.add_workspace_to_ruledoc',ruledoctest)):
         (workspace, created) = Workspace.objects.get_or_create(ruledoc=ruledoctest,workspace_name=workspace)
         return Response({"xml_content": workspace.xml_content})
     else:
@@ -291,7 +291,7 @@ def get_all_code(request,pk):
     workspaces = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=pk))
     output = []
     for w in workspaces:
-        if request.user.has_perm('view_workspace',w):
+        if request.user.has_perm('blawx.view_workspace',w):
             output.append({"name": w.workspace_name, "xml_content": w.xml_content})
         else:
             return HttpResponseForbidden()
@@ -320,7 +320,7 @@ def get_test(request,ruledoc,test_name):
     # Checking permissions here is weird. If it already exists, I need to check if they can change it.
     # If it doesn't exist, I need to check if they can add one.
     target = BlawxTest.objects.filter(ruledoc=ruledoctest,test_name=test_name)
-    if (len(target) and request.user.has_perm('change_blawxtest',target[0])) or (not len(target) and request.user.has_perm('add_blawxtest_to_ruldoc',ruledoctest)):
+    if (len(target) and request.user.has_perm('blawx.change_blawxtest',target[0])) or (not len(target) and request.user.has_perm('blawx.add_blawxtest_to_ruldoc',ruledoctest)):
         (test, created) = BlawxTest.objects.get_or_create(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
         return Response({"xml_content": test.xml_content})
     else:
