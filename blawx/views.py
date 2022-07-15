@@ -44,14 +44,14 @@ def register_request(request):
         form = UserCreationForm()
     return render (request=request, template_name="registration/register.html", context={"register_form":form})
 
-class RuleDocsView(LoginRequiredMixin, generic.ListView):
+class RuleDocsView(generic.ListView):
     template_name = 'blawx/index.html'
     context_object_name = 'ruledoc_list'
 
     def get_queryset(self):
         return RuleDoc.objects.filter(owner=self.request.user)
         
-class RuleDocView(LoginRequiredMixin, generic.DetailView):
+class RuleDocView(generic.DetailView):
     template_name = 'blawx/ruledoc.html'
     model = RuleDoc
 
@@ -65,7 +65,7 @@ class RuleDocView(LoginRequiredMixin, generic.DetailView):
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def ruleDocLegalTextView(request,pk,section_name):
     ruledoc=RuleDoc.objects.get(owner=request.user,pk=pk)
     cobalt_parse = Act(ruledoc.akoma_ntoso)
@@ -75,7 +75,7 @@ def ruleDocLegalTextView(request,pk,section_name):
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def ruleDocExportView(request,pk):
     download = tempfile.NamedTemporaryFile('w',delete=False,prefix="blawx_rule_" + str(pk) + "_")
     download_filename = download.name
@@ -92,7 +92,7 @@ def ruleDocExportView(request,pk):
     return response
 
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def ruleDocImportView(request):
     if request.method == "POST":
 
@@ -120,7 +120,7 @@ def ruleDocImportView(request):
         return HttpResponseNotAllowed('POST')
 
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def exampleLoadView(request,example_name):
     # Load that file
     example = open('/blawx/blawx/static/blawx/examples/' + example_name + ".yaml")
@@ -141,7 +141,7 @@ def exampleLoadView(request,example_name):
     return HttpResponseRedirect('/')
 
 
-class BlawxView(LoginRequiredMixin, generic.DetailView):
+class BlawxView(generic.DetailView):
     template_name = 'blawx/blawx.html'
     model = RuleDoc
 
@@ -153,21 +153,21 @@ class BlawxView(LoginRequiredMixin, generic.DetailView):
         context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(owner=self.request.user,pk=self.kwargs['pk'])) 
         return context
 
-class TestView(LoginRequiredMixin, generic.DetailView):
+class TestView(generic.DetailView):
     template_name = "blawx/test.html"
     model = BlawxTest
 
     def get_object(self):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(owner=self.request.user,pk=self.kwargs['pk']),test_name=self.kwargs['test_name'])
 
-class BlawxBot(LoginRequiredMixin, generic.DetailView):
+class BlawxBot(generic.DetailView):
     template_name = "blawx/bot.html"
     model = BlawxTest
 
     def get_object(self):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(owner=self.request.user,pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
 
-class TestCreateView(LoginRequiredMixin, CreateView):
+class TestCreateView(CreateView):
     model = BlawxTest
     fields = ['test_name']
     
@@ -178,7 +178,7 @@ class TestCreateView(LoginRequiredMixin, CreateView):
         form.instance.ruledoc = RuleDoc.objects.get(owner=self.request.user,pk=self.kwargs['pk'])
         return super().form_valid(form)
 
-class TestDeleteView(LoginRequiredMixin, DeleteView):
+class TestDeleteView(DeleteView):
     model = BlawxTest
 
     def get_success_url(self):
@@ -191,7 +191,7 @@ class TestDeleteView(LoginRequiredMixin, DeleteView):
             return redirect(self.success_url) # This is sub-optimal.
         return super().post(request, *args, **kwargs)
 
-class RuleDocCreateView(LoginRequiredMixin, CreateView):
+class RuleDocCreateView(CreateView):
     model = RuleDoc
     fields = ['ruledoc_name','rule_text','published']
     success_url = reverse_lazy('blawx:ruledocs')
@@ -200,7 +200,7 @@ class RuleDocCreateView(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
-class RuleDocDeleteView(LoginRequiredMixin, DeleteView):
+class RuleDocDeleteView(DeleteView):
     model = RuleDoc
     success_url = reverse_lazy('blawx:ruledocs')
 
@@ -211,7 +211,7 @@ class RuleDocDeleteView(LoginRequiredMixin, DeleteView):
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)
 
-class RuleDocEditView(LoginRequiredMixin, UpdateView):
+class RuleDocEditView(UpdateView):
     model = RuleDoc
     fields = ['ruledoc_name','rule_text','published']
 
@@ -227,7 +227,7 @@ class DocumentView(generic.DetailView):
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def update_code(request,pk,workspace):
     ruledoctest = RuleDoc.objects.get(owner=request.user,pk=pk)
     if ruledoctest:
@@ -243,7 +243,7 @@ def update_code(request,pk,workspace):
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def get_code(request,pk,workspace):
     ruledoctest = RuleDoc.objects.get(owner=request.user,pk=pk)
     if ruledoctest:
@@ -254,7 +254,7 @@ def get_code(request,pk,workspace):
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def get_all_code(request,pk):
     ruledoctest = RuleDoc.objects.get(owner=request.user,pk=pk)
     if ruledoctest:
@@ -268,7 +268,7 @@ def get_all_code(request,pk):
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def update_test(request,ruledoc,test_name):
     ruledoctest = RuleDoc.objects.get(owner=request.user,pk=ruledoc)
     if ruledoctest:
@@ -284,7 +284,7 @@ def update_test(request,ruledoc,test_name):
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def get_test(request,ruledoc,test_name):
     ruledoctest = RuleDoc.objects.get(owner=request.user,pk=ruledoc)
     if ruledoctest:

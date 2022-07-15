@@ -124,7 +124,7 @@ def json_2_scasp(element,higher_order=False):
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def run_test(request,ruledoc,test_name):
     ruledoctest = RuleDoc.objects.filter(pk=ruledoc,owner=request.user)
     if ruledoctest.exists():
@@ -363,7 +363,7 @@ blawxrun(Query, Human) :-
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def get_ontology(request,ruledoc,test_name):
     ruledoctest = RuleDoc.objects.filter(owner=request.user,pk=ruledoc)
     if ruledoctest.exists():
@@ -374,7 +374,7 @@ def get_ontology(request,ruledoc,test_name):
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def interview(request,ruledoc,test_name):
     ruledoctest = RuleDoc.objects.filter(owner=request.user,pk=ruledoc)
     if ruledoctest.exists():
