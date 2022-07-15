@@ -11,9 +11,7 @@ and breaking changes will not necessarily result in changes to the main version 
 
 Users other than the owner of a project can now be given access to view legal text, view
 code, view and run tests, run BlawxBot against tests, and access the various WebAPI endpoints
-for a project by setting the project to "Published" in the Rule Editor screen. This read-only
-mode is designed to allow you to show off what you have built, without allowing people to
-break it.
+for a project by setting the project to "Published" in the Rule Editor screen.
 
 ### Added
 * The user registration page will set the default username based on an X-Forwarded-Email header if present.
