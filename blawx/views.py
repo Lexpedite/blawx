@@ -105,7 +105,7 @@ def ruleDocExportView(request,pk):
 def ruleDocImportView(request):
     if request.method == "POST":
 
-        if request.user.has_perm('add_ruledoc'):
+        if request.user.has_perm('blawx.add_ruledoc'):
 
             # The request should include a file.
             upload = request.FILES['loadfile']
@@ -133,9 +133,9 @@ def ruleDocImportView(request):
         return HttpResponseNotAllowed('POST')
 
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def exampleLoadView(request,example_name):
-    if request.user.has_perm('add_ruledoc'):
+    if request.user.has_perm('blawx.add_ruledoc'):
         # Load that file
         example = open('/blawx/blawx/static/blawx/examples/' + example_name + ".yaml")
         # Do the stuff in import.
