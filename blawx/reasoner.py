@@ -105,22 +105,24 @@ def new_json_2_scasp(payload,exclude_assumptions=False):
             output += attribute_name + "(" + object_name + ", " + str(value) + ").\n"
   return output
 
-def json_2_scasp(element,higher_order=False):
-  output = ""
-  if type(element) is dict:
-    # the keys of this dictionary are predicates
-    for (k,v) in element.items():
-      for occurrance in v:
-        output += k + "("
-        for parameter in occurrance:
-          output += json_2_scasp(parameter,True)
-          output += ","
-        output = output[:-1] + ")" #Trim trailing comma
-        if not higher_order:
-          output += ".\n"
-    return output
-  else:
-    return str(element)
+# def json_2_scasp(element,higher_order=False):
+#   output = ""
+#   if type(element) is dict:
+#     # the keys of this dictionary are predicates
+#     for (k,v) in element.items():
+#       for occurrance in v:
+#         output += k + "("
+#         for parameter in occurrance:
+#           output += json_2_scasp(parameter,True)
+#           output += ","
+#         output = output[:-1] + ")" #Trim trailing comma
+#         if not higher_order:
+#           output += ".\n"
+#     return output
+#   else:
+#     return str(element)
+
+#TODO Add Permissions
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
@@ -361,6 +363,8 @@ blawxrun(Query, Human) :-
     # Return the results as JSON
     return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output }
 
+#TODO Add Permissions
+
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
@@ -371,6 +375,8 @@ def get_ontology(request,ruledoc,test_name):
       return Response(result)
     else:
       return HttpResponseNotFound()
+
+#TODO Add Permissions
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
