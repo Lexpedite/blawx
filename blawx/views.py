@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.core import serializers
-from django.http import FileResponse, HttpResponseNotFound, HttpResponseRedirect, HttpResponseNotAllowed
+from django.http import FileResponse, HttpResponse, HttpResponseForbidden, HttpResponseNotFound, HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import  render, redirect
 from django.contrib.auth import login
 from django.contrib import messages
@@ -17,6 +17,8 @@ from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication #, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 # from rest_framework import permissions
+
+from guardian.mixins import PermissionRequiredMixin
 
 from .serializers import CodeUpdateRequestSerializer
 from .models import Workspace, DocPage, RuleDoc, BlawxTest
@@ -51,7 +53,8 @@ class RuleDocsView(generic.ListView):
     def get_queryset(self):
         return RuleDoc.objects.all()
         
-class RuleDocView(generic.DetailView):
+class RuleDocView(PermissionRequiredMixin, generic.DetailView):
+    permission_required = 'view_ruledoc'
     template_name = 'blawx/ruledoc.html'
     model = RuleDoc
 
@@ -68,46 +71,80 @@ class RuleDocView(generic.DetailView):
 # @permission_classes([IsAuthenticated])
 def ruleDocLegalTextView(request,pk,section_name):
     ruledoc=RuleDoc.objects.get(pk=pk)
-    cobalt_parse = Act(ruledoc.akoma_ntoso)
-    target = cobalt_parse.act.find(".//*[@eId='" + section_name + "']")
-    return Response({'xml': lxml.etree.tostring(target),
-                     'text': ' '.join(target.itertext())})
+    if request.user.has_perm('view_ruledoc',ruledoc):
+        cobalt_parse = Act(ruledoc.akoma_ntoso)
+        target = cobalt_parse.act.find(".//*[@eId='" + section_name + "']")
+        return Response({'xml': lxml.etree.tostring(target),
+                        'text': ' '.join(target.itertext())})
+    else:
+        return HttpResponseForbidden()
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def ruleDocExportView(request,pk):
-    download = tempfile.NamedTemporaryFile('w',delete=False,prefix="blawx_rule_" + str(pk) + "_")
-    download_filename = download.name
     ruledoc = RuleDoc.objects.filter(pk=pk)
-    download.write(serializers.serialize('yaml',ruledoc))
-    sections = Workspace.objects.filter(ruledoc=pk)
-    if len(sections):
-        download.write(serializers.serialize('yaml',sections))
-    tests = BlawxTest.objects.filter(ruledoc=pk)
-    if len(tests):
-        download.write(serializers.serialize('yaml',tests))
-    download.close()
-    response = FileResponse(open(download_filename,'rb'),as_attachment=True,filename="blawx_rule_" + str(pk) + ".blawx")
-    return response
+    if request.user.has_perm('view_ruledoc',ruledoc):
+        download = tempfile.NamedTemporaryFile('w',delete=False,prefix="blawx_rule_" + str(pk) + "_")
+        download_filename = download.name
+        download.write(serializers.serialize('yaml',ruledoc))
+        sections = Workspace.objects.filter(ruledoc=pk)
+        if len(sections):
+            download.write(serializers.serialize('yaml',sections))
+        tests = BlawxTest.objects.filter(ruledoc=pk)
+        if len(tests):
+            download.write(serializers.serialize('yaml',tests))
+        download.close()
+        response = FileResponse(open(download_filename,'rb'),as_attachment=True,filename="blawx_rule_" + str(pk) + ".blawx")
+        return response
+    else:
+        return HttpResponseForbidden()
 
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def ruleDocImportView(request):
     if request.method == "POST":
 
-        # The request should include a file.
-        upload = request.FILES['loadfile']
+        if request.user.has_perm('add_ruledoc'):
 
-        # Deserialize the contents of the file.
-        new_objects = serializers.deserialize('yaml',upload.read())
+            # The request should include a file.
+            upload = request.FILES['loadfile']
 
+            # Deserialize the contents of the file.
+            new_objects = serializers.deserialize('yaml',upload.read())
+
+            new_object_list = list(new_objects)
+            # Get the RuleDoc, remove the PK, save it, and get the PK of the saved version.
+            new_object_list[0].object.pk = None
+            new_object_list[0].object.owner = request.user
+            new_object_list[0].object.save()
+            
+            # Use the PK of the saved version to save the workspaces and tests
+            for o in new_object_list[1:]:
+                o.object.ruledoc = new_object_list[0].object
+                o.object.save()
+            # Now trigger the post-save for the RuleDoc object to set permissions on sub-objects.
+            new_object_list[0].object.save()
+            # Send the user back to root.
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponseForbidden()
+    else:
+        return HttpResponseNotAllowed('POST')
+
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def exampleLoadView(request,example_name):
+    if request.user.has_perm('add_ruledoc'):
+        # Load that file
+        example = open('/blawx/blawx/static/blawx/examples/' + example_name + ".yaml")
+        # Do the stuff in import.
+        new_objects = serializers.deserialize('yaml',example.read())
         new_object_list = list(new_objects)
         # Get the RuleDoc, remove the PK, save it, and get the PK of the saved version.
         new_object_list[0].object.pk = None
         new_object_list[0].object.owner = request.user
         new_object_list[0].object.save()
-        
         # Use the PK of the saved version to save the workspaces and tests
         for o in new_object_list[1:]:
             o.object.ruledoc = new_object_list[0].object
@@ -117,31 +154,11 @@ def ruleDocImportView(request):
         # Send the user back to root.
         return HttpResponseRedirect('/')
     else:
-        return HttpResponseNotAllowed('POST')
-
-@authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
-def exampleLoadView(request,example_name):
-    # Load that file
-    example = open('/blawx/blawx/static/blawx/examples/' + example_name + ".yaml")
-    # Do the stuff in import.
-    new_objects = serializers.deserialize('yaml',example.read())
-    new_object_list = list(new_objects)
-    # Get the RuleDoc, remove the PK, save it, and get the PK of the saved version.
-    new_object_list[0].object.pk = None
-    new_object_list[0].object.owner = request.user
-    new_object_list[0].object.save()
-    # Use the PK of the saved version to save the workspaces and tests
-    for o in new_object_list[1:]:
-        o.object.ruledoc = new_object_list[0].object
-        o.object.save()
-    # Now trigger the post-save for the RuleDoc object to set permissions on sub-objects.
-    new_object_list[0].object.save()
-    # Send the user back to root.
-    return HttpResponseRedirect('/')
+        return HttpResponseForbidden()
 
 
-class BlawxView(generic.DetailView):
+class BlawxView(PermissionRequiredMixin, generic.DetailView):
+    permission_required = "view_ruledoc"
     template_name = 'blawx/blawx.html'
     model = RuleDoc
 
@@ -153,21 +170,24 @@ class BlawxView(generic.DetailView):
         context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk'])) 
         return context
 
-class TestView(generic.DetailView):
+class TestView(PermissionRequiredMixin, generic.DetailView):
+    permission_required = "view_blawxtest"
     template_name = "blawx/test.html"
     model = BlawxTest
 
     def get_object(self):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']),test_name=self.kwargs['test_name'])
 
-class BlawxBot(generic.DetailView):
+class BlawxBot(PermissionRequiredMixin, generic.DetailView):
+    permission_required = "view_blawxtest"
     template_name = "blawx/bot.html"
     model = BlawxTest
 
     def get_object(self):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
 
-class TestCreateView(CreateView):
+class TestCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = "add_blawxtest"
     model = BlawxTest
     fields = ['test_name']
     
@@ -178,7 +198,8 @@ class TestCreateView(CreateView):
         form.instance.ruledoc = RuleDoc.objects.get(pk=self.kwargs['pk'])
         return super().form_valid(form)
 
-class TestDeleteView(DeleteView):
+class TestDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = "delete_blawxtest"
     model = BlawxTest
 
     def get_success_url(self):
@@ -191,7 +212,8 @@ class TestDeleteView(DeleteView):
             return redirect(self.success_url) # This is sub-optimal.
         return super().post(request, *args, **kwargs)
 
-class RuleDocCreateView(LoginRequiredMixin, CreateView):
+class RuleDocCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'add_ruledoc'
     model = RuleDoc
     fields = ['ruledoc_name','rule_text','published']
     success_url = reverse_lazy('blawx:ruledocs')
@@ -200,7 +222,8 @@ class RuleDocCreateView(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
-class RuleDocDeleteView(DeleteView):
+class RuleDocDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'delete_ruledoc'
     model = RuleDoc
     success_url = reverse_lazy('blawx:ruledocs')
 
@@ -211,7 +234,8 @@ class RuleDocDeleteView(DeleteView):
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)
 
-class RuleDocEditView(UpdateView):
+class RuleDocEditView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'change_ruledoc'
     model = RuleDoc
     fields = ['ruledoc_name','rule_text','published']
 
@@ -229,9 +253,8 @@ class DocumentView(generic.DetailView):
 @authentication_classes([SessionAuthentication])
 # @permission_classes([IsAuthenticated])
 def update_code(request,pk,workspace):
-    ruledoctest = RuleDoc.objects.get(pk=pk)
-    if ruledoctest:
-        target = Workspace.objects.get(ruledoc=pk,workspace_name=workspace)
+    target = Workspace.objects.get(ruledoc=pk,workspace_name=workspace)
+    if request.user.has_perm('change_workspace',target):
         workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
         workspace_serializer.is_valid()
         target.xml_content = workspace_serializer.validated_data.get('xml_content', target.xml_content)
@@ -239,7 +262,9 @@ def update_code(request,pk,workspace):
         target.save()
         return Response({"That probably worked."})
     else:
-        return HttpResponseNotFound()
+        return HttpResponseForbidden()
+
+# TODO Add permission requirements below here.
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
