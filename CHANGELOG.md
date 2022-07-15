@@ -21,6 +21,9 @@ for a project by setting the project to "Published" in the Rule Editor screen.
 * The admin interface now allows permissions to be set for users and groups with regard
   to specific rules, workspaces, and tests.
 
+### Changed
+* User interface elements that require permissions you do not have will appear disabled.
+
 ## [v1.3.20-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.20-alpha) 2022-07-11
 
 This release adds user registration, restricts access to projects that the user created,
