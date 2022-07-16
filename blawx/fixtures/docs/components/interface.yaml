@@ -35,6 +35,8 @@
         results.
       * Bot - Starts BlawxBot using the current test.
       * Delete - Deletes the current test from the Rule, and returns you to the Rule screen.
+
+      Note that if you do not have the permissions required to use a feature, that button will be disabled.
       
       ### Navigation Pane
 
@@ -83,6 +85,9 @@
       #### Workspace
       The workspace is a canvas on which you can arrange and modify blocks in order to write
       your code.  The only other visual element in the workspace is the Trash Bin.
+
+      Note that if you are viewing an encoding that you do not have permissions to change,
+      the workspace will be read-only.
 
       ##### Trash Bin
 
