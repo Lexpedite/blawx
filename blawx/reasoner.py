@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework.response import Response
 # from rest_framework.permissions import AllowAny
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, DjangoObjectPermissions, IsAuthenticatedOrReadOnly, AllowAny
 import tempfile
 import os
 import json 
@@ -17,6 +17,14 @@ from swiplserver import PrologMQI, PrologError, PrologLaunchError
 from .models import Workspace, RuleDoc, BlawxTest
 from .ldap import ldap_code
 from .dates import scasp_dates
+
+from rest_framework import permissions
+
+class IgnorePermission(permissions.BasePermission):
+    message = 'None.'
+
+    def has_permission(self, request, view):
+         return True
 
 # Proposed format for JSON submissions.
 # {
@@ -124,7 +132,7 @@ def new_json_2_scasp(payload,exclude_assumptions=False):
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def run_test(request,ruledoc,test_name):
     # ruledoctest = RuleDoc.objects.filter(pk=ruledoc,owner=request.user)
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
@@ -172,7 +180,7 @@ blawxrun(Query, Human) :-
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      print(temprulefile.read())
+      # print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -195,7 +203,7 @@ blawxrun(Query, Human) :-
 
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
-                    print("blawxrun(" + query + ",Human).")
+                    # print("blawxrun(" + query + ",Human).")
                     query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
                     
                 transcript.write(str(query_answer) + '\n')
@@ -256,7 +264,7 @@ blawxrun(Query, Human) :-
     rulefile.close()
     rulefilename = rulefile.name
     temprulefile = open(rulefilename,'r')
-    print(temprulefile.read())
+    # print(temprulefile.read())
     temprulefile.close()
 
     # Start the Prolog "thread"
@@ -279,7 +287,7 @@ blawxrun(Query, Human) :-
 
               #transcript.write(full_query)
               with redirect_stderr(transcript):
-                  print("blawxrun(blawx_category(Category),Human).")
+                  # print("blawxrun(blawx_category(Category),Human).")
                   category_answers = []
                   query1_answer = swipl_thread.query("blawxrun(blawx_category(Category),Human).")
                   query1_answers = generate_answers(query1_answer)
@@ -295,7 +303,7 @@ blawxrun(Query, Human) :-
                     cat_nlg_query_answers = generate_answers(cat_nlg_query_response)
                     for cnlga in cat_nlg_query_answers:
                       category_nlg.append({"Category": c, "Prefix": cnlga['Variables']['Prefix'], "Postfix": cnlga['Variables']['Postfix']})
-                  print("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
+                  # print("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
                   attribute_answers = []
                   query2_answers = []
                   try:
@@ -363,7 +371,7 @@ blawxrun(Query, Human) :-
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def get_ontology(request,ruledoc,test_name):
     ruledoctest = RuleDoc.objects.get(pk=ruledoc)
     if request.user.has_perm('blawx.view_ruledoc',ruledoctest):
@@ -375,13 +383,19 @@ def get_ontology(request,ruledoc,test_name):
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def interview(request,ruledoc,test_name):
+    print("Dealing with interview request.\n")
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     if request.user.has_perm('blawx.run',test):
+      print("User has permissions.\n")
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data, True) #Generate answers ignoring assumptions in the submitted data
+      print("The raw data submitted is:")
+      print(str(request.data) + "\n")
+      print("Facts submittied are:")
+      print(str(translated_facts))
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       ruleset = ""
       for ws in wss:
@@ -422,7 +436,7 @@ blawxrun(Query, Human) :-
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      print(temprulefile.read())
+      # print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -435,6 +449,7 @@ blawxrun(Query, Human) :-
 
                 with redirect_stderr(transcript):
                     load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+                print("Loading generated Prolog code: " + str(load_file_answer))
                 transcript.write(str(load_file_answer) + '\n')
                 if os.path.exists(rulefilename):
                     rules = open(rulefilename)
@@ -444,9 +459,10 @@ blawxrun(Query, Human) :-
                     os.remove(rulefilename)
 
                 with redirect_stderr(transcript):
-                    print("blawxrun(" + query + ",Human).")
+                    # print("blawxrun(" + query + ",Human).")
                     query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
-                    
+                print("Running query " + query + ":")
+                print(str(query_answer))
                 transcript.write(str(query_answer) + '\n')
 
                 transcript.close()
@@ -465,6 +481,9 @@ blawxrun(Query, Human) :-
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data, False) #Generate answers INCLUDING assumptions in the submitted data
+      print("Generated facts with assumptions:")
+      print(str(translated_facts) + "\n")
+
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
       ruleset = ""
@@ -502,7 +521,7 @@ blawxrun(Query, Tree, Model) :-
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      print(temprulefile.read())
+      # print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -515,6 +534,7 @@ blawxrun(Query, Tree, Model) :-
 
                 with redirect_stderr(transcript):
                     load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+                print("Loading generated prolog file: " + str(load_file_answer) + '\n')
                 transcript.write(str(load_file_answer) + '\n')
                 if os.path.exists(rulefilename):
                     rules = open(rulefilename)
@@ -525,9 +545,10 @@ blawxrun(Query, Tree, Model) :-
 
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
-                    print("blawxrun(" + query + ",Human,Model).")
+                    # print("blawxrun(" + query + ",Human,Model).")
                     relevance_query_answer = swipl_thread.query("blawxrun(" + query + ",Human, Model).")
-                    
+                print("Running Relevance Query:")
+                print(str(relevance_query_answer) + "\n")
                 transcript.write(str(relevance_query_answer) + '\n')
 
                 transcript.close()

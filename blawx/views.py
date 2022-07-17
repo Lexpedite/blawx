@@ -15,7 +15,7 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework.response import Response
 # from rest_framework.permissions import AllowAny
 from rest_framework.authentication import SessionAuthentication #, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 # from rest_framework import permissions
 
 from guardian.mixins import PermissionRequiredMixin
@@ -68,7 +68,7 @@ class RuleDocView(PermissionRequiredMixin, generic.DetailView):
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def ruleDocLegalTextView(request,pk,section_name):
     ruledoc=RuleDoc.objects.get(pk=pk)
     if request.user.has_perm('blawx.view_ruledoc',ruledoc):
@@ -81,7 +81,7 @@ def ruleDocLegalTextView(request,pk,section_name):
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def ruleDocExportView(request,pk):
     ruledoc = RuleDoc.objects.filter(pk=pk)
     if request.user.has_perm('blawx.view_ruledoc',ruledoc):
@@ -101,7 +101,7 @@ def ruleDocExportView(request,pk):
         return HttpResponseForbidden()
 
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def ruleDocImportView(request):
     if request.method == "POST":
 
@@ -133,7 +133,7 @@ def ruleDocImportView(request):
         return HttpResponseNotAllowed('POST')
 
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def exampleLoadView(request,example_name):
     if request.user.has_perm('blawx.add_ruledoc'):
         # Load that file
@@ -258,7 +258,7 @@ class DocumentView(generic.DetailView):
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def update_code(request,pk,workspace):
     target = Workspace.objects.get(ruledoc=pk,workspace_name=workspace)
     if request.user.has_perm('blawx.change_workspace',target):
@@ -272,9 +272,9 @@ def update_code(request,pk,workspace):
         return HttpResponseForbidden()
 
 
-@api_view(['POST'])
+@api_view(['POST','GET'])
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def get_code(request,pk,workspace):
     ruledoctest = RuleDoc.objects.get(pk=pk)
     target = Workspace.objects.filter(ruledoc=ruledoctest,workspace_name=workspace)
@@ -286,7 +286,7 @@ def get_code(request,pk,workspace):
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def get_all_code(request,pk):
     workspaces = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=pk))
     output = []
@@ -299,7 +299,7 @@ def get_all_code(request,pk):
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def update_test(request,ruledoc,test_name):
     target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     if request.user.get_perm('change_blawxtest',target):
@@ -312,9 +312,9 @@ def update_test(request,ruledoc,test_name):
     else:
         return HttpResponseForbidden()
 
-@api_view(['POST'])
+@api_view(['POST','GET'])
 @authentication_classes([SessionAuthentication])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def get_test(request,ruledoc,test_name):
     ruledoctest = RuleDoc.objects.get(pk=ruledoc)
     # Checking permissions here is weird. If it already exists, I need to check if they can change it.
