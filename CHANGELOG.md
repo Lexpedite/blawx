@@ -7,11 +7,11 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## Since Last Release
+## [v1.3.21-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.21-alpha) 2022-07-11
 
-Users other than the owner of a project can now be given access to view legal text, view
-code, view and run tests, run BlawxBot against tests, and access the various Web API endpoints
-for a project by setting the project to "Published" in the Rule Editor screen.
+You can now "publish" a project in the Rule Editor screen, which gives other users, including
+anonymous users, read-only access to view the code, and the ability to run tests and BlawxBot,
+and the ability to access the API endpoints for that project and its tests. 
 
 ### Added
 * The user registration page will set the default username based on an X-Forwarded-Email header if present.
