@@ -7,10 +7,23 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## Since Last Release
+## [v1.3.21-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.21-alpha) 2022-07-11
+
+You can now "publish" a project in the Rule Editor screen, which gives other users, including
+anonymous users, read-only access to view the code, and the ability to run tests and BlawxBot,
+and the ability to access the API endpoints for that project and its tests. 
 
 ### Added
 * The user registration page will set the default username based on an X-Forwarded-Email header if present.
+* Projects can now be set to "published" in the Rule Editor screen and admin interface.
+* Anonymous users and users other than the owner of the project have read and execute
+  access to published rules and their associated tests.
+* The admin interface now allows permissions to be set for users and groups with regard
+  to specific rules, workspaces, and tests.
+
+### Changed
+* User interface elements that require permissions you do not have will appear disabled.
+* The coding interface in Code Editor and Test Editor will be read-only if you do not have permissions to change the code.
 
 ## [v1.3.20-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.20-alpha) 2022-07-11
 

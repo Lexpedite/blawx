@@ -1,10 +1,10 @@
-from django.http import Http404, HttpResponseNotFound
+from django.http import Http404, HttpResponseNotFound, HttpResponseForbidden
 
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 # from rest_framework.permissions import AllowAny
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, DjangoObjectPermissions, IsAuthenticatedOrReadOnly, AllowAny
 import tempfile
 import os
 import json 
@@ -17,6 +17,14 @@ from swiplserver import PrologMQI, PrologError, PrologLaunchError
 from .models import Workspace, RuleDoc, BlawxTest
 from .ldap import ldap_code
 from .dates import scasp_dates
+
+from rest_framework import permissions
+
+class IgnorePermission(permissions.BasePermission):
+    message = 'None.'
+
+    def has_permission(self, request, view):
+         return True
 
 # Proposed format for JSON submissions.
 # {
@@ -105,34 +113,34 @@ def new_json_2_scasp(payload,exclude_assumptions=False):
             output += attribute_name + "(" + object_name + ", " + str(value) + ").\n"
   return output
 
-def json_2_scasp(element,higher_order=False):
-  output = ""
-  if type(element) is dict:
-    # the keys of this dictionary are predicates
-    for (k,v) in element.items():
-      for occurrance in v:
-        output += k + "("
-        for parameter in occurrance:
-          output += json_2_scasp(parameter,True)
-          output += ","
-        output = output[:-1] + ")" #Trim trailing comma
-        if not higher_order:
-          output += ".\n"
-    return output
-  else:
-    return str(element)
+# def json_2_scasp(element,higher_order=False):
+#   output = ""
+#   if type(element) is dict:
+#     # the keys of this dictionary are predicates
+#     for (k,v) in element.items():
+#       for occurrance in v:
+#         output += k + "("
+#         for parameter in occurrance:
+#           output += json_2_scasp(parameter,True)
+#           output += ","
+#         output = output[:-1] + ")" #Trim trailing comma
+#         if not higher_order:
+#           output += ".\n"
+#     return output
+#   else:
+#     return str(element)
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def run_test(request,ruledoc,test_name):
-    ruledoctest = RuleDoc.objects.filter(pk=ruledoc,owner=request.user)
-    if ruledoctest.exists():
+    # ruledoctest = RuleDoc.objects.filter(pk=ruledoc,owner=request.user)
+    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    if request.user.has_perm('blawx.run',test):
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data)
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
-      test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
       ruleset = ""
       for ws in wss:
         ruleset += "\n\n" + ws.scasp_encoding
@@ -140,13 +148,13 @@ def run_test(request,ruledoc,test_name):
       
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
-  :- use_module(library(scasp)).
-  :- use_module(library(scasp/human)).
-  :- use_module(library(scasp/output)).
+:- use_module(library(scasp)).
+:- use_module(library(scasp/human)).
+:- use_module(library(scasp/output)).
 
-  :- meta_predicate
-      blawxrun2(0,-).
-  """)
+:- meta_predicate
+    blawxrun2(0,-).
+""")
 
       query = "No Query Specified"
       for line in test.scasp_encoding.splitlines():
@@ -154,14 +162,14 @@ def run_test(request,ruledoc,test_name):
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-  blawxrun(Query, Human) :-
-      scasp(Query,[tree(Tree)]),
-      ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
-      with_output_to(string(Human),
-                human_justification_tree(Tree,[])).
-      term_attvars(Query, AttVars),
-      maplist(del_attrs, AttVars).
-  """)
+blawxrun(Query, Human) :-
+    scasp(Query,[tree(Tree)]),
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+    with_output_to(string(Human),
+              human_justification_tree(Tree,[])).
+    term_attvars(Query, AttVars),
+    maplist(del_attrs, AttVars).
+""")
   
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
@@ -172,7 +180,7 @@ def run_test(request,ruledoc,test_name):
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      print(temprulefile.read())
+      # print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -195,7 +203,7 @@ def run_test(request,ruledoc,test_name):
 
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
-                    print("blawxrun(" + query + ",Human).")
+                    # print("blawxrun(" + query + ",Human).")
                     query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
                     
                 transcript.write(str(query_answer) + '\n')
@@ -217,7 +225,7 @@ def run_test(request,ruledoc,test_name):
       else:
         return Response({ "Answers": generate_answers(query_answer), "Transcript": transcript_output })
     else:
-      return HttpResponseNotFound()
+      return HttpResponseForbidden()
 
 def get_ontology_internal(ruledoc,test_name):
     wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
@@ -256,7 +264,7 @@ blawxrun(Query, Human) :-
     rulefile.close()
     rulefilename = rulefile.name
     temprulefile = open(rulefilename,'r')
-    print(temprulefile.read())
+    # print(temprulefile.read())
     temprulefile.close()
 
     # Start the Prolog "thread"
@@ -279,7 +287,7 @@ blawxrun(Query, Human) :-
 
               #transcript.write(full_query)
               with redirect_stderr(transcript):
-                  print("blawxrun(blawx_category(Category),Human).")
+                  # print("blawxrun(blawx_category(Category),Human).")
                   category_answers = []
                   query1_answer = swipl_thread.query("blawxrun(blawx_category(Category),Human).")
                   query1_answers = generate_answers(query1_answer)
@@ -295,7 +303,7 @@ blawxrun(Query, Human) :-
                     cat_nlg_query_answers = generate_answers(cat_nlg_query_response)
                     for cnlga in cat_nlg_query_answers:
                       category_nlg.append({"Category": c, "Prefix": cnlga['Variables']['Prefix'], "Postfix": cnlga['Variables']['Postfix']})
-                  print("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
+                  # print("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
                   attribute_answers = []
                   query2_answers = []
                   try:
@@ -363,26 +371,32 @@ blawxrun(Query, Human) :-
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def get_ontology(request,ruledoc,test_name):
-    ruledoctest = RuleDoc.objects.filter(owner=request.user,pk=ruledoc)
-    if ruledoctest.exists():
+    ruledoctest = RuleDoc.objects.get(pk=ruledoc)
+    if request.user.has_perm('blawx.view_ruledoc',ruledoctest):
       result = get_ontology_internal(ruledoc,test_name)
       return Response(result)
     else:
-      return HttpResponseNotFound()
+      return HttpResponseForbidden()
+
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def interview(request,ruledoc,test_name):
-    ruledoctest = RuleDoc.objects.filter(owner=request.user,pk=ruledoc)
-    if ruledoctest.exists():
+    print("Dealing with interview request.\n")
+    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    if request.user.has_perm('blawx.run',test):
+      print("User has permissions.\n")
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data, True) #Generate answers ignoring assumptions in the submitted data
+      print("The raw data submitted is:")
+      print(str(request.data) + "\n")
+      print("Facts submittied are:")
+      print(str(translated_facts))
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
-      test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
       ruleset = ""
       for ws in wss:
         ruleset += "\n\n" + ws.scasp_encoding
@@ -390,13 +404,13 @@ def interview(request,ruledoc,test_name):
       
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
-  :- use_module(library(scasp)).
-  :- use_module(library(scasp/human)).
-  :- use_module(library(scasp/output)).
+:- use_module(library(scasp)).
+:- use_module(library(scasp/human)).
+:- use_module(library(scasp/output)).
 
-  :- meta_predicate
-      blawxrun2(0,-).
-  """)
+:- meta_predicate
+    blawxrun2(0,-).
+""")
 
       query = "No Query Specified"
       for line in test.scasp_encoding.splitlines():
@@ -404,14 +418,14 @@ def interview(request,ruledoc,test_name):
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-  blawxrun(Query, Human) :-
-      scasp(Query,[tree(Tree)]),
-      ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
-      with_output_to(string(Human),
-                human_justification_tree(Tree,[])).
-      term_attvars(Query, AttVars),
-      maplist(del_attrs, AttVars).
-  """)
+blawxrun(Query, Human) :-
+    scasp(Query,[tree(Tree)]),
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+    with_output_to(string(Human),
+              human_justification_tree(Tree,[])).
+    term_attvars(Query, AttVars),
+    maplist(del_attrs, AttVars).
+""")
   
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
@@ -422,7 +436,7 @@ def interview(request,ruledoc,test_name):
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      print(temprulefile.read())
+      # print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -435,6 +449,7 @@ def interview(request,ruledoc,test_name):
 
                 with redirect_stderr(transcript):
                     load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+                print("Loading generated Prolog code: " + str(load_file_answer))
                 transcript.write(str(load_file_answer) + '\n')
                 if os.path.exists(rulefilename):
                     rules = open(rulefilename)
@@ -444,9 +459,10 @@ def interview(request,ruledoc,test_name):
                     os.remove(rulefilename)
 
                 with redirect_stderr(transcript):
-                    print("blawxrun(" + query + ",Human).")
+                    # print("blawxrun(" + query + ",Human).")
                     query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
-                    
+                print("Running query " + query + ":")
+                print(str(query_answer))
                 transcript.write(str(query_answer) + '\n')
 
                 transcript.close()
@@ -465,6 +481,9 @@ def interview(request,ruledoc,test_name):
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data, False) #Generate answers INCLUDING assumptions in the submitted data
+      print("Generated facts with assumptions:")
+      print(str(translated_facts) + "\n")
+
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
       ruleset = ""
@@ -474,13 +493,13 @@ def interview(request,ruledoc,test_name):
       
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
-  :- use_module(library(scasp)).
-  :- use_module(library(scasp/human)).
-  :- use_module(library(scasp/output)).
+:- use_module(library(scasp)).
+:- use_module(library(scasp/human)).
+:- use_module(library(scasp/output)).
 
-  :- meta_predicate
-      blawxrun2(0,-).
-  """)
+:- meta_predicate
+    blawxrun2(0,-).
+""")
 
       query = "No Query Specified"
       for line in test.scasp_encoding.splitlines():
@@ -488,10 +507,10 @@ def interview(request,ruledoc,test_name):
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-  blawxrun(Query, Tree, Model) :-
-      scasp(Query,[tree(Tree),model(Model)]),
-      ovar_analyze_term(t(Query, Tree),[name_constraints(true)]).
-  """)
+blawxrun(Query, Tree, Model) :-
+    scasp(Query,[tree(Tree),model(Model)]),
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]).
+""")
 
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
@@ -502,7 +521,7 @@ def interview(request,ruledoc,test_name):
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      print(temprulefile.read())
+      # print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -515,6 +534,7 @@ def interview(request,ruledoc,test_name):
 
                 with redirect_stderr(transcript):
                     load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+                print("Loading generated prolog file: " + str(load_file_answer) + '\n')
                 transcript.write(str(load_file_answer) + '\n')
                 if os.path.exists(rulefilename):
                     rules = open(rulefilename)
@@ -525,9 +545,10 @@ def interview(request,ruledoc,test_name):
 
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
-                    print("blawxrun(" + query + ",Human,Model).")
+                    # print("blawxrun(" + query + ",Human,Model).")
                     relevance_query_answer = swipl_thread.query("blawxrun(" + query + ",Human, Model).")
-                    
+                print("Running Relevance Query:")
+                print(str(relevance_query_answer) + "\n")
                 transcript.write(str(relevance_query_answer) + '\n')
 
                 transcript.close()
@@ -579,7 +600,7 @@ def interview(request,ruledoc,test_name):
       else:
         return Response({ "Answers": generate_answers(query_answer), "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
     else:
-      return HttpResponseNotFound()
+      return HttpResponseForbidden()
 
 
 

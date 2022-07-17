@@ -12,6 +12,7 @@ class RuleDoc(models.Model):
     scasp_encoding = models.TextField(default="",blank=True)
     tutorial = models.TextField(default="",blank=True)
     owner = models.ForeignKey(User,on_delete=models.CASCADE,)
+    published = models.BooleanField(default=False)
 
     def __str__(self):
         return self.ruledoc_name
@@ -25,8 +26,14 @@ class RuleDoc(models.Model):
         an_act = Act(self.akoma_ntoso)
         return generate_tree(an_act.act)
 
+    class Meta:
+        permissions = [
+            ('add_blawxtest_to_ruledoc', 'Can add Test to RuleDoc'),
+            ('add_workspace_to_ruledoc', 'Can add Workspace to RuleDoc'),
+        ]
+    
 class Workspace(models.Model):
-    ruledoc = models.ForeignKey(RuleDoc, on_delete=models.CASCADE)
+    ruledoc = models.ForeignKey(RuleDoc, related_name='workspaces', on_delete=models.CASCADE)
     workspace_name = models.CharField(max_length=200)
     xml_content = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
@@ -40,7 +47,7 @@ class Workspace(models.Model):
         ]
 
 class BlawxTest(models.Model):
-    ruledoc = models.ForeignKey(RuleDoc, on_delete=models.CASCADE)
+    ruledoc = models.ForeignKey(RuleDoc, related_name='tests', on_delete=models.CASCADE)
     test_name = models.CharField(max_length=200)
     xml_content = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
@@ -53,6 +60,10 @@ class BlawxTest(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['ruledoc','test_name'],name='unique_test_and_ruledoc')
         ]
+        permissions = [
+            ('run', 'Run Test'),
+        ]
+        
 
 class Query(models.Model):
     ruledoc = models.ForeignKey(Workspace, on_delete=models.CASCADE)
