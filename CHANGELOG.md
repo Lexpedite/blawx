@@ -10,7 +10,7 @@ and breaking changes will not necessarily result in changes to the main version 
 ## Since Last Release
 
 Users other than the owner of a project can now be given access to view legal text, view
-code, view and run tests, run BlawxBot against tests, and access the various WebAPI endpoints
+code, view and run tests, run BlawxBot against tests, and access the various Web API endpoints
 for a project by setting the project to "Published" in the Rule Editor screen.
 
 ### Added
