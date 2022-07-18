@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .parse_an import generate_tree
 from cobalt.hierarchical import Act
 from clean.clean import generate_akn
+from preferences.models import Preferences
 
 # Create your models here.
 class RuleDoc(models.Model):
@@ -82,3 +83,6 @@ class DocPage(models.Model):
     def __str__(self):
         return self.title
 
+class BlawxPreference(Preferences):
+    __module__ = 'preferences.models'
+    allow_registration = models.BooleanField(default=True)
