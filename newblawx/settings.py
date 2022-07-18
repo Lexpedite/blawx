@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'guardian',
+    'django.contrib.sites',
+    'preferences',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -73,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'blawx.globals.global_vars',
+                "preferences.context_processors.preferences_cp",
             ],
         },
     },
@@ -148,3 +151,6 @@ REST_FRAMEWORK = {
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_REDIRECT_URL = '/'
+
+# Preferences requires sites, so we need to define a SITE_ID
+SITE_ID = 1

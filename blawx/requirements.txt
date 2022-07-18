@@ -5,3 +5,4 @@ pyyaml
 cobalt
 clean-law >=0.0.4
 django-guardian
+django-preferences

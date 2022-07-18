@@ -23,6 +23,8 @@ from guardian.mixins import PermissionRequiredMixin
 from .serializers import CodeUpdateRequestSerializer
 from .models import Workspace, DocPage, RuleDoc, BlawxTest
 
+from preferences import preferences
+
 
 from cobalt.hierarchical import Act
 import lxml
@@ -32,19 +34,23 @@ import tempfile
 
 
 def register_request(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user, 'django.contrib.auth.backends.ModelBackend')
-            messages.success(request, "Registration successful.")
-            return redirect("blawx:ruledocs")
-        messages.error(request, "Unsuccessful registration. Invalid information.")
-    if 'X-Forwarded-Email' in request.headers:
-        form = UserCreationForm(initial={'username': request.headers['X-Forwarded-Email']})
+    allow_registration = preferences.BlawxPreference.allow_registration 
+    if allow_registration:
+        if request.method == "POST":
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                login(request, user, 'django.contrib.auth.backends.ModelBackend')
+                messages.success(request, "Registration successful.")
+                return redirect("blawx:ruledocs")
+            messages.error(request, "Unsuccessful registration. Invalid information.")
+        if 'X-Forwarded-Email' in request.headers:
+            form = UserCreationForm(initial={'username': request.headers['X-Forwarded-Email']})
+        else:
+            form = UserCreationForm()
+        return render (request=request, template_name="registration/register.html", context={"register_form":form})
     else:
-        form = UserCreationForm()
-    return render (request=request, template_name="registration/register.html", context={"register_form":form})
+        return HttpResponseForbidden()
 
 class RuleDocsView(generic.ListView):
     template_name = 'blawx/index.html'
