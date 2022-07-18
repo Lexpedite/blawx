@@ -15,3 +15,9 @@
       By default, on a new installation of Blawx, there is an admin account created with the user
       name `admin` and the password `blawx2022`. When installing a server to which you want to
       restrict access, make sure to change the admin password immediately.
+
+      ## Restricting User Registration
+
+      If you want to prevent people from being able to create their own user accounts on your Blawx server,
+      access the "Blawx Preferences" section of the admin interface, de-select "Allow Registration", and
+      click Save.
