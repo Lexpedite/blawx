@@ -7,7 +7,10 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## Since Last Release
+## [v1.3.22-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.22-alpha) 2022-07-11
+
+This release adds the ability for administrative users to turn off user registration, for restricted-access
+deployments.
 
 ### Added
 * An "allow user registration" setting has been added to the interface. If set to false, the "register" links
@@ -15,6 +18,9 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### Changed
 * The option to "register" now appears in the top bar alongside "login" for unauthenticated users.
+
+### Fixed
+* Authenticated users other than the owner have access to published projects.
 
 ## [v1.3.21-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.21-alpha) 2022-07-11
 
