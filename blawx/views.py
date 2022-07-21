@@ -310,7 +310,7 @@ def get_all_code(request,pk):
 @permission_classes([IsAuthenticatedOrReadOnly])
 def update_test(request,ruledoc,test_name):
     target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
-    if request.user.get_perm('change_blawxtest',target):
+    if request.user.has_perm('change_blawxtest',target):
         workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
         workspace_serializer.is_valid()
         target.xml_content = workspace_serializer.validated_data.get('xml_content', target.xml_content)
