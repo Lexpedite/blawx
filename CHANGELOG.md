@@ -7,6 +7,16 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.23-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.22-alpha) 2022-07-21
+
+Bug fixes and updates to documentation
+
+### Fixed
+* A problem that was preventing tests from saving properly has been solved.
+
+### Added
+* install.md now has more detailed instructions on what is required to deploy Blawx to production.
+
 ## [v1.3.22-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.22-alpha) 2022-07-11
 
 This release adds the ability for administrative users to turn off user registration, for restricted-access
