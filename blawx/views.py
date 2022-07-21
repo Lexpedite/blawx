@@ -206,8 +206,9 @@ class TestCreateView(PermissionRequiredMixin, CreateView):
         form.instance.ruledoc = RuleDoc.objects.get(pk=self.kwargs['pk'])
         return super().form_valid(form)
     
-    # This is a workaround to get the PermissionRequiredMixin to work with CreateView
-    def get_object(self): return None
+    # In this case we are not checking for permissions on the object being created, but it's container.
+    def get_object(self):
+        return RuleDoc.objects.get(pk=self.kwargs['pk'])
 
 class TestDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = "blawx.delete_blawxtest"
@@ -310,7 +311,7 @@ def get_all_code(request,pk):
 @permission_classes([IsAuthenticatedOrReadOnly])
 def update_test(request,ruledoc,test_name):
     target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
-    if request.user.has_perm('change_blawxtest',target):
+    if request.user.has_perm('blawx.change_blawxtest',target):
         workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
         workspace_serializer.is_valid()
         target.xml_content = workspace_serializer.validated_data.get('xml_content', target.xml_content)

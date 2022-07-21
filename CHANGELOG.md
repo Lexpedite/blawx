@@ -7,7 +7,12 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## [v1.3.23-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.22-alpha) 2022-07-21
+## [v1.3.24-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.24-alpha) 2022-07-21
+
+### Fixed
+* A permission problem that was preventing tests from being created properly has been solved.
+
+## [v1.3.23-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.23-alpha) 2022-07-21
 
 Bug fixes and updates to documentation
 
