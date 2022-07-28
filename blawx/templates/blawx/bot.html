@@ -462,6 +462,7 @@
                                                     nextMessageCallback = function (text) {
                                                         if (text != "yes") {
                                                             closed_attributes[current_object['Object']].push(current_attribute['Attribute']);
+                                                            display_facts();
                                                         }
                                                         close_attribute_sought[current_object['Object']].push(current_attribute['Attribute']);
                                                         poseQuestion();
@@ -494,6 +495,7 @@
                                 nextMessageCallback = function (text) {
                                     if (text != "yes") {
                                         closed_categories.push(current_category);
+                                        display_facts();
                                     }
                                     close_category_sought[current_category] = true;
                                     poseQuestion();
@@ -634,12 +636,20 @@
                 for (var object = 0; object < fact_scenario['Objects'].length; object++) {
                     if (fact_scenario['Objects'][object]['Category'] == parsed_ontology['Categories'][category]) {
                         output_html += "<ul><li>" + fact_scenario['Objects'][object]['Object'];
-                        for (var value = 0; value < fact_scenario['Values'].length; value++) {
-                            if (fact_scenario['Values'][value]['Object'] == fact_scenario['Objects'][object]['Object']) {
-                                output_html += "<ul><li>" + fact_scenario['Values'][value]['Attribute'] + ": " + fact_scenario['Values'][value]['Value'] + "</li></ul>"
-                            }
-                            if (closed_attributes[fact_scenario['Values'][value]['Object']].includes(fact_scenario['Values'][value]['Attribute'])) {
-                                output_html += "<ul><li>no further values</li></ul>"
+                        for (var attribute = 0; attribute < parsed_ontology['Attributes'].length; attribute++) {
+                            if (parsed_ontology['Categories'][category] == parsed_ontology['Attributes'][attribute]['Category']){
+                                output_html += "<ul><li>" + parsed_ontology['Attributes'][attribute]['Attribute']  + "</li>";
+                                    for (var value = 0; value < fact_scenario['Values'].length; value++) {
+                                        if (fact_scenario['Values'][value]['Object'] == fact_scenario['Objects'][object]['Object']) {
+                                            if (fact_scenario['Values'][value]['Attribute'] == parsed_ontology['Attributes'][attribute]['Attribute']) {
+                                                output_html += "<ul><li>" + fact_scenario['Values'][value]['Value'] + "</li></ul>"
+                                            }
+                                        }
+                                    }
+                                    if (closed_attributes[fact_scenario['Objects'][object]['Object']].includes(parsed_ontology['Attributes'][attribute]['Attribute'])) {
+                                        output_html += "<ul><li>no further values</li></ul>"
+                                    }
+                                output_html += "</ul>"
                             }
                         }
                         output_html += "</li></ul>"
