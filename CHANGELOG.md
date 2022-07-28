@@ -7,10 +7,53 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## Since Last Release
+## [v1.3.24-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.24-alpha) 2022-07-21
+
+### Fixed
+* A permission problem that was preventing tests from being created properly has been solved.
+
+## [v1.3.23-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.23-alpha) 2022-07-21
+
+Bug fixes and updates to documentation
+
+### Fixed
+* A problem that was preventing tests from saving properly has been solved.
+
+### Added
+* install.md now has more detailed instructions on what is required to deploy Blawx to production.
+
+## [v1.3.22-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.22-alpha) 2022-07-11
+
+This release adds the ability for administrative users to turn off user registration, for restricted-access
+deployments.
+
+### Added
+* An "allow user registration" setting has been added to the interface. If set to false, the "register" links
+  will not appear and the user registration view will be forbidden.
+
+### Changed
+* The option to "register" now appears in the top bar alongside "login" for unauthenticated users.
+
+### Fixed
+* Authenticated users other than the owner have access to published projects.
+
+## [v1.3.21-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.21-alpha) 2022-07-11
+
+You can now "publish" a project in the Rule Editor screen, which gives other users, including
+anonymous users, read-only access to view the code, and the ability to run tests and BlawxBot,
+and the ability to access the API endpoints for that project and its tests. 
 
 ### Added
 * The user registration page will set the default username based on an X-Forwarded-Email header if present.
+* Projects can now be set to "published" in the Rule Editor screen and admin interface.
+* Anonymous users and users other than the owner of the project have read and execute
+  access to published rules and their associated tests.
+* The admin interface now allows permissions to be set for users and groups with regard
+  to specific rules, workspaces, and tests.
+
+### Changed
+* User interface elements that require permissions you do not have will appear disabled.
+* The coding interface in Code Editor and Test Editor will be read-only if you do not have permissions to change the code.
 
 ## [v1.3.20-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.20-alpha) 2022-07-11
 

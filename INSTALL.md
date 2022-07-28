@@ -65,3 +65,11 @@ it in a public or shared environment for learning or experimental purposes,
 the provided docker configuration may not be appropriate. Instead,
 it should be modified to follow the process for deploying a Django app. See [the Django documentation](https://docs.djangoproject.com/en/4.0/howto/deployment/)
 for more details.
+
+Steps for deploying will include:
+* changing the server_name settings in the settings.py file
+* changing the DEBUG setting in the settings.py file
+* adding configurations for secure CRSF and Cookies in the settings.py file
+* configuring nginx or another proxy server to directly serve static files
+* configuring TLS
+* replacing the manage.py runserver with a production WSGI web server

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .parse_an import generate_tree
 from cobalt.hierarchical import Act
 from clean.clean import generate_akn
+from preferences.models import Preferences
 
 # Create your models here.
 class RuleDoc(models.Model):
@@ -12,6 +13,7 @@ class RuleDoc(models.Model):
     scasp_encoding = models.TextField(default="",blank=True)
     tutorial = models.TextField(default="",blank=True)
     owner = models.ForeignKey(User,on_delete=models.CASCADE,)
+    published = models.BooleanField(default=False)
 
     def __str__(self):
         return self.ruledoc_name
@@ -25,8 +27,14 @@ class RuleDoc(models.Model):
         an_act = Act(self.akoma_ntoso)
         return generate_tree(an_act.act)
 
+    class Meta:
+        permissions = [
+            ('add_blawxtest_to_ruledoc', 'Can add Test to RuleDoc'),
+            ('add_workspace_to_ruledoc', 'Can add Workspace to RuleDoc'),
+        ]
+    
 class Workspace(models.Model):
-    ruledoc = models.ForeignKey(RuleDoc, on_delete=models.CASCADE)
+    ruledoc = models.ForeignKey(RuleDoc, related_name='workspaces', on_delete=models.CASCADE)
     workspace_name = models.CharField(max_length=200)
     xml_content = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
@@ -40,7 +48,7 @@ class Workspace(models.Model):
         ]
 
 class BlawxTest(models.Model):
-    ruledoc = models.ForeignKey(RuleDoc, on_delete=models.CASCADE)
+    ruledoc = models.ForeignKey(RuleDoc, related_name='tests', on_delete=models.CASCADE)
     test_name = models.CharField(max_length=200)
     xml_content = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
@@ -53,13 +61,10 @@ class BlawxTest(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['ruledoc','test_name'],name='unique_test_and_ruledoc')
         ]
-
-# class RuleDocTemplate(models.Model):
-#     template_name = models.CharField(max_length=200)
-#     yaml_content = models.TextField(default="")
-
-#     def __str__(self):
-#         return self.template_name
+        permissions = [
+            ('run', 'Run Test'),
+        ]
+        
 
 class Query(models.Model):
     ruledoc = models.ForeignKey(Workspace, on_delete=models.CASCADE)
@@ -78,3 +83,6 @@ class DocPage(models.Model):
     def __str__(self):
         return self.title
 
+class BlawxPreference(Preferences):
+    __module__ = 'preferences.models'
+    allow_registration = models.BooleanField(default=True)

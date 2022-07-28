@@ -1,21 +1,21 @@
 from django.contrib import admin
 
+from guardian.admin import GuardedModelAdmin
+from preferences.admin import PreferencesAdmin
 # Register your models here.
-from .models import Workspace, RuleDoc, BlawxTest
+from .models import Workspace, RuleDoc, BlawxTest, BlawxPreference
 
-class WorkspaceAdmin(admin.ModelAdmin):
+class WorkspaceAdmin(GuardedModelAdmin):
     fields = ['ruledoc','workspace_name','xml_content','scasp_encoding']
 
-class RuleDocAdmin(admin.ModelAdmin):
-    fields = ['ruledoc_name','scasp_encoding','tutorial','owner']
+class RuleDocAdmin(GuardedModelAdmin):
+    fields = ['ruledoc_name','scasp_encoding','tutorial','owner','published']
 
-class BlawxTestAdmin(admin.ModelAdmin):
+class BlawxTestAdmin(GuardedModelAdmin):
     fields = ['ruledoc','test_name','xml_content','scasp_encoding', 'tutorial']
 
-# class RuleDocTemplateAdmin(admin.ModelAdmin):
-#     fields = ['template_name','yaml_content']
 
+admin.site.register(BlawxPreference, PreferencesAdmin)
 admin.site.register(Workspace,WorkspaceAdmin)
 admin.site.register(RuleDoc,RuleDocAdmin)
 admin.site.register(BlawxTest,BlawxTestAdmin)
-# admin.site.register(RuleDocTemplate,RuleDocTemplateAdmin)

@@ -319,7 +319,7 @@ load_section_workspace = function(ruledoc_id,workspace_id) {
     // Get the new workspace with a call to /ruledoc_id/workspace_name/get
     var xml = "";
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "../" + workspace_id + "/get/", true);
+    xhttp.open("GET", "../" + workspace_id + "/get/", true);
     xhttp.setRequestHeader('Content-type', 'application/json');
     xhttp.setRequestHeader('X-CSRFToken', csrftoken);
     xhttp.onreadystatechange = function() {
@@ -345,7 +345,7 @@ load_test_workspace = function(ruledoc_id,test_name) {
     // Get the new workspace with a call to /ruledoc_id/workspace_name/get
     var xml = "";
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "../test/" + test_name + "/get/", true);
+    xhttp.open("GET", "../test/" + test_name + "/get/", true);
     xhttp.setRequestHeader('Content-type', 'application/json');
     xhttp.setRequestHeader('X-CSRFToken', csrftoken);
     xhttp.onreadystatechange = function() {
