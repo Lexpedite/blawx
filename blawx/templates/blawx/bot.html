@@ -635,19 +635,19 @@
                 output_html += "<li>" + parsed_ontology['Categories'][category];
                 for (var object = 0; object < fact_scenario['Objects'].length; object++) {
                     if (fact_scenario['Objects'][object]['Category'] == parsed_ontology['Categories'][category]) {
-                        output_html += "<ul><li>" + fact_scenario['Objects'][object]['Object'];
+                        output_html += "<ul><li>" + fact_scenario['Objects'][object]['Object'] + '<button type="button" class="btn btn-sm p-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button>';
                         for (var attribute = 0; attribute < parsed_ontology['Attributes'].length; attribute++) {
                             if (parsed_ontology['Categories'][category] == parsed_ontology['Attributes'][attribute]['Category']){
                                 output_html += "<ul><li>" + parsed_ontology['Attributes'][attribute]['Attribute']  + "</li>";
                                     for (var value = 0; value < fact_scenario['Values'].length; value++) {
                                         if (fact_scenario['Values'][value]['Object'] == fact_scenario['Objects'][object]['Object']) {
                                             if (fact_scenario['Values'][value]['Attribute'] == parsed_ontology['Attributes'][attribute]['Attribute']) {
-                                                output_html += "<ul><li>" + fact_scenario['Values'][value]['Value'] + "</li></ul>"
+                                                output_html += "<ul><li>" + fact_scenario['Values'][value]['Value'] + '<button type="button" class="btn btn-sm p-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button>' + "</li></ul>"
                                             }
                                         }
                                     }
                                     if (closed_attributes[fact_scenario['Objects'][object]['Object']].includes(parsed_ontology['Attributes'][attribute]['Attribute'])) {
-                                        output_html += "<ul><li>no further values</li></ul>"
+                                        output_html += "<ul><li>no further values" + '<button type="button" class="btn btn-sm p-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button></li></ul>'
                                     }
                                 output_html += "</ul>"
                             }
@@ -656,7 +656,7 @@
                     }
                 }
                 if (closed_categories.includes(parsed_ontology['Categories'][category])) {
-                    output_html += "<ul><li>no further members</li></ul>"
+                    output_html += "<ul><li>no further members" + '<button type="button" class="btn btm-sm p-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button>' + "</li></ul>"
                 }
                 output_html += "</li>"
             }
