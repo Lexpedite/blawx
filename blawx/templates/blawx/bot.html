@@ -576,6 +576,43 @@
             interview_request.send(JSON.stringify(create_fact_payload(fact_scenario)));
         }
 
+        function delete_object(object) {
+            object_name = fact_scenario['Objects'][object]['Object'];
+            // Delete the object from its own category.
+            // Delete the object as a value from any other categories' attributes
+            // Delete attributes described for that object.
+            // Delete closed attribute values for that object.
+            // Display a message
+            addMessage("OK, I have forgotten about " + object_name + ".", true);
+            // Pose a question.
+            poseQuestion();
+        }
+
+        function delete_value(value) {
+            object_name = fact_scenario['Values'][value]['Object'];
+            attribute_name = fact_scenario['Values'][value]['Attribute'];
+            value_text = fact_scenario['Values'][value]['Value'];
+            // Delete the value from its object and attribute
+            fact_scenario['Values'].splice(value,1);
+            // Display a message
+            addMessage("OK, I have removed " + value_text + " as a " + attribute_name + " for " + object_name + ".")
+            poseQuestion();
+        }
+
+        function delete_closed_attribute(attribute) {
+            // Delete the attribute and object from closed attributes.
+            // Display a message
+            addMessage("OK, I forgot that.", true);
+            poseQuestion();
+        }
+
+        function delete_closed_category(category) {
+            // Delete the category from closed categories
+            // Display a message
+            addMessage("OK, I forgot that.", true)
+            poseQuestion();
+        }
+
         function create_fact_payload(fact_scenario) {
             // Ideally I would just refactor the rest of the code so that this isn't necessary, but screw it.
 
@@ -707,19 +744,19 @@
                 output_html += "<li>" + parsed_ontology['Categories'][category];
                 for (var object = 0; object < fact_scenario['Objects'].length; object++) {
                     if (fact_scenario['Objects'][object]['Category'] == parsed_ontology['Categories'][category]) {
-                        output_html += "<ul><li>" + display_object(object) + '<button type="button" class="btn btn-sm p-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button>';
+                        output_html += "<ul><li>" + display_object(object) + '<button type="button" class="btn btn-sm p-0" data-bs-toggle="tooltip" data-bs-html="true" title="Forget this"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button>';
                         for (var attribute = 0; attribute < parsed_ontology['Attributes'].length; attribute++) {
                             if (parsed_ontology['Categories'][category] == parsed_ontology['Attributes'][attribute]['Category']){
                                 output_html += "<ul><li>" + parsed_ontology['Attributes'][attribute]['Attribute']  + "</li>";
                                     for (var value = 0; value < fact_scenario['Values'].length; value++) {
                                         if (fact_scenario['Values'][value]['Object'] == fact_scenario['Objects'][object]['Object']) {
                                             if (fact_scenario['Values'][value]['Attribute'] == parsed_ontology['Attributes'][attribute]['Attribute']) {
-                                                output_html += "<ul><li>" + display_value(value) + '<button type="button" class="btn btn-sm p-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button>' + "</li></ul>"
+                                                output_html += "<ul><li>" + display_value(value) + '<button type="button" class="btn btn-sm p-0" data-bs-toggle="tooltip" data-bs-html="true" title="Forget this"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button>' + "</li></ul>"
                                             }
                                         }
                                     }
                                     if (closed_attributes[fact_scenario['Objects'][object]['Object']].includes(parsed_ontology['Attributes'][attribute]['Attribute'])) {
-                                        output_html += "<ul><li>no more values" + '<button type="button" class="btn btn-sm p-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button></li></ul>'
+                                        output_html += "<ul><li>no more values" + '<button type="button" class="btn btn-sm p-0" data-bs-toggle="tooltip" data-bs-html="true" title="Forget this"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button></li></ul>'
                                     }
                                 output_html += "</ul>"
                             }
@@ -728,7 +765,7 @@
                     }
                 }
                 if (closed_categories.includes(parsed_ontology['Categories'][category])) {
-                    output_html += "<ul><li>no more members" + '<button type="button" class="btn btm-sm p-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button>' + "</li></ul>"
+                    output_html += "<ul><li>no more members" + '<button type="button" class="btn btm-sm p-0" data-bs-toggle="tooltip" data-bs-html="true" title="Forget this"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg><span class="visually-hidden">Delete</span></button>' + "</li></ul>"
                 }
                 output_html += "</li>"
             }
