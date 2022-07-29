@@ -484,6 +484,27 @@
                                                         //add a value to that attribute,
                                                         close_attribute_sought[current_object['Object']].pop(current_attribute['Attribute']);
                                                         fact_scenario['Values'].push({ "Object": current_object['Object'], "Attribute": current_attribute['Attribute'], "Value": text });
+                                                        // If the attribute type is a category, and the value is not already an object in that category, add it
+                                                        if (parsed_ontology['Categories'].includes(current_attribute['Type'])) {
+                                                            entered = false;
+                                                            for(obj = 0; obj < fact_scenario['Objects'].length; obj ++) {
+                                                                if (fact_scenario['Objects'][obj]['Category'] == current_attribute['Type'] && fact_scenario['Objects'][obj]['Object'] == text) {
+                                                                    entered = true;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            for(testobj = 0; testobj < parsed_ontology['Objects'].length; testobj ++) {
+                                                                if (parsed_ontology['Objects'][testobj]['Category'] == current_attribute['Type'] && parsed_ontology['Objects'][testobj]['Object'] == text) {
+                                                                    entered = true;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            if (!entered) {
+                                                                fact_scenario['Objects'].push({ "Category": current_attribute['Type'], "Object": text});
+                                                                closed_attributes[text] = [];
+                                                                close_attribute_sought[text] = [];
+                                                            }
+                                                        }
                                                         display_facts();
                                                         poseQuestion();
                                                         // check to see if the attribute is closed, and recurse
