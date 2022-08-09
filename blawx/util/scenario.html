@@ -16,11 +16,12 @@
                 <nav class="column">
                     <div id="facttree" class="blawx-category tree-element p-2">
                         <div class="input-group">
-                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#game"></i></button>
+                            <button class="btn btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#game" type="button"><i class="bi bi-caret-right"></i></button>
                             <input type="text" class="form-control" aria-label="Category Name" value="game" disabled>
-                            <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+                            <input type="checkbox" class="btn-check" id="game-locked" autocomplete="off">
+                            <label class="btn btn-outline-secondary d-flex justify-content-center align-items-center" for="game-locked"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
                                 <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
-                              </svg></button>
+                              </svg></label>
                             <button class="btn btn-outline-secondary btn-success text-white" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                               </svg></button>
@@ -29,7 +30,7 @@
                     <div class="subparts collapse" id="game">
                         <div class="row blawx-object tree-element p-2">
                             <div class="input-group">
-                                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#testgame"></i></button>
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#testgame"><i class="bi bi-caret-right"></i></button>
                                 <input type="text" class="form-control" aria-label="Object name" value="testgame" readonly>
                                 <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -45,10 +46,11 @@
                             <div class="blawx_attribute tree-element p-2">
                                 <div class="input-group">
                                     <input type="text" class="form-control" aria-label="Category Name" value="player" disabled>
-                                    <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
-                                        <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
-                                      </svg></button>
-                                    <button class="btn btn-outline-secondary btn-success text-white" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                    <input type="checkbox" class="btn-check" id="testgame-player-locked" autocomplete="off">
+                            <label class="btn btn-outline-secondary d-flex justify-content-center align-items-center" for="testgame-player-locked"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+                                <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+                              </svg></label>
+                            <button class="btn btn-outline-secondary btn-success text-white" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                       </svg></button>
                                 </div>
@@ -56,10 +58,11 @@
                             <div class="blawx_attribute tree-element p-2">
                                 <div class="input-group">
                                     <input type="text" class="form-control" aria-label="Category Name" value="winner" disabled>
-                                    <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
-                                        <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
-                                      </svg></button>
-                                    <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                    <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+                            <label class="btn btn-outline-secondary d-flex justify-content-center align-items-center" for="btn-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+                                <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+                              </svg></label>
+                            <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                       </svg></button>
                                 </div>
@@ -69,12 +72,13 @@
                     <div>
                         <div class="tree-element blawx-category p-2">
                             <div class="input-group">
-                                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#player"></i></button>
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#player"><i class="bi bi-caret-right"></i></button>
                                 <input type="text" class="form-control" aria-label="Category Name" value="player" disabled>
-                                <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
-                                    <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
-                                  </svg></button>
-                                <button class="btn btn-outline-secondary btn-success text-white" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                <input type="checkbox" class="btn-check" id="player-locked" autocomplete="off">
+                            <label class="btn btn-outline-secondary d-flex justify-content-center align-items-center" for="player-locked"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+                                <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+                              </svg></label>
+                            <button class="btn btn-outline-secondary btn-success text-white" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                   </svg></button>
                             </div>
@@ -83,7 +87,7 @@
                     <div class="subparts collapse" id="player">
                         <div class="blawx-object tree-element p-2">
                             <div class="input-group">
-                                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#player_jason"></i></button>
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#player_jason"><i class="bi bi-caret-right"></i></button>
                                 <input type="text" class="form-control" aria-label="Object name" value="jason" readonly>
                                 <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -95,11 +99,12 @@
                         </div>
                         <div class="subparts collapse" id="player_jason">
                             <div class="blawx-object tree-element p-2"><div class="input-group">
-                                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#player_jason_throw"></i></button>
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#player_jason_throw"><i class="bi bi-caret-right"></i></button>
                                 <input type="text" class="form-control" aria-label="Category Name" value="throw" disabled>
-                                <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-                                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
-                                  </svg></button>
+                                <input type="checkbox" class="btn-check" id="player-jason-throw-locked" autocomplete="off" checked>
+                            <label class="btn btn-outline-secondary d-flex justify-content-center align-items-center" for="player-jason-throw-locked"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                              </svg></label>
                                 <button class="btn btn-outline-secondary btn-success" type="button" disabled><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                   </svg></button>
@@ -125,7 +130,7 @@
                         </div>
                         <div class="blawx-object tree-element p-2">
                             <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-success text-white" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#player_bob"></i></button>
+                                <button class="btn btn-outline-secondary btn-success text-white" type="button" data-bs-toggle="collapse" data-bs-target="#player_bob"><i class="bi bi-caret-right"></i></button>
                                 <input type="text" class="form-control" aria-label="Object name" value="bob" readonly>
                                 <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -139,10 +144,11 @@
                             <div class="blawx-object tree-element p-2" >
                                 <div class="input-group">
                                     <input type="text" class="form-control" aria-label="Category Name" value="throw" disabled>
-                                    <button class="btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
-                                        <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
-                                      </svg></button>
-                                    <button class="btn btn-outline-secondary btn-success text-white" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                    <input type="checkbox" class="btn-check" id="player-bob-throw-locked" autocomplete="off">
+                            <label class="btn btn-outline-secondary d-flex justify-content-center align-items-center" for="player-bob-throw-locked"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+                                <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+                              </svg></label>
+                            <button class="btn btn-outline-secondary btn-success text-white" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                       </svg></button>
                                 </div>
@@ -153,7 +159,7 @@
                         <div>
                             <div class="blawx-category tree-element p-2">
                                 <div class="input-group">
-                                    <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#sign"></i></button>
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#sign"><i class="bi bi-caret-right"></i></button>
                                     <input type="text" class="form-control" aria-label="Category Name" value="sign" disabled>
                                 </div>
                             </div>
@@ -162,14 +168,14 @@
                             <div>
                                 <div class="blawx-object tree-element p-2">
                                     <div class="input-group">
-                                        <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#rock"></i></button>
+                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#rock"><i class="bi bi-caret-right"></i></button>
                                         <input type="text" class="form-control" aria-label="Category Name" value="rock" disabled>
                                     </div>
                                 </div>
                                 <div class="subparts collapse" id="rock">
                                     <div class="blawx_attribute tree-element p-2">
                                         <div class="input-group">
-                                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#rock_beats"></i></button>
+                                            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#rock_beats"><i class="bi bi-caret-right"></i></button>
                                             <input type="text" class="form-control" aria-label="Category Name" value="beats" disabled>
                                         </div>
                                     </div>
@@ -183,14 +189,14 @@
                             <div>
                                 <div class="blawx-object tree-element p-2">
                                     <div class="input-group">
-                                        <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#paper"></i></button>
+                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#paper"><i class="bi bi-caret-right"></i></button>
                                         <input type="text" class="form-control" aria-label="Category Name" value="paper" disabled>
                                     </div>
                                 </div>
                                 <div class="subparts collapse" id="paper">
                                     <div class="blawx_attribute tree-element p-2">
                                         <div class="input-group">
-                                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#paper_beats"></i></button>
+                                            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#paper_beats"><i class="bi bi-caret-right"></i></button>
                                             <input type="text" class="form-control" aria-label="Category Name" value="beats" disabled>
                                         </div>
                                     </div>
@@ -204,14 +210,14 @@
                             <div>
                                 <div class="blawx-object tree-element p-2">
                                     <div class="input-group">
-                                        <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#scissors"></i></button>
+                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#scissors"><i class="bi bi-caret-right"></i></button>
                                         <input type="text" class="form-control" aria-label="Category Name" value="scissors" disabled>
                                     </div>
                                 </div>
                                 <div class="subparts collapse" id="scissors">
                                     <div class="blawx_attribute tree-element p-2">
                                         <div class="input-group">
-                                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#scissors_beats"></i></button>
+                                            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#scissors_beats"><i class="bi bi-caret-right"></i></button>
                                             <input type="text" class="form-control" aria-label="Category Name" value="beats" disabled>
                                         </div>
                                     </div>
