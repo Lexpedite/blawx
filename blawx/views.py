@@ -91,11 +91,11 @@ def ruleDocLegalTextView(request,pk,section_name):
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
 def ruleDocExportView(request,pk):
-    ruledoc = RuleDoc.objects.filter(pk=pk)
+    ruledoc = RuleDoc.objects.get(pk=pk)
     if request.user.has_perm('blawx.view_ruledoc',ruledoc):
         download = tempfile.NamedTemporaryFile('w',delete=False,prefix="blawx_rule_" + str(pk) + "_")
         download_filename = download.name
-        download.write(serializers.serialize('yaml',ruledoc))
+        download.write(serializers.serialize('yaml',RuleDoc.objects.filter(pk=pk)))
         sections = Workspace.objects.filter(ruledoc=pk)
         if len(sections):
             download.write(serializers.serialize('yaml',sections))
