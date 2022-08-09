@@ -7,6 +7,11 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.25-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.25-alpha) 2022-08-9
+
+### Fixed
+* A bug where non-admin users did not have permissions to export projects was fixed.
+
 ## [v1.3.24-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.24-alpha) 2022-07-21
 
 ### Fixed
