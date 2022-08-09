@@ -1,0 +1,9 @@
+.subparts {
+    margin-left: 40px;
+}
+.tree-element i::before {
+    transition-duration: 0.7s;
+}
+.tree-element > div.input-group > button > i[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+}
