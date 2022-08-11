@@ -129,6 +129,7 @@ def ruleDocImportView(request):
             
             # Use the PK of the saved version to save the workspaces and tests
             for o in new_object_list[1:]:
+                o.object.pk = None
                 o.object.ruledoc = new_object_list[0].object
                 o.object.save()
             # Now trigger the post-save for the RuleDoc object to set permissions on sub-objects.
@@ -155,6 +156,7 @@ def exampleLoadView(request,example_name):
         new_object_list[0].object.save()
         # Use the PK of the saved version to save the workspaces and tests
         for o in new_object_list[1:]:
+            o.object.pk = None
             o.object.ruledoc = new_object_list[0].object
             o.object.save()
         # Now trigger the post-save for the RuleDoc object to set permissions on sub-objects.
