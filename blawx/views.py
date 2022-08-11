@@ -91,11 +91,11 @@ def ruleDocLegalTextView(request,pk,section_name):
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
 def ruleDocExportView(request,pk):
-    ruledoc = RuleDoc.objects.filter(pk=pk)
+    ruledoc = RuleDoc.objects.get(pk=pk)
     if request.user.has_perm('blawx.view_ruledoc',ruledoc):
         download = tempfile.NamedTemporaryFile('w',delete=False,prefix="blawx_rule_" + str(pk) + "_")
         download_filename = download.name
-        download.write(serializers.serialize('yaml',ruledoc))
+        download.write(serializers.serialize('yaml',RuleDoc.objects.filter(pk=pk)))
         sections = Workspace.objects.filter(ruledoc=pk)
         if len(sections):
             download.write(serializers.serialize('yaml',sections))
@@ -129,6 +129,7 @@ def ruleDocImportView(request):
             
             # Use the PK of the saved version to save the workspaces and tests
             for o in new_object_list[1:]:
+                o.object.pk = None
                 o.object.ruledoc = new_object_list[0].object
                 o.object.save()
             # Now trigger the post-save for the RuleDoc object to set permissions on sub-objects.
@@ -155,6 +156,7 @@ def exampleLoadView(request,example_name):
         new_object_list[0].object.save()
         # Use the PK of the saved version to save the workspaces and tests
         for o in new_object_list[1:]:
+            o.object.pk = None
             o.object.ruledoc = new_object_list[0].object
             o.object.save()
         # Now trigger the post-save for the RuleDoc object to set permissions on sub-objects.
