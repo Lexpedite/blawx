@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  pk: components/scenario_editor
+  fields:
+    title: Scenario Editor
+    content: |
+      # Scenario Editor
