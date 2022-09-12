@@ -568,6 +568,7 @@
             output_html += '">';
             output_html += '<div id="category_' + category + '_header" class="blawx_category_header tree-element p-2"><div class="input-group">';
             // Add the arrow
+            // TODO: Add "show" if the category is in `expanded`
             output_html += '<button class="blawx_caret btn btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#category_' + category + '_content" type="button"><i class="bi bi-caret-right"></i></button>';
             // Add the name
             output_html += '<input type="text" class="form-control" aria-label="Category Name" value="' + category + '" disabled>';
@@ -793,16 +794,17 @@
             draw_facts();
         };
         draw_facts();
+        var answer_element = document.getElementById('answers');
         function run_test() {
             var testrun_request = new XMLHttpRequest();
             testrun_request.onload = function () {
                 parsed_test_response = JSON.parse(this.responseText);
                 console.log("Test response received")
                 // If the question is answered
-                if (parsed_interview_response['Answers'].length) {
+                if (parsed_test_response['Answers'].length) {
                     // Display the answer
                     var output_content = '<div class="accordion accordion-flush">';
-                    var answers = parsed_interview_response.Answers;
+                    var answers = parsed_test_response.Answers;
                     for (let i = 0; i < answers.length; i++) {
                         var count = i + 1;
                         var heading_name = "answer_" + count + "_heading";
@@ -861,21 +863,18 @@
                         output_content += '</div></div></div>';
                     }
                     output_content += '</div>';
-                    answer_element = document.getElementById('answers')
                     answer_element.innerHTML = output_content;
                 } else {
                     // Indicate that there are no answers.
-                    answer_element = document.getElementById('answers')
                     answer_element.innerHTML = "No answers received.";
                 }
             }
-            test_request.open("POST", "{% url 'blawx:run_test' blawxtest.ruledoc.id blawxtest %}");
-            test_request.setRequestHeader("Content-Type", "application/json");
-            console.log("Sending test request")
-            answer_element = document.getElementById('answers')
+            testrun_request.open("POST", "{% url 'blawx:run_test' blawxtest.ruledoc.id blawxtest %}");
+            testrun_request.setRequestHeader("Content-Type", "application/json");
+            console.log("Sending test request");
             answer_element.innerHTML = "Thinking...";
-            test_request.setRequestHeader('X-CSRFToken', csrftoken);
-            test_request.send(JSON.stringify(create_fact_payload(fact_scenario)));
+            testrun_request.setRequestHeader('X-CSRFToken', csrftoken);
+            testrun_request.send(JSON.stringify(fact_data));
         }
     </script>
 </body>
