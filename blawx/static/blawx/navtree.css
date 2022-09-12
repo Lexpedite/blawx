@@ -48,3 +48,47 @@ span.lawpart {
 num + content > p:first-child {
     display: inline;
 }
+
+.se_subparts {
+    margin-left: 40px;
+}
+.tree-element i::before {
+    transition-duration: 0.7s;
+}
+.tree-element > div.input-group > button[aria-expanded="true"] > i::before {
+    transform: rotate(90deg);
+}
+
+.blawx_category.blawx_locked > .blawx_category_header > div.input-group .blawx_lock_button {
+    display: none;
+}
+.blawx_category.blawx_locked > .blawx_category_header > div.input-group .blawx_add_button {
+    display: none;
+}
+.blawx_category:not(.blawx_locked) > .blawx_category_header > div.input-group .blawx_unlock_button {
+    display: none;
+}
+.blawx_category.blawx_empty > .blawx_category_header > div.input-group .blawx_caret {
+    display: none;
+}
+.blawx_category:not(.blawx_show_new) > .blawx_new_object {
+    display: none;
+}
+.blawx_object:not(.blawx_has_attributes) > .blawx_object_header > div.input-group .blawx_caret {
+    display: none;
+}
+.blawx_attribute.blawx_locked > .blawx_attribute_header > div.input-group .blawx_lock_button {
+    display: none;
+}
+.blawx_attribute.blawx_locked > .blawx_attribute_header > div.input-group .blawx_add_button {
+    display: none;
+}
+.blawx_attribute:not(.blawx_locked) > .blawx_attribute_header > div.input-group .blawx_unlock_button {
+    display: none;
+}
+.blawx_attribute:not(.blawx_show_new) > .blawx_new_value {
+    display: none;
+}
+.blawx_attribute.blawx_empty > .blawx_attribute_header > div.input-group .blawx_caret {
+    display: none;
+}
