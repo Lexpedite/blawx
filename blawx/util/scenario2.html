@@ -182,7 +182,7 @@
                 fact_data[category].members[object][attribute].values_known = true;
             }
         }
-        function draw_value(category,object,attribute,value){
+        function draw_value(category,object,attribute,value,index){
             // Add the value, based on the type.
             var attribute_type;
             var attribute_source = null;
@@ -241,7 +241,8 @@
                     if(value == "true") {
                         output_html += ' checked';
                     }
-                    output_html += '>';
+                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
+                    output_html += ' onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')">';
                     output_html += '</div>';
                     output_html += '<input class="form-control" value="' + attribute + '" disabled>';
                     break;
@@ -250,7 +251,8 @@
                     if(from_ontology) {
                         output_html += ' disabled';
                     }
-                    output_html += '>';
+                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
+                    output_html += ' onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')">';
                     var options = Object.keys(fact_data[attribute_source]['members']);
                     for (var i=0; i<options.length; i++){
                         output_html += '<option value="' + options[i] + '"';
@@ -264,7 +266,7 @@
             }
             // Add the delete button
             if (!from_ontology) {
-                output_html += '<button onclick="delete_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value +'\')" class="btn btn-outline-secondary blawx_delete_object" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">';
+                output_html += '<button onclick="delete_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + index +'\')" class="btn btn-outline-secondary blawx_delete_object" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">';
                 output_html += '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>';
                 output_html += '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>';
                 output_html += '</svg></button>';
@@ -392,7 +394,7 @@
             output_html += '" id="' + category + '_' + object + '_' + attribute + '_content">';
             // add each of the existing values
             for(var i=0; i<fact_data[category]['members'][object][attribute]['values'].length; i++){
-                output_html += draw_value(category,object,attribute,fact_data[category]['members'][object][attribute]['values'][i]);
+                output_html += draw_value(category,object,attribute,fact_data[category]['members'][object][attribute]['values'][i],i);
             }
             // Close the contents
             output_html += '</div>';
@@ -611,18 +613,58 @@
             target_input.focus();
         };
         function save_new_value(category,object,attribute){
-            // Add the value to the data
+            // Figure out what type of value this is.
+            var attribute_type;
+            for(var i =0; i<ontology['Attributes'].length; i++) {
+                if(ontology['Attributes'][i]['Category'] == category
+                  && ontology['Attributes'][i]['Attribute'] == attribute) {
+                    attribute_type = ontology['Attributes'][i]['Type'];
+                    break;
+                  }
+            }
+            // Get the new value
             target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
-            // TODO: This needs to be modified based on the attribute type.
-            // For Booleans, "on" should become "true", and "off" should become "false"
             new_value = target.value;
+            // For Booleans, check if it is "checked", it's value is not relevant.
+            if(attribute_type == "boolean") {
+                if(target.checked) {
+                    new_value = "true";
+                } else {
+                    new_value = "false";
+                }
+            }
             fact_data[category]['members'][object][attribute]['values'].push(new_value);
             // redraw
             draw_facts();
         };
-        function update_value(category,object,attribute){
+        function update_value(category,object,attribute,value,index){
             //TODO
             // This needs to take into account the data types, like boolean on=true
+            // Figure out what type of value this is.
+            var attribute_type;
+            for(var i =0; i<ontology['Attributes'].length; i++) {
+                if(ontology['Attributes'][i]['Category'] == category
+                  && ontology['Attributes'][i]['Attribute'] == attribute) {
+                    attribute_type = ontology['Attributes'][i]['Type'];
+                    break;
+                  }
+            }
+            //      Get the new value
+            target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
+            new_value = target.value;
+            //      If it is a boolean, fix the value.
+            if(attribute_type == "boolean") {
+                if (target.checked) {
+                    new_value = "true";
+                } else {
+                    new_value = "false";
+                }
+            }
+            //      Replace the current value with the new value in the facts
+            // index_of_old = fact_data[category]['members'][object][attribute]['values'].indexOf(value)
+            fact_data[category]['members'][object][attribute]['values'][index] = new_value;
+            //      Redraw the interface
+            draw_facts();
         }
         function cancel_new_value(category,object,attribute){
             // Delete the value in the current new value input
@@ -651,12 +693,10 @@
             delete fact_data[category]['members'][object];
             draw_facts();
         }
-        function delete_value(category,object,attribute,value){
+        function delete_value(category,object,attribute,index){
             // Delete the value from the data
-            index_for_value = fact_data[category]['members'][object][attribute]['values'].indexOf(value);
-            if (index_for_value > -1) { // if the value is found
-                fact_data[category]['members'][object][attribute]['values'].splice(index_for_value, 1);
-            }
+            fact_data[category]['members'][object][attribute]['values'].splice(index, 1);
+            
             // redraw
             draw_facts();
         };
