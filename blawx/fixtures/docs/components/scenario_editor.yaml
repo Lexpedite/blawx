@@ -103,13 +103,8 @@
 
       Scenario Editor is a very new feature, and there are a number of known issues:
       * It tends to return and display duplicate explanations
-      * It flickers too much
       * Clicking on a button may not work if you are editing an object name, you may need to click twice.
-      * When the list of facts gets longer than the visible window, the header of the Scenario Editor gets obscured
-      * Scenario editor can currently only deal with tests that use boolean and category-type attributes. Support for numbers, dates, and durations is being developed.
-
-
-
+      * Support for attributes with values that are numbers, dates, and durations is under development.
 
       ## Lock Your Lists
 
