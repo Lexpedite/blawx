@@ -106,106 +106,38 @@
         </div>
     </footer>
     <script>
-        test_url = 'https://dev.blawx.com/34/whowon';
-        ontology = {
-            "Categories": [
-                "game",
-                "player",
-                "sign"
-            ],
-            "CategoryNLG": [],
-            "Attributes": [
-                {
-                    "Category": "game",
-                    "Attribute": "player",
-                    "Type": "player"
-                },
-                {
-                    "Category": "player",
-                    "Attribute": "cool",
-                    "Type": "boolean"
-                },
-                {
-                    "Category": "sign",
-                    "Attribute": "beats",
-                    "Type": "sign"
-                },
-                {
-                    "Category": "game",
-                    "Attribute": "winner",
-                    "Type": "player"
-                },
-                {
-                    "Category": "player",
-                    "Attribute": "throw",
-                    "Type": "sign"
+        
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
                 }
-            ],
-            "AttributeNLG": [
-                {
-                    "Attribute": "player",
-                    "Order": "vo",
-                    "Prefix": "",
-                    "Infix": "played in",
-                    "Postfix": ""
-                },
-                {
-                    "Attribute": "beats",
-                    "Order": "ov",
-                    "Prefix": "",
-                    "Infix": "beats",
-                    "Postfix": ""
-                },
-                {
-                    "Attribute": "winner",
-                    "Order": "ov",
-                    "Prefix": "the winner of",
-                    "Infix": "is",
-                    "Postfix": ""
-                },
-                {
-                    "Attribute": "throw",
-                    "Order": "ov",
-                    "Prefix": "",
-                    "Infix": "threw",
-                    "Postfix": ""
-                }
-            ],
-            "Objects": [
-                {
-                    "Category": "sign",
-                    "Object": "rock"
-                },
-                {
-                    "Category": "sign",
-                    "Object": "paper"
-                },
-                {
-                    "Category": "sign",
-                    "Object": "scissors"
-                }
-            ],
-            "Values": [
-                {
-                    "Attribute": "beats",
-                    "Object": "rock",
-                    "Value": "scissors"
-                },
-                {
-                    "Attribute": "beats",
-                    "Object": "paper",
-                    "Value": "rock"
-                },
-                {
-                    "Attribute": "beats",
-                    "Object": "scissors",
-                    "Value": "paper"
-                }
-            ]
-        };
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+        
+        // Get the ontology
+        var ontology = {};
+        const ontology_request = new XMLHttpRequest();
+        ontology_request.onload = function () {
+            ontology = JSON.parse(this.responseText);
+            console.log("Ontology received");
+        }
+        ontology_request.open("GET", "{% url 'blawx:test_onto' blawxtest.ruledoc.id blawxtest %}", false); // This is asynchronous because the interview request doesn't work until we have the ontology.
+        ontology_request.setRequestHeader('X-CSRFToken', csrftoken);
+        ontology_request.send();
 
         var fact_data = {};
         var expanded={}; // A list of tree elements that have been expanded.
+        
         
         function initialize_facts() {
             // For each category, add an object to the fact_data with 'members' and 'members_known'
