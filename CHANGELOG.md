@@ -7,7 +7,7 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## DEV VERSION - UPDATE BEFORE MERGE
+## [v1.3.27-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.27-alpha) 2022-09-14
 
 ### Added
 * The "Scenario Editor" has been added to the test interface
