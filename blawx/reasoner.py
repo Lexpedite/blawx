@@ -312,7 +312,9 @@ blawxrun(Query, Human) :-
                     query2_answer = swipl_thread.query("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
                     query2_answers = generate_answers(query2_answer)
                     for att in query2_answers:
-                      attribute_answers.append({"Category": att['Variables']['Category'], "Attribute": att['Variables']['Attribute'], "Type": att['Variables']['ValueType']})
+                      # This excludes declarations that make variables into attribute types.
+                      if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                        attribute_answers.append({"Category": att['Variables']['Category'], "Attribute": att['Variables']['Attribute'], "Type": att['Variables']['ValueType']})
                     transcript.write(str(query2_answer) + '\n')
                   except PrologError as err:
                       if err.prolog().startswith('existence_error'):
