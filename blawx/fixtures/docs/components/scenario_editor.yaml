@@ -51,6 +51,8 @@
 
       ## Fact Scenario Editor
 
+       ![Fact Scenario Editor Interface](/static/blawx/docs/images/fact_scenario_editor_interface.png)
+
       The main interface in the scenario editor page is the fact scenario editor form.
 
       The form is a nested tree. At the far left of the form you will see a list of the categories
@@ -66,10 +68,13 @@
       same way, you will see the attributes that can be set for that object.
 
       You can add a value to an object's attribute by clicking the "add" button on the attribute name inside the object.
+      ![Add Button](/static/blawx/docs/images/add_button.png)
 
       Values can be edited after they have been created, also.
 
       Values and objects can be deleted by clicking on the delete button with the "trash can" icon on the right side.
+      
+      ![Delete Button](/static/blawx/docs/images/delete_button.png)
       
       You cannot delete categories, or attributes. Note that if your test or your encoding defines any objects, and the
       attributes of those objects, they will also appear in your fact scenario editor form, but you will not be able
@@ -82,6 +87,8 @@
       and then in the "friend" attribute of june, add jason as a value.
 
       ## Assumptions
+
+      ![Lock Button](/static/blawx/docs/images/lock_button.png)
 
       In the Scenario Editor, every category and attribute has a "lock" button. It starts in the "unlocked" position, and if
       you click on it, it switches to the "locked" position, and back again.  If the button is in the "locked" position, it
