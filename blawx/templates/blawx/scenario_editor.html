@@ -871,7 +871,7 @@
             console.log("Sending test request");
             answer_element.innerHTML = "Thinking...";
             testrun_request.setRequestHeader('X-CSRFToken', csrftoken);
-            testrun_request.send(JSON.stringify(remove_test_facts(fact_data));
+            testrun_request.send(JSON.stringify(remove_test_facts(fact_data)));
         }
         function remove_test_facts(facts) {
             // OK, I have a problem where I'm taking what's in the Ontology, and I'm generating more stuff, and
