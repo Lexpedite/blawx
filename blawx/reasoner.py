@@ -293,7 +293,7 @@ blawxrun(Query, Human) :-
                   query1_answers = generate_answers(query1_answer)
                   for cat in query1_answers:
                     # We exclude Variable names that have been specified as a category name.
-                    if not re.search(r"[A-Z_]\w*",cat['Variables']['Category']):
+                    if not re.search(r"^[A-Z_]\w*",cat['Variables']['Category']):
                       category_answers.append(cat['Variables']['Category'])
                   category_nlg = []
                   for c in category_answers:
@@ -343,7 +343,7 @@ blawxrun(Query, Human) :-
                     for answer in cat_query_answers:
                       object_name = answer['Variables']['Object']
                       # Do not add variables as objects
-                      if not re.search(r"[A-Z_]\w*",object_name):
+                      if not re.search(r"^[A-Z_]\w*",object_name):
                         object_query_answers.append({"Category": category_name, "Object": object_name})
                   value_query_answers = []
                   for att in query2_answers:
@@ -363,7 +363,7 @@ blawxrun(Query, Human) :-
                       # or if it should be filtered out here, simplifying the API, but making it impossible to know that
                       # the generic statement has been made. For now, I will remove it at the API level.
                       # Note that we are excluding partially and fully unground statements.
-                      if not re.search(r"[A-Z_]\w*",object_name) and not re.search(r"[A-Z_]\w*",value):
+                      if not re.search(r"^[A-Z_]\w*",object_name) and not re.search(r"^[A-Z_]\w*",value):
                         value_query_answers.append({"Attribute": attribute_name, "Object": object_name, "Value": value})
 
               transcript.close()
