@@ -354,7 +354,13 @@ blawxrun(Query, Human) :-
                     for answer in att_query_answers:
                       object_name = answer['Variables']['Object']
                       value = answer['Variables']['Value']
-                      value_query_answers.append({"Attribute": attribute_name, "Object": object_name, "Value": value})
+                      # Right now, this returns a variable name as a value. It's not clear if this is something that
+                      # SHOULD be included in the data, and filtered out at the front end, making the API more complicated,
+                      # or if it should be filtered out here, simplifying the API, but making it impossible to know that
+                      # the generic statement has been made. For now, I will remove it at the API level.
+                      # Note that we are excluding partially and fully unground statements.
+                      if not re.search(r"[A-Z_]\w*",object_name) and not re.search(r"[A-Z_]\w*",value):
+                        value_query_answers.append({"Attribute": attribute_name, "Object": object_name, "Value": value})
 
               transcript.close()
               transcript = open(transcript_name,'r')
