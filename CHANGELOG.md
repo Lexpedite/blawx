@@ -7,6 +7,15 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## DEV VERSION - UPDATE BEFORE MERGE
+
+### Added
+* The "Scenario Editor" has been added to the test interface
+* Added documentation for the Scenario Editor component to the docs
+
+### Changed
+* The `/onto` endpoint on tests will only return fully-ground responses
+
 ## [v1.3.26-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.26-alpha) 2022-08-10
 
 ### Fixed
