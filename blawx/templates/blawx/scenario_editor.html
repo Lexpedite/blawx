@@ -871,24 +871,7 @@
             console.log("Sending test request");
             answer_element.innerHTML = "Thinking...";
             testrun_request.setRequestHeader('X-CSRFToken', csrftoken);
-            testrun_request.send(JSON.stringify(remove_test_facts(fact_data)));
-        }
-        function remove_test_facts(facts) {
-            // OK, I have a problem where I'm taking what's in the Ontology, and I'm generating more stuff, and
-            // I'm sending back the more stuff plus what's already in the ontology, and that is causing duplicate
-            // responses.
-            // So I need to figure out how to generate a fact scenario that includes only the things that were
-            // not in the original ontology.
-            // That's a problem for objects, because in order to specify a new attribute for a prior object, I have
-            // to include the object in the facts, and I don't have any way in the API to specify not to generate
-            // that additional copy of the object.
-            // For values, I can just exclude them, and there's no problem. So the API needs a flag on objects
-            // for whether they should be generated, or used?
-            // That's nonsense. The reasoner should just NOT generate shit that is already in the code.
-            var new_facts = fact_data
-            for(var i=0;i<ontology['Objects'].length; i++) {
-
-            }
+            testrun_request.send(JSON.stringify(fact_data));
         }
     </script>
 </body>
