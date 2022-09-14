@@ -292,7 +292,9 @@ blawxrun(Query, Human) :-
                   query1_answer = swipl_thread.query("blawxrun(blawx_category(Category),Human).")
                   query1_answers = generate_answers(query1_answer)
                   for cat in query1_answers:
-                    category_answers.append(cat['Variables']['Category'])
+                    # We exclude Variable names that have been specified as a category name.
+                    if not re.search(r"[A-Z_]\w*",cat['Variables']['Category']):
+                      category_answers.append(cat['Variables']['Category'])
                   category_nlg = []
                   for c in category_answers:
                     try:
@@ -340,7 +342,9 @@ blawxrun(Query, Human) :-
                     cat_query_answers = generate_answers(cat_query_response)
                     for answer in cat_query_answers:
                       object_name = answer['Variables']['Object']
-                      object_query_answers.append({"Category": category_name, "Object": object_name})
+                      # Do not add variables as objects
+                      if not re.search(r"[A-Z_]\w*",object_name):
+                        object_query_answers.append({"Category": category_name, "Object": object_name})
                   value_query_answers = []
                   for att in query2_answers:
                     attribute_name = att['Variables']['Attribute']
