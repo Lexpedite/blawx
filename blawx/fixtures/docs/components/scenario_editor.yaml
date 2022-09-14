@@ -58,6 +58,8 @@
       The form is a nested tree. At the far left of the form you will see a list of the categories
       that exist in your test. By clicking the "add" button with the plus icon, you can create
       a new object in that category and give it a name.
+      
+      ![Add Button](/static/blawx/docs/images/add_button.png)
 
       Note that names of objects must begin with a lowercase letter, cannot include spaces, and must be
       unique. These requirements are not yet enforced by the Scenario Editor.
@@ -68,7 +70,7 @@
       same way, you will see the attributes that can be set for that object.
 
       You can add a value to an object's attribute by clicking the "add" button on the attribute name inside the object.
-      ![Add Button](/static/blawx/docs/images/add_button.png)
+      
 
       Values can be edited after they have been created, also.
 
@@ -109,6 +111,7 @@
       ## Known Problems
 
       Scenario Editor is a very new feature, and there are a number of known issues:
+
       * It tends to return and display duplicate explanations
       * Clicking on a button may not work if you are editing an object name, you may need to click twice.
       * Support for attributes with values that are numbers, dates, and durations is under development.
@@ -133,6 +136,9 @@
       The Scenario Editor will allow you to add as many values as you like to an attribute, including duplicate values.
       However, duplicate values do not have any meaning to the Blawx reasoner. It treats your fact scenario as if each
       value occurred only once.
+
+      Note also that if you re-enter an object or value that was already provided by the code or your
+      test, it will appear in the list as normal, but it will be locked, and you will not be able to delete it.
 
       ## True / False Values (You Usually Only Need One)
 
