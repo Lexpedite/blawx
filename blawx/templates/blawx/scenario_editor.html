@@ -1,0 +1,881 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="vh-100">
+<head>
+    <title>Blawx - Drag and Drop Legal AI</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'blawx/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'blawx/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'blawx/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'blawx/site.webmanifest' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="{% static 'blawx/bootstrap.min.css' %}">
+    <script src="{% static 'blawx/bootstrap.bundle.min.js' %}"></script>
+<!--     
+    <link href="https://fonts.googleapis.com/css2?family=Mina:wght@700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&amp;display=swap" rel="stylesheet"> -->
+    <link href="{% static 'blawx/fonts.css' %}" rel="stylesheet">
+    <style type="text/css">
+        #blawxlogo {
+            font-family: 'Mina', sans-serif;
+            font-size: xx-large;
+            color: #5a005a;
+        }
+
+        #blawxWordMark {
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+    </style>
+    
+
+    <link href="{% static 'blawx/navtree.css' %}" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet"> -->
+    <link href="{% static 'blawx/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <script src="{% static 'blawx/jquery.min.js' %}"></script>
+
+</head>
+<body class="container d-flex flex-column vh-100">
+    {% csrf_token %}
+    <header class="py-3 mb-3 border-bottom">
+        <div class="row">
+            <div class="col-2 align-self-center" id="blawxlogo"><a href="/" style="text-decoration: none; color: #5a005a;">§<span id="blawxWordMark">Blawx</span></a></div>
+            <div class="col-8">
+                <a href="javascript:void(0);" class="btn btn-secondary btn-disabled" onclick="run_test()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        <path d="M5.795 12.456A.5.5 0 0 1 5.5 12V4a.5.5 0 0 1 .832-.374l4.5 4a.5.5 0 0 1 0 .748l-4.5 4a.5.5 0 0 1-.537.082z"/>
+                    </svg>
+                    <span class="text">Run</span>
+                </a>
+                <a href="/docs/home" target=_blank class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-question-square" viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                        <path
+                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                    <span class="text">Help</span>
+                </a>
+                <a href="{% url 'blawx:test' blawxtest.ruledoc.id blawxtest %}" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-x-square" viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                        <path
+                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                    <span class="text">Exit</span>
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="col-2">{{ user.username }} | <a href="{% url 'password_change' %}">Change Password</a> | <a href="{% url 'logout' %}">Logout</a></div>
+        {% else %}
+            <div class="col-2"><a href="{% url 'login' %}">Login</a></div>
+        {% endif %}
+        </div>
+    </header>
+    <div class="row">
+        <div class="col-6">
+            <nav class="column">
+                <div id="facttree" class="blawx-category tree-element p-2">
+                </div>
+            </nav>
+        </div>
+        <div class="col-6">
+            <!-- Meta -->
+            <div class="container py-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Answers</h5>
+                        <div id="answers">
+                            <!-- The answers will go here. -->
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span>Copyright &copy; Lexpedite Legal Technology Ltd. 2022</span>
+        </div>
+    </footer>
+    <script>
+        
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+        // Get the ontology
+        var ontology = {};
+        const ontology_request = new XMLHttpRequest();
+        ontology_request.onload = function () {
+            ontology = JSON.parse(this.responseText);
+            console.log("Ontology received");
+        }
+        ontology_request.open("GET", "{% url 'blawx:test_onto' blawxtest.ruledoc.id blawxtest %}", false); // This is asynchronous because the interview request doesn't work until we have the ontology.
+        ontology_request.setRequestHeader('X-CSRFToken', csrftoken);
+        ontology_request.send();
+
+        var fact_data = {};
+        var expanded={}; // A list of tree elements that have been expanded.
+        
+        function addSectionReferences(text) {
+            // Search the string for the list of section references
+            var match = text.match(/according to (sec_.*)_section/);
+            var rule_text = "This will be the text of the act."
+            if (match) {
+                var eId = match[1];
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "../../../rule/" + eId + "/", false);
+                xhttp.setRequestHeader('X-CSRFToken', csrftoken);
+                xhttp.send();
+                output_object = JSON.parse(xhttp.responseText);
+                rule_text = output_object['text'];
+                text = text.replace("according to " + eId + "_section",
+                    'according to <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="' + rule_text + '">' + eId + '</a>')
+            }
+            var new_text = text.replace(/(sec_.*)_section/g, "$1");
+            new_text = new_text.replace(/sec_/g, "section ");
+            new_text = new_text.replace(/__subsec_/g, " subsection ");
+            new_text = new_text.replace(/__para_/g, " paragraph ");
+            new_text = new_text.replace(/__subpara_/g, ' sub-paragraph ');
+            new_text = new_text.replace(/__span_/g, ' span ');
+            return new_text
+        }
+
+        function convertModelToTree(list, answer, explanation, prefix = "", root = true) {
+            output_html = "";
+            if (root) {
+                prefix = "ex_" + answer + "_" + explanation
+                output_html += '<div class="explanation">'
+                // An explanation may have more than one root conclusion it
+                // is trying to explain. So at this point it is potentially
+                // a list of lists, with no text elements.
+                // Run this again against each sub-element.
+                output_html += "<ul>"
+                for (var i = 0; i < list.length; i++) {
+                    output_html += "<li>"
+                    output_html += convertModelToTree(list[i], answer, explanation, prefix + '_' + i, false)
+                    output_html += "</li>"
+                }
+                output_html += "</ul>"
+                output_html += "</div>"
+            } else {
+                // Now we are inside a given root explanation.
+                // Each node is a piece of text, optionally followed by an array
+                // of reasons for that piece of text.
+                var has_reasons = Array.isArray(list[1]);
+                var target = prefix;
+                output_html += '<div class="explanation_node">'
+                if (has_reasons) {
+                    output_html += '<i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#' + target + '"></i>'
+                }
+                output_html += addSectionReferences(list[0])
+                output_html += '</div>'
+                // Now we have displayed the text, we optionally display each of the
+                // reasons, processing it using this formula if it, too, has reasons.
+                if (has_reasons) {
+                    output_html += '<div class="subparts collapse" id="' + target + '">'
+                    output_html += "<ul>"
+                    for (var j = 0; j < list[1].length; j++) {
+                        var reason_has_reasons = Array.isArray(list[1][j + 1]);
+                        output_html += "<li>"
+                        if (reason_has_reasons) {
+                            output_html += convertModelToTree(list[1].slice(j), answer, explanation, target + '_' + j, false)
+                            j++;
+                        } else {
+                            output_html += list[1][j]
+                        }
+                        output_html += "</li>"
+                    }
+                    output_html += '</ul></div>'
+                }
+            }
+            return output_html;
+        }
+        
+        function initialize_facts() {
+            // For each category, add an object to the fact_data with 'members' and 'members_known'
+            categories = ontology['Categories'];
+            for (var i=0; i < categories.length; i++) {
+                fact_data[categories[i]] = { 'members': {}, 'members_known': true };
+            }
+            // For each existing object, add it to the fact scenario.
+            objects = ontology['Objects'];
+            attributes = ontology['Attributes'];
+            values = ontology['Values'];
+            for (var i=0; i < objects.length; i++) {
+                fact_data[objects[i]['Category']]['members'][objects[i]['Object']] = {};
+            }
+            for(var j=0; j< attributes.length; j++) {
+                // for each object in the category, add the empty attribute
+                var category_objects = Object.keys(fact_data[attributes[j]['Category']]['members']);
+                for(var k=0; k<category_objects.length; k++) {
+                    fact_data[attributes[j]['Category']]['members'][category_objects[k]][attributes[j]['Attribute']] = {
+                        'values': [],
+                        'values_known': true
+                    }
+                }
+            }
+            for(var l=0; l<values.length; l++){
+                // I have an object, an attribute, and a value, but I don't have a category.
+                // So I need to collect the category from the object.
+                var value_category;
+                for(var m=0; m<objects.length; m++){
+                    if(objects[m]['Object'] == values[l]['Object']) {
+                        value_category = objects[m]['Category'];
+                        break;
+                    }
+                }
+                // Now I should be able to add the value to the object in the fact_data
+                fact_data[value_category]['members'][values[l]['Object']][values[l]['Attribute']]['values'].push(values[l]['Value']);
+            }
+
+        }
+        initialize_facts();
+        
+        function toggle_lock(category){
+            target = document.getElementById('category_' + category);
+            if(target.classList.contains('blawx_locked')){
+                target.classList.remove('blawx_locked');
+                fact_data[category].members_known = false;
+            } else {
+                target.classList.add('blawx_locked');
+                fact_data[category].members_known = true;
+            }
+        }
+        function toggle_attribute_lock(category,object,attribute){
+            target = document.getElementById(category + '_' + object + '_' + attribute);
+            if(target.classList.contains('blawx_locked')){
+                target.classList.remove('blawx_locked');
+                fact_data[category].members[object][attribute].values_known = false;
+            } else {
+                target.classList.add('blawx_locked');
+                fact_data[category].members[object][attribute].values_known = true;
+            }
+        }
+        function draw_value(category,object,attribute,value,index){
+            // Add the value, based on the type.
+            var attribute_type;
+            var attribute_source = null;
+            var from_ontology = false;
+            for(var i=0; i<ontology['Values'].length; i++) {
+                // I'm mildly concerned that this might not work in the future
+                // if it becomes possible to have the same attribute name in
+                // multiple categories.
+                if (
+                    ontology['Values'][i]['Value'] == value &&
+                    ontology['Values'][i]['Object'] == object &&
+                    ontology['Values'][i]['Attribute'] == attribute
+                ) {
+                    from_ontology = true;
+                    break;
+                }
+            }
+            for(var i=0; i<ontology['Attributes'].length; i++){
+                if (ontology['Attributes'][i]['Category'] == category && ontology['Attributes'][i]['Attribute'] == attribute) {
+                    switch (ontology['Attributes'][i]['Type']) {
+                        case 'number':
+                            attribute_type = 'number';
+                            break;
+                        case 'date':
+                            attribute_type = 'date';
+                            break;
+                        case 'duration':
+                            attribute_type = 'duration';
+                            break;
+                        case 'boolean':
+                            attribute_type = 'boolean';
+                            break;
+                        default:
+                            attribute_type = 'object';
+                            attribute_source = ontology['Attributes'][i]['Type'];
+                    }
+                    break;
+                }
+            }
+            // Open Value
+            var output_html = '<div class="blawx_value input-group py-2">';
+            switch(attribute_type) {
+                case 'number':
+                    break;
+                case 'date':
+                    break;
+                case 'duration':
+                    // TODO Translate Between duration format and input format.
+                    break;
+                case 'boolean':
+                    output_html += '<div class="input-group-text">';
+                    output_html += '<input class="form-check-input" type="checkbox"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    if(value == "true") {
+                        output_html += ' checked';
+                    }
+                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
+                    output_html += ' onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')">';
+                    output_html += '</div>';
+                    output_html += '<input class="form-control" value="' + attribute + '" disabled>';
+                    break;
+                case 'object':
+                    output_html += '<select class="form-select" aria-label="Choose value"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
+                    output_html += ' onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')">';
+                    var options = Object.keys(fact_data[attribute_source]['members']);
+                    for (var i=0; i<options.length; i++){
+                        output_html += '<option value="' + options[i] + '"';
+                        if (value == options[i]){
+                            output_html += ' selected';
+                        }
+                        output_html += '>' + options[i] + '</option>';
+                    }
+                    output_html += '</select>';
+                default:
+            }
+            // Add the delete button
+            if (!from_ontology) {
+                output_html += '<button onclick="delete_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + index +'\')" class="btn btn-outline-secondary blawx_delete_object" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">';
+                output_html += '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>';
+                output_html += '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>';
+                output_html += '</svg></button>';
+                }
+            // Close Value
+            output_html += '</div>';
+            return output_html;
+        };
+        function draw_attribute(category,object,attribute){
+            //Add an empty class to the attribute if it has no values.
+            if(fact_data[category]['members'][object][attribute]['values'].length == 0) {
+                empty_attribute = true;
+            } else {
+                empty_attribute = false;
+            }
+            var output_html = "";
+            // Start the attribute
+            output_html += '<div class="blawx_attribute';
+            if (empty_attribute) {
+                output_html += ' blawx_empty';
+            }
+            if(fact_data[category]['members'][object][attribute]['values_known']) {
+                output_html += ' blawx_locked';
+            }
+            output_html += '" id="' + category + '_' + object + '_' + attribute + '">';
+            // Start the header
+            output_html += '<div class="blawx_attribute_header tree-element p-2" id="' + category + '_' + object + '_' + attribute + '_header">';
+            output_html += '<div class="input-group">';
+            // Add the arrow
+            output_html += '<button class="blawx_caret btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#' + category + '_' + object + '_' + attribute + '_content"><i class="bi bi-caret-right"></i></button>';
+            // add the name
+            output_html += '<input type="text" class="form-control" aria-label="Category Name" value="' + attribute + '" disabled>';
+            // Add the add button
+            output_html += '<button onclick="show_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_add_button btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
+            output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
+            output_html += '</svg></button>';
+            // Add both lock buttons
+            output_html += '<button onclick="toggle_attribute_lock(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_lock_button btn btn-outline-secondary" id="category_' + category + '_' + object + '_' + attribute + '_lock" autocomplete="off">';
+            output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">';
+            output_html += '<path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>';
+            output_html += '</svg></button>';
+            output_html += '<button onclick="toggle_attribute_lock(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_unlock_button btn btn-outline-secondary" id="category_' + category + '_' + object + '_' + attribute + '_unlock" autocomplete="off">';
+            output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">';
+            output_html += '<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>';
+            output_html += '</svg></button>';
+            // Close the header
+            output_html += '</div></div>';
+            // Add the new value
+            output_html += '<div class="blawx_new_value row blawx-object tree-element p-2">';
+            output_html += '<div class="input-group">';
+            output_html += '<span class="input-group-text">New '+ attribute + ' value</span>';
+            // Change the interface based on the input type.
+            var attribute_type;
+            var attribute_source = null;
+            for(var i=0; i<ontology['Attributes'].length; i++){
+                if (ontology['Attributes'][i]['Category'] == category && ontology['Attributes'][i]['Attribute'] == attribute) {
+                    switch (ontology['Attributes'][i]['Type']) {
+                        case 'number':
+                            attribute_type = 'number';
+                            break;
+                        case 'date':
+                            attribute_type = 'date';
+                            break;
+                        case 'duration':
+                            attribute_type = 'duration';
+                            break;
+                        case 'boolean':
+                            attribute_type = 'boolean';
+                            break;
+                        default:
+                            attribute_type = 'object';
+                            attribute_source = ontology['Attributes'][i]['Type'];
+                    }
+                    break; // Once you have found the attribute you don't need to keep looking
+                }
+            }
+            switch(attribute_type) {
+                case 'number':
+                    output_html += '<input onchange="save_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" type="number" class="form-control" aria-label="New value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
+                    break;
+                case 'date':
+                    output_html += '<input type="date" class="form-control" aria-label="Date" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
+                    break;
+                case 'duration':
+                    output_html += '<span class="input-group-text px-1">S</span>';
+                    output_html += '<div class="input-group-text">';
+                    output_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction">';
+                    output_html += '</div>';
+                    output_html += '<span class="input-group-text px-1">Y</span>';
+                    output_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0">';
+                    output_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                    output_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0">';
+                    output_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
+                    output_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0">';
+                    break;
+                case 'boolean':
+                    output_html += '<div class="input-group-text"><input class="form-check-input" type="checkbox" id="category_' + category + '_' + object + '_' + attribute + '_new_value"></div><input class="form-control" value="' + attribute + '" disabled>';
+                    break;
+                case 'object':
+                    output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
+                    var options = Object.keys(fact_data[attribute_source]['members']);
+                    for (var i=0; i<options.length; i++){
+                        output_html += '<option value="' + options[i] + '"">' + options[i] + '</option>';
+                    }
+                    output_html += '</select>';
+                    break;
+                default:
+                    output_html += "Can't Render Datatype";
+            }
+            output_html += '<button onclick="save_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
+            output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+            output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
+            output_html += '</svg></button>';
+            output_html += '<button onclick="cancel_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+            output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+            output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+            output_html += '</svg></button></div></div>';
+            // Open the contents
+            var show = false;
+            if(category + '_' + object + '_' + attribute + '_content' in expanded){
+                show = expanded[category + '_' + object + '_' + attribute + '_content'];
+            }
+            output_html += '<div class="blawx_attribute_contents se_subparts collapse p-2 gy-2';
+            if(show) {output_html += ' show'; }
+            output_html += '" id="' + category + '_' + object + '_' + attribute + '_content">';
+            // add each of the existing values
+            for(var i=0; i<fact_data[category]['members'][object][attribute]['values'].length; i++){
+                output_html += draw_value(category,object,attribute,fact_data[category]['members'][object][attribute]['values'][i],i);
+            }
+            // Close the contents
+            output_html += '</div>';
+            // Close the attribute
+            output_html += '</div>';
+            return output_html;
+        };
+        function draw_object(category,object){
+            attributes = ontology['Attributes'];
+            attribute_found = [];
+            for(var i=0; i<attributes.length; i++) {
+                if (attributes[i]['Category'] == category) {
+                    attribute_found.push(attributes[i]['Attribute']);
+                }
+            }
+            var from_ontology = false;
+            for(var i=0; i<ontology['Objects'].length; i++) {
+                if (ontology['Objects'][i]['Category'] == category && ontology['Objects'][i]['Object'] == object) {
+                    from_ontology = true;
+                    break;
+                }
+            }
+            // Start the object
+            var object_html = '<div class="blawx_object';
+            if(attribute_found.length) {
+                object_html += ' blawx_has_attributes';
+            }
+            object_html += '" id="' + category + '_' + object + '">';
+            // Start the Object Header
+            object_html += '<div class="blawx_object_header row tree-element p-2" id="' + category + '_' + object + '_header"><div class="input-group">';
+            // Add the arrow
+            object_html += '<button class="blawx_caret btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#' + category + '_' + object + '_content"><i class="bi bi-caret-right"></i></button>';
+            // Add the name
+            object_html += '<input onchange="update_object(\'' + category + '\',\'' + object + '\')" type="text" class="form-control" aria-label="Object name" id="' + category + '_' + object + '_name" value="' + object + '"';
+            if (from_ontology) {
+                object_html += ' disabled';
+            }
+            object_html += '>';
+            // Add the delete button
+            if (!from_ontology) {
+                object_html += '<button onclick="delete_object(\'' + category + '\',\'' + object + '\')" class="btn btn-outline-secondary blawx_delete_object" type="button"';
+                object_html += '><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">';
+                object_html += '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>';
+                object_html += '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>';
+                object_html += '</svg></button>';
+            }
+            // Close the Object Header
+            object_html += '</div></div>';
+            // Open the Object Contents
+            var show = false;
+            if(category + '_' + object + '_content' in expanded) {
+                show = expanded[category + '_' + object + '_content'];
+            }
+            object_html += '<div class="blawx_object_contents se_subparts collapse';
+            if(show){object_html += ' show';}
+            object_html += '" id="' + category + '_' + object + '_content">';
+            // For each attribute, add it.
+            for(var i=0;i<attribute_found.length;i++) {
+                object_html += draw_attribute(category,object,attribute_found[i]);
+            }
+            // Close the Object Contents
+            object_html += '</div>';
+            // Close the Object
+            object_html += '</div>';
+            return object_html;
+        };
+        function draw_category(category){
+            // The input category should have 'members_known','members' at least
+            input_category = fact_data[category];
+            var has_members = Object.entries(input_category['members']).length;
+            var locked = input_category['members_known'];
+            var output_html = '<div id="category_' + category + '" class="blawx_category';
+            if (locked) {
+                output_html += ' blawx_locked';
+            }
+            if (!has_members) {
+                output_html += ' blawx_empty';
+            }
+            output_html += '">';
+            output_html += '<div id="category_' + category + '_header" class="blawx_category_header tree-element p-2"><div class="input-group">';
+            // Add the arrow
+            // TODO: Add "show" if the category is in `expanded`
+            output_html += '<button class="blawx_caret btn btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#category_' + category + '_content" type="button"><i class="bi bi-caret-right"></i></button>';
+            // Add the name
+            output_html += '<input type="text" class="form-control" aria-label="Category Name" value="' + category + '" disabled>';
+            // Add the add button
+            output_html += '<button onclick="show_new_object(\'' + category + '\')" class="blawx_add_button btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
+            output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
+            output_html += '</svg></button>';
+            // Add both lock buttons
+            output_html += '<button onclick="toggle_lock(\'' + category + '\')" class="blawx_lock_button btn btn-outline-secondary" id="category_' + category + '_lock" autocomplete="off">';
+            output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">';
+            output_html += '<path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>';
+            output_html += '</svg></button>';
+            output_html += '<button onclick="toggle_lock(\'' + category + '\')" class="blawx_unlock_button btn btn-outline-secondary" id="category_' + category + '_unlock" autocomplete="off">';
+            output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">';
+            output_html += '<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>';
+            output_html += '</svg></button>';
+            output_html += '</div>'; // closes category header
+            output_html += '</div>';
+            // Add the new object
+            output_html += '<div class="blawx_new_object row blawx-object tree-element p-2">';
+            output_html += '<div class="input-group">';
+            output_html += '<span class="input-group-text">New '+ category + '</span>';
+            output_html += '<input onchange="save_new_object(\'' + category + '\')" type="text" class="form-control" aria-label="New object name" id="category_' + category + '_new_object">';
+            output_html += '<button onclick="save_new_object(\'' + category + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
+            output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+            output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
+            output_html += '</svg></button>';
+            output_html += '<button onclick="cancel_new_object(\'' + category + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+            output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+            output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+            output_html += '</svg></button></div></div>';
+            // Open Content
+            var show = false;
+            if('category_' + category + '_content' in expanded) {
+                show = expanded['category_' + category + '_content'];
+            }
+            output_html += '<div class="blawx_category_content se_subparts collapse';
+            if (show) { output_html += ' show';}
+            output_html += '" id="category_' + category + '_content">';
+            // add each member
+            var objects = Object.keys(input_category['members']);
+            for(var i = 0; i < objects.length; i++) {
+                output_html += draw_object(category,objects[i]);
+            }
+            // Close Content
+            output_html += '</div>';
+            // Close the Category
+            output_html += '</div>';
+            // Return the output
+            return output_html;
+        };
+        function draw_facts(){
+            var output_html = '<nav class="column" id="facttree">';
+            // Go through the categories, and draw each
+            var categories = Object.keys(fact_data);
+            for(category in categories) {
+                output_html += draw_category(categories[category]);
+            }
+            output_html += '</nav>';
+            // Output the result to facttree
+            var target = document.getElementById('facttree');
+            target.outerHTML = output_html;
+            var collapsing_elements = [];
+            collapsing_elements.push(...document.getElementsByClassName('blawx_category_content'));
+            collapsing_elements.push(...document.getElementsByClassName('blawx_object_contents'));
+            collapsing_elements.push(...document.getElementsByClassName('blawx_attribute_contents'));
+            for(var i=0; i<collapsing_elements.length; i++) {
+                document.getElementById(collapsing_elements[i].id).addEventListener('hide.bs.collapse', function () {
+                    if (event.target == event.currentTarget) {
+                        expanded[this.id] = false;
+                    }
+                });
+                document.getElementById(collapsing_elements[i].id).addEventListener('show.bs.collapse', function () {
+                    if (event.target == event.currentTarget) {
+                        expanded[this.id] = true;
+                    }
+                });
+            }
+        };
+        function show_new_object(category){
+            // Close any other open new object or value
+            // set the current new object to be visible.
+            target = document.getElementById('category_' + category);
+            target.classList.add('blawx_show_new');
+            // Set the current "lock" button to disabled.
+            target_button = document.getElementById('category_' + category + '_lock');
+            target_button.setAttribute('disabled','');
+            // Move the focus to the new object input.
+            target_input = document.getElementById('category_' + category + '_new_object');
+            target_input.focus();
+        };
+        function save_new_object(category){
+            // Add the object to the data
+            target = document.getElementById('category_' + category + '_new_object');
+            new_object_name = target.value;
+            fact_data[category]['members'][new_object_name] = {};
+            // add attributes to the new object
+            attributes = ontology['Attributes'];
+            var attributes_found = [];
+            for(var i=0; i< attributes.length;i++){
+                if(attributes[i]['Category'] == category) {
+                    attributes_found.push(attributes[i]['Attribute']);
+                }
+            }
+            for(var i=0; i< attributes_found.length; i++) {
+                fact_data[category]['members'][new_object_name][attributes_found[i]] = {
+                    'values': [],
+                    'values_known': true
+                }
+            }
+            expanded['category_' + category + '_content'] = true;
+            expanded[category + '_' + new_object_name + '_content'] = true;
+            // redraw
+            draw_facts();
+        };
+        function cancel_new_object(category){
+            // Delete the value in the current new object
+            target_new_object = document.getElementById('category_' + category + '_new_object');
+            target_new_object.value='';
+            // Return it to hidden.
+            target_category = document.getElementById('category_' + category);
+            target_category.classList.remove('blawx_show_new');
+            // Re-Enable the Lock Button
+            target_button = document.getElementById('category_' + category + '_lock');
+            target_button.removeAttribute('disabled');
+        };
+        function show_new_value(category,object,attribute){
+            // Close any other open new object or value
+            // set the current new object to be visible.
+            target = document.getElementById( category + '_' + object + '_' + attribute);
+            target.classList.add('blawx_show_new');
+            // Set the current "lock" button to disabled.
+            target_button = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_lock');
+            target_button.setAttribute('disabled','');
+            // Move the focus to the new object input.
+            target_input = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+            target_input.focus();
+        };
+        function save_new_value(category,object,attribute){
+            // Figure out what type of value this is.
+            var attribute_type;
+            for(var i =0; i<ontology['Attributes'].length; i++) {
+                if(ontology['Attributes'][i]['Category'] == category
+                  && ontology['Attributes'][i]['Attribute'] == attribute) {
+                    attribute_type = ontology['Attributes'][i]['Type'];
+                    break;
+                  }
+            }
+            // Get the new value
+            target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+            new_value = target.value;
+            // For Booleans, check if it is "checked", it's value is not relevant.
+            if(attribute_type == "boolean") {
+                if(target.checked) {
+                    new_value = "true";
+                } else {
+                    new_value = "false";
+                }
+            }
+            fact_data[category]['members'][object][attribute]['values'].push(new_value);
+            expanded[category + "_" + object + '_' + attribute + "_content"] = true;
+            // redraw
+            draw_facts();
+        };
+        function update_value(category,object,attribute,value,index){
+            // Figure out what type of value this is.
+            var attribute_type;
+            for(var i =0; i<ontology['Attributes'].length; i++) {
+                if(ontology['Attributes'][i]['Category'] == category
+                  && ontology['Attributes'][i]['Attribute'] == attribute) {
+                    attribute_type = ontology['Attributes'][i]['Type'];
+                    break;
+                  }
+            }
+            //      Get the new value
+            target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
+            new_value = target.value;
+            //      If it is a boolean, fix the value.
+            if(attribute_type == "boolean") {
+                if (target.checked) {
+                    new_value = "true";
+                } else {
+                    new_value = "false";
+                }
+            }
+            //      Replace the current value with the new value in the facts
+            // index_of_old = fact_data[category]['members'][object][attribute]['values'].indexOf(value)
+            fact_data[category]['members'][object][attribute]['values'][index] = new_value;
+            //      Redraw the interface
+            draw_facts();
+        }
+        function cancel_new_value(category,object,attribute){
+            // Delete the value in the current new value input
+            target_new_value = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+            target_new_value.value='';
+            // Return it to hidden.
+            target_attribute = document.getElementById(category + '_' + object + '_' + attribute );
+            target_attribute.classList.remove('blawx_show_new');
+            // Re-Enable the Lock Button
+            target_button = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_lock');
+            target_button.removeAttribute('disabled');
+        };
+        function delete_object(category,object){
+            // Delete the object from the data
+            delete fact_data[category]['members'][object];
+            // redraw
+            draw_facts();
+        };
+        function update_object(category,object) {
+            //Get the new value of the object
+            target_object = document.getElementById(category + '_' + object + '_name');
+            new_object_name = target_object.value;
+            //Add it to the facts
+            
+            Object.assign(fact_data[category]['members'], {[new_object_name]: fact_data[category]['members'][object] });
+            delete fact_data[category]['members'][object];
+            draw_facts();
+        }
+        function delete_value(category,object,attribute,index){
+            // Delete the value from the data
+            fact_data[category]['members'][object][attribute]['values'].splice(index, 1);
+            
+            // redraw
+            draw_facts();
+        };
+        draw_facts();
+        var answer_element = document.getElementById('answers');
+        function run_test() {
+            var testrun_request = new XMLHttpRequest();
+            testrun_request.onload = function () {
+                parsed_test_response = JSON.parse(this.responseText);
+                console.log("Test response received")
+                // If the question is answered
+                if (parsed_test_response['Answers'].length) {
+                    // Display the answer
+                    var output_content = '<div class="accordion accordion-flush">';
+                    var answers = parsed_test_response.Answers;
+                    for (let i = 0; i < answers.length; i++) {
+                        var count = i + 1;
+                        var heading_name = "answer_" + count + "_heading";
+                        var collapse_name = "answer_" + count + "_collapse";
+                        output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + heading_name + '">';
+                        output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + collapse_name + '" aria-expanded="false" aria-controls="' + collapse_name + '">';
+                        output_content += 'Answer #' + count;
+                        var variables = answers[i].Variables;
+                        output_content += '</button></h2>';
+                        output_content += '<div id="' + collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + heading_name + '" style="">';
+                        models = answers[i].Models;
+                        output_content += '<div class="accordian accordian-flush">'
+                        output_content += '<ul>'
+                        var attributes_output = "";
+                        for (var key in variables) {
+                            if (key == "$residuals") {
+                                for (var attribute in variables['$residuals']) {
+                                    if (variables['$residuals'][attribute]['functor'] == "put_attr" && variables['$residuals'][attribute]['args'][1] == 'scasp_output' && variables['$residuals'][attribute]['args'][2]['functor'] == 'name') {
+                                        // This is designed to prevent re-printing information about the Attributes that is already displayed.
+                                        // If the only thing present int he attributes is the name, just skip it.
+                                        continue;
+                                    } else if (variables['$residuals'][attribute]['functor'] == "∉") {
+                                        // This is an inequality constraint
+                                        attributes_output += "<li>where " + variables['$residuals'][attribute]['args'][0] + " is not ";
+                                        if (variables['$residuals'][attribute]['args'][1].length > 1) {
+                                            attributes_output += "one of ";
+                                        }
+                                        attributes_output += variables['$residuals'][attribute]['args'][1].toString() + "</li>"
+                                    } else if (variables['$residuals'][attribute]['functor'] == "{}") {
+                                        attributes_output += "<li>where" + variables['$residuals'][attribute]['args'][0]['args'][0] + " " + variables['$residuals'][attribute]['args'][0]['functor'] + " " + variables['$residuals'][attribute]['args'][0]['args'][1] + "</li>";
+                                    } else {
+                                        // It should throw a console warning if there was something else in there.
+                                        console.warn("Unrecognized attribute in output: " + attribute['functor'] + ".");
+                                    }
+                                }
+                            } else {
+                                output_content += '<li>' + key + ': ' + variables[key] + '</li>';
+                            }
+                        }
+                        output_content += attributes_output;
+                        output_content += '</ul>'
+
+                        for (let j = 0; j < models.length; j++) {
+                            var model_count = j + 1;
+                            var model_heading_name = "answer_" + count + "_model_" + model_count + "_heading";
+                            var model_collapse_name = "answer_" + count + "_model_" + model_count + "_collapse";
+                            output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + model_heading_name + '">';
+                            output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + model_collapse_name + '" aria-expanded="false" aria-controls="' + model_collapse_name + '">';
+                            output_content += 'Explanation #' + model_count;
+                            output_content += '</button></h2>';
+                            output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
+                            output_content += convertModelToTree(models[j].Tree, count, model_count);
+                            output_content += '</div></div>';
+
+                        }
+                        output_content += '</div></div></div>';
+                    }
+                    output_content += '</div>';
+                    answer_element.innerHTML = output_content;
+                } else {
+                    // Indicate that there are no answers.
+                    answer_element.innerHTML = "No answers received.";
+                }
+            }
+            testrun_request.open("POST", "{% url 'blawx:run_test' blawxtest.ruledoc.id blawxtest %}");
+            testrun_request.setRequestHeader("Content-Type", "application/json");
+            console.log("Sending test request");
+            answer_element.innerHTML = "Thinking...";
+            testrun_request.setRequestHeader('X-CSRFToken', csrftoken);
+            testrun_request.send(JSON.stringify(fact_data));
+        }
+    </script>
+</body>
+</html>

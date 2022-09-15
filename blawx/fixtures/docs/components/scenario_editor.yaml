@@ -1,0 +1,149 @@
+- model: blawx.docpage
+  pk: components/scenario_editor
+  fields:
+    title: Scenario Editor
+    content: |
+      # Scenario Editor
+
+      The Scenario Editor is a graphical interface that allows a user to create objects in
+      categories, and to assign values to those objects' attributes, in a dynamic web form
+      interface.
+
+      The Scenario Editor is perfect for testing your encoding by quickly generating fact
+      scenarios and seeing if they behave as expected.
+
+      ## Controlling Access to Scenario Editor
+
+      If your project is not published, only the owner of the project will be able to run
+      the Scenario Editor from inside the test interface. If your project is set to published in the
+      Rule Editor screen, the scenario editor for all of your tests will be available to
+      unauthenticated users.
+
+      To allow users other than yourself to use Scenario Editor with your encoding and tests, you must
+      set the Project to "Published".
+
+      ## Starting Scenario Editor
+
+      ![Scenario Editor Button](/static/blawx/docs/images/scenario_editor_button.png)
+
+      To start the Scenario Editor, click on the "Scenario Editor" button in the test editor screen.
+
+      You will be taken to a user interface with a button bar across the top, a fact scenario form on
+      the left, and answers on the right.
+
+      ![Scenario Editor Interface](/static/blawx/docs/images/scenario_editor_interface.png)
+
+      ## Buttons
+
+      ![Scenario Editor Buttons](/static/blawx/docs/images/scenario_editor_buttons.png)
+
+      The buttons available in the BlawxBot interface are:
+
+      * Run - this runs the test with the currently defined fact scenario
+      * Help - opens the Blawx documentation in a different window
+      * Exit - Closes the Scenario Editor and returns you to the test editor for the same test.
+
+      ## Answers
+
+      The right side of the scenario editor will display answers that Blawx can find, with
+      all the explanations for those answers, in a format similar to the output of the test
+      editor.
+
+      ## Fact Scenario Editor
+
+       ![Fact Scenario Editor Interface](/static/blawx/docs/images/fact_scenario_editor_interface.png)
+
+      The main interface in the scenario editor page is the fact scenario editor form.
+
+      The form is a nested tree. At the far left of the form you will see a list of the categories
+      that exist in your test. By clicking the "add" button with the plus icon, you can create
+      a new object in that category and give it a name.
+
+      ![Add Button](/static/blawx/docs/images/add_button.png)
+
+      Note that names of objects must begin with a lowercase letter, cannot include spaces, and must be
+      unique. These requirements are not yet enforced by the Scenario Editor.
+
+      If you create an object, you will be able to expand or collapse the category by clicking on the "arrow" icon.
+      The name of the objects you create can be changed in the interface.
+      Objects can be expanded or collapsed in the same way.
+
+      You can add a value to an object's attribute by clicking the "add" button on the attribute name inside the object.
+
+      Values can be also be changed after they have been created.
+
+      Values and objects can be deleted by clicking on the delete button with the "trash can" icon on the right side.
+      
+      ![Delete Button](/static/blawx/docs/images/delete_button.png)
+      
+      You cannot delete categories, or attributes. Note that if your test or your encoding defines any objects, and the
+      values of attributes of those objects, those objects and values will also appear in your fact scenario editor form, but you will not be able
+      to modify or delete them.
+
+      When setting the value of an attribute that has a category as it's type (for example, "friend" might be an attribute
+      of a person, and also refer to other persons), the interface will allow you to choose from the objects that already
+      exist in the target category. To refer to an object, it must be included in the category first. So for example,
+      if you want to say that jason and june are friends, you must first create both jason and june in the category "person",
+      and then in the "friend" attribute of june, add jason as a value.
+
+      ## Assumptions
+
+      ![Lock Button](/static/blawx/docs/images/lock_button.png)
+
+      In the Scenario Editor, every category and attribute has a "lock" button. It starts in the "locked" position, and if
+      you click on it, it switches to the "unlocked" position, and back again.
+
+      The lock button tells the reasoner which assumptions you would like it to make.
+
+      If you leave the lock "open" on a category (let's say "person"), that is equivalent to writing code that says "assume {X} is in the category person".
+      It allows Blawx to hypothesize the existence of additional members of that category in order to attempt to answer the question.
+
+      Similarly, if you leave the lock "open" on an object's attribute (let's say the "friend" attribute of the "bob" object), that
+      is equivalent to writing code that says "assume {X} is a friend of {bob}".
+
+      # Tips
+
+      ## Known Problems
+
+      Scenario Editor is a very new feature, and there are a number of known issues:
+
+      * While you are editing an object name, other interface elements don't work. Click outside
+        of the object name field before continuing.
+      * Support for attributes with values that are numbers, dates, and durations is under development.
+
+      ## Lock Your Lists
+
+      Usually, you will want to lock all of your categories and attributes before running a query.
+
+      Note that leaving even a small number of categories and attributes unlocked at the same time can result in a large number of potential
+      answers to your question, which can slow down the speed of the reasoner and the Scenario Editor.
+
+      ## Selecting From Categories
+      
+      When setting the value of an attribute that has a category as it's type (for example, "friend" might be an attribute
+      of a person, and also refer to other persons), the interface will allow you to choose from the objects that already
+      exist in the target category. To refer to an object, it must be included in the category first. So for example,
+      if you want to say that jason and june are friends, you must first create both jason and june in the category "person",
+      and then in the "friend" attribute of june, add jason as a value.
+
+      ## Duplicate Values
+
+      The Scenario Editor will allow you to add as many values as you like to an attribute, including duplicate values.
+      However, duplicate values do not have any meaning to the Blawx reasoner. It treats your fact scenario as if each
+      value occurred only once.
+
+      Note also that if you re-enter an object or value that was already provided by the code or your
+      test, it will appear in the list as normal, but it will be locked, and you will not be able to delete it.
+
+      ## True / False Values (You Usually Only Need One)
+
+      Because a true / false attribute can only hold two values, and duplicates of those values are meaningless, there
+      is never a reason to add more than two values to a true / false attribute for an object. The Scenario Editor will
+      let you add as many boolean values as you like, but no more than two can possibly be meaningful.
+
+      There are very few circumstances in which setting an objects true /false attribute to both true and false
+      will be meaningful. In most cases, the attribute models a thing that can only be true, false, or unknown about an
+      object. So it might seem unnecessary to allow the user to apply more than one.
+
+      However, while there are very few circumstances, there are more than zero, so you need to be careful you are not
+      inadvertently adding multiple true / false values unintentionally.

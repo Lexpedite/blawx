@@ -7,6 +7,19 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.27-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.27-alpha) 2022-09-15
+
+### Added
+* The "Scenario Editor" has been added to the test interface
+* Added documentation for the Scenario Editor component to the docs
+
+### Changed
+* The `/onto` endpoint on tests will only return fully-ground responses
+
+### Fixed
+* The reasoner API will no longer create duplicate facts if facts specified in the rule and test
+  are re-submitted in the JSON payload for the `/run` and `/interview` endpoints. ([#342](https://github.com/Lexpedite/blawx/issues/342)).
+
 ## [v1.3.26-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.26-alpha) 2022-08-10
 
 ### Fixed

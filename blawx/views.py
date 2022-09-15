@@ -196,6 +196,14 @@ class BlawxBot(PermissionRequiredMixin, generic.DetailView):
     def get_object(self):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
 
+class ScenarioEditor(PermissionRequiredMixin, generic.DetailView):
+    permission_required = "blawx.view_blawxtest"
+    template_name = "blawx/scenario_editor.html"
+    model = BlawxTest
+
+    def get_object(self):
+        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
+
 class TestCreateView(PermissionRequiredMixin, CreateView):
     permission_required = "blawx.add_blawxtest_to_ruledoc"
     model = BlawxTest

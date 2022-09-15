@@ -140,6 +140,8 @@ def run_test(request,ruledoc,test_name):
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data)
+        # print("Facts Generated for Run Request:\n")
+        # print(translated_facts)
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       ruleset = ""
       for ws in wss:
@@ -175,12 +177,16 @@ blawxrun(Query, Human) :-
       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(translated_facts)
-      rulefile.write(ruleset)
+      rulefile.write(ruleset + '\n')
+      ruleset_lines = ruleset.splitlines()
+      for fact in translated_facts.splitlines():
+        if fact.replace(' ','') not in ruleset_lines:
+          rulefile.write(fact + '\n')
+      # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      # print(temprulefile.read())
+      print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -292,7 +298,9 @@ blawxrun(Query, Human) :-
                   query1_answer = swipl_thread.query("blawxrun(blawx_category(Category),Human).")
                   query1_answers = generate_answers(query1_answer)
                   for cat in query1_answers:
-                    category_answers.append(cat['Variables']['Category'])
+                    # We exclude Variable names that have been specified as a category name.
+                    if not re.search(r"^[A-Z_]\w*",cat['Variables']['Category']):
+                      category_answers.append(cat['Variables']['Category'])
                   category_nlg = []
                   for c in category_answers:
                     try:
@@ -310,7 +318,9 @@ blawxrun(Query, Human) :-
                     query2_answer = swipl_thread.query("blawxrun(blawx_attribute(Category,Attribute,ValueType),Human).")
                     query2_answers = generate_answers(query2_answer)
                     for att in query2_answers:
-                      attribute_answers.append({"Category": att['Variables']['Category'], "Attribute": att['Variables']['Attribute'], "Type": att['Variables']['ValueType']})
+                      # This excludes declarations that make variables into attribute types.
+                      if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                        attribute_answers.append({"Category": att['Variables']['Category'], "Attribute": att['Variables']['Attribute'], "Type": att['Variables']['ValueType']})
                     transcript.write(str(query2_answer) + '\n')
                   except PrologError as err:
                       if err.prolog().startswith('existence_error'):
@@ -340,7 +350,9 @@ blawxrun(Query, Human) :-
                     cat_query_answers = generate_answers(cat_query_response)
                     for answer in cat_query_answers:
                       object_name = answer['Variables']['Object']
-                      object_query_answers.append({"Category": category_name, "Object": object_name})
+                      # Do not add variables as objects
+                      if not re.search(r"^[A-Z_]\w*",object_name):
+                        object_query_answers.append({"Category": category_name, "Object": object_name})
                   value_query_answers = []
                   for att in query2_answers:
                     attribute_name = att['Variables']['Attribute']
@@ -354,7 +366,13 @@ blawxrun(Query, Human) :-
                     for answer in att_query_answers:
                       object_name = answer['Variables']['Object']
                       value = answer['Variables']['Value']
-                      value_query_answers.append({"Attribute": attribute_name, "Object": object_name, "Value": value})
+                      # Right now, this returns a variable name as a value. It's not clear if this is something that
+                      # SHOULD be included in the data, and filtered out at the front end, making the API more complicated,
+                      # or if it should be filtered out here, simplifying the API, but making it impossible to know that
+                      # the generic statement has been made. For now, I will remove it at the API level.
+                      # Note that we are excluding partially and fully unground statements.
+                      if not re.search(r"^[A-Z_]\w*",object_name) and not re.search(r"^[A-Z_]\w*",value):
+                        value_query_answers.append({"Attribute": attribute_name, "Object": object_name, "Value": value})
 
               transcript.close()
               transcript = open(transcript_name,'r')
@@ -431,8 +449,12 @@ blawxrun(Query, Human) :-
       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(translated_facts)
-      rulefile.write(ruleset)
+      rulefile.write(ruleset + '\n')
+      ruleset_lines = ruleset.splitlines()
+      for fact in translated_facts.splitlines():
+        if fact.replace(' ','') not in ruleset_lines:
+          rulefile.write(fact + '\n')
+      # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
@@ -516,8 +538,12 @@ blawxrun(Query, Tree, Model) :-
       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(translated_facts)
-      rulefile.write(ruleset)
+      rulefile.write(ruleset + '\n')
+      ruleset_lines = ruleset.splitlines()
+      for fact in translated_facts.splitlines():
+        if fact.replace(' ','') not in ruleset_lines:
+          rulefile.write(fact + '\n')
+      # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')

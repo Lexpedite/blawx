@@ -21,6 +21,7 @@ urlpatterns = [
     path('<int:ruledoc>/test/<slug:test_name>/onto/',reasoner.get_ontology, name="test_onto"),
     path('<int:ruledoc>/test/<slug:test_name>/interview/',reasoner.interview, name="test_interview"),
     path('<int:ruledoc>/test/<slug:test_name>/bot/',views.BlawxBot.as_view(), name="blawx_bot"),
+    path('<int:ruledoc>/test/<slug:test_name>/scenario/',views.ScenarioEditor.as_view(), name="scenario_editor"),
     path('<int:pk>/<str:workspace>/update/', views.update_code, name="update_workspace_code"),
     path('<int:pk>/all/get/', views.get_all_code, name="get_all_workspaces_code"),
     path('<int:pk>/<str:workspace>/get/', views.get_code, name="get_workspace_code"),
