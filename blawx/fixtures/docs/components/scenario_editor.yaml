@@ -58,28 +58,26 @@
       The form is a nested tree. At the far left of the form you will see a list of the categories
       that exist in your test. By clicking the "add" button with the plus icon, you can create
       a new object in that category and give it a name.
-      
+
       ![Add Button](/static/blawx/docs/images/add_button.png)
 
       Note that names of objects must begin with a lowercase letter, cannot include spaces, and must be
       unique. These requirements are not yet enforced by the Scenario Editor.
 
-      If you create an object, you will be able to expand the category by clicking on the "arrow" icon
-      to view the objects inside it.
-      The name of the objects you create can be changed in the interface. If you expand an object in the
-      same way, you will see the attributes that can be set for that object.
+      If you create an object, you will be able to expand or collapse the category by clicking on the "arrow" icon.
+      The name of the objects you create can be changed in the interface.
+      Objects can be expanded or collapsed in the same way.
 
       You can add a value to an object's attribute by clicking the "add" button on the attribute name inside the object.
-      
 
-      Values can be edited after they have been created, also.
+      Values can be also be changed after they have been created.
 
       Values and objects can be deleted by clicking on the delete button with the "trash can" icon on the right side.
       
       ![Delete Button](/static/blawx/docs/images/delete_button.png)
       
       You cannot delete categories, or attributes. Note that if your test or your encoding defines any objects, and the
-      attributes of those objects, they will also appear in your fact scenario editor form, but you will not be able
+      values of attributes of those objects, those objects and values will also appear in your fact scenario editor form, but you will not be able
       to modify or delete them.
 
       When setting the value of an attribute that has a category as it's type (for example, "friend" might be an attribute
@@ -92,11 +90,10 @@
 
       ![Lock Button](/static/blawx/docs/images/lock_button.png)
 
-      In the Scenario Editor, every category and attribute has a "lock" button. It starts in the "unlocked" position, and if
-      you click on it, it switches to the "locked" position, and back again.  If the button is in the "locked" position, it
-      is not possible to add objects to that category, or values to that object's attribute.
+      In the Scenario Editor, every category and attribute has a "lock" button. It starts in the "locked" position, and if
+      you click on it, it switches to the "unlocked" position, and back again.
 
-      However, the lock icon has another more important function. It tells the reasoner which assumptions you would like it to make.
+      The lock button tells the reasoner which assumptions you would like it to make.
 
       If you leave the lock "open" on a category (let's say "person"), that is equivalent to writing code that says "assume {X} is in the category person".
       It allows Blawx to hypothesize the existence of additional members of that category in order to attempt to answer the question.
@@ -104,16 +101,14 @@
       Similarly, if you leave the lock "open" on an object's attribute (let's say the "friend" attribute of the "bob" object), that
       is equivalent to writing code that says "assume {X} is a friend of {bob}".
 
-      This is a very powerful and straightforward way of generating two kinds of assumptions that Blawx is capable of using.
-
       # Tips
 
       ## Known Problems
 
       Scenario Editor is a very new feature, and there are a number of known issues:
 
-      * It tends to return and display duplicate explanations
-      * Clicking on a button may not work if you are editing an object name, you may need to click twice.
+      * While you are editing an object name, other interface elements don't work. Click outside
+        of the object name field before continuing.
       * Support for attributes with values that are numbers, dates, and durations is under development.
 
       ## Lock Your Lists
