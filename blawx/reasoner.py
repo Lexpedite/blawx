@@ -177,11 +177,11 @@ blawxrun(Query, Human) :-
       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(ruleset)
+      rulefile.write(ruleset + '\n')
       ruleset_lines = ruleset.splitlines()
       for fact in translated_facts.splitlines():
-        if fact not in ruleset_lines:
-          rulefile.write(fact)
+        if fact.replace(' ','') not in ruleset_lines:
+          rulefile.write(fact + '\n')
       # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
@@ -449,11 +449,11 @@ blawxrun(Query, Human) :-
       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(ruleset)
+      rulefile.write(ruleset + '\n')
       ruleset_lines = ruleset.splitlines()
       for fact in translated_facts.splitlines():
-        if fact not in ruleset_lines:
-          rulefile.write(fact)
+        if fact.replace(' ','') not in ruleset_lines:
+          rulefile.write(fact + '\n')
       # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
@@ -538,11 +538,11 @@ blawxrun(Query, Tree, Model) :-
       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(ruleset)
+      rulefile.write(ruleset + '\n')
       ruleset_lines = ruleset.splitlines()
       for fact in translated_facts.splitlines():
-        if fact not in ruleset_lines:
-          rulefile.write(fact)
+        if fact.replace(' ','') not in ruleset_lines:
+          rulefile.write(fact + '\n')
       # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
