@@ -217,7 +217,7 @@
             // For each category, add an object to the fact_data with 'members' and 'members_known'
             categories = ontology['Categories'];
             for (var i=0; i < categories.length; i++) {
-                fact_data[categories[i]] = { 'members': {}, 'members_known': false };
+                fact_data[categories[i]] = { 'members': {}, 'members_known': true };
             }
             // For each existing object, add it to the fact scenario.
             objects = ontology['Objects'];
@@ -232,7 +232,7 @@
                 for(var k=0; k<category_objects.length; k++) {
                     fact_data[attributes[j]['Category']]['members'][category_objects[k]][attributes[j]['Attribute']] = {
                         'values': [],
-                        'values_known': false
+                        'values_known': true
                     }
                 }
             }
@@ -675,9 +675,11 @@
             for(var i=0; i< attributes_found.length; i++) {
                 fact_data[category]['members'][new_object_name][attributes_found[i]] = {
                     'values': [],
-                    'values_known': false
+                    'values_known': true
                 }
             }
+            expanded['category_' + category + '_content'] = true;
+            expanded[category + '_' + new_object_name + '_content'] = true;
             // redraw
             draw_facts();
         };
@@ -726,6 +728,7 @@
                 }
             }
             fact_data[category]['members'][object][attribute]['values'].push(new_value);
+            expanded[category + "_" + object + '_' + attribute + "_content"] = true;
             // redraw
             draw_facts();
         };

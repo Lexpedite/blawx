@@ -62,9 +62,6 @@ num + content > p:first-child {
 .blawx_category.blawx_locked > .blawx_category_header > div.input-group .blawx_lock_button {
     display: none;
 }
-.blawx_category.blawx_locked > .blawx_category_header > div.input-group .blawx_add_button {
-    display: none;
-}
 .blawx_category:not(.blawx_locked) > .blawx_category_header > div.input-group .blawx_unlock_button {
     display: none;
 }
@@ -78,9 +75,6 @@ num + content > p:first-child {
     display: none;
 }
 .blawx_attribute.blawx_locked > .blawx_attribute_header > div.input-group .blawx_lock_button {
-    display: none;
-}
-.blawx_attribute.blawx_locked > .blawx_attribute_header > div.input-group .blawx_add_button {
     display: none;
 }
 .blawx_attribute:not(.blawx_locked) > .blawx_attribute_header > div.input-group .blawx_unlock_button {
