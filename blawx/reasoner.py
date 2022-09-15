@@ -140,6 +140,8 @@ def run_test(request,ruledoc,test_name):
       translated_facts = ""
       if request.data:
         translated_facts = new_json_2_scasp(request.data)
+        # print("Facts Generated for Run Request:\n")
+        # print(translated_facts)
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       ruleset = ""
       for ws in wss:
@@ -175,12 +177,16 @@ blawxrun(Query, Human) :-
       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(translated_facts)
       rulefile.write(ruleset)
+      ruleset_lines = ruleset.splitlines()
+      for fact in translated_facts.splitlines():
+        if fact not in ruleset_lines:
+          rulefile.write(fact)
+      # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      # print(temprulefile.read())
+      print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -443,8 +449,12 @@ blawxrun(Query, Human) :-
       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(translated_facts)
       rulefile.write(ruleset)
+      ruleset_lines = ruleset.splitlines()
+      for fact in translated_facts.splitlines():
+        if fact not in ruleset_lines:
+          rulefile.write(fact)
+      # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
@@ -528,8 +538,12 @@ blawxrun(Query, Tree, Model) :-
       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(translated_facts)
       rulefile.write(ruleset)
+      ruleset_lines = ruleset.splitlines()
+      for fact in translated_facts.splitlines():
+        if fact not in ruleset_lines:
+          rulefile.write(fact)
+      # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
