@@ -273,6 +273,7 @@
                 fact_data[category].members[object][attribute].values_known = true;
             }
         }
+        // const date_regex = new RegExp("^date\\((\\d{4}),(\\d{2}),(\\d{2})\\)$", 'gm');
         function draw_value(category,object,attribute,value,index){
             // Add the value, based on the type.
             var attribute_type;
@@ -317,8 +318,23 @@
             var output_html = '<div class="blawx_value input-group py-2">';
             switch(attribute_type) {
                 case 'number':
+                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
+                    output_html += ' type="number" class="form-control"';
+                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
+                    output_html += ' value="' + value + '"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += '>';
                     break;
                 case 'date':
+                    output_html += '<input type="date" class="form-control" onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
+                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
+                    output_html += ' value="' + value + '"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += '>';
                     break;
                 case 'duration':
                     // TODO Translate Between duration format and input format.

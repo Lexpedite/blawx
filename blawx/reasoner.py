@@ -59,8 +59,12 @@ class IgnorePermission(permissions.BasePermission):
 #   }
 # }
 
-def new_json_2_scasp(payload,exclude_assumptions=False):
+def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
   output = ""
+
+  # I need to grab the ontology for the current test.
+  ontology = get_ontology_internal(ruledoc,testname)
+
   # For Each Category
   for (category_name,category_contents) in payload.items():
     # Make category membership abducible?
@@ -68,6 +72,8 @@ def new_json_2_scasp(payload,exclude_assumptions=False):
       if 'members_known' in category_contents:
         if category_contents['members_known'] == False:
           output += "#abducible " + category_name + "(X).\n"
+          # TODO: Here we need to add abducibility statements for the attributes of objects other than
+          # the ones specified?
     
       # For each attribute
       if 'attributes_known' in category_contents:
@@ -110,6 +116,20 @@ def new_json_2_scasp(payload,exclude_assumptions=False):
           # For each value
           for value in attribute_values['values']:
             # Add the attribute value
+            # Here, we need to check the attribute type,
+            attribute_type = ""
+            for att in ontology['Attributes']:
+              if category_name == att['Category'] and attribute_name == att['Attribute']:
+                attribute_type = att['Type']
+                break
+            # and if the attribute type is date, or
+            # duration, adjust the value accordingly.
+            iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
+            if attribute_type == "date":
+              matches = re.findall(iso8601_date_re,value,re.MULTILINE)
+              (year,month,day) = matches[0]
+              date_format = f"date({year},{month},{day})"
+              value = date_format.format(year,month,day)
             output += attribute_name + "(" + object_name + ", " + str(value) + ").\n"
   return output
 
@@ -139,7 +159,7 @@ def run_test(request,ruledoc,test_name):
     if request.user.has_perm('blawx.run',test):
       translated_facts = ""
       if request.data:
-        translated_facts = new_json_2_scasp(request.data)
+        translated_facts = new_json_2_scasp(request.data,ruledoc,test_name)
         # print("Facts Generated for Run Request:\n")
         # print(translated_facts)
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
@@ -371,7 +391,17 @@ blawxrun(Query, Human) :-
                       # or if it should be filtered out here, simplifying the API, but making it impossible to know that
                       # the generic statement has been made. For now, I will remove it at the API level.
                       # Note that we are excluding partially and fully unground statements.
-                      if not re.search(r"^[A-Z_]\w*",object_name) and not re.search(r"^[A-Z_]\w*",value):
+                      # I think that converting the value to a string should work for everything, but it
+                      # is added specifically to deal with numbers.
+                      # I need to check and see if the thing is a date, and if it is, convert it to JSON format.
+                      if 'functor' in value:
+                        if value['functor'] == 'date':
+                          value = f"{str(value['args'][0]):0>4}" + '-' + f"{str(value['args'][1]):0>2}" + '-' + f"{str(value['args'][2]):0>2}"
+                      # matches = re.findall(r"^date\((\d{4}),(\d{2}),(\d{2})\)$", str(value), re.MULTILINE)
+                      # if len(matches):
+                      #   (year,month,day) = matches[0]
+                      #   value = str(year) + '-' + str(month) + '-' + str(day)
+                      if not re.search(r"^[A-Z_]\w*",object_name) and not re.search(r"^[A-Z_]\w*",str(value)):
                         value_query_answers.append({"Attribute": attribute_name, "Object": object_name, "Value": value})
 
               transcript.close()
@@ -409,7 +439,7 @@ def interview(request,ruledoc,test_name):
       print("User has permissions.\n")
       translated_facts = ""
       if request.data:
-        translated_facts = new_json_2_scasp(request.data, True) #Generate answers ignoring assumptions in the submitted data
+        translated_facts = new_json_2_scasp(request.data, ruledoc,test_name,True) #Generate answers ignoring assumptions in the submitted data
       print("The raw data submitted is:")
       print(str(request.data) + "\n")
       print("Facts submittied are:")
@@ -502,7 +532,7 @@ blawxrun(Query, Human) :-
       # Effectively, we're going to start over.
       translated_facts = ""
       if request.data:
-        translated_facts = new_json_2_scasp(request.data, False) #Generate answers INCLUDING assumptions in the submitted data
+        translated_facts = new_json_2_scasp(request.data, ruledoc, test_name, False) #Generate answers INCLUDING assumptions in the submitted data
       print("Generated facts with assumptions:")
       print(str(translated_facts) + "\n")
 

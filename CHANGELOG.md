@@ -7,6 +7,16 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## DEVELOPMENT CHANGES
+
+### Fixed
+* The ontology endpoint will now function properly when number values are defined in the code and tests.
+* Scenario editor will now deal with numerical values, and dates
+
+### Changed
+* The `/run` and `/interview` endpoints now accept dates in the 'yyyy-mm-dd' format
+* The `/onto` endpoint now returns dates in the 'yyyy-mm-dd' format
+
 ## [v1.3.27-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.27-alpha) 2022-09-15
 
 ### Added
