@@ -11,11 +11,11 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### Fixed
 * The ontology endpoint will now function properly when number values are defined in the code and tests.
-* Scenario editor will now deal with numerical values, and dates
+* Scenario editor will now deal with numerical values, dates, and durations
 
 ### Changed
-* The `/run` and `/interview` endpoints now accept dates in the 'yyyy-mm-dd' format
-* The `/onto` endpoint now returns dates in the 'yyyy-mm-dd' format
+* The `/run` and `/interview` endpoints now accept dates in the 'yyyy-mm-dd' format, and durations in the '[-]PyYmMdD' format.
+* The `/onto` endpoint now returns dates in the 'yyyy-mm-dd' format, and durations in the '[-]PyYmMdD' format.
 
 ## [v1.3.27-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.27-alpha) 2022-09-15
 

@@ -125,12 +125,28 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
             # and if the attribute type is date, or
             # duration, adjust the value accordingly.
             iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
+            iso8601_duration_re = r"^(-)?P(\d+Y)?(\d+M)?(\d+D)?$"
             if attribute_type == "date":
               matches = re.findall(iso8601_date_re,value,re.MULTILINE)
               (year,month,day) = matches[0]
-              date_format = f"date({year},{month},{day})"
-              value = date_format.format(year,month,day)
-            output += attribute_name + "(" + object_name + ", " + str(value) + ").\n"
+              date_format = f"date({int(year)},{int(month)},{int(day)})"
+              value = date_format
+            if attribute_type == "duration":
+              matches = re.findall(iso8601_duration_re,value,re.MULTILINE)
+              (sign,years,months,days) = matches[0]
+              if sign == "-":
+                sign_value = "-1"
+              else:
+                sign_value = "1"
+              if years == "":
+                years = "0Y"
+              if months == "":
+                months = "0M"
+              if days == "":
+                days = "0D"
+              duration_format = f"duration({sign_value},{int(years[:-1])},{int(months[:-1])},{int(days[:-1])})"
+              value = duration_format
+            output += attribute_name + "(" + object_name + "," + str(value) + ").\n"
   return output
 
 # def json_2_scasp(element,higher_order=False):
@@ -198,9 +214,11 @@ blawxrun(Query, Human) :-
 
 
       rulefile.write(ruleset + '\n')
-      ruleset_lines = ruleset.splitlines()
+      # Ignore differences in spaces (this will cause problems when the sapces are meaningful and inside strings, e.g.)
+      ruleset_lines = [line.replace(' ','') for line in ruleset.splitlines()]
+      test_lines = [line.replace(' ','') for line in test.scasp_encoding.splitlines()]
       for fact in translated_facts.splitlines():
-        if fact.replace(' ','') not in ruleset_lines:
+        if fact.replace(' ','') not in ruleset_lines and fact.replace(' ','') not in test_lines:
           rulefile.write(fact + '\n')
       # rulefile.write(translated_facts)
       rulefile.close()
@@ -386,6 +404,7 @@ blawxrun(Query, Human) :-
                     for answer in att_query_answers:
                       object_name = answer['Variables']['Object']
                       value = answer['Variables']['Value']
+                      skip_value_variable_check = False
                       # Right now, this returns a variable name as a value. It's not clear if this is something that
                       # SHOULD be included in the data, and filtered out at the front end, making the API more complicated,
                       # or if it should be filtered out here, simplifying the API, but making it impossible to know that
@@ -397,11 +416,24 @@ blawxrun(Query, Human) :-
                       if 'functor' in value:
                         if value['functor'] == 'date':
                           value = f"{str(value['args'][0]):0>4}" + '-' + f"{str(value['args'][1]):0>2}" + '-' + f"{str(value['args'][2]):0>2}"
+                        elif value['functor'] == 'duration':
+                          if value['args'][0] == -1:
+                            new_value = "-P"
+                          else:
+                            new_value = "P"
+                          if value['args'][1] != 0:
+                            new_value += str(value['args'][1]) + "Y"
+                          if value['args'][2] != 0:
+                            new_value += str(value['args'][2]) + "M"
+                          if value['args'][3] != 0 or (value['args'][1] == 0 and value['args'][2] == 0):
+                            new_value += str(value['args'][3]) + "D"
+                          value = new_value
+                          skip_value_variable_check = True #It starts with a capital P, but it is not a variable.
                       # matches = re.findall(r"^date\((\d{4}),(\d{2}),(\d{2})\)$", str(value), re.MULTILINE)
                       # if len(matches):
                       #   (year,month,day) = matches[0]
                       #   value = str(year) + '-' + str(month) + '-' + str(day)
-                      if not re.search(r"^[A-Z_]\w*",object_name) and not re.search(r"^[A-Z_]\w*",str(value)):
+                      if not re.search(r"^[A-Z_]\w*",object_name) and (skip_value_variable_check or not re.search(r"^[A-Z_]\w*",str(value))):
                         value_query_answers.append({"Attribute": attribute_name, "Object": object_name, "Value": value})
 
               transcript.close()

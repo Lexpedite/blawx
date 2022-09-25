@@ -337,7 +337,52 @@
                     output_html += '>';
                     break;
                 case 'duration':
-                    // TODO Translate Between duration format and input format.
+                    const iso8601_date_duration_re = /^(-)?P(\d+Y)?(\d+M)?(\d+D)?$/gm;
+                    match = iso8601_date_duration_re.exec(value);
+                    var sign_value = "";
+                    var year_value = "0";
+                    var month_value = "0";
+                    var day_value = "0";
+                    if (typeof(match[1]) === 'undefined') {
+                        sign_value = "checked"
+                    }
+                    if (typeof(match[2]) !== 'undefined') {
+                        year_value = match[2].slice(0,-1);
+                    }
+                    if (typeof(match[3]) !== 'undefined') {
+                        month_value = match[3].slice(0,-1);
+                    }
+                    if (typeof(match[4]) !== 'undefined') {
+                        day_value = match[4].slice(0,-1);
+                    }
+                    output_html += '<span class="input-group-text px-1">S</span>';
+                    output_html += '<div class="input-group-text">';
+                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" class="form-check-input" type="checkbox" aria-label="Duration Direction"';
+                    output_html += ' ' + sign_value;
+                    output_html += ' id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_direction"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += '>';
+                    output_html += '</div>';
+                    output_html += '<span class="input-group-text px-1">Y</span>';
+                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Years" value="' + year_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_years"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += '>';
+                    output_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Months" value="' + month_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_months"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += '>';
+                    output_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
+                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Days" value="' + day_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_days"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += '>';
                     break;
                 case 'boolean':
                     output_html += '<div class="input-group-text">';
@@ -460,14 +505,14 @@
                 case 'duration':
                     output_html += '<span class="input-group-text px-1">S</span>';
                     output_html += '<div class="input-group-text">';
-                    output_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction">';
+                    output_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="category_' + category + '_' + object + '_' + attribute + '_new_direction">';
                     output_html += '</div>';
                     output_html += '<span class="input-group-text px-1">Y</span>';
-                    output_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0">';
+                    output_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_years">';
                     output_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                    output_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0">';
+                    output_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_months">';
                     output_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
-                    output_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0">';
+                    output_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_days">';
                     break;
                 case 'boolean':
                     output_html += '<div class="input-group-text"><input class="form-check-input" type="checkbox" id="category_' + category + '_' + object + '_' + attribute + '_new_value"></div><input class="form-control" value="' + attribute + '" disabled>';
@@ -719,7 +764,20 @@
             target_button = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_lock');
             target_button.setAttribute('disabled','');
             // Move the focus to the new object input.
-            target_input = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+            // Figure out what type of value this is.
+            var attribute_type;
+            for(var i =0; i<ontology['Attributes'].length; i++) {
+                if(ontology['Attributes'][i]['Category'] == category
+                  && ontology['Attributes'][i]['Attribute'] == attribute) {
+                    attribute_type = ontology['Attributes'][i]['Type'];
+                    break;
+                  }
+            }
+            if (attribute_type == "duration") {
+                target_input = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_years');
+            } else {
+                target_input = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+            }
             target_input.focus();
         };
         function save_new_value(category,object,attribute){
@@ -732,16 +790,51 @@
                     break;
                   }
             }
-            // Get the new value
-            target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
-            new_value = target.value;
             // For Booleans, check if it is "checked", it's value is not relevant.
             if(attribute_type == "boolean") {
+                // Get the new value
+                target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+                new_value = target.value;    
                 if(target.checked) {
                     new_value = "true";
                 } else {
                     new_value = "false";
                 }
+            }
+            else if(attribute_type == "duration") {
+                // Get the new value
+                direction_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_direction');
+                year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_years');
+                month_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_months');
+                day_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_days');
+                if (direction_target.checked) {
+                    new_direction = true;
+                } else {
+                    new_direction = false;
+                }
+                new_year = year_target.value;
+                new_month = month_target.value;
+                new_day = day_target.value;
+                if (new_direction) {
+                    new_value = "";
+                } else {
+                    new_value = "-";
+                }
+                new_value += "P"
+                if (parseInt(new_year)) {
+                    new_value += new_year + "Y";
+                }
+                if (parseInt(new_month)) {
+                    new_value += new_month + "M";
+                }
+                // The idea here is that if all three are zero, it should come out as P0D
+                if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
+                    new_value += new_day + "D";
+                }
+            } else {
+                // Get the new value
+                target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+                new_value = target.value;    
             }
             fact_data[category]['members'][object][attribute]['values'].push(new_value);
             expanded[category + "_" + object + '_' + attribute + "_content"] = true;
@@ -758,16 +851,49 @@
                     break;
                   }
             }
-            //      Get the new value
-            target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
-            new_value = target.value;
             //      If it is a boolean, fix the value.
             if(attribute_type == "boolean") {
+                //      Get the new value
+                target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
+                new_value = target.value;
                 if (target.checked) {
                     new_value = "true";
                 } else {
                     new_value = "false";
                 }
+            } else if (attribute_type == "duration") {
+                direction_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_direction');
+                year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_years');
+                month_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_months');
+                day_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_days');
+                if (direction_target.checked) {
+                    new_direction = true;
+                } else {
+                    new_direction = false;
+                }
+                new_year = year_target.value;
+                new_month = month_target.value;
+                new_day = day_target.value;
+                if (new_direction) {
+                    new_value = "";
+                } else {
+                    new_value = "-";
+                }
+                new_value += "P"
+                if (parseInt(new_year)) {
+                    new_value += new_year + "Y";
+                }
+                if (parseInt(new_month)) {
+                    new_value += new_month + "M";
+                }
+                // The idea here is that if all three are zero, it should come out as P0D
+                if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
+                    new_value += new_day + "D";
+                }
+            } else {
+                //      Get the new value
+                target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
+                new_value = target.value;
             }
             //      Replace the current value with the new value in the facts
             // index_of_old = fact_data[category]['members'][object][attribute]['values'].indexOf(value)
