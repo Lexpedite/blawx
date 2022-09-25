@@ -93,6 +93,10 @@
       is `true` if there are no other possible values for that attribute in that object, and `false` otherwise.
       The interview endpoint will generate partially-ground assumptions for additional values for that object while calculating
       relevance if the value is `false`. "values" is a list of the values that are known for that attribute and object.
+      Numbers and booleans are specified in the standard way for JSON. Object names are specified as strings. Dates
+      are specified as a string in the ISO8601 format of `yyyy-mm-dd`. Durations are not yet implemented but will be
+      specified as strings in the ISO8601 duration format of `PnYnMnD`. Times, datetimes, and durations with sub-day amounts
+      are not yet supported.
 
       Note that the interview endpoint does two calculations, one seeking answers, and the other seeking relevance. Only the search
       for relevance uses the assumptions arising from the "members_known", "attributes_known", and "values_known" entries in the payload.
