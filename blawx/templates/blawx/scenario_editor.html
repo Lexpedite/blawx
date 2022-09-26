@@ -81,8 +81,8 @@
         <div class="collapse-horizontal flex-column card col-12 collapse show p-0">
         <nav class="card-header">
             <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-output-tab" data-bs-toggle="tab" data-bs-target="#nav-facts" type="button" role="tab" aria-controls="nav-facts" aria-selected="true">Facts</button>
-              <button class="nav-link" id="nav-problems-tab" data-bs-toggle="tab" data-bs-target="#nav-answers" type="button" role="tab" aria-controls="nav-answers" aria-selected="false">Answers</button>
+              <button class="nav-link active" id="nav-facts-tab" data-bs-toggle="tab" data-bs-target="#nav-facts" type="button" role="tab" aria-controls="nav-facts" aria-selected="true">Facts</button>
+              <button class="nav-link" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#nav-answers" type="button" role="tab" aria-controls="nav-answers" aria-selected="false">Answers</button>
             </div>
           </nav>
           <div class="tab-content card-body" id="nav-tabContent">
@@ -1116,7 +1116,7 @@
                     output_content += '</div>';
                     answer_element.innerHTML = output_content;
 
-                    $('#nav-answers').tab('show');
+                    $('#nav-answers-tab').tab('show');
                 } else {
                     // Indicate that there are no answers.
                     answer_element.innerHTML = "No answers received.";
