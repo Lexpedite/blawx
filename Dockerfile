@@ -34,7 +34,7 @@ ADD . blawx
 
 RUN git clone https://github.com/google/blockly blawx/blawx/static/blawx/blockly 
 
-RUN cp /blawx/blawx/static/blawx/blockly/msg/js/en.js /blawx/blawx/static/blawx/en.js
+# RUN cp /blawx/blawx/static/blawx/blockly/msg/js/en.js /blawx/blawx/static/blawx/en.js
 
 
 RUN npm install jquery
