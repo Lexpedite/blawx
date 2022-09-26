@@ -889,18 +889,20 @@
                     break;
                   }
             }
+            // This ection is removed because booleans have been re-implemented as drop-downs, not checkboxes.
             // For Booleans, check if it is "checked", it's value is not relevant.
-            if(attribute_type == "boolean") {
-                // Get the new value
-                target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
-                new_value = target.value;    
-                if(target.checked) {
-                    new_value = "true";
-                } else {
-                    new_value = "false";
-                }
-            }
-            else if(attribute_type == "duration") {
+            //if(attribute_type == "boolean") {
+            //    // Get the new value
+            //    target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+            //    new_value = target.value;    
+            //    if(target.checked) {
+            //        new_value = "true";
+            //    } else {
+            //        new_value = "false";
+            //    }
+            //}
+            // else
+            if(attribute_type == "duration") {
                 // Get the new value
                 direction_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_direction');
                 year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_years');
@@ -950,17 +952,19 @@
                     break;
                   }
             }
+            // This section is removed becoause booleans are re-implemented as drop-downs, not checkboxes.
             //      If it is a boolean, fix the value.
-            if(attribute_type == "boolean") {
-                //      Get the new value
-                target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
-                new_value = target.value;
-                if (target.checked) {
-                    new_value = "true";
-                } else {
-                    new_value = "false";
-                }
-            } else if (attribute_type == "duration") {
+            //if(attribute_type == "boolean") {
+            //    //      Get the new value
+            //    target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
+            //    new_value = target.value;
+            //    if (target.checked) {
+            //        new_value = "true";
+            //    } else {
+            //        new_value = "false";
+            //    }
+            //} else
+            if (attribute_type == "duration") {
                 direction_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_direction');
                 year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_years');
                 month_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_months');
