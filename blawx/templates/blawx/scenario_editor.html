@@ -315,7 +315,29 @@
                 }
             }
             // Open Value
+            var order = "ov";
+            var prefix = "";
+            var infix = "'s " + attribute + " is";
+            var postfix = "";
+            for(var i=0; i < ontology['AttributeNLG'].length; i++) {
+                if (ontology['AttributeNLG'][i]['Attribute'] == attribute) {
+                    order = ontology['AttributeNLG'][i]['Order'];
+                    prefix = ontology['AttributeNLG'][i]['Prefix'];
+                    infix = ontology['AttributeNLG'][i]['Infix'];
+                    postfix = ontology['AttributeNLG'][i]['Postfix'];
+                    break;
+                }
+            }
             var output_html = '<div class="blawx_value input-group py-2">';
+            if (order == "ov") {
+                // If object is first, then we need prefix, object, and infix.
+                output_html += '<span class="input-group-text">'+ prefix + ' ' + object + ' ' + infix + '</span>';
+            } else {
+                // Otherwise, we just need prefix.
+                if (prefix != "") {
+                    output_html += '<span class="input-group-text">'+ prefix + '</span>';
+                }
+            }
             switch(attribute_type) {
                 case 'number':
                     output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
@@ -415,6 +437,15 @@
                     }
                     output_html += '</select>';
                 default:
+            }
+            if (order == "ov") {
+                // If object is first, then we need postfix.
+                if (postfix != "") {
+                    output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                }
+            } else {
+                // Otherwise, we need infix, object, and postfix.
+                output_html += '<span class="input-group-text">'+ infix + ' ' + object + ' ' + postfix + '</span>';
             }
             // Add the delete button
             if (!from_ontology) {
