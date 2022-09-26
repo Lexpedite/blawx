@@ -13,7 +13,7 @@ and breaking changes will not necessarily result in changes to the main version 
 * Scenario editor now uses the same natural language generation used in explanations in the user interface
 
 ### Changed
-* In order to provide additional space for NLG text, the scenario editor has been made a single-column interface.
+* In order to provide additional space for NLG text, the scenario editor has been made a single-column tabbed interface.
 
 ## [v1.3.28-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.28-alpha) 2022-09-25
 
