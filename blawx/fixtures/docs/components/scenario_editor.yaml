@@ -28,7 +28,7 @@
 
       To start the Scenario Editor, click on the "Scenario Editor" button in the test editor screen.
 
-      You will be taken to a user interface with a button bar across the top, followed by a fact scenario form, and an area for answers.
+      You will be taken to a user interface with a button bar across the top, followed by a set of tabs for "Facts" and "Answers".
 
       ![Scenario Editor Interface](/static/blawx/docs/images/scenario_editor_interface.png)
 
@@ -38,7 +38,7 @@
 
       The buttons available in the BlawxBot interface are:
 
-      * Run - this runs the test with the currently defined fact scenario
+      * Run - this runs the test with the currently defined fact scenario, and displays the answers.
       * Help - opens the Blawx documentation in a different window
       * Exit - Closes the Scenario Editor and returns you to the test editor for the same test.
 
@@ -46,7 +46,8 @@
 
        ![Fact Scenario Editor Interface](/static/blawx/docs/images/fact_scenario_editor_interface.png)
 
-      The main interface in the scenario editor page is the fact scenario editor form.
+      The main interface in the scenario editor page is the fact scenario editor form, which can be accessed
+      by clicking on the "Facts" tab at the top of the interface.
 
       The form is a nested tree. At the far left of the form you will see a list of the categories
       that exist in your test. By clicking the "add" button with the plus icon, you can create
@@ -100,9 +101,10 @@
 
       ## Answers
 
-      The right side of the scenario editor will display answers that Blawx can find, with
+      The answers tab of the scenario editor will display answers that Blawx can find, with
       all the explanations for those answers, in a format similar to the output of the test
-      editor.
+      editor. it will be displayed automatically when you click the "Run" button, or when you
+      click on the "Answers" tab at the top of the interface.
 
       # Tips
 
