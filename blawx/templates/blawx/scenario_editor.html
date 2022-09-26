@@ -78,30 +78,34 @@
         </div>
     </header>
     <div class="row">
-        <div class="col-12">
-            <nav class="column">
+        <div class="collapse-horizontal flex-column card col-12 collapse show">
+        <nav class="card-header">
+            <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-output-tab" data-bs-toggle="tab" data-bs-target="#nav-facts" type="button" role="tab" aria-controls="nav-facts" aria-selected="true">Facts</button>
+              <button class="nav-link" id="nav-problems-tab" data-bs-toggle="tab" data-bs-target="#nav-answers" type="button" role="tab" aria-controls="nav-answers" aria-selected="false">Answers</button>
+            </div>
+          </nav>
+          <div class="tab-content card-body" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-facts" role="tabpanel" aria-labelledby="nav-facts-tab">
                 <div id="facttree" class="blawx-category tree-element p-2">
                 </div>
-            </nav>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <!-- Meta -->
-            <div class="container py-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Answers</h5>
-                        <div id="answers">
-                            <!-- The answers will go here. -->
+            </div>
+            <div class="tab-pane fade" id="nav-answers" role="tabpanel" aria-labelledby="nav-answers-tab">
+                <div class="container py-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Answers</h5>
+                            <div id="answers">
+                                <!-- The answers will go here. -->
+                            </div>
                         </div>
+        
                     </div>
-    
                 </div>
             </div>
         </div>
     </div>
-    
+    </div>
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
             <span>Copyright &copy; Lexpedite Legal Technology Ltd. 2022</span>
@@ -1111,6 +1115,8 @@
                     }
                     output_content += '</div>';
                     answer_element.innerHTML = output_content;
+
+                    $('#nav-answers').tab('show');
                 } else {
                     // Indicate that there are no answers.
                     answer_element.innerHTML = "No answers received.";
