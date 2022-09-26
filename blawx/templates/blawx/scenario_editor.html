@@ -482,7 +482,7 @@
             }
             output_html += '<div class="blawx_new_value row blawx-object tree-element p-2">';
             output_html += '<div class="input-group">';
-            if (order = "ov") {
+            if (order == "ov") {
                 // If object is first, then we need prefix, object, and infix.
                 output_html += '<span class="input-group-text">'+ prefix + ' ' + object + ' ' + infix + '</span>';
             } else {
@@ -549,7 +549,7 @@
                 default:
                     output_html += "Can't Render Datatype";
             }
-            if (order = "ov") {
+            if (order == "ov") {
                 // If object is first, then we need postfix.
                 if (postfix != "") {
                     output_html += '<span class="input-group-text">'+ postfix + '</span>';
