@@ -32,7 +32,7 @@ ADD . blawx
 
 # RUN mv /node_modules/blockly /blawx/blawx/static/blawx/blockly
 
-RUN git clone https://github.com/google/blockly --branch blockly-v8.0.2 blawx/blawx/static/blawx/blockly 
+RUN git clone https://github.com/google/blockly blawx/blawx/static/blawx/blockly 
 
 RUN cp /blawx/blawx/static/blawx/blockly/msg/js/en.js /blawx/blawx/static/blawx/en.js
 
