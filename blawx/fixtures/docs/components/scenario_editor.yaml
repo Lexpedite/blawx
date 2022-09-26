@@ -28,8 +28,7 @@
 
       To start the Scenario Editor, click on the "Scenario Editor" button in the test editor screen.
 
-      You will be taken to a user interface with a button bar across the top, a fact scenario form on
-      the left, and answers on the right.
+      You will be taken to a user interface with a button bar across the top, followed by a fact scenario form, and an area for answers.
 
       ![Scenario Editor Interface](/static/blawx/docs/images/scenario_editor_interface.png)
 
@@ -42,12 +41,6 @@
       * Run - this runs the test with the currently defined fact scenario
       * Help - opens the Blawx documentation in a different window
       * Exit - Closes the Scenario Editor and returns you to the test editor for the same test.
-
-      ## Answers
-
-      The right side of the scenario editor will display answers that Blawx can find, with
-      all the explanations for those answers, in a format similar to the output of the test
-      editor.
 
       ## Fact Scenario Editor
 
@@ -68,9 +61,12 @@
       The name of the objects you create can be changed in the interface.
       Objects can be expanded or collapsed in the same way.
 
+      Objects will be displayed in the interface using the category customization specified in the code, if any.
+
       You can add a value to an object's attribute by clicking the "add" button on the attribute name inside the object.
 
-      Values can be also be changed after they have been created.
+      Values can be also be changed after they have been created. Values are displayed in the interface using the attribute
+      customization specified in the text, if any.
 
       Values and objects can be deleted by clicking on the delete button with the "trash can" icon on the right side.
       
@@ -100,6 +96,13 @@
 
       Similarly, if you leave the lock "open" on an object's attribute (let's say the "friend" attribute of the "bob" object), that
       is equivalent to writing code that says "assume {X} is a friend of {bob}".
+
+
+      ## Answers
+
+      The right side of the scenario editor will display answers that Blawx can find, with
+      all the explanations for those answers, in a format similar to the output of the test
+      editor.
 
       # Tips
 
