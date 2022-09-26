@@ -7,6 +7,14 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.29-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.29-alpha) 2022-09-25
+
+### Added
+* Scenario editor now uses the same natural language generation used in explanations in the user interface
+
+### Changed
+* In order to provide additional space for NLG text, the scenario editor has been made a single-column tabbed interface.
+
 ## [v1.3.28-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.28-alpha) 2022-09-25
 
 ### Added

@@ -78,28 +78,34 @@
         </div>
     </header>
     <div class="row">
-        <div class="col-6">
-            <nav class="column">
+        <div class="collapse-horizontal flex-column card col-12 collapse show p-0">
+        <nav class="card-header">
+            <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-facts-tab" data-bs-toggle="tab" data-bs-target="#nav-facts" type="button" role="tab" aria-controls="nav-facts" aria-selected="true">Facts</button>
+              <button class="nav-link" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#nav-answers" type="button" role="tab" aria-controls="nav-answers" aria-selected="false">Answers</button>
+            </div>
+          </nav>
+          <div class="tab-content card-body" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-facts" role="tabpanel" aria-labelledby="nav-facts-tab">
                 <div id="facttree" class="blawx-category tree-element p-2">
                 </div>
-            </nav>
-        </div>
-        <div class="col-6">
-            <!-- Meta -->
-            <div class="container py-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Answers</h5>
-                        <div id="answers">
-                            <!-- The answers will go here. -->
+            </div>
+            <div class="tab-pane fade" id="nav-answers" role="tabpanel" aria-labelledby="nav-answers-tab">
+                <div class="container py-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Answers</h5>
+                            <div id="answers">
+                                <!-- The answers will go here. -->
+                            </div>
                         </div>
+        
                     </div>
-    
                 </div>
             </div>
         </div>
     </div>
-    
+    </div>
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
             <span>Copyright &copy; Lexpedite Legal Technology Ltd. 2022</span>
@@ -315,7 +321,29 @@
                 }
             }
             // Open Value
+            var order = "ov";
+            var prefix = "";
+            var infix = "'s " + attribute + " is";
+            var postfix = "";
+            for(var i=0; i < ontology['AttributeNLG'].length; i++) {
+                if (ontology['AttributeNLG'][i]['Attribute'] == attribute) {
+                    order = ontology['AttributeNLG'][i]['Order'];
+                    prefix = ontology['AttributeNLG'][i]['Prefix'];
+                    infix = ontology['AttributeNLG'][i]['Infix'];
+                    postfix = ontology['AttributeNLG'][i]['Postfix'];
+                    break;
+                }
+            }
             var output_html = '<div class="blawx_value input-group py-2">';
+            if (order == "ov") {
+                // If object is first, then we need prefix, object, and infix.
+                output_html += '<span class="input-group-text">'+ prefix + ' ' + object + ' ' + infix + '</span>';
+            } else {
+                // Otherwise, we just need prefix.
+                if (prefix != "") {
+                    output_html += '<span class="input-group-text">'+ prefix + '</span>';
+                }
+            }
             switch(attribute_type) {
                 case 'number':
                     output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
@@ -385,18 +413,24 @@
                     output_html += '>';
                     break;
                 case 'boolean':
-                    output_html += '<div class="input-group-text">';
-                    output_html += '<input class="form-check-input" type="checkbox"';
+                    output_html += '<select class="form-select" aria-label="Choose value"';
+                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
+                    output_html += ' onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')">';
                     if(from_ontology) {
                         output_html += ' disabled';
                     }
-                    if(value == "true") {
-                        output_html += ' checked';
+                    output_html += ">";
+                    output_html += '<option value="true"';
+                    if (value == "true") {
+                        output_html += ' selected';
                     }
-                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
-                    output_html += ' onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')">';
-                    output_html += '</div>';
-                    output_html += '<input class="form-control" value="' + attribute + '" disabled>';
+                    output_html += '>True</option>';
+                    output_html += '<option value="false"';
+                    if (value == "false") {
+                        output_html += ' selected';
+                    }
+                    output_html += '>False</option>';
+                    output_html += '</select>';
                     break;
                 case 'object':
                     output_html += '<select class="form-select" aria-label="Choose value"';
@@ -415,6 +449,15 @@
                     }
                     output_html += '</select>';
                 default:
+            }
+            if (order == "ov") {
+                // If object is first, then we need postfix.
+                if (postfix != "") {
+                    output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                }
+            } else {
+                // Otherwise, we need infix, object, and postfix.
+                output_html += '<span class="input-group-text">'+ infix + ' ' + object + ' ' + postfix + '</span>';
             }
             // Add the delete button
             if (!from_ontology) {
@@ -450,7 +493,7 @@
             // Add the arrow
             output_html += '<button class="blawx_caret btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#' + category + '_' + object + '_' + attribute + '_content"><i class="bi bi-caret-right"></i></button>';
             // add the name
-            output_html += '<input type="text" class="form-control" aria-label="Category Name" value="' + attribute + '" disabled>';
+            output_html += '<input type="text" class="form-control" aria-label="Category Name" value="' + attribute + ' attribute for ' + object + '" disabled>';
             // Add the add button
             output_html += '<button onclick="show_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_add_button btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
             output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
@@ -467,9 +510,30 @@
             // Close the header
             output_html += '</div></div>';
             // Add the new value
+            var order = "ov";
+            var prefix = "";
+            var infix = "'s " + attribute + " is";
+            var postfix = "";
+            for(var i=0; i < ontology['AttributeNLG'].length; i++) {
+                if (ontology['AttributeNLG'][i]['Attribute'] == attribute) {
+                    order = ontology['AttributeNLG'][i]['Order'];
+                    prefix = ontology['AttributeNLG'][i]['Prefix'];
+                    infix = ontology['AttributeNLG'][i]['Infix'];
+                    postfix = ontology['AttributeNLG'][i]['Postfix'];
+                    break;
+                }
+            }
             output_html += '<div class="blawx_new_value row blawx-object tree-element p-2">';
             output_html += '<div class="input-group">';
-            output_html += '<span class="input-group-text">New '+ attribute + ' value</span>';
+            if (order == "ov") {
+                // If object is first, then we need prefix, object, and infix.
+                output_html += '<span class="input-group-text">'+ prefix + ' ' + object + ' ' + infix + '</span>';
+            } else {
+                // Otherwise, we just need prefix.
+                if (prefix != "") {
+                    output_html += '<span class="input-group-text">'+ prefix + '</span>';
+                }
+            }
             // Change the interface based on the input type.
             var attribute_type;
             var attribute_source = null;
@@ -515,7 +579,9 @@
                     output_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_days">';
                     break;
                 case 'boolean':
-                    output_html += '<div class="input-group-text"><input class="form-check-input" type="checkbox" id="category_' + category + '_' + object + '_' + attribute + '_new_value"></div><input class="form-control" value="' + attribute + '" disabled>';
+                    output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
+                    output_html += '<option value="true">True</option><option value="false">False</option>';
+                    output_html += '</select>';
                     break;
                 case 'object':
                     output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
@@ -527,6 +593,15 @@
                     break;
                 default:
                     output_html += "Can't Render Datatype";
+            }
+            if (order == "ov") {
+                // If object is first, then we need postfix.
+                if (postfix != "") {
+                    output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                }
+            } else {
+                // Otherwise, we need infix, object, and postfix.
+                output_html += '<span class="input-group-text">'+ infix + ' ' + object + ' ' + postfix + '</span>';
             }
             output_html += '<button onclick="save_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
             output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
@@ -580,11 +655,27 @@
             // Add the arrow
             object_html += '<button class="blawx_caret btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#' + category + '_' + object + '_content"><i class="bi bi-caret-right"></i></button>';
             // Add the name
+            
+            var prefix = "";
+            var postfix = "is a " + category;
+            for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                if (ontology['CategoryNLG'][i]['Category'] == category) {
+                    prefix = ontology['CategoryNLG'][i]['Prefix'];
+                    postfix = ontology['CategoryNLG'][i]['Postfix'];
+                    break;
+                }
+            }
+            if (prefix != "") {
+                object_html += '<span class="input-group-text">'+ prefix + '</span>';
+            }
             object_html += '<input onchange="update_object(\'' + category + '\',\'' + object + '\')" type="text" class="form-control" aria-label="Object name" id="' + category + '_' + object + '_name" value="' + object + '"';
             if (from_ontology) {
                 object_html += ' disabled';
             }
             object_html += '>';
+            if (postfix != "") {
+                object_html += '<span class="input-group-text">'+ postfix + '</span>';
+            }
             // Add the delete button
             if (!from_ontology) {
                 object_html += '<button onclick="delete_object(\'' + category + '\',\'' + object + '\')" class="btn btn-outline-secondary blawx_delete_object" type="button"';
@@ -631,7 +722,7 @@
             // TODO: Add "show" if the category is in `expanded`
             output_html += '<button class="blawx_caret btn btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#category_' + category + '_content" type="button"><i class="bi bi-caret-right"></i></button>';
             // Add the name
-            output_html += '<input type="text" class="form-control" aria-label="Category Name" value="' + category + '" disabled>';
+            output_html += '<input type="text" class="form-control" aria-label="Category Name" value="Category: ' + category + '" disabled>';
             // Add the add button
             output_html += '<button onclick="show_new_object(\'' + category + '\')" class="blawx_add_button btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
             output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
@@ -648,10 +739,24 @@
             output_html += '</div>'; // closes category header
             output_html += '</div>';
             // Add the new object
+            var prefix = "";
+            var postfix = "is a " + category;
+            for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                if (ontology['CategoryNLG'][i]['Category'] == category) {
+                    prefix = ontology['CategoryNLG'][i]['Prefix'];
+                    postfix = ontology['CategoryNLG'][i]['Postfix'];
+                    break;
+                }
+            }
             output_html += '<div class="blawx_new_object row blawx-object tree-element p-2">';
             output_html += '<div class="input-group">';
-            output_html += '<span class="input-group-text">New '+ category + '</span>';
+            if (prefix != "") {
+                output_html += '<span class="input-group-text">'+ prefix + '</span>';
+            }
             output_html += '<input onchange="save_new_object(\'' + category + '\')" type="text" class="form-control" aria-label="New object name" id="category_' + category + '_new_object">';
+            if (postfix != "") {
+                output_html += '<span class="input-group-text">'+ postfix + '</span>';
+            }
             output_html += '<button onclick="save_new_object(\'' + category + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
             output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
             output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
@@ -790,18 +895,20 @@
                     break;
                   }
             }
+            // This ection is removed because booleans have been re-implemented as drop-downs, not checkboxes.
             // For Booleans, check if it is "checked", it's value is not relevant.
-            if(attribute_type == "boolean") {
-                // Get the new value
-                target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
-                new_value = target.value;    
-                if(target.checked) {
-                    new_value = "true";
-                } else {
-                    new_value = "false";
-                }
-            }
-            else if(attribute_type == "duration") {
+            //if(attribute_type == "boolean") {
+            //    // Get the new value
+            //    target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+            //    new_value = target.value;    
+            //    if(target.checked) {
+            //        new_value = "true";
+            //    } else {
+            //        new_value = "false";
+            //    }
+            //}
+            // else
+            if(attribute_type == "duration") {
                 // Get the new value
                 direction_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_direction');
                 year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_years');
@@ -851,17 +958,19 @@
                     break;
                   }
             }
+            // This section is removed becoause booleans are re-implemented as drop-downs, not checkboxes.
             //      If it is a boolean, fix the value.
-            if(attribute_type == "boolean") {
-                //      Get the new value
-                target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
-                new_value = target.value;
-                if (target.checked) {
-                    new_value = "true";
-                } else {
-                    new_value = "false";
-                }
-            } else if (attribute_type == "duration") {
+            //if(attribute_type == "boolean") {
+            //    //      Get the new value
+            //    target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
+            //    new_value = target.value;
+            //    if (target.checked) {
+            //        new_value = "true";
+            //    } else {
+            //        new_value = "false";
+            //    }
+            //} else
+            if (attribute_type == "duration") {
                 direction_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_direction');
                 year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_years');
                 month_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_months');
@@ -1006,6 +1115,8 @@
                     }
                     output_content += '</div>';
                     answer_element.innerHTML = output_content;
+
+                    $('#nav-answers-tab').tab('show');
                 } else {
                     // Indicate that there are no answers.
                     answer_element.innerHTML = "No answers received.";
