@@ -407,18 +407,24 @@
                     output_html += '>';
                     break;
                 case 'boolean':
-                    output_html += '<div class="input-group-text">';
-                    output_html += '<input class="form-check-input" type="checkbox"';
+                    output_html += '<select class="form-select" aria-label="Choose value"';
+                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
+                    output_html += ' onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')">';
                     if(from_ontology) {
                         output_html += ' disabled';
                     }
-                    if(value == "true") {
-                        output_html += ' checked';
+                    output_html += ">";
+                    output_html += '<option value="true"';
+                    if (value == "true") {
+                        output_html += ' selected';
                     }
-                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
-                    output_html += ' onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')">';
-                    output_html += '</div>';
-                    output_html += '<input class="form-control" value="' + attribute + '" disabled>';
+                    output += '>True</option>';
+                    output_html += '<option value="false"';
+                    if (value == "false") {
+                        output_html += ' selected';
+                    }
+                    output_html += '>False</option>';
+                    output_html += '</select>';
                     break;
                 case 'object':
                     output_html += '<select class="form-select" aria-label="Choose value"';
@@ -567,7 +573,9 @@
                     output_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_days">';
                     break;
                 case 'boolean':
-                    output_html += '<div class="input-group-text"><input class="form-check-input" type="checkbox" id="category_' + category + '_' + object + '_' + attribute + '_new_value"></div><input class="form-control" value="' + attribute + '" disabled>';
+                    output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
+                    output_html += '<option value="true">True</option><option value="false">False</option>';
+                    output_html += '</select>';
                     break;
                 case 'object':
                     output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
