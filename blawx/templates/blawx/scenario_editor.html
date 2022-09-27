@@ -1115,6 +1115,7 @@
                     answer_element.innerHTML = output_content;
 
                     $('#nav-answers-tab').tab('show');
+                    draw_facts(); // So that new relevance information will be displayed in the interface.
                 } else {
                     // Indicate that there are no answers.
                     answer_element.innerHTML = "No answers received.";
