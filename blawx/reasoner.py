@@ -740,6 +740,7 @@ def generate_answers(answers):
     new_model['Variables'] = {}
     new_model['Terms'] = {}
     new_model['Raw'] = {}
+    new_model['Residuals'] = {}
     for (k,v) in a.items():
       if k == "Human":
           new_model['Tree'] = generate_list_of_lists(v[0:-5])
@@ -747,19 +748,27 @@ def generate_answers(answers):
         new_model['Terms'] = v
       elif k == "Tree":
           new_model['Raw'] = v
+      elif k == "$residuals":
+        new_model['Residuals'] = v
       else:
         new_model['Variables'][k] = v
     models.append(new_model)
+    # This is not working because of how s(CASP) is choosing variable names in the residuals.
+    # The variable names are not used to distinguish answers, so I think we can move residuals
+    # inside the model structure, and test variables without them, then change the scenario
+    # editor code to process residuals from the model, not from the variables.
+    print("Searching for: " + str(new_model['Variables']))
+    print("Among: " + str([r['Variables'] for r in result]) + '\n')
     if new_model['Variables'] not in [r['Variables'] for r in result]:
       new_answer = {}
       new_answer['Variables'] = new_model['Variables']
       new_answer['Models'] = []
-      new_answer['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw']})
+      new_answer['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw'], 'Residuals': new_model['Residuals']})
       result.append(new_answer)
     else:
       for a in result:
         if new_model['Variables'] == a['Variables']:
-          a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw']})
+          a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw'], 'Residuals': new_model['Residuals']})
   return result
 
 def generate_list_of_lists(string):
@@ -769,7 +778,7 @@ def get_variables(query):
   return re.findall(r"[^\w]([A-Z_]\w*)",query)
 
 def find_assumptions(Tree): # Pulls the assumptions out of a Prolog-formatted explanation tree
-  print("Finding assumptions in " + str(Tree))
+  # print("Finding assumptions in " + str(Tree))
   assumptions = []
   # If we are on "query", which is the first argument of the root "because", return nothing.
   if Tree == "query" or Tree == "o_nmr_check":
