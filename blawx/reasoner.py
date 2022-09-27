@@ -469,96 +469,98 @@ def interview(request,ruledoc,test_name):
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     if request.user.has_perm('blawx.run',test):
       print("User has permissions.\n")
-      translated_facts = ""
-      if request.data:
-        translated_facts = new_json_2_scasp(request.data, ruledoc,test_name,True) #Generate answers ignoring assumptions in the submitted data
-      print("The raw data submitted is:")
-      print(str(request.data) + "\n")
-      print("Facts submittied are:")
-      print(str(translated_facts))
-      wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
-      ruleset = ""
-      for ws in wss:
-        ruleset += "\n\n" + ws.scasp_encoding
-      ruleset += "\n\n" + test.scasp_encoding
+#       translated_facts = ""
+#       if request.data:
+#         translated_facts = new_json_2_scasp(request.data, ruledoc,test_name,True) #Generate answers ignoring assumptions in the submitted data
+#       print("The raw data submitted is:")
+#       print(str(request.data) + "\n")
+#       print("Facts submittied are:")
+#       print(str(translated_facts))
+#       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
+#       ruleset = ""
+#       for ws in wss:
+#         ruleset += "\n\n" + ws.scasp_encoding
+#       ruleset += "\n\n" + test.scasp_encoding
       
-      rulefile = tempfile.NamedTemporaryFile('w',delete=False)
-      rulefile.write("""
-:- use_module(library(scasp)).
-:- use_module(library(scasp/human)).
-:- use_module(library(scasp/output)).
+#       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
+#       rulefile.write("""
+# :- use_module(library(scasp)).
+# :- use_module(library(scasp/human)).
+# :- use_module(library(scasp/output)).
 
-:- meta_predicate
-    blawxrun2(0,-).
-""")
+# :- meta_predicate
+#     blawxrun2(0,-).
+# """)
 
-      query = "No Query Specified"
-      for line in test.scasp_encoding.splitlines():
-          if line.startswith("?- "):
-              query = line[3:-1] # remove query prompt and period.
+#       query = "No Query Specified"
+#       for line in test.scasp_encoding.splitlines():
+#           if line.startswith("?- "):
+#               query = line[3:-1] # remove query prompt and period.
 
-      rulefile.write("""
-blawxrun(Query, Human) :-
-    scasp(Query,[tree(Tree)]),
-    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
-    with_output_to(string(Human),
-              human_justification_tree(Tree,[])).
-    term_attvars(Query, AttVars),
-    maplist(del_attrs, AttVars).
-""")
+#       rulefile.write("""
+# blawxrun(Query, Human) :-
+#     scasp(Query,[tree(Tree)]),
+#     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+#     with_output_to(string(Human),
+#               human_justification_tree(Tree,[])).
+#     term_attvars(Query, AttVars),
+#     maplist(del_attrs, AttVars).
+# """)
   
-      rulefile.write(ldap_code + '\n\n')
-      rulefile.write(scasp_dates + '\n\n')
+#       rulefile.write(ldap_code + '\n\n')
+#       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(ruleset + '\n')
-      ruleset_lines = ruleset.splitlines()
-      for fact in translated_facts.splitlines():
-        if fact.replace(' ','') not in ruleset_lines:
-          rulefile.write(fact + '\n')
-      # rulefile.write(translated_facts)
-      rulefile.close()
-      rulefilename = rulefile.name
-      temprulefile = open(rulefilename,'r')
-      # print(temprulefile.read())
-      temprulefile.close()
+#       rulefile.write(ruleset + '\n')
+
+      # ruleset_lines = [line.replace(' ','') for line in ruleset.splitlines()]
+      # test_lines = [line.replace(' ','') for line in test.scasp_encoding.splitlines()]
+      # for fact in translated_facts.splitlines():
+      #   if fact.replace(' ','') not in ruleset_lines and fact.replace(' ','') not in test_lines:
+      #     rulefile.write(fact + '\n')
+      # # rulefile.write(translated_facts)
+      # rulefile.close()
+      # rulefilename = rulefile.name
+      # temprulefile = open(rulefilename,'r')
+      # # print(temprulefile.read())
+      # temprulefile.close()
 
       # Start the Prolog "thread"
-      try: 
-        with PrologMQI() as swipl:
-            with swipl.create_thread() as swipl_thread:
+      # try: 
+      #   with PrologMQI() as swipl:
+      #       with swipl.create_thread() as swipl_thread:
 
-                transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
-                transcript_name = transcript.name
+      #           transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
+      #           transcript_name = transcript.name
 
-                with redirect_stderr(transcript):
-                    load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
-                print("Loading generated Prolog code: " + str(load_file_answer))
-                transcript.write(str(load_file_answer) + '\n')
-                if os.path.exists(rulefilename):
-                    rules = open(rulefilename)
-                    rulestext = rules.read()
-                    transcript.write(rulestext + '\n')
-                    rules.close()
-                    os.remove(rulefilename)
+      #           with redirect_stderr(transcript):
+      #               load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+      #           print("Loading generated Prolog code: " + str(load_file_answer))
+      #           transcript.write(str(load_file_answer) + '\n')
+      #           if os.path.exists(rulefilename):
+      #               rules = open(rulefilename)
+      #               rulestext = rules.read()
+      #               transcript.write(rulestext + '\n')
+      #               rules.close()
+      #               os.remove(rulefilename)
 
-                with redirect_stderr(transcript):
-                    # print("blawxrun(" + query + ",Human).")
-                    query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
-                print("Running query " + query + ":")
-                print(str(query_answer))
-                transcript.write(str(query_answer) + '\n')
+      #           with redirect_stderr(transcript):
+      #               # print("blawxrun(" + query + ",Human).")
+      #               query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
+      #           print("Running query " + query + ":")
+      #           print(str(query_answer))
+      #           transcript.write(str(query_answer) + '\n')
 
-                transcript.close()
-                transcript = open(transcript_name,'r')
-                transcript_output = transcript.read()
-                transcript.close()
-                os.remove(transcript_name)
-      except PrologError as err:
-        return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
-      except PrologLaunchError as err:
-        query_answer = "Blawx could not load the reasoner."
-        return Response({ "error": "Blawx could not load the reasoner." })
+      #           transcript.close()
+      #           transcript = open(transcript_name,'r')
+      #           transcript_output = transcript.read()
+      #           transcript.close()
+      #           os.remove(transcript_name)
+      # except PrologError as err:
+      #   return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
+      # except PrologLaunchError as err:
+      #   query_answer = "Blawx could not load the reasoner."
+      #   return Response({ "error": "Blawx could not load the reasoner." })
       
       # Now get the ontology information to be able to generate the relevance data
       # Effectively, we're going to start over.
@@ -601,10 +603,13 @@ blawxrun(Query, Tree, Model) :-
 
 
       rulefile.write(ruleset + '\n')
-      ruleset_lines = ruleset.splitlines()
+
+      ruleset_lines = [line.replace(' ','') for line in ruleset.splitlines()]
+      test_lines = [line.replace(' ','') for line in test.scasp_encoding.splitlines()]
       for fact in translated_facts.splitlines():
-        if fact.replace(' ','') not in ruleset_lines:
+        if fact.replace(' ','') not in ruleset_lines and fact.replace(' ','') not in test_lines:
           rulefile.write(fact + '\n')
+
       # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
@@ -647,7 +652,7 @@ blawxrun(Query, Tree, Model) :-
       except PrologError as err:
         return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
       except PrologLaunchError as err:
-        query_answer = "Blawx could not load the reasoner."
+        relevance_query_answer = "Blawx could not load the reasoner."
         return Response({ "error": "Blawx could not load the reasoner." })
 
       # Okay, the relevance query is running properly, and including terms in the results.
@@ -683,10 +688,10 @@ blawxrun(Query, Tree, Model) :-
 
       
       # Return the results as JSON
-      if query_answer == False:
+      if relevance_query_answer == False:
         return Response({ "Answers": [], "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
       else:
-        return Response({ "Answers": generate_answers(query_answer), "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
+        return Response({ "Answers": relevance_answers_processed, "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
     else:
       return HttpResponseForbidden()
 
