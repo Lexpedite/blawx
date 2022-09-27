@@ -131,6 +131,7 @@
         const csrftoken = getCookie('csrftoken');
 
         // Get the ontology
+        var parsed_test_response = {'Relevant Attributes': [], 'Relevant Categories': []};
         var ontology = {};
         const ontology_request = new XMLHttpRequest();
         ontology_request.onload = function () {
