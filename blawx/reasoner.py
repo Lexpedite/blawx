@@ -646,7 +646,7 @@ blawxrun(Query, Tree, Model) :-
 
                 transcript.close()
                 transcript = open(transcript_name,'r')
-                transcript_output += transcript.read()  # Adding to the transcript instead of setting it.
+                transcript_output = transcript.read()
                 transcript.close()
                 os.remove(transcript_name)
       except PrologError as err:
@@ -670,7 +670,7 @@ blawxrun(Query, Tree, Model) :-
       useful_assumptions = []
       relevant_categories = []
       relevant_attributes= []
-      relevance_answers_processed = generate_answers(relevance_query_answer, False)
+      relevance_answers_processed = generate_answers(relevance_query_answer)
       for a in relevance_answers_processed:
         for m in a['Models']:
           assumptions.extend(find_assumptions(m['Tree']))
