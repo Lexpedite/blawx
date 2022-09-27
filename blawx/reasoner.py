@@ -593,9 +593,13 @@ def interview(request,ruledoc,test_name):
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-blawxrun(Query, Tree, Model) :-
+blawxrun(Query, Human, Model) :-
     scasp(Query,[tree(Tree),model(Model)]),
-    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]).
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+    with_output_to(string(Human),
+              human_justification_tree(Tree,[])).
+    term_attvars(Query, AttVars),
+    maplist(del_attrs, AttVars).
 """)
 
       rulefile.write(ldap_code + '\n\n')
