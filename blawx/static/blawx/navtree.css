@@ -86,3 +86,7 @@ num + content > p:first-child {
 .blawx_attribute.blawx_empty > .blawx_attribute_header > div.input-group .blawx_caret {
     display: none;
 }
+
+.blawx_relevant {
+    background: lightgreen;
+}
