@@ -1122,7 +1122,7 @@
                     answer_element.innerHTML = "No answers received.";
                 }
             }
-            testrun_request.open("POST", "{% url 'blawx:run_test' blawxtest.ruledoc.id blawxtest %}");
+            testrun_request.open("POST", "{% url 'blawx:test_interview' blawxtest.ruledoc.id blawxtest %}");
             testrun_request.setRequestHeader("Content-Type", "application/json");
             console.log("Sending test request");
             answer_element.innerHTML = "Thinking...";
