@@ -122,6 +122,10 @@
       editor. it will be displayed automatically when you click the "Run" button, or when you
       click on the "Answers" tab at the top of the interface.
 
+      Note that if answer can be found by making assumptions that you allowed for by "unlocking" categories and
+      attributes, all those contingent answers will be included, also. You can see which answers are contingent
+      by looking to see whether there are parts of the explanations that read "by abduction we conclude that".
+
       # Tips
 
       ## Known Problems
