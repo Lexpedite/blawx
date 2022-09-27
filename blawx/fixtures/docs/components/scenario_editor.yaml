@@ -98,6 +98,22 @@
       Similarly, if you leave the lock "open" on an object's attribute (let's say the "friend" attribute of the "bob" object), that
       is equivalent to writing code that says "assume {X} is a friend of {bob}".
 
+      ### Relevance
+
+      If you leave a category or attribute unlocked, and click Run, the scenario editor will display all the answers that it
+      can derive using the facts and the assumptions specified. It will also use that information to figure out what additional
+      data would result in a certain answer to the test question that does not require additional facts or assumptions.
+      When adding an object to a category is relevant to finding more non-contingent answers, the "add" button for that category
+      will turn green. When adding a value to an object's attribute is relevant to finding more non-contingent answers, the
+      "add" button for that object's attribute will turn green.
+
+      If you leave a category or attribute value "unlocked", click "Run", and the "Add" button does NOT turn green, that means
+      that objects and values added in that location are irrelevant to the question you are answering. You can therefore "lock"
+      the category or attribute again, which might make your test run faster.
+
+      Note that there is no relevance information available until after you click "Run", and it will only be calculated for "unlocked"
+      categories and attributes.
+
 
       ## Answers
 
