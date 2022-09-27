@@ -495,7 +495,19 @@
             // add the name
             output_html += '<input type="text" class="form-control" aria-label="Category Name" value="' + attribute + ' attribute for ' + object + '" disabled>';
             // Add the add button
-            output_html += '<button onclick="show_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_add_button btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
+            var relevant = false;
+            for (var i=0; i<parsed_test_response['Relevant Attributes'].length; i++) {
+                if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
+                    parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object) {
+                        relevant = true;
+                        break;
+                }
+            }
+            output_html += '<button onclick="show_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_add_button btn btn-outline-secondary';
+            if (relevant) {
+                output_html += ' blawx_relevant';
+            }
+            output_html += '" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
             output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
             output_html += '</svg></button>';
             // Add both lock buttons
