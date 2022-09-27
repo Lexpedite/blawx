@@ -593,7 +593,7 @@ def interview(request,ruledoc,test_name):
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-blawxrun(Query, Human, Model) :-
+blawxrun(Query, Human, Tree, Model) :-
     scasp(Query,[tree(Tree),model(Model)]),
     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
     with_output_to(string(Human),
@@ -643,7 +643,7 @@ blawxrun(Query, Human, Model) :-
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
                     # print("blawxrun(" + query + ",Human,Model).")
-                    relevance_query_answer = swipl_thread.query("blawxrun(" + query + ",Human, Model).")
+                    relevance_query_answer = swipl_thread.query("blawxrun(" + query + ",Human, Tree, Model).")
                 print("Running Relevance Query:")
                 print(str(relevance_query_answer) + "\n")
                 transcript.write(str(relevance_query_answer) + '\n')
@@ -674,7 +674,9 @@ blawxrun(Query, Human, Model) :-
       useful_assumptions = []
       relevant_categories = []
       relevant_attributes= []
+      print("Generating Answers")
       relevance_answers_processed = generate_answers(relevance_query_answer)
+      print(str(relevance_answers_processed) + '\n')
       for a in relevance_answers_processed:
         for m in a['Models']:
           assumptions.extend(find_assumptions(m['Tree']))
@@ -763,6 +765,7 @@ def get_variables(query):
   return re.findall(r"[^\w]([A-Z_]\w*)",query)
 
 def find_assumptions(Tree): # Pulls the assumptions out of a Prolog-formatted explanation tree
+  print("Finding assumptions in " + str(Tree))
   assumptions = []
   # If we are on "query", which is the first argument of the root "because", return nothing.
   if Tree == "query" or Tree == "o_nmr_check":
