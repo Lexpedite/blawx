@@ -7,6 +7,27 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## DEVELOPMENT
+
+### Added
+* Scenario editor now indicates what additional facts would be relevant to the query by highlighting
+  the relevant add object and add value buttons in green.
+
+### Changed
+* Constraints and other residual information will now be displayed inside models instead of inside
+  answers in the scenario editor.
+* Explanations for the same bindings but different constraints or hypothesized variables will be treated
+  as explanations for the same answer in the scenario editor.
+* The interview endpoint now returns all answers, including answers that rely on assumptions specified in
+  the fact data.
+* BlawxBot has been removed from the interface, until it is revised to work with the new interview endpoint.
+* BlawxBot has been removed from the documentation, until it is revised to work with the new interview endpoint.
+* Added documentation for the scenario editor.
+* Updated the Beginner's Guide to use the scenario editor instead of BlawxBot in Step 4.
+
+### Fixed
+* The presence of singleton variables in answers no longer causes console warnings in the scenario editor.
+
 ## [v1.3.29-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.29-alpha) 2022-09-25
 
 ### Added
