@@ -1110,7 +1110,7 @@
                             output_content += '</button></h2>';
                             output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
                             for (var attribute in models[j]['Residuals']) {
-                                if (models[j]['Residuals'][attribute]['functor'] == "put_attr" && models[j]['Residuals'][attribute]['args'][1] == 'scasp_output' && models[j]['Residuals'][attribute]['args'][2]['functor'] == 'singleton') {
+                                if (models[j]['Residuals'][attribute]['functor'] == "put_attr" && models[j]['Residuals'][attribute]['args'][1] == 'scasp_output' && models[j]['Residuals'][attribute]['args'][2] == 'singleton') {
                                     // This is designed to prevent re-printing information about the Attributes that is already displayed.
                                     // If the only thing present int he attributes is the name, just skip it.
                                     continue;
