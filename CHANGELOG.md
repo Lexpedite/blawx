@@ -10,7 +10,7 @@ and breaking changes will not necessarily result in changes to the main version 
 ## DEVELOPMENT
 
 ### Added
-* Scenario editor now indicates what additional facts would be relevant to the query by highlighting
+* Scenario editor now indicates what additional facts would be relevant to un-conditional answers to the query by highlighting
   the relevant add object and add value buttons in green.
 
 ### Changed
