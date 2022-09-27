@@ -679,7 +679,7 @@ blawxrun(Query, Human, Tree, Model) :-
       print(str(relevance_answers_processed) + '\n')
       for a in relevance_answers_processed:
         for m in a['Models']:
-          assumptions.extend(find_assumptions(m['Tree']))
+          assumptions.extend(find_assumptions(m['Raw']))
       for a in assumptions:
         if a['functor'] == 'not' and a['args'][0]['functor'] == 'abducible$$':
           pass
@@ -726,7 +726,11 @@ def simplify_term(term):
 
 
 
-def generate_answers(answers,generate_tree=True):
+def generate_answers(answers):
+  # If the variable 'Human' appears, it is a NLG-formatted justification.
+  # If the variable 'Model' appears, it is a list of terms.
+  # If the variable 'Tree' appears, in is a non-NLG-formatted justificaiton.
+  # Anything else is Variables.
   if answers == False:
     return []
   models = []
@@ -735,14 +739,14 @@ def generate_answers(answers,generate_tree=True):
     new_model = {}
     new_model['Variables'] = {}
     new_model['Terms'] = {}
+    new_model['Raw'] = {}
     for (k,v) in a.items():
       if k == "Human":
-        if generate_tree:
           new_model['Tree'] = generate_list_of_lists(v[0:-5])
-        else:
-          new_model['Tree'] = v
       elif k == 'Model':
         new_model['Terms'] = v
+      elif k == "Tree":
+          new_model['Raw'] = v
       else:
         new_model['Variables'][k] = v
     models.append(new_model)
@@ -750,12 +754,12 @@ def generate_answers(answers,generate_tree=True):
       new_answer = {}
       new_answer['Variables'] = new_model['Variables']
       new_answer['Models'] = []
-      new_answer['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms']})
+      new_answer['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw']})
       result.append(new_answer)
     else:
       for a in result:
         if new_model['Variables'] == a['Variables']:
-          a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms']})
+          a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw']})
   return result
 
 def generate_list_of_lists(string):
