@@ -281,10 +281,9 @@
       object selector block in the question, and replace it with a named variable.
       Set the\r\n                    name of the variable to \"Someone\". Note that
       the name must start with an uppercase letter.\r\n                </p>\r\n                <p>Click
-      \"Save\", and click \"Bot\". This will start a blawxbot user interface. If you
-      give the answers \"yes\", \"jane\",\r\n                    \"yes\", and \"20\"
-      in that order, (note that they all must be lowercase), Blawxbot will answer
-      that Jane is\r\n                    eligible to make a will, and explain why.\r\n
+      \"Save\", and click \"Scenario Editor\". This will start the scenario editor user interface. If you
+      create a person named \"jane\", and set her age to \"20\", and click \"Run\", Blawx will answer
+      that Jane is\r\n                    eligible to make a will, and explain why. Try it!\r\n
       \               </p>\r\n            </div>\r\n        </div>\r\n\r\n        <div
       class=\"carousel-item\">\r\n            <div class=\"p-4 d-block w-100\">\r\n
       \               <h3>Congratulations!</h3>\r\n                <p>You have completed
