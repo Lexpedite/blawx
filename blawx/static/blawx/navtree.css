@@ -94,3 +94,6 @@ num + content > p:first-child {
 .blawx_object:has(.blawx_relevant) > .blawx_object_header .blawx_caret.collapsed {
     background: lightgreen;
 }
+.blawx_category:has(.blawx_relevant) > .blawx_category_header .blawx_caret.collapsed {
+    background: lightgreen;
+}
