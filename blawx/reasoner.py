@@ -71,7 +71,19 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
     if not exclude_assumptions:
       if 'members_known' in category_contents:
         if category_contents['members_known'] == False:
-          output += "#abducible " + category_name + "(X).\n"
+          known_objects = []
+          if 'members' in category_contents and len(category_contents['members']):
+            for (object_name,object_attributes) in category_contents['members'].items():
+              known_objects.append(object_name)
+          output += "-" + category_name + "(X) :- not " + category_name + "(X)"
+          for ko in known_objects:
+            output += ", X \= " + ko
+          output += ".\n"
+          output += category_name + "(X) :- not -" + category_name + "(X)"
+          for ko in known_objects:
+            output += ", X \= " + ko
+          output += ".\n"
+          # output += "#abducible " + category_name + "(X).\n"
           # TODO: Here we need to add abducibility statements for the attributes of objects other than
           # the ones specified?
     
