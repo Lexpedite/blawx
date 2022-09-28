@@ -623,10 +623,10 @@
                     var options = Object.keys(fact_data[attribute_source]['members']);
                     for (var i=0; i<options.length; i++){
                         var option_relevant = false;
-                        for (var i=0; i < parsed_test_response['Relevant Attributes'].length; i++) {
-                            if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
-                                parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object &&
-                                parsed_test_response['Relevant Attributes'][i]['Arguments'][1] == options[i]) {
+                        for (var j=0; j < parsed_test_response['Relevant Attributes'].length; j++) {
+                            if (parsed_test_response['Relevant Attributes'][j]['Attribute'] == attribute &&
+                                parsed_test_response['Relevant Attributes'][j]['Arguments'][0] == object &&
+                                parsed_test_response['Relevant Attributes'][j]['Arguments'][1] == options[i]) {
                                     option_relevant = true;
                                     break;
                             }
