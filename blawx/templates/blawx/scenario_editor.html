@@ -593,7 +593,29 @@
                     break;
                 case 'boolean':
                     output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
-                    output_html += '<option value="true">True</option><option value="false">False</option>';
+                    var true_relevant = false;
+                    var false_relevant = false;
+                    for (var i=0; i < parsed_test_response['Relevant Attributes'].length; i++) {
+                        if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
+                            parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object &&
+                            parsed_test_response['Relevant Attributes'][i]['Arguments'][1] == "true") {
+                                true_relevant = true;
+                        }
+                        if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
+                            parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object &&
+                            parsed_test_response['Relevant Attributes'][i]['Arguments'][1] == "false") {
+                                false_relevant = true;
+                        }
+                    }
+                    output_html += '<option value="true"';
+                    if (true_relevant) {
+                        output_html += ' class="blawx_relevant"';
+                    }
+                    output_html += '>True</option><option value="false"';
+                    if (false_relevant) {
+                        output_html += ' class="blawx_relevant"';
+                    }
+                    output_html += '>False</option>';
                     output_html += '</select>';
                     break;
                 case 'object':
