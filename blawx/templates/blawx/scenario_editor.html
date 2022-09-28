@@ -622,7 +622,20 @@
                     output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
                     var options = Object.keys(fact_data[attribute_source]['members']);
                     for (var i=0; i<options.length; i++){
-                        output_html += '<option value="' + options[i] + '"">' + options[i] + '</option>';
+                        var option_relevant = false;
+                        for (var i=0; i < parsed_test_response['Relevant Attributes'].length; i++) {
+                            if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
+                                parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object &&
+                                parsed_test_response['Relevant Attributes'][i]['Arguments'][1] == options[i]) {
+                                    option_relevant = true;
+                                    break;
+                            }
+                        }
+                        output_html += '<option value="' + options[i] + '"';
+                        if (option_relevant) {
+                            output_html += ' class="blawx_relevant"';
+                        }
+                        output_html += '>' + options[i] + '</option>';
                     }
                     output_html += '</select>';
                     break;
