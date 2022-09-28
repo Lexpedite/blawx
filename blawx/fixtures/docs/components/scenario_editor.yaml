@@ -134,7 +134,13 @@
 
       * While you are editing an object name, other interface elements don't work. Click outside
         of the object name field before continuing.
-      * Support for attributes with values that are numbers, dates, and durations is under development.
+      * If your rules contain the "_ is not the same object as _" object disequality block, at most one
+        object in that category can be assumed to exist by Blawx. You may find that unlocking all the categories
+        does not result in any answers in such rulesets. The current workaround is
+        to manually create a number of objects in the categories to which the disequality applies, and set their
+        attributes to unlocked. The number of objects you need to create is the number of different objects of the same
+        time referred to in the same rule, less one. For example if your rules include a disequality between two persons
+        in order to find siblings, you must create at least one (2-1=1) person before assumptions will work properly.
 
       ## Lock Your Lists
 
