@@ -1144,6 +1144,8 @@
                 } else {
                     // Indicate that there are no answers.
                     answer_element.innerHTML = "No answers received.";
+                    
+                    $('#nav-answers-tab').tab('show');
                 }
             }
             testrun_request.open("POST", "{% url 'blawx:test_interview' blawxtest.ruledoc.id blawxtest %}");
