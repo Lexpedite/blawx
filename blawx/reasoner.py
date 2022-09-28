@@ -86,6 +86,16 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
           # output += "#abducible " + category_name + "(X).\n"
           # TODO: Here we need to add abducibility statements for the attributes of objects other than
           # the ones specified?
+          for att in ontology['Attributes']:
+            if att['Category'] == category_name:
+              output += "-" + att['Attribute'] + "(X,Y) :- not " + att['Attribute'] + "(X,Y)"
+              for ko in known_objects:
+                output += ", X \= " + ko
+              output += ".\n"
+              output += att['Attribute'] + "(X,Y) :- not -" + att['Attribute'] + "(X,Y)"
+              for ko in known_objects:
+                output += ", X \= " + ko
+              output += ".\n"
     
       # For each attribute
       if 'attributes_known' in category_contents:
