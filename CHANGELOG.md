@@ -7,11 +7,19 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## DEVELOPMENT
+## [v1.3.30-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.30-alpha) 2022-09-28
+
+This update gives the scenario editor the ability to indicate which objects, attributes, and values are relevant
+for finding additional non-contingent answers to your test question. It also improves the relevance calculations
+used in the interview endpoint.
+
+BlawxBot is removed, and the documentation is updated.
 
 ### Added
 * Scenario editor now indicates what additional facts would be relevant to un-conditional answers to the query by highlighting
   the relevant add object and add value buttons in green.
+* Scenario editor will highlight relevant values in boolean and object selector new value inputs.
+* Scenario editor will indicate (by highlighting the expand button) that there are hidden relevant attributes in collapsed categories and objects.
 
 ### Changed
 * Constraints and other residual information will now be displayed inside models instead of inside
@@ -24,9 +32,16 @@ and breaking changes will not necessarily result in changes to the main version 
 * BlawxBot has been removed from the documentation, until it is revised to work with the new interview endpoint.
 * Added documentation for the scenario editor.
 * Updated the Beginner's Guide to use the scenario editor instead of BlawxBot in Step 4.
+* Updated the tutorial to use the scenario editor instead of BlawxBot
+* Updated images in the documentation to remove the BlawxBot button.
 
 ### Fixed
 * The presence of singleton variables in answers no longer causes console warnings in the scenario editor.
+* If you specify that a category is abducible in the scenario editor, it is abducible only with regard to objects
+  that are not already a part of that category, this was not previously true, which was causing duplicate answers.
+* If you specify that a category is abducible in the scenario editor, the attributes of abduced objects are also
+  made abducible. This was not previously true, which was causing there to be no answers when only categories
+  were abducible in the scenario editor.
 
 ## [v1.3.29-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.29-alpha) 2022-09-25
 
