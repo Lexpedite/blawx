@@ -35,6 +35,10 @@ COPY ./blawx/requirements.txt blawx/blawx/requirements.txt
 
 RUN pip3 install -r blawx/blawx/requirements.txt
 
+RUN mkdir blawx/blawx/static
+
+RUN mkdir blawx/blawx/static/blawx
+
 RUN mkdir blawx/blawx/static/blawx/blockly
 
 RUN mkdir blawx/blawx/static/blawx/fonts
