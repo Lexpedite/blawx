@@ -35,7 +35,9 @@ COPY ./blawx/requirements.txt blawx/blawx/requirements.txt
 
 RUN pip3 install -r blawx/blawx/requirements.txt
 
-COPY . blawx
+RUN mkdir blawx/blawx/static/blawx/blockly
+
+RUN mkdir blawx/blawx/static/blawx/fonts
 
 RUN git clone --depth=1 https://github.com/google/blockly  --branch blockly-v8.0.2 blawx/blawx/static/blawx/blockly 
 
@@ -62,6 +64,8 @@ RUN mv ./node_modules/bootstrap-icons/font/bootstrap-icons.css /app/blawx/blawx/
 RUN mv ./node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff /app/blawx/blawx/static/blawx/fonts/bootstrap-icons.woff
 
 RUN mv ./node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2 /app/blawx/blawx/static/blawx/fonts/bootstrap-icons.woff2
+
+COPY . blawx
 
 WORKDIR /app/blawx
 
