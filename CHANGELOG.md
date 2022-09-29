@@ -13,7 +13,8 @@ This update gives the scenario editor the ability to indicate which objects, att
 for finding additional non-contingent answers to your test question. It also improves the relevance calculations
 used in the interview endpoint.
 
-BlawxBot is removed, and the documentation is updated.
+BlawxBot is removed, and in the documentation and tutorials where it was referred to as an example it has been replaced with
+the same example in the Scenario Editor.
 
 ### Added
 * Scenario editor now indicates what additional facts would be relevant to un-conditional answers to the query by highlighting
