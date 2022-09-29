@@ -7,6 +7,14 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.31-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.31-alpha) 2022-09-29
+
+No user-facing changes.
+
+### Changed
+* Revised the Dockerfile to speed up development builds
+* Switched to develop version of blockly.
+
 ## [v1.3.30-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.30-alpha) 2022-09-28
 
 This update gives the scenario editor the ability to indicate which objects, attributes, and values are relevant
