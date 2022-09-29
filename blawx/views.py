@@ -146,7 +146,7 @@ def ruleDocImportView(request):
 def exampleLoadView(request,example_name):
     if request.user.has_perm('blawx.add_ruledoc'):
         # Load that file
-        example = open('/blawx/blawx/static/blawx/examples/' + example_name + ".yaml")
+        example = open('/app/blawx/blawx/static/blawx/examples/' + example_name + ".yaml")
         # Do the stuff in import.
         new_objects = serializers.deserialize('yaml',example.read())
         new_object_list = list(new_objects)

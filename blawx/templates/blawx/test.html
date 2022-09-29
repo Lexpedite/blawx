@@ -25,7 +25,7 @@
 {% block page_content %}
 {% get_obj_perms request.user for blawxtest as 'blawxtest_perms' %}
     <script src="{% static 'blawx/blockly/blockly_compressed.js' %}"></script>
-    <script src="{% static 'blawx/en.js' %}"></script>
+    <script src="{% static 'blawx/blockly/msg/js/en.js' %}"></script>
     <script src="{% static 'blawx/blockly/javascript_compressed.js' %}"></script>
     <script src="{% static 'blawx/blockly/blocks_compressed.js' %}"></script>
     <script src="{% static 'blawx/blockly/appengine/storage.js' %}"></script>
