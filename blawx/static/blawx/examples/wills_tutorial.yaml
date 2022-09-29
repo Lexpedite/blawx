@@ -271,7 +271,7 @@
       the text of the rule that generated that result.\r\n                </p>\r\n
       \           </div>\r\n        </div>\r\n        <div class=\"carousel-item\">\r\n
       \           <div class=\"p-4 d-block w-100\">\r\n                <h3>Step 4:
-      Building An App</h3>\r\n                <img src=\"/static/blawx/tutorials/wills/images/blawxbot.gif\"
+      Building An App</h3>\r\n                <img src=\"/static/blawx/tutorials/wills/images/scenario_editor_2.gif\"
       class=\"d-block w-100\"></img>\r\n                <p>Now that we have written
       and tested our code, we can build an app.</p>\r\n                <p>Start by
       deleting the fact block from your test. This can be done by clicking on the
