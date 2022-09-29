@@ -71,9 +71,31 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
     if not exclude_assumptions:
       if 'members_known' in category_contents:
         if category_contents['members_known'] == False:
-          output += "#abducible " + category_name + "(X).\n"
+          known_objects = []
+          if 'members' in category_contents and len(category_contents['members']):
+            for (object_name,object_attributes) in category_contents['members'].items():
+              known_objects.append(object_name)
+          output += "-" + category_name + "(X) :- not " + category_name + "(X)"
+          for ko in known_objects:
+            output += ", X \= " + ko
+          output += ".\n"
+          output += category_name + "(X) :- not -" + category_name + "(X)"
+          for ko in known_objects:
+            output += ", X \= " + ko
+          output += ".\n"
+          # output += "#abducible " + category_name + "(X).\n"
           # TODO: Here we need to add abducibility statements for the attributes of objects other than
           # the ones specified?
+          for att in ontology['Attributes']:
+            if att['Category'] == category_name:
+              output += "-" + att['Attribute'] + "(X,Y) :- not " + att['Attribute'] + "(X,Y)"
+              for ko in known_objects:
+                output += ", X \= " + ko
+              output += ".\n"
+              output += att['Attribute'] + "(X,Y) :- not -" + att['Attribute'] + "(X,Y)"
+              for ko in known_objects:
+                output += ", X \= " + ko
+              output += ".\n"
     
       # For each attribute
       if 'attributes_known' in category_contents:
@@ -469,96 +491,98 @@ def interview(request,ruledoc,test_name):
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     if request.user.has_perm('blawx.run',test):
       print("User has permissions.\n")
-      translated_facts = ""
-      if request.data:
-        translated_facts = new_json_2_scasp(request.data, ruledoc,test_name,True) #Generate answers ignoring assumptions in the submitted data
-      print("The raw data submitted is:")
-      print(str(request.data) + "\n")
-      print("Facts submittied are:")
-      print(str(translated_facts))
-      wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
-      ruleset = ""
-      for ws in wss:
-        ruleset += "\n\n" + ws.scasp_encoding
-      ruleset += "\n\n" + test.scasp_encoding
+#       translated_facts = ""
+#       if request.data:
+#         translated_facts = new_json_2_scasp(request.data, ruledoc,test_name,True) #Generate answers ignoring assumptions in the submitted data
+#       print("The raw data submitted is:")
+#       print(str(request.data) + "\n")
+#       print("Facts submittied are:")
+#       print(str(translated_facts))
+#       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
+#       ruleset = ""
+#       for ws in wss:
+#         ruleset += "\n\n" + ws.scasp_encoding
+#       ruleset += "\n\n" + test.scasp_encoding
       
-      rulefile = tempfile.NamedTemporaryFile('w',delete=False)
-      rulefile.write("""
-:- use_module(library(scasp)).
-:- use_module(library(scasp/human)).
-:- use_module(library(scasp/output)).
+#       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
+#       rulefile.write("""
+# :- use_module(library(scasp)).
+# :- use_module(library(scasp/human)).
+# :- use_module(library(scasp/output)).
 
-:- meta_predicate
-    blawxrun2(0,-).
-""")
+# :- meta_predicate
+#     blawxrun2(0,-).
+# """)
 
-      query = "No Query Specified"
-      for line in test.scasp_encoding.splitlines():
-          if line.startswith("?- "):
-              query = line[3:-1] # remove query prompt and period.
+#       query = "No Query Specified"
+#       for line in test.scasp_encoding.splitlines():
+#           if line.startswith("?- "):
+#               query = line[3:-1] # remove query prompt and period.
 
-      rulefile.write("""
-blawxrun(Query, Human) :-
-    scasp(Query,[tree(Tree)]),
-    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
-    with_output_to(string(Human),
-              human_justification_tree(Tree,[])).
-    term_attvars(Query, AttVars),
-    maplist(del_attrs, AttVars).
-""")
+#       rulefile.write("""
+# blawxrun(Query, Human) :-
+#     scasp(Query,[tree(Tree)]),
+#     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+#     with_output_to(string(Human),
+#               human_justification_tree(Tree,[])).
+#     term_attvars(Query, AttVars),
+#     maplist(del_attrs, AttVars).
+# """)
   
-      rulefile.write(ldap_code + '\n\n')
-      rulefile.write(scasp_dates + '\n\n')
+#       rulefile.write(ldap_code + '\n\n')
+#       rulefile.write(scasp_dates + '\n\n')
 
 
-      rulefile.write(ruleset + '\n')
-      ruleset_lines = ruleset.splitlines()
-      for fact in translated_facts.splitlines():
-        if fact.replace(' ','') not in ruleset_lines:
-          rulefile.write(fact + '\n')
-      # rulefile.write(translated_facts)
-      rulefile.close()
-      rulefilename = rulefile.name
-      temprulefile = open(rulefilename,'r')
-      # print(temprulefile.read())
-      temprulefile.close()
+#       rulefile.write(ruleset + '\n')
+
+      # ruleset_lines = [line.replace(' ','') for line in ruleset.splitlines()]
+      # test_lines = [line.replace(' ','') for line in test.scasp_encoding.splitlines()]
+      # for fact in translated_facts.splitlines():
+      #   if fact.replace(' ','') not in ruleset_lines and fact.replace(' ','') not in test_lines:
+      #     rulefile.write(fact + '\n')
+      # # rulefile.write(translated_facts)
+      # rulefile.close()
+      # rulefilename = rulefile.name
+      # temprulefile = open(rulefilename,'r')
+      # # print(temprulefile.read())
+      # temprulefile.close()
 
       # Start the Prolog "thread"
-      try: 
-        with PrologMQI() as swipl:
-            with swipl.create_thread() as swipl_thread:
+      # try: 
+      #   with PrologMQI() as swipl:
+      #       with swipl.create_thread() as swipl_thread:
 
-                transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
-                transcript_name = transcript.name
+      #           transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
+      #           transcript_name = transcript.name
 
-                with redirect_stderr(transcript):
-                    load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
-                print("Loading generated Prolog code: " + str(load_file_answer))
-                transcript.write(str(load_file_answer) + '\n')
-                if os.path.exists(rulefilename):
-                    rules = open(rulefilename)
-                    rulestext = rules.read()
-                    transcript.write(rulestext + '\n')
-                    rules.close()
-                    os.remove(rulefilename)
+      #           with redirect_stderr(transcript):
+      #               load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+      #           print("Loading generated Prolog code: " + str(load_file_answer))
+      #           transcript.write(str(load_file_answer) + '\n')
+      #           if os.path.exists(rulefilename):
+      #               rules = open(rulefilename)
+      #               rulestext = rules.read()
+      #               transcript.write(rulestext + '\n')
+      #               rules.close()
+      #               os.remove(rulefilename)
 
-                with redirect_stderr(transcript):
-                    # print("blawxrun(" + query + ",Human).")
-                    query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
-                print("Running query " + query + ":")
-                print(str(query_answer))
-                transcript.write(str(query_answer) + '\n')
+      #           with redirect_stderr(transcript):
+      #               # print("blawxrun(" + query + ",Human).")
+      #               query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
+      #           print("Running query " + query + ":")
+      #           print(str(query_answer))
+      #           transcript.write(str(query_answer) + '\n')
 
-                transcript.close()
-                transcript = open(transcript_name,'r')
-                transcript_output = transcript.read()
-                transcript.close()
-                os.remove(transcript_name)
-      except PrologError as err:
-        return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
-      except PrologLaunchError as err:
-        query_answer = "Blawx could not load the reasoner."
-        return Response({ "error": "Blawx could not load the reasoner." })
+      #           transcript.close()
+      #           transcript = open(transcript_name,'r')
+      #           transcript_output = transcript.read()
+      #           transcript.close()
+      #           os.remove(transcript_name)
+      # except PrologError as err:
+      #   return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
+      # except PrologLaunchError as err:
+      #   query_answer = "Blawx could not load the reasoner."
+      #   return Response({ "error": "Blawx could not load the reasoner." })
       
       # Now get the ontology information to be able to generate the relevance data
       # Effectively, we're going to start over.
@@ -591,9 +615,13 @@ blawxrun(Query, Human) :-
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-blawxrun(Query, Tree, Model) :-
+blawxrun(Query, Human, Tree, Model) :-
     scasp(Query,[tree(Tree),model(Model)]),
-    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]).
+    ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+    with_output_to(string(Human),
+              human_justification_tree(Tree,[])).
+    term_attvars(Query, AttVars),
+    maplist(del_attrs, AttVars).
 """)
 
       rulefile.write(ldap_code + '\n\n')
@@ -601,10 +629,13 @@ blawxrun(Query, Tree, Model) :-
 
 
       rulefile.write(ruleset + '\n')
-      ruleset_lines = ruleset.splitlines()
+
+      ruleset_lines = [line.replace(' ','') for line in ruleset.splitlines()]
+      test_lines = [line.replace(' ','') for line in test.scasp_encoding.splitlines()]
       for fact in translated_facts.splitlines():
-        if fact.replace(' ','') not in ruleset_lines:
+        if fact.replace(' ','') not in ruleset_lines and fact.replace(' ','') not in test_lines:
           rulefile.write(fact + '\n')
+
       # rulefile.write(translated_facts)
       rulefile.close()
       rulefilename = rulefile.name
@@ -634,20 +665,20 @@ blawxrun(Query, Tree, Model) :-
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
                     # print("blawxrun(" + query + ",Human,Model).")
-                    relevance_query_answer = swipl_thread.query("blawxrun(" + query + ",Human, Model).")
+                    relevance_query_answer = swipl_thread.query("blawxrun(" + query + ",Human, Tree, Model).")
                 print("Running Relevance Query:")
                 print(str(relevance_query_answer) + "\n")
                 transcript.write(str(relevance_query_answer) + '\n')
 
                 transcript.close()
                 transcript = open(transcript_name,'r')
-                transcript_output += transcript.read()  # Adding to the transcript instead of setting it.
+                transcript_output = transcript.read()
                 transcript.close()
                 os.remove(transcript_name)
       except PrologError as err:
         return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
       except PrologLaunchError as err:
-        query_answer = "Blawx could not load the reasoner."
+        relevance_query_answer = "Blawx could not load the reasoner."
         return Response({ "error": "Blawx could not load the reasoner." })
 
       # Okay, the relevance query is running properly, and including terms in the results.
@@ -665,10 +696,12 @@ blawxrun(Query, Tree, Model) :-
       useful_assumptions = []
       relevant_categories = []
       relevant_attributes= []
-      relevance_answers_processed = generate_answers(relevance_query_answer, False)
+      print("Generating Answers")
+      relevance_answers_processed = generate_answers(relevance_query_answer)
+      print(str(relevance_answers_processed) + '\n')
       for a in relevance_answers_processed:
         for m in a['Models']:
-          assumptions.extend(find_assumptions(m['Tree']))
+          assumptions.extend(find_assumptions(m['Raw']))
       for a in assumptions:
         if a['functor'] == 'not' and a['args'][0]['functor'] == 'abducible$$':
           pass
@@ -683,10 +716,10 @@ blawxrun(Query, Tree, Model) :-
 
       
       # Return the results as JSON
-      if query_answer == False:
+      if relevance_query_answer == False:
         return Response({ "Answers": [], "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
       else:
-        return Response({ "Answers": generate_answers(query_answer), "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
+        return Response({ "Answers": relevance_answers_processed, "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
     else:
       return HttpResponseForbidden()
 
@@ -715,7 +748,11 @@ def simplify_term(term):
 
 
 
-def generate_answers(answers,generate_tree=True):
+def generate_answers(answers):
+  # If the variable 'Human' appears, it is a NLG-formatted justification.
+  # If the variable 'Model' appears, it is a list of terms.
+  # If the variable 'Tree' appears, in is a non-NLG-formatted justificaiton.
+  # Anything else is Variables.
   if answers == False:
     return []
   models = []
@@ -724,27 +761,36 @@ def generate_answers(answers,generate_tree=True):
     new_model = {}
     new_model['Variables'] = {}
     new_model['Terms'] = {}
+    new_model['Raw'] = {}
+    new_model['Residuals'] = {}
     for (k,v) in a.items():
       if k == "Human":
-        if generate_tree:
           new_model['Tree'] = generate_list_of_lists(v[0:-5])
-        else:
-          new_model['Tree'] = v
       elif k == 'Model':
         new_model['Terms'] = v
+      elif k == "Tree":
+          new_model['Raw'] = v
+      elif k == "$residuals":
+        new_model['Residuals'] = v
       else:
         new_model['Variables'][k] = v
     models.append(new_model)
+    # This is not working because of how s(CASP) is choosing variable names in the residuals.
+    # The variable names are not used to distinguish answers, so I think we can move residuals
+    # inside the model structure, and test variables without them, then change the scenario
+    # editor code to process residuals from the model, not from the variables.
+    print("Searching for: " + str(new_model['Variables']))
+    print("Among: " + str([r['Variables'] for r in result]) + '\n')
     if new_model['Variables'] not in [r['Variables'] for r in result]:
       new_answer = {}
       new_answer['Variables'] = new_model['Variables']
       new_answer['Models'] = []
-      new_answer['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms']})
+      new_answer['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw'], 'Residuals': new_model['Residuals']})
       result.append(new_answer)
     else:
       for a in result:
         if new_model['Variables'] == a['Variables']:
-          a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms']})
+          a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw'], 'Residuals': new_model['Residuals']})
   return result
 
 def generate_list_of_lists(string):
@@ -754,6 +800,7 @@ def get_variables(query):
   return re.findall(r"[^\w]([A-Z_]\w*)",query)
 
 def find_assumptions(Tree): # Pulls the assumptions out of a Prolog-formatted explanation tree
+  # print("Finding assumptions in " + str(Tree))
   assumptions = []
   # If we are on "query", which is the first argument of the root "because", return nothing.
   if Tree == "query" or Tree == "o_nmr_check":

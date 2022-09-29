@@ -108,7 +108,7 @@
     </div>
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
-            <span>Copyright &copy; Lexpedite Legal Technology Ltd. 2022</span>
+            <span>Copyright &copy; Lexpedite Legal Technology Ltd. 2022</span> | <span>{{ BLAWX_VERSION }}</span>
         </div>
     </footer>
     <script>
@@ -131,6 +131,7 @@
         const csrftoken = getCookie('csrftoken');
 
         // Get the ontology
+        var parsed_test_response = {'Relevant Attributes': [], 'Relevant Categories': []};
         var ontology = {};
         const ontology_request = new XMLHttpRequest();
         ontology_request.onload = function () {
@@ -495,7 +496,19 @@
             // add the name
             output_html += '<input type="text" class="form-control" aria-label="Category Name" value="' + attribute + ' attribute for ' + object + '" disabled>';
             // Add the add button
-            output_html += '<button onclick="show_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_add_button btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
+            var relevant = false;
+            for (var i=0; i<parsed_test_response['Relevant Attributes'].length; i++) {
+                if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
+                    parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object) {
+                        relevant = true;
+                        break;
+                }
+            }
+            output_html += '<button onclick="show_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_add_button btn btn-outline-secondary';
+            if (relevant) {
+                output_html += ' blawx_relevant';
+            }
+            output_html += '" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
             output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
             output_html += '</svg></button>';
             // Add both lock buttons
@@ -580,14 +593,49 @@
                     break;
                 case 'boolean':
                     output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
-                    output_html += '<option value="true">True</option><option value="false">False</option>';
+                    var true_relevant = false;
+                    var false_relevant = false;
+                    for (var i=0; i < parsed_test_response['Relevant Attributes'].length; i++) {
+                        if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
+                            parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object &&
+                            parsed_test_response['Relevant Attributes'][i]['Arguments'][1] == "true") {
+                                true_relevant = true;
+                        }
+                        if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
+                            parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object &&
+                            parsed_test_response['Relevant Attributes'][i]['Arguments'][1] == "false") {
+                                false_relevant = true;
+                        }
+                    }
+                    output_html += '<option value="true"';
+                    if (true_relevant) {
+                        output_html += ' class="blawx_relevant"';
+                    }
+                    output_html += '>True</option><option value="false"';
+                    if (false_relevant) {
+                        output_html += ' class="blawx_relevant"';
+                    }
+                    output_html += '>False</option>';
                     output_html += '</select>';
                     break;
                 case 'object':
                     output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
                     var options = Object.keys(fact_data[attribute_source]['members']);
                     for (var i=0; i<options.length; i++){
-                        output_html += '<option value="' + options[i] + '"">' + options[i] + '</option>';
+                        var option_relevant = false;
+                        for (var j=0; j < parsed_test_response['Relevant Attributes'].length; j++) {
+                            if (parsed_test_response['Relevant Attributes'][j]['Attribute'] == attribute &&
+                                parsed_test_response['Relevant Attributes'][j]['Arguments'][0] == object &&
+                                parsed_test_response['Relevant Attributes'][j]['Arguments'][1] == options[i]) {
+                                    option_relevant = true;
+                                    break;
+                            }
+                        }
+                        output_html += '<option value="' + options[i] + '"';
+                        if (option_relevant) {
+                            output_html += ' class="blawx_relevant"';
+                        }
+                        output_html += '>' + options[i] + '</option>';
                     }
                     output_html += '</select>';
                     break;
@@ -724,7 +772,18 @@
             // Add the name
             output_html += '<input type="text" class="form-control" aria-label="Category Name" value="Category: ' + category + '" disabled>';
             // Add the add button
-            output_html += '<button onclick="show_new_object(\'' + category + '\')" class="blawx_add_button btn btn-outline-secondary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
+            var relevant = false;
+            for (var i=0; i<parsed_test_response['Relevant Categories'].length; i++) {
+                if (parsed_test_response['Relevant Categories'][i] == category) {
+                        relevant = true;
+                        break;
+                }
+            }
+            output_html += '<button onclick="show_new_object(\'' + category + '\')" class="blawx_add_button btn btn-outline-secondary';
+            if (relevant) {
+                output_html += ' blawx_relevant';
+            }
+            output_html += '" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
             output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
             output_html += '</svg></button>';
             // Add both lock buttons
@@ -1071,29 +1130,7 @@
                         output_content += '<ul>'
                         var attributes_output = "";
                         for (var key in variables) {
-                            if (key == "$residuals") {
-                                for (var attribute in variables['$residuals']) {
-                                    if (variables['$residuals'][attribute]['functor'] == "put_attr" && variables['$residuals'][attribute]['args'][1] == 'scasp_output' && variables['$residuals'][attribute]['args'][2]['functor'] == 'name') {
-                                        // This is designed to prevent re-printing information about the Attributes that is already displayed.
-                                        // If the only thing present int he attributes is the name, just skip it.
-                                        continue;
-                                    } else if (variables['$residuals'][attribute]['functor'] == "∉") {
-                                        // This is an inequality constraint
-                                        attributes_output += "<li>where " + variables['$residuals'][attribute]['args'][0] + " is not ";
-                                        if (variables['$residuals'][attribute]['args'][1].length > 1) {
-                                            attributes_output += "one of ";
-                                        }
-                                        attributes_output += variables['$residuals'][attribute]['args'][1].toString() + "</li>"
-                                    } else if (variables['$residuals'][attribute]['functor'] == "{}") {
-                                        attributes_output += "<li>where" + variables['$residuals'][attribute]['args'][0]['args'][0] + " " + variables['$residuals'][attribute]['args'][0]['functor'] + " " + variables['$residuals'][attribute]['args'][0]['args'][1] + "</li>";
-                                    } else {
-                                        // It should throw a console warning if there was something else in there.
-                                        console.warn("Unrecognized attribute in output: " + attribute['functor'] + ".");
-                                    }
-                                }
-                            } else {
-                                output_content += '<li>' + key + ': ' + variables[key] + '</li>';
-                            }
+                            output_content += '<li>' + key + ': ' + variables[key] + '</li>';
                         }
                         output_content += attributes_output;
                         output_content += '</ul>'
@@ -1107,6 +1144,27 @@
                             output_content += 'Explanation #' + model_count;
                             output_content += '</button></h2>';
                             output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
+                            for (var attribute in models[j]['Residuals']) {
+                                if ((models[j]['Residuals'][attribute]['functor'] == "put_attr" && models[j]['Residuals'][attribute]['args'][1] == 'scasp_output' && models[j]['Residuals'][attribute]['args'][2] == 'singleton')||
+                                models[j]['Residuals'][attribute]['functor'] == "put_attr" && models[j]['Residuals'][attribute]['args'][1] == 'scasp_output' && models[j]['Residuals'][attribute]['args'][2]['functor'] == 'name') {
+                                    // This is designed to prevent re-printing information about the Attributes that is already displayed.
+                                    // If the only thing present int he attributes is the name, just skip it.
+                                    continue;
+                                } else if (models[j]['Residuals'][attribute]['functor'] == "∉") {
+                                    // This is an inequality constraint
+                                    attributes_output += "<li>where " + models[j]['Residuals'][attribute]['args'][0] + " is not ";
+                                    if (models[j]['Residuals'][attribute]['args'][1].length > 1) {
+                                        attributes_output += "one of ";
+                                    }
+                                    attributes_output += models[j]['Residuals'][attribute]['args'][1].toString() + "</li>"
+                                } else if (models[j]['Residuals'][attribute]['functor'] == "{}") {
+                                    attributes_output += "<li>where" + models[j]['Residuals'][attribute]['args'][0]['args'][0] + " " + models[j]['Residuals'][attribute]['args'][0]['functor'] + " " + models[j]['Residuals'][attribute]['args'][0]['args'][1] + "</li>";
+                                } else {
+                                    // It should throw a console warning if there was something else in there.
+                                    console.warn("Unrecognized attribute in output: " + attribute['functor'] + ".");
+                                }
+                            }
+                                
                             output_content += convertModelToTree(models[j].Tree, count, model_count);
                             output_content += '</div></div>';
 
@@ -1117,12 +1175,15 @@
                     answer_element.innerHTML = output_content;
 
                     $('#nav-answers-tab').tab('show');
+                    draw_facts(); // So that new relevance information will be displayed in the interface.
                 } else {
                     // Indicate that there are no answers.
                     answer_element.innerHTML = "No answers received.";
+                    
+                    $('#nav-answers-tab').tab('show');
                 }
             }
-            testrun_request.open("POST", "{% url 'blawx:run_test' blawxtest.ruledoc.id blawxtest %}");
+            testrun_request.open("POST", "{% url 'blawx:test_interview' blawxtest.ruledoc.id blawxtest %}");
             testrun_request.setRequestHeader("Content-Type", "application/json");
             console.log("Sending test request");
             answer_element.innerHTML = "Thinking...";

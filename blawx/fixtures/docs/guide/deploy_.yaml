@@ -16,24 +16,28 @@
       When you generate a test in Blawx, that also creates a number of web API endpoints
       that other applications can use to use your encoding and answer the questions defined
       in your tests. Using the Web API is not "beginner" material, though, so that's not
-      important here. Just remember that anything that we do below with BlawxBot can also be
-      done anywhere else, because BlawxBot is actually just an example of how to use that API.
+      important here. Just remember that anything that we do below in the Scenario Editor can also be
+      done anywhere else, because Scenario Editor is actually just an example of how to use the Blawx Web API.
 
-      ## BlawxBot
+      ## Scenario Editor
 
-      BlawxBot is a chatbot-style expert system tool.
-      It is very new, only a few weeks old at the time of writing, so it is quite rough
-      around the edges. It is also not intended to build user-facing applications. It 
-      demonstrates how much can be accomplished with just your Blawx
-      encoding, and no additional information or configuration.
+      Blawx's "Scenario Editor" is a web-based form that allows you to say what you know (and don't know)
+      about a fact scenario, and get contingent and provable answers to the test question. It is useful
+      for testing your code, and for allowing people who are familiar with the rules you are encoding to
+      test your encoding and seeing if it behaves as expected.
 
-      ## Create a ChatBot App
+      The scenario editor is an application for answering a legal question built almost entirely
+      on the basis of your encoding of the rules. The only thing you need to do to create a web application
+      from a Blawx encoding, is ask a question! That's the minimum, but there is no maximum for
+      how sophisticated a Blawx-empowered application might be.
 
-      To create a chatbot app using BlawxBot, go into your Project, and create a new test.
+      ## Create a Web App
+
+      To create a web app using Scenario Editor, go into your Project, and create a new test.
       Remember that test names can't have spaces in them.
 
       Once you have created your test, go into the Test Editor, and encode the question you
-      want your chatbot to answer. In our case, we will have it answer the question "did
+      want your app to answer. In our case, we will have it answer the question "did
       anyone win any games of rock paper scissors?"
 
       The code for encoding this question we have seen before, and it looks like this:
@@ -44,40 +48,37 @@
 
       ## You're Done
 
-      No, really, that was it. Click on the "Bot" button in the button bar of the test
-      editor to start your new Chatbot.
+      No, really, that was it! Click on the "Scenario Editor" button in the button bar of the test
+      editor to start your new web app.
 
       Here's what it will look like:
 
-      ![RPS BlawxBot Interface](/static/blawx/docs/images/rps_24.png)
+      ![RPS Scenario Editor Interface](/static/blawx/docs/images/RPS_se_interface.png)
 
-      Here is an example of what your discussion with BlawxBot might look like:
+      Next to "Category: Player", click the add button, type "bob" (lower case) and hit enter.
+      Do the same thing for "jane". Next to "throw attribute for bob", click the add button and choose
+      "rock" and click the checkmark. Let's pretend we don't know what Jane threw, so click the "unlock"
+      button next to "throw attribute for "jane".
+      
+      Now click on the "add" button beside "Category: Game". Enter "testgame" as the name of the game and
+      hit enter. Next to "player attribute for testgame", click "add", choose "bob", and click the green
+      arrow. Then do the same to add "jane" to the game.
 
-      <div class="col-8 w-100 p-1" id="blawxBotMessages">
-                    <!-- Messages -->
-                <div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Welcome to BlawxBot!</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">This is a demonstration of how to generate an expert system using Blawx.</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">I will ask you some questions, and display an answer on the right when I can find one.</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Let me check what we know so far...</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add an object to the category game?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What object should we add to the category game?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">testgame</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object testgame for the attribute player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What value should we add to the object testgame for the attribute player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">jane</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object testgame for the attribute player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What value should we add to the object testgame for the attribute player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">bob</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object testgame for the attribute player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">no</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add an object to the category game?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">no</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add an object to the category player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What object should we add to the category player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">jane</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object jane for the attribute throw?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What value should we add to the object jane for the attribute throw?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">rock</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object jane for the attribute throw?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">no</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add an object to the category player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What object should we add to the category player?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">bob</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">Do you want to add a value to the object bob for the attribute throw?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">yes</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">What value should we add to the object bob for the attribute throw?</div></div><div class="row m-1 justify-content-end"><div class="col-10 border bg-light">scissors</div></div><div class="row m-1 justify-content-start"><div class="col-10 border bg-info">There is an answer to the question! See the details on the right.</div></div></div>
+      Here's what your fact scenario should look like:
 
+      ![RPS Scenario](/static/blawx/docs/images/RPS_scenario.png)
 
+      Click "Run", and after a few moments you will see the following answers:
 
-      In the above interview, we have recreated the same fact scenario that we used
-      in the bob versus jane test in Step 3.
+      ![RPS Scenario Answers](/static/blawx/docs/images/RPS_scenario_answers.png)
 
-      As you are going through the interview, BlawxBot is displaying the facts that it is
-      already aware of on the right side of the interface.  At the end of the above interview,
-      the facts provided by the user look like this:
+      You can see that Blawx has hypothesized that Bob may be the winner of the game, if Jane threw scissors!
 
-      ![RPS BlawxBot User Facts](/static/blawx/docs/images/rps_25.png)
+      If you click on the "Facts" tab at the top of the screen, you will also see that the scenario editor
+      is indicating that Jane's throw is "relevant" to finding un-conditional answers for the question, by highlighting
+      the add button next to "throw attribute for jane" in green.
 
-      BlawxBot also displays the facts it is aware of from the rules and the test, which
-      looks like this:
-
-      ![RPS BlawxBot Test Facts](/static/blawx/docs/images/rps_26.png)
-
-      Unlike a test in Step 3, which finds all the valid answers and all the valid explanations
-      for each answer, BlawxBot is designed to stop the interview and display the first answer
-      it can find.  The answer is displayed in the same way as it appears in the test editor.
-
-      ![RPS BlawxBot Answer](/static/blawx/docs/images/rps_27.png)
+      ![RPS Scenario Relevance](/static/blawx/docs/images/RPS_scenario_relevance.png)
 
       ## That's It!
 
