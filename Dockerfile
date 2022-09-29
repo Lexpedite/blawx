@@ -43,9 +43,10 @@ RUN mkdir blawx/blawx/static/blawx/blockly
 
 RUN mkdir blawx/blawx/static/blawx/fonts
 
-RUN git clone --depth=1 https://github.com/google/blockly  --branch blockly-v8.0.2 blawx/blawx/static/blawx/blockly 
+RUN git clone https://github.com/google/blockly --branch develop blawx/blawx/static/blawx/blockly 
 
-RUN cp ./blawx/blawx/static/blawx/blockly/msg/js/en.js /app/blawx/blawx/static/blawx/en.js
+# RUN cp /blawx/blawx/static/blawx/blockly/msg/js/en.js /blawx/blawx/static/blawx/en.js
+
 
 RUN npm install jquery
 
