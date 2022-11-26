@@ -87,3 +87,5 @@ RUN python manage.py createsuperuser --noinput --username admin --email admin@ad
 RUN python load_data.py
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+EXPOSE 8000
