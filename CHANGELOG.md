@@ -7,6 +7,15 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.32-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.32-alpha) 2022-11-25
+
+No user-facing changes.
+
+### Changed
+* Corrected install problem on some distributions caused by absence of EXPOSE command in Dockerfile
+* Corrected location of blockly install
+
+
 ## [v1.3.31-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.31-alpha) 2022-09-29
 
 No user-facing changes.

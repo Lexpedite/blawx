@@ -43,7 +43,15 @@ RUN mkdir blawx/blawx/static/blawx/blockly
 
 RUN mkdir blawx/blawx/static/blawx/fonts
 
-RUN git clone https://github.com/google/blockly --branch develop blawx/blawx/static/blawx/blockly 
+# RUN git clone https://github.com/google/blockly --branch develop blawx/blawx/static/blawx/blockly 
+
+RUN npm install blockly
+
+RUN mv ./node_modules/blockly /app/blawx/blawx/static/blawx
+
+RUN mkdir /app/blawx/blawx/static/blawx/blockly/appengine
+
+RUN curl https://raw.githubusercontent.com/google/blockly/develop/appengine/storage.js > /app/blawx/blawx/static/blawx/blockly/appengine/storage.js
 
 # RUN cp /blawx/blawx/static/blawx/blockly/msg/js/en.js /blawx/blawx/static/blawx/en.js
 
@@ -87,3 +95,5 @@ RUN python manage.py createsuperuser --noinput --username admin --email admin@ad
 RUN python load_data.py
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+EXPOSE 8000
