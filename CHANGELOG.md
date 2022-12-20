@@ -20,7 +20,7 @@ and breaking changes will not necessarily result in changes to the main version 
 * Adding a duration to a date now returns a datetime
 * Precision has been changed on the date value block
 * Documentation has been updated for duration blocks
-
+* Duration between block has been modified to return simplified durations
 
 
 ## [v1.3.32-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.32-alpha) 2022-11-25
