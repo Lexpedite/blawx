@@ -11,11 +11,16 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### Added
 * Datetime and Time Data Types
-* Datetime and Time Data Statements
-* Duration Comparitors
+* Datetime and Time Data Value Blocks
+* Duration Comparison Block
+* Documentation for new Blocks
 
 ### Changed
-* Durations now include Time elements
+* Durations now include time elements
+* Adding a duration to a date now returns a datetime
+* Precision has been changed on the date value block
+* Documentation has been updated for duration blocks
+
 
 
 ## [v1.3.32-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.32-alpha) 2022-11-25
