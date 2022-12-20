@@ -2442,4 +2442,77 @@
   "colour": 330,
   "tooltip": "Use to get the result of adding a number of days to a date. To subtract, use a negative number of days.",
   "helpUrl": "/docs/blocks/date_add_days/"
+},
+{
+  "type": "duration_comparison",
+  "message0": "%1 %2 %3 %4 %5",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "Stopwatch",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "first_date",
+      "check": [
+        "VARIABLE",
+        "DURATION"
+      ]
+    },
+    {
+      "type": "field_dropdown",
+      "name": "comparison",
+      "options": [
+        [
+          "is less than",
+          "lt"
+        ],
+        [
+          "is less than or equal to",
+          "lte"
+        ],
+        [
+          "is equal to",
+          "eq"
+        ],
+        [
+          "is greater than or equal to",
+          "gte"
+        ],
+        [
+          "is greater than",
+          "gt"
+        ]
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "Stopwatch",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "second_date",
+      "check": [
+        "VARIABLE",
+        "DURATION"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 330,
+  "tooltip": "Use to compare two durations.",
+  "helpUrl": "/docs/blocks/duration_comparison"
 }]

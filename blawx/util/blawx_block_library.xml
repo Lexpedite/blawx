@@ -5873,4 +5873,125 @@
         <field name="HUE">330</field>
       </block>
     </value>
+  </block><block type="factory_base" id="%P#Ctcw8x::jGDmbjWsz" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">duration_comparison</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="6%3~Aod|=`~c}TgHjXE)">
+        <field name="INPUTNAME">first_date</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_image" id="L,Y@iA/i^W?J@*!^Wotb">
+            <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC</field>
+            <field name="WIDTH">15</field>
+            <field name="HEIGHT">15</field>
+            <field name="ALT">Stopwatch</field>
+            <field name="FLIP_RTL">FALSE</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="q!~h*TDbNVK1+Weje%?o"></shadow>
+          <block type="type_group" id="!,akw4xT`!s~dx3,MJhR">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="wECi+kv4J#ms2t-~t{qh">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="h^#DWJ*qd*o,:IHw2iGI">
+                <field name="TYPE">DURATION</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="O.b)yM4+*I)mV]hfR-u1">
+            <field name="INPUTNAME">second_date</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_dropdown" id="kmIpk5lT0PvYcAB?7/;_">
+                <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">comparison</field>
+                <field name="USER0">is less than</field>
+                <field name="CPU0">lt</field>
+                <field name="USER1">is less than or equal to</field>
+                <field name="CPU1">lte</field>
+                <field name="USER2">is equal to</field>
+                <field name="CPU2">eq</field>
+                <field name="USER3">is greater than or equal to</field>
+                <field name="CPU3">gte</field>
+                <field name="USER4">is greater than</field>
+                <field name="CPU4">gt</field>
+                <next>
+                  <block type="field_image" id="c$7P]!/P.3sQPPM{,hbn">
+                    <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC</field>
+                    <field name="WIDTH">15</field>
+                    <field name="HEIGHT">15</field>
+                    <field name="ALT">Stopwatch</field>
+                    <field name="FLIP_RTL">FALSE</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="yv2}A??S:-xs}W|3JC=4"></shadow>
+              <block type="type_group" id="F0kT?fY0Ti]Rgii?rPk(">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="vL)F|a3MvSPMsvJ_T{:G">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="AH*.T2IXOJLs*i6kgY-I">
+                    <field name="TYPE">DURATION</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="|qYyJG,bM!4KUrJwlryq" deletable="false" movable="false">
+        <field name="TEXT">Use to compare two durations.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="[2*cEvCM=z]4Da@$NB}I" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/duration_comparison</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="gjJhO+DF#V0_O!Ps,BK."></shadow>
+      <block type="type_group" id="nF]=E$T9-]7QC6%/zi#O">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="lC{x%q(SAPFjl6,4KeV4">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="L)v!lyTxNWo?kt8$h,y{">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="%Kmh%s$)d|ri{P/sf;*f"></shadow>
+      <block type="type_other" id="~RWk?q5ZRCVqMq|$p/oU">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=":Uwy.@P%:@8=J.Tjo,I~">
+        <mutation colour="#a55b80"></mutation>
+        <field name="HUE">330</field>
+      </block>
+    </value>
   </block></xml>
