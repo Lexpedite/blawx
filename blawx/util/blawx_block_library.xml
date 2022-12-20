@@ -2459,7 +2459,7 @@
                 <field name="FIELDNAME">year</field>
                 <field name="MIN">-Infinity</field>
                 <field name="MAX">Infinity</field>
-                <field name="PRECISION">0</field>
+                <field name="PRECISION">1</field>
                 <next>
                   <block type="field_static" id=";w|g5q.vfb#5B)Y|gp_t">
                     <field name="TEXT">/</field>
@@ -2469,7 +2469,7 @@
                         <field name="FIELDNAME">month</field>
                         <field name="MIN">1</field>
                         <field name="MAX">12</field>
-                        <field name="PRECISION">0</field>
+                        <field name="PRECISION">1</field>
                         <next>
                           <block type="field_static" id="`qOq=x3cizN(GwJ`E6~I">
                             <field name="TEXT">/</field>
@@ -2479,7 +2479,7 @@
                                 <field name="FIELDNAME">day</field>
                                 <field name="MIN">1</field>
                                 <field name="MAX">31</field>
-                                <field name="PRECISION">0</field>
+                                <field name="PRECISION">1</field>
                               </block>
                             </next>
                           </block>
@@ -2538,7 +2538,7 @@
                 <field name="FIELDNAME">years</field>
                 <field name="MIN">0</field>
                 <field name="MAX">Infinity</field>
-                <field name="PRECISION">0</field>
+                <field name="PRECISION">1</field>
                 <next>
                   <block type="field_static" id="dsm/d3^9M(s(gK_=+n~X">
                     <field name="TEXT">years,</field>
@@ -2548,7 +2548,7 @@
                         <field name="FIELDNAME">months</field>
                         <field name="MIN">0</field>
                         <field name="MAX">Infinity</field>
-                        <field name="PRECISION">0</field>
+                        <field name="PRECISION">1</field>
                         <next>
                           <block type="field_static" id="CrqEWb:.ci8tB_8:wg?+">
                             <field name="TEXT">months,</field>
@@ -2558,7 +2558,7 @@
                                 <field name="FIELDNAME">days</field>
                                 <field name="MIN">0</field>
                                 <field name="MAX">Infinity</field>
-                                <field name="PRECISION">0</field>
+                                <field name="PRECISION">1</field>
                                 <next>
                                   <block type="field_static" id="shb;!PwN3o/.e#mqA4,{">
                                     <field name="TEXT">days,</field>
@@ -2567,8 +2567,8 @@
                                         <field name="VALUE">0</field>
                                         <field name="FIELDNAME">hours</field>
                                         <field name="MIN">0</field>
-                                        <field name="MAX">23</field>
-                                        <field name="PRECISION">0</field>
+                                        <field name="MAX">Infinity</field>
+                                        <field name="PRECISION">1</field>
                                         <next>
                                           <block type="field_static" id="mr_9MH0:f/gXm1ZQnT6i">
                                             <field name="TEXT">hours,</field>
@@ -2577,8 +2577,8 @@
                                                 <field name="VALUE">0</field>
                                                 <field name="FIELDNAME">minutes</field>
                                                 <field name="MIN">0</field>
-                                                <field name="MAX">59</field>
-                                                <field name="PRECISION">0</field>
+                                                <field name="MAX">Infinity</field>
+                                                <field name="PRECISION">1</field>
                                                 <next>
                                                   <block type="field_static" id="][Yo+x0{-r]UZ!{a-w[t">
                                                     <field name="TEXT">minutes,</field>
@@ -2587,7 +2587,7 @@
                                                         <field name="VALUE">0</field>
                                                         <field name="FIELDNAME">seconds</field>
                                                         <field name="MIN">0</field>
-                                                        <field name="MAX">60</field>
+                                                        <field name="MAX">Infinity</field>
                                                         <field name="PRECISION">0</field>
                                                         <next>
                                                           <block type="field_static" id="};36A6U|s?aW)d,U23z/">
@@ -3604,13 +3604,18 @@
         <value name="TYPE">
           <shadow type="type_null" id="q!~h*TDbNVK1+Weje%?o"></shadow>
           <block type="type_group" id="e8zG})1#-r{%4^G9J!Yf">
-            <mutation types="2"></mutation>
+            <mutation types="3"></mutation>
             <value name="TYPE0">
               <block type="type_other" id="meVdwddh=Z9kRT+*e4~(">
                 <field name="TYPE">DATE</field>
               </block>
             </value>
             <value name="TYPE1">
+              <block type="type_other" id="+_3gsU7`,{(4uGH/SPjl">
+                <field name="TYPE">DATETIME</field>
+              </block>
+            </value>
+            <value name="TYPE2">
               <block type="type_other" id="`l+BQZ`/V@tE)X?eO}lH">
                 <field name="TYPE">VARIABLE</field>
               </block>
@@ -3638,13 +3643,18 @@
             <value name="TYPE">
               <shadow type="type_null" id="mqHd_T6DAT6@F0-pv`St"></shadow>
               <block type="type_group" id="`$plhct]3(:z,S42{#FI">
-                <mutation types="2"></mutation>
+                <mutation types="3"></mutation>
                 <value name="TYPE0">
                   <block type="type_other" id="JT8K}PnF.,2,EGf3p8B*">
                     <field name="TYPE">DATE</field>
                   </block>
                 </value>
                 <value name="TYPE1">
+                  <block type="type_other" id="!=.O(G$`JY/8U=`-,k{E">
+                    <field name="TYPE">DATETIME</field>
+                  </block>
+                </value>
+                <value name="TYPE2">
                   <block type="type_other" id="{C[bc6YsE8!srrJtTC}[">
                     <field name="TYPE">VARIABLE</field>
                   </block>
@@ -3789,13 +3799,18 @@
             <value name="TYPE">
               <shadow type="type_null" id="q!~h*TDbNVK1+Weje%?o"></shadow>
               <block type="type_group" id="e8zG})1#-r{%4^G9J!Yf">
-                <mutation types="2"></mutation>
+                <mutation types="3"></mutation>
                 <value name="TYPE0">
                   <block type="type_other" id="meVdwddh=Z9kRT+*e4~(">
                     <field name="TYPE">DATE</field>
                   </block>
                 </value>
                 <value name="TYPE1">
+                  <block type="type_other" id="P2`7HM*cOamZyE2{][}D">
+                    <field name="TYPE">DATETIME</field>
+                  </block>
+                </value>
+                <value name="TYPE2">
                   <block type="type_other" id="`l+BQZ`/V@tE)X?eO}lH">
                     <field name="TYPE">VARIABLE</field>
                   </block>
@@ -3823,13 +3838,18 @@
                 <value name="TYPE">
                   <shadow type="type_null" id=",%JF+z%]Os4U4e,=/azd"></shadow>
                   <block type="type_group" id="*D~2m;{prV)POwN+EY3.">
-                    <mutation types="2"></mutation>
+                    <mutation types="3"></mutation>
                     <value name="TYPE0">
                       <block type="type_other" id="N+#p|sX+#6C9uh~0}iQv">
                         <field name="TYPE">DATE</field>
                       </block>
                     </value>
                     <value name="TYPE1">
+                      <block type="type_other" id="t_LC2-NDx##cTNPjdeAG">
+                        <field name="TYPE">DATETIME</field>
+                      </block>
+                    </value>
+                    <value name="TYPE2">
                       <block type="type_other" id="^e6Yqy~7K2m.3m]c.Ok`">
                         <field name="TYPE">VARIABLE</field>
                       </block>
@@ -5087,14 +5107,14 @@
             <field name="SRC">data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==</field>
             <field name="WIDTH">15</field>
             <field name="HEIGHT">15</field>
-            <field name="ALT">*</field>
+            <field name="ALT">Clock</field>
             <field name="FLIP_RTL">FALSE</field>
             <next>
               <block type="field_number" id="|;r,b6Hq{rTLnO{2sbtJ">
                 <field name="VALUE">0</field>
                 <field name="FIELDNAME">hours</field>
-                <field name="MIN">1</field>
-                <field name="MAX">24</field>
+                <field name="MIN">0</field>
+                <field name="MAX">23</field>
                 <field name="PRECISION">1</field>
                 <next>
                   <block type="field_static" id="%[c,+eL.!AHy^ZLEIXuk">
@@ -5114,7 +5134,7 @@
                                 <field name="VALUE">0</field>
                                 <field name="FIELDNAME">seconds</field>
                                 <field name="MIN">0</field>
-                                <field name="MAX">59</field>
+                                <field name="MAX">59.99999</field>
                                 <field name="PRECISION">0</field>
                               </block>
                             </next>
@@ -5254,14 +5274,14 @@
                                     <field name="SRC">data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==</field>
                                     <field name="WIDTH">15</field>
                                     <field name="HEIGHT">15</field>
-                                    <field name="ALT">*</field>
+                                    <field name="ALT">Clock</field>
                                     <field name="FLIP_RTL">FALSE</field>
                                     <next>
                                       <block type="field_number" id="|;r,b6Hq{rTLnO{2sbtJ">
                                         <field name="VALUE">0</field>
                                         <field name="FIELDNAME">hours</field>
-                                        <field name="MIN">1</field>
-                                        <field name="MAX">24</field>
+                                        <field name="MIN">0</field>
+                                        <field name="MAX">23</field>
                                         <field name="PRECISION">1</field>
                                         <next>
                                           <block type="field_static" id="%[c,+eL.!AHy^ZLEIXuk">
@@ -5281,7 +5301,7 @@
                                                         <field name="VALUE">0</field>
                                                         <field name="FIELDNAME">seconds</field>
                                                         <field name="MIN">0</field>
-                                                        <field name="MAX">59</field>
+                                                        <field name="MAX">59.99999</field>
                                                         <field name="PRECISION">0</field>
                                                       </block>
                                                     </next>
@@ -5785,13 +5805,18 @@
             <value name="TYPE">
               <shadow type="type_null" id="q!~h*TDbNVK1+Weje%?o"></shadow>
               <block type="type_group" id="e8zG})1#-r{%4^G9J!Yf">
-                <mutation types="2"></mutation>
+                <mutation types="3"></mutation>
                 <value name="TYPE0">
                   <block type="type_other" id="meVdwddh=Z9kRT+*e4~(">
                     <field name="TYPE">DATE</field>
                   </block>
                 </value>
                 <value name="TYPE1">
+                  <block type="type_other" id="}i*r0xvoc#R!_Om=d{!z">
+                    <field name="TYPE">DATETIME</field>
+                  </block>
+                </value>
+                <value name="TYPE2">
                   <block type="type_other" id="`l+BQZ`/V@tE)X?eO}lH">
                     <field name="TYPE">VARIABLE</field>
                   </block>
@@ -5819,13 +5844,18 @@
                 <value name="TYPE">
                   <shadow type="type_null" id=",%JF+z%]Os4U4e,=/azd"></shadow>
                   <block type="type_group" id="*D~2m;{prV)POwN+EY3.">
-                    <mutation types="2"></mutation>
+                    <mutation types="3"></mutation>
                     <value name="TYPE0">
                       <block type="type_other" id="N+#p|sX+#6C9uh~0}iQv">
                         <field name="TYPE">DATE</field>
                       </block>
                     </value>
                     <value name="TYPE1">
+                      <block type="type_other" id="800PFbKdkl0vOH+;K^mO">
+                        <field name="TYPE">DATETIME</field>
+                      </block>
+                    </value>
+                    <value name="TYPE2">
                       <block type="type_other" id="^e6Yqy~7K2m.3m]c.Ok`">
                         <field name="TYPE">VARIABLE</field>
                       </block>

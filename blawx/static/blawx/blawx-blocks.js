@@ -940,21 +940,24 @@ scasp_blockset = [{
     {
       "type": "field_number",
       "name": "year",
-      "value": 2000
+      "value": 2000,
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "month",
       "value": 1,
       "min": 1,
-      "max": 12
+      "max": 12,
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "day",
       "value": 1,
       "min": 1,
-      "max": 31
+      "max": 31,
+      "precision": 1
     }
   ],
   "output": "DATE",
@@ -984,40 +987,42 @@ scasp_blockset = [{
       "type": "field_number",
       "name": "years",
       "value": 0,
-      "min": 0
+      "min": 0,
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "months",
       "value": 0,
-      "min": 0
+      "min": 0,
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "days",
       "value": 0,
-      "min": 0
+      "min": 0,
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "hours",
       "value": 0,
       "min": 0,
-      "max": 23
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "minutes",
       "value": 0,
       "min": 0,
-      "max": 59
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "seconds",
       "value": 0,
-      "min": 0,
-      "max": 60
+      "min": 0
     }
   ],
   "output": "DURATION",
@@ -1490,6 +1495,7 @@ scasp_blockset = [{
       "name": "first_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
@@ -1506,6 +1512,7 @@ scasp_blockset = [{
       "name": "second_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
@@ -1569,6 +1576,7 @@ scasp_blockset = [{
       "name": "first_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
@@ -1585,6 +1593,7 @@ scasp_blockset = [{
       "name": "second_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     }
@@ -2063,15 +2072,15 @@ scasp_blockset = [{
       "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
       "width": 15,
       "height": 15,
-      "alt": "*",
+      "alt": "Clock",
       "flipRtl": false
     },
     {
       "type": "field_number",
       "name": "hours",
       "value": 0,
-      "min": 1,
-      "max": 24,
+      "min": 0,
+      "max": 23,
       "precision": 1
     },
     {
@@ -2087,7 +2096,7 @@ scasp_blockset = [{
       "name": "seconds",
       "value": 0,
       "min": 0,
-      "max": 59
+      "max": 59.99999
     }
   ],
   "output": "TIME",
@@ -2160,15 +2169,15 @@ scasp_blockset = [{
       "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
       "width": 15,
       "height": 15,
-      "alt": "*",
+      "alt": "Clock",
       "flipRtl": false
     },
     {
       "type": "field_number",
       "name": "hours",
       "value": 0,
-      "min": 1,
-      "max": 24,
+      "min": 0,
+      "max": 23,
       "precision": 1
     },
     {
@@ -2184,7 +2193,7 @@ scasp_blockset = [{
       "name": "seconds",
       "value": 0,
       "min": 0,
-      "max": 59
+      "max": 59.99999
     }
   ],
   "output": "DATETIME",
@@ -2413,6 +2422,7 @@ scasp_blockset = [{
       "name": "first_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
@@ -2429,6 +2439,7 @@ scasp_blockset = [{
       "name": "second_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     }
