@@ -784,8 +784,7 @@ sCASP['date_add_days'] = function(block) {
     var value_days = sCASP.valueToCode(block, 'days', sCASP.ORDER_ATOMIC);
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'datetime_add_days(' + value_first_date + ',' + value_days + ',' + value_second_date + ')';
     return code;
 };
 
@@ -793,8 +792,17 @@ sCASP['duration_comparison'] = function(block) {
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var dropdown_comparison = block.getFieldValue('comparison');
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    if (dropdown_comparison == "lt") {
+        var code = 'before(' + value_first_date + ',' + value_second_date + ')';
+    } else if (dropdown_comparison == "lte") {
+        var code = 'not_after(' + value_first_date + ',' + value_second_date + ')';
+    } else if (dropdown_comparison == "gt") {
+        var code = 'after(' + value_first_date + ',' + value_second_date + ')';
+    } else if (dropdown_comparison == "gte") {
+        var code = 'not_before(' + value_first_date + ',' + value_second_date + ')';
+    } else if (dropdown_comparison == "eq") {
+        var code = 'eq(' + value_first_date + ',' + value_second_date + ')';
+    }
     return code;
 };
 
@@ -812,7 +820,6 @@ sCASP['datetime_construct'] = function(block) {
     var value_date = sCASP.valueToCode(block, 'date', sCASP.ORDER_ATOMIC);
     var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
     var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
     var code = 'build_datetime(' + value_date + ',' + value_time + ',' + value_datetime + ')';
     return code;
 };
