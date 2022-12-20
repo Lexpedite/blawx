@@ -6095,4 +6095,93 @@
         <field name="HUE">330</field>
       </block>
     </value>
+  </block><block type="factory_base" id="El[7X:DS|D`B4e@+e%wM" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">datetime_construct</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="ep,zzH(D*XVOwrinrIbr">
+        <field name="INPUTNAME">date</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_image" id="nUX=q4ijm2xqpWmPzU}{">
+            <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=</field>
+            <field name="WIDTH">15</field>
+            <field name="HEIGHT">15</field>
+            <field name="ALT">Calendar</field>
+            <field name="FLIP_RTL">FALSE</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="H}*;:?z$=z5G%Y%=2YJm"></shadow>
+          <block type="type_group" id="!,akw4xT`!s~dx3,MJhR">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="wECi+kv4J#ms2t-~t{qh">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="sQ-6RM*VkEsrM`zHu3WE">
+                <field name="TYPE">DATE</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="ktK$8A$O8w8U.?Ev1_|q">
+            <field name="INPUTNAME">time</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_image" id="#1.h):u=zWdd_kt?Bu,m">
+                <field name="SRC">data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==</field>
+                <field name="WIDTH">15</field>
+                <field name="HEIGHT">15</field>
+                <field name="ALT">*</field>
+                <field name="FLIP_RTL">FALSE</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="4:jxivDkK@Tk*Q*~yI}u"></shadow>
+              <block type="type_group" id="e7d=SIPkC}A#EuHC~aAM">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="*$l/_(:F(m]H[boL~Dcg">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="%@E`QS5TS2Rk|RWH-M1_">
+                    <field name="TYPE">TIME</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="L(]X3/0OP+g}Lxs8{^1f" deletable="false" movable="false">
+        <field name="TEXT">Use to generate a datetime from a date and a time.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="xth!B9;S6lbCx5%AB!!N" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="T[bbIDpP/-AKbq5`;vDn"></shadow>
+      <block type="type_other" id="3Tac/0Dd[G@zqwEz%5Ur">
+        <field name="TYPE">DATETIME</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="r5Z)If8L2f!I8zs1kXsL">
+        <mutation colour="#a55b80"></mutation>
+        <field name="HUE">330</field>
+      </block>
+    </value>
   </block></xml>
