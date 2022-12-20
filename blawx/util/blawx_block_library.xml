@@ -5724,4 +5724,153 @@
         <field name="HUE">330</field>
       </block>
     </value>
+  </block><block type="factory_base" id="%P#Ctcw8x::jGDmbjWsz" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">date_add_days</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="bb!qDx#:wUB[KDQV9,Gz">
+        <field name="INPUTNAME">days</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="`#g).l:o{r0APWkf}EO;">
+            <field name="TEXT">adding</field>
+            <next>
+              <block type="field_image" id="|B[aiBm{Fpou%55OP1],">
+                <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=</field>
+                <field name="WIDTH">15</field>
+                <field name="HEIGHT">15</field>
+                <field name="ALT">Stopwatch</field>
+                <field name="FLIP_RTL">FALSE</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="4ixEHBKp|K-JhHr__(T%"></shadow>
+          <block type="type_group" id=")As/^`$L7~wCy@O}L!!7">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_number" id="R4GPUL[2fMPN4/H|$mBN"></block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="B_uKajHxdf])%yKgYLJ{">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="6%3~Aod|=`~c}TgHjXE)">
+            <field name="INPUTNAME">first_date</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="!v:(NItAs5kL[K#[`F]Y">
+                <field name="TEXT">days to</field>
+                <next>
+                  <block type="field_image" id="L,Y@iA/i^W?J@*!^Wotb">
+                    <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=</field>
+                    <field name="WIDTH">15</field>
+                    <field name="HEIGHT">15</field>
+                    <field name="ALT">Calendar</field>
+                    <field name="FLIP_RTL">FALSE</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="q!~h*TDbNVK1+Weje%?o"></shadow>
+              <block type="type_group" id="e8zG})1#-r{%4^G9J!Yf">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="meVdwddh=Z9kRT+*e4~(">
+                    <field name="TYPE">DATE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="`l+BQZ`/V@tE)X?eO}lH">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="O.b)yM4+*I)mV]hfR-u1">
+                <field name="INPUTNAME">second_date</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="-W7hBVF./eF?)9dPaNXc">
+                    <field name="TEXT">gives</field>
+                    <next>
+                      <block type="field_image" id="c$7P]!/P.3sQPPM{,hbn">
+                        <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=</field>
+                        <field name="WIDTH">15</field>
+                        <field name="HEIGHT">15</field>
+                        <field name="ALT">Calendar</field>
+                        <field name="FLIP_RTL">FALSE</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=",%JF+z%]Os4U4e,=/azd"></shadow>
+                  <block type="type_group" id="*D~2m;{prV)POwN+EY3.">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id="N+#p|sX+#6C9uh~0}iQv">
+                        <field name="TYPE">DATE</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="^e6Yqy~7K2m.3m]c.Ok`">
+                        <field name="TYPE">VARIABLE</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="|qYyJG,bM!4KUrJwlryq" deletable="false" movable="false">
+        <field name="TEXT">Use to get the result of adding a number of days to a date. To subtract, use a negative number of days.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="[2*cEvCM=z]4Da@$NB}I" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/date_add_days/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="gjJhO+DF#V0_O!Ps,BK."></shadow>
+      <block type="type_group" id="nF]=E$T9-]7QC6%/zi#O">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="lC{x%q(SAPFjl6,4KeV4">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="L)v!lyTxNWo?kt8$h,y{">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="%Kmh%s$)d|ri{P/sf;*f"></shadow>
+      <block type="type_other" id="~RWk?q5ZRCVqMq|$p/oU">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=":Uwy.@P%:@8=J.Tjo,I~">
+        <mutation colour="#a55b80"></mutation>
+        <field name="HUE">330</field>
+      </block>
+    </value>
   </block></xml>

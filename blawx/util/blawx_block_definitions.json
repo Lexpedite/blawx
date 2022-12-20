@@ -2379,4 +2379,67 @@
   "colour": 330,
   "tooltip": "",
   "helpUrl": ""
+},
+{
+  "type": "date_add_days",
+  "message0": "adding %1 %2 days to %3 %4 gives %5 %6",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Stopwatch",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "days",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "first_date",
+      "check": [
+        "DATE",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "second_date",
+      "check": [
+        "DATE",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 330,
+  "tooltip": "Use to get the result of adding a number of days to a date. To subtract, use a negative number of days.",
+  "helpUrl": "/docs/blocks/date_add_days/"
 }]
