@@ -964,7 +964,7 @@
 },
 {
   "type": "duration_value",
-  "message0": "%1 %2 years, %3 months, %4 days",
+  "message0": "%1 %2 years, %3 months, %4 days %5 days %6 minutes %7",
   "args0": [
     {
       "type": "field_dropdown",
@@ -997,6 +997,27 @@
       "name": "days",
       "value": 0,
       "min": 0
+    },
+    {
+      "type": "field_number",
+      "name": "hours",
+      "value": 0,
+      "min": 0,
+      "max": 23
+    },
+    {
+      "type": "field_number",
+      "name": "minutes",
+      "value": 0,
+      "min": 0,
+      "max": 59
+    },
+    {
+      "type": "field_number",
+      "name": "seconds",
+      "value": 0,
+      "min": 0,
+      "max": 60
     }
   ],
   "output": "DURATION",

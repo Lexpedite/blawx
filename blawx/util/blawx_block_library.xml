@@ -2562,6 +2562,43 @@
                                 <next>
                                   <block type="field_static" id="shb;!PwN3o/.e#mqA4,{">
                                     <field name="TEXT">days</field>
+                                    <next>
+                                      <block type="field_number" id="PZzDbN(K}CZM6w-xNuj2">
+                                        <field name="VALUE">0</field>
+                                        <field name="FIELDNAME">hours</field>
+                                        <field name="MIN">0</field>
+                                        <field name="MAX">23</field>
+                                        <field name="PRECISION">0</field>
+                                        <next>
+                                          <block type="field_static" id="mr_9MH0:f/gXm1ZQnT6i">
+                                            <field name="TEXT">days</field>
+                                            <next>
+                                              <block type="field_number" id="vy|@#`~Hyc.x1WVM[u[=">
+                                                <field name="VALUE">0</field>
+                                                <field name="FIELDNAME">minutes</field>
+                                                <field name="MIN">0</field>
+                                                <field name="MAX">59</field>
+                                                <field name="PRECISION">0</field>
+                                                <next>
+                                                  <block type="field_static" id="][Yo+x0{-r]UZ!{a-w[t">
+                                                    <field name="TEXT">minutes</field>
+                                                    <next>
+                                                      <block type="field_number" id="L4HNL?g;pEE}te1g@)I}">
+                                                        <field name="VALUE">0</field>
+                                                        <field name="FIELDNAME">seconds</field>
+                                                        <field name="MIN">0</field>
+                                                        <field name="MAX">60</field>
+                                                        <field name="PRECISION">0</field>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
                                   </block>
                                 </next>
                               </block>
