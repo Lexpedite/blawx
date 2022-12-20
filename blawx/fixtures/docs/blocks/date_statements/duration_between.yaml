@@ -14,21 +14,22 @@
 
       ## What Does It Do?
 
-      The Duration Between block is used to calculate the duration between two date values.
+      The Duration Between block is used to calculate the duration between two date or datetime values.
 
       ## Technical Details
 
       The Duration Between block is a statement block that can be stacked with other statement blocks.
 
-      It accepts three inputs. The first two must be dates or variables. The third must be a duration
-      or a variable.  If the first two inputs are bound to date values, the third will be bound to
-      a duration that indicates the time that has passed between the two dates.
+      It accepts three inputs. The first two must be dates, datetimes, or variables. The third must be a duration
+      or a variable.  If the first two inputs are bound to date or datetime values, the third will be bound to
+      a duration that indicates the time that has passed between the two date or datetimes. Dates will be treated
+      as midnight on the given date. 
 
       ## Tips
 
-      Note that for the time being, the duration between block generates durations that have only
-      a day value, and a sign. The year and month are always zero.  This is behaviour that is anticipated
-      to change in future versions of Blawx.
+      Unlike previous versions of Blawx, the duration between block will return a simplified duration indicating
+      the time between two dates. It may return any number of years, or days, but will not return more than 12 months, 
+      more than 23 hours, 59 minutes or 60 or more seconds.
 
       The use of durations including year and month values is not recommended, as they tend to behave
       in unpredictable ways, given that months and years are not of a consistent duration.
