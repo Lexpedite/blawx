@@ -1,0 +1,35 @@
+- model: blawx.docpage
+  pk: blocks/date_add_days
+  fields:
+    title: Date Add Days Block
+    content: |
+      # Date Add Days Block
+
+      ![Date Add Days Block](/static/blawx/docs/images/blocks/date_add_days.png)
+
+      ## Where Is It?
+
+      The Date Add Days block is located in the data statments drawer of the Blawx toolbox,
+      in the Date sub-drawer.
+
+      ## What Does It Do?
+
+      The Date Add Days block is used to calculate a new datetime value by adding a number of days to
+      an existing date or datetime value.
+
+      ## Technical Details
+
+      The Date Add Days block is a statement block that can be stacked with other statements.
+
+      It accepts three inputs: a number of days, and two date or datetime values.
+
+      The number of days can include partial days, using decimals such as `5.4`.
+
+      If the first variable is bound to a number of days, and the second value is bound to a
+      date or datetime, the third variable will be bound to the datetime obtained by adding that
+      number of days to the datetime provided.  If all three are bound, it will check whether the relationship
+      holds.
+
+      To subtract a number of days from a date or datetime, use a negative value in the number of days.
+
+      ## Tips
