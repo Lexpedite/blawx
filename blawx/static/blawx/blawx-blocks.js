@@ -1288,7 +1288,7 @@ scasp_blockset = [{
 },
 {
   "type": "duration_calculate",
-  "message0": "%1 %2 sign, %3 years, %4 months, %5 days",
+  "message0": "%1 %2 sign, %3 years, %4 months, %5 days, %6 hours, %7 minutes, %8 seconds",
   "args0": [
     {
       "type": "field_image",
@@ -1325,6 +1325,30 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "days",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "hours",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "minutes",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "seconds",
       "check": [
         "Number",
         "VARIABLE"

@@ -3235,13 +3235,88 @@
                       </block>
                     </value>
                     <next>
-                      <block type="input_dummy" id="S|S~Bq7~HHn/uQF(a,lq">
+                      <block type="input_value" id="sKpoRgg5d-b00!1M(3Xg">
+                        <field name="INPUTNAME">hours</field>
                         <field name="ALIGN">LEFT</field>
                         <statement name="FIELDS">
                           <block type="field_static" id="Mi7Sx26l)7Sa${!-}.%l">
-                            <field name="TEXT">days</field>
+                            <field name="TEXT">days,</field>
                           </block>
                         </statement>
+                        <value name="TYPE">
+                          <shadow type="type_null" id="p]IKv*+T?jfDVX$b-Pss"></shadow>
+                          <block type="type_group" id="40-;-ao-jj!KS=OHIkfL">
+                            <mutation types="2"></mutation>
+                            <value name="TYPE0">
+                              <block type="type_number" id="[@WeP(M2(s[]m*/WL}k3"></block>
+                            </value>
+                            <value name="TYPE1">
+                              <block type="type_other" id="xP3nWPRFa$[Hmej(i/87">
+                                <field name="TYPE">VARIABLE</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="input_value" id="d/s1eYx{@!slY2r$i2(~">
+                            <field name="INPUTNAME">minutes</field>
+                            <field name="ALIGN">LEFT</field>
+                            <statement name="FIELDS">
+                              <block type="field_static" id="}9{]+*a~)P63Unu:JbPv">
+                                <field name="TEXT">hours,</field>
+                              </block>
+                            </statement>
+                            <value name="TYPE">
+                              <shadow type="type_null" id="p]IKv*+T?jfDVX$b-Pss"></shadow>
+                              <block type="type_group" id="Kr]gK-?eu,fasE74|nUK">
+                                <mutation types="2"></mutation>
+                                <value name="TYPE0">
+                                  <block type="type_number" id="j5$*k(~y~16C@x+3AdVh"></block>
+                                </value>
+                                <value name="TYPE1">
+                                  <block type="type_other" id="D7CzWU$Y?X,X?Iq#ws_f">
+                                    <field name="TYPE">VARIABLE</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="input_value" id="YYU;c^AmM1r@b{GZZM3s">
+                                <field name="INPUTNAME">seconds</field>
+                                <field name="ALIGN">LEFT</field>
+                                <statement name="FIELDS">
+                                  <block type="field_static" id="D@ctl4|(L)(XF/p/xa|?">
+                                    <field name="TEXT">minutes,</field>
+                                  </block>
+                                </statement>
+                                <value name="TYPE">
+                                  <shadow type="type_null" id="p]IKv*+T?jfDVX$b-Pss"></shadow>
+                                  <block type="type_group" id="YacY$j]DdIY%]4,ZlOQ}">
+                                    <mutation types="2"></mutation>
+                                    <value name="TYPE0">
+                                      <block type="type_number" id="TCj:vMs]^7O7{ixO:751"></block>
+                                    </value>
+                                    <value name="TYPE1">
+                                      <block type="type_other" id="W//]u`I9I8,9j3wSy|!K">
+                                        <field name="TYPE">VARIABLE</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="input_dummy" id="S|S~Bq7~HHn/uQF(a,lq">
+                                    <field name="ALIGN">LEFT</field>
+                                    <statement name="FIELDS">
+                                      <block type="field_static" id="PW-YH[rAggV/prKR57_I">
+                                        <field name="TEXT">seconds</field>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
                       </block>
                     </next>
                   </block>
