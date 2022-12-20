@@ -1119,7 +1119,8 @@
       "name": "first_date",
       "check": [
         "VARIABLE",
-        "DATE"
+        "DATE",
+        "DATETIME"
       ]
     },
     {
@@ -1161,7 +1162,8 @@
       "name": "second_date",
       "check": [
         "VARIABLE",
-        "DATE"
+        "DATE",
+        "DATETIME"
       ]
     }
   ],
@@ -1957,6 +1959,379 @@
     }
   ],
   "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "empty_list",
+  "message0": "Empty List",
+  "output": "LIST",
+  "colour": 300,
+  "tooltip": "For creating an empty list value.",
+  "helpUrl": ""
+},
+{
+  "type": "head_tail",
+  "message0": "%1 followed by %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "head",
+      "check": "ENTITY"
+    },
+    {
+      "type": "input_value",
+      "name": "tail",
+      "check": "ENTITY"
+    }
+  ],
+  "inputsInline": true,
+  "output": "LIST",
+  "colour": 300,
+  "tooltip": "For matching the first item in a list, and the remainder of that list. ",
+  "helpUrl": ""
+},
+{
+  "type": "time_type_selector",
+  "message0": "%1 Time",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    }
+  ],
+  "output": null,
+  "colour": 160,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "time_value",
+  "message0": "%1 %2 : %3 : %4",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_number",
+      "name": "hours",
+      "value": 0,
+      "min": 1,
+      "max": 24,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "minutes",
+      "value": 0,
+      "min": 0,
+      "max": 59,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "seconds",
+      "value": 0,
+      "min": 0,
+      "max": 59
+    }
+  ],
+  "output": "TIME",
+  "colour": 330,
+  "tooltip": "Used to specify a time in hours (1-24), minutes (0-59), and seconds (arbitrary precision).",
+  "helpUrl": ""
+},
+{
+  "type": "datetime_type_selector",
+  "message0": "%1 %2 Date/Time",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    }
+  ],
+  "output": "TYPE",
+  "colour": 160,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "datetime_value",
+  "message0": "%1 %2 / %3 / %4 %5 %6 : %7 : %8",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_number",
+      "name": "year",
+      "value": 2000,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "month",
+      "value": 1,
+      "min": 1,
+      "max": 12,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "day",
+      "value": 1,
+      "min": 1,
+      "max": 31,
+      "precision": 1
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "field_number",
+      "name": "hours",
+      "value": 0,
+      "min": 1,
+      "max": 24,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "minutes",
+      "value": 0,
+      "min": 0,
+      "max": 59,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "seconds",
+      "value": 0,
+      "min": 0,
+      "max": 59
+    }
+  ],
+  "output": "DATETIME",
+  "colour": 300,
+  "tooltip": "Use to specify a datetime value in year, month, day, hour (24), minute, seconds",
+  "helpUrl": ""
+},
+{
+  "type": "time_comparison",
+  "message0": "%1 %2 %3 %4 %5",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "first_time",
+      "check": [
+        "VARIABLE",
+        "TIME"
+      ]
+    },
+    {
+      "type": "field_dropdown",
+      "name": "comparison",
+      "options": [
+        [
+          "is before",
+          "lt"
+        ],
+        [
+          "is before or the same time as",
+          "lte"
+        ],
+        [
+          "is the same time as",
+          "eq"
+        ],
+        [
+          "is after or the same time as",
+          "gte"
+        ],
+        [
+          "is after",
+          "gt"
+        ]
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "second_time",
+      "check": [
+        "VARIABLE",
+        "TIME"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "time_calculate",
+  "message0": "%1 %2 : %3 : %4",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "hours",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "minutes",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "seconds",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "TIME",
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "datetime_calculate",
+  "message0": "%1 %2 / %3 / %4 %5 %6 : %7 : %8",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "year",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "month",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "day",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "hours",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "minutes",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "seconds",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "DATETIME",
+  "colour": 330,
   "tooltip": "",
   "helpUrl": ""
 }]
