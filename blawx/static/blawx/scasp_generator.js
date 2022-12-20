@@ -520,7 +520,10 @@ sCASP['duration_value'] = function (block) {
     var number_years = block.getFieldValue('years');
     var number_months = block.getFieldValue('months');
     var number_days = block.getFieldValue('days');
-    var code = 'duration(' + dropdown_sign + ',' + number_years + ',' + number_months + ',' + number_days + ')';
+    var number_hours = block.getFieldValue('hours');
+    var number_minutes = block.getFieldValue('minutes');
+    var number_seconds = block.getFieldValue('seconds');
+    var code = 'duration(' + dropdown_sign + ',' + number_years + ',' + number_months + ',' + number_days + ',' + number_hours + ',' + number_minutes + ',' + number_seconds + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
@@ -577,7 +580,10 @@ sCASP['duration_calculate'] = function (block) {
     var value_years = sCASP.valueToCode(block, 'years', sCASP.ORDER_ATOMIC);
     var value_months = sCASP.valueToCode(block, 'months', sCASP.ORDER_ATOMIC);
     var value_days = sCASP.valueToCode(block, 'days', sCASP.ORDER_ATOMIC);
-    var code = 'duration(' + value_sign + ',' + value_years + ',' +value_months + ',' + value_days + ')';
+    var value_hours = sCASP.valueToCode(block, 'hours', sCASP.ORDER_ATOMIC);
+    var value_minutes = sCASP.valueToCode(block, 'minutes', sCASP.ORDER_ATOMIC);
+    var value_seconds = sCASP.valueToCode(block, 'seconds', sCASP.ORDER_ATOMIC);
+    var code = 'duration(' + value_sign + ',' + value_years + ',' +value_months + ',' + value_days + ',' + value_hours + ',' + value_minutes + ',' + value_seconds + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
