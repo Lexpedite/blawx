@@ -723,12 +723,95 @@ sCASP['according_to'] = function (block) {
 sCASP['scope'] = function (block) {
     var value_name = sCASP.valueToCode(block, 'NAME', sCASP.ORDER_ATOMIC);
     var code = 'not_implemented';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, sCASP.ORDER_NONE];
+    return [code, sCASP.ORDER_ATOMIC];
 };
 
 sCASP['holds'] = function (block) {
     var statements_statement = sCASP.statementToCode(block, 'statement');
     var code = 'legally_holds(_,' + statements_statement + ')';
     return code;
+};
+
+sCASP['time_type_selector'] = function(block) {
+    var code = 'time';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['time_value'] = function(block) {
+    var number_hours = block.getFieldValue('hours');
+    var number_minutes = block.getFieldValue('minutes');
+    var number_seconds = block.getFieldValue('seconds');
+    var code = 'time(' + number_hours + ',' + number_minutes + ',' + number_seconds + ',)';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['datetime_type_selector'] = function(block) {
+    var code = 'datetime';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['datetime_value'] = function(block) {
+    var number_year = block.getFieldValue('year');
+    var number_month = block.getFieldValue('month');
+    var number_day = block.getFieldValue('day');
+    var number_hours = block.getFieldValue('hours');
+    var number_minutes = block.getFieldValue('minutes');
+    var number_seconds = block.getFieldValue('seconds');
+    var code = 'datetime(' + number_year + ',' + number_month + ',' + number_day + ',' + number_hours + ',' + number_minutes + ',' + number_seconds + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['time_calculate'] = function(block) {
+    var value_hours = sCASP.valueToCode(block, 'hours', sCASP.ORDER_ATOMIC);
+    var value_minutes = sCASP.valueToCode(block, 'minutes', sCASP.ORDER_ATOMIC);
+    var value_seconds = sCASP.valueToCode(block, 'seconds', sCASP.ORDER_ATOMIC);
+    var code = 'time(' + value_hours + ',' + value_minutes + ',' + value_seconds + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['datetime_calculate'] = function(block) {
+    var value_year = sCASP.valueToCode(block, 'year', sCASP.ORDER_ATOMIC);
+    var value_month = sCASP.valueToCode(block, 'month', sCASP.ORDER_ATOMIC);
+    var value_day = sCASP.valueToCode(block, 'day', sCASP.ORDER_ATOMIC);
+    var value_hours = sCASP.valueToCode(block, 'hours', sCASP.ORDER_ATOMIC);
+    var value_minutes = sCASP.valueToCode(block, 'minutes', sCASP.ORDER_ATOMIC);
+    var value_seconds = sCASP.valueToCode(block, 'seconds', sCASP.ORDER_ATOMIC);
+    var code = 'datetime(' + value_year + ',' + value_month + ',' + value_day + ',' + value_hours + ',' + value_minutes + ',' + value_seconds + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['date_add_days'] = function(block) {
+    var value_days = sCASP.valueToCode(block, 'days', sCASP.ORDER_ATOMIC);
+    var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
+    var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
+sCASP['duration_comparison'] = function(block) {
+    var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
+    var dropdown_comparison = block.getFieldValue('comparison');
+    var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
+sCASP['now'] = function(block) {
+    var code = 'BlawxNow';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['today'] = function(block) {
+    var code = 'BlawxToday';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['datetime_construct'] = function(block) {
+    var value_date = sCASP.valueToCode(block, 'date', sCASP.ORDER_ATOMIC);
+    var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '';
+    return [code, sCASP.ORDER_ATOMIC];
 };
