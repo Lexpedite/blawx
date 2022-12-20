@@ -1,0 +1,23 @@
+- model: blawx.docpage
+  pk: blocks/now
+  fields:
+    title: Now Block
+    content: |
+      # Now Block
+
+      ![Now Block](/static/blawx/docs/images/blocks/now.png)
+
+      ## Where Is It?
+
+      The Now block is located in the data values drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Now block is used to provide the datetime value at the time a question is answered by the reasoner.
+
+      ## Technical Details
+
+      The Now block is a value block, and can be used anywhere that is expecting
+      a value of type "datetime". This is typically in date statement blocks.
+
+      ## Tips
