@@ -7,9 +7,9 @@ function blawxTypeToBlocklyType(blawxType) {
       return 'String';
     } else if (blawxType == "Calendar Date") {
       return 'DATE';
-    } else if (blawxType == "Date and Time") {
+    } else if (blawxType == "Calendar Clock Date / Time") {
       return 'DATETIME';
-    } else if (blawxType == "Time") {
+    } else if (blawxType == "Clock Time") {
       return "TIME";
     } else if (blawxType == "Stopwatch Duration") {
       return "DURATION";
