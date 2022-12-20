@@ -5172,8 +5172,8 @@
                 <field name="ALT">*</field>
                 <field name="FLIP_RTL">FALSE</field>
                 <next>
-                  <block type="field_static" id="tccIWS,%$^}b|0n]gPfj">
-                    <field name="TEXT">Date/Time</field>
+                  <block type="field_static" id="AAd9zSEa.6y;h?^1p.97">
+                    <field name="TEXT">Date / Time</field>
                   </block>
                 </next>
               </block>

@@ -2097,7 +2097,7 @@ scasp_blockset = [{
 },
 {
   "type": "datetime_type_selector",
-  "message0": "%1 %2 Date/Time",
+  "message0": "%1 %2 Date / Time",
   "args0": [
     {
       "type": "field_image",
