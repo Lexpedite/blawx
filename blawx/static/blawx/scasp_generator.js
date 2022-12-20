@@ -741,7 +741,7 @@ sCASP['time_value'] = function(block) {
     var number_hours = block.getFieldValue('hours');
     var number_minutes = block.getFieldValue('minutes');
     var number_seconds = block.getFieldValue('seconds');
-    var code = 'time(' + number_hours + ',' + number_minutes + ',' + number_seconds + ',)';
+    var code = 'time(' + number_hours + ',' + number_minutes + ',' + number_seconds + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
@@ -811,7 +811,8 @@ sCASP['today'] = function(block) {
 sCASP['datetime_construct'] = function(block) {
     var value_date = sCASP.valueToCode(block, 'date', sCASP.ORDER_ATOMIC);
     var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
+    var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = '';
-    return [code, sCASP.ORDER_ATOMIC];
+    var code = 'build_datetime(' + value_date + ',' + value_time + ',' + value_datetime + ')';
+    return code;
 };
