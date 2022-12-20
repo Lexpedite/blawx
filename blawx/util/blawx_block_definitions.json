@@ -964,7 +964,7 @@
 },
 {
   "type": "duration_value",
-  "message0": "%1 %2 years, %3 months, %4 days %5 days %6 minutes %7",
+  "message0": "%1 %2 years, %3 months, %4 days, %5 hours, %6 minutes, %7 seconds",
   "args0": [
     {
       "type": "field_dropdown",
@@ -2164,7 +2164,7 @@
     }
   ],
   "output": "DATETIME",
-  "colour": 300,
+  "colour": 330,
   "tooltip": "Use to specify a datetime value in year, month, day, hour (24), minute, seconds",
   "helpUrl": ""
 },
