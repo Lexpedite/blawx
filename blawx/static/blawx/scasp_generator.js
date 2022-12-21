@@ -793,13 +793,13 @@ sCASP['duration_comparison'] = function(block) {
     var dropdown_comparison = block.getFieldValue('comparison');
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
     if (dropdown_comparison == "lt") {
-        var code = 'before(' + value_first_date + ',' + value_second_date + ')';
+        var code = 'lt(' + value_first_date + ',' + value_second_date + ')';
     } else if (dropdown_comparison == "lte") {
-        var code = 'not_after(' + value_first_date + ',' + value_second_date + ')';
+        var code = 'lte(' + value_first_date + ',' + value_second_date + ')';
     } else if (dropdown_comparison == "gt") {
-        var code = 'after(' + value_first_date + ',' + value_second_date + ')';
+        var code = 'gt(' + value_first_date + ',' + value_second_date + ')';
     } else if (dropdown_comparison == "gte") {
-        var code = 'not_before(' + value_first_date + ',' + value_second_date + ')';
+        var code = 'gte(' + value_first_date + ',' + value_second_date + ')';
     } else if (dropdown_comparison == "eq") {
         var code = 'eq(' + value_first_date + ',' + value_second_date + ')';
     }
