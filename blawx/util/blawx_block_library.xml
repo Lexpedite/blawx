@@ -3838,18 +3838,13 @@
                 <value name="TYPE">
                   <shadow type="type_null" id=",%JF+z%]Os4U4e,=/azd"></shadow>
                   <block type="type_group" id="*D~2m;{prV)POwN+EY3.">
-                    <mutation types="3"></mutation>
+                    <mutation types="2"></mutation>
                     <value name="TYPE0">
-                      <block type="type_other" id="N+#p|sX+#6C9uh~0}iQv">
-                        <field name="TYPE">DATE</field>
-                      </block>
-                    </value>
-                    <value name="TYPE1">
                       <block type="type_other" id="t_LC2-NDx##cTNPjdeAG">
                         <field name="TYPE">DATETIME</field>
                       </block>
                     </value>
-                    <value name="TYPE2">
+                    <value name="TYPE1">
                       <block type="type_other" id="^e6Yqy~7K2m.3m]c.Ok`">
                         <field name="TYPE">VARIABLE</field>
                       </block>
@@ -5074,12 +5069,12 @@
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="FA#j)Jm+t_9kovaGDipM" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">Use to select time as the type of an attribute.</field>
       </block>
     </value>
     <value name="HELPURL">
       <block type="text" id="0J:cD{x7Kb~H*_l@q`CE" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/time</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -5152,12 +5147,12 @@
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="{%8d~9Ob,QIzhX},C:Qo" deletable="false" movable="false">
-        <field name="TEXT">Used to specify a time in hours (1-24), minutes (0-59), and seconds (arbitrary precision).</field>
+        <field name="TEXT">Used to specify a time in hours (0-23), minutes (0-59), and seconds (arbitrary precision).</field>
       </block>
     </value>
     <value name="HELPURL">
       <block type="text" id="-2j^(JVw%`jVh3W]Q$=0" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/time_value</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -5207,12 +5202,12 @@
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="Br1Gu6zE*=LK_MB.lcd~" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">Use to select the datetime type for an attribute.</field>
       </block>
     </value>
     <value name="HELPURL">
       <block type="text" id="CEn={a,R=XDGV%+8/mf*" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/datetime</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -5336,7 +5331,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="m6%)A*d2W5z?,!`DiH0S" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/datetime_value</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -5542,12 +5537,12 @@
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="x+Xy:8^YA#2wB!q*@i1{" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">Use to generate a time dynamically from number values.</field>
       </block>
     </value>
     <value name="HELPURL">
       <block type="text" id="MP*TNv?swSlrni{S*Scb" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/time_constructor</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -5727,12 +5722,12 @@
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="L(]X3/0OP+g}Lxs8{^1f" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">Use to generate a datetime dynamically from number values.</field>
       </block>
     </value>
     <value name="HELPURL">
       <block type="text" id="xth!B9;S6lbCx5%AB!!N" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/datetime_constructor</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -6067,7 +6062,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="HxXZD4X`:H1:Dua{Um#g" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/now</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -6113,7 +6108,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="HxXZD4X`:H1:Dua{Um#g" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/today</field>
       </block>
     </value>
     <value name="OUTPUTTYPE">
@@ -6252,7 +6247,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="xth!B9;S6lbCx5%AB!!N" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/datetime_combination</field>
       </block>
     </value>
     <value name="TOPTYPE">

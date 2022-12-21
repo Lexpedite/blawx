@@ -1592,7 +1592,6 @@ scasp_blockset = [{
       "type": "input_value",
       "name": "second_date",
       "check": [
-        "DATE",
         "DATETIME",
         "VARIABLE"
       ]
@@ -2060,8 +2059,8 @@ scasp_blockset = [{
   ],
   "output": "TYPE",
   "colour": 160,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to select time as the type of an attribute.",
+  "helpUrl": "/docs/blocks/time"
 },
 {
   "type": "time_value",
@@ -2101,8 +2100,8 @@ scasp_blockset = [{
   ],
   "output": "TIME",
   "colour": 330,
-  "tooltip": "Used to specify a time in hours (1-24), minutes (0-59), and seconds (arbitrary precision).",
-  "helpUrl": ""
+  "tooltip": "Used to specify a time in hours (0-23), minutes (0-59), and seconds (arbitrary precision).",
+  "helpUrl": "/docs/blocks/time_value"
 },
 {
   "type": "datetime_type_selector",
@@ -2127,8 +2126,8 @@ scasp_blockset = [{
   ],
   "output": "TYPE",
   "colour": 160,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to select the datetime type for an attribute.",
+  "helpUrl": "/docs/blocks/datetime"
 },
 {
   "type": "datetime_value",
@@ -2199,7 +2198,7 @@ scasp_blockset = [{
   "output": "DATETIME",
   "colour": 330,
   "tooltip": "Use to specify a datetime value in year, month, day, hour (24), minute, seconds",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/datetime_value"
 },
 {
   "type": "time_comparison",
@@ -2311,8 +2310,8 @@ scasp_blockset = [{
   "inputsInline": true,
   "output": "TIME",
   "colour": 330,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to generate a time dynamically from number values.",
+  "helpUrl": "/docs/blocks/time_constructor"
 },
 {
   "type": "datetime_calculate",
@@ -2386,8 +2385,8 @@ scasp_blockset = [{
   "inputsInline": true,
   "output": "DATETIME",
   "colour": 330,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to generate a datetime dynamically from number values.",
+  "helpUrl": "/docs/blocks/datetime_constructor"
 },
 {
   "type": "date_add_days",
@@ -2551,7 +2550,7 @@ scasp_blockset = [{
   "output": "DATETIME",
   "colour": 330,
   "tooltip": "Returns the datetime at the time a question is answered.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/now"
 },
 {
   "type": "today",
@@ -2569,7 +2568,7 @@ scasp_blockset = [{
   "output": "DATE",
   "colour": 330,
   "tooltip": "Returns the date on which a question is answered.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/today"
 },
 {
   "type": "datetime_construct",
@@ -2640,7 +2639,7 @@ scasp_blockset = [{
   "nextStatement": "STATEMENT",
   "colour": 330,
   "tooltip": "Use to relate a date and a time to a datetime.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/datetime_combination"
 }]
 
 // Make modifications that it is not possible to make in the Developer Tools
