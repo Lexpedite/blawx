@@ -614,7 +614,7 @@ sCASP['date_add'] = function (block) {
     var value_duration = sCASP.valueToCode(block, 'duration', sCASP.ORDER_ATOMIC);
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
-    var code = 'date_add(' + value_first_date + ',' + value_duration + ',' + value_second_date + ')';
+    var code = 'datetime_add(' + value_first_date + ',' + value_duration + ',' + value_second_date + ')';
     return code;
 };
 
