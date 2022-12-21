@@ -1,5 +1,6 @@
-from datetime import now
+from datetime import datetime
 
+now = datetime.now()
 scasp_now = "blawx_now(" + str(now.year) + "," + str(now.month) + "," + str(now.day) + "," + str(now.hour) + "," + str(now.minute) + "," + str(now.second) + ").\n"
 scasp_now += "blawx_today(" + str(now.year) + "," + str(now.month) + "," + str(now.day) + ").\n"
 
