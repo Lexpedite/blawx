@@ -2528,7 +2528,7 @@
 },
 {
   "type": "now",
-  "message0": "%1 %2 Now",
+  "message0": "%1 %2 %3 is set to the current datetime",
   "args0": [
     {
       "type": "field_image",
@@ -2545,16 +2545,21 @@
       "height": 15,
       "alt": "*",
       "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "now",
+      "check": "VARIABLE"
     }
   ],
   "output": "DATETIME",
   "colour": 330,
-  "tooltip": "Returns the datetime at the time a question is answered.",
+  "tooltip": "Binds a variable to the current datetime when a query is run.",
   "helpUrl": "/docs/blocks/now"
 },
 {
   "type": "today",
-  "message0": "%1 Today",
+  "message0": "%1 %2 is set to the current date",
   "args0": [
     {
       "type": "field_image",
@@ -2563,11 +2568,16 @@
       "height": 15,
       "alt": "Calendar",
       "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "NAME",
+      "check": "VARIABLE"
     }
   ],
   "output": "DATE",
   "colour": 330,
-  "tooltip": "Returns the date on which a question is answered.",
+  "tooltip": "Binds a variable to the current date when a question is answered.",
   "helpUrl": "/docs/blocks/today"
 },
 {

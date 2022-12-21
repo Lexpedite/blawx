@@ -6028,7 +6028,8 @@
     <field name="INLINE">AUTO</field>
     <field name="CONNECTIONS">LEFT</field>
     <statement name="INPUTS">
-      <block type="input_dummy" id="8aSAgg4ltVp{XQ+50qZZ">
+      <block type="input_value" id="hmHN@T|?:@C.:y,Rqqzq">
+        <field name="INPUTNAME">now</field>
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_image" id=";qB=RGv:kOAq:L{6T9K:">
@@ -6044,20 +6045,31 @@
                 <field name="HEIGHT">15</field>
                 <field name="ALT">*</field>
                 <field name="FLIP_RTL">FALSE</field>
-                <next>
-                  <block type="field_static" id="oT~E%h.72;4]}4VD*+@R">
-                    <field name="TEXT">Now</field>
-                  </block>
-                </next>
               </block>
             </next>
           </block>
         </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="xZ5VBhd(DPh_/BP98@j_"></shadow>
+          <block type="type_other" id="8D%(U65zSxDeUJQm#7v1">
+            <field name="TYPE">VARIABLE</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="8aSAgg4ltVp{XQ+50qZZ">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="oT~E%h.72;4]}4VD*+@R">
+                <field name="TEXT">is set to the current datetime</field>
+              </block>
+            </statement>
+          </block>
+        </next>
       </block>
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="]Jz(,|Qjo6@aKDkstR`(" deletable="false" movable="false">
-        <field name="TEXT">Returns the datetime at the time a question is answered.</field>
+        <field name="TEXT">Binds a variable to the current datetime when a query is run.</field>
       </block>
     </value>
     <value name="HELPURL">
@@ -6083,7 +6095,8 @@
     <field name="INLINE">AUTO</field>
     <field name="CONNECTIONS">LEFT</field>
     <statement name="INPUTS">
-      <block type="input_dummy" id="8aSAgg4ltVp{XQ+50qZZ">
+      <block type="input_value" id="|e,u.3f+{h2IhH=?HCxw">
+        <field name="INPUTNAME">NAME</field>
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_image" id=";qB=RGv:kOAq:L{6T9K:">
@@ -6092,18 +6105,29 @@
             <field name="HEIGHT">15</field>
             <field name="ALT">Calendar</field>
             <field name="FLIP_RTL">FALSE</field>
-            <next>
-              <block type="field_static" id="oT~E%h.72;4]}4VD*+@R">
-                <field name="TEXT">Today</field>
-              </block>
-            </next>
           </block>
         </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="|J?g0W0cJ2,P)6vAHD=U"></shadow>
+          <block type="type_other" id="o#-Zf^wT^cv^s:=s^[*m">
+            <field name="TYPE">VARIABLE</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="8aSAgg4ltVp{XQ+50qZZ">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="oT~E%h.72;4]}4VD*+@R">
+                <field name="TEXT">is set to the current date</field>
+              </block>
+            </statement>
+          </block>
+        </next>
       </block>
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="]Jz(,|Qjo6@aKDkstR`(" deletable="false" movable="false">
-        <field name="TEXT">Returns the date on which a question is answered.</field>
+        <field name="TEXT">Binds a variable to the current date when a question is answered.</field>
       </block>
     </value>
     <value name="HELPURL">
