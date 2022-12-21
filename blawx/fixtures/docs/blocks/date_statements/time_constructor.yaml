@@ -1,0 +1,29 @@
+- model: blawx.docpage
+  pk: blocks/time_constructor
+  fields:
+    title: Time Constructor Block
+    content: |
+      # Time Constructor Block
+
+      ![Time Constructor Block](/static/blawx/docs/images/blocks/time_calculation.png)
+
+      ## Where Is It?
+
+      The Time Constructor block is located in the data statements drawer of the Blawx toolbox,
+      in the date sub-drawer.
+
+      ## What Does It Do?
+
+      The Time Constructor block is used to generate a time value dynamically.
+
+      ## Technical Details
+
+      The time constructor block is a value block that returns a value of type time.  It can be
+      used anywhere that a time value block can be used.
+
+      It accepts three inputs, representing the hours, minutes, and seconds. The inputs can be
+      provided with numbers, or variables. For a time to be valid, hours must be an
+      integer between 0 and 23, minutes must be an integer between 0 and 59, and seconds
+      must be a non-negative number less than 60.
+
+      ## Tips
