@@ -6023,10 +6023,10 @@
       </block>
     </value>
   </block><block type="factory_base" id=";9;F5Q%iK~d%TsCr$}.q" deletable="false" movable="false" x="10" y="10">
-    <mutation connections="LEFT"></mutation>
+    <mutation connections="BOTH"></mutation>
     <field name="NAME">now</field>
     <field name="INLINE">AUTO</field>
-    <field name="CONNECTIONS">LEFT</field>
+    <field name="CONNECTIONS">BOTH</field>
     <statement name="INPUTS">
       <block type="input_value" id="hmHN@T|?:@C.:y,Rqqzq">
         <field name="INPUTNAME">now</field>
@@ -6077,10 +6077,26 @@
         <field name="TEXT">/docs/blocks/now</field>
       </block>
     </value>
-    <value name="OUTPUTTYPE">
-      <shadow type="type_null" id=".v-a;q{roBT+tk?Y;U4i"></shadow>
-      <block type="type_other" id="6Sx4vFGdhzhEwNSWT~We">
-        <field name="TYPE">DATETIME</field>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="-q[!8Png1]K5kmceuHj`"></shadow>
+      <block type="type_group" id="Jr#w?+ujXf|j`{lX~VRf">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="H@}t.cJSfZP.sl@3:x=m">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="GAY5Epu)N_Hb,wH/hjG[">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="4`m-+d{h;PLyC`sR*+Po"></shadow>
+      <block type="type_other" id="[uUO5edU/I?$`loHSuU8">
+        <field name="TYPE">STATEMENT</field>
       </block>
     </value>
     <value name="COLOUR">
@@ -6090,10 +6106,10 @@
       </block>
     </value>
   </block><block type="factory_base" id=";9;F5Q%iK~d%TsCr$}.q" deletable="false" movable="false" x="10" y="10">
-    <mutation connections="LEFT"></mutation>
+    <mutation connections="BOTH"></mutation>
     <field name="NAME">today</field>
     <field name="INLINE">AUTO</field>
-    <field name="CONNECTIONS">LEFT</field>
+    <field name="CONNECTIONS">BOTH</field>
     <statement name="INPUTS">
       <block type="input_value" id="|e,u.3f+{h2IhH=?HCxw">
         <field name="INPUTNAME">NAME</field>
@@ -6135,10 +6151,26 @@
         <field name="TEXT">/docs/blocks/today</field>
       </block>
     </value>
-    <value name="OUTPUTTYPE">
-      <shadow type="type_null" id=".v-a;q{roBT+tk?Y;U4i"></shadow>
-      <block type="type_other" id="6Sx4vFGdhzhEwNSWT~We">
-        <field name="TYPE">DATE</field>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="IL^8xPCE,E[ria%{~Qn."></shadow>
+      <block type="type_group" id="Jr#w?+ujXf|j`{lX~VRf">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="H@}t.cJSfZP.sl@3:x=m">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="6Sx4vFGdhzhEwNSWT~We">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="r^e7CVsb)w[P!]2El@5~"></shadow>
+      <block type="type_other" id="rc7=/Im+(/$y_k+0@kj/">
+        <field name="TYPE">STATEMENT</field>
       </block>
     </value>
     <value name="COLOUR">

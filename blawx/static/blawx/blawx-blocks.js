@@ -2552,7 +2552,11 @@ scasp_blockset = [{
       "check": "VARIABLE"
     }
   ],
-  "output": "DATETIME",
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
   "colour": 330,
   "tooltip": "Binds a variable to the current datetime when a query is run.",
   "helpUrl": "/docs/blocks/now"
@@ -2575,7 +2579,11 @@ scasp_blockset = [{
       "check": "VARIABLE"
     }
   ],
-  "output": "DATE",
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
   "colour": 330,
   "tooltip": "Binds a variable to the current date when a question is answered.",
   "helpUrl": "/docs/blocks/today"
