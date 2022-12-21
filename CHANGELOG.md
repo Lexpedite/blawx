@@ -9,18 +9,24 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## [v1.3.33-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.33-alpha) 2022-12-20
 
+### TODO
+* Make sure both dates and datetimes work with all of the date statement blocks.
+* I think there are epoch things that need to be added for dates, and exist only for datetimes.
+* Generate an example ruledoc demonstrating the new features.
+
 ### Added
 * Datetime and Time Data Types
-* Datetime and Time Data Value Blocks
+* Datetime and Time Data Value Blocks and Constructors
+* Datetime Combination block
 * Duration Comparison Block
-* Documentation for new Blocks
+* Documentation for all new Blocks
 
 ### Changed
 * Durations now include time elements
 * Adding a duration to a date now returns a datetime
 * Precision has been changed on the date value block
-* Documentation has been updated for duration blocks
-* Duration between block has been modified to return simplified durations
+* Documentation has been updated for changed blocks
+* Duration between block has been modified to return simplified durations, not just days
 
 
 ## [v1.3.32-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.32-alpha) 2022-11-25
