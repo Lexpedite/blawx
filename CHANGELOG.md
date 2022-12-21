@@ -7,16 +7,19 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## [v1.3.33-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.33-alpha) 2022-12-20
+## [v1.3.33-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.33-alpha) 2022-01-05
 
 ### TODO
 * Make sure both dates and datetimes work with all of the date statement blocks.
 * I think there are epoch things that need to be added for dates, and exist only for datetimes.
 * Generate an example ruledoc demonstrating the new features.
+* Update the dates and durations feature documentation page.
+* Update Scenario Editor to be able to display times and datetimes.
 
 ### Added
 * Datetime and Time Data Types
 * Datetime and Time Data Value Blocks and Constructors
+* Now and Today blocks
 * Datetime Combination block
 * Duration Comparison Block
 * Documentation for all new Blocks
