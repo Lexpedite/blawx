@@ -807,12 +807,18 @@ sCASP['duration_comparison'] = function(block) {
 };
 
 sCASP['now'] = function(block) {
-    var code = 'BlawxNow';
+    var value_now = sCASP.valueToCode(block, 'now', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'blawx_now(' + value_now + ')';
+    // TODO: Change ORDER_NONE to the correct strength.
     return [code, sCASP.ORDER_ATOMIC];
 };
 
 sCASP['today'] = function(block) {
-    var code = 'BlawxToday';
+    var value_name = sCASP.valueToCode(block, 'NAME', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'blawx_today(' + value_name + ')';
+    // TODO: Change ORDER_NONE to the correct strength.
     return [code, sCASP.ORDER_ATOMIC];
 };
 
