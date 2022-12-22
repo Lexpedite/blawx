@@ -811,7 +811,7 @@ sCASP['now'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
     var code = 'blawx_now(' + value_now + ')';
     // TODO: Change ORDER_NONE to the correct strength.
-    return [code, sCASP.ORDER_ATOMIC];
+    return code;
 };
 
 sCASP['today'] = function(block) {
@@ -819,7 +819,7 @@ sCASP['today'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
     var code = 'blawx_today(' + value_name + ')';
     // TODO: Change ORDER_NONE to the correct strength.
-    return [code, sCASP.ORDER_ATOMIC];
+    return code;
 };
 
 sCASP['datetime_construct'] = function(block) {

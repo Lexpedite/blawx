@@ -1,8 +1,8 @@
 from datetime import datetime
 
 now = datetime.now()
-scasp_now = "blawx_now(" + str(now.year) + "," + str(now.month) + "," + str(now.day) + "," + str(now.hour) + "," + str(now.minute) + "," + str(now.second) + ").\n"
-scasp_now += "blawx_today(" + str(now.year) + "," + str(now.month) + "," + str(now.day) + ").\n"
+scasp_now = "blawx_now(datetime(" + str(now.year) + "," + str(now.month) + "," + str(now.day) + "," + str(now.hour) + "," + str(now.minute) + "," + str(now.second) + ")).\n"
+scasp_now += "blawx_today(date(" + str(now.year) + "," + str(now.month) + "," + str(now.day) + ")).\n"
 
 scasp_dates = """
 % This block is only necessary when using the file on its own, locally.
