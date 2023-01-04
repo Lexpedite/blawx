@@ -1010,30 +1010,328 @@
   fields:
     ruledoc: 1
     test_name: date_add
-    xml_content: ''
-    scasp_encoding: ''
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="zqK;nN5D,1_n._]Y=wxG" x="120" y="67"><statement name="statements"><block
+      type="category_declaration" id="-UsH3rpY15Z8]L0XSHF/"><field name="category_name">test</field><next><block
+      type="category_attribute" id=".O`P7#trz/J;^:o]3#]7"><value name="category"><block
+      type="category_selector" id="ORbC83RJ@|I:GB+3yDx,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="test"></mutation><field name="category_name">test</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="}+i.LFcMta[Z,%Qw2G!j"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="passing" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">passing</field><value name="attribute_type"><block type="true_false_type_selector"
+      id="^0k-puxM+5vdi_kHp2{_"></block></value></block></statement><next><block type="object_declaration"
+      id="qhGjHUZO*dRGD)63AYe:"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="test"
+      prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">date_add</field><field name="postfix">is a test</field></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="$-w16R1GMPxqFad[=7$p" x="125" y="316"><statement
+      name="conditions"><block type="date_add" id="n_bgLE3~V$}4JJ8?zq]3"><value name="duration"><block
+      type="duration_value" id="r./d--$*@tkaWIO}*Yxn"><field name="sign">1</field><field
+      name="years">1</field><field name="months">0</field><field name="days">0</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value><value
+      name="first_date"><block type="datetime_value" id="*4P(%1t,WPe!1qeQvDJP"><field
+      name="year">2000</field><field name="month">1</field><field name="day">1</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value><value
+      name="second_date"><block type="datetime_value" id="7*:MiSjC*?ctjmBe.2Y="><field
+      name="year">2001</field><field name="month">1</field><field name="day">1</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value><next><block
+      type="date_add" id="L3C#AFRXY~#$k#GdPAc-"><value name="duration"><block type="duration_value"
+      id="%5@2BOE9X+SCP4DVM0{@"><field name="sign">1</field><field name="years">1</field><field
+      name="months">0</field><field name="days">0</field><field name="hours">0</field><field
+      name="minutes">0</field><field name="seconds">0</field></block></value><value
+      name="first_date"><block type="date_value" id="YouYQozsp?tlGk$!yFss"><field
+      name="year">2000</field><field name="month">1</field><field name="day">1</field></block></value><value
+      name="second_date"><block type="datetime_value" id="]{TmH_R55S|kD!W1(8!I"><field
+      name="year">2001</field><field name="month">1</field><field name="day">1</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="attribute_selector" id="@c~r(x0y1W9^1[i351?f"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="passing" attributetype="Checkmark
+      True / False" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s passing is</field><field name="postfix"></field><value name="first_element"><block
+      type="object_selector" id="r/El93=lXZ?F7U}y;P;k"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="date_add"></mutation><field name="object_name">date_add</field></block></value><value
+      name="second_element"><block type="true_value" id="7Ms-Zw}k@+z5J?zR/bd6"></block></value></block></statement></block><block
+      type="query" id="CDLSn;C2ZrVusrb|$Y_2" x="102" y="623"><statement name="query"><block
+      type="attribute_selector" id="i)XfUo2Ip]EUD`/*Y[9M"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="passing" attributetype="Checkmark True / False" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">'s passing is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="}Y78)Vi(4anIV3HMG9JR"><field
+      name="variable_name">A</field></block></value><value name="second_element"><block
+      type="true_value" id="0H)^]gH[0+;;2jG.(2eR"></block></value></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(test).
+
+      #pred test(X) :: ''@(X) is a test''.
+
+      #pred according_to(R,test(X)) :: ''according to @(R), @(X) is a test''.
+
+      #pred legally_holds(_,test(X)) :: ''it legally holds that @(X) is a test''.
+
+      blawx_attribute(test,passing,boolean).
+
+      test(date_add).
+
+
+      passing(date_add,true) :-
+
+      datetime_add(datetime(2000,1,1,0,0,0),duration(1,1,0,0,0,0,0),datetime(2001,1,1,0,0,0)),
+
+      datetime_add(date(2000,1,1),duration(1,1,0,0,0,0,0),datetime(2001,1,1,0,0,0)).
+
+
+      ?- passing(A,true).'
     tutorial: ''
 - model: blawx.blawxtest
   pk: 9
   fields:
     ruledoc: 1
     test_name: date_diff
-    xml_content: ''
-    scasp_encoding: ''
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="S*!cR^:`1i`@,e;{1;Yd" x="128" y="85"><statement name="statements"><block
+      type="category_declaration" id=",gcPigsAz/1b_7aFQ@~u"><field name="category_name">test</field><next><block
+      type="category_attribute" id="^2^k@k)rT0gpfrqN8o3o"><value name="category"><block
+      type="category_selector" id=",5{2XJ]RgI%y9*-cG6dK"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="test"></mutation><field name="category_name">test</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="0ubG4dS9$5AXFWLQk*TK"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="passing" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">passing</field><value name="attribute_type"><block type="true_false_type_selector"
+      id="(}y_P31|bmy4HYtAd)Ug"></block></value></block></statement><next><block type="object_declaration"
+      id="B=5]1b5dcB}U%[(=+$tu"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="test"
+      prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">date_diff</field><field name="postfix">is a test</field></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="-ValJq1B($m9zyn*`CFp" x="34" y="285"><statement
+      name="conditions"><block type="date_difference" id="8VjZM+9?JnS;+*MoCSk@"><value
+      name="first_date"><block type="datetime_value" id="uEYxdSoPim:fwlQ:b?qg"><field
+      name="year">2000</field><field name="month">1</field><field name="day">1</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value><value
+      name="second_date"><block type="datetime_value" id="yC8Do`99ReR@dEg._U`v"><field
+      name="year">2000</field><field name="month">1</field><field name="day">31</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value><value
+      name="duration"><block type="duration_value" id="B~q~C(K51*#TJ7j9@5$v"><field
+      name="sign">-1</field><field name="years">0</field><field name="months">0</field><field
+      name="days">30</field><field name="hours">0</field><field name="minutes">0</field><field
+      name="seconds">0</field></block></value><next><block type="date_difference"
+      id="#@-Vfu~59xJcd-%c|cue"><value name="first_date"><block type="date_value"
+      id="njB~xM]RcB5CgRU^tL-A"><field name="year">2000</field><field name="month">1</field><field
+      name="day">1</field></block></value><value name="second_date"><block type="datetime_value"
+      id="l#y9$vJg:^:58iPbMOih"><field name="year">2000</field><field name="month">1</field><field
+      name="day">31</field><field name="hours">0</field><field name="minutes">0</field><field
+      name="seconds">0</field></block></value><value name="duration"><block type="duration_value"
+      id="c7y)~[!*G:i-9y!|D+h0"><field name="sign">-1</field><field name="years">0</field><field
+      name="months">0</field><field name="days">30</field><field name="hours">0</field><field
+      name="minutes">0</field><field name="seconds">0</field></block></value><next><block
+      type="date_difference" id="ckW}?`c`Ah8RX$Ew3}#d"><value name="first_date"><block
+      type="datetime_value" id="G+3E7`r9OsdaqyaQeji*"><field name="year">2000</field><field
+      name="month">1</field><field name="day">1</field><field name="hours">0</field><field
+      name="minutes">0</field><field name="seconds">0</field></block></value><value
+      name="second_date"><block type="date_value" id="J*bUHyX4]bPz#b(ZDL*t"><field
+      name="year">2000</field><field name="month">1</field><field name="day">31</field></block></value><value
+      name="duration"><block type="duration_value" id="16`2Y0m)]#9ut3#{#RyQ"><field
+      name="sign">-1</field><field name="years">0</field><field name="months">0</field><field
+      name="days">30</field><field name="hours">0</field><field name="minutes">0</field><field
+      name="seconds">0</field></block></value><next><block type="date_difference"
+      id="pgyClDW*qJtUX,RdT|PO"><value name="first_date"><block type="date_value"
+      id="]q`XO_rWSkbHU7}NU~zy"><field name="year">2000</field><field name="month">1</field><field
+      name="day">1</field></block></value><value name="second_date"><block type="date_value"
+      id="g8.v-$PmLXMSnm/qUGWY"><field name="year">2000</field><field name="month">1</field><field
+      name="day">31</field></block></value><value name="duration"><block type="duration_value"
+      id="vt6KFuL4Ge}+Nb]bQr$R"><field name="sign">-1</field><field name="years">0</field><field
+      name="months">0</field><field name="days">30</field><field name="hours">0</field><field
+      name="minutes">0</field><field name="seconds">0</field></block></value></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="attribute_selector" id=")JruF@7]u0C=$QnyeC1b"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="passing" attributetype="Checkmark
+      True / False" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s passing is</field><field name="postfix"></field><value name="first_element"><block
+      type="object_selector" id="`vfo,N^(VL%Z?{5_wh%Z"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="date_diff"></mutation><field name="object_name">date_diff</field></block></value><value
+      name="second_element"><block type="true_value" id="4G^{oVGk,fFIVfP08l$`"></block></value></block></statement></block><block
+      type="query" id="HBb?X9BN~!o583IR4?GF" x="132" y="553"><statement name="query"><block
+      type="attribute_selector" id="X/J)nspmC*a$Hze+(qh;"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="passing" attributetype="Checkmark True / False" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">'s passing is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="K1,,2|u=g}^6t^aJ(=[X"><field
+      name="variable_name">A</field></block></value><value name="second_element"><block
+      type="true_value" id="R[{,^YQ@Sjls5vo^!Z6%"></block></value></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(test).
+
+      #pred test(X) :: ''@(X) is a test''.
+
+      #pred according_to(R,test(X)) :: ''according to @(R), @(X) is a test''.
+
+      #pred legally_holds(_,test(X)) :: ''it legally holds that @(X) is a test''.
+
+      blawx_attribute(test,passing,boolean).
+
+      test(date_diff).
+
+
+      passing(date_diff,true) :-
+
+      datetime_diff_duration(datetime(2000,1,1,0,0,0),datetime(2000,1,31,0,0,0),duration(-1,0,0,30,0,0,0)),
+
+      datetime_diff_duration(date(2000,1,1),datetime(2000,1,31,0,0,0),duration(-1,0,0,30,0,0,0)),
+
+      datetime_diff_duration(datetime(2000,1,1,0,0,0),date(2000,1,31),duration(-1,0,0,30,0,0,0)),
+
+      datetime_diff_duration(date(2000,1,1),date(2000,1,31),duration(-1,0,0,30,0,0,0)).
+
+
+      ?- passing(A,true).'
     tutorial: ''
 - model: blawx.blawxtest
   pk: 10
   fields:
     ruledoc: 1
     test_name: date_add_days
-    xml_content: ''
-    scasp_encoding: ''
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="x6?hT6}UK^?,]mG#TV#X" x="71" y="66"><statement name="statements"><block
+      type="category_declaration" id="d?_;sAwGL.C9nz7e3$:x"><field name="category_name">test</field><next><block
+      type="category_attribute" id="n%@^[t5%FG+h%=Z-1-cr"><value name="category"><block
+      type="category_selector" id=".y^~9y8W8[S!48[E`H/F"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="test"></mutation><field name="category_name">test</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="Nktk|)auIU4kHg}cjGCW"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="passing" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">passing</field><value name="attribute_type"><block type="true_false_type_selector"
+      id="G?SCHKQh)I]^=vC6ED(:"></block></value></block></statement><next><block type="object_declaration"
+      id="74ta*5Z_saLOI,{3z%oO"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="test"
+      prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">date_add_days</field><field name="postfix">is a test</field></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="MLq72B@v@OE`pr|1t!=I" x="71" y="284"><statement
+      name="conditions"><block type="date_add_days" id="DyunHNq,HX@Kst@8;(cv"><value
+      name="days"><block type="number_value" id="o~P8LV8]!M}v$dIGbzK~"><field name="value">30</field></block></value><value
+      name="first_date"><block type="datetime_value" id="O|wljCyV$g]fyb]+84g,"><field
+      name="year">2000</field><field name="month">1</field><field name="day">1</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value><value
+      name="second_date"><block type="datetime_value" id="XCj|Cnl0tlj}VoRl~5@%"><field
+      name="year">2000</field><field name="month">1</field><field name="day">31</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value><next><block
+      type="date_add_days" id="B$b1TG;pB*SnB]]csTkn"><value name="days"><block type="number_value"
+      id="RGVwkISQPvB$t/tr9qgd"><field name="value">30</field></block></value><value
+      name="first_date"><block type="date_value" id="dJMapdrGE#kQ(*hQZP=F"><field
+      name="year">2000</field><field name="month">1</field><field name="day">1</field></block></value><value
+      name="second_date"><block type="datetime_value" id="fmYUf,K|E*Dni=VttjI*"><field
+      name="year">2000</field><field name="month">1</field><field name="day">31</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value></block></next></block></statement><statement
+      name="conclusion"><block type="attribute_selector" id="0(8BfmavJ?95p{@$O{.G"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="passing" attributetype="Checkmark
+      True / False" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s passing is</field><field name="postfix"></field><value name="first_element"><block
+      type="object_selector" id="Vc+~_Y51p|#M$%=?8rtG"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="date_add_days"></mutation><field name="object_name">date_add_days</field></block></value><value
+      name="second_element"><block type="true_value" id="gKKH~cBP?l6u(;qDkyJa"></block></value></block></statement></block><block
+      type="query" id="wEV4=|iau4YQvbYK/oK]" x="77" y="668"><statement name="query"><block
+      type="attribute_selector" id="G?imX^L{4aMBn|4KUJxi"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="passing" attributetype="Checkmark True / False" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">'s passing is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="$8jxdTno/My[}qbi^AJ*"><field
+      name="variable_name">A</field></block></value><value name="second_element"><block
+      type="true_value" id="+e8+Lwz+oC{diz3?chD~"></block></value></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(test).
+
+      #pred test(X) :: ''@(X) is a test''.
+
+      #pred according_to(R,test(X)) :: ''according to @(R), @(X) is a test''.
+
+      #pred legally_holds(_,test(X)) :: ''it legally holds that @(X) is a test''.
+
+      blawx_attribute(test,passing,boolean).
+
+      test(date_add_days).
+
+
+      passing(date_add_days,true) :-
+
+      datetime_add_days(datetime(2000,1,1,0,0,0),30,datetime(2000,1,31,0,0,0)),
+
+      datetime_add_days(date(2000,1,1),30,datetime(2000,1,31,0,0,0)).
+
+
+      ?- passing(A,true).'
     tutorial: ''
 - model: blawx.blawxtest
   pk: 11
   fields:
     ruledoc: 1
     test_name: days_between
-    xml_content: ''
-    scasp_encoding: ''
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="^K?IZaVQ0|eBI#KG.W,V" x="60" y="38"><statement name="statements"><block
+      type="category_declaration" id="dxIcc%X8QU=zU;J5Wekc"><field name="category_name">test</field><next><block
+      type="category_attribute" id="9N,~WI_QDUw]iHm6V=u6"><value name="category"><block
+      type="category_selector" id="wI:^^];6dLJh%6:)=euq"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="test"></mutation><field name="category_name">test</field></block></value><statement
+      name="attributes"><block type="attribute_declaration" id="ZIg4q5kOQLXYz!vgO^a="><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attribute_name="passing" attribute_type="CATEGORY"></mutation><field
+      name="attribute_name">passing</field><value name="attribute_type"><block type="true_false_type_selector"
+      id="xd=Xl?%mn%(EFB0YgLx|"></block></value></block></statement><next><block type="object_declaration"
+      id="hp%Gb[lE(TxADUBLfZg|"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="test"
+      prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">date_diff_days</field><field name="postfix">is a test</field></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="{JCvYU-n-wh]bHrKhF37" x="31" y="297"><statement
+      name="conditions"><block type="date_difference_days" id="Oyv;GIKJtY]$E(u)N%FU"><value
+      name="first_date"><block type="date_value" id="vEI{h(W[*Nx+QJr$:+)w"><field
+      name="year">2000</field><field name="month">1</field><field name="day">1</field></block></value><value
+      name="second_date"><block type="date_value" id="-ooB#}Uv2%pu]^q0.3N)"><field
+      name="year">2000</field><field name="month">1</field><field name="day">31</field></block></value><value
+      name="duration_days"><block type="number_value" id="#NkQzhe2uzu`PFJ.ulXU"><field
+      name="value">-30</field></block></value><next><block type="date_difference_days"
+      id="*#/tX(%cjd0s?NSCw[LT"><value name="first_date"><block type="date_value"
+      id="{-m`q9[HmA)?2;%Ov6g*"><field name="year">2000</field><field name="month">1</field><field
+      name="day">1</field></block></value><value name="second_date"><block type="datetime_value"
+      id="AeA0`/Wju=QZ^gCV~3I!"><field name="year">2000</field><field name="month">1</field><field
+      name="day">31</field><field name="hours">0</field><field name="minutes">0</field><field
+      name="seconds">0</field></block></value><value name="duration_days"><block type="number_value"
+      id="SFwF(rTLbF8yS0ZKFSyc"><field name="value">-30</field></block></value><next><block
+      type="date_difference_days" id="SEe/1hvz.1k7:J{N,fKh"><value name="first_date"><block
+      type="datetime_value" id="OZ5]LGLP[Ygx!`$no.zz"><field name="year">2000</field><field
+      name="month">1</field><field name="day">1</field><field name="hours">0</field><field
+      name="minutes">0</field><field name="seconds">0</field></block></value><value
+      name="second_date"><block type="date_value" id="+mK/Eq,h,uoo]bh/Zmx("><field
+      name="year">2000</field><field name="month">1</field><field name="day">31</field></block></value><value
+      name="duration_days"><block type="number_value" id="}ieDb=:*`8GgkC;QB_Bq"><field
+      name="value">-30</field></block></value><next><block type="date_difference_days"
+      id="dY)1)EaO5j@CbrS~QG/K"><value name="first_date"><block type="datetime_value"
+      id="#su7RYLnIY9=_={?f]2_"><field name="year">2000</field><field name="month">1</field><field
+      name="day">1</field><field name="hours">0</field><field name="minutes">0</field><field
+      name="seconds">0</field></block></value><value name="second_date"><block type="datetime_value"
+      id="^x6j~t9Z=~,q0mMdtR=p"><field name="year">2000</field><field name="month">1</field><field
+      name="day">31</field><field name="hours">0</field><field name="minutes">0</field><field
+      name="seconds">0</field></block></value><value name="duration_days"><block type="number_value"
+      id="aawlw425mwa|~dpJt|UU"><field name="value">-30</field></block></value></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="attribute_selector" id="zc~r:Ex4-0{NjS)wnK#9"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="passing" attributetype="Checkmark
+      True / False" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s passing is</field><field name="postfix"></field><value name="first_element"><block
+      type="object_selector" id="]M[dU(bH#L;Ml|K,HqsV"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="date_diff_days"></mutation><field name="object_name">date_diff_days</field></block></value><value
+      name="second_element"><block type="true_value" id="a*-h,4zJrr.Dv+s;2QV]"></block></value></block></statement></block><block
+      type="query" id="@:)sRFo@6/U+y690$Qs," x="55" y="600"><statement name="query"><block
+      type="attribute_selector" id="Qmlo@dCUpZd~*+6SPGC3"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="passing" attributetype="Checkmark True / False" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">'s passing is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="1Om.OXP%YbOzH~kgdsA1"><field
+      name="variable_name">A</field></block></value><value name="second_element"><block
+      type="true_value" id="^?ZZXlo8@-*D?#Bn{*`1"></block></value></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(test).
+
+      #pred test(X) :: ''@(X) is a test''.
+
+      #pred according_to(R,test(X)) :: ''according to @(R), @(X) is a test''.
+
+      #pred legally_holds(_,test(X)) :: ''it legally holds that @(X) is a test''.
+
+      blawx_attribute(test,passing,boolean).
+
+      test(date_diff_days).
+
+
+      passing(date_diff_days,true) :-
+
+      days_between_datetimes(date(2000,1,1),date(2000,1,31),-30),
+
+      days_between_datetimes(date(2000,1,1),datetime(2000,1,31,0,0,0),-30),
+
+      days_between_datetimes(datetime(2000,1,1,0,0,0),date(2000,1,31),-30),
+
+      days_between_datetimes(datetime(2000,1,1,0,0,0),datetime(2000,1,31,0,0,0),-30).
+
+
+      ?- passing(A,true).'
     tutorial: ''
