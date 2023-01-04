@@ -149,7 +149,7 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
             iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
             time_re = r"^(\d{2}):(\d{2})$"
             iso8601_datetime_re = r"^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$"
-            iso8601_duration_re = r"^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+m)?(\d+S)?$"
+            iso8601_duration_re = r"^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$"
             if attribute_type == "date":
               matches = re.findall(iso8601_date_re,value,re.MULTILINE)
               (year,month,day) = matches[0]
@@ -477,11 +477,11 @@ blawxrun(Query, Human) :-
                           if value['args'][4] != 0 or value['args'][5] != 0 or value['args'][6] != 0:
                             new_value += "T"
                           if value['args'][4] != 0:
-                            new_value += str(value['args'][4] + "H")
+                            new_value += str(value['args'][4]) + "H"
                           if value['args'][5] != 0:
-                            new_value += str(value['args'][5] + "M")
+                            new_value += str(value['args'][5]) + "M"
                           if value['args'][6] != 0:
-                            new_value += str(value['args'][6] + "S")
+                            new_value += str(value['args'][6]) + "S"
                           value = new_value
                       # matches = re.findall(r"^date\((\d{4}),(\d{2}),(\d{2})\)$", str(value), re.MULTILINE)
                       # if len(matches):
