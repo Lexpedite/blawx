@@ -1,0 +1,34 @@
+- model: blawx.docpage
+  pk: blocks/datetime_constructor
+  fields:
+    title: Datetime Constructor Block
+    content: |
+      # Datetime Constructor Block
+
+      ![Datetime Constructor Block](/static/blawx/docs/images/blocks/datetime_calculation.png)
+
+      ## Where Is It?
+
+      The Datetime Constructor block is located in the data statements drawer of the Blawx toolbox,
+      in the date sub-drawer.
+
+      ## What Does It Do?
+
+      The Datetime Constructor block is used to generate a datetime value dynamically.
+
+      ## Technical Details
+
+      The datetime constructor block is a value block that returns a value of type datetime.  It can be
+      used anywhere that a datetime value block can be used.
+
+      It accepts six inputs, each of which must be a number or a variable. For the datetime to be valid,
+      the year must be an integer, month must be an integer between 1 and 12, day must be a valid integer
+      between 1 and 31, hours must be an integer between 0 and 23, minutes must be an integer between 0 and 59,
+      and seconds must be a non-negative number less than 60.
+
+      ## Tips
+
+      While the datetime value block will prevent you from entering invalid months (like 13)
+      and invalid days (like 40), the datetime constructor block cannot. If you are using
+      number value blocks in all six inputs of the date constructor block (you are not using
+      any variables), it is a better practice to use the datetime value block instead.

@@ -1,0 +1,27 @@
+- model: blawx.docpage
+  pk: blocks/time_value
+  fields:
+    title: Time Value Block
+    content: |
+      # Time Value Block
+
+      ![Time Value Block](/static/blawx/docs/images/blocks/time_value.png)
+
+      ## Where Is It?
+
+      The Time Value block is located in the data values drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Time Value block is used to provide a specific time value.
+
+      ## Technical Details
+
+      The time value block is a value block, and can be used anywhere that is expecting
+      a value of type "time". This is typically in datetime constructor blocks.
+
+      It has three numerical fields, representing the hours, minutes, and seconds. Valid hours
+      are integers between 0 and 23. Valid minutes are integers between 0 and 59. Valid seconds
+      are non-negative numbers less than 60.
+
+      ## Tips

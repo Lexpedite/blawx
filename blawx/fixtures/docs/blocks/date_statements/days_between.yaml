@@ -22,12 +22,15 @@
       The days between block is a statement block, that can be stacked with other statement
       blocks.
 
-      It accepts three inputs, the first two of which must be dates or variables. The third
-      input must be a number or an input.  If the first two inputs are bound, the variable
+      It accepts three inputs, the first two of which must be dates, datetimes, or variables. The third
+      input must be a number or a variable.  If the first two inputs are bound, the variable
       in the third input will be bound to a number indicating the number of calendar days
-      that pass between the two dates.
+      that pass between the two dates or datetimes.
 
       ## Tips
 
       The starting date is not counted, but the ending date is. So the number of days
       between today and tomorrow is always 1.
+
+      If you use datetimes, the times are taken into account. The number of days between 1pm on
+      one day and 11am the following day will be less than 1.

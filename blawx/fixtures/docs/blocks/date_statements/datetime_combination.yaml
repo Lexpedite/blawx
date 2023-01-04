@@ -1,0 +1,28 @@
+- model: blawx.docpage
+  pk: blocks/datetime_combination
+  fields:
+    title: Datetime Combination Block
+    content: |
+      # Datetime Combination Block
+
+      ![Datetime Combination Block](/static/blawx/docs/images/blocks/datetime_constructor.png)
+
+      ## Where Is It?
+
+      The Datetime Combination  block is located in the data statements drawer of the Blawx toolbox,
+      in the date sub-drawer.
+
+      ## What Does It Do?
+
+      The Datetime Combination block is used to generate a datetime value dynamically from an existing date and time,
+      or to extract date and time values from an existing datetime.
+
+      ## Technical Details
+
+      The datetime constructor block is a statement block that relates a datetime to its constituent date and time. It can
+      be stacked with other statement blocks
+
+      It accepts three inputs: a date, a time, and a datetime. If the datetime is bound to a valid datetime, the date and time
+      will be bound to its parts. If the date and time are bound to valid values, the datetime will be bound to their combination.
+
+      ## Tips

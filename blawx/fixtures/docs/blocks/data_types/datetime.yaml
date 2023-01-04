@@ -1,0 +1,23 @@
+- model: blawx.docpage
+  pk: blocks/datetime
+  fields:
+    title: Datetime Datatype Block
+    content: |
+      # Datetime Datatype Block
+
+      ![Datetime Datatype Block](/static/blawx/docs/images/blocks/datetime.png)
+
+      ## Where Is It?
+
+      The datetime datatype block is located in the Data Types drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The datetime datatype block is used to indicate that an attribute has values that are datetimes.
+
+      ## Technical Details
+
+      The datetime datatype block is a data type, and can only be used in blocks that are expecting
+      a data type, which is usually only a new attribute block.
+
+      ## Tips

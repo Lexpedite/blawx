@@ -940,21 +940,24 @@ scasp_blockset = [{
     {
       "type": "field_number",
       "name": "year",
-      "value": 2000
+      "value": 2000,
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "month",
       "value": 1,
       "min": 1,
-      "max": 12
+      "max": 12,
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "day",
       "value": 1,
       "min": 1,
-      "max": 31
+      "max": 31,
+      "precision": 1
     }
   ],
   "output": "DATE",
@@ -964,7 +967,7 @@ scasp_blockset = [{
 },
 {
   "type": "duration_value",
-  "message0": "%1 %2 years, %3 months, %4 days",
+  "message0": "%1 %2 years, %3 months, %4 days, %5 hours, %6 minutes, %7 seconds",
   "args0": [
     {
       "type": "field_dropdown",
@@ -984,17 +987,40 @@ scasp_blockset = [{
       "type": "field_number",
       "name": "years",
       "value": 0,
-      "min": 0
+      "min": 0,
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "months",
       "value": 0,
-      "min": 0
+      "min": 0,
+      "precision": 1
     },
     {
       "type": "field_number",
       "name": "days",
+      "value": 0,
+      "min": 0,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "hours",
+      "value": 0,
+      "min": 0,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "minutes",
+      "value": 0,
+      "min": 0,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "seconds",
       "value": 0,
       "min": 0
     }
@@ -1119,7 +1145,8 @@ scasp_blockset = [{
       "name": "first_date",
       "check": [
         "VARIABLE",
-        "DATE"
+        "DATE",
+        "DATETIME"
       ]
     },
     {
@@ -1161,7 +1188,8 @@ scasp_blockset = [{
       "name": "second_date",
       "check": [
         "VARIABLE",
-        "DATE"
+        "DATE",
+        "DATETIME"
       ]
     }
   ],
@@ -1265,7 +1293,7 @@ scasp_blockset = [{
 },
 {
   "type": "duration_calculate",
-  "message0": "%1 %2 sign, %3 years, %4 months, %5 days",
+  "message0": "%1 %2 sign, %3 years, %4 months, %5 days, %6 hours, %7 minutes, %8 seconds",
   "args0": [
     {
       "type": "field_image",
@@ -1302,6 +1330,30 @@ scasp_blockset = [{
     {
       "type": "input_value",
       "name": "days",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "hours",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "minutes",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "seconds",
       "check": [
         "Number",
         "VARIABLE"
@@ -1380,6 +1432,7 @@ scasp_blockset = [{
       "name": "first_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
@@ -1396,6 +1449,7 @@ scasp_blockset = [{
       "name": "second_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
@@ -1443,6 +1497,7 @@ scasp_blockset = [{
       "name": "first_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
@@ -1459,6 +1514,7 @@ scasp_blockset = [{
       "name": "second_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
@@ -1486,7 +1542,7 @@ scasp_blockset = [{
   ],
   "nextStatement": "STATEMENT",
   "colour": 330,
-  "tooltip": "Use to get the duration (years, months, and days) between two dates",
+  "tooltip": "Use to get the duration between two dates",
   "helpUrl": "/docs/blocks/duration_between/"
 },
 {
@@ -1522,6 +1578,7 @@ scasp_blockset = [{
       "name": "first_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
@@ -1537,7 +1594,7 @@ scasp_blockset = [{
       "type": "input_value",
       "name": "second_date",
       "check": [
-        "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     }
@@ -1959,6 +2016,650 @@ scasp_blockset = [{
   "colour": 230,
   "tooltip": "",
   "helpUrl": ""
+},
+{
+  "type": "empty_list",
+  "message0": "Empty List",
+  "output": "LIST",
+  "colour": 300,
+  "tooltip": "For creating an empty list value.",
+  "helpUrl": ""
+},
+{
+  "type": "head_tail",
+  "message0": "%1 followed by %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "head",
+      "check": "ENTITY"
+    },
+    {
+      "type": "input_value",
+      "name": "tail",
+      "check": "ENTITY"
+    }
+  ],
+  "inputsInline": true,
+  "output": "LIST",
+  "colour": 300,
+  "tooltip": "For matching the first item in a list, and the remainder of that list. ",
+  "helpUrl": ""
+},
+{
+  "type": "time_type_selector",
+  "message0": "%1 Time",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "Clock",
+      "flipRtl": false
+    }
+  ],
+  "output": "TYPE",
+  "colour": 160,
+  "tooltip": "Use to select time as the type of an attribute.",
+  "helpUrl": "/docs/blocks/time"
+},
+{
+  "type": "time_value",
+  "message0": "%1 %2 : %3 : %4",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "Clock",
+      "flipRtl": false
+    },
+    {
+      "type": "field_number",
+      "name": "hours",
+      "value": 0,
+      "min": 0,
+      "max": 23,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "minutes",
+      "value": 0,
+      "min": 0,
+      "max": 59,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "seconds",
+      "value": 0,
+      "min": 0,
+      "max": 59.99999
+    }
+  ],
+  "output": "TIME",
+  "colour": 330,
+  "tooltip": "Used to specify a time in hours (0-23), minutes (0-59), and seconds (arbitrary precision).",
+  "helpUrl": "/docs/blocks/time_value"
+},
+{
+  "type": "datetime_type_selector",
+  "message0": "%1 %2 Date / Time",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "Clock",
+      "flipRtl": false
+    }
+  ],
+  "output": "TYPE",
+  "colour": 160,
+  "tooltip": "Use to select the datetime type for an attribute.",
+  "helpUrl": "/docs/blocks/datetime"
+},
+{
+  "type": "datetime_value",
+  "message0": "%1 %2 / %3 / %4 %5 %6 : %7 : %8",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_number",
+      "name": "year",
+      "value": 2000,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "month",
+      "value": 1,
+      "min": 1,
+      "max": 12,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "day",
+      "value": 1,
+      "min": 1,
+      "max": 31,
+      "precision": 1
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "Clock",
+      "flipRtl": false
+    },
+    {
+      "type": "field_number",
+      "name": "hours",
+      "value": 0,
+      "min": 0,
+      "max": 23,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "minutes",
+      "value": 0,
+      "min": 0,
+      "max": 59,
+      "precision": 1
+    },
+    {
+      "type": "field_number",
+      "name": "seconds",
+      "value": 0,
+      "min": 0,
+      "max": 59.99999
+    }
+  ],
+  "output": "DATETIME",
+  "colour": 330,
+  "tooltip": "Use to specify a datetime value in year, month, day, hour (24), minute, seconds",
+  "helpUrl": "/docs/blocks/datetime_value"
+},
+{
+  "type": "time_comparison",
+  "message0": "%1 %2 %3 %4 %5",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "first_time",
+      "check": [
+        "VARIABLE",
+        "TIME"
+      ]
+    },
+    {
+      "type": "field_dropdown",
+      "name": "comparison",
+      "options": [
+        [
+          "is before",
+          "lt"
+        ],
+        [
+          "is before or the same time as",
+          "lte"
+        ],
+        [
+          "is the same time as",
+          "eq"
+        ],
+        [
+          "is after or the same time as",
+          "gte"
+        ],
+        [
+          "is after",
+          "gt"
+        ]
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "second_time",
+      "check": [
+        "VARIABLE",
+        "TIME"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "time_calculate",
+  "message0": "%1 %2 : %3 : %4",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "hours",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "minutes",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "seconds",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "TIME",
+  "colour": 330,
+  "tooltip": "Use to generate a time dynamically from number values.",
+  "helpUrl": "/docs/blocks/time_constructor"
+},
+{
+  "type": "datetime_calculate",
+  "message0": "%1 %2 / %3 / %4 %5 %6 : %7 : %8",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "year",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "month",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "day",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "hours",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "minutes",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "seconds",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "DATETIME",
+  "colour": 330,
+  "tooltip": "Use to generate a datetime dynamically from number values.",
+  "helpUrl": "/docs/blocks/datetime_constructor"
+},
+{
+  "type": "date_add_days",
+  "message0": "adding %1 %2 days to %3 %4 gives %5 %6",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Stopwatch",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "days",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "first_date",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "second_date",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 330,
+  "tooltip": "Use to get the result of adding a number of days to a date. To subtract, use a negative number of days.",
+  "helpUrl": "/docs/blocks/date_add_days/"
+},
+{
+  "type": "duration_comparison",
+  "message0": "%1 %2 %3 %4 %5",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "Stopwatch",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "first_date",
+      "check": [
+        "VARIABLE",
+        "DURATION"
+      ]
+    },
+    {
+      "type": "field_dropdown",
+      "name": "comparison",
+      "options": [
+        [
+          "is less than",
+          "lt"
+        ],
+        [
+          "is less than or equal to",
+          "lte"
+        ],
+        [
+          "is equal to",
+          "eq"
+        ],
+        [
+          "is greater than or equal to",
+          "gte"
+        ],
+        [
+          "is greater than",
+          "gt"
+        ]
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "Stopwatch",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "second_date",
+      "check": [
+        "VARIABLE",
+        "DURATION"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 330,
+  "tooltip": "Use to compare two durations.",
+  "helpUrl": "/docs/blocks/duration_comparison"
+},
+{
+  "type": "now",
+  "message0": "%1 %2 %3 is set to the current datetime",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "now",
+      "check": "VARIABLE"
+    }
+  ],
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 330,
+  "tooltip": "Binds a variable to the current datetime when a query is run.",
+  "helpUrl": "/docs/blocks/now"
+},
+{
+  "type": "today",
+  "message0": "%1 %2 is set to the current date",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "NAME",
+      "check": "VARIABLE"
+    }
+  ],
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 330,
+  "tooltip": "Binds a variable to the current date when a question is answered.",
+  "helpUrl": "/docs/blocks/today"
+},
+{
+  "type": "datetime_construct",
+  "message0": "%1 %2 and %3 %4 is %5 %6 %7",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "date",
+      "check": [
+        "VARIABLE",
+        "DATE"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "time",
+      "check": [
+        "VARIABLE",
+        "TIME"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "datetime",
+      "check": [
+        "VARIABLE",
+        "DATETIME"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 330,
+  "tooltip": "Use to relate a date and a time to a datetime.",
+  "helpUrl": "/docs/blocks/datetime_combination"
 }]
 
 // Make modifications that it is not possible to make in the Developer Tools

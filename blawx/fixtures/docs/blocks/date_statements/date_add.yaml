@@ -21,13 +21,15 @@
 
       The Date Add block is a statement block that can be stacked with other statements.
 
-      It accepts three inputs: a duration value, and two date values.
+      It accepts three inputs: a duration value, and two date or datetime values.
 
       If the first variable is bound to a duration, and the second value is bound to a
-      date, the third variable will be bound to the date obtained by adding the duration
-      to the first date.  If all three are bound, it will check whether the relationship
+      date or datetime, the third variable will be bound to the datetime obtained by adding the duration
+      to the given date or datetime.  If all three are bound, it will check whether the relationship
       holds.
 
-      To subtract a duration from a date, use a negative sign in the duration.
+      To subtract a duration from a date or datetime, use a negative sign in the duration.
+
+      If you add a duration to a date, Blawx will add the duration to 12:00am on that date.
 
       ## Tips

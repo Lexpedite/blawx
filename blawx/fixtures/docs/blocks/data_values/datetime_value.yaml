@@ -1,0 +1,32 @@
+- model: blawx.docpage
+  pk: blocks/datetime_value
+  fields:
+    title: Datetime Value Block
+    content: |
+      # Datetime Value Block
+
+      ![Datetime Value Block](/static/blawx/docs/images/blocks/datetime_value.png)
+
+      ## Where Is It?
+
+      The Datetime Value block is located in the data values drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Datetime Value block is used to provide a specific datetime value.
+
+      ## Technical Details
+
+      The datetime value block is a value block, and can be used anywhere that is expecting
+      a value of type "datetime". This is typically in date statement blocks.
+
+      It has six numerical fields, representing the year, month, day, hour, minute, and seconds. Years can be
+      negative integers, or zero. Valid months are integers between 1 and 12, and valid days are integers between 1 and 31.
+      Valid hours are integers from 0 to 23. Valid minutes are integers from 0 to 59. Any non-negative number less than 60 is
+      a valid seconds value.
+
+      ## Tips
+
+      The datetime value block will allow you
+      to specify invalid dates, such as `2000 2 30`. This will not cause a problem in the
+      Blawx Code Editor, but may result in errors when you run your tests.

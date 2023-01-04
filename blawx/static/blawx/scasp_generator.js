@@ -520,7 +520,10 @@ sCASP['duration_value'] = function (block) {
     var number_years = block.getFieldValue('years');
     var number_months = block.getFieldValue('months');
     var number_days = block.getFieldValue('days');
-    var code = 'duration(' + dropdown_sign + ',' + number_years + ',' + number_months + ',' + number_days + ')';
+    var number_hours = block.getFieldValue('hours');
+    var number_minutes = block.getFieldValue('minutes');
+    var number_seconds = block.getFieldValue('seconds');
+    var code = 'duration(' + dropdown_sign + ',' + number_years + ',' + number_months + ',' + number_days + ',' + number_hours + ',' + number_minutes + ',' + number_seconds + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
@@ -577,7 +580,10 @@ sCASP['duration_calculate'] = function (block) {
     var value_years = sCASP.valueToCode(block, 'years', sCASP.ORDER_ATOMIC);
     var value_months = sCASP.valueToCode(block, 'months', sCASP.ORDER_ATOMIC);
     var value_days = sCASP.valueToCode(block, 'days', sCASP.ORDER_ATOMIC);
-    var code = 'duration(' + value_sign + ',' + value_years + ',' +value_months + ',' + value_days + ')';
+    var value_hours = sCASP.valueToCode(block, 'hours', sCASP.ORDER_ATOMIC);
+    var value_minutes = sCASP.valueToCode(block, 'minutes', sCASP.ORDER_ATOMIC);
+    var value_seconds = sCASP.valueToCode(block, 'seconds', sCASP.ORDER_ATOMIC);
+    var code = 'duration(' + value_sign + ',' + value_years + ',' +value_months + ',' + value_days + ',' + value_hours + ',' + value_minutes + ',' + value_seconds + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
@@ -592,7 +598,7 @@ sCASP['date_difference_days'] = function (block) {
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
     var value_duration_days = sCASP.valueToCode(block, 'duration_days', sCASP.ORDER_ATOMIC);
-    var code = 'days_between(' + value_first_date + ',' + value_second_date + ',' + value_duration_days + ')';
+    var code = 'days_between_datetimes(' + value_first_date + ',' + value_second_date + ',' + value_duration_days + ')';
     return code;
 };
 
@@ -600,7 +606,7 @@ sCASP['date_difference'] = function (block) {
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
     var value_duration = sCASP.valueToCode(block, 'duration', sCASP.ORDER_ATOMIC);
-    var code = 'date_diff(' + value_first_date + ',' + value_second_date + ',' + value_duration + ')';
+    var code = 'datetime_diff_duration(' + value_first_date + ',' + value_second_date + ',' + value_duration + ')';
     return code;
 };
 
@@ -608,7 +614,7 @@ sCASP['date_add'] = function (block) {
     var value_duration = sCASP.valueToCode(block, 'duration', sCASP.ORDER_ATOMIC);
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
-    var code = 'date_add(' + value_first_date + ',' + value_duration + ',' + value_second_date + ')';
+    var code = 'datetime_add(' + value_first_date + ',' + value_duration + ',' + value_second_date + ')';
     return code;
 };
 
@@ -717,12 +723,109 @@ sCASP['according_to'] = function (block) {
 sCASP['scope'] = function (block) {
     var value_name = sCASP.valueToCode(block, 'NAME', sCASP.ORDER_ATOMIC);
     var code = 'not_implemented';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, sCASP.ORDER_NONE];
+    return [code, sCASP.ORDER_ATOMIC];
 };
 
 sCASP['holds'] = function (block) {
     var statements_statement = sCASP.statementToCode(block, 'statement');
     var code = 'legally_holds(_,' + statements_statement + ')';
+    return code;
+};
+
+sCASP['time_type_selector'] = function(block) {
+    var code = 'time';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['time_value'] = function(block) {
+    var number_hours = block.getFieldValue('hours');
+    var number_minutes = block.getFieldValue('minutes');
+    var number_seconds = block.getFieldValue('seconds');
+    var code = 'time(' + number_hours + ',' + number_minutes + ',' + number_seconds + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['datetime_type_selector'] = function(block) {
+    var code = 'datetime';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['datetime_value'] = function(block) {
+    var number_year = block.getFieldValue('year');
+    var number_month = block.getFieldValue('month');
+    var number_day = block.getFieldValue('day');
+    var number_hours = block.getFieldValue('hours');
+    var number_minutes = block.getFieldValue('minutes');
+    var number_seconds = block.getFieldValue('seconds');
+    var code = 'datetime(' + number_year + ',' + number_month + ',' + number_day + ',' + number_hours + ',' + number_minutes + ',' + number_seconds + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['time_calculate'] = function(block) {
+    var value_hours = sCASP.valueToCode(block, 'hours', sCASP.ORDER_ATOMIC);
+    var value_minutes = sCASP.valueToCode(block, 'minutes', sCASP.ORDER_ATOMIC);
+    var value_seconds = sCASP.valueToCode(block, 'seconds', sCASP.ORDER_ATOMIC);
+    var code = 'time(' + value_hours + ',' + value_minutes + ',' + value_seconds + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['datetime_calculate'] = function(block) {
+    var value_year = sCASP.valueToCode(block, 'year', sCASP.ORDER_ATOMIC);
+    var value_month = sCASP.valueToCode(block, 'month', sCASP.ORDER_ATOMIC);
+    var value_day = sCASP.valueToCode(block, 'day', sCASP.ORDER_ATOMIC);
+    var value_hours = sCASP.valueToCode(block, 'hours', sCASP.ORDER_ATOMIC);
+    var value_minutes = sCASP.valueToCode(block, 'minutes', sCASP.ORDER_ATOMIC);
+    var value_seconds = sCASP.valueToCode(block, 'seconds', sCASP.ORDER_ATOMIC);
+    var code = 'datetime(' + value_year + ',' + value_month + ',' + value_day + ',' + value_hours + ',' + value_minutes + ',' + value_seconds + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['date_add_days'] = function(block) {
+    var value_days = sCASP.valueToCode(block, 'days', sCASP.ORDER_ATOMIC);
+    var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
+    var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
+    var code = 'datetime_add_days(' + value_first_date + ',' + value_days + ',' + value_second_date + ')';
+    return code;
+};
+
+sCASP['duration_comparison'] = function(block) {
+    var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
+    var dropdown_comparison = block.getFieldValue('comparison');
+    var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
+    if (dropdown_comparison == "lt") {
+        var code = 'lt(' + value_first_date + ',' + value_second_date + ')';
+    } else if (dropdown_comparison == "lte") {
+        var code = 'lte(' + value_first_date + ',' + value_second_date + ')';
+    } else if (dropdown_comparison == "gt") {
+        var code = 'gt(' + value_first_date + ',' + value_second_date + ')';
+    } else if (dropdown_comparison == "gte") {
+        var code = 'gte(' + value_first_date + ',' + value_second_date + ')';
+    } else if (dropdown_comparison == "eq") {
+        var code = 'eq(' + value_first_date + ',' + value_second_date + ')';
+    }
+    return code;
+};
+
+sCASP['now'] = function(block) {
+    var value_now = sCASP.valueToCode(block, 'now', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'blawx_now(' + value_now + ')';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return code;
+};
+
+sCASP['today'] = function(block) {
+    var value_name = sCASP.valueToCode(block, 'NAME', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'blawx_today(' + value_name + ')';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return code;
+};
+
+sCASP['datetime_construct'] = function(block) {
+    var value_date = sCASP.valueToCode(block, 'date', sCASP.ORDER_ATOMIC);
+    var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
+    var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
+    var code = 'build_datetime(' + value_date + ',' + value_time + ',' + value_datetime + ')';
     return code;
 };
