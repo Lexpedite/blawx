@@ -147,12 +147,24 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
             # and if the attribute type is date, or
             # duration, adjust the value accordingly.
             iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
+            time_re = r"^(\d{2}):(\d{2})$"
+            iso8601_datetime_re = r"^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$"
             iso8601_duration_re = r"^(-)?P(\d+Y)?(\d+M)?(\d+D)?$"
             if attribute_type == "date":
               matches = re.findall(iso8601_date_re,value,re.MULTILINE)
               (year,month,day) = matches[0]
               date_format = f"date({int(year)},{int(month)},{int(day)})"
               value = date_format
+            if attribute_type == "time":
+              matches = re.findall(time_re,value,re.MULTILINE)
+              (hour,minute) = matches[0]
+              time_format = f"time({int(hour)},{int(minute)},0)"
+              value = time_format
+            if attribute_type == "datetime":
+              matches = re.findall(iso8601_datetime_re,value,re.MULTILINE)
+              (year,month,day,hour,minute) = matches[0]
+              datetime_format = f"date({int(year)},{int(month)},{int(day)},{int(hour)},{int(minute)},0)"
+              value = datetime_format
             if attribute_type == "duration":
               matches = re.findall(iso8601_duration_re,value,re.MULTILINE)
               (sign,years,months,days) = matches[0]
@@ -440,6 +452,10 @@ blawxrun(Query, Human) :-
                       if 'functor' in value:
                         if value['functor'] == 'date':
                           value = f"{str(value['args'][0]):0>4}" + '-' + f"{str(value['args'][1]):0>2}" + '-' + f"{str(value['args'][2]):0>2}"
+                        elif value['functor'] == 'time':
+                          value = f"{str(value['args'][0]):0>2}" + ':' + f"{str(value['args'][1]):0>2}"
+                        elif value['functor'] == 'datetime':
+                          value = f"{str(value['args'][0]):0>4}" + '-' + f"{str(value['args'][1]):0>2}" + '-' + f"{str(value['args'][2]):0>2}" + "T" + f"{str(value['args'][3]):0>2}" + ':' + f"{str(value['args'][4]):0>2}"
                         elif value['functor'] == 'duration':
                           if value['args'][0] == -1:
                             new_value = "-P"
