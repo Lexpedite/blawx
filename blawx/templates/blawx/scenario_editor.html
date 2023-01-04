@@ -314,6 +314,12 @@
                         case 'boolean':
                             attribute_type = 'boolean';
                             break;
+                        case 'time':
+                            attribute_type = 'time';
+                            break;
+                        case 'datetime':
+                            attribute_type = 'datetime';
+                            break;
                         default:
                             attribute_type = 'object';
                             attribute_source = ontology['Attributes'][i]['Type'];
@@ -432,6 +438,24 @@
                     }
                     output_html += '>False</option>';
                     output_html += '</select>';
+                    break;
+                case 'time':
+                    output_html += '<input type="time" class="form-control" onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
+                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
+                    output_html += ' value="' + value + '"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += '>';
+                    break;
+                case 'datetime':
+                    output_html += '<input type="datetime-local" class="form-control" onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
+                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
+                    output_html += ' value="' + value + '"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += '>';
                     break;
                 case 'object':
                     output_html += '<select class="form-select" aria-label="Choose value"';
@@ -565,6 +589,12 @@
                         case 'boolean':
                             attribute_type = 'boolean';
                             break;
+                        case 'time':
+                            attribute_type = 'time';
+                            break;
+                        case 'datetime':
+                            attribute_type = 'datetime';
+                            break;
                         default:
                             attribute_type = 'object';
                             attribute_source = ontology['Attributes'][i]['Type'];
@@ -617,6 +647,12 @@
                     }
                     output_html += '>False</option>';
                     output_html += '</select>';
+                    break;
+                case 'time':
+                    output_html += '<input type="time" class="form-control" aria-label="Date" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
+                    break;
+                case 'datetime':
+                    output_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
                     break;
                 case 'object':
                     output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
