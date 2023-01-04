@@ -440,7 +440,7 @@
                     output_html += '</select>';
                     break;
                 case 'time':
-                    output_html += '<input type="time" class="form-control" onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
+                    output_html += '<input type="time" step="0.1" class="form-control" onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
                     output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
                     output_html += ' value="' + value + '"';
                     if(from_ontology) {
@@ -449,7 +449,7 @@
                     output_html += '>';
                     break;
                 case 'datetime':
-                    output_html += '<input type="datetime-local" class="form-control" onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
+                    output_html += '<input type="datetime-local" step="0.1" class="form-control" onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
                     output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
                     output_html += ' value="' + value + '"';
                     if(from_ontology) {
@@ -649,10 +649,10 @@
                     output_html += '</select>';
                     break;
                 case 'time':
-                    output_html += '<input type="time" class="form-control" aria-label="Date" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
+                    output_html += '<input type="time" step="0.1" class="form-control" aria-label="Date" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
                     break;
                 case 'datetime':
-                    output_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
+                    output_html += '<input type="datetime-local" step="0.1" class="form-control" aria-label="Date" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
                     break;
                 case 'object':
                     output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
