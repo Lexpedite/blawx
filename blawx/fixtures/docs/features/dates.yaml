@@ -1,35 +1,35 @@
 - model: blawx.docpage
   pk: features/dates
   fields:
-    title: Dates and Durations
+    title: Dates, Times, and Durations
     content: |
-      # Dates and Durations
+      # Dates, Times, and Durations
 
-      Blawx allows you to record and deal with information about dates, and durations of time.
+      Blawx allows you to record and deal with information about dates, times, and durations of time.
 
-      It does this by providing two data types, date and duration, by providing value blocks for
-      each, to allow you to type in specific dates and durations, by providing calculator blocks
-      that allow you to generate a date or a duration from other information in your code, and 
-      by providing date and duration statements that you can use to manipulate dates and durations.
+      It does this by providing four data types; date, time, datetime, and duration; by providing value blocks for
+      each, by providing calculator blocks
+      that allow you to generate values from other information in your code, and 
+      by providing date, datetime, time, and duration statements that you can use to manipulate those values.
 
-      ## Date and Duration Types and Values
+      ## Date, Time, Datetime, and Duration Types and Values
 
-      The date and duration data types are available in the Data Types drawer of the toolbox, and
+      The date, time, datetime, and duration data types are available in the Data Types drawer of the toolbox, and
       can be used when creating attributes on a category. For example, in the Net 30 example that
       comes with Blawx, Invoices are defined as having an invoice date and a payment due date.
       That code looks like this:
 
       ![Invoice Ontology](/static/blawx/docs/images/invoice_ontology.png)
 
-      There are two ways of creating date and duration values in Blawx. One is to simply type them
-      in using the date value and duration value blocks that appear in the Data Values drawer of
+      There are two ways of creating date, time, datetime, and duration values in Blawx. One is to simply type them
+      in using the value blocks that appear in the Data Values drawer of
       the toolbox.
 
       A test in the Net 30 example uses the date value block to specify a date like this:
       ![Date Value Example](/static/blawx/docs/images/date_value_filled.png)
 
-      The other way is to use the date value or duration value calculator blocks, which allow
-      you to take numbers you have obtained elsewhere, and use them to generate dates.
+      The other way is to use the value calculator blocks, which allow
+      you to take numbers you have obtained elsewhere, and use them to generate dates, times, datetimes, and durations.
 
       You can also use the calculator blocks to simply type values by putting number values into
       all of the inputs, like this:
@@ -47,13 +47,11 @@
       the date calculator block allows you to construct a new date using a combination of number
       values and variables.
 
-      The same difference applies to the duration value and the duration calculator blocks.
-
       ## Understanding Dates
 
       Blawx represents dates as a set of three numbers, indicating the year, month, and day.
       The year is an integer, which means that it can be zero, or a negative number. In Blawx,
-      the year zero is the year prior to the year 1, and the year -1 is the year prior to zero.
+      the year zero is the year prior to the year 1 CE (1 BCE), and the year -1 is the year prior to that (2 BCE).
 
       Months can only be integers between 1 and 12, and days can only be integers between 1 and 31.
       If you specify an invalid date, such as February 30, or February 29 on a year that was not
@@ -62,10 +60,12 @@
 
       ## Understanding Durations
 
-      Durations are represented as a sign, and three whole numbers. The sign is 
+      Durations are represented as a sign, and six numbers. The sign is 
       either "+" or "-", indicating whether it is a duration
-      forward in time, or a duration backward in time.  The three whole numbers
-      represent the number of years, months, and days, respectively, in the duration.
+      forward in time, or a duration backward in time.  The six numbers
+      represent the number of years, months, days, hours, minutes, and seconds respectively, in the duration.
+
+      Years, months, days, hours, and minutes must be non-negative integers. Seconds must be a number greater than 0.
 
       If you use the duration calculation block, the sign is also represented by a number,
       which is either 1, to indicate into the future, or -1, to indicate into the past.
@@ -74,10 +74,40 @@
 
       ![Duration Examples](/static/blawx/docs/images/duration_examples.png)
 
-      ## Date and Duration Statements
+      ## Understanding Times
 
-      There are currently four addition date and duration statements: date comparison, date addition,
-      days between, and duration between.
+      Times are represented by three numbers, for hours, minutes, and seconds. Hours must be an integer between 0 and 23,
+      Minutes must be an integer between 0 and 59, and seconds must be a non-negative number.
+
+      The main use of a time value is to be able to combine it with a date value to get a datetime value. Most calculations
+      are performed using datetimes and durations.
+      
+
+      ## Understanding DateTimes
+
+      A DateTime is a combination of a date and a time. In Blawx, all datetimes are "local", which means that there is no
+      way to indicate the time zone of a date time. If you are dealing with dates and times from different areas of the world
+      in the same encoding, you will want to ensure that all of your dates and times are as of the same timezone, such as GMT.
+
+      ## Date, Time, Datetime, and Duration Statements
+
+      In addition to the blocks that allow you to generate date, time, datetime and duration values, there are the following
+      additional statements available in the Toolbox under Data Statements -> Date.
+
+      Note that all blocks that accepting a date in a given input will accept either a date or a datetime, with the exception of the datetime
+      combination block.
+
+      ### Now and Today
+
+      The now and today blocks allow you bind a variable to the date or datetime of the Blawx server at the time a question is run.
+
+      Note that calculating the current date and time is done once only, at the start of the execution of the question, so there
+      will only every be one value bound from using the Now and Today blocks. You cannot, for instance, use the Now block twice in order to
+      determine how much time has passed while answering a question.
+
+      ![Now Block](/static/blawx/docs/images/blocks/now.png)
+
+      ![Today Block](/static/blawx/docs/images/blocks/today.png)
 
       ### Date Comparison
 
@@ -86,10 +116,20 @@
 
       ![Date Comparison](/static/blawx/docs/images/blocks/date_comparison.png)
 
-      ### Date Addition (and subtraction)
+      ### Duration Comparison
 
-      The date addition block allows you to provide a date, and a duration, and it adds the duration
-      to that date to generate a new date.  If the duration provided represents a duration "into the past, the date addition block
+      The duration comaprison block allows you to check whether one duration is larger, smaller, not larger, not smaller,
+      or equal to another duration.
+
+      ![Duration Comparison](/static/blawx/docs/images/blocks/duration_comparison.png)
+
+      **NB**: Not all durations can be compared, so use the duration comparison block with care. Details are available in
+      the [documentation for the duration comparison block](/docs/blocks/duration_comparison).
+
+      ### Date and Datetime Addition and Subtraction
+
+      The date addition block allows you to provide a date or datetime, and a duration, and it adds the two values
+      to generate a new datetime.  If the duration provided represents a duration "into the past, the date addition block
       will subtract that amount of time from a date.
 
       For example, the Net 30 example uses a date addition block to determine the due date of
@@ -97,40 +137,70 @@
 
       ![Net 30 Addition](/static/blawx/docs/images/net_30_addition.png)
 
+      There is also a block to add a certain number of days to a date or datetime and generate a new datetime.
+
+      ![Add Days](/static/blawx/docs/images/blocks/date_add_days.png)
+
       ### Days and Duration Between
 
-      The days and duration between blocks both allow you to specify two dates, and will
+      The days and duration between blocks both allow you to specify two dates or datetimes, and will
       tell you how much time has passed between them. The days between block returns that
       information as a number of days. The duration block returns that information as a
-      duration.  Currently, using the duration between block returns a duration that only
-      has a days value. In future, this duration will be translated into a number of years,
-      months, and days.
+      duration.
+
+      ![Days Between](/static/blawx/docs/images/blocks/days_between.png)
+
+      ![Duration Between](/static/blawx/docs/images/blocks/duration_between.png)
+
+      ### Datetime Combination
+
+      The datetime combination block allows you to either generate a datetime from a date and a time (which is the
+      primary use of time values in Blawx), or to extract a date and time from a datetime.
+
+      ![Datetime Combination](/static/blawx/docs/images/blocks/datetime_combination.png)
 
       ## Blawx Understands Leap Years
 
-      When calculating days and durations between dates, and when adding durations to dates,
+      When calculating days and durations between dates, adding durations to dates, and comparing durations to
+      one another,
       Blawx is aware of the effect of leap years. If you ask for the date that is one day
       after February 28, 2004, you will get Feburary 29, 2004. If you ask for the date one day
       after February 28, 2000, you will get March 1, 2000.
 
+      Blawx does not currently take into account leap seconds.
+
       ## How Blawx Understands Months
 
-      If you add a number of months to a date, the result will not change by more than one month.
-      For example, if you add a month to January 28, you will get February 28, if you add a month to January 30
-      you get February 28, and if you add a month
-      to February 1, you will get March 1. This, despite the fact that the number of days between the first
-      two dates is 31, 29, and 28, respectively.
+      If you add a number of months to a date, and there is no valid date with the same day number, Blawx will return
+      the last day of the new month.
+      For example, if you add a month to January 30
+      you get February 28.
+
+      ## How Blawx Adds Durations
+
+      When adding a duration to a date, Blawx adds the largest units first. Therefore, if you add a duration of negative
+      one year and one day to the date March 1, 2005, you will get February 29, 2004. This is because March 1, 2005, less one
+      year, is March 1 2004, and because 2004 is a leap year, March 1, 2004 less one day is February 29, 2004. If the order
+      of application was from smallest to largest, you would expect the result to be February 28, 2004.
+
+      ## Using Times in the Scenario Editor and with the Blawx Reasoner API
+      
+      When using the code editor or test editor interface, seconds can be specified to a precision of 6 decimal points.
+      That is to say, 23.456789 is a valid number of seconds inside the code editor and test editor.
+
+      When using the scenario editor and the Blawx Reasoner API on which it is based, seconds are not available. This will
+      change in a future version of Blawx.
 
       ## Months and Years Considered Dangerous
 
-      If you are using Blawx to do date math, it would be wise to confirm that the way that
+      If you are using Blawx to do date and time math, it would be wise to confirm that the way that
       Blawx does date math is consistent with the interpretation rules used for the law you are
       encoding, because there is some inconsistency between jurisdictions, and Blawx's assumptions
       may not match the assumptions that apply to your law.
 
-      As a general rule, if it is possible to accurately encode the date math in your legislation
-      using only days, that should be preferred, as it will have a more predictable result.
-
+      As a general rule, if you can avoid the use of years and months as units of measure when encoding
+      legislation, it is preferable to do so. Because years and months are not all the same length when
+      converted into days, date math based on years and months can behave unexpectedly.
 
 
 

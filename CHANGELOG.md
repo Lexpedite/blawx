@@ -13,7 +13,6 @@ and breaking changes will not necessarily result in changes to the main version 
 * Finish the testing project for dates and times and durations
 * I think there are epoch things that need to be added for dates, and exist only for datetimes.
 * Generate an example ruledoc demonstrating the new features.
-* Update the dates and durations feature documentation page.
 
 ### Added
 * Datetime and Time Data Types
