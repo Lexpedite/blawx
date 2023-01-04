@@ -1188,6 +1188,17 @@ datetime_diff_duration(datetime(Y1,Mo1,D1,H1,Mi1,S1),datetime(Y2,Mo2,D2,H2,Mi2,S
 	NewH2 is H2,
 	datetime_diff_duration_second(datetime(NewY2,NewMo2,NewD2,NewH2,NewMi,S1),datetime(Y2,Mo2,D2,H2,Mi2,S2),S3).
 
+datetime_diff_duration(datetime(Y1,Mo1,D1,H1,Mi1,S1),date(Y2,Mo2,D2),Duration) :-
+	datetime_diff_duration(datetime(Y1,Mo1,D1,H1,Mi1,S1),datetime(Y2,Mo2,D2,0,0,0),Duration).
+
+datetime_diff_duration(date(Y1,Mo1,D1),datetime(Y2,Mo2,D2,H2,Mi2,S2),Duration) :-
+	datetime_diff_duration(datetime(Y1,Mo1,D1,0,0,0),datetime(Y2,Mo2,D2,H2,Mi2,S2),Duration).
+
+datetime_diff_duration(date(Y1,Mo1,D1),date(Y2,Mo2,D2),Duration) :-
+	datetime_diff_duration(datetime(Y1,Mo1,D1,0,0,0),datetime(Y2,Mo2,D2,0,0,0),Duration).
+
+
+
 :- begin_tests(datetime_diff_duration).
 
 test("Invalid date in first term fails",[fail]) :-
