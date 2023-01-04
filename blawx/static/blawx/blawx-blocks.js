@@ -1432,6 +1432,7 @@ scasp_blockset = [{
       "name": "first_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
@@ -1448,6 +1449,7 @@ scasp_blockset = [{
       "name": "second_date",
       "check": [
         "DATE",
+        "DATETIME",
         "VARIABLE"
       ]
     },
