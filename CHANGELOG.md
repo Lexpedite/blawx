@@ -9,8 +9,11 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## [v1.3.33-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.33-alpha) 2022-01-05
 
-### TODO
-* Generate an example ruledoc demonstrating the new features.
+This update adds "time" to Blawx's date and duration capabilities. It includes new data types,
+new data statements, a revised duration datatype, a new example, and extensive documentation.
+
+There is a small chance that code generated using earlier versions will need to be updated, particularly
+if it relies on some unusual behaviour of durations in previous versions.
 
 ### Added
 * Datetime and Time Data Types
@@ -19,6 +22,7 @@ and breaking changes will not necessarily result in changes to the main version 
 * Datetime Combination block
 * Duration Comparison Block
 * Documentation for all new Blocks
+* New Covid Test example demonstrating deadlines measured in hours
 
 ### Changed
 * Durations now include time elements
