@@ -598,7 +598,7 @@ sCASP['date_difference_days'] = function (block) {
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
     var value_duration_days = sCASP.valueToCode(block, 'duration_days', sCASP.ORDER_ATOMIC);
-    var code = 'days_between(' + value_first_date + ',' + value_second_date + ',' + value_duration_days + ')';
+    var code = 'days_between_datetimes(' + value_first_date + ',' + value_second_date + ',' + value_duration_days + ')';
     return code;
 };
 
