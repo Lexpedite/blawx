@@ -149,7 +149,7 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
             iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
             time_re = r"^(\d{2}):(\d{2})$"
             iso8601_datetime_re = r"^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$"
-            iso8601_duration_re = r"^(-)?P(\d+Y)?(\d+M)?(\d+D)?$"
+            iso8601_duration_re = r"^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+m)?(\d+S)?$"
             if attribute_type == "date":
               matches = re.findall(iso8601_date_re,value,re.MULTILINE)
               (year,month,day) = matches[0]
@@ -157,7 +157,7 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
               value = date_format
             if attribute_type == "time":
               matches = re.findall(time_re,value,re.MULTILINE)
-              (hour,minute,second) = matches[0]
+              (hour,minute) = matches[0]
               time_format = f"time({int(hour)},{int(minute)},0)"
               value = time_format
             if attribute_type == "datetime":
@@ -167,7 +167,7 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
               value = datetime_format
             if attribute_type == "duration":
               matches = re.findall(iso8601_duration_re,value,re.MULTILINE)
-              (sign,years,months,days) = matches[0]
+              (sign,years,months,days,hours,minutes,seconds) = matches[0]
               if sign == "-":
                 sign_value = "-1"
               else:
@@ -178,7 +178,13 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
                 months = "0M"
               if days == "":
                 days = "0D"
-              duration_format = f"duration({sign_value},{int(years[:-1])},{int(months[:-1])},{int(days[:-1])})"
+              if hours == "":
+                hours = "0H"
+              if minutes == "":
+                minutes = "0M"
+              if seconds == "":
+                seconds = "0S"
+              duration_format = f"duration({sign_value},{int(years[:-1])},{int(months[:-1])},{int(days[:-1])},{int(hours[:-1])},{int(minutes[:-1])},{int(seconds[:-1])})"
               value = duration_format
             output += attribute_name + "(" + object_name + "," + str(value) + ").\n"
   return output
@@ -461,14 +467,22 @@ blawxrun(Query, Human) :-
                             new_value = "-P"
                           else:
                             new_value = "P"
+                            skip_value_variable_check = True #It starts with a capital P, but it is not a variable.
                           if value['args'][1] != 0:
                             new_value += str(value['args'][1]) + "Y"
                           if value['args'][2] != 0:
                             new_value += str(value['args'][2]) + "M"
                           if value['args'][3] != 0 or (value['args'][1] == 0 and value['args'][2] == 0):
                             new_value += str(value['args'][3]) + "D"
+                          if value['args'][4] != 0 or value['args'][5] != 0 or value['args'][6] != 0:
+                            new_value += "T"
+                          if value['args'][4] != 0:
+                            new_value += str(value['args'][4] + "H")
+                          if value['args'][5] != 0:
+                            new_value += str(value['args'][5] + "M")
+                          if value['args'][6] != 0:
+                            new_value += str(value['args'][6] + "S")
                           value = new_value
-                          skip_value_variable_check = True #It starts with a capital P, but it is not a variable.
                       # matches = re.findall(r"^date\((\d{4}),(\d{2}),(\d{2})\)$", str(value), re.MULTILINE)
                       # if len(matches):
                       #   (year,month,day) = matches[0]

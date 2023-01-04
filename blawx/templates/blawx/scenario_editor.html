@@ -372,12 +372,14 @@
                     output_html += '>';
                     break;
                 case 'duration':
-                    const iso8601_date_duration_re = /^(-)?P(\d+Y)?(\d+M)?(\d+D)?$/gm;
+                    const iso8601_date_duration_re = /^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$/gm;
                     match = iso8601_date_duration_re.exec(value);
                     var sign_value = "";
                     var year_value = "0";
                     var month_value = "0";
                     var day_value = "0";
+                    var hour_value = "0";
+                    var minute_value = "0";
                     if (typeof(match[1]) === 'undefined') {
                         sign_value = "checked"
                     }
@@ -389,6 +391,12 @@
                     }
                     if (typeof(match[4]) !== 'undefined') {
                         day_value = match[4].slice(0,-1);
+                    }
+                    if (typeof(match[5]) !== 'undefined') {
+                        hour_value = match[5].slice(0,-1);
+                    }
+                    if (typeof(match[6]) !== 'undefined') {
+                        minute_value = match[6].slice(0,-1);
                     }
                     output_html += '<span class="input-group-text px-1">S</span>';
                     output_html += '<div class="input-group-text">';
@@ -414,6 +422,18 @@
                     output_html += '>';
                     output_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
                     output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Days" value="' + day_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_days"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += '>';
+                    output_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
+                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Hours" value="' + hour_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_hours"';
+                    if(from_ontology) {
+                        output_html += ' disabled';
+                    }
+                    output_html += '>';
+                    output_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Minutes" value="' + minute_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_minutes"';
                     if(from_ontology) {
                         output_html += ' disabled';
                     }
@@ -620,6 +640,10 @@
                     output_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_months">';
                     output_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
                     output_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_days">';
+                    output_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
+                    output_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_hours">';
+                    output_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                    output_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_minutes">';
                     break;
                 case 'boolean':
                     output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
@@ -1009,6 +1033,8 @@
                 year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_years');
                 month_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_months');
                 day_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_days');
+                hour_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_hours');
+                minute_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_minutes');
                 if (direction_target.checked) {
                     new_direction = true;
                 } else {
@@ -1017,6 +1043,8 @@
                 new_year = year_target.value;
                 new_month = month_target.value;
                 new_day = day_target.value;
+                new_hour = hour_target.value;
+                new_minute = minute_target.value;
                 if (new_direction) {
                     new_value = "";
                 } else {
@@ -1032,6 +1060,15 @@
                 // The idea here is that if all three are zero, it should come out as P0D
                 if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
                     new_value += new_day + "D";
+                }
+                if (parseInt(new_hour) || parseInt(new_minute)) {
+                    new_value += "T";
+                }
+                if (parseInt(new_hour)) {
+                    new_value += new_hour + "H";
+                }
+                if (parseInt(new_minute)) {
+                    new_value += new_minute + "M";
                 }
             } else {
                 // Get the new value
@@ -1070,6 +1107,8 @@
                 year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_years');
                 month_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_months');
                 day_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_days');
+                hour_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_hours');
+                minute_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_minutes');
                 if (direction_target.checked) {
                     new_direction = true;
                 } else {
@@ -1078,6 +1117,8 @@
                 new_year = year_target.value;
                 new_month = month_target.value;
                 new_day = day_target.value;
+                new_hour = hour_target.value;
+                new_minute = minute_target.value;
                 if (new_direction) {
                     new_value = "";
                 } else {
@@ -1093,6 +1134,15 @@
                 // The idea here is that if all three are zero, it should come out as P0D
                 if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
                     new_value += new_day + "D";
+                }
+                if (parseInt(new_hour) || parseInt(new_minute)) {
+                    new_value += "T"
+                }
+                if (parseInt(new_hour)) {
+                    new_value += new_hour + "H"
+                }
+                if (parseInt(new_minute)) {
+                    new_minute += new_minute + "M"
                 }
             } else {
                 //      Get the new value
