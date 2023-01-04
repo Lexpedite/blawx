@@ -328,6 +328,9 @@ days_between_datetimes(datetime(Y1,Mo1,D1,H1,Mi1,S1),datetime(Y2,Mo2,D2,H2,Mi2,S
 	End is ED + ET,
 	Days is Start - End.
 
+days_between_datetimes(date(Y1,Mo1,D1),Datetime(Y2,Mo2,D2,H2,Mi2,S2),Days) :-
+	days_between_datetimes(datetime(Y1,Mo1,D1,0,0,0),datetime(Y2,Mo2,D2,H2,Mi2,S2),Days).
+
 % This is not attempting to create accurate Julian Dates
 % Julian dates count up from January 1, 4713 BCE.
 % We are counting up from January 1, 1 CE.
@@ -467,6 +470,9 @@ datetime_add_days(datetime(Y,Mo,D,H,Mi,S),Days,datetime(Y2,Mo2,D2,H2,Mi2,S2)) :-
 	EDT is ED+ET,
 	EDT2 is EDT + Days,
 	epochdt_to_datetime(EDT2,datetime(Y2,Mo2,D2,H2,Mi2,S2)).
+
+datetime_add_days(date(Y,Mo,D),Days,datetime(Y2,Mo2,D2,H2,Mi2,S2)) :-
+	datetime_add_days(datetime(Y,Mo,D,0,0,0),Days,datetime(Y2,Mo2,D2,H2,Mi2,S2)).
 
 epoch_time(time(H,Mi,S),ET) :-
 	valid_time(time(H,Mi,S)),
