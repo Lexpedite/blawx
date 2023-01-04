@@ -10,11 +10,10 @@ and breaking changes will not necessarily result in changes to the main version 
 ## [v1.3.33-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.33-alpha) 2022-01-05
 
 ### TODO
-* Make sure both dates and datetimes work with all of the date statement blocks.
+* Finish the testing project for dates and times and durations
 * I think there are epoch things that need to be added for dates, and exist only for datetimes.
 * Generate an example ruledoc demonstrating the new features.
 * Update the dates and durations feature documentation page.
-* Update Scenario Editor to be able to display times and datetimes.
 
 ### Added
 * Datetime and Time Data Types
