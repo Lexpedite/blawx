@@ -157,7 +157,7 @@
       The datetime combination block allows you to either generate a datetime from a date and a time (which is the
       primary use of time values in Blawx), or to extract a date and time from a datetime.
 
-      ![Datetime Combination](/static/blawx/docs/images/blocks/datetime_combination.png)
+      ![Datetime Combination](/static/blawx/docs/images/blocks/datetime_constructor.png)
 
       ## Blawx Understands Leap Years
 
