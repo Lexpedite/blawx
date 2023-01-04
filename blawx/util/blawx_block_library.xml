@@ -3713,7 +3713,7 @@
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="|qYyJG,bM!4KUrJwlryq" deletable="false" movable="false">
-        <field name="TEXT">Use to get the duration (years, months, and days) between two dates</field>
+        <field name="TEXT">Use to get the duration between two dates</field>
       </block>
     </value>
     <value name="HELPURL">

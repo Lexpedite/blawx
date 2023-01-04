@@ -1542,7 +1542,7 @@ scasp_blockset = [{
   ],
   "nextStatement": "STATEMENT",
   "colour": 330,
-  "tooltip": "Use to get the duration (years, months, and days) between two dates",
+  "tooltip": "Use to get the duration between two dates",
   "helpUrl": "/docs/blocks/duration_between/"
 },
 {
