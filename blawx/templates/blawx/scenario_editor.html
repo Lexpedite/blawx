@@ -112,6 +112,15 @@
                             <div id="viewform">
                                 <!-- The view editor will go here. -->
                             </div>
+                            <div>
+                                <button class="btn btn-success" onclick="save_view()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                        <path d="M5.795 12.456A.5.5 0 0 1 5.5 12V4a.5.5 0 0 1 .832-.374l4.5 4a.5.5 0 0 1 0 .748l-4.5 4a.5.5 0 0 1-.537.082z"/>
+                                    </svg>
+                                    <span class="text">Save View</span>
+                                </button>
+                            </div>
                         </div>
         
                     </div>
@@ -819,7 +828,11 @@
             object_html += '" id="' + category + '_' + object + '_content">';
             // For each attribute, add it.
             for(var i=0;i<attribute_found.length;i++) {
-                object_html += draw_attribute(category,object,attribute_found[i]);
+                // Hide if hidden for this object or for all objects.
+                if(!hidden_by_view.includes('view_cat_' + category + "_obj_" + object + "_att_" + attribute_found[i]) &&
+                    !hidden_by_view.includes('view_cat_' + category + '_att_' + attribute_found[i])) {
+                        object_html += draw_attribute(category,object,attribute_found[i]);
+                    }
             }
             // Close the Object Contents
             object_html += '</div>';
@@ -910,7 +923,9 @@
             // add each member
             var objects = Object.keys(input_category['members']);
             for(var i = 0; i < objects.length; i++) {
-                output_html += draw_object(category,objects[i]);
+                if(!hidden_by_view.includes('view_cat_' + category + '_obj_' + objects[i])) {
+                    output_html += draw_object(category,objects[i]);
+                }
             }
             // Close Content
             output_html += '</div>';
@@ -1373,6 +1388,9 @@
             view_form_element.innerHTML = output;
         }
         draw_view_form();
+        function save_view() {
+            return;
+        }
     </script>
 </body>
 </html>
