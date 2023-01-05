@@ -147,6 +147,7 @@
         // Get the ontology
         var parsed_test_response = {'Relevant Attributes': [], 'Relevant Categories': []};
         var ontology = {};
+        var hidden_by_view = [];
         const ontology_request = new XMLHttpRequest();
         ontology_request.onload = function () {
             ontology = JSON.parse(this.responseText);
@@ -923,7 +924,9 @@
             // Go through the categories, and draw each
             var categories = Object.keys(fact_data);
             for(category in categories) {
-                output_html += draw_category(categories[category]);
+                if (!hidden_by_view.includes('view_cat_' + categories[category])) {
+                    output_html += draw_category(categories[category]);
+                }
             }
             output_html += '</nav>';
             // Output the result to facttree
@@ -1291,7 +1294,6 @@
             testrun_request.send(JSON.stringify(fact_data));
         }
         var view_form_element = document.getElementById('viewform');
-        var hidden_by_view = [];
         function toggle_view_hidden(input) {
             index = hidden_by_view.indexOf(input);
             if(index > -1) {
@@ -1299,6 +1301,7 @@
             } else {
                 hidden_by_view.push(input);
             }
+            draw_facts();
         }
         function draw_view_form() {
             output = "<ul>";
