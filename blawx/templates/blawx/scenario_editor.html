@@ -1,4 +1,6 @@
 {% load static %}
+{% load guardian_tags %}
+
 <!DOCTYPE html>
 <html lang="en" class="vh-100">
 <head>
@@ -34,7 +36,7 @@
     <link href="{% static 'blawx/bootstrap-icons.css' %}" rel="stylesheet">
 
     <script src="{% static 'blawx/jquery.min.js' %}"></script>
-
+    {% get_obj_perms request.user for blawxtest as 'blawxtest_perms' %}
 </head>
 <body class="container d-flex flex-column vh-100">
     {% csrf_token %}
@@ -113,7 +115,7 @@
                                 <!-- The view editor will go here. -->
                             </div>
                             <div>
-                                <button class="btn btn-success" onclick="save_view()">
+                                <button class="btn btn-success {% if 'change_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'change_blawxtest' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="save_view()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
                                         <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"></path>
                                     </svg>
