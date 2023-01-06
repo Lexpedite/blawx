@@ -7,7 +7,17 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## [v1.3.34-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.34-alpha) 2022-01-05
+## [v1.3.35-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.35-alpha) 2022-01-06
+
+This release fixes a problem in the Covid Test example, and adds the Old Age Security Act example.
+
+### Adds
+* Old Age Security Act example
+
+### Changes
+* Covid Test example no longer has extraneous blocks, and uses the views feature of the scenario editor.
+
+## [v1.3.34-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.34-alpha) 2022-01-06
 
 This update allows you to configure, from a new tab in the scenario editor, the elements that should and should not be
 displayed when using a particular test in the user interface for collecting facts. You can choose to hide
