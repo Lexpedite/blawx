@@ -1393,10 +1393,10 @@
                 console.log("Test Update Sent");
             }
             view_update_request.open("POST", "{% url 'blawx:update_test_view' blawxtest.ruledoc.id blawxtest %}");
-            testrun_request.setRequestHeader("Content-Type", "application/json");
+            view_update_request.setRequestHeader("Content-Type", "application/json");
             console.log("Sending test view update");
-            testrun_request.setRequestHeader('X-CSRFToken', csrftoken);
-            testrun_request.send(JSON.stringify(hidden_by_view));
+            view_update_request.setRequestHeader('X-CSRFToken', csrftoken);
+            view_update_request.send(JSON.stringify(hidden_by_view));
         }
     </script>
 </body>
