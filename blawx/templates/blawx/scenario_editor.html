@@ -1396,7 +1396,7 @@
             view_update_request.setRequestHeader("Content-Type", "application/json");
             console.log("Sending test view update");
             view_update_request.setRequestHeader('X-CSRFToken', csrftoken);
-            view_update_request.send(JSON.stringify(hidden_by_view));
+            view_update_request.send(JSON.stringify({"view": hidden_by_view}));
         }
     </script>
 </body>
