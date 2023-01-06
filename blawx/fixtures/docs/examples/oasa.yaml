@@ -1,0 +1,11 @@
+- model: blawx.docpage
+  pk: examples/oasa
+  fields:
+    title: Old Age Security Act
+    content: |
+      # Old Age Security Act
+
+      All the example projects are available under the New Project button.
+
+      The Old Age Security Act example demonstrates a more complicated ruleset, using date features, exceptions and defaults,
+      and a series of tests with scenario editor views designed to simplify the interface for testing the behaviour of the rules.
