@@ -161,6 +161,9 @@
         const ontology_request = new XMLHttpRequest();
         ontology_request.onload = function () {
             ontology = JSON.parse(this.responseText);
+            if(ontology.View != "") {
+                hidden_by_view = ontology.View;
+            }
             console.log("Ontology received");
         }
         ontology_request.open("GET", "{% url 'blawx:test_onto' blawxtest.ruledoc.id blawxtest %}", false); // This is asynchronous because the interview request doesn't work until we have the ontology.
