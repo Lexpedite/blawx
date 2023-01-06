@@ -339,7 +339,7 @@ def update_test_view(request,ruledoc,test_name):
     if request.user.has_perm('blawx.change_blawxtest',target):
         test_view_serializer = TestViewUpdateRequestSerializer(data=request.data)
         test_view_serializer.is_valid()
-        target.view = test_view_serializer.validated_data.get('view',target.view)
+        target.view = str(request.data['view'])
         target.save()
         return Response({"Sure, let's say that worked."})
     else:
