@@ -9,24 +9,22 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## [v1.3.34-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.34-alpha) 2022-01-05
 
-This update allows you to configure, from the scenario editor, the elements that should and should not be
+This update allows you to configure, from a new tab in the scenario editor, the elements that should and should not be
 displayed when using a particular test in the user interface for collecting facts. You can choose to hide
 entire categories, specific objects, specific attributes for all objects in a category, or specific attributes
 of specific objects in a category.
 
-This allows you to restrict the categories and attributes and objects that are displayed to the user in
-scenario editor to those that are relevant to the test, giving non-technical users a more streamlined interface.
-
-### To Do
-* Add an endpoint for saving views to the test model, with the correct permissions
-* Have the scenario editor use the view from the ontology when loading the page
-* Implement saving the view for the owner of the test.
+This allows the owner of a test to specify what fields should and should not appear in the scenario editor when
+a test is viewed in that interface.
 
 ### Added
+* the `{ruledoc}/test/{test_name}/update_view` endpoint for saving view information
 * "view" is added to the test model
 * The view associated with a test is now returned as part of the `/onto` endpoint for tests
 * A "view" tab has been added to the scenario editor
-* the facts tab of the scenario editor hides elements on the basis of the info in the view tab
+* the facts tab of the scenario editor hides elements selected to be hidden in the view tab
+* the owner of the test can save the current view
+* the scenario editor automatically uses the view last saved by the test owner.
 
 ## [v1.3.33-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.33-alpha) 2022-01-05
 
