@@ -20,7 +20,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from guardian.mixins import PermissionRequiredMixin
 
-from .serializers import CodeUpdateRequestSerializer
+from .serializers import CodeUpdateRequestSerializer, TestViewUpdateRequestSerializer
 from .models import Workspace, DocPage, RuleDoc, BlawxTest
 
 from preferences import preferences
@@ -328,6 +328,20 @@ def update_test(request,ruledoc,test_name):
         target.scasp_encoding = workspace_serializer.validated_data.get('scasp_encoding', target.scasp_encoding)
         target.save()
         return Response({"That probably worked."})
+    else:
+        return HttpResponseForbidden()
+
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
+def update_test_view(request,ruledoc,test_name):
+    target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    if request.user.has_perm('blawx.change_blawxtest',target):
+        test_view_serializer = TestViewUpdateRequestSerializer(data=request.data)
+        test_view_serializer.is_valid()
+        target.view = test_view_serializer.get('view',target.view)
+        target.save()
+        return Response({"Sure, let's say that worked."})
     else:
         return HttpResponseForbidden()
 
