@@ -126,6 +126,21 @@
       attributes, all those contingent answers will be included, also. You can see which answers are contingent
       by looking to see whether there are parts of the explanations that read "by abduction we conclude that".
 
+      ## View
+
+      The View tab of the scenario editor gives you the ability to customize the Facts tab by hiding various elements
+      from the display. You can hide entire categories, attributes for all members of a category, specific objects
+      that are present in the test, or specific attributes for specific objects present in the test.
+
+      ![View Tab](/static/blawx/docs/images/view_tab.png)
+
+      Only objects declared in the code or the test can be hidden in the View tab. Objects created by the user of
+      scenario editor cannot be hidden.
+
+      If you are the owner of a test, you will have the option of clicking "Save View" in the View tab, which will make
+      the current view the default for the scenario editor interface for that test. This can be used to simplify the
+      Scenario Editor interface and display only the fields that are relevant to a test.
+
       # Tips
 
       ## Known Problems

@@ -7,6 +7,25 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.34-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.34-alpha) 2022-01-05
+
+This update allows you to configure, from a new tab in the scenario editor, the elements that should and should not be
+displayed when using a particular test in the user interface for collecting facts. You can choose to hide
+entire categories, specific objects, specific attributes for all objects in a category, or specific attributes
+of specific objects in a category.
+
+This allows the owner of a test to specify what fields should and should not appear in the scenario editor when
+a test is viewed in that interface.
+
+### Added
+* the `{ruledoc}/test/{test_name}/update_view` endpoint for saving view information
+* "view" is added to the test model
+* The view associated with a test is now returned as part of the `/onto` endpoint for tests
+* A "view" tab has been added to the scenario editor
+* the facts tab of the scenario editor hides elements selected to be hidden in the view tab
+* the owner of the test can save the current view
+* the scenario editor automatically uses the view last saved by the test owner.
+
 ## [v1.3.33-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.33-alpha) 2022-01-05
 
 This update adds "time" to Blawx's date and duration capabilities. It includes new data types,
