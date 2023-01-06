@@ -511,7 +511,10 @@ def get_ontology(request,ruledoc,test_name):
     if request.user.has_perm('blawx.view_ruledoc',ruledoctest):
       test = BlawxTest.objects.get(ruledoc=ruledoc,test_name=test_name)
       result = get_ontology_internal(ruledoc,test_name)
-      result['View'] = test.view
+      if test.view == "":
+        result['View'] = test.view
+      else:
+        result['View'] = json.loads(test.view.replace('\'','\"'))
       return Response(result)
     else:
       return HttpResponseForbidden()
