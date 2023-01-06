@@ -1,4 +1,4 @@
-from .models import Workspace
+from .models import Workspace, BlawxTest
 from rest_framework import serializers
 
 class CodeUpdateRequestSerializer(serializers.ModelSerializer):
