@@ -14,15 +14,16 @@ and breaking changes will not necessarily result in changes to the main version 
 This release allows the owner of a test to save a default set of facts that should be loaded when that test is viewed
 in the scenario editor.
 
-### To Do:
-* Make it easier to duplicate tests.
-
 ### Adds
 * `/save_facts` endpoint for tests
 * fact_scenario is added to the test model
 * fact scenarios are returned in the output of `/onto`
 * scenario editor loads the facts from the ontology before asking the user for input, if they exist.
+* added "save as" control to test interface, which collects new name for test
+* API endpoint for duplicating a test
 
+### Changes
+* updates documentation to reflect availability of "save as" in test editor.
 
 ## [v1.3.35-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.35-alpha) 2022-01-06
 
