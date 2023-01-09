@@ -515,6 +515,10 @@ def get_ontology(request,ruledoc,test_name):
         result['View'] = test.view
       else:
         result['View'] = json.loads(test.view.replace('\'','\"'))
+      if test.facts == "":
+        result['Facts'] = test.facts
+      else:
+        result['Facts'] = json.loads(test.facts.replace('\'','\"'))
       return Response(result)
     else:
       return HttpResponseForbidden()
