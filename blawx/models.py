@@ -54,6 +54,7 @@ class BlawxTest(models.Model):
     scasp_encoding = models.TextField(default="",blank=True)
     tutorial = models.TextField(default="",blank=True)
     view = models.TextField(default="",blank=True)
+    fact_scenario = models.TextField(default="",blank=True)
 
     def __str__(self):
         return self.test_name
