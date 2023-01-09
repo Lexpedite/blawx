@@ -1413,6 +1413,19 @@
             payload.view = hidden_by_view;
             view_update_request.send(body=JSON.stringify(payload));
         }
+        function save_fact_scenario() {
+            var payload = {};
+            save_fact_request = new XMLHttpRquest();
+            save_fact_request.onload = function() {
+                console.log("Fact Sceanrio Sent");
+            }
+            save_fact_request.open("POST", "{% url 'blawx:save_fact_scenario' blawxtest.ruledoc.id blawxtest %}");
+            save_fact_request.setRequestHeader("Content-Type", "application/json");
+            console.log("Sending Fact Update");
+            save_facts_request.setRequestHeader('X-CSRFToken', csrftoken);
+            payload.facts = fact_data;
+            save_facts_request.send(body=JSON.stringify(payload));
+        }
     </script>
 </body>
 </html>
