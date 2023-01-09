@@ -515,10 +515,13 @@ def get_ontology(request,ruledoc,test_name):
         result['View'] = test.view
       else:
         result['View'] = json.loads(test.view.replace('\'','\"'))
+      if test.fact_scenario == "":
+        result['Facts'] = test.fact_scenario
+      else:
+        result['Facts'] = json.loads(test.fact_scenario.replace('\'','\"').replace("True","true").replace("False","false"))
       return Response(result)
     else:
       return HttpResponseForbidden()
-
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])

@@ -83,6 +83,10 @@
       if you want to say that jason and june are friends, you must first create both jason and june in the category "person",
       and then in the "friend" attribute of june, add jason as a value.
 
+      If you are the owner of the test, you will have access to a "Save Default Facts" button which will save the current contents
+      of the scenario editor's facts screen as the default facts that should be loaded when a user views this test in the
+      scenario editor.
+
       ## Assumptions
 
       ![Lock Button](/static/blawx/docs/images/lock_button.png)

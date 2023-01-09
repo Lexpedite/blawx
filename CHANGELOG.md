@@ -7,6 +7,24 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+
+
+## [v1.3.36-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.36-alpha) 2022-01-09
+
+This release allows the owner of a test to save a default set of facts that should be loaded when that test is viewed
+in the scenario editor.
+
+### Adds
+* `/save_facts` endpoint for tests
+* fact_scenario is added to the test model
+* fact scenarios are returned in the output of `/onto`
+* scenario editor loads the facts from the ontology before asking the user for input, if they exist.
+* added "save as" control to test interface, which collects new name for test
+* API endpoint for duplicating a test
+
+### Changes
+* updates documentation to reflect availability of "save as" in test editor.
+
 ## [v1.3.35-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.35-alpha) 2022-01-06
 
 This release fixes a problem in the Covid Test example, and adds the Old Age Security Act example.

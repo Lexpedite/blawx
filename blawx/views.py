@@ -20,7 +20,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from guardian.mixins import PermissionRequiredMixin
 
-from .serializers import CodeUpdateRequestSerializer, TestViewUpdateRequestSerializer
+from .serializers import CodeUpdateRequestSerializer, TestViewUpdateRequestSerializer, SaveFactsRequestSerializer
 from .models import Workspace, DocPage, RuleDoc, BlawxTest
 
 from preferences import preferences
@@ -344,6 +344,36 @@ def update_test_view(request,ruledoc,test_name):
         return Response({"Sure, let's say that worked."})
     else:
         return HttpResponseForbidden()
+
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
+def save_fact_scenario(request,ruledoc,test_name):
+    target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    if request.user.has_perm('blawx.change_blawxtest',target):
+        save_facts_serializer = SaveFactsRequestSerializer(data=request.data)
+        save_facts_serializer.is_valid()
+        target.fact_scenario = str(request.data['fact_scenario'])
+        target.save()
+        return Response({"Well, it didn't crash..."})
+    else:
+        return HttpResponseForbidden()
+
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
+def duplicate_test(request,ruledoc,test_name):
+    target_test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    target_rule = RuleDoc.objects.get(pk=ruledoc)
+    if request.user.has_perm("blawx.add_blawxtest_to_ruledoc",target_rule):
+        # Create a new test from the existing one, use the request.data['new_test_name'], and save it.
+        target_test.pk = None
+        target_test.test_name = request.data["new_test_name"]
+        target_test.save()
+        return Response({"I think it probably worked."})
+    else:
+        return HttpResponseForbidden()
+
 
 @api_view(['POST','GET'])
 @authentication_classes([SessionAuthentication])
