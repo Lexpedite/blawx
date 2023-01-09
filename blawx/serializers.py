@@ -14,4 +14,4 @@ class TestViewUpdateRequestSerializer(serializers.ModelSerializer):
 class SaveFactsRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlawxTest
-        fields = ['facts']
+        fields = ['fact_scenario']
