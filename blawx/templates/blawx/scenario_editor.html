@@ -175,6 +175,8 @@
             }
             if(ontology.Facts != "") {
                 fact_data = ontology.Facts;
+            } else {
+                initialize_facts();
             }
             console.log("Ontology received");
         }
@@ -298,7 +300,6 @@
             }
 
         }
-        initialize_facts();
         
         function toggle_lock(category){
             target = document.getElementById('category_' + category);
@@ -1427,7 +1428,7 @@
             save_fact_request.setRequestHeader("Content-Type", "application/json");
             console.log("Sending Fact Update");
             save_fact_request.setRequestHeader('X-CSRFToken', csrftoken);
-            payload.facts = fact_data;
+            payload.fact_scenario = fact_data;
             save_fact_request.send(body=JSON.stringify(payload));
         }
     </script>
