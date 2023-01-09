@@ -20,7 +20,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from guardian.mixins import PermissionRequiredMixin
 
-from .serializers import CodeUpdateRequestSerializer, TestViewUpdateRequestSerializer
+from .serializers import CodeUpdateRequestSerializer, TestViewUpdateRequestSerializer, SaveFactsRequestSerializer
 from .models import Workspace, DocPage, RuleDoc, BlawxTest
 
 from preferences import preferences
@@ -342,6 +342,20 @@ def update_test_view(request,ruledoc,test_name):
         target.view = str(request.data['view'])
         target.save()
         return Response({"Sure, let's say that worked."})
+    else:
+        return HttpResponseForbidden()
+
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
+def save_fact_scenario(request,ruledoc,test_name):
+    target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    if request.user.has_perm('blawx.change_blawxtest',target):
+        save_facts_serializer = SaveFactsRequestSerializer(data=request.data)
+        save_facts_serializer.is_valid()
+        target.facts = str(request.data['facts'])
+        target.save()
+        return Response({"Well, it didn't crash..."})
     else:
         return HttpResponseForbidden()
 
