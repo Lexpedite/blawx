@@ -353,7 +353,7 @@ def save_fact_scenario(request,ruledoc,test_name):
     if request.user.has_perm('blawx.change_blawxtest',target):
         save_facts_serializer = SaveFactsRequestSerializer(data=request.data)
         save_facts_serializer.is_valid()
-        target.facts = str(request.data['facts'])
+        target.fact_scenario = str(request.data['fact_scenario'])
         target.save()
         return Response({"Well, it didn't crash..."})
     else:
