@@ -36,6 +36,10 @@
       * Bot - Starts BlawxBot using the current test.
       * Delete - Deletes the current test from the Rule, and returns you to the Rule screen.
 
+      In the Test Editor, there is also a "Save As" option that can be accessed by clicking on the drop-down
+      arrow on the "Save" button. This allows you to duplicate the current test under a new name in the same
+      project.
+
       Note that if you do not have the permissions required to use a feature, that button will be disabled.
       
       ### Navigation Pane
