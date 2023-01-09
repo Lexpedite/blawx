@@ -359,6 +359,22 @@ def save_fact_scenario(request,ruledoc,test_name):
     else:
         return HttpResponseForbidden()
 
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
+def duplicate_test(request,ruledoc,test_name):
+    target_test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    target_rule = RuleDoc.objects.get(pk=ruledoc)
+    if request.user.has_perm("blawx.add_blawxtest_to_ruledoc",target_rule):
+        # Create a new test from the existing one, use the request.data['new_test_name'], and save it.
+        target_test.pk = None
+        target_test.test_name = request.data["new_test_name"]
+        target_test.save()
+        return Response({"I think it probably worked."})
+    else:
+        return HttpResponseForbidden()
+
+
 @api_view(['POST','GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])

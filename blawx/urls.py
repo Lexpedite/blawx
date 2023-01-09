@@ -19,6 +19,7 @@ urlpatterns = [
     path('<int:ruledoc>/test/<slug:test_name>/update/', views.update_test, name="update_test_code"),
     path('<int:ruledoc>/test/<slug:test_name>/update_view/', views.update_test_view, name="update_test_view"),
     path('<int:ruledoc>/test/<slug:test_name>/save_facts/', views.save_fact_scenario, name="save_fact_scenario"),
+    path('<int:ruledoc>/test/<slug:test_name>/duplicate/', views.duplicate_test, name="duplicate_test"),
     path('<int:ruledoc>/test/<slug:test_name>/run/',reasoner.run_test, name="run_test"),
     path('<int:ruledoc>/test/<slug:test_name>/onto/',reasoner.get_ontology, name="test_onto"),
     path('<int:ruledoc>/test/<slug:test_name>/interview/',reasoner.interview, name="test_interview"),
