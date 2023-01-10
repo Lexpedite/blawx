@@ -2660,4 +2660,82 @@
   "colour": 330,
   "tooltip": "Use to relate a date and a time to a datetime.",
   "helpUrl": "/docs/blocks/datetime_combination"
+},
+{
+  "type": "collect_list",
+  "message0": "set variable %1 to a list of all the values of %2 returned for %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "list_name",
+      "check": "VARIABLE"
+    },
+    {
+      "type": "input_value",
+      "name": "variable_name",
+      "check": "VARIABLE"
+    },
+    {
+      "type": "input_statement",
+      "name": "search",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 300,
+  "tooltip": "Use to generate a list of values that satisfy the statement.",
+  "helpUrl": "/docs/blocks/collect_list/"
+},
+{
+  "type": "list_aggregation",
+  "message0": "The %1 of the elements of %2 %3",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "aggregation",
+      "options": [
+        [
+          "count",
+          "cnt"
+        ],
+        [
+          "sum",
+          "sum"
+        ],
+        [
+          "average",
+          "ave"
+        ],
+        [
+          "minimum",
+          "min"
+        ],
+        [
+          "maximum",
+          "max"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "list",
+      "check": [
+        "LIST",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "Number",
+  "colour": 300,
+  "tooltip": "Use to calculate a value on the basis of all the values in a list.",
+  "helpUrl": "/docs/blocks/list_aggregation/"
 }]
