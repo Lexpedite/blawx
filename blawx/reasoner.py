@@ -241,7 +241,7 @@ def run_test(request,ruledoc,test_name):
 
       rulefile.write("""
 blawxrun(Query, Human) :-
-    scasp(Query,[tree(Tree)]),
+    scasp(Query,[tree(Tree),source(false)]),
     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
     with_output_to(string(Human),
               human_justification_tree(Tree,[])).
@@ -333,7 +333,7 @@ def get_ontology_internal(ruledoc,test_name):
     
     rulefile.write("""
 blawxrun(Query, Human) :-
-    scasp(Query,[tree(Tree)]),
+    scasp(Query,[tree(Tree),source(false)]),
     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
     with_output_to(string(Human),
 		           human_justification_tree(Tree,[])).
@@ -656,7 +656,7 @@ def interview(request,ruledoc,test_name):
 
       rulefile.write("""
 blawxrun(Query, Human, Tree, Model) :-
-    scasp(Query,[tree(Tree),model(Model)]),
+    scasp(Query,[tree(Tree),model(Model),source(false)]),
     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
     with_output_to(string(Human),
               human_justification_tree(Tree,[])).
