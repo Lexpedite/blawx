@@ -18,10 +18,14 @@ RUN set -eux; \
 WORKDIR /app
 
 RUN set -eux; \
-	wget  https://github.com/JanWielemaker/sCASP/archive/4a75bdaddbe17ad46b68f9a715d138fbddb83b78.zip ; \
-	unzip 4a75bdaddbe17ad46b68f9a715d138fbddb83b78.zip; \
-	mv sCASP-4a75bdaddbe17ad46b68f9a715d138fbddb83b78 sCASP; \
-	rm 4a75bdaddbe17ad46b68f9a715d138fbddb83b78.zip
+    wget  https://github.com/SWI-Prolog/sCASP/archive/refs/heads/master.zip ; \
+	#wget  https://github.com/JanWielemaker/sCASP/archive/4a75bdaddbe17ad46b68f9a715d138fbddb83b78.zip ; \
+	unzip master.zip; \
+	#unzip 4a75bdaddbe17ad46b68f9a715d138fbddb83b78.zip; \
+	mv sCASP-master sCASP; \
+	#mv sCASP-4a75bdaddbe17ad46b68f9a715d138fbddb83b78 sCASP; \
+	rm master.zip
+	#rm 4a75bdaddbe17ad46b68f9a715d138fbddb83b78.zip
 
 COPY --from=prolog /usr/lib/swipl/ /usr/lib/swipl/
 
