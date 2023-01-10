@@ -2738,6 +2738,14 @@ scasp_blockset = [{
   "colour": 300,
   "tooltip": "Use to calculate a value on the basis of all the values in a list.",
   "helpUrl": "/docs/blocks/list_aggregation/"
+},
+{
+  "type": "list_type_selector",
+  "message0": "List",
+  "output": "TYPE",
+  "colour": 160,
+  "tooltip": "Use to select the list type for an attribute.",
+  "helpUrl": "/docs/blocks/list"
 }]
 
 // Make modifications that it is not possible to make in the Developer Tools

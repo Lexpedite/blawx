@@ -6516,4 +6516,41 @@
         <field name="HUE">300</field>
       </block>
     </value>
+  </block><block type="factory_base" id="GTR]mGU.[|ra5L2L@O]b" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">list_type_selector</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="/CE]D7Pp;.J~`/@$]WR.">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="AAd9zSEa.6y;h?^1p.97">
+            <field name="TEXT">List</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="Br1Gu6zE*=LK_MB.lcd~" deletable="false" movable="false">
+        <field name="TEXT">Use to select the list type for an attribute.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="CEn={a,R=XDGV%+8/mf*" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/list</field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="7{(o5!KNMackOBf%)r3E"></shadow>
+      <block type="type_other" id="BAzW3ZJCJ7T=}1Kc1i^R">
+        <field name="TYPE">TYPE</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="0pIG{8Mfz@@S^f50n,3$">
+        <mutation colour="#5ba58c"></mutation>
+        <field name="HUE">160</field>
+      </block>
+    </value>
   </block></xml>
