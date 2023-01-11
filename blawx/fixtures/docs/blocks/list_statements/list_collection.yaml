@@ -1,0 +1,37 @@
+- model: blawx.docpage
+  pk: blocks/list_collection
+  fields:
+    title: List Collection Block
+    content: |
+      # List Collection Block
+
+      ![List Collection Block](/static/blawx/docs/images/blocks/list_collection.png)
+
+      ## Where Is It?
+
+      The List Collection block is located in the data statements drawer of the Blawx toolbox, in the List subdrawer.
+
+      ## What Does It Do?
+
+      The List Collection Block is used to generate a list from (or test that a list matches) the bindings of a certain variable in
+      a set of statements.
+
+      It is used primarily when there are a number of values in your data, and they need to be combined into a list in order to
+      perform aggregate functions on them, such as counting how many there are, or taking their sum or average.
+
+      ## Technical Details
+
+      The List Collection Block is a statement block and can be stacked with other statement blocks. It expects two variable inputs,
+      and one statement input. The first variable is shared with the other statements in the same stack as the List Collection Block,
+      and can be thought of as the output variable. The second variable must be a variable that is used inside the statements.
+      The statements must use the variable provided in the second input.
+
+      The block causes the reasoner to run the statements included in the block, and get all of the answers that would have been
+      returned if those statements had been run as a question. It then takes all of the values for the variable in the second input,
+      and turns them into a list. That list is bound to the variable name in the first input, and can be used in the rest of your code.
+
+      ## Tips
+
+      Whereas when running a question in Blawx results in different explanations for the same bindings being collected as a single "answer",
+      the List Collection Block does not know whether repeating values are significant, and so it includes all duplicates as many times
+      as they are found.

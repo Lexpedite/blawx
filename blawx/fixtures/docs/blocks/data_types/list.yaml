@@ -1,0 +1,23 @@
+- model: blawx.docpage
+  pk: blocks/list
+  fields:
+    title: List Datatype Block
+    content: |
+      # List Datatype Block
+
+      ![List Datatype Block](/static/blawx/docs/images/blocks/list.png)
+
+      ## Where Is It?
+
+      The list datatype block is located in the Data Types drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The list datatype block is used to indicate that an attribute has values that are lists of values.
+
+      ## Technical Details
+
+      The list datatype block is a data type, and can only be used in blocks that are expecting
+      a data type, which is usually only a new attribute block.
+
+      ## Tips

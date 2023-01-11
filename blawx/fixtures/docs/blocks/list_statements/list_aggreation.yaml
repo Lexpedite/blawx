@@ -1,0 +1,29 @@
+- model: blawx.docpage
+  pk: blocks/list_aggregation
+  fields:
+    title: List Aggregation Block
+    content: |
+      # List Aggregation Block
+
+      ![List Aggregation Block](/static/blawx/docs/images/blocks/list_aggregation.png)
+
+      ## Where Is It?
+
+      The List Aggregation Block is located in the data statements drawer of the Blawx toolbox, in the List subdrawer.
+
+      ## What Does It Do?
+
+      The List Aggregation Block is used to calculate a single value from a list of values. It can be used to count how many
+      values are in a list, sum them, average them, or find their maximum or minimum value. 
+
+      ## Technical Details
+
+      The List Aggregation Block is a statement block and can be stacked with other statement blocks. It has an input for the result,
+      which must be a number or a variable. It has a field for the aggregate function that is being chosen, and an input which must be
+      a list or a variable.
+
+      ## Tips
+
+      Blawx does not know in advance whether the list you provide to this block can have the selected aggregate function applied to it.
+      Any list can have its length counted, but only lists of numerical values can be averaged, for example. If you are having problems
+      with the list aggregation block, make sure that the lists you are trying to aggregate contain only the expected type of value.
