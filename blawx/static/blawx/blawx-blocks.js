@@ -2023,28 +2023,48 @@ scasp_blockset = [{
   "output": "LIST",
   "colour": 300,
   "tooltip": "For creating an empty list value.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/empty_list"
 },
 {
   "type": "head_tail",
-  "message0": "%1 followed by %2",
+  "message0": "%1 , %2",
   "args0": [
     {
       "type": "input_value",
       "name": "head",
-      "check": "ENTITY"
+      "check": [
+        "OBJECT",
+        "Number",
+        "Boolean",
+        "DATE",
+        "DATETIME",
+        "TIME",
+        "DURATION",
+        "VARIABLE",
+        "LIST"
+      ]
     },
     {
       "type": "input_value",
       "name": "tail",
-      "check": "ENTITY"
+      "check": [
+        "OBJECT",
+        "Number",
+        "Boolean",
+        "DATE",
+        "DATETIME",
+        "TIME",
+        "DURATION",
+        "VARIABLE",
+        "LIST"
+      ]
     }
   ],
   "inputsInline": true,
   "output": "LIST",
   "colour": 300,
   "tooltip": "For matching the first item in a list, and the remainder of that list. ",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/first_rest"
 },
 {
   "type": "time_type_selector",
@@ -2663,7 +2683,7 @@ scasp_blockset = [{
 },
 {
   "type": "collect_list",
-  "message0": "set variable %1 to a list of all the values of %2 returned for %3",
+  "message0": "%1 is a list of all the values of %2 returned for %3",
   "args0": [
     {
       "type": "input_value",
@@ -2693,8 +2713,16 @@ scasp_blockset = [{
 },
 {
   "type": "list_aggregation",
-  "message0": "The %1 of the elements of %2 %3",
+  "message0": "%1 is the %2 of the elements of %3 %4",
   "args0": [
+    {
+      "type": "input_value",
+      "name": "output",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
     {
       "type": "field_dropdown",
       "name": "aggregation",
@@ -2734,7 +2762,11 @@ scasp_blockset = [{
     }
   ],
   "inputsInline": true,
-  "output": "Number",
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
   "colour": 300,
   "tooltip": "Use to calculate a value on the basis of all the values in a list.",
   "helpUrl": "/docs/blocks/list_aggregation/"
