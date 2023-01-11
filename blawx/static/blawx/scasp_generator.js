@@ -841,7 +841,7 @@ sCASP['head_tail'] = function(block) {
     var value_head = sCASP.valueToCode(block, 'head', sCASP.ORDER_ATOMIC);
     var value_tail = sCASP.valueToCode(block, 'tail', sCASP.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = '[' + value_head + ', ' + value_tail + ']';
+    var code = '[' + value_head + ' | ' + value_tail + ']';
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, sCASP.ORDER_ATOMIC];
 };
