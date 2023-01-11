@@ -829,3 +829,44 @@ sCASP['datetime_construct'] = function(block) {
     var code = 'build_datetime(' + value_date + ',' + value_time + ',' + value_datetime + ')';
     return code;
 };
+
+sCASP['empty_list'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '[]';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['head_tail'] = function(block) {
+    var value_head = sCASP.valueToCode(block, 'head', sCASP.ORDER_ATOMIC);
+    var value_tail = sCASP.valueToCode(block, 'tail', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '[' + value_head + ', ' + value_tail + ']';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, sCASP.ORDER_ATOMIC];
+};
+
+sCASP['collect_list'] = function(block) {
+    var value_list_name = sCASP.valueToCode(block, 'list_name', sCASP.ORDER_ATOMIC);
+    var value_variable_name = sCASP.valueToCode(block, 'variable_name', sCASP.ORDER_ATOMIC);
+    var statements_search = sCASP.statementToCode(block, 'search');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
+sCASP['list_aggregation'] = function(block) {
+    var value_output = sCASP.valueToCode(block, 'output', sCASP.ORDER_ATOMIC);
+    var dropdown_aggregation = block.getFieldValue('aggregation');
+    var value_list = sCASP.valueToCode(block, 'list', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
+sCASP['list_type_selector'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'list';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, sCASP.ORDER_ATOMIC];
+};
