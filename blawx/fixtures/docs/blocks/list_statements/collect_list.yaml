@@ -1,19 +1,19 @@
 - model: blawx.docpage
-  pk: blocks/list_collection
+  pk: blocks/collect_list
   fields:
-    title: List Collection Block
+    title: Collect List Block
     content: |
-      # List Collection Block
+      # Collect List Block
 
-      ![List Collection Block](/static/blawx/docs/images/blocks/list_collection.png)
+      ![Collect List Block](/static/blawx/docs/images/blocks/list_collection.png)
 
       ## Where Is It?
 
-      The List Collection block is located in the data statements drawer of the Blawx toolbox, in the List subdrawer.
+      The Collect List block is located in the data statements drawer of the Blawx toolbox, in the List subdrawer.
 
       ## What Does It Do?
 
-      The List Collection Block is used to generate a list from (or test that a list matches) the bindings of a certain variable in
+      The Collect List Block is used to generate a list from (or test that a list matches) the bindings of a certain variable in
       a set of statements.
 
       It is used primarily when there are a number of values in your data, and they need to be combined into a list in order to
@@ -21,8 +21,8 @@
 
       ## Technical Details
 
-      The List Collection Block is a statement block and can be stacked with other statement blocks. It expects two variable inputs,
-      and one statement input. The first variable is shared with the other statements in the same stack as the List Collection Block,
+      The Collect List Block is a statement block and can be stacked with other statement blocks. It expects two variable inputs,
+      and one statement input. The first variable is shared with the other statements in the same stack as the Collect List Block,
       and can be thought of as the output variable. The second variable must be a variable that is used inside the statements.
       The statements must use the variable provided in the second input.
 
@@ -33,5 +33,5 @@
       ## Tips
 
       Whereas when running a question in Blawx results in different explanations for the same bindings being collected as a single "answer",
-      the List Collection Block does not know whether repeating values are significant, and so it includes all duplicates as many times
+      the Collect List Block does not know whether repeating values are significant, and so it includes all duplicates as many times
       as they are found.
