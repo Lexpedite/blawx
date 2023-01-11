@@ -860,7 +860,20 @@ sCASP['list_aggregation'] = function(block) {
     var dropdown_aggregation = block.getFieldValue('aggregation');
     var value_list = sCASP.valueToCode(block, 'list', sCASP.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var aggregate_predicate = '';
+    switch(dropdown_aggregation) {
+        case "cnt":
+            aggregate_predicate = 'count_blawx_list';
+        case "sum":
+            aggregate_predicate = 'sum_blawx_list';
+        case "avg":
+            aggregate_predicate = 'average_blawx_list';
+        case "min":
+            aggregate_predicate = 'min_blawx_list';
+        case "max":
+            aggregate_predicate = 'max_blawx_list';
+    }
+    var code = aggregate_predicate + '(' + value_list + ' , ' + value_output + ')';
     return code;
 };
 
