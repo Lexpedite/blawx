@@ -17,7 +17,7 @@
       The List Datatype Selector Block allows you to specify that an attribute of a category should hold a list. You do not need
       to specify list-type attributes in order to use lists in your encoding, however.
 
-      ![List Datatype Selector Block](/static/docs/images/blocks/list.png)
+      ![List Datatype Selector Block](/static/blawx/docs/images/blocks/list.png)
 
       ### First / Rest List Block and Empty List Block
 
