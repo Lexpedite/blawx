@@ -1,0 +1,68 @@
+- model: blawx.docpage
+  pk: blocks/first_rest
+  fields:
+    title: First Rest List Block
+    content: |
+      # First Rest List Block
+
+      ![First Rest List Block](/static/blawx/docs/images/blocks/first_rest.png)
+
+      ## Where Is It?
+
+      The First Rest List block is located in the data statements drawer of the Blawx toolbox, in the List subdrawer.
+
+      ## What Does It Do?
+
+      The First Rest List block is used to generate or test against a value representing a list. The first input represents
+      the first element of the list, and the second input represents the whole list with the first element removed. So the
+      first input is the "first" element in the list, and the second input is the "rest" of the list, which is why it is called
+      the "first rest list block".
+
+      ## Technical Details
+
+      The First Rest List Block is a value block of the list type. It can be used anywhere a list is expected, including in attributes that
+      have the list type, and list statement inputs expecting a list.
+
+      The first input binds to the first element of the list represented by the list, and the second input binds to the remainder of the
+      list as a whole.
+
+      The elements of a list must be a variable, data value, object selector, or "empty list".
+
+      ## Tips
+
+      The First Rest List Block is very powerful, but it behaves in ways that are unexpected for people not familiar with it.
+
+      It can be helpful to consider how to create lists of zero, 1, 2, and 3 elements.
+
+      A list of zero elements is created using the Empty List Block.
+
+      ![Empty List Block](/static/blawx/docs/images/blocks/empty_list.png)
+
+      A list of one element is created using the First Rest List Block, putting the only element in the list into the "First" input,
+      and putting the Empty List Block into the "Rest" input, like this:
+
+      ![List Of One](/static/blawx/docs/images/list_of_one.png)
+
+      The last element in a list is always represented in this way, by the value of that element, followed by an empty list.
+
+      To represent a list of two (or more) elements, you nest First Rest List Blocks inside one another. For example, a list of
+      two elements looks like this:
+
+      ![List Of Two](/static/blawx/docs/images/list_of_two.png)
+
+      ### Using Empty List Block inside First Rest List Block
+
+      Note that the First input "unwraps" the first element of the list, and returns it not as a list with one value, but as
+      a value.  The Rest input, however, returns a list of some number of elements, zero or more. The difference between the
+      two means the Empty List Block means different things depending on which input you put it in.
+
+      You will usually only want to put the Empty List Block in the second input, representing the "rest" of the list.
+
+      So if you have a list like `[1, 2, 3, 4]`, where the square brackets indicate that it is a list, and you use the First Rest
+      List Block, the First input will bind to `1` (just the value, not a list with the value 1 inside it), and the Rest input will
+      bind to `[2, 3, 4]` (a list with three values).
+
+      Similarly, if you have a list of only two elements, First will bind to `1`, and Rest will bind to `[2]`. This means that if you
+      use the empty list element in the First input, you are stating that (or testing whether) the first element of the list is an
+      empty list. When you use the Empty List Block in the second input representing the rest of the list,
+      you are asserting only that the whole list has no more elements.

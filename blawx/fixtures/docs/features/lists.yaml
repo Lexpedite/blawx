@@ -1,0 +1,96 @@
+- model: blawx.docpage
+  pk: features/lists
+  fields:
+    title: Lists and Aggregation
+    content: |
+      # Lists and Aggregation
+
+      Often, you will need to take aggregate values, such as a sum of a large number of values, or a count of how many
+      values exist for a given attribute. Blawx provides basic support for dealing with lists of values, through a set
+      of five blocks: the List Datatype Selector Block, the Empty List Block, the First / Rest List Block, the Collect List
+      block, and the List Aggregation Block.
+
+      ## List Blocks
+
+      ### List Datatype Selector
+
+      The List Datatype Selector Block allows you to specify that an attribute of a category should hold a list. You do not need
+      to specify list-type attributes in order to use lists in your encoding, however.
+
+      ![List Datatype Selector Block](/static/docs/images/blocks/list.png)
+
+      ### First / Rest List Block and Empty List Block
+
+      The First / Rest List Block and Empty List Block are used to manually specify lists in your code. The First / Rest Block
+      is unusual compared to how lists are dealt with
+      in other languages, because it accepts only two items, and they are expected to be of different types. The first input is
+      expected to be the "first" value in the list. The second input is supposed to be "rest" of the list, and should be bound to a list,
+      not a value.
+
+      A list of zero elements is created using the Empty List Block.
+
+      ![Empty List Block](/static/blawx/docs/images/blocks/empty_list.png)
+
+      A list of one element is created using the First Rest List Block, putting the only element in the list into the "First" input,
+      and putting the Empty List Block into the "Rest" input, like this:
+
+      ![List Of One](/static/blawx/docs/images/list_of_one.png)
+
+      The last element in a list is always represented in this way, by the value of that element, followed by an empty list.
+
+      To represent a list of two (or more) elements, you nest First Rest List Blocks inside one another. For example, a list of
+      two elements looks like this:
+
+      ![List Of Two](/static/blawx/docs/images/list_of_two.png)
+
+      While a little unintuitive, this structure works better in a visual block language than the way lists are usually generated
+      in text, and it provides an easy format to write recursive rules for dealing with the contents of a list.
+
+      ### The Collect List Block
+
+      ![Collect List Block](/static/blawx/docs/images/blocks/list_collection.png)
+
+      The collect list block is used to collect all of the bindings for a single variable in a given question into a list.
+      Most often when using Blawx you will not create attributes that are themselves lists, but instead you will generate a list
+      from known values provided by the user using the collect list Block.
+
+      ### The List Aggregation Block
+
+      ![List Aggregation Block](/static/blawx/docs/images/blocks/list_aggregation.png)
+
+      Once you have created a list of values, you will be able to use the list aggregation block to generate a single numerical value
+      on the basis of that list. The current options are to count the elements in a list (which will work regardless of the data type
+      of the list elements), and to take the sum, average, minimum, and maximum of a list (which will only work for lists of numbers).
+
+      ## The List Demonstration example
+
+      You can load the List Demonstration example to see an example of how these list blocks can be used.
+
+      The example creates a category called person with an attribute called "score", and an attribute called "average score".
+
+      If you create a person, and give it one or more number values for "score", Blawx will calculate the person's average score
+      after adding a score of 10 to the given list.
+
+      ![Score Code](/static/blawx/docs/images/score_code.png)
+
+      The conditions of the rule follow these steps:
+
+      First, a category test is included, which is good practice, makes your code more efficient, and helps the scenario editor to
+      calculate relevant questions. Then, the collect list block is used to find all of the scores for that person and combine them
+      into a list. Because we don't want to add a score for a person who doesn't have one, the list aggregation block is used to
+      count the number of elements in that list. Collecting a list always succeeds, because an empty list is still a list. So here,
+      the code uses a comparison block to check that there is at least one score provided. If not, the rule will fail at this point.
+
+      Then, the variable assignment block is used to create a new variable for a new list, and it is set to the value 10, followed
+      by the list that had already been collected. Because the second input for the first / rest block expects a list, we can provide
+      the name of the list we previously collected without needing to specify that it is terminated with an empty list.
+
+      Finally, the list aggregation block is used to calculate the average value of this new list, and in the conclusion that value
+      is assigned to the person's average score attribute.
+
+      ## Known Issues
+
+      * Currently, the Collect List block cannot be used in a question.
+      
+      This is a very minimal implementation of lists and aggregation intended as a proof of concept, and will be expanded in future
+      versions of Blawx.

@@ -1,0 +1,12 @@
+- model: blawx.docpage
+  pk: examples/list_demo
+  fields:
+    title: List Demonstration
+    content: |
+      # List Demonstration
+
+      All the example projects are available under the New Project button.
+
+      The List Demonstration example demonstrates the use of lists, list collection, and list aggregation blocks.
+      You provide a person with multiple values for "score". The code adds a "10" to that list of values, and then returns
+      the average of that new list.

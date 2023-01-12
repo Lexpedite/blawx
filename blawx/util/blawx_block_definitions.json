@@ -2023,28 +2023,48 @@
   "output": "LIST",
   "colour": 300,
   "tooltip": "For creating an empty list value.",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/empty_list"
 },
 {
   "type": "head_tail",
-  "message0": "%1 followed by %2",
+  "message0": "%1 , %2",
   "args0": [
     {
       "type": "input_value",
       "name": "head",
-      "check": "ENTITY"
+      "check": [
+        "OBJECT",
+        "Number",
+        "Boolean",
+        "DATE",
+        "DATETIME",
+        "TIME",
+        "DURATION",
+        "VARIABLE",
+        "LIST"
+      ]
     },
     {
       "type": "input_value",
       "name": "tail",
-      "check": "ENTITY"
+      "check": [
+        "OBJECT",
+        "Number",
+        "Boolean",
+        "DATE",
+        "DATETIME",
+        "TIME",
+        "DURATION",
+        "VARIABLE",
+        "LIST"
+      ]
     }
   ],
   "inputsInline": true,
   "output": "LIST",
   "colour": 300,
   "tooltip": "For matching the first item in a list, and the remainder of that list. ",
-  "helpUrl": ""
+  "helpUrl": "/docs/blocks/first_rest"
 },
 {
   "type": "time_type_selector",
@@ -2660,4 +2680,102 @@
   "colour": 330,
   "tooltip": "Use to relate a date and a time to a datetime.",
   "helpUrl": "/docs/blocks/datetime_combination"
+},
+{
+  "type": "collect_list",
+  "message0": "%1 is a list of all the values of %2 returned for %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "list_name",
+      "check": "VARIABLE"
+    },
+    {
+      "type": "input_value",
+      "name": "variable_name",
+      "check": "VARIABLE"
+    },
+    {
+      "type": "input_statement",
+      "name": "search",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 300,
+  "tooltip": "Use to generate a list of values that satisfy the statement.",
+  "helpUrl": "/docs/blocks/collect_list/"
+},
+{
+  "type": "list_aggregation",
+  "message0": "%1 is the %2 of the elements of %3 %4",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "output",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "field_dropdown",
+      "name": "aggregation",
+      "options": [
+        [
+          "count",
+          "cnt"
+        ],
+        [
+          "sum",
+          "sum"
+        ],
+        [
+          "average",
+          "ave"
+        ],
+        [
+          "minimum",
+          "min"
+        ],
+        [
+          "maximum",
+          "max"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "list",
+      "check": [
+        "LIST",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 300,
+  "tooltip": "Use to calculate a value on the basis of all the values in a list.",
+  "helpUrl": "/docs/blocks/list_aggregation/"
+},
+{
+  "type": "list_type_selector",
+  "message0": "List",
+  "output": "TYPE",
+  "colour": 160,
+  "tooltip": "Use to select the list type for an attribute.",
+  "helpUrl": "/docs/blocks/list"
 }]

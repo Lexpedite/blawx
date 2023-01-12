@@ -17,6 +17,7 @@ from swiplserver import PrologMQI, PrologError, PrologLaunchError
 from .models import Workspace, RuleDoc, BlawxTest
 from .ldap import ldap_code
 from .dates import scasp_dates, scasp_now
+from .aggregates import scasp_aggregates
 
 from rest_framework import permissions
 
@@ -252,6 +253,7 @@ blawxrun(Query, Human) :-
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
       rulefile.write(scasp_now + '\n\n')
+      rulefile.write(scasp_aggregates + '\n\n')
 
 
       rulefile.write(ruleset + '\n')
@@ -344,6 +346,7 @@ blawxrun(Query, Human) :-
     rulefile.write(ldap_code + '\n\n')
     rulefile.write(scasp_dates + '\n\n')
     rulefile.write(scasp_now + '\n\n')
+    rulefile.write(scasp_aggregates + '\n\n')
 
 
     rulefile.write(ruleset)
@@ -667,6 +670,7 @@ blawxrun(Query, Human, Tree, Model) :-
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
       rulefile.write(scasp_now + '\n\n')
+      rulefile.write(scasp_aggregates + '\n\n')
 
 
       rulefile.write(ruleset + '\n')
@@ -799,6 +803,7 @@ def generate_answers(answers):
   models = []
   result = []
   for a in answers:
+    print(answers)
     new_model = {}
     new_model['Variables'] = {}
     new_model['Terms'] = {}
@@ -806,7 +811,10 @@ def generate_answers(answers):
     new_model['Residuals'] = {}
     for (k,v) in a.items():
       if k == "Human":
-          new_model['Tree'] = generate_list_of_lists(v[0:-5])
+          if v != '\n':
+            new_model['Tree'] = generate_list_of_lists(v[0:-5])
+          else:
+            new_model['Tree'] = ['No explanation.']
       elif k == 'Model':
         new_model['Terms'] = v
       elif k == "Tree":

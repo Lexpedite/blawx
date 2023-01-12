@@ -1,0 +1,24 @@
+- model: blawx.docpage
+  pk: blocks/empty_list
+  fields:
+    title: Empty List Block
+    content: |
+      # Empty List Block
+
+      ![Empty List Block](/static/blawx/docs/images/blocks/empty_list.png)
+
+      ## Where Is It?
+
+      The Empty List block is located in the data statements drawer of the Blawx toolbox, in the List subdrawer.
+
+      ## What Does It Do?
+
+      The Empty List block is used to provide a value representing empty list. This can be used on its own to indicate that a list is completely empty,
+      or it can be used in the "rest" portion of a First Rest Block to indicate that the list has no further elements.
+
+      ## Technical Details
+
+      The Empty List Block is a value block of the list type. It can be used anywhere a list is expected, including in attributes that
+      have the list type, and list statement inputs expecting a list.
+
+      ## Tips

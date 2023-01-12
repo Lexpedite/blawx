@@ -13,6 +13,8 @@ function blawxTypeToBlocklyType(blawxType) {
       return "TIME";
     } else if (blawxType == "Stopwatch Duration") {
       return "DURATION";
+    } else if (blawxType == "List") {
+      return "LIST";
     } else {
       return 'OBJECT';
     }
