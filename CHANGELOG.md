@@ -7,7 +7,22 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.37-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.37-alpha) 2022-01-11
 
+This release adds features for lists and aggregation.
+
+### To Do
+* The findall is getting a non-existance error when run in the reasoner, that might be a SWIPL version issue.
+* Explanations for the aggregate functions are being truncated strangely
+* Add an example, add the example to the documentation
+* Documentation may need a page specifically on lists
+* Create a testing Blawx file for the list features.
+
+### Adds
+* The List datatype
+* The List subdrawer to the Data Statements
+* Collect List, List Aggregation, List Datatype Selector, First Rest List Block and Empty List Block
+* Documentation for New List Blocks
 
 ## [v1.3.36-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.36-alpha) 2022-01-09
 
