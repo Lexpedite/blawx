@@ -851,7 +851,7 @@ sCASP['collect_list'] = function(block) {
     var value_variable_name = sCASP.valueToCode(block, 'variable_name', sCASP.ORDER_ATOMIC);
     var statements_search = sCASP.statementToCode(block, 'search');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'findall(' + value_variable_name + ' , ' + statements_search + ' , ' + value_list_name + ')';
     return code;
 };
 
@@ -864,12 +864,16 @@ sCASP['list_aggregation'] = function(block) {
     switch(dropdown_aggregation) {
         case "cnt":
             aggregate_predicate = 'count_blawx_list';
+            break;
         case "sum":
             aggregate_predicate = 'sum_blawx_list';
-        case "avg":
+            break;
+        case "ave":
             aggregate_predicate = 'average_blawx_list';
+            break;
         case "min":
             aggregate_predicate = 'min_blawx_list';
+            break;
         case "max":
             aggregate_predicate = 'max_blawx_list';
     }
