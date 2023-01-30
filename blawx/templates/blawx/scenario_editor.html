@@ -211,6 +211,148 @@
             return new_text
         }
 
+        var excluded = ['datetime_diff_duration','lte'];
+
+        function convertModelToParagraphs(model, root = true) {
+            var output_html = "";
+            // If is the root, do the starting stuff
+            if (root) {
+                output_html += "<ul>";
+            }
+            var statement = model.args[0]
+            var reasons = model.args[1]
+            var predicate_name = model.args[0].functor
+            // add the NLG for the current statement.
+            if(statement != "query") {
+
+                output_html += "<p>"
+                if (!excluded.includes(predicate_name)) {
+                    output_html += "We know "
+                } else {
+                    output_html += "We can calculate that "
+                }
+                output_html += answerNLG(statement);
+                // If there are sub-justifications, add the NLG for each sub-justification, and add it
+                // as a collapsible link.
+                
+                if (reasons.length && !excluded.includes(predicate_name) ) {
+                    output_html += " because ";
+                    for(var i=0; i< reasons.length; i++) {
+                        if(i == reasons.length-1 && reasons.length > 1) {
+                            output_html += "; and "
+                        } else if (i!=0) {
+                            output_html += "; "
+                        }
+                        output_html += answerNLG(reasons[i].args[0])
+                    }
+                    output_html += ".</p>"
+                } else if (!excluded.includes(predicate_name)) { // there are no reasons, so it was specified as a fact
+                    output_html += ", which was provided as a fact.</p>"
+                } else {
+                    output_html += ".</p>"
+                }
+                // Add each sub-justification as a collapse target.
+            }
+            // Recurse on the content of that thing.
+            if (!excluded.includes(predicate_name)) {
+                for (var i=0; i<reasons.length; i++) {
+                    output_html += convertModelToParagraphs(reasons[i],false)
+                }
+            }
+            // If this is the root, do the stopping stuff
+            if (root) {
+                output_html += "</ul>"
+            }
+            return output_html;
+        }
+
+        function displayValue(term) {
+            if(term.hasOwnProperty('functor')) {
+                switch(term.functor) {
+                    case 'date':
+                        return term.args[0] + "/" + term.args[1] + "/" + term.args[2]
+                        break;
+                    case 'datetime':
+                        return term.args[0] + "/" + term.args[1] + "/" + term.args[2] + " " + term.args[3] + ":" + term.args[4].toString().padStart(2,"0") + ":" + term.args[5].toString().padStart(2,"0")
+                        break;
+                    case 'duration':
+                        if (term.args[0] == 1) {
+                            var direction = "into the future"
+                        } else {
+                            var direction = "into the past"
+                        }
+                        return (term.args[1] != 0 ? term.args[1] + " years, " : "") + 
+                                (term.args[2] != 0 ? term.args[2] + " months, " : "") + 
+                                (term.args[3] != 0 ? term.args[3] + " days, " :"") + 
+                                (term.args[4] != 0 ? term.args[4] + " hours, " : "") + 
+                                (term.args[5] != 0 ? term.args[5] + " minutes, " : "") +
+                                (term.args[6] != 0 ? term.args[6] + " seconds " : "") + 
+                                direction
+                        break;
+                    case 'time':
+                        return term.args[0] + ":" + term.args[1].toString().padStart(2,"0") + ":" + term.args[2].toString().padStart(2,"0")
+                        break;
+                    default:
+                        return 'Unknown predicate type'
+                }
+            } else {
+                return term
+            }
+        }
+
+        function answerNLG(model) {
+            if(model == "query") { // this is the root of a model
+                // This doesn't need a representation
+                return "root";
+            } else if (model.functor == "-") { // this is a "because" node
+                return "because";
+            } else { // this should be a real one, now
+                predicate_name = model.functor;
+                if (predicate_name == "datetime_diff_duration") {
+                    return "the amount of time between " + displayValue(model.args[0]) + " and " + displayValue(model.args[1]) + " is " + displayValue(model.args[2]) 
+                }
+                if (predicate_name == "lte") {
+                    return displayValue(model.args[0]) + " is less than " + displayValue(model.args[1])
+                }
+                predicate_type = model.args.length; // 1 is category, 2 is attribute
+                var prefix = "";
+                var infix = "";
+                var postfix = "";
+                if (predicate_type == 1) {
+                    object = model.args[0]
+                    // Check for a category NLG.
+                    for (var i=0; i < ontology.CategoryNLG.length; i++) {
+                        if (ontology.CategoryNLG[i].Category == predicate_name) {
+                            prefix = ontology.CategoryNLG[i].Prefix;
+                            postfix = ontology.CategoryNLG[i].Postfix;
+                            
+                            return prefix + " " + displayValue(object) + " " + postfix;
+                        }
+                    }
+                    return displayValue(object) + " is a " + predicate_name;
+                } else { // it is an attribute
+                    object = model.args[0];
+                    value = model.args[1];
+                        
+                    for(var i=0; i < ontology.AttributeNLG.length; i++) {
+                            
+                        if (ontology.AttributeNLG[i].Attribute == predicate_name) {
+                            prefix = ontology.AttributeNLG[i].Prefix;
+                            postfix = ontology.AttributeNLG[i].Postfix;
+                            infix = ontology.AttributeNLG[i].Infix;
+                            order = ontology.AttributeNLG[i].Order;
+                            if (order == "ov") {
+                                return prefix + " " + displayValue(object) + " " + infix + " " + displayValue(value) + " " + postfix;
+                            } else {
+                                return prefix + " " + displayValue(value) + " " + infix + " " + displayValue(object) + " " + postfix;
+                            }
+                        }
+                    }
+                    return displayValue(object) + "'s " + predicate_name + " is " + displayValue(value);
+                }
+            }
+        }
+
         function convertModelToTree(list, answer, explanation, prefix = "", root = true) {
             output_html = "";
             if (root) {
@@ -1301,6 +1443,7 @@
                             }
                                 
                             output_content += convertModelToTree(models[j].Tree, count, model_count);
+                            output_content += convertModelToParagraphs(models[j].Raw);
                             output_content += '</div></div>';
 
                         }
