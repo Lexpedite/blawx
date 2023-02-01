@@ -213,16 +213,68 @@
 
         var excluded = ['datetime_diff_duration','lte'];
 
-        function convertModelToParagraphs(model, root = true) {
-            var output_html = "";
-            // If is the root, do the starting stuff
-            if (root) {
-                output_html += "<ul>";
+        function getNodeName(node) {
+            var node_name = "";
+            var statement = node;
+            if (statement != "query") {
+
+                var predicate = statement.functor;
+                var parameters = statement.args;
+                
+                var node_name = predicate
+                for (var i =0; i < parameters.length; i++) {
+                    node_name += "_" + displayValue(parameters[i],false)
+                }
+            } else {
+                node_name = statement;
             }
-            var statement = model.args[0]
-            var reasons = model.args[1]
-            var predicate_name = model.args[0].functor
-            // add the NLG for the current statement.
+            return encodeURIComponent(node_name).replace('%','_');
+        }
+
+        function getNodesFromModel(model,show_this_node) {
+            // The structure looks like this
+            // functor: -, args: statement, reasons
+            // statement {functor: predicate, args: parameters}
+            // reasons: [new structures]
+            var node_list = [];
+            // In the current node, we need the statement, and we need the reasons
+            var statement = model.args[0];
+            var reasons = model.args[1];
+            var predicate = statement.functor;
+            var parameters = statement.args;
+            
+            var node_name = getNodeName(model)
+            var show_subnodes = false;
+            if(statement == "query") {
+                show_subnodes = true;
+            }
+            var new_node = {'name': node_name, 'content': convertNodeToParagraph(model,show_this_node)}
+            node_list.push(new_node);
+            var subnodes = [];
+            if (!excluded.includes(predicate)) {
+                for (var i=0; i < reasons.length; i++) {
+                    subnodes = subnodes.concat(getNodesFromModel(reasons[i],show_subnodes));
+                }
+            }
+            for (var i=0; i < subnodes.length; i++) {
+                if(!node_list.includes(subnodes[i])) {
+                    node_list.push(subnodes[i]);
+                }
+            }
+            return node_list;
+        }
+
+        function convertNodeToParagraph(node,show) {
+            var output_html = "";
+            var statement = node.args[0]
+            output_html += '<div class="new_explanation collapse';
+            if (show) {
+                output_html += " show";
+            }
+            output_html +='" id="' + getNodeName(statement) + '">';
+            var reasons = node.args[1]
+            var predicate_name = node.args[0].functor
+
             if(statement != "query") {
 
                 output_html += "<p>"
@@ -236,44 +288,39 @@
                 // as a collapsible link.
                 
                 if (reasons.length && !excluded.includes(predicate_name) ) {
-                    output_html += " because ";
+                    output_html += " because <ul>";
                     for(var i=0; i< reasons.length; i++) {
                         if(i == reasons.length-1 && reasons.length > 1) {
                             output_html += "; and "
                         } else if (i!=0) {
                             output_html += "; "
                         }
-                        output_html += answerNLG(reasons[i].args[0])
+                        output_html += '<li><button class="btn btn-outline-primary py-0" data-bs-toggle="collapse" data-bs-target="#' + getNodeName(reasons[i].args[0]) + '" role="button" aria-expanded="true" aria-controls="' + getNodeName(reasons[i].args[0]) + '">';
+                        output_html += answerNLG(reasons[i].args[0]);
+                        output_html += '</button>';
                     }
+                    output_html += "</ul>"
                     output_html += ".</p>"
                 } else if (!excluded.includes(predicate_name)) { // there are no reasons, so it was specified as a fact
                     output_html += ", which was provided as a fact.</p>"
                 } else {
                     output_html += ".</p>"
                 }
-                // Add each sub-justification as a collapse target.
             }
-            // Recurse on the content of that thing.
-            if (!excluded.includes(predicate_name)) {
-                for (var i=0; i<reasons.length; i++) {
-                    output_html += convertModelToParagraphs(reasons[i],false)
-                }
-            }
-            // If this is the root, do the stopping stuff
-            if (root) {
-                output_html += "</ul>"
-            }
+            output_html += "</div>"
             return output_html;
         }
 
-        function displayValue(term) {
+        
+        function displayValue(term,human=true) {
+            var output = "";
             if(term.hasOwnProperty('functor')) {
                 switch(term.functor) {
                     case 'date':
-                        return term.args[0] + "/" + term.args[1] + "/" + term.args[2]
+                        output = term.args[0] + "/" + term.args[1] + "/" + term.args[2]
                         break;
                     case 'datetime':
-                        return term.args[0] + "/" + term.args[1] + "/" + term.args[2] + " " + term.args[3] + ":" + term.args[4].toString().padStart(2,"0") + ":" + term.args[5].toString().padStart(2,"0")
+                        output = term.args[0] + "/" + term.args[1] + "/" + term.args[2] + " " + term.args[3] + ":" + term.args[4].toString().padStart(2,"0") + ":" + term.args[5].toString().padStart(2,"0")
                         break;
                     case 'duration':
                         if (term.args[0] == 1) {
@@ -281,7 +328,7 @@
                         } else {
                             var direction = "into the past"
                         }
-                        return (term.args[1] != 0 ? term.args[1] + " years, " : "") + 
+                        output = (term.args[1] != 0 ? term.args[1] + " years, " : "") + 
                                 (term.args[2] != 0 ? term.args[2] + " months, " : "") + 
                                 (term.args[3] != 0 ? term.args[3] + " days, " :"") + 
                                 (term.args[4] != 0 ? term.args[4] + " hours, " : "") + 
@@ -290,13 +337,18 @@
                                 direction
                         break;
                     case 'time':
-                        return term.args[0] + ":" + term.args[1].toString().padStart(2,"0") + ":" + term.args[2].toString().padStart(2,"0")
+                        output = term.args[0] + ":" + term.args[1].toString().padStart(2,"0") + ":" + term.args[2].toString().padStart(2,"0")
                         break;
                     default:
-                        return 'Unknown predicate type'
+                        output = 'Unknown predicate type'
                 }
             } else {
-                return term
+                output = term
+            }
+            if (human) {
+                return output;
+            } else {
+                return encodeURIComponent(output).replaceAll('%','_');
             }
         }
 
@@ -1442,8 +1494,13 @@
                                 }
                             }
                                 
-                            output_content += convertModelToTree(models[j].Tree, count, model_count);
-                            output_content += convertModelToParagraphs(models[j].Raw);
+                            //output_content += convertModelToTree(models[j].Tree, count, model_count);
+                            var explanations = getNodesFromModel(models[j].Raw,false);
+                            for (var k = 0; k < explanations.length; k++) {
+                                output_content += explanations[k].content;
+                            }
+                            //output_content += getNodesFromModel(models[j].Raw);
+                            // output_content += convertModelToParagraphs(models[j].Raw);
                             output_content += '</div></div>';
 
                         }
