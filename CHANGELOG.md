@@ -16,7 +16,6 @@ see how the Scenario Editor uses the Blawx reasoner API.
 * Figure out why variables have disappeared for some queries.
 * Solve problem where use of "rule" output screws up the ID's used for collapsing.
 * Make IDs for explanation parts answer and explanation specific.
-* Stop it from justifying the global constraints check?
 * Make it preface assumptions that are used in the explanation.
 * Make the buttons change state when the relevant section of the explanation is already shown.
 * Stop it from justifying conclusions that are partially ground. (no evidence that X is true for anything)
@@ -29,6 +28,7 @@ see how the Scenario Editor uses the Blawx reasoner API.
 * Dates, Times, Datetimes and Durations are displayed in explanations using a human-friendly format.
 * Updated copyright notice on all pages.
 * Scenario editor now caches the responses from the /rule endpoint to avoid making multiple calls and slowing the display of answers.
+* The explanations in Scenario Editor no longer contain information about global constraint checks.
 
 ## [v1.3.37-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.37-alpha) 2022-01-12
 

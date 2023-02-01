@@ -296,7 +296,7 @@
             var reasons = node.args[1]
             var predicate_name = node.args[0].functor
 
-            if(statement != "query") {
+            if(statement != "query" && statement != "o_nmr_check") {
 
                 output_html += "<p>"
                 if (!excluded.includes(predicate_name)) {
