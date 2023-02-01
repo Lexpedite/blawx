@@ -14,10 +14,12 @@ see how the Scenario Editor uses the Blawx reasoner API.
 
 ### TODO
 * Figure out why variables have disappeared for some queries.
-* Add the ability to deal with all kinds of data statement blocks in the NLG, including defeasibility and using the /rule endpoint
-* Make it handle variables in answers
+* Solve problem where use of "rule" output screws up the ID's used for collapsing.
+* Make IDs for explanation parts answer and explanation specific.
+* Stop it from justifying the global constraints check?
 * Make it preface assumptions that are used in the explanation.
 * Make the buttons change state when the relevant section of the explanation is already shown.
+* Stop it from justifying conclusions that are partially ground. (no evidence that X is true for anything)
 
 ### Adds
 * The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.
@@ -26,6 +28,7 @@ see how the Scenario Editor uses the Blawx reasoner API.
 * Explanations in the Scenario Editor are now displayed using a non-nested paragraph format.
 * Dates, Times, Datetimes and Durations are displayed in explanations using a human-friendly format.
 * Updated copyright notice on all pages.
+* Scenario editor now caches the responses from the /rule endpoint to avoid making multiple calls and slowing the display of answers.
 
 ## [v1.3.37-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.37-alpha) 2022-01-12
 
