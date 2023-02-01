@@ -7,6 +7,23 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.38-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.38-alpha) 2022-01-??
+
+This update improves the display of answers in the scenario editor, and makes it easier for developers to
+see how the Scenario Editor uses the Blawx reasoner API.
+
+### TODO
+* Figure out why variables have disappeared for some queries.
+* Add the ability to deal with all kinds of data statement blocks in the NLG, including defeasibility and using the /rule endpoint
+* Make the buttons change state when the relevant section of the explanation is already shown.
+
+### Adds
+* The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.
+
+### Changes
+* Explanations in the Scenario Editor are now displayed using a non-nested paragraph format.
+* Dates, Times, Datetimes and Durations are displayed in explanations using a human-friendly format.
+
 ## [v1.3.37-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.37-alpha) 2022-01-12
 
 This release adds features for lists and aggregation.
