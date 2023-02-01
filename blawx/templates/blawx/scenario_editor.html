@@ -207,29 +207,29 @@
 
 
         var expanded={}; // A list of tree elements that have been expanded.
-        
+        var section_texts = {};
         function addSectionReferences(text) {
-            // Search the string for the list of section references
-            var match = text.match(/according to (sec_.*)_section/);
-            var rule_text = "This will be the text of the act."
-            if (match) {
-                var eId = match[1];
+            if (!(text in section_texts)) {
+
+                // Search the string for the list of section references
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "../../../rule/" + eId + "/", false);
+                xhttp.open("GET", "../../../rule/" + text.slice(0,-8) + "/", false);
                 xhttp.setRequestHeader('X-CSRFToken', csrftoken);
                 xhttp.send();
                 output_object = JSON.parse(xhttp.responseText);
                 rule_text = output_object['text'];
-                text = text.replace("according to " + eId + "_section",
-                    'according to <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="' + rule_text + '">' + eId + '</a>')
-            }
-            var new_text = text.replace(/(sec_.*)_section/g, "$1");
-            new_text = new_text.replace(/sec_/g, "section ");
-            new_text = new_text.replace(/__subsec_/g, " subsection ");
-            new_text = new_text.replace(/__para_/g, " paragraph ");
-            new_text = new_text.replace(/__subpara_/g, ' sub-paragraph ');
-            new_text = new_text.replace(/__span_/g, ' span ');
-            return new_text
+                var new_text = text.replace(/(sec_.*)_section/g, "$1");
+                new_text = new_text.replace(/sec_/g, "section ");
+                new_text = new_text.replace(/__subsec_/g, " subsection ");
+                new_text = new_text.replace(/__para_/g, " paragraph ");
+                new_text = new_text.replace(/__subpara_/g, ' sub-paragraph ');
+                new_text = new_text.replace(/__span_/g, ' span ');
+                output = '<a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="' + rule_text + '">';
+                output += new_text;
+                output += '</a>'
+                section_texts[text] = output;
+                }
+            return section_texts[text];
         }
 
         var excluded = ['datetime_diff_duration','lte'];
@@ -237,7 +237,7 @@
         function getNodeName(node) {
             var node_name = "";
             var statement = node;
-            if (statement != "query") {
+            if (statement != "query" && statement != "o_nmr_check") {
 
                 var predicate = statement.functor;
                 var parameters = statement.args;
@@ -300,6 +300,7 @@
 
                 output_html += "<p>"
                 if (!excluded.includes(predicate_name)) {
+                    // Here we will need to check for assumptions, so they can be displayed.
                     output_html += "We know "
                 } else {
                     output_html += "We can calculate that "
@@ -360,6 +361,12 @@
                     case 'time':
                         output = term.args[0] + ":" + term.args[1].toString().padStart(2,"0") + ":" + term.args[2].toString().padStart(2,"0")
                         break;
+                    case 'defeated':
+                        output = answerNLG(term);
+                        break;
+                    case 'refuted':
+                        output = answerNLG(term);
+                        break;
                     default:
                         output = 'Unknown predicate type'
                 }
@@ -377,9 +384,30 @@
             if(model == "query") { // this is the root of a model
                 // This doesn't need a representation
                 return "root";
+            } else if(typeof(model) == 'string') {
+                if (model.charAt(0) === model.charAt(0).toUpperCase()){
+                    return "anything"
+                }
+                if (model == "o_nmr_check") {
+                    return "all global constraints hold"
+                }
             } else if (model.functor == "-") { // this is a "because" node
                 return "because";
-            } else { // this should be a real one, now
+            } else if (model.functor == "not") {
+                return "there is no evidence that " + answerNLG(model.args[0]);
+            } else if (model.functor == "legally_holds") {
+                return "it legally holds that according to " + addSectionReferences(model.args[0]) + ", " + answerNLG(model.args[1]);
+            } else if (model.functor == "according_to") {
+                return "according to " + addSectionReferences(model.args[0]) + ', ' + answerNLG(model.args[1]);
+            } else if (model.functor == "defeated") {
+                return "the conclusion in " + addSectionReferences(model.args[0]) + " that " + answerNLG(model.args[1]) + " is defeated"
+            } else if (model.functor == "refuted") {
+                return "the conclusion in " + addSectionReferences(model.args[0]) + " that " + answerNLG(model.args[1]) + " is refuted"
+            } else if (model.functor == "opposes") {
+                return "the conclusion " + answerNLG(model.args[0]) + " opposes the conclusion " + answerNLG(model.args[1]);
+            } else if (model.functor == "abduced" ) {
+                return "it is presumed that " + answerNLG(model.args[0]);
+            } else { // this should be a real one, now 
                 predicate_name = model.functor;
                 if (predicate_name == "datetime_diff_duration") {
                     return "the amount of time between " + displayValue(model.args[0]) + " and " + displayValue(model.args[1]) + " is " + displayValue(model.args[2]) 
