@@ -15,6 +15,8 @@ see how the Scenario Editor uses the Blawx reasoner API.
 ### TODO
 * Figure out why variables have disappeared for some queries.
 * Add the ability to deal with all kinds of data statement blocks in the NLG, including defeasibility and using the /rule endpoint
+* Make it handle variables in answers
+* Make it preface assumptions that are used in the explanation.
 * Make the buttons change state when the relevant section of the explanation is already shown.
 
 ### Adds
