@@ -23,6 +23,7 @@ see how the Scenario Editor uses the Blawx reasoner API.
 ### Changes
 * Explanations in the Scenario Editor are now displayed using a non-nested paragraph format.
 * Dates, Times, Datetimes and Durations are displayed in explanations using a human-friendly format.
+* Updated copyright notice on all pages.
 
 ## [v1.3.37-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.37-alpha) 2022-01-12
 
