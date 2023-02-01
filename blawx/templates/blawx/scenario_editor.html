@@ -86,6 +86,7 @@
               <button class="nav-link active" id="nav-facts-tab" data-bs-toggle="tab" data-bs-target="#nav-facts" type="button" role="tab" aria-controls="nav-facts" aria-selected="true">Facts</button>
               <button class="nav-link" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#nav-answers" type="button" role="tab" aria-controls="nav-answers" aria-selected="false">Answers</button>
               <button class="nav-link" id="nav-view-tab" data-bs-toggle="tab" data-bs-target="#nav-view" type="button" role="tab" aria-controls="nav-view" aria-selected="false">View</button>
+              <button class="nav-link" id="nav-devel-tab" data-bs-toggle="tab" data-bs-target="#nav-devel" type="button" role="tab" aria-controls="nav-devel" aria-selected="false">Devel</button>
             </div>
           </nav>
           <div class="tab-content card-body" id="nav-tabContent">
@@ -129,6 +130,26 @@
                                     </svg>
                                     <span class="text">Save Default View</span>
                                 </button>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-devel" role="tabpanel" aria-labelledby="nav-devel-tab">
+                <div class="container py-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Devel</h5>
+                            This tab shows the payload sent to the Blawx interview API, and the response
+                            received, to illustrate use of the Blawx interview API for developers.
+                            <h6>Payload</h6>
+                            <div id="payload">
+                                <!-- The payload will go here. -->
+                            </div>
+                            <h6>Response</h6>
+                            <div id="response">
+                                <!-- The response will go here. -->
                             </div>
                         </div>
         
@@ -1434,11 +1455,16 @@
         };
         draw_facts();
         var answer_element = document.getElementById('answers');
+        var payload_element = document.getElementById('payload');
+        var response_element = document.getElementById('response');
         function run_test() {
             var testrun_request = new XMLHttpRequest();
             testrun_request.onload = function () {
                 parsed_test_response = JSON.parse(this.responseText);
                 console.log("Test response received")
+                payload_element.innerHTML = '<pre>' + JSON.stringify(fact_data,null,2) + '</pre>'
+                
+                response_element.innerHTML = '<pre>' + JSON.stringify(parsed_test_response,null,2) + '</pre>'
                 // If the question is answered
                 if (parsed_test_response['Answers'].length) {
                     // Display the answer
