@@ -19,7 +19,6 @@ see how the Scenario Editor uses the Blawx reasoner API.
 * Stop it from justifying conclusions that are partially ground. (no evidence that X is true for anything)
 * Remove parenthesis from the text of attribute NLGs, because they screw up the CSS selectors in the answers thing.
 
-* Fix how it deals with "proved"
 * Add NLG for the other date functions, e.g. dateadd
 * Add NLG for short-form durations where they are used, or remove them from the s(CASP) code
 * Add NLG for findall, aggregate functions.
