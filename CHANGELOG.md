@@ -13,12 +13,16 @@ This update improves the display of answers in the scenario editor, and makes it
 see how the Scenario Editor uses the Blawx reasoner API.
 
 ### TODO
-* Figure out why variables have disappeared for some queries.
-* Solve problem where use of "rule" output screws up the ID's used for collapsing.
-* Make IDs for explanation parts answer and explanation specific.
 * Make it preface assumptions that are used in the explanation.
+* Figure out why variables have disappeared for some queries.
 * Make the buttons change state when the relevant section of the explanation is already shown.
 * Stop it from justifying conclusions that are partially ground. (no evidence that X is true for anything)
+* Remove parenthesis from the text of attribute NLGs, because they screw up the CSS selectors in the answers thing.
+
+* Fix how it deals with "proved"
+* Add NLG for the other date functions, e.g. dateadd
+* Add NLG for short-form durations where they are used, or remove them from the s(CASP) code
+* Add NLG for findall, aggregate functions.
 
 ### Adds
 * The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.

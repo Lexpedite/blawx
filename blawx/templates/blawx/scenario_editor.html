@@ -208,8 +208,11 @@
 
         var expanded={}; // A list of tree elements that have been expanded.
         var section_texts = {};
-        function addSectionReferences(text) {
-            if (!(text in section_texts)) {
+        function addSectionReferences(text,human) {
+            if (text.charAt(0) === text.charAt(0).toUpperCase()) {
+                return text; // This is variable, return it as is.
+            }
+            if (!(text+human in section_texts)) {
 
                 // Search the string for the list of section references
                 var xhttp = new XMLHttpRequest();
@@ -224,25 +227,29 @@
                 new_text = new_text.replace(/__para_/g, " paragraph ");
                 new_text = new_text.replace(/__subpara_/g, ' sub-paragraph ');
                 new_text = new_text.replace(/__span_/g, ' span ');
-                output = '<a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="' + rule_text + '">';
+                output = ""
+                if (human) {output = '<a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="' + rule_text + '">';}
                 output += new_text;
-                output += '</a>'
-                section_texts[text] = output;
+                if (human) {output += '</a>'}
+                section_texts[text+human] = output;
                 }
-            return section_texts[text];
+            return section_texts[text+human];
         }
 
         var excluded = ['datetime_diff_duration','lte'];
 
-        function getNodeName(node) {
+        function getNodeName(node,answer,explanation) {
             var node_name = "";
             var statement = node;
             if (statement != "query" && statement != "o_nmr_check") {
 
                 var predicate = statement.functor;
+                if (predicate == "proved") { // this is a reference to something for which there is already a node
+                    return getNodeName(statement.args[0],answer,explanation)
+                }
                 var parameters = statement.args;
-                
-                var node_name = predicate
+                var prefix = "ans" + answer + "_expl" + explanation + "_"
+                var node_name = prefix + "_" + predicate
                 for (var i =0; i < parameters.length; i++) {
                     node_name += "_" + displayValue(parameters[i],false)
                 }
@@ -252,7 +259,7 @@
             return encodeURIComponent(node_name).replace('%','_');
         }
 
-        function getNodesFromModel(model,show_this_node) {
+        function getNodesFromModel(model,show_this_node,answer,explanation) {
             // The structure looks like this
             // functor: -, args: statement, reasons
             // statement {functor: predicate, args: parameters}
@@ -263,18 +270,20 @@
             var reasons = model.args[1];
             var predicate = statement.functor;
             var parameters = statement.args;
-            
-            var node_name = getNodeName(model)
+            var node_name = getNodeName(model,answer,explanation)
             var show_subnodes = false;
+            if(predicate == "proved") { // This is a reference to an earlier derivation, which we don't need
+                return [];
+            }
             if(statement == "query") {
                 show_subnodes = true;
             }
-            var new_node = {'name': node_name, 'content': convertNodeToParagraph(model,show_this_node)}
+            var new_node = {'name': node_name, 'content': convertNodeToParagraph(model,show_this_node,answer,explanation)}
             node_list.push(new_node);
             var subnodes = [];
             if (!excluded.includes(predicate)) {
                 for (var i=0; i < reasons.length; i++) {
-                    subnodes = subnodes.concat(getNodesFromModel(reasons[i],show_subnodes));
+                    subnodes = subnodes.concat(getNodesFromModel(reasons[i],show_subnodes,answer,explanation));
                 }
             }
             for (var i=0; i < subnodes.length; i++) {
@@ -285,14 +294,14 @@
             return node_list;
         }
 
-        function convertNodeToParagraph(node,show) {
+        function convertNodeToParagraph(node,show,answer,explanation) {
             var output_html = "";
             var statement = node.args[0]
             output_html += '<div class="new_explanation collapse';
             if (show) {
                 output_html += " show";
             }
-            output_html +='" id="' + getNodeName(statement) + '">';
+            output_html +='" id="' + getNodeName(statement,answer,explanation) + '">';
             var reasons = node.args[1]
             var predicate_name = node.args[0].functor
 
@@ -317,7 +326,7 @@
                         } else if (i!=0) {
                             output_html += "; "
                         }
-                        output_html += '<li><button class="btn btn-outline-primary py-0" data-bs-toggle="collapse" data-bs-target="#' + getNodeName(reasons[i].args[0]) + '" role="button" aria-expanded="true" aria-controls="' + getNodeName(reasons[i].args[0]) + '">';
+                        output_html += '<li><button class="btn btn-outline-primary py-0" data-bs-toggle="collapse" data-bs-target="#' + getNodeName(reasons[i].args[0],answer,explanation) + '" role="button" aria-expanded="true" aria-controls="' + getNodeName(reasons[i].args[0],answer,explanation) + '">';
                         output_html += answerNLG(reasons[i].args[0]);
                         output_html += '</button>';
                     }
@@ -361,14 +370,17 @@
                     case 'time':
                         output = term.args[0] + ":" + term.args[1].toString().padStart(2,"0") + ":" + term.args[2].toString().padStart(2,"0")
                         break;
-                    case 'defeated':
-                        output = answerNLG(term);
-                        break;
-                    case 'refuted':
-                        output = answerNLG(term);
-                        break;
+                    //case 'defeated':
+                    //    output = answerNLG(term);
+                    //    break;
+                    //case 'refuted':
+                    //    output = answerNLG(term);
+                    //    break;
+                    //case 'adbuced':
+                    //    output = answerNLG(term);
                     default:
-                        output = 'Unknown predicate type'
+                        output = answerNLG(term,human);
+                        //output = 'Unknown predicate type'
                 }
             } else {
                 output = term
@@ -380,7 +392,7 @@
             }
         }
 
-        function answerNLG(model) {
+        function answerNLG(model,human) {
             if(model == "query") { // this is the root of a model
                 // This doesn't need a representation
                 return "root";
@@ -394,26 +406,30 @@
             } else if (model.functor == "-") { // this is a "because" node
                 return "because";
             } else if (model.functor == "not") {
-                return "there is no evidence that " + answerNLG(model.args[0]);
+                return "there is no evidence that " + answerNLG(model.args[0],human);
             } else if (model.functor == "legally_holds") {
-                return "it legally holds that according to " + addSectionReferences(model.args[0]) + ", " + answerNLG(model.args[1]);
+                return "it legally holds that according to " + addSectionReferences(model.args[0],human) + ", " + answerNLG(model.args[1],human);
             } else if (model.functor == "according_to") {
-                return "according to " + addSectionReferences(model.args[0]) + ', ' + answerNLG(model.args[1]);
+                return "according to " + addSectionReferences(model.args[0],human) + ', ' + answerNLG(model.args[1],human);
             } else if (model.functor == "defeated") {
-                return "the conclusion in " + addSectionReferences(model.args[0]) + " that " + answerNLG(model.args[1]) + " is defeated"
+                return "the conclusion in " + addSectionReferences(model.args[0],human) + " that " + answerNLG(model.args[1],human) + " is defeated"
             } else if (model.functor == "refuted") {
-                return "the conclusion in " + addSectionReferences(model.args[0]) + " that " + answerNLG(model.args[1]) + " is refuted"
+                return "the conclusion in " + addSectionReferences(model.args[0],human) + " that " + answerNLG(model.args[1],human) + " is refuted"
             } else if (model.functor == "opposes") {
-                return "the conclusion " + answerNLG(model.args[0]) + " opposes the conclusion " + answerNLG(model.args[1]);
-            } else if (model.functor == "abduced" ) {
-                return "it is presumed that " + answerNLG(model.args[0]);
-            } else { // this should be a real one, now 
+                return "the conclusion " + answerNLG(model.args[0],human) + " opposes the conclusion " + answerNLG(model.args[1],human);
+            } else if (model.functor == "overrules" ) {
+                return addSectionReferences(model.args[0],human) + " overrules " + addSectionReferences(model.args[1],human)
+            }else if (model.functor == "abduced" ) {
+                return "it is presumed that " + answerNLG(model.args[0],human);
+            } else if (model.functor == "proved" ) { 
+                return answerNLG(model.args[0],human); // Just display the NLG for the thing that was proved.
+            }else { // this should be a real one, now 
                 predicate_name = model.functor;
                 if (predicate_name == "datetime_diff_duration") {
-                    return "the amount of time between " + displayValue(model.args[0]) + " and " + displayValue(model.args[1]) + " is " + displayValue(model.args[2]) 
+                    return "the amount of time between " + displayValue(model.args[0],human) + " and " + displayValue(model.args[1],human) + " is " + displayValue(model.args[2],human) 
                 }
                 if (predicate_name == "lte") {
-                    return displayValue(model.args[0]) + " is less than " + displayValue(model.args[1])
+                    return displayValue(model.args[0],human) + " is less than " + displayValue(model.args[1],human)
                 }
                 predicate_type = model.args.length; // 1 is category, 2 is attribute
                 var prefix = "";
@@ -427,10 +443,10 @@
                             prefix = ontology.CategoryNLG[i].Prefix;
                             postfix = ontology.CategoryNLG[i].Postfix;
                             
-                            return prefix + " " + displayValue(object) + " " + postfix;
+                            return prefix + " " + displayValue(object,human) + " " + postfix;
                         }
                     }
-                    return displayValue(object) + " is a " + predicate_name;
+                    return displayValue(object,human) + " is a " + predicate_name;
                 } else { // it is an attribute
                     object = model.args[0];
                     value = model.args[1];
@@ -443,13 +459,13 @@
                             infix = ontology.AttributeNLG[i].Infix;
                             order = ontology.AttributeNLG[i].Order;
                             if (order == "ov") {
-                                return prefix + " " + displayValue(object) + " " + infix + " " + displayValue(value) + " " + postfix;
+                                return prefix + " " + displayValue(object,human) + " " + infix + " " + displayValue(value,human) + " " + postfix;
                             } else {
-                                return prefix + " " + displayValue(value) + " " + infix + " " + displayValue(object) + " " + postfix;
+                                return prefix + " " + displayValue(value,human) + " " + infix + " " + displayValue(object,human) + " " + postfix;
                             }
                         }
                     }
-                    return displayValue(object) + "'s " + predicate_name + " is " + displayValue(value);
+                    return displayValue(object,human) + "'s " + predicate_name + " is " + displayValue(value,human);
                 }
             }
         }
@@ -1549,7 +1565,7 @@
                             }
                                 
                             //output_content += convertModelToTree(models[j].Tree, count, model_count);
-                            var explanations = getNodesFromModel(models[j].Raw,false);
+                            var explanations = getNodesFromModel(models[j].Raw,false,i,j);
                             for (var k = 0; k < explanations.length; k++) {
                                 output_content += explanations[k].content;
                             }
