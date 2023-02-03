@@ -18,10 +18,13 @@ see how the Scenario Editor uses the Blawx reasoner API.
 * Make the buttons change state when the relevant section of the explanation is already shown.
 * Stop it from justifying conclusions that are partially ground. (no evidence that X is true for anything)
 * Remove parenthesis from the text of attribute NLGs, because they screw up the CSS selectors in the answers thing.
+* Constraints do not show up in explanations.
+* Logical Inequality does not show up in explanations.
+* Known false negations do not show up in explanations.
 
-* Add NLG for the other date functions, e.g. dateadd
-* Add NLG for short-form durations where they are used, or remove them from the s(CASP) code
-* Add NLG for findall, aggregate functions.
+* Forall result seems to be displayed twice in list test. Should only occur once.
+* There are problems in the duration compare test where certain explanation nodes aren't appearing.
+* Still getting errors about percent signs being included in node names in some of the date tests.
 
 ### Adds
 * The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.

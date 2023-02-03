@@ -236,7 +236,29 @@
             return section_texts[text+human];
         }
 
-        var excluded = ['datetime_diff_duration','lte'];
+        var excluded = ['datetime_diff_duration',
+        'lte',
+        'average_blawx_list',
+        'sum_blawx_list',
+        'count_blawx_list',
+        'min_blawx_list',
+        'max_blawx_list',
+        'before',
+        'after',
+        'not_before',
+        'not_after',
+        'eq',
+        'lt',
+        'gt',
+        'gte',
+        'blawx_now',
+        'blawx_today',
+        'build_datetime',
+        'datetime_add',
+        'datetime_diff',
+        'datetime_add_days',
+        'days_between_datetimes',
+        'is'];
 
         function getNodeName(node,answer,explanation) {
             var node_name = "";
@@ -251,12 +273,12 @@
                 var prefix = "ans" + answer + "_expl" + explanation + "_"
                 var node_name = prefix + "_" + predicate
                 for (var i =0; i < parameters.length; i++) {
-                    node_name += "_" + displayValue(parameters[i],false)
+                    node_name += "_" + displayValue(parameters[i],false).replace("'",'_').replace('.','_')
                 }
             } else {
                 node_name = statement;
             }
-            return encodeURIComponent(node_name).replace('%','_');
+            return encodeURIComponent(node_name).replace('%','_').replace('(','_').replace(')','_');
         }
 
         function getNodesFromModel(model,show_this_node,answer,explanation) {
@@ -388,7 +410,7 @@
             if (human) {
                 return output;
             } else {
-                return encodeURIComponent(output).replaceAll('%','_');
+                return encodeURIComponent(output).replaceAll('%','_').replaceAll('(','_').replaceAll(')','_').replaceAll('*','mul').replaceAll('/','div').replaceAll('+','add').replaceAll('-','sub');
             }
         }
 
@@ -403,6 +425,10 @@
                 if (model == "o_nmr_check") {
                     return "all global constraints hold"
                 }
+            } else if (typeof(model) != 'object') {
+                return model.toString();
+            } else if (Array.isArray(model)) {
+                return model.toString();
             } else if (model.functor == "-") { // this is a "because" node
                 return "because";
             } else if (model.functor == "not") {
@@ -423,13 +449,72 @@
                 return "it is presumed that " + answerNLG(model.args[0],human);
             } else if (model.functor == "proved" ) { 
                 return answerNLG(model.args[0],human); // Just display the NLG for the thing that was proved.
-            }else { // this should be a real one, now 
+            } else if (model.functor == "findall") {
+                return "finding all " + answerNLG(model.args[0],human) + " in " + answerNLG(model.args[1],human) + " gives " + answerNLG(model.args[2],human)
+            } else if (model.functor == "count_blawx_list") {
+                return "there are " + answerNLG(model.args[1],human) + ' elements in ' + answerNLG(model.args[0],human)
+            } else if (model.functor == "average_blawx_list") {
+                return "the average of " + answerNLG(model.args[0],human) + ' is ' + answerNLG(model.args[1],human)
+            } else if (model.functor == "sum_blawx_list") {
+                return "the sum of " + answerNLG(model.args[0],human) + ' is ' + answerNLG(model.args[1],human)
+            } else if (model.functor == "max_blawx_list") {
+                return "the maximum of " + answerNLG(model.args[0],human) + ' is ' + answerNLG(model.args[1],human)
+            } else if (model.functor == "min_blawx_list") {
+                return "the minimum of " + answerNLG(model.args[0],human) + ' is ' + answerNLG(model.args[1],human)
+            } else if (model.functor == "before") {
+                return displayValue(model.args[0],human) + ' is before ' + displayValue(model.args[1],human);
+            } else if (model.functor == "after") {
+                return displayValue(model.args[0],human) + ' is after ' + displayValue(model.args[1],human);
+            } else if (model.functor == "not_before") {
+                return displayValue(model.args[0],human) + ' is not before ' + displayValue(model.args[1],human);
+            } else if (model.functor == "not_after") {
+                return displayValue(model.args[0],human) + ' is not after ' + displayValue(model.args[1],human);
+            } else if (model.functor == "eq") {
+                return displayValue(model.args[0],human) + ' is equal to ' + displayValue(model.args[1],human);
+            } else if (model.functor == "blawx_now") {
+                return "the current datetime is " + displayValue(model.args[0],human);
+            } else if (model.functor == "blawx_today") {
+                return "today is " + displayValue(model.args[0],human);
+            } else if (model.functor == "build_datetime") {
+                return "the date " + displayValue(model.args[0],human) + " and the time " + displayValue(model.args[1],human) + " correspond to the datetime " + displayValue(model.args[2],human)
+            } else if (model.functor == "datetime_add") {
+                return displayValue(model.args[0],human) + " modified by " + displayValue(model.args[1],human) + " gives " + displayValue(model.args[2],human)
+            } else if (model.functor == "datetime_diff") {
+                return "from " + displayValue(model.args[0],human) + " to " + displayValue(model.args[1],human) + " is " + displayValue(model.args[2],human)
+            } else if (model.functor == "datetime_add_days") {
+                return displayValue(model.args[0],human) + " plus " + displayValue(model.args[1],human) + " days gives " + displayValue(model.args[2],human)
+            } else if (model.functor == "days_between_datetimes") {
+                return "from" + displayValue(model.args[0],human) + " to " + displayValue(model.args[1],human) + " in days is " + displayValue(model.args[2],human)
+            } else if (model.functor == "is") {
+                return displayValue(model.args[0],human) + " = (" + answerNLG(model.args[1],human) + ")"
+            } else if (model.functor == "+") {
+                return "(" + answerNLG(model.args[0],human) + " + " + answerNLG(model.args[1],human) + ")";
+            } else if (model.functor == "-") {
+                return "(" + answerNLG(model.args[0],human) + " - " + answerNLG(model.args[1],human) + ")";
+            } else if (model.functor == "*") {
+                return "(" + answerNLG(model.args[0],human) + " * " + answerNLG(model.args[1],human) + ")";
+            } else if (model.functor == "/") {
+                return "(" + answerNLG(model.args[0],human) + " / " + answerNLG(model.args[1],human) + ")";
+            } else if (model.functor == '==') {
+                return displayValue(model.args[0],human) + " is equal to " + displayValue(model.args[1],human) + ")";
+            } else if (model.functor == '\=') {
+                return displayValue(model.args[0],human) + " is not equal to " + displayValue(model.args[1],human) + ")";
+            } else { // this should be a real one, now 
                 predicate_name = model.functor;
                 if (predicate_name == "datetime_diff_duration") {
                     return "the amount of time between " + displayValue(model.args[0],human) + " and " + displayValue(model.args[1],human) + " is " + displayValue(model.args[2],human) 
                 }
                 if (predicate_name == "lte") {
+                    return displayValue(model.args[0],human) + " is less than or equal to " + displayValue(model.args[1],human)
+                }
+                if (predicate_name == "lt") {
                     return displayValue(model.args[0],human) + " is less than " + displayValue(model.args[1],human)
+                }
+                if (predicate_name == "gte") {
+                    return displayValue(model.args[0],human) + " is greater than " + displayValue(model.args[1],human)
+                }
+                if (predicate_name == "gt") {
+                    return displayValue(model.args[0],human) + " is greater than or equal to" + displayValue(model.args[1],human)
                 }
                 predicate_type = model.args.length; // 1 is category, 2 is attribute
                 var prefix = "";
