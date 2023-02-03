@@ -13,7 +13,6 @@ This update improves the display of answers in the scenario editor, and makes it
 see how the Scenario Editor uses the Blawx reasoner API.
 
 ### TODO
-* Forall result seems to be displayed twice in list test. Should only occur once.
 * If the proof of something exists in a sub-goal of an exception predicate, no answer is generated for that node.
 * Still getting errors about percent signs being included in node names in some of the date tests.
 
@@ -26,6 +25,10 @@ see how the Scenario Editor uses the Blawx reasoner API.
 * Updated copyright notice on all pages.
 * Scenario editor now caches the responses from the /rule endpoint to avoid making multiple calls and slowing the display of answers.
 * The explanations in Scenario Editor no longer contain information about global constraint checks.
+* Explanations for all data statements are in natural language, and exclude irrelevant details.
+
+### Fixes
+* Pre-defined numerical values in code or tests would crash /onto endpoint.
 
 ## [v1.3.37-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.37-alpha) 2022-01-12
 
