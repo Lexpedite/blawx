@@ -458,7 +458,7 @@ blawxrun(Query, Human) :-
                       # I think that converting the value to a string should work for everything, but it
                       # is added specifically to deal with numbers.
                       # I need to check and see if the thing is a date, and if it is, convert it to JSON format.
-                      if 'functor' in value:
+                      if type(value) == dict and 'functor' in value:
                         if value['functor'] == 'date':
                           value = f"{str(value['args'][0]):0>4}" + '-' + f"{str(value['args'][1]):0>2}" + '-' + f"{str(value['args'][2]):0>2}"
                         elif value['functor'] == 'time':
