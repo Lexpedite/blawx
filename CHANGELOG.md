@@ -13,17 +13,8 @@ This update improves the display of answers in the scenario editor, and makes it
 see how the Scenario Editor uses the Blawx reasoner API.
 
 ### TODO
-* Make it preface assumptions that are used in the explanation.
-* Figure out why variables have disappeared for some queries.
-* Make the buttons change state when the relevant section of the explanation is already shown.
-* Stop it from justifying conclusions that are partially ground. (no evidence that X is true for anything)
-* Remove parenthesis from the text of attribute NLGs, because they screw up the CSS selectors in the answers thing.
-* Constraints do not show up in explanations.
-* Logical Inequality does not show up in explanations.
-* Known false negations do not show up in explanations.
-
 * Forall result seems to be displayed twice in list test. Should only occur once.
-* There are problems in the duration compare test where certain explanation nodes aren't appearing.
+* If the proof of something exists in a sub-goal of an exception predicate, no answer is generated for that node.
 * Still getting errors about percent signs being included in node names in some of the date tests.
 
 ### Adds
