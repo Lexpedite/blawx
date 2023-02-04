@@ -281,6 +281,22 @@
             return encodeURIComponent(node_name).replace('%','_').replace('(','_').replace(')','_');
         }
 
+        // Have a global dictionary of nodes, just by reference and name
+        // Generate a list of the nodes we actually need by name.
+        // Display those nodes using the dictionary to find the source node.
+
+        var explanation_node_index = {};
+        function getExplanationNodeIndex(model,answer,explanation) {
+            var new_node_name = getNodeName(model.args[0],answer,explanation);
+            if(!(new_node_name in explanation_node_index)) {
+                explanation_node_index[new_node_name] = model;
+            }
+            var reasons = model.args[1];
+            for (var i = 0; i < reasons.length; i++) {
+                getExplanationNodeIndex(reasons[i],answer,explanation);
+            }
+        }
+
         function getNodesFromModel(model,show_this_node,answer,explanation) {
             // The structure looks like this
             // functor: -, args: statement, reasons
@@ -294,13 +310,23 @@
             var parameters = statement.args;
             var node_name = getNodeName(model,answer,explanation)
             var show_subnodes = false;
-            if(predicate == "proved") { // This is a reference to an earlier derivation, which we don't need
-                return [];
+            var target=model;
+            if(predicate == "proved") {
+                // If a node is proved elsewhere, we need to find where it is proved, and add that proof here.
+                // This is to avoid situations where the node is proved inside the elided part of an excluded
+                // predicate only, and so will never be generated otherwise.
+                // We need to search the tree for where the node is proved, and convert that node instead.
+                // But this is a recursive algorithm that doesn't have access to the tree above it, which has
+                // already been processed.
+                // Now I have access to the node models by name because of the index, so I get the name of the
+                // first argument, get the model from the index, and change the target to that model.
+                var proved_statement = getNodeName(parameters[0],answer,explanation)
+                target = explanation_node_index[proved_statement];
             }
             if(statement == "query") {
                 show_subnodes = true;
             }
-            var new_node = {'name': node_name, 'content': convertNodeToParagraph(model,show_this_node,answer,explanation)}
+            var new_node = {'name': node_name, 'content': convertNodeToParagraph(target,show_this_node,answer,explanation)}
             node_list.push(new_node);
             var subnodes = [];
             if (!excluded.includes(predicate)) {
@@ -336,7 +362,7 @@
                 } else {
                     output_html += "We can calculate that "
                 }
-                output_html += answerNLG(statement);
+                output_html += answerNLG(statement,true);
                 // If there are sub-justifications, add the NLG for each sub-justification, and add it
                 // as a collapsible link.
                 
@@ -349,7 +375,7 @@
                             output_html += "; "
                         }
                         output_html += '<li><button class="btn btn-outline-primary py-0" data-bs-toggle="collapse" data-bs-target="#' + getNodeName(reasons[i].args[0],answer,explanation) + '" role="button" aria-expanded="true" aria-controls="' + getNodeName(reasons[i].args[0],answer,explanation) + '">';
-                        output_html += answerNLG(reasons[i].args[0]);
+                        output_html += answerNLG(reasons[i].args[0],true);
                         output_html += '</button>';
                     }
                     output_html += "</ul>"
@@ -1650,6 +1676,7 @@
                             }
                                 
                             //output_content += convertModelToTree(models[j].Tree, count, model_count);
+                            getExplanationNodeIndex(models[j].Raw,i,j)
                             var explanations = getNodesFromModel(models[j].Raw,false,i,j);
                             for (var k = 0; k < explanations.length; k++) {
                                 output_content += explanations[k].content;
