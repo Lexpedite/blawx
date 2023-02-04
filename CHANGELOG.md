@@ -17,6 +17,7 @@ see how the Scenario Editor uses the Blawx reasoner API.
 * Opposes statements are appearing twice in the explanations.
 * Variable sections are not being converted into "anything" or even better "any section"
 * If the same sub-goals are derived in two different places, they show up multiple times.
+* Variables do not show up properly if the values are dates, etc. Shows as [object Object]
 
 ### Adds
 * The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.
