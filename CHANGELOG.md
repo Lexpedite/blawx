@@ -13,8 +13,10 @@ This update improves the display of answers in the scenario editor, and makes it
 see how the Scenario Editor uses the Blawx reasoner API.
 
 ### TODO
-* If the proof of something exists in a sub-goal of an exception predicate, no answer is generated for that node.
-* Still getting errors about percent signs being included in node names in some of the date tests.
+* It states that "we know there is no evidence that ... which was provided as a fact. If it is a "not", it is not a fact.
+* Opposes statements are appearing twice in the explanations.
+* Variable sections are not being converted into "anything" or even better "any section"
+* If the same sub-goals are derived in two different places, they show up multiple times.
 
 ### Adds
 * The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.
@@ -26,6 +28,7 @@ see how the Scenario Editor uses the Blawx reasoner API.
 * Scenario editor now caches the responses from the /rule endpoint to avoid making multiple calls and slowing the display of answers.
 * The explanations in Scenario Editor no longer contain information about global constraint checks.
 * Explanations for all data statements are in natural language, and exclude irrelevant details.
+* The Net30 example has been updated to use the new date blocks from 1.3.33-alpha
 
 ### Fixes
 * Pre-defined numerical values in code or tests would crash /onto endpoint.
