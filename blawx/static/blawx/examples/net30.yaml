@@ -1,23 +1,24 @@
 - model: blawx.ruledoc
-  pk: 8
+  pk: 11
   fields:
-    owner: 3
     ruledoc_name: Net 30
     rule_text: "Net Thirty Act\r\n\r\n1. The payment due date of an invoice is 30
       days after the date the invoice is issued."
     scasp_encoding: ''
     tutorial: ''
+    owner: 3
+    published: false
 - model: blawx.workspace
-  pk: 87
+  pk: 52
   fields:
-    ruledoc: 8
+    ruledoc: 11
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 88
+  pk: 53
   fields:
-    ruledoc: 8
+    ruledoc: 11
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="k@UgO),H`ypuz6sm]+Ul" x="46" y="77"><statement name="statements"><block
@@ -51,11 +52,12 @@
       name="first_element"><block type="variable" id="?kJtQ3y%;t+4EQ:|B%2n"><field
       name="variable_name">Invoice</field></block></value><value name="second_element"><block
       type="variable" id="LtR9+(Jed$4Fjq3j]Ks*"><field name="variable_name">Issue_date</field></block></value><next><block
-      type="date_add" id="X0b%tA{JD%T`)u7z8twu"><value name="duration"><block type="duration_value"
+      type="date_add" id=",HG{4AcFE#/bXSEe:~/6"><value name="duration"><block type="duration_value"
       id="gz[q8G1e$V]LPTNNrv6n"><field name="sign">1</field><field name="years">0</field><field
-      name="months">0</field><field name="days">30</field></block></value><value name="first_date"><block
-      type="variable" id="}5j:Fp,.ihbe@QnV3S}H"><field name="variable_name">Issue_date</field></block></value><value
-      name="second_date"><block type="variable" id="ChPG!_PohRfJ(kug9MWK"><field name="variable_name">Payment_date</field></block></value></block></next></block></next></block></statement><statement
+      name="months">0</field><field name="days">30</field><field name="hours">0</field><field
+      name="minutes">0</field><field name="seconds">0</field></block></value><value
+      name="first_date"><block type="variable" id="s$HKU$91aQm`CE[f;9dD"><field name="variable_name">Issue_date</field></block></value><value
+      name="second_date"><block type="variable" id="1SnRFvM]=H7S=I*kOspM"><field name="variable_name">Payment_date</field></block></value></block></next></block></next></block></statement><statement
       name="conclusion"><block type="according_to" id="bjs0wnS,@Fu_S$i5;^_b"><value
       name="rule"><block type="doc_selector" id="#glJ$YMY_J#j)%/H4nkd"><mutation xmlns="http://www.w3.org/1999/xhtml"
       section_reference="sec_1_section"></mutation><field name="doc_part_name">NTA
@@ -107,11 +109,11 @@
 
       invoice_date(Invoice,Issue_date),
 
-      date_add(Issue_date,duration(1,0,0,30),Payment_date).'
+      datetime_add(Issue_date,duration(1,0,0,30,0,0,0),Payment_date).'
 - model: blawx.blawxtest
-  pk: 11
+  pk: 34
   fields:
-    ruledoc: 8
+    ruledoc: 11
     test_name: payment
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="P#L~+r`Yr{9+~{r{H0}F" x="82" y="83"><statement name="statements"><block
@@ -133,13 +135,14 @@
       payment due date of</field><field name="infix">is</field><field name="postfix"></field><value
       name="first_element"><block type="object_selector" id="Y`~_z5z%A0GBOUWhuzcP"><mutation
       xmlns="http://www.w3.org/1999/xhtml" objectname="test"></mutation><field name="object_name">test</field></block></value><value
-      name="second_element"><block type="date_calculate" id="4Zzt:$h05!+Db8:xK?Y!"><value
-      name="year"><block type="variable" id="TPkiE-t:#R=P3jXv[EbJ"><field name="variable_name">Year</field></block></value><value
-      name="month"><block type="variable" id="lf95HAvf7S-~CzC[@,`t"><field name="variable_name">Month</field></block></value><value
-      name="day"><block type="variable" id="9DiNJl@7+v.IxSUEdb;y"><field name="variable_name">Day</field></block></value></block></value></block></statement></block></statement></block></xml>
+      name="second_element"><block type="variable" id="TPkiE-t:#R=P3jXv[EbJ"><field
+      name="variable_name">DueDate</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'invoice(test).
 
       invoice_date(test,date(2022,5,11)).
 
 
-      ?- legally_holds(_,  payment_due_date(test,date(Year,Month,Day))).'
+      ?- legally_holds(_,  payment_due_date(test,DueDate)).'
+    tutorial: ''
+    view: ''
+    fact_scenario: ''
