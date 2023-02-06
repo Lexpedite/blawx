@@ -17,11 +17,12 @@ see how the Scenario Editor uses the Blawx reasoner API.
 
 ### Changes
 * Explanations in the Scenario Editor are now displayed using a non-nested paragraph format.
-* Dates, Times, Datetimes and Durations are displayed in explanations using a human-friendly format.
+* Dates, Times, Datetimes and Durations are displayed in explanations and variables using a human-friendly format.
 * Updated copyright notice on all pages.
 * Scenario editor now caches the responses from the /rule endpoint to avoid making multiple calls and slowing the display of answers.
 * The explanations in Scenario Editor no longer contain information about global constraint checks.
 * Explanations for all data statements are in natural language, and exclude irrelevant details.
+* Duplicate sub-goals in explanations are removed.
 * The Net30 example has been updated to use the new date blocks from 1.3.33-alpha
 
 ### Fixes
