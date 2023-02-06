@@ -362,7 +362,7 @@
                 } else {
                     output_html += "We can calculate that "
                 }
-                output_html += answerNLG(statement,true);
+                output_html += answerNLG(statement,true );
                 // If there are sub-justifications, add the NLG for each sub-justification, and add it
                 // as a collapsible link.
                 
@@ -374,7 +374,7 @@
                         } else if (i!=0) {
                             output_html += "; "
                         }
-                        output_html += '<li><button class="btn btn-outline-primary py-0" data-bs-toggle="collapse" data-bs-target="#' + getNodeName(reasons[i].args[0],answer,explanation) + '" role="button" aria-expanded="true" aria-controls="' + getNodeName(reasons[i].args[0],answer,explanation) + '">';
+                        output_html += '<li><button class="btn btn-outline-primary py-0 text-start" data-bs-toggle="collapse" data-bs-target="#' + getNodeName(reasons[i].args[0],answer,explanation) + '" role="button" aria-expanded="true" aria-controls="' + getNodeName(reasons[i].args[0],answer,explanation) + '">';
                         output_html += answerNLG(reasons[i].args[0],true);
                         output_html += '</button>';
                     }
