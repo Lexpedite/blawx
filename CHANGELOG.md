@@ -12,8 +12,9 @@ and breaking changes will not necessarily result in changes to the main version 
 This update improves the display of answers in the scenario editor, and makes it easier for developers to
 see how the Scenario Editor uses the Blawx reasoner API.
 
-### TODO
-* Opposes statements are appearing twice in the explanations.
+### To Do
+* There is a problem with how constrained variables are being displayed. They should they "X other than", but they ignore the
+  constraints.
 
 ### Adds
 * The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.

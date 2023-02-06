@@ -371,16 +371,20 @@
                 // as a collapsible link.
                 
                 if (reasons.length && !excluded.includes(predicate_name) ) {
+                    var displayed_reasons = [];
                     output_html += " because <ul>";
                     for(var i=0; i< reasons.length; i++) {
-                        if(i == reasons.length-1 && reasons.length > 1) {
-                            output_html += "; and "
-                        } else if (i!=0) {
-                            output_html += "; "
+                        if (!displayed_reasons.includes(getNodeName(reasons[i].args[0],answer,explanation))) { // This is used to get rid of duplicate sub-goals in explanations for constructively negated predicates.
+                            if(i == reasons.length-1 && reasons.length > 1) {
+                                output_html += "; and "
+                            } else if (i!=0) {
+                                output_html += "; "
+                            }
+                            output_html += '<li><button class="btn btn-outline-primary py-0 text-start" data-bs-toggle="collapse" data-bs-target="#' + getNodeName(reasons[i].args[0],answer,explanation) + '" role="button" aria-expanded="true" aria-controls="' + getNodeName(reasons[i].args[0],answer,explanation) + '">';
+                            displayed_reasons.push(getNodeName(reasons[i].args[0],answer,explanation));
+                            output_html += answerNLG(reasons[i].args[0],true);
+                            output_html += '</button>';
                         }
-                        output_html += '<li><button class="btn btn-outline-primary py-0 text-start" data-bs-toggle="collapse" data-bs-target="#' + getNodeName(reasons[i].args[0],answer,explanation) + '" role="button" aria-expanded="true" aria-controls="' + getNodeName(reasons[i].args[0],answer,explanation) + '">';
-                        output_html += answerNLG(reasons[i].args[0],true);
-                        output_html += '</button>';
                     }
                     output_html += "</ul>"
                     output_html += ".</p>"
