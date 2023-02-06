@@ -7,15 +7,10 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## [v1.3.38-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.38-alpha) 2022-01-??
+## [v1.3.38-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.38-alpha) 2022-02-06
 
 This update improves the display of answers in the scenario editor, and makes it easier for developers to
 see how the Scenario Editor uses the Blawx reasoner API.
-
-### To Do
-* There is a problem with how constrained variables are being displayed. They should they "X other than", but they ignore the
-  constraints.
-* "How do we know" buttons don't scroll to the opened section.
 
 ### Adds
 * The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.
