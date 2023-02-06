@@ -354,15 +354,19 @@
             var predicate_name = node.args[0].functor
 
             if(statement != "query" && statement != "o_nmr_check") {
-
+                var statement_nlg = answerNLG(statement,true);
+                var negated = statement_nlg.match('there is no evidence that'); // is this a negated fact?
+                var text_output = ""
                 output_html += "<p>"
-                if (!excluded.includes(predicate_name)) {
+                if (!excluded.includes(predicate_name) && !negated) {
                     // Here we will need to check for assumptions, so they can be displayed.
-                    output_html += "We know "
-                } else {
-                    output_html += "We can calculate that "
+                    text_output += "We know "
+                } else if (!negated) {
+                    text_output += "We can calculate that "
                 }
-                output_html += answerNLG(statement,true );
+                text_output += statement_nlg;
+
+                output_html += text_output.charAt(0).toUpperCase() + text_output.slice(1)
                 // If there are sub-justifications, add the NLG for each sub-justification, and add it
                 // as a collapsible link.
                 
@@ -380,8 +384,8 @@
                     }
                     output_html += "</ul>"
                     output_html += ".</p>"
-                } else if (!excluded.includes(predicate_name)) { // there are no reasons, so it was specified as a fact
-                    output_html += ", which was provided as a fact.</p>"
+                } else if (!excluded.includes(predicate_name) && !negated) { // there are no reasons, so it was specified as a fact
+                        output_html += ", which was provided as a fact.</p>"
                 } else {
                     output_html += ".</p>"
                 }
