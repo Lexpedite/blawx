@@ -7,6 +7,27 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.3.38-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.38-alpha) 2022-02-06
+
+This update improves the display of answers in the scenario editor, and makes it easier for developers to
+see how the Scenario Editor uses the Blawx reasoner API.
+
+### Adds
+* The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.
+
+### Changes
+* Explanations in the Scenario Editor are now displayed using a non-nested paragraph format.
+* Dates, Times, Datetimes and Durations are displayed in explanations and variables using a human-friendly format.
+* Updated copyright notice on all pages.
+* Scenario editor now caches the responses from the /rule endpoint to avoid making multiple calls and slowing the display of answers.
+* The explanations in Scenario Editor no longer contain information about global constraint checks.
+* Explanations for all data statements are in natural language, and exclude irrelevant details.
+* Duplicate sub-goals in explanations are removed.
+* The Net30 example has been updated to use the new date blocks from 1.3.33-alpha
+
+### Fixes
+* Pre-defined numerical values in code or tests would crash /onto endpoint.
+
 ## [v1.3.37-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.37-alpha) 2022-01-12
 
 This release adds features for lists and aggregation.
