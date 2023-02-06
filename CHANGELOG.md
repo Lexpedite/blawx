@@ -15,6 +15,7 @@ see how the Scenario Editor uses the Blawx reasoner API.
 ### To Do
 * There is a problem with how constrained variables are being displayed. They should they "X other than", but they ignore the
   constraints.
+* "How do we know" buttons don't scroll to the opened section.
 
 ### Adds
 * The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.
