@@ -35,9 +35,16 @@
       ### Explanations
 
       For each answer, Blawx takes each answer set that had those bindings, and displays it as
-      an explanation for that answer. The explanations are reformatted into a tree, so that statements
+      an explanation for that answer. In the test editor, the explanations are reformatted into a tree, so that statements
       that were used to derive other statements are nested inside one another, and the statements
       are translated into natural language, to make them readable.
+
+      In the scenario editor, explanations are reformatted into a set of paragraphs that are linked to one
+      another using the "how do we know?" button, shown below. The natural language generation used in the
+      scenario editor is better suited for use by subject matter experts for validation, whereas the tree
+      structure provided in the test editor may be more appropriate for debugging purposes.
+
+      ![How do we know?](/static/blawx/docs/images/how_do_we_know.png)
 
       In the above example, the explanation might read "socrates is mortal, because socrates is human".
 

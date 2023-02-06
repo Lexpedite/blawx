@@ -122,13 +122,19 @@
       ## Answers
 
       The answers tab of the scenario editor will display answers that Blawx can find, with
-      all the explanations for those answers, in a format similar to the output of the test
-      editor. it will be displayed automatically when you click the "Run" button, or when you
+      all the explanations for those answers. Unlike the Test Editor, answers in the Scenario Editor
+      are formatted in paragraph style. If there are reasons for a conclusion, they are listed as
+      bullet points. You can open up a paragraph explaining each reason by clicking on the "How
+      do we know?" link, which looks like this:
+      
+      ![How do we know? Link](/static/blawx/docs/images/how_do_we_know.png)
+      
+      The answers tab will be displayed automatically when you click the "Run" button, or when you
       click on the "Answers" tab at the top of the interface.
 
       Note that if answer can be found by making assumptions that you allowed for by "unlocking" categories and
       attributes, all those contingent answers will be included, also. You can see which answers are contingent
-      by looking to see whether there are parts of the explanations that read "by abduction we conclude that".
+      by looking to see whether there are parts of the explanations that indicate the reason was assumed.
 
       ## View
 
