@@ -1682,8 +1682,12 @@
                             //output_content += convertModelToTree(models[j].Tree, count, model_count);
                             getExplanationNodeIndex(models[j].Raw,i,j)
                             var explanations = getNodesFromModel(models[j].Raw,false,i,j);
+                            var displayed_nodes = [];
                             for (var k = 0; k < explanations.length; k++) {
-                                output_content += explanations[k].content;
+                                if (!displayed_nodes.includes(explanations[k].name)) { // To eliminate duplicates caused by "proved" method.
+                                    output_content += explanations[k].content;
+                                    displayed_nodes.push(explanations[k].name);
+                                }
                             }
                             //output_content += getNodesFromModel(models[j].Raw);
                             // output_content += convertModelToParagraphs(models[j].Raw);

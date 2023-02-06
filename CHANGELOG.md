@@ -14,7 +14,6 @@ see how the Scenario Editor uses the Blawx reasoner API.
 
 ### TODO
 * Opposes statements are appearing twice in the explanations.
-* If the same sub-goals are derived in two different places, they show up multiple times.
 
 ### Adds
 * The Scenario Editor now has a "Devel" tab to allow developers to observe the messages sent to and from the Blawx reasoner API.
