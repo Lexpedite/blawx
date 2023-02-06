@@ -210,7 +210,7 @@
         var section_texts = {};
         function addSectionReferences(text,human) {
             if (text.charAt(0) === text.charAt(0).toUpperCase()) {
-                return text; // This is variable, return it as is.
+                return "any section"; // This is variable, return it as is.
             }
             if (!(text+human in section_texts)) {
 

@@ -14,7 +14,6 @@ see how the Scenario Editor uses the Blawx reasoner API.
 
 ### TODO
 * Opposes statements are appearing twice in the explanations.
-* Variable sections are not being converted into "anything" or even better "any section"
 * If the same sub-goals are derived in two different places, they show up multiple times.
 
 ### Adds
