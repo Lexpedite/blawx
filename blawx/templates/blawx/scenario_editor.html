@@ -1640,7 +1640,7 @@
                         output_content += '<ul>'
                         var attributes_output = "";
                         for (var key in variables) {
-                            output_content += '<li>' + key + ': ' + variables[key] + '</li>';
+                            output_content += '<li>' + key + ': ' + displayValue(variables[key]) + '</li>';
                         }
                         output_content += attributes_output;
                         output_content += '</ul>'
