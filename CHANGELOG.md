@@ -7,6 +7,31 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## NEW FACTS BRANCH
+
+### TODO
+* Make the specified/new toggle on new attribute fields work.
+* Implement save new object
+* Implement save new attribute
+* Implement cancel new object
+* Implement cancel new attribute
+* Hide new object and new attribute fields by default
+* Show only one new field when selected.
+* Change the "hide" interface to match the new way facts are added
+* Display known facts, excluding what is hidden.
+* Implement delete known fact.
+* Display relevant categories and attributes.
+* Need to come up with a method for adding "the same {attribute_type}" or "the same {category}" for object and reference value selectors when
+  their types match, and when "unground" has been selected as the value of the first one.
+* Need to make it so that the language is "any other" when the truth value is uncertain, but "any" or even "every"
+  when the truth value is true or false. This and the last one need to be done in real time when
+  the values in the field change.
+
+
+### Done
+* Added a button that knows about all the statement types available in the ontology.
+* Added new object and new attribute fields for all data types.
+
 ## [v1.3.38-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.38-alpha) 2022-02-06
 
 This update improves the display of answers in the scenario editor, and makes it easier for developers to
