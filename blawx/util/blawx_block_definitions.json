@@ -2826,12 +2826,29 @@
 },
 {
   "type": "new_attribute_declaration",
-  "message0": "%1 which is of type %2 %3 appearing as %4 %5 \" %6 %7 %8 %9 %10 \"",
+  "message0": "The category %1 has an attribute %2 %3 which is of type %4 , appearing as %5 %6 %7 %8 %9 %10 %11 %12 %13",
   "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "category",
+      "options": [
+        [
+          "cat1",
+          "cat1"
+        ],
+        [
+          "cat2",
+          "cat2"
+        ]
+      ]
+    },
     {
       "type": "field_input",
       "name": "attribute_name",
       "text": "attribute name"
+    },
+    {
+      "type": "input_dummy"
     },
     {
       "type": "field_dropdown",
@@ -2868,9 +2885,6 @@
       ]
     },
     {
-      "type": "input_dummy"
-    },
-    {
       "type": "field_dropdown",
       "name": "order",
       "options": [
@@ -2886,6 +2900,14 @@
     },
     {
       "type": "input_dummy"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "\"",
+      "flipRtl": false
     },
     {
       "type": "field_input",
@@ -2911,6 +2933,14 @@
       "type": "field_input",
       "name": "postfix",
       "text": ""
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==",
+      "width": 15,
+      "height": 15,
+      "alt": "\"",
+      "flipRtl": false
     }
   ],
   "inputsInline": false,
@@ -2919,4 +2949,57 @@
   "colour": 45,
   "tooltip": "Use to create an attribute for a category.",
   "helpUrl": "/docs/blocks/new_attribute/"
+},
+{
+  "type": "new_category_declaration",
+  "message0": "%1 is a Category %2 Appearing as: %3 %4 %5 %6 %7",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "category_name",
+      "text": "category_name"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "\"",
+      "flipRtl": false
+    },
+    {
+      "type": "field_input",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "first_element",
+      "text": "object"
+    },
+    {
+      "type": "field_input",
+      "name": "postfix",
+      "text": "is a category_name"
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==",
+      "width": 15,
+      "height": 15,
+      "alt": "\"",
+      "flipRtl": false
+    }
+  ],
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 15,
+  "tooltip": "Use to create a category.",
+  "helpUrl": "/docs/blocks/new_category/"
 }]

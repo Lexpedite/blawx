@@ -6801,10 +6801,35 @@
       <block type="input_dummy" id="tmr^NVo=:%IoPNT;tbP]">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
-          <block type="field_input" id="ZUeBea5O/D~EHL;oOyP$">
-            <field name="TEXT">attribute name</field>
-            <field name="FIELDNAME">attribute_name</field>
+          <block type="field_static" id="[Nr6QvLNap?Z^uA6vUu^">
+            <field name="TEXT">The category</field>
             <next>
+              <block type="field_dropdown" id="+3kn;]O)B.4l,mK,u8WG">
+                <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">category</field>
+                <field name="USER0">cat1</field>
+                <field name="CPU0">cat1</field>
+                <field name="USER1">cat2</field>
+                <field name="CPU1">cat2</field>
+                <next>
+                  <block type="field_static" id="t-oN.x65|*[Yqf}Ia}BQ">
+                    <field name="TEXT">has an attribute</field>
+                    <next>
+                      <block type="field_input" id="ZUeBea5O/D~EHL;oOyP$">
+                        <field name="TEXT">attribute name</field>
+                        <field name="FIELDNAME">attribute_name</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="e[dVSyVbnpZA#Pcp8JxS">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
               <block type="field_static" id="@mu*-r*fN2hEa_)P8.g:">
                 <field name="TEXT">which is of type</field>
                 <next>
@@ -6825,26 +6850,21 @@
                     <field name="CPU5">duration</field>
                     <field name="USER6">category</field>
                     <field name="CPU6">category_name</field>
-                  </block>
-                </next>
-              </block>
-            </next>
-          </block>
-        </statement>
-        <next>
-          <block type="input_dummy" id="e[dVSyVbnpZA#Pcp8JxS">
-            <field name="ALIGN">LEFT</field>
-            <statement name="FIELDS">
-              <block type="field_static" id="@oi~.C0PC;eSu(~na/xs">
-                <field name="TEXT">appearing as</field>
-                <next>
-                  <block type="field_dropdown" id="3RW(mstEkp,a!5Y_NTEk">
-                    <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
-                    <field name="FIELDNAME">order</field>
-                    <field name="USER0">object, then value</field>
-                    <field name="CPU0">ov</field>
-                    <field name="USER1">value, then object</field>
-                    <field name="CPU1">vo</field>
+                    <next>
+                      <block type="field_static" id="@oi~.C0PC;eSu(~na/xs">
+                        <field name="TEXT">, appearing as</field>
+                        <next>
+                          <block type="field_dropdown" id="3RW(mstEkp,a!5Y_NTEk">
+                            <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                            <field name="FIELDNAME">order</field>
+                            <field name="USER0">object, then value</field>
+                            <field name="CPU0">ov</field>
+                            <field name="USER1">value, then object</field>
+                            <field name="CPU1">vo</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
                   </block>
                 </next>
               </block>
@@ -6853,8 +6873,12 @@
               <block type="input_dummy" id="}XdB}|SToOLr2/(:3t#K">
                 <field name="ALIGN">LEFT</field>
                 <statement name="FIELDS">
-                  <block type="field_static" id="{j^az5Yk5]8F-de?pSBr">
-                    <field name="TEXT">"</field>
+                  <block type="field_image" id="`w$4z2vVH-CV|H-F*do^">
+                    <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC</field>
+                    <field name="WIDTH">15</field>
+                    <field name="HEIGHT">15</field>
+                    <field name="ALT">"</field>
+                    <field name="FLIP_RTL">FALSE</field>
                     <next>
                       <block type="field_input" id="8v:fzErKH};r+Na{6:bf">
                         <field name="TEXT"></field>
@@ -6876,8 +6900,12 @@
                                         <field name="TEXT"></field>
                                         <field name="FIELDNAME">postfix</field>
                                         <next>
-                                          <block type="field_static" id="QIT_6K|(UZ2Hh~B8%zdQ">
-                                            <field name="TEXT">"</field>
+                                          <block type="field_image" id="l|wJ/zRf_7wC5{E:5Kz`">
+                                            <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==</field>
+                                            <field name="WIDTH">15</field>
+                                            <field name="HEIGHT">15</field>
+                                            <field name="ALT">"</field>
+                                            <field name="FLIP_RTL">FALSE</field>
                                           </block>
                                         </next>
                                       </block>
@@ -6924,6 +6952,111 @@
       <block type="colour_hue" id="DGEp[FjR%tDFqG8Vu]JF">
         <mutation colour="#a5935b"></mutation>
         <field name="HUE">45</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="d.3nt!}[l/hNX{y$lGAG" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">new_category_declaration</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="728xm#UU-^i+!Ymn]!W+">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_input" id="/}sq$Xo/LO(Foral.#xw">
+            <field name="TEXT">category_name</field>
+            <field name="FIELDNAME">category_name</field>
+            <next>
+              <block type="field_static" id=";83Mi#,5;_-A%bXNs$l_">
+                <field name="TEXT">is a Category</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="|jp}+S8b!fyBRgVG}B7i">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="Yu0fc~9o/x}vdZ!BdX,,">
+                <field name="TEXT">Appearing as:</field>
+                <next>
+                  <block type="field_image" id="6d,d)=(q87cf[OtGWFLW">
+                    <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC</field>
+                    <field name="WIDTH">15</field>
+                    <field name="HEIGHT">15</field>
+                    <field name="ALT">"</field>
+                    <field name="FLIP_RTL">FALSE</field>
+                    <next>
+                      <block type="field_input" id=".Wnkh:mFzt?MS.`A!Fdp">
+                        <field name="TEXT"></field>
+                        <field name="FIELDNAME">prefix</field>
+                        <next>
+                          <block type="field_label_serializable" id="/qoE`Q#gS;Xpy:wV#1AZ">
+                            <field name="TEXT">object</field>
+                            <field name="FIELDNAME">first_element</field>
+                            <next>
+                              <block type="field_input" id="|V{P.d}^Mhe{ON${);4f">
+                                <field name="TEXT">is a category_name</field>
+                                <field name="FIELDNAME">postfix</field>
+                                <next>
+                                  <block type="field_image" id="0?pWnl8[Zf=IY-+qB).W">
+                                    <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==</field>
+                                    <field name="WIDTH">15</field>
+                                    <field name="HEIGHT">15</field>
+                                    <field name="ALT">"</field>
+                                    <field name="FLIP_RTL">FALSE</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="lgoB}dGhhJ=[01M;c.x?" deletable="false" movable="false">
+        <field name="TEXT">Use to create a category.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="i}F-mLL,Ie;yHv/N/U*R" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/new_category/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="Rz{b/YH8]!ft/1`g+.r]"></shadow>
+      <block type="type_group" id="ei[xt5y%`N+W^j=8x~{f">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="sO#]KMKlrq$cB||64O-q">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="B9bU@71=x_nF/.DF7tR~">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id=",(D][)eRg=Zn:|;Eelc/"></shadow>
+      <block type="type_other" id="7ITs~RXm5:RC4CXPLg-^">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="zgjv0JTd)!lF(lgFl4VC">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
       </block>
     </value>
   </block></xml>
