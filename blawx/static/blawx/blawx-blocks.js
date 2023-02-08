@@ -2778,6 +2778,147 @@ scasp_blockset = [{
   "colour": 160,
   "tooltip": "Use to select the list type for an attribute.",
   "helpUrl": "/docs/blocks/list"
+},
+{
+  "type": "list_start",
+  "message0": "[ %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "NAME"
+    }
+  ],
+  "inputsInline": false,
+  "output": null,
+  "colour": 300,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "list_end",
+  "message0": "]",
+  "output": null,
+  "colour": 300,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "list_element",
+  "message0": "%1 , %2 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "element"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "next"
+    }
+  ],
+  "inputsInline": true,
+  "output": null,
+  "colour": 300,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "new_attribute_declaration",
+  "message0": "%1 which is of type %2 %3 appearing as %4 %5 \" %6 %7 %8 %9 %10 \"",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "attribute_name",
+      "text": "attribute name"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "attribute_type",
+      "options": [
+        [
+          "true / false",
+          "boolean"
+        ],
+        [
+          "number",
+          "number"
+        ],
+        [
+          "date",
+          "date"
+        ],
+        [
+          "time",
+          "time"
+        ],
+        [
+          "datetime",
+          "datetime"
+        ],
+        [
+          "duration",
+          "duration"
+        ],
+        [
+          "category",
+          "category_name"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "order",
+      "options": [
+        [
+          "object, then value",
+          "ov"
+        ],
+        [
+          "value, then object",
+          "vo"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "first_element",
+      "text": "object"
+    },
+    {
+      "type": "field_input",
+      "name": "infix",
+      "text": "'s attribute name is"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "second_element",
+      "text": "value"
+    },
+    {
+      "type": "field_input",
+      "name": "postfix",
+      "text": ""
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": "ATTRIBUTE",
+  "nextStatement": "ATTRIBUTE",
+  "colour": 45,
+  "tooltip": "Use to create an attribute for a category.",
+  "helpUrl": "/docs/blocks/new_attribute/"
 }]
 
 // Make modifications that it is not possible to make in the Developer Tools

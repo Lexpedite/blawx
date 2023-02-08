@@ -7,6 +7,21 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## NEW BOOLEAN BRANCH
+
+### TODO
+* Make the new attribute declaration block auto-generate categories into its drop-down list
+* make the new attribute declaration block mutate the NLG portion based on if the datatype is boolean
+* do code generation for the new attribute declaration block
+* remove the old attribute declaration blocks.
+* update example code to use the new attribute declaration block
+* update documentation to use the new attribute declaration block
+* update scenario editor to deal with the new boolean style.
+* update the defeasibility library to use the new boolean style.
+
+### Done
+* Added the new attribute declaration block definition
+
 ## [v1.3.38-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.38-alpha) 2022-02-06
 
 This update improves the display of answers in the scenario editor, and makes it easier for developers to
