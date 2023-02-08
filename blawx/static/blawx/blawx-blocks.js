@@ -2944,8 +2944,11 @@ scasp_blockset = [{
     }
   ],
   "inputsInline": false,
-  "previousStatement": "ATTRIBUTE",
-  "nextStatement": "ATTRIBUTE",
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
   "colour": 45,
   "tooltip": "Use to create an attribute for a category.",
   "helpUrl": "/docs/blocks/new_attribute/"

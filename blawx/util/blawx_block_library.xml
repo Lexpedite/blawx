@@ -6938,14 +6938,24 @@
     </value>
     <value name="TOPTYPE">
       <shadow type="type_null" id="87.B-YdQu0RUNvYfS~PK"></shadow>
-      <block type="type_other" id="d.(/+wVT9kr_]H1);z4|">
-        <field name="TYPE">ATTRIBUTE</field>
+      <block type="type_group" id="mz#IzUX)fR=RGzGsBs+7">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="d.(/+wVT9kr_]H1);z4|">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="7gAEHuVl*`UWz:4PD@F4">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
       </block>
     </value>
     <value name="BOTTOMTYPE">
       <shadow type="type_null" id="5j#Qk;qdu$%Q*m7`QFSf"></shadow>
       <block type="type_other" id="E/;1)^h!SATxC+Yq9#zc">
-        <field name="TYPE">ATTRIBUTE</field>
+        <field name="TYPE">STATEMENT</field>
       </block>
     </value>
     <value name="COLOUR">
