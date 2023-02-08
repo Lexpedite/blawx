@@ -219,12 +219,12 @@ getKnownCategoriesList = function(workspace) {
         if (blockList[i].type == "category_declaration") {
         // Get the name of the entity, insert a block of that type,
         var category_name = blockList[i].getFieldValue('category_name'); 
-        knownCategoryList.push(category_name);
+        knownCategoriesList.push(category_name);
         }
     }
     }
     
-    return knownCategoryList;
+    return knownCategoriesList;
 };
 
 var newObjectCallback;
