@@ -53,44 +53,39 @@
             <block type="new_attribute_declaration"></block>
         </category>
         <sep></sep>
-        
-    <category name="Data Values" colour="#5ba5a5">
+    <category name="Numbers" colour="#5b5ba5">
         <block type="number_value"></block>
+        <block type="math_operation"></block>
+        <block type="calculation"></block>
+        <block type="numerical_constraint"></block>
+    </category>
+    <category name="Dates" colour="#a55b80">
+        <block type="today"></block>
+        <block type="now"></block>
         <block type="date_value"></block>
         <block type="datetime_value"></block>
         <block type="time_value"></block>
         <block type="duration_value"></block>
+        <block type="date_comparison"></block>
+        <block type="duration_comparison"></block>
+        <!-- <block type="date_element"></block> -->
+        <block type="date_difference_days"></block>
+        <block type="date_difference"></block>
+        <block type="date_add"></block>
+        <block type="date_add_days"></block>
+        <block type="date_calculate"></block>
+        <block type="duration_calculate"></block>
+        <block type="datetime_calculate"></block>
+        <block type="time_calculate"></block>
+        <block type="datetime_construct"></block>
+        <!-- <block type="duration_element"></block> -->
     </category>
-        <category name="Data Statements" colour="#5ba5a5">
-            <category name="Number">
-                <block type="math_operation"></block>
-                <block type="calculation"></block>
-                <block type="numerical_constraint"></block>
-            </category>
-            <category name="Date">
-                <block type="today"></block>
-                <block type="now"></block>
-                <block type="date_comparison"></block>
-                <block type="duration_comparison"></block>
-                <!-- <block type="date_element"></block> -->
-                <block type="date_difference_days"></block>
-                <block type="date_difference"></block>
-                <block type="date_add"></block>
-                <block type="date_add_days"></block>
-                <block type="date_calculate"></block>
-                <block type="duration_calculate"></block>
-                <block type="datetime_calculate"></block>
-                <block type="time_calculate"></block>
-                <block type="datetime_construct"></block>
-                <!-- <block type="duration_element"></block> -->
-            </category>
-            <category name="List">
-                <block type="empty_list"></block>
-                <block type="head_tail"></block>
-                <block type="list_aggregation"></block>
-                <block type="collect_list"></block>
-            </category>   
-        </category>
+    <category name="Lists" colour="#a55ba5">
+        <block type="empty_list"></block>
+        <block type="head_tail"></block>
+        <block type="list_aggregation"></block>
+        <block type="collect_list"></block>
+    </category>    
         <sep></sep>
         <category name="Objects" custom="NEW_OBJECTS" colour="#5b5ba5"></category>
         <category name="Known Objects" custom='KNOWN_OBJECTS' colour="#5b5ba5">
