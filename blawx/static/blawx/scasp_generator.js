@@ -889,7 +889,7 @@ sCASP['list_type_selector'] = function(block) {
 };
 
 sCASP['new_attribute_declaration'] = function(block) {
-    var dropdown_category = block.getFieldValue('category');
+    var dropdown_category = block.getFieldValue('category_name');
     var text_attribute_name = block.getFieldValue('attribute_name');
     var dropdown_attribute_type = block.getFieldValue('attribute_type');
     var dropdown_order = block.getFieldValue('order');
@@ -897,32 +897,39 @@ sCASP['new_attribute_declaration'] = function(block) {
     var text_infix = block.getFieldValue('infix');
     var text_postfix = block.getFieldValue('postfix');
     var code = 'blawx_attribute(' + dropdown_category + ',' + text_attribute_name + ',' + dropdown_attribute_type + ').\n';
-    code += "blawx_attribute_nlg(" + text_attribute_name + "," + dropdown_order + ",\"" + text_prefix + "\",\"" + text_infix + "\",\"" + text_postfix + "\").\n"
-    code += "#pred " + text_attribute_name + "(";
-    if (dropdown_order == "ov") {
-        code += "X,Y";
+    if (dropdown_attribute_type != "boolean") {
+        code += "blawx_attribute_nlg(" + text_attribute_name + "," + dropdown_order + ",\"" + text_prefix + "\",\"" + text_infix + "\",\"" + text_postfix + "\").\n"
+        code += "#pred " + text_attribute_name + "(";
+        if (dropdown_order == "ov") {
+            code += "X,Y";
+        } else {
+            code += "Y,X";
+        }
+        add_code = text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_infix.replace(/'/g, '\\\'') + " @(Y) " + text_postfix.replace(/'/g, '\\\'')
+        code += ") :: '" + add_code.trim() + "'.\n"
+        code += "#pred according_to(R," + text_attribute_name + "(";
+        if (dropdown_order == "ov") {
+            code += "X,Y";
+        } else {
+            code += "Y,X";
+        }
+        code += ")) :: 'according to @(R), " + add_code.trim() + "'.\n"
+        code += "#pred legally_holds(_," + text_attribute_name + "(";
+        if (dropdown_order == "ov") {
+            code += "X,Y";
+        } else {
+            code += "Y,X";
+        }
+        code += ")) :: 'it legally holds that " + add_code.trim() + "'.\n"
     } else {
-        code += "Y,X";
-    }
-    add_code = text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_infix.replace(/'/g, '\\\'') + " @(Y) " + text_postfix.replace(/'/g, '\\\'')
-    code += ") :: '" + add_code.trim() + "'.\n"
-    code += "#pred according_to(R," + text_attribute_name + "(";
-    if (dropdown_order == "ov") {
-        code += "X,Y";
-    } else {
-        code += "Y,X";
-    }
-    code += ")) :: 'according to @(R), " + add_code.trim() + "'.\n"
-    code += "#pred legally_holds(_," + text_attribute_name + "(";
-    if (dropdown_order == "ov") {
-        code += "X,Y";
-    } else {
-        code += "Y,X";
-    }
-    code += ")) :: 'it legally holds that " + add_code.trim() + "'.\n"
-    if (dropdown_attribute_type.type == "true_false") {
-        code += "opposes(" + text_attribute_name + "(X,true)," + text_attribute_name + "(X,false)).\n";
-        code += "opposes(" + text_attribute_name + "(X,false)," + text_attribute_name + "(X,true)).\n";
+        // This is for booleans.
+        code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
+        add_code = text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')
+        code += "#pred " + text_attribute_name + "(X) :: " + add_code.trim() + "'.\n"
+        code += "#pred according_to(R," + text_attribute_name + "(X)) :: 'according to @(R), " + add_code.trim() + "'.\n"
+        code += "#pred legally_holds(_," + text_attribute_name + "(X)) :: 'it legally holds that " + add_code.trim() + "'.\n"
+        code += "opposes(" + text_attribute_name + "(X),-" + text_attribute_name + "(X)).\n";
+        code += "opposes(-" + text_attribute_name + "(X)," + text_attribute_name + "(X)).\n";
     }
     return code;
 };
