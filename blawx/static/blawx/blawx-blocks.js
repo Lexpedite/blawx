@@ -3027,7 +3027,7 @@ Blockly.Blocks['new_attribute_declaration'] = {
         }
       }
       
-      if(knownCategoriesList != []) {
+      if(knownCategoriesList.length > 0) {
         return knownCategoriesList;
       } else {
         return [["No Categories Defined","none"]];
@@ -3120,7 +3120,7 @@ Blockly.Blocks['new_object_category'] = {
         }
       }
       
-      if(knownCategoriesList != []) {
+      if(knownCategoriesList.length > 0) {
         return knownCategoriesList;
       } else {
         return [["No Categories Defined","none"]];
