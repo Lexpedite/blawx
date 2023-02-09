@@ -189,44 +189,6 @@ knownCategoriesCallback = function(workspace) {
 
 demoWorkspace.registerToolboxCategoryCallback('KNOWN_CATEGORIES', knownCategoriesCallback);
 
-getKnownCategoriesList = function(workspace) {
-    var all_workspaces = getAllWorkspaces();
-    // console.log("All Workspaces:")
-    // console.log(all_workspaces)
-    var knownCategoriesList = [];
-    for (var w = 0; w < all_workspaces.length; w++) {
-        // Go through the blocks in the workspace.
-        // If the block is an object declaration, add the relevant block to the xml
-        if (all_workspaces[w].xml_content) {
-            var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
-            var tempWorkspace = new Blockly.Workspace();
-            Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
-            var blockList = tempWorkspace.getAllBlocks();
-            // console.log("BlockList: " + blockList)
-            for (var i = 0; i< blockList.length; i++) {
-                if (blockList[i].type == "category_declaration") {
-                    // Get the name of the entity, insert a block of that type,
-                    var category_name = blockList[i].getFieldValue('category_name');
-                    knownCategoriesList.push(category_name); 
-                }
-            }
-            delete tempWorkspace;
-        }
-    }
-    for (var id in importDictionary) {
-    var blockList = importDictionary[id].getAllBlocks();
-    for (var i = 0; i< blockList.length; i++) {
-        if (blockList[i].type == "category_declaration") {
-        // Get the name of the entity, insert a block of that type,
-        var category_name = blockList[i].getFieldValue('category_name'); 
-        knownCategoriesList.push(category_name);
-        }
-    }
-    }
-    
-    return knownCategoriesList;
-};
-
 var newObjectCallback;
 newObjectCallback = function(workspace) {
     var all_workspaces = getAllWorkspaces();
