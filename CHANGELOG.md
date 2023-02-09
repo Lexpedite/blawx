@@ -10,17 +10,23 @@ and breaking changes will not necessarily result in changes to the main version 
 ## NEW BOOLEAN BRANCH
 
 ### TODO
-* Make the new attribute declaration block auto-generate categories into its drop-down list
-* make the new attribute declaration block mutate the NLG portion based on if the datatype is boolean
-* do code generation for the new attribute declaration block
-* remove the old attribute declaration blocks.
+* Make new attribute block work off of new category declaration blocks.
+* remove the old attribute declaration and category declaration blocks.
+* Add opposes statements to code generation for non-boolean attributes.
+* update the defeasibility library to use the new boolean style.
+* update scenario editor to deal with the new boolean style.
 * update example code to use the new attribute declaration block
 * update documentation to use the new attribute declaration block
-* update scenario editor to deal with the new boolean style.
-* update the defeasibility library to use the new boolean style.
 
 ### Done
 * Added the new attribute declaration block definition
+* Added the new category declaration block definition
+* Added a function for returning the currently known categories.
+* Added code generation for the new blocks
+* Made the new attribute declaration block auto-generate categories into its drop-down list
+* made the new attribute declaration block mutate the NLG portion based on if the datatype is boolean
+* did code generation for the new attribute declaration block based on datatype.
+
 
 ## [v1.3.38-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.38-alpha) 2022-02-06
 
