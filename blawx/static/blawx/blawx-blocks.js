@@ -3027,7 +3027,7 @@ Blockly.Blocks['new_attribute_declaration'] = {
     //return [['this','this'],['that','that']];
   },
   generateDataTypes: function() {
-    var options = [["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"]]
+    var options = [["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']];
     var knownCategories = this.generateCategories();
     for (var i=0; i < knownCategories.length; i++){
       options.push(knownCategories[i]);

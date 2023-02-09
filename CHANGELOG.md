@@ -10,6 +10,7 @@ and breaking changes will not necessarily result in changes to the main version 
 ## NEW BOOLEAN BRANCH
 
 ### TODO
+* Fix problem that the new attribute block can't render if no categories are declared, because option lists can't be empty.
 * Make new attribute block work off of new category declaration blocks.
 * remove the old attribute declaration and category declaration blocks.
 * Add opposes statements to code generation for non-boolean attributes.
