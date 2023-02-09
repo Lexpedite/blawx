@@ -2825,135 +2825,6 @@ scasp_blockset = [{
   "helpUrl": ""
 },
 {
-  "type": "new_attribute_declaration",
-  "message0": "The category %1 has an attribute %2 %3 which is of type %4 , appearing as %5 %6 %7 %8 %9 %10 %11 %12 %13",
-  "args0": [
-    {
-      "type": "field_dropdown",
-      "name": "category",
-      "options": [
-        [
-          "cat1",
-          "cat1"
-        ],
-        [
-          "cat2",
-          "cat2"
-        ]
-      ]
-    },
-    {
-      "type": "field_input",
-      "name": "attribute_name",
-      "text": "attribute name"
-    },
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "field_dropdown",
-      "name": "attribute_type",
-      "options": [
-        [
-          "true / false",
-          "boolean"
-        ],
-        [
-          "number",
-          "number"
-        ],
-        [
-          "date",
-          "date"
-        ],
-        [
-          "time",
-          "time"
-        ],
-        [
-          "datetime",
-          "datetime"
-        ],
-        [
-          "duration",
-          "duration"
-        ],
-        [
-          "category",
-          "category_name"
-        ]
-      ]
-    },
-    {
-      "type": "field_dropdown",
-      "name": "order",
-      "options": [
-        [
-          "object, then value",
-          "ov"
-        ],
-        [
-          "value, then object",
-          "vo"
-        ]
-      ]
-    },
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "field_image",
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC",
-      "width": 15,
-      "height": 15,
-      "alt": "\"",
-      "flipRtl": false
-    },
-    {
-      "type": "field_input",
-      "name": "prefix",
-      "text": ""
-    },
-    {
-      "type": "field_label_serializable",
-      "name": "first_element",
-      "text": "object"
-    },
-    {
-      "type": "field_input",
-      "name": "infix",
-      "text": "'s attribute name is"
-    },
-    {
-      "type": "field_label_serializable",
-      "name": "second_element",
-      "text": "value"
-    },
-    {
-      "type": "field_input",
-      "name": "postfix",
-      "text": ""
-    },
-    {
-      "type": "field_image",
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==",
-      "width": 15,
-      "height": 15,
-      "alt": "\"",
-      "flipRtl": false
-    }
-  ],
-  "inputsInline": false,
-  "previousStatement": [
-    "OUTER",
-    "STATEMENT"
-  ],
-  "nextStatement": "STATEMENT",
-  "colour": 45,
-  "tooltip": "Use to create an attribute for a category.",
-  "helpUrl": "/docs/blocks/new_attribute/"
-},
-{
   "type": "new_category_declaration",
   "message0": "%1 is a Category %2 Appearing as: %3 %4 %5 %6 %7",
   "args0": [
@@ -3030,6 +2901,11 @@ for (var i = 0; i < scasp_blockset.length; i++) {
   if (scasp_blockset[i].type == "attribute_display") {
     scasp_blockset[i]['extensions'] = ["changeAttributeDisplayText"];
   };
+  if (scasp_blockset[i].type == "new_attribute_declaration") {
+    scasp_blockset[i]['extensions'] = ["changeNewAttributeDisplayText",
+                                      "changeNewAttributeDisplayFormat"];//,
+                                      //"dynamic_new_attribute_category_menu_extension"];
+  }
   if (scasp_blockset[i].type == "object_declaration") {
     scasp_blockset[i]['mutator'] = "object_declaration_mutator";
   };
@@ -3051,3 +2927,129 @@ for (var i = 0; i < scasp_blockset.length; i++) {
     }
   }
 }
+
+var headless=false;
+
+Blockly.Blocks['new_attribute_declaration'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("The category")
+        .appendField(new Blockly.FieldDropdown(this.generateCategories(),opt_validator=function(new_value){return new_value;}),"category_name")
+        .appendField("has an attribute")
+        .appendField(new Blockly.FieldTextInput("attribute name"), "attribute_name");
+    this.appendDummyInput()
+        .appendField("which is of type")
+        .appendField(new Blockly.FieldDropdown(this.generateDataTypes(),opt_validator=function(new_value){return new_value;}),"attribute_type")
+        .appendField(", appearing as")
+        .appendField(new Blockly.FieldDropdown([["object, then value","ov"], ["value, then object","vo"]]), "order");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC", 15, 15, { alt: "\"", flipRtl: "FALSE" }))
+        .appendField(new Blockly.FieldTextInput(""), "prefix")
+        .appendField(new Blockly.FieldLabelSerializable("object"), "first_element")
+        .appendField(new Blockly.FieldTextInput("'s attribute name is"), "infix")
+        .appendField(new Blockly.FieldLabelSerializable("value"), "second_element")
+        .appendField(new Blockly.FieldTextInput(""), "postfix")
+        .appendField(new Blockly.FieldImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==", 15, 15, { alt: "\"", flipRtl: "FALSE" }));
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, ["OUTER", "STATEMENT"]);
+    this.setNextStatement(true, "STATEMENT");
+    this.setColour(45);
+ this.setTooltip("Use to create an attribute for a category.");
+ this.setHelpUrl("/docs/blocks/new_attribute/");
+ this.setOnChange(function(changeEvent) {
+  this.getField('attribute_type').getOptions(false);
+  this.getField('category_name').getOptions(false);
+  if (this.getFieldValue('order') == "ov") {
+    this.getField('first_element').setValue('object');
+    this.getField('second_element').setValue('value');
+  } else {
+    this.getField('first_element').setValue('value');
+    this.getField('second_element').setValue('object');
+  }
+  if (this.getFieldValue('attribute_type') == "boolean") {
+    this.getField('order').setValue('ov'); // reset to order first, so we know what we need to hide.
+    this.getField('first_element').setValue('object');
+    this.getField('second_element').setValue('value');
+    this.getField('second_element').setVisible(false);
+    this.getField('infix').setVisible(false);
+    this.getField('order').setVisible(false);
+  } else {
+    this.getField('second_element').setVisible(true);
+    this.getField('infix').setVisible(true);
+    this.getField('order').setVisible(true);
+  }
+  demoWorkspace.render();
+});
+  },
+  generateCategories: function() {
+    // console.log("All Workspaces:")
+    // console.log(all_workspaces)
+    var knownCategoriesList = [];
+    if (!headless) {
+      headless = true; // Don't loop.
+      var all_workspaces = getAllWorkspaces();
+    
+      for (var w = 0; w < all_workspaces.length; w++) {
+          // Go through the blocks in the workspace.
+          // If the block is an object declaration, add the relevant block to the xml
+          if (all_workspaces[w].xml_content) {
+              var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
+              var tempWorkspace = new Blockly.Workspace();
+              Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
+              var blockList = tempWorkspace.getAllBlocks();
+              // console.log("BlockList: " + blockList)
+              for (var i = 0; i< blockList.length; i++) {
+                  if (blockList[i].type == "category_declaration") {
+                      // Get the name of the entity, insert a block of that type,
+                      var category_name = blockList[i].getFieldValue('category_name');
+                      knownCategoriesList.push([category_name,category_name]); 
+                  }
+              }
+              delete tempWorkspace;
+          }
+      }
+      headless = false;
+      for (var id in importDictionary) {
+        var blockList = importDictionary[id].getAllBlocks();
+        for (var i = 0; i< blockList.length; i++) {
+            if (blockList[i].type == "category_declaration") {
+            // Get the name of the entity, insert a block of that type,
+            var category_name = blockList[i].getFieldValue('category_name'); 
+            knownCategoriesList.push([category_name,category_name]);
+            }
+        }
+      }
+      
+      return knownCategoriesList;
+    } else {
+      return [['this','this']];
+    }
+    //return [['this','this'],['that','that']];
+  },
+  generateDataTypes: function() {
+    var options = [["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"]]
+    var knownCategories = this.generateCategories();
+    for (var i=0; i < knownCategories.length; i++){
+      options.push(knownCategories[i]);
+    }
+    return options;
+  },
+  mutationToDom() {
+    let container = document.createElement('mutation');
+
+    // Bind some values to container e.g. container.setAttribute('foo', 3.14);
+    container.setAttribute('category_name',this.getFieldValue('category_name'));
+    container.setAttribute('attribute_type',this.getFieldValue('attribute_type'));
+
+    return container;
+  },
+  domToMutation(xmlElement) {
+    // Retrieve all attributes from 'xmlElement' and reshape your block
+    // e.g. let foo = xmlElement.getAttribute('foo');
+    // this.reshape(foo);
+    var category_name = xmlElement.getAttribute('category_name');
+    var attribute_type = xmlElement.getAttribute('attribute_type');
+    this.setFieldValue(category_name,'category_name');
+    this.setFieldValue(attribute_type,'attribute_type');
+  }
+};
