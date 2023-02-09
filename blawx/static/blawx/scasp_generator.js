@@ -948,3 +948,11 @@ sCASP['new_category_declaration'] = function(block) {
     code += "it legally holds that " + (text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')).trim() + "'.\n";
     return code;
 };
+
+sCASP['new_object_category'] = function(block) {
+    var value_object = sCASP.valueToCode(block, 'object', sCASP.ORDER_ATOMIC);
+    var category_name = block.getFieldValue('category_name');
+    // TODO: Assemble JavaScript into code variable.
+    var code = category_name + "(" + value_object + ")";
+    return code;
+  };

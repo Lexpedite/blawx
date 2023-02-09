@@ -2878,6 +2878,7 @@ scasp_blockset = [{
   "helpUrl": "/docs/blocks/new_category/"
 }]
 
+// TODO: A bunch of these things below are redundant as the blocks are being removed.
 // Make modifications that it is not possible to make in the Developer Tools
 for (var i = 0; i < scasp_blockset.length; i++) {
   if (scasp_blockset[i].type == "attribute_selector") {
@@ -2918,12 +2919,18 @@ for (var i = 0; i < scasp_blockset.length; i++) {
   }
 }
 
+// This allows us to include reference definitions in the JSON above, but actually
+// use the custom JavaScript below to define blocks that it is awkward to build with JSON.
+const excluded_block_types = ['new_attribute_declaration','new_object_category'];
+
 for (var i = 0; i < scasp_blockset.length; i++) {
   const typename = scasp_blockset[i].type
   const elem = scasp_blockset[i]
-  Blockly.Blocks[typename] = {
-    init: function() {
-      this.jsonInit(elem)
+  if(!(excluded_block_types.includes(typename))) {
+    Blockly.Blocks[typename] = {
+      init: function() {
+        this.jsonInit(elem)
+      }
     }
   }
 }
@@ -3051,5 +3058,81 @@ Blockly.Blocks['new_attribute_declaration'] = {
     var attribute_type = xmlElement.getAttribute('attribute_type');
     this.setFieldValue(category_name,'category_name');
     this.setFieldValue(attribute_type,'attribute_type');
+  }
+};
+
+Blockly.Blocks['new_object_category'] = {
+  init: function() {
+    this.appendValueInput("object")
+        .setCheck(["OBJECT", "VARIABLE"]);
+    this.appendDummyInput()
+        .appendField("is in the category")
+        .appendField(new Blockly.FieldDropdown(this.generateCategories), "category_name");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, ["OUTER", "STATEMENT"]);
+    this.setNextStatement(true, "STATEMENT");
+    this.setColour(225);
+ this.setTooltip("Use to add a category to an object, or check for category membership.");
+ this.setHelpUrl("/docs/blocks/object_category/");
+  },
+  generateCategories: function() {
+    // console.log("All Workspaces:")
+    // console.log(all_workspaces)
+    var knownCategoriesList = [];
+    if (!headless) {
+      headless = true; // Don't loop.
+      var all_workspaces = getAllWorkspaces();
+    
+      for (var w = 0; w < all_workspaces.length; w++) {
+          // Go through the blocks in the workspace.
+          // If the block is an object declaration, add the relevant block to the xml
+          if (all_workspaces[w].xml_content) {
+              var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
+              var tempWorkspace = new Blockly.Workspace();
+              Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
+              var blockList = tempWorkspace.getAllBlocks();
+              // console.log("BlockList: " + blockList)
+              for (var i = 0; i< blockList.length; i++) {
+                  if (blockList[i].type == "category_declaration") {
+                      // Get the name of the entity, insert a block of that type,
+                      var category_name = blockList[i].getFieldValue('category_name');
+                      knownCategoriesList.push([category_name,category_name]); 
+                  }
+              }
+              delete tempWorkspace;
+          }
+      }
+      headless = false;
+      for (var id in importDictionary) {
+        var blockList = importDictionary[id].getAllBlocks();
+        for (var i = 0; i< blockList.length; i++) {
+            if (blockList[i].type == "category_declaration") {
+            // Get the name of the entity, insert a block of that type,
+            var category_name = blockList[i].getFieldValue('category_name'); 
+            knownCategoriesList.push([category_name,category_name]);
+            }
+        }
+      }
+      
+      return knownCategoriesList;
+    } else {
+      return [['this','this']];
+    }
+    //return [['this','this'],['that','that']];
+  },
+  mutationToDom() {
+    let container = document.createElement('mutation');
+
+    // Bind some values to container e.g. container.setAttribute('foo', 3.14);
+    container.setAttribute('category_name',this.getFieldValue('category_name'));
+
+    return container;
+  },
+  domToMutation(xmlElement) {
+    // Retrieve all attributes from 'xmlElement' and reshape your block
+    // e.g. let foo = xmlElement.getAttribute('foo');
+    // this.reshape(foo);
+    var category_name = xmlElement.getAttribute('category_name');
+    this.setFieldValue(category_name,'category_name');
   }
 };

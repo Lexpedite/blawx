@@ -259,7 +259,7 @@ newObjectCallback = function(workspace) {
     var objectEqualityBlock = Blockly.Xml.textToDom(objectEqualityBlockText).firstChild;
     var objectDisequalityBlockText = '<xml><block type="object_disequality"></block></xml>';
     var objectDisequalityBlock = Blockly.Xml.textToDom(objectDisequalityBlockText).firstChild;
-    var objectCategoryBlockText = '<xml><block type="object_category"></block></xml>';
+    var objectCategoryBlockText = '<xml><block type="new_object_category"></block></xml>';
     var objectCategoryBlock = Blockly.Xml.textToDom(objectCategoryBlockText).firstChild;
     xmlList.push(objectEqualityBlock);
     xmlList.push(objectDisequalityBlock);
