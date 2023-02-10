@@ -921,6 +921,8 @@ sCASP['new_attribute_declaration'] = function(block) {
             code += "Y,X";
         }
         code += ")) :: 'it legally holds that " + add_code.trim() + "'.\n"
+        code += "opposes(" + text_attribute_name + "(X,Y),-" + text_attribute_name + "(X,Y)).\n";
+        code += "opposes(-" + text_attribute_name + "(X,Y)," + text_attribute_name + "(X,Y)).\n";
     } else {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
@@ -946,6 +948,8 @@ sCASP['new_category_declaration'] = function(block) {
     code += "according to @(R), " + (text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')).trim() + "'.\n";
     code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
     code += "it legally holds that " + (text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')).trim() + "'.\n";
+    code += "opposes(" + text_category_name + "(X,Y),-" + text_category_name + "(X,Y)).\n";
+    code += "opposes(-" + text_category_name + "(X,Y)," + text_category_name + "(X,Y)).\n";
     return code;
 };
 

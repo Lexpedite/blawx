@@ -10,10 +10,11 @@ and breaking changes will not necessarily result in changes to the main version 
 ## NEW BOOLEAN BRANCH
 
 ### TODO
-* Fix problem that the new attribute block can't render if no categories are declared, because option lists can't be empty.
-* Make new attribute block work off of new category declaration blocks.
-* remove the old attribute declaration and category declaration blocks.
-* Add opposes statements to code generation for non-boolean attributes.
+* Make new attribute block work off new category blocks
+* Make new object category block work off new category blocks
+* Make new object blocks work off of new category blocks.
+* Remove redundant code
+* Update block library
 * update the defeasibility library to use the new boolean style.
 * update scenario editor to deal with the new boolean style.
 * update example code to use the new attribute declaration block
@@ -27,7 +28,9 @@ and breaking changes will not necessarily result in changes to the main version 
 * Made the new attribute declaration block auto-generate categories into its drop-down list
 * made the new attribute declaration block mutate the NLG portion based on if the datatype is boolean
 * did code generation for the new attribute declaration block based on datatype.
-
+* added new object category block
+* reorganized toolboxes
+* added opposes code generation for all category and attribute declarations, not just booleans, using constructive negation.
 
 ## [v1.3.38-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.38-alpha) 2022-02-06
 
