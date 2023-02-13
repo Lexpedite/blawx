@@ -9,16 +9,54 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## NEW BOOLEAN BRANCH
 
+**Not backward compatible.**
+
+This release makes a number of interface changes, and 
+significantly changes the way that Blawx deals with true / false values. Instead of
+being treated as a statement about an object and a value (true, or false),
+they are treated as a statement about an object alone. This has considerable
+implications for the block language, and as a result, `.blawx` files exported prior to v1.4.0-alpha
+will not work from v1.4.0-alpha forward.
+
+True / False attributes are created in the usual way. However, specifying that a true or false attribute
+has the value of "false" is done by using the "known false" block, and the new style of true / false
+attribute selector block, in a fact or conclusion. Stating that it has the value "true" is done by 
+merely using the new attribute selector block.
+
+This change makes the block language considerably smaller, as it replaces 4 blocks, and removes another 
+14.
+
+### Added
+
+### Changed
+* Toolboxes are reorganized
+* New Category Declaration Block
+* New Attribute Declaration Block
+* New Object Category Block
+* New New Object Block
+
+### Fixed
+
+### Removed
+* Data Type Blocks
+* True and False Value Blocks
+* Category and Attribute Display Blocks
+* Category Attribute Block
+* Known Category Blocks
+* Category Equivalency Block
+
 ### TODO
 * Make new attribute block work off new category blocks
 * Make new object category block work off new category blocks
 * Make new object blocks work off of new category blocks.
+* Make known attributes work off of new category blocks, and use unary style for true / false.
+* Make known objects work off of new new object blocks.
 * Remove redundant code
 * Update block library
 * update the defeasibility library to use the new boolean style.
 * update scenario editor to deal with the new boolean style.
 * update example code to use the new attribute declaration block
-* update documentation to use the new attribute declaration block
+* update documentation throughout
 
 ### Done
 * Added the new attribute declaration block definition
