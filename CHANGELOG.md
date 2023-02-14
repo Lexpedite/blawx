@@ -46,8 +46,8 @@ This change makes the block language considerably smaller, as it replaces 4 bloc
 * Category Equivalency Block
 
 ### TODO
-* Attribute declaration block doesn't restore from save properly
-* when hiding elements of the attribute declaration block, they need to be removed from the tab list
+* Problems saving new object category block?
+* Make corresponding changes to test template
 * Remove redundant code, stop blocks from using old versions.
 * Update block library
 * update the defeasibility library to use the new boolean style.
@@ -56,6 +56,8 @@ This change makes the block language considerably smaller, as it replaces 4 bloc
 * update documentation throughout
 
 ### Done
+* Removed hidden elements from tab list.
+* Fixed serialization for blocks with new dropdowns (sorta)
 * Code generation for new blocks
 * type checking uses new attribute_type options
 * Make known attributes work off of new category blocks, and use unary style for true / false.
