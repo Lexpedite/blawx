@@ -47,7 +47,8 @@ This change makes the block language considerably smaller, as it replaces 4 bloc
 
 ### TODO
 * Problems saving new object category block?
-* Make corresponding changes to test template
+* Code is being generated with "none" in dropdown places.
+* Redundant options are appearing in option lists if you transition from the old style to the new. I think known Categories is duplicating localCategories.
 * Remove redundant code, stop blocks from using old versions.
 * Update block library
 * update the defeasibility library to use the new boolean style.
