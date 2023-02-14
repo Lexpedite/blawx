@@ -1,74 +1,64 @@
 - model: blawx.ruledoc
-  pk: 11
+  pk: 7
   fields:
-    owner: 3
     ruledoc_name: Siblings Act
     rule_text: "Siblings Act\r\n\r\n1. A person's sibling is another person with whom
       the person shares a parent.\r\n2. With regard to wards of the state, parent
       includes the Office of the Public Guardian."
     scasp_encoding: ''
     tutorial: ''
+    owner: 3
+    published: false
 - model: blawx.workspace
-  pk: 97
+  pk: 28
   fields:
-    ruledoc: 11
+    ruledoc: 7
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 98
+  pk: 29
   fields:
-    ruledoc: 11
+    ruledoc: 7
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="[c~Rd-p+ESGuzAe6,Y1|" x="85" y="3"><statement name="statements"><block type="category_declaration"
-      id=":/JaMeA+Z:7!F?qKh#q="><field name="category_name">person</field><next><block
-      type="category_attribute" id="NnLPk2is3.~M}J8dyrGj"><value name="category"><block
-      type="category_selector" id="1.~fI$q/CjKMjLbpKfjk"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
-      name="attributes"><block type="attribute_declaration" id="E3tjYERvts_GouTmPIjj"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="parent" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">parent</field><value name="attribute_type"><block type="category_selector"
-      id="3BX,HTzM$eLlJ0CCCP$L"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-      name="category_name">person</field></block></value><next><block type="attribute_display"
-      id="HRn+IbI[iguvj@yLcJR3"><field name="order">vo</field><field name="prefix"></field><field
-      name="first_element">value</field><field name="infix">is a parent of</field><field
-      name="second_element">object</field><field name="postfix"></field><next><block
-      type="attribute_declaration" id="mL52w+@)2K$D=KJ;L$Y:"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attribute_name="sibling" attribute_type="CATEGORY"></mutation><field name="attribute_name">sibling</field><value
-      name="attribute_type"><block type="category_selector" id="1JP(QzBe8ao~Z|/(LLr2"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-      name="category_name">person</field></block></value><next><block type="attribute_display"
-      id=",hX?[aVb$AoVxSSS3$f1"><field name="order">vo</field><field name="prefix"></field><field
+      id="[c~Rd-p+ESGuzAe6,Y1|" x="85" y="3"><statement name="statements"><block type="new_category_declaration"
+      id="uqUSS[+^IuMed3bI6jf/"><field name="category_name">person</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="postfix">is a person</field><next><block
+      type="new_attribute_declaration" id="Ro?dN=]%MZ+5!4u8@_+B"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" attribute_type="person"></mutation><field name="category_name">person</field><field
+      name="attribute_name">parent</field><field name="attribute_type">person</field><field
+      name="order">vo</field><field name="prefix"></field><field name="first_element">value</field><field
+      name="infix">is a parent of</field><field name="second_element">object</field><field
+      name="postfix"></field><next><block type="new_attribute_declaration" id=",n3}bGX[G)z?zQ:!i5to"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person" attribute_type="person"></mutation><field
+      name="category_name">person</field><field name="attribute_name">sibling</field><field
+      name="attribute_type">person</field><field name="order">vo</field><field name="prefix"></field><field
       name="first_element">value</field><field name="infix">is a sibling of</field><field
-      name="second_element">object</field><field name="postfix"></field></block></next></block></next></block></next></block></statement></block></next></block></statement></block><block
+      name="second_element">object</field><field name="postfix"></field></block></next></block></next></block></statement></block><block
       type="unattributed_rule" id="@Hcd)Dck[F1Y%.ElVI(-" x="87" y="318"><statement
-      name="conditions"><block type="object_category" id="=noH3(SBLc*~UIDatY,z"><value
-      name="object"><block type="variable" id="2j[wkJ*%%9l/8s/pt`J("><field name="variable_name">A</field></block></value><value
-      name="category"><block type="category_selector" id="NOxMnZYY[8?XW;dR^ly2"><mutation
+      name="conditions"><block type="new_object_category" id="=zxr}2r@*jr~AfR{HO#?"><mutation
       xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-      name="category_name">person</field></block></value><next><block type="object_category"
-      id="HE3UmiXA,T.LVhv6+O8^"><value name="object"><block type="variable" id=",3yJ5u+u.-X;qags3E5S"><field
-      name="variable_name">B</field></block></value><value name="category"><block
-      type="category_selector" id="pwetRW!h@oRk=bVRk/{9"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person"></mutation><field name="category_name">person</field></block></value><next><block
-      type="object_category" id="_NpF7`cNQ-aJ:-u+HFv("><value name="object"><block
-      type="variable" id="]M^?({Re|o|D@Nk}x6NR"><field name="variable_name">C</field></block></value><value
-      name="category"><block type="category_selector" id="8|Co}1QX%=||A,UD6Wlv"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-      name="category_name">person</field></block></value><next><block type="attribute_selector"
-      id="$sPG7g=5$3+%gL_KaH(!"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="parent"
-      attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
-      name="infix">is a parent of</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="VyvQxqe43y0}d%VFF+Je"><field name="variable_name">C</field></block></value><value
-      name="second_element"><block type="variable" id="U~;x=t%+{Vc./D-sFUGE"><field
-      name="variable_name">A</field></block></value><next><block type="attribute_selector"
-      id="$r,xC5X_JCH_,HwihcPD"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="parent"
-      attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
-      name="infix">is a parent of</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="=Kup|l@KZHGVy~2D5)4C"><field name="variable_name">C</field></block></value><value
-      name="second_element"><block type="variable" id="zUStH[^Jx)=NZM1/kg]@"><field
-      name="variable_name">B</field></block></value></block></next></block></next></block></next></block></next></block></statement><statement
+      name="category_name">person</field><value name="object"><block type="variable"
+      id="2j[wkJ*%%9l/8s/pt`J("><field name="variable_name">A</field></block></value><next><block
+      type="new_object_category" id="O$s2{^J$rD:Gg+}Ii5(9"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field><value
+      name="object"><block type="variable" id=",3yJ5u+u.-X;qags3E5S"><field name="variable_name">B</field></block></value><next><block
+      type="new_object_category" id="JuO1xDRGk)oBVH47eqPP"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field><value
+      name="object"><block type="variable" id="]M^?({Re|o|D@Nk}x6NR"><field name="variable_name">C</field></block></value><next><block
+      type="attribute_selector" id="$sPG7g=5$3+%gL_KaH(!"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="parent" attributetype="person" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is a parent of</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="VyvQxqe43y0}d%VFF+Je"><field
+      name="variable_name">C</field></block></value><value name="second_element"><block
+      type="variable" id="U~;x=t%+{Vc./D-sFUGE"><field name="variable_name">A</field></block></value><next><block
+      type="attribute_selector" id="$r,xC5X_JCH_,HwihcPD"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="parent" attributetype="person" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">is a parent of</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="=Kup|l@KZHGVy~2D5)4C"><field
+      name="variable_name">C</field></block></value><value name="second_element"><block
+      type="variable" id="zUStH[^Jx)=NZM1/kg]@"><field name="variable_name">B</field></block></value></block></next></block></next></block></next></block></next></block></statement><statement
       name="conclusion"><block type="according_to" id="CIFkE7FORt9(;ANq6yjo"><value
       name="rule"><block type="doc_selector" id="+55h_sucK0V9S1l[CLgc"><mutation xmlns="http://www.w3.org/1999/xhtml"
       section_reference="sec_1_section"></mutation><field name="doc_part_name">SA
@@ -81,11 +71,17 @@
       name="variable_name">A</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'blawx_category(person).
 
+      blawx_category_nlg(person,"","is a person").
+
       #pred person(X) :: ''@(X) is a person''.
 
       #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
 
       #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
+
+      opposes(person(X,Y),-person(X,Y)).
+
+      opposes(-person(X,Y),person(X,Y)).
 
       blawx_attribute(person,parent,person).
 
@@ -99,6 +95,9 @@
       #pred legally_holds(_,parent(Y,X)) :: ''it legally holds that @(X) is a parent
       of @(Y)''.
 
+      opposes(parent(X,Y),-parent(X,Y)).
+
+      opposes(-parent(X,Y),parent(X,Y)).
 
       blawx_attribute(person,sibling,person).
 
@@ -112,6 +111,9 @@
       #pred legally_holds(_,sibling(Y,X)) :: ''it legally holds that @(X) is a sibling
       of @(Y)''.
 
+      opposes(sibling(X,Y),-sibling(X,Y)).
+
+      opposes(-sibling(X,Y),sibling(X,Y)).
 
 
       according_to(sec_1_section,  sibling(A,B)) :-
@@ -126,39 +128,33 @@
 
       parent(B,C).'
 - model: blawx.workspace
-  pk: 99
+  pk: 30
   fields:
-    ruledoc: 11
+    ruledoc: 7
     workspace_name: sec_3_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"></xml>
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 100
+  pk: 31
   fields:
-    ruledoc: 11
+    ruledoc: 7
     workspace_name: sec_2_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="[c~Rd-p+ESGuzAe6,Y1|" x="38" y="60"><statement name="statements"><block
-      type="category_attribute" id="NnLPk2is3.~M}J8dyrGj"><value name="category"><block
-      type="category_selector" id="1.~fI$q/CjKMjLbpKfjk"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
-      name="attributes"><block type="attribute_declaration" id="AI8^@Jh+F=*@NZcOVi[["><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="ward" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">ward</field><value name="attribute_type"><block type="true_false_type_selector"
-      id="+Bq]#Cvb+Dh/2iEZT|{b"></block></value><next><block type="attribute_display"
-      id="5w9D];(1yv.*6[8dsj@/"><field name="order">vo</field><field name="prefix">it
-      is</field><field name="first_element">value</field><field name="infix">that</field><field
-      name="second_element">object</field><field name="postfix">is a ward of the state</field></block></next></block></statement><next><block
-      type="object_declaration" id="G9FO|!mQ(^z;;,U),C1j"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      id="[c~Rd-p+ESGuzAe6,Y1|" x="0" y="24"><statement name="statements"><block type="new_attribute_declaration"
+      id="HZa2On}*%}a6aU(mb*Xu"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"
+      attribute_type="boolean"></mutation><field name="category_name">person</field><field
+      name="attribute_name">ward</field><field name="attribute_type">boolean</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">'s attribute name is</field><field name="second_element">value</field><field
+      name="postfix">is a ward of the state</field><next><block type="object_declaration"
+      id="G9FO|!mQ(^z;;,U),C1j"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"
+      prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">opg</field><field name="postfix">is a person</field></block></next></block></statement></block><block
-      type="unattributed_rule" id="[*A?iH,J2jRh_.|}^3UQ" x="31" y="303"><statement
-      name="conditions"><block type="attribute_selector" id="_mXWj4{[{v+iiuLWg6|y"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="ward" attributetype="Checkmark
-      True / False" attributeorder="vo"></mutation><field name="prefix">it is</field><field
-      name="infix">that</field><field name="postfix">is a ward of the state</field><value
-      name="first_element"><block type="true_value" id="_:s@JhyJMGzqL~p~UG%e"></block></value><value
-      name="second_element"><block type="variable" id="1EwRwdbQYJkDpY,?(4aP"><field
+      type="unattributed_rule" id="[*A?iH,J2jRh_.|}^3UQ" x="0" y="176"><statement
+      name="conditions"><block type="unary_attribute_selector" id="6ZMLCXVfuSo{939;;?e`"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="ward" attributetype="boolean"></mutation><field
+      name="prefix"></field><field name="postfix">is a ward of the state</field><value
+      name="first_element"><block type="variable" id="1EwRwdbQYJkDpY,?(4aP"><field
       name="variable_name">Person</field></block></value></block></statement><statement
       name="conclusion"><block type="attribute_selector" id="~(L(D;L.(G)n4y8^2MEK"><mutation
       xmlns="http://www.w3.org/1999/xhtml" attributename="parent" attributetype="person"
@@ -170,31 +166,31 @@
       name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,ward,boolean).
 
-      blawx_attribute_nlg(ward,vo,"it is","that","is a ward of the state").
+      blawx_attribute_nlg(ward,not_applicable,"",not_applicable,"is a ward of the
+      state").
 
-      #pred ward(Y,X) :: ''it is @(X) that @(Y) is a ward of the state''.
+      #pred ward(X) :: ''@(X) is a ward of the state''.
 
-      #pred according_to(R,ward(Y,X)) :: ''according to @(R), it is @(X) that @(Y)
-      is a ward of the state''.
+      #pred according_to(R,ward(X)) :: ''according to @(R), @(X) is a ward of the
+      state''.
 
-      #pred legally_holds(_,ward(Y,X)) :: ''it legally holds that it is @(X) that
-      @(Y) is a ward of the state''.
+      #pred legally_holds(_,ward(X)) :: ''it legally holds that @(X) is a ward of
+      the state''.
 
-      opposes(ward(X,true),ward(X,false)).
+      opposes(ward(X),-ward(X)).
 
-      opposes(ward(X,false),ward(X,true)).
-
+      opposes(-ward(X),ward(X)).
 
       person(opg).
 
 
       parent(Person,opg) :-
 
-      ward(Person,true).'
+      ward(Person).'
 - model: blawx.blawxtest
-  pk: 17
+  pk: 10
   fields:
-    ruledoc: 11
+    ruledoc: 7
     test_name: broken_test
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="{uq~dDoY2iMkP`)vDk(N" x="75" y="69"><statement name="statements"><block
@@ -245,10 +241,13 @@
 
 
       ?- legally_holds(_,  sibling(pugsley,wednesday)).'
+    tutorial: ''
+    view: ''
+    fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 18
+  pk: 11
   fields:
-    ruledoc: 11
+    ruledoc: 7
     test_name: broken_code
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id=".-K|3Fqk+|D?g2x+%y1q" x="101" y="71"><statement name="statements"><block
@@ -298,10 +297,13 @@
 
 
       ?- legally_holds(_,  sibling(wednesday,Anyone)).'
+    tutorial: ''
+    view: ''
+    fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 19
+  pk: 12
   fields:
-    ruledoc: 11
+    ruledoc: 7
     test_name: broken_rule
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="Q:{b=FC*B%+VR?ZyS+]y" x="91" y="109"><statement name="statements"><block
@@ -312,14 +314,11 @@
       category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">person2</field><field name="postfix">is a person</field></block></next></block></statement></block><block
       type="assume" id="SDUR?hrgy1ELISqt3R(P" x="93" y="202"><statement name="statements"><block
-      type="attribute_selector" id="AFq?Mx}ScR)r#MzuFROr"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="ward" attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
-      name="prefix">it is</field><field name="infix">that</field><field name="postfix">is
-      a ward of the state</field><value name="first_element"><block type="variable"
-      id="8_0nefF4`,V`*-(pSl[k"><field name="variable_name">A</field></block></value><value
-      name="second_element"><block type="variable" id=")K3uK05Y+hoil[]SYK,L"><field
-      name="variable_name">B</field></block></value></block></statement></block><block
-      type="query" id="0IQ1tLx$+Q2=p]!Qn3=G" x="92" y="283"><statement name="query"><block
+      type="unary_attribute_selector" id="71)EI-|2sI#~%r@iwZ8j"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="ward" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">is a ward of the state</field><value name="first_element"><block
+      type="variable" id="8_0nefF4`,V`*-(pSl[k"><field name="variable_name">A</field></block></value></block></statement></block><block
+      type="query" id="0IQ1tLx$+Q2=p]!Qn3=G" x="96" y="312"><statement name="query"><block
       type="holds" id="U_=CI_ln4}CR+zE5!^7n"><statement name="statement"><block type="attribute_selector"
       id="ApY5f;s.rkTxU0Dbt].K"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="sibling"
       attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
@@ -332,14 +331,17 @@
       person(person2).
 
 
-      #abducible ward(B,A).
+      #abducible ward(A).
 
 
       ?- legally_holds(_,  sibling(Sibling2,Sibling1)).'
+    tutorial: ''
+    view: ''
+    fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 20
+  pk: 13
   fields:
-    ruledoc: 11
+    ruledoc: 7
     test_name: automation
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="Uo/x(VqDHl^Bb1yFAZHz" x="111" y="141"><statement name="query"><block type="holds"
@@ -351,3 +353,6 @@
       name="second_element"><block type="variable" id="vnm~Aw+Gwcd,sO!Ly=d_"><field
       name="variable_name">OtherPerson</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: ?- legally_holds(_,  sibling(OtherPerson,Person)).
+    tutorial: ''
+    view: ''
+    fact_scenario: ''

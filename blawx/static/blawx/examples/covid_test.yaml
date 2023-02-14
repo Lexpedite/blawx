@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 5
+  pk: 10
   fields:
     ruledoc_name: Covid Test
     rule_text: "Covid Test Rule\r\n\r\n1. A person may board a flight if they have
@@ -10,118 +10,98 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 33
+  pk: 51
   fields:
-    ruledoc: 5
+    ruledoc: 10
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 34
+  pk: 52
   fields:
-    ruledoc: 5
+    ruledoc: 10
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="/VkgyzyW3Xot[^le+r(Z" x="47" y="53"><statement name="statements"><block
-      type="category_declaration" id="+k:SPoA3P?lOlm(AhOcU"><field name="category_name">person</field><next><block
-      type="category_declaration" id="el`.ubU*1YFhbA:iL*19"><field name="category_name">flight</field><next><block
-      type="category_declaration" id="P!0p~=np4;0_Hvz[qcM9"><field name="category_name">test_result</field><next><block
-      type="category_declaration" id="3N~vl$HTKU*_5KCSKzUP"><field name="category_name">test</field><next><block
-      type="category_attribute" id="He!QK(p,Qn1CZ2uebE9)"><value name="category"><block
-      type="category_selector" id="=Djd5`S=,S6x0MY5nRfO"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
-      name="attributes"><block type="attribute_declaration" id="`5~m1W=|{X0=J{XhZZcC"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="ticketed_for" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">ticketed_for</field><value name="attribute_type"><block
-      type="category_selector" id="a;/D0FXB,2E7F5]la3In"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="flight"></mutation><field name="category_name">flight</field></block></value><next><block
-      type="attribute_display" id="5fLuk2UEJ+M`sg-?uvN1"><field name="order">ov</field><field
-      name="prefix"></field><field name="first_element">object</field><field name="infix">has
-      a ticket for</field><field name="second_element">value</field><field name="postfix"></field><next><block
-      type="attribute_declaration" id="}bt@/?uySGtrpjq~l/5/"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attribute_name="may_board" attribute_type="CATEGORY"></mutation><field name="attribute_name">may_board</field><value
-      name="attribute_type"><block type="category_selector" id="ak64?I#1N`+4).bUquId"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="flight"></mutation><field
-      name="category_name">flight</field></block></value><next><block type="attribute_display"
-      id="8Px*;!Aw%vC_,%T.Kv+6"><field name="order">ov</field><field name="prefix"></field><field
+      type="new_category_declaration" id="raw1-$aKJwc^bXPO3t~O"><field name="category_name">person</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="postfix">is
+      a person</field><next><block type="new_category_declaration" id="$nr{U))bRTNtvocP3LmK"><field
+      name="category_name">flight</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="postfix">is a flight</field><next><block type="new_category_declaration"
+      id="E_gX=zsc!p+wg_$Vr2$Y"><field name="category_name">test_result</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="postfix">is
+      a test_result</field><next><block type="new_category_declaration" id="phbS(GZG}#=!Hp0_cq=V"><field
+      name="category_name">test</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="postfix">is a test</field><next><block type="new_attribute_declaration"
+      id="TeerJ!O]0h-=0vs|Jj!="><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"
+      attribute_type="flight"></mutation><field name="category_name">person</field><field
+      name="attribute_name">ticketed_for</field><field name="attribute_type">flight</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">has a ticket for</field><field name="second_element">value</field><field
+      name="postfix"></field><next><block type="new_attribute_declaration" id=".?~:s}fSQzMU,uDL.?07"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person" attribute_type="flight"></mutation><field
+      name="category_name">person</field><field name="attribute_name">may_board</field><field
+      name="attribute_type">flight</field><field name="order">ov</field><field name="prefix"></field><field
       name="first_element">object</field><field name="infix">is permitted to board</field><field
-      name="second_element">value</field><field name="postfix"></field></block></next></block></next></block></next></block></statement><next><block
-      type="category_attribute" id="x.xT21#NZ?%=UwzwJl~2"><value name="category"><block
-      type="category_selector" id="tpGt$|UN+37I%9Ca4@D["><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="test"></mutation><field name="category_name">test</field></block></value><statement
-      name="attributes"><block type="attribute_declaration" id="s[}2E`H{~fQ.bJnTgn-|"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="subject" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">subject</field><value name="attribute_type"><block type="category_selector"
-      id="Y![#Lm{_SR2u-}KrAaZY"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-      name="category_name">person</field></block></value><next><block type="attribute_display"
-      id="ZALBjJ,MjY5([WR[}pFP"><field name="order">vo</field><field name="prefix"></field><field
-      name="first_element">value</field><field name="infix">took a covid test</field><field
-      name="second_element">object</field><field name="postfix"></field><next><block
-      type="attribute_declaration" id="8*._a([|~@o!gN%NZcUy"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attribute_name="result" attribute_type="CATEGORY"></mutation><field name="attribute_name">result</field><value
-      name="attribute_type"><block type="category_selector" id="Vy[Gkvq|+.J^_!U@XVOw"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="test_result"></mutation><field
-      name="category_name">test_result</field></block></value><next><block type="attribute_display"
-      id="Q%EtmNZnZj}P2@Oo!hU4"><field name="order">ov</field><field name="prefix">the
-      result of</field><field name="first_element">object</field><field name="infix">was</field><field
       name="second_element">value</field><field name="postfix"></field><next><block
-      type="attribute_declaration" id="4`zn(-{o?([]mQUXY$%U"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attribute_name="administered_at" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">administered_at</field><value name="attribute_type"><block
-      type="datetime_type_selector" id="5NhZ7Ejf)WBd.IoEQo^Z"></block></value><next><block
-      type="attribute_display" id="zHNu$r$=qaFXzDKvXSSz"><field name="order">ov</field><field
-      name="prefix"></field><field name="first_element">object</field><field name="infix">was
-      administered at</field><field name="second_element">value</field><field name="postfix"></field></block></next></block></next></block></next></block></next></block></next></block></statement><next><block
-      type="category_attribute" id="hS2om=0b|=.A~(-sq_^^"><value name="category"><block
-      type="category_selector" id="wYNBFml`9wGxB(xtU[g+"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="flight"></mutation><field name="category_name">flight</field></block></value><statement
-      name="attributes"><block type="attribute_declaration" id="MC8=AU?)N2fcOYDhbDHO"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="scheduled_departure" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">scheduled_departure</field><value name="attribute_type"><block
-      type="datetime_type_selector" id="c0j9n;r1hcx7Jm}rRh[t"></block></value><next><block
-      type="attribute_display" id="UmDkv$Bw1#ml5l0*G`op"><field name="order">ov</field><field
-      name="prefix"></field><field name="first_element">object</field><field name="infix">is
-      scheduled to depart at</field><field name="second_element">value</field><field
-      name="postfix"></field></block></next></block></statement><next><block type="object_declaration"
-      id="g4?q+YZUOC:xBXpSU}IM"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="test_result"
-      prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      type="new_attribute_declaration" id="4}[,U]l9_P@)Yl80+1-9"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="test" attribute_type="person"></mutation><field name="category_name">test</field><field
+      name="attribute_name">subject</field><field name="attribute_type">person</field><field
+      name="order">vo</field><field name="prefix"></field><field name="first_element">value</field><field
+      name="infix">took a covid test</field><field name="second_element">object</field><field
+      name="postfix"></field><next><block type="new_attribute_declaration" id="Xzb]=N@p(t:HAYaO9jD0"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="test" attribute_type="test_result"></mutation><field
+      name="category_name">test</field><field name="attribute_name">result</field><field
+      name="attribute_type">test_result</field><field name="order">ov</field><field
+      name="prefix">the result of</field><field name="first_element">object</field><field
+      name="infix">was</field><field name="second_element">value</field><field name="postfix"></field><next><block
+      type="new_attribute_declaration" id="p}DCfG@6yKffF8fgN);7"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="test" attribute_type="datetime"></mutation><field name="category_name">test</field><field
+      name="attribute_name">administered_at</field><field name="attribute_type">datetime</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">was administered at</field><field name="second_element">value</field><field
+      name="postfix"></field><next><block type="new_attribute_declaration" id="GWl}HjP4U@D$--w*FA:{"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="flight" attribute_type="datetime"></mutation><field
+      name="category_name">flight</field><field name="attribute_name">scheduled_departure</field><field
+      name="attribute_type">datetime</field><field name="order">ov</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="infix">is scheduled to depart
+      at</field><field name="second_element">value</field><field name="postfix"></field><next><block
+      type="object_declaration" id="g4?q+YZUOC:xBXpSU}IM"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="test_result" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">positive</field><field name="postfix">is a test_result</field><next><block
       type="object_declaration" id="LIJG^YMKpXl#JVFTe+g2"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="test_result" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
-      name="object_name">negative</field><field name="postfix">is a test_result</field></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      name="object_name">negative</field><field name="postfix">is a test_result</field></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
       type="unattributed_rule" id="aLoY$}g)e~Lk6[CPP;zy" x="51" y="946"><statement
-      name="conditions"><block type="object_category" id="K9D7uGA,H-6q1RY_:Cwr"><value
-      name="object"><block type="variable" id="y-]ckU*=JTsEmFw:%:-!"><field name="variable_name">Person</field></block></value><value
-      name="category"><block type="category_selector" id="#uXgDAae-;:udkd$X:Gr"><mutation
+      name="conditions"><block type="new_object_category" id="d#KS4{A^Fg7EC0q~H~cc"><mutation
       xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-      name="category_name">person</field></block></value><next><block type="object_category"
-      id="B:;xh`[iKtdCs)LM0kF,"><value name="object"><block type="variable" id="e0DxSy(tpB?`)-Hz/*/4"><field
-      name="variable_name">Flight</field></block></value><value name="category"><block
-      type="category_selector" id="7:w`45a}6ykGQeF4fZW~"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="flight"></mutation><field name="category_name">flight</field></block></value><next><block
-      type="object_category" id="Y{e!bjpY`?$U9%i!IhF%"><value name="object"><block
-      type="variable" id="f7(01McGya]:m$9zc=MW"><field name="variable_name">Test</field></block></value><value
-      name="category"><block type="category_selector" id="s%*K?Gxb;}A~8S,[wurm"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="test"></mutation><field
-      name="category_name">test</field></block></value><next><block type="attribute_selector"
-      id="6`(d24{?BYl|8S{_42AF"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="ticketed_for"
-      attributetype="flight" attributeorder="ov"></mutation><field name="prefix"></field><field
-      name="infix">has a ticket for</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="Ew)=6K~}BxHzad1Y}Gcw"><field name="variable_name">Person</field></block></value><value
-      name="second_element"><block type="variable" id="G,Ictr.sCpM{74X=85E@"><field
-      name="variable_name">Flight</field></block></value><next><block type="attribute_selector"
-      id="N@KHyEJn@r{):xiO,3){"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="subject"
-      attributetype="person" attributeorder="vo"></mutation><field name="prefix"></field><field
-      name="infix">took a covid test</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id=".CY4u$%f,-uzbW[3+cT/"><field name="variable_name">Person</field></block></value><value
-      name="second_element"><block type="variable" id="_mCiS2r4-~dODe1LT2bs"><field
-      name="variable_name">Test</field></block></value><next><block type="attribute_selector"
-      id="z`lxceX2qpnhka@~Z[YS"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="scheduled_departure"
-      attributetype="Calendar Clock Date / Time" attributeorder="ov"></mutation><field
-      name="prefix"></field><field name="infix">is scheduled to depart at</field><field
-      name="postfix"></field><value name="first_element"><block type="variable" id="P0x)tjAeM:MkjH)OQH7-"><field
-      name="variable_name">Flight</field></block></value><value name="second_element"><block
-      type="variable" id="z1`qW%[:mV^l!]-7^%-("><field name="variable_name">ScheduledDeparture</field></block></value><next><block
+      name="category_name">person</field><value name="object"><block type="variable"
+      id="y-]ckU*=JTsEmFw:%:-!"><field name="variable_name">Person</field></block></value><next><block
+      type="new_object_category" id="{c(vqW+q3,~H8@@#a+rf"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="flight"></mutation><field name="category_name">flight</field><value
+      name="object"><block type="variable" id="e0DxSy(tpB?`)-Hz/*/4"><field name="variable_name">Flight</field></block></value><next><block
+      type="new_object_category" id="uRFPc:Qa6xFETz?{zpAg"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="test"></mutation><field name="category_name">test</field><value
+      name="object"><block type="variable" id="f7(01McGya]:m$9zc=MW"><field name="variable_name">Test</field></block></value><next><block
+      type="attribute_selector" id="6`(d24{?BYl|8S{_42AF"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="ticketed_for" attributetype="flight" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">has a ticket for</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="Ew)=6K~}BxHzad1Y}Gcw"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="G,Ictr.sCpM{74X=85E@"><field name="variable_name">Flight</field></block></value><next><block
+      type="attribute_selector" id="N@KHyEJn@r{):xiO,3){"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="subject" attributetype="person" attributeorder="vo"></mutation><field
+      name="prefix"></field><field name="infix">took a covid test</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id=".CY4u$%f,-uzbW[3+cT/"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="_mCiS2r4-~dODe1LT2bs"><field name="variable_name">Test</field></block></value><next><block
+      type="attribute_selector" id="z`lxceX2qpnhka@~Z[YS"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="scheduled_departure" attributetype="Calendar Clock Date / Time"
+      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">is
+      scheduled to depart at</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="P0x)tjAeM:MkjH)OQH7-"><field name="variable_name">Flight</field></block></value><value
+      name="second_element"><block type="variable" id="z1`qW%[:mV^l!]-7^%-("><field
+      name="variable_name">ScheduledDeparture</field></block></value><next><block
       type="attribute_selector" id="KTiyKZSpW!l0I}te)~X#"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="result" attributetype="test_result" attributeorder="ov"></mutation><field
       name="prefix">the result of</field><field name="infix">was</field><field name="postfix"></field><value
@@ -154,13 +134,21 @@
       name="variable_name">Flight</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_category(person).
 
+      blawx_category_nlg(person,"","is a person").
+
       #pred person(X) :: ''@(X) is a person''.
 
       #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
 
       #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
 
+      opposes(person(X,Y),-person(X,Y)).
+
+      opposes(-person(X,Y),person(X,Y)).
+
       blawx_category(flight).
+
+      blawx_category_nlg(flight,"","is a flight").
 
       #pred flight(X) :: ''@(X) is a flight''.
 
@@ -168,7 +156,13 @@
 
       #pred legally_holds(_,flight(X)) :: ''it legally holds that @(X) is a flight''.
 
+      opposes(flight(X,Y),-flight(X,Y)).
+
+      opposes(-flight(X,Y),flight(X,Y)).
+
       blawx_category(test_result).
+
+      blawx_category_nlg(test_result,"","is a test_result").
 
       #pred test_result(X) :: ''@(X) is a test_result''.
 
@@ -176,13 +170,23 @@
 
       #pred legally_holds(_,test_result(X)) :: ''it legally holds that @(X) is a test_result''.
 
+      opposes(test_result(X,Y),-test_result(X,Y)).
+
+      opposes(-test_result(X,Y),test_result(X,Y)).
+
       blawx_category(test).
+
+      blawx_category_nlg(test,"","is a test").
 
       #pred test(X) :: ''@(X) is a test''.
 
       #pred according_to(R,test(X)) :: ''according to @(R), @(X) is a test''.
 
       #pred legally_holds(_,test(X)) :: ''it legally holds that @(X) is a test''.
+
+      opposes(test(X,Y),-test(X,Y)).
+
+      opposes(-test(X,Y),test(X,Y)).
 
       blawx_attribute(person,ticketed_for,flight).
 
@@ -196,6 +200,9 @@
       #pred legally_holds(_,ticketed_for(X,Y)) :: ''it legally holds that @(X) has
       a ticket for @(Y)''.
 
+      opposes(ticketed_for(X,Y),-ticketed_for(X,Y)).
+
+      opposes(-ticketed_for(X,Y),ticketed_for(X,Y)).
 
       blawx_attribute(person,may_board,flight).
 
@@ -209,6 +216,9 @@
       #pred legally_holds(_,may_board(X,Y)) :: ''it legally holds that @(X) is permitted
       to board @(Y)''.
 
+      opposes(may_board(X,Y),-may_board(X,Y)).
+
+      opposes(-may_board(X,Y),may_board(X,Y)).
 
       blawx_attribute(test,subject,person).
 
@@ -222,6 +232,9 @@
       #pred legally_holds(_,subject(Y,X)) :: ''it legally holds that @(X) took a covid
       test @(Y)''.
 
+      opposes(subject(X,Y),-subject(X,Y)).
+
+      opposes(-subject(X,Y),subject(X,Y)).
 
       blawx_attribute(test,result,test_result).
 
@@ -235,6 +248,9 @@
       #pred legally_holds(_,result(X,Y)) :: ''it legally holds that the result of
       @(X) was @(Y)''.
 
+      opposes(result(X,Y),-result(X,Y)).
+
+      opposes(-result(X,Y),result(X,Y)).
 
       blawx_attribute(test,administered_at,datetime).
 
@@ -248,6 +264,9 @@
       #pred legally_holds(_,administered_at(X,Y)) :: ''it legally holds that @(X)
       was administered at @(Y)''.
 
+      opposes(administered_at(X,Y),-administered_at(X,Y)).
+
+      opposes(-administered_at(X,Y),administered_at(X,Y)).
 
       blawx_attribute(flight,scheduled_departure,datetime).
 
@@ -261,6 +280,9 @@
       #pred legally_holds(_,scheduled_departure(X,Y)) :: ''it legally holds that @(X)
       is scheduled to depart at @(Y)''.
 
+      opposes(scheduled_departure(X,Y),-scheduled_departure(X,Y)).
+
+      opposes(-scheduled_departure(X,Y),scheduled_departure(X,Y)).
 
       test_result(positive).
 
@@ -289,9 +311,9 @@
 
       lte(DurationFromTestToDeparture,duration(1,0,0,0,72,0,0)).'
 - model: blawx.blawxtest
-  pk: 37
+  pk: 15
   fields:
-    ruledoc: 5
+    ruledoc: 10
     test_name: can_fly
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="U*RvlVr.!T)x:88LbXnM" x="90" y="249"><comment pinned="false" h="146" w="524">This
@@ -306,11 +328,12 @@
 
       ?- may_board(Person,Flight).'
     tutorial: ''
-    view: '[''view_cat_test_result'']'
+    view: '[''view_cat_test_result'', ''view_cat_person_att_may_board'']'
+    fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 38
+  pk: 16
   fields:
-    ruledoc: 5
+    ruledoc: 10
     test_name: good_test
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="~6[h`_zeg/KMr3bFg1H8" x="68" y="49"><statement name="statements"><block
@@ -394,10 +417,11 @@
       ?- may_board(bob,flight_to_hawaii).'
     tutorial: ''
     view: ''
+    fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 39
+  pk: 17
   fields:
-    ruledoc: 5
+    ruledoc: 10
     test_name: old_test
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="zC:]x}y1*:_,v-w1e;sv" x="111" y="89"><statement name="statements"><block
@@ -481,3 +505,4 @@
       ?- may_board(bob,flight_to_hawaii).'
     tutorial: ''
     view: ''
+    fact_scenario: ''

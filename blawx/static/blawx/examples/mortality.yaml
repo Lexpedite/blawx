@@ -1,34 +1,43 @@
 - model: blawx.ruledoc
-  pk: 5
+  pk: 3
   fields:
-    owner: 3
     ruledoc_name: Mortality Act
     rule_text: "Mortality Act\r\n\r\n1. Humans are mortal."
     scasp_encoding: ''
     tutorial: ''
+    owner: 3
+    published: false
 - model: blawx.workspace
-  pk: 45
+  pk: 16
   fields:
-    ruledoc: 5
+    ruledoc: 3
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 46
+  pk: 17
   fields:
-    ruledoc: 5
+    ruledoc: 3
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="z|*~jnplHM7KQUaYz%2f" x="29" y="35"><statement name="statements"><block
-      type="category_declaration" id="As(vTz@Wf*]n|v=!sUyR"><field name="category_name">human</field><next><block
-      type="category_declaration" id="z@i/QYTi0y0:WA5Qo`Vo"><field name="category_name">mortal</field><next><block
-      type="category_equivalence" id="@=^q)%UV;wPrCwW%dpKq"><value name="first_category"><block
-      type="category_selector" id="kQpqQFujEW4L^ww.F*.H"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="human"></mutation><field name="category_name">human</field></block></value><value
-      name="second_category"><block type="category_selector" id="BzQv[qTObk,WBHCXrRrx"><mutation
+      type="new_category_declaration" id="Tmn)r/4a0^niLI-Se-7@"><field name="category_name">human</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="postfix">is
+      a human</field><next><block type="new_category_declaration" id="ENBSrs7l$o%?#R%MK-.M"><field
+      name="category_name">mortal</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="postfix">is a mortal</field></block></next></block></statement></block><block
+      type="unattributed_rule" id="q2i5}Ux~w-D-/:JOEwFN" x="30" y="216"><statement
+      name="conditions"><block type="new_object_category" id="h/oy(7,LSvtkRb34l||0"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="human"></mutation><field
+      name="category_name">human</field><value name="object"><block type="variable"
+      id="=d*rnnm~`SDfXzNcC-FJ"><field name="variable_name">A</field></block></value></block></statement><statement
+      name="conclusion"><block type="new_object_category" id="9Z;zlYqV80Hl,]r:_lYv"><mutation
       xmlns="http://www.w3.org/1999/xhtml" category_name="mortal"></mutation><field
-      name="category_name">mortal</field></block></value></block></next></block></next></block></statement></block></xml>
+      name="category_name">mortal</field><value name="object"><block type="variable"
+      id="5nP(jMWSc(9_Nx9dPU4d"><field name="variable_name">A</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_category(human).
+
+      blawx_category_nlg(human,"","is a human").
 
       #pred human(X) :: ''@(X) is a human''.
 
@@ -36,7 +45,13 @@
 
       #pred legally_holds(_,human(X)) :: ''it legally holds that @(X) is a human''.
 
+      opposes(human(X,Y),-human(X,Y)).
+
+      opposes(-human(X,Y),human(X,Y)).
+
       blawx_category(mortal).
+
+      blawx_category_nlg(mortal,"","is a mortal").
 
       #pred mortal(X) :: ''@(X) is a mortal''.
 
@@ -44,13 +59,18 @@
 
       #pred legally_holds(_,mortal(X)) :: ''it legally holds that @(X) is a mortal''.
 
-      mortal(X) :-
+      opposes(mortal(X,Y),-mortal(X,Y)).
 
-      human(X).'
+      opposes(-mortal(X,Y),mortal(X,Y)).
+
+
+      mortal(A) :-
+
+      human(A).'
 - model: blawx.blawxtest
-  pk: 4
+  pk: 5
   fields:
-    ruledoc: 5
+    ruledoc: 3
     test_name: Socrates
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="2dUMwN4jMd,pJT=*{sI{" x="80" y="40"><statement name="statements"><block
@@ -58,12 +78,13 @@
       category_name="human" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">socrates</field><field name="postfix">is a human</field></block></statement></block><block
       type="query" id="p*7^*eHhML#HIBn-DNEX" x="69" y="110"><statement name="query"><block
-      type="object_category" id="o1Kuj.rO:*+k9+cX27*("><value name="object"><block
-      type="variable" id="xWU1}ck_/p`2mZ|X!d3P"><field name="variable_name">Anything</field></block></value><value
-      name="category"><block type="category_selector" id="e6zO-d;]DEO(!3}hN+~1"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="mortal"></mutation><field
-      name="category_name">mortal</field></block></value></block></statement></block></xml>
+      type="new_object_category" id="e9s,k,S`!r+0h!?1x|3T"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="mortal"></mutation><field name="category_name">mortal</field><value
+      name="object"><block type="variable" id="xWU1}ck_/p`2mZ|X!d3P"><field name="variable_name">Anything</field></block></value></block></statement></block></xml>
     scasp_encoding: 'human(socrates).
 
 
       ?- mortal(Anything).'
+    tutorial: ''
+    view: ''
+    fact_scenario: ''

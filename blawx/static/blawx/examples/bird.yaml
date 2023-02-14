@@ -1,204 +1,366 @@
 - model: blawx.ruledoc
-  pk: 6
+  pk: 4
   fields:
-    owner: 3
-    ruledoc_name: Bird Act
-    rule_text: "Bird Act\r\n\r\n1. A Penguin is a Bird.\r\n2. If a thing is a bird,
-      it flies, [penguin]{unless it is a penguin}."
+    ruledoc_name: Beard Tax Act
+    rule_text: "Beard Tax Act\r\n\r\n1. In this Act, beard means any facial hair no
+      shorter than 5 millimetres in\r\nlength that:\r\n  (a) occurs on or below the
+      chin, or\r\n  (b) exists in an uninterrupted line from the front of one ear
+      to the front of the other ear below the nose."
     scasp_encoding: ''
     tutorial: ''
+    owner: 3
+    published: false
 - model: blawx.workspace
-  pk: 47
+  pk: 18
   fields:
-    ruledoc: 6
+    ruledoc: 4
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 48
+  pk: 19
   fields:
-    ruledoc: 6
+    ruledoc: 4
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="1!=3XhATcqkhE,+G7!n`" x="29" y="21"><statement name="statements"><block
-      type="category_declaration" id="?C.KFD2kEO21E6W.ONks"><field name="category_name">penguin</field><next><block
-      type="category_declaration" id="3P~S8bHQO]oK}4]=?JHC"><field name="category_name">bird</field><next><block
-      type="category_equivalence" id="|Ms$@Ek/S05Q$f?g:zhg"><value name="first_category"><block
-      type="category_selector" id="{[?,M5$]USglT$G/I=~K"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="penguin"></mutation><field name="category_name">penguin</field></block></value><value
-      name="second_category"><block type="category_selector" id="fS^El;2:!U_S-pl}Lf5`"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="bird"></mutation><field
-      name="category_name">bird</field></block></value></block></next></block></next></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(penguin).
+      id="(^5.:,lX5N1?~UIArJEP" x="29" y="38"><statement name="statements"><block
+      type="new_category_declaration" id="|=B6BNmxSi+prNUp-rdD"><field name="category_name">person</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="postfix">is
+      a person</field><next><block type="new_attribute_declaration" id="(Wls!?ZYzyZDWatxBw$A"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person" attribute_type="boolean"></mutation><field
+      name="category_name">person</field><field name="attribute_name">bearded</field><field
+      name="attribute_type">boolean</field><field name="order">ov</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="infix">'s attribute name is</field><field
+      name="second_element">value</field><field name="postfix">is bearded</field><next><block
+      type="new_attribute_declaration" id="3aO{K]Rb^U,=[%2ECo2M"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" attribute_type="number"></mutation><field name="category_name">person</field><field
+      name="attribute_name">facial_hair_length_mm</field><field name="attribute_type">number</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">'s facial hair is</field><field name="second_element">value</field><field
+      name="postfix">mm in length</field></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="s=wncGB.;*X;Ej(E{18l" x="29" y="358"><statement
+      name="conditions"><block type="object_category" id="k#-_uN3z|%NXbv=a-+5-"><value
+      name="object"><block type="variable" id="V@j/%I/jFZ/W=:9~cAYk"><field name="variable_name">Person</field></block></value><value
+      name="category"><block type="category_selector" id="~21Aa4B.ef)+2@Bcz7ha"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="numerical_constraint"
+      id="G~(qo:fF5^82{m~n7X|H"><field name="operator">gte</field><value name="first_comparator"><block
+      type="variable" id="!um=uC^vD*;VHaC!#;Fp"><field name="variable_name">Length</field></block></value><value
+      name="second_comparator"><block type="number_value" id=";o!iOa7.[}/uV_jBE(C?"><field
+      name="value">5</field></block></value><next><block type="attribute_selector"
+      id="X3r*p]s!#ydNvfKaOsp."><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="facial_hair_length_mm"
+      attributetype="# Number" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s facial hair is</field><field name="postfix">mm in length</field><value
+      name="first_element"><block type="variable" id="C/^+|Tb4tlwR*?ROV~45"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="S9v;/dbPWK_gQSD/kx}_"><field name="variable_name">Length</field></block></value><next><block
+      type="according_to" id="44Yw/xCH|sszoe$ygNFJ"><value name="rule"><block type="doc_selector"
+      id="Ocmqu*3QN`0gXC:B=E}h"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1__para_a_section"></mutation><field
+      name="doc_part_name">BTA 1.a</field></block></value><statement name="statement"><block
+      type="unary_attribute_selector" id="}.f?BliB/2f~kra)TAe%"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="qualifies_s1a" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">qualifies under section 1 a</field><value name="first_element"><block
+      type="variable" id="jaO5leIv(9J!nFG/D%T:"><field name="variable_name">Person</field></block></value></block></statement></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="j}U@]u|^uG{fZ+]kA:*?"><value
+      name="rule"><block type="doc_selector" id="-{]KO2D25$a./rE{XZYQ"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1_section"></mutation><field name="doc_part_name">BTA
+      1</field></block></value><statement name="statement"><block type="unary_attribute_selector"
+      id="NX*[PdD]wX@UXD2q-zDp"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="bearded"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">is
+      bearded</field><value name="first_element"><block type="variable" id="}+SnwvMF(|PJAhu0N|9#"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block><block
+      type="unattributed_rule" id="qy6WX)YV]}-0rU%y|lwO" x="64" y="707"><statement
+      name="conditions"><block type="object_category" id=")U2ah:Fv{A0~*S3x~KVo"><value
+      name="object"><block type="variable" id="zQpi:]w.sHQx$he#jT7X"><field name="variable_name">Person</field></block></value><value
+      name="category"><block type="category_selector" id="sZKLNk_%eIj}YbN~G/u^"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field></block></value><next><block type="numerical_constraint"
+      id="1{T_t2j*kL]:KAlMB1,z"><field name="operator">gte</field><value name="first_comparator"><block
+      type="variable" id="rsY@}?slvgDXCfDKe4;4"><field name="variable_name">Length</field></block></value><value
+      name="second_comparator"><block type="number_value" id=")X7C+_CNa{2C%(cSV`+A"><field
+      name="value">5</field></block></value><next><block type="attribute_selector"
+      id="GdEV!CumOO^MX.+=Ct~|"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="facial_hair_length_mm"
+      attributetype="# Number" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s facial hair is</field><field name="postfix">mm in length</field><value
+      name="first_element"><block type="variable" id="[Cy~EQF^Pa2PO7T_w{tl"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="8Y6F25Qlr7vCcOqSy4aR"><field name="variable_name">Length</field></block></value><next><block
+      type="unary_attribute_selector" id="q1d0l97AX;vNq^)o_LI)"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="qualifies_s1b" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">qualifies under section 1 b</field><value name="first_element"><block
+      type="variable" id="IvORAYJ%}sOU21C(Z6Fh"><field name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></statement><statement
+      name="conclusion"><block type="according_to" id="k6:s;S$I#/So.]Axsy?#"><value
+      name="rule"><block type="doc_selector" id="Y0S%[C.79oCHH@*`AnYr"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1_section"></mutation><field name="doc_part_name">BTA
+      1</field></block></value><statement name="statement"><block type="unary_attribute_selector"
+      id="(m5[e/nkwWP15Cy(U5P]"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="bearded"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">is
+      bearded</field><value name="first_element"><block type="variable" id="PmZksLyP)}6DV3/SS~Ti"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(person).
 
-      #pred penguin(X) :: ''@(X) is a penguin''.
+      blawx_category_nlg(person,"","is a person").
 
-      #pred according_to(R,penguin(X)) :: ''according to @(R), @(X) is a penguin''.
+      #pred person(X) :: ''@(X) is a person''.
 
-      #pred legally_holds(_,penguin(X)) :: ''it legally holds that @(X) is a penguin''.
+      #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
 
-      blawx_category(bird).
+      #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
 
-      #pred bird(X) :: ''@(X) is a bird''.
+      opposes(person(X,Y),-person(X,Y)).
 
-      #pred according_to(R,bird(X)) :: ''according to @(R), @(X) is a bird''.
+      opposes(-person(X,Y),person(X,Y)).
 
-      #pred legally_holds(_,bird(X)) :: ''it legally holds that @(X) is a bird''.
+      blawx_attribute(person,bearded,boolean).
 
-      bird(X) :-
+      blawx_attribute_nlg(bearded,not_applicable,"",not_applicable,"is bearded").
 
-      penguin(X).'
+      #pred bearded(X) :: ''@(X) is bearded''.
+
+      #pred according_to(R,bearded(X)) :: ''according to @(R), @(X) is bearded''.
+
+      #pred legally_holds(_,bearded(X)) :: ''it legally holds that @(X) is bearded''.
+
+      opposes(bearded(X),-bearded(X)).
+
+      opposes(-bearded(X),bearded(X)).
+
+      blawx_attribute(person,facial_hair_length_mm,number).
+
+      blawx_attribute_nlg(facial_hair_length_mm,ov,"","''s facial hair is","mm in
+      length").
+
+      #pred facial_hair_length_mm(X,Y) :: ''@(X) \''s facial hair is @(Y) mm in length''.
+
+      #pred according_to(R,facial_hair_length_mm(X,Y)) :: ''according to @(R), @(X)
+      \''s facial hair is @(Y) mm in length''.
+
+      #pred legally_holds(_,facial_hair_length_mm(X,Y)) :: ''it legally holds that
+      @(X) \''s facial hair is @(Y) mm in length''.
+
+      opposes(facial_hair_length_mm(X,Y),-facial_hair_length_mm(X,Y)).
+
+      opposes(-facial_hair_length_mm(X,Y),facial_hair_length_mm(X,Y)).
+
+
+      according_to(sec_1_section,  bearded(Person)) :-
+
+      person(Person),
+
+      Length #>= 5,
+
+      facial_hair_length_mm(Person,Length),
+
+      according_to(sec_1__para_a_section,  qualifies_s1a(Person)).
+
+
+      according_to(sec_1_section,  bearded(Person)) :-
+
+      person(Person),
+
+      Length #>= 5,
+
+      facial_hair_length_mm(Person,Length),
+
+      qualifies_s1b(Person).'
 - model: blawx.workspace
-  pk: 49
+  pk: 20
   fields:
-    ruledoc: 6
-    workspace_name: sec_2_section
+    ruledoc: 4
+    workspace_name: sec_1__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="j$faOKXkM8#g]oq9F5O8" x="46" y="14"><statement name="statements"><block
-      type="category_declaration" id="*;NX[+pzHTo3+A(iM0=0"><field name="category_name">thing</field><next><block
-      type="category_attribute" id="j$^nQ1H=P{.d8eu(VHaf"><value name="category"><block
-      type="category_selector" id="8TI5KQCm`44|351qKGY~"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="thing"></mutation><field name="category_name">thing</field></block></value><statement
-      name="attributes"><block type="attribute_declaration" id="s(m+;9RiNOHv,kIl4TT3"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="flies" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">flies</field><value name="attribute_type"><block type="true_false_type_selector"
-      id="A}j#z2tAyf2Z=IU}rfWr"></block></value><next><block type="attribute_display"
-      id="A2iY=RJDuRFEj9utEl7f"><field name="order">vo</field><field name="prefix">it
-      is</field><field name="first_element">value</field><field name="infix">that</field><field
-      name="second_element">object</field><field name="postfix">flies</field></block></next></block></statement><next><block
-      type="category_equivalence" id="bu=Q+{c/Z,UD.Fb)`7ZG"><value name="first_category"><block
-      type="category_selector" id="W?i[fBo#$z#7Hh;BVh#V"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="bird"></mutation><field name="category_name">bird</field></block></value><value
-      name="second_category"><block type="category_selector" id="iibAap;%gvy$C8:Aze5v"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="thing"></mutation><field
-      name="category_name">thing</field></block></value></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="6?fZqZY3/+aZs_yOf+CV" x="45" y="292"><statement
-      name="conditions"><block type="object_category" id="|w-~zBf|+TP7mA}ZjbTm"><value
-      name="object"><block type="variable" id="BosqU04_8`F4cX%R7H$4"><field name="variable_name">A</field></block></value><value
-      name="category"><block type="category_selector" id="glOF`upu#69fTb]$5P)U"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="bird"></mutation><field
-      name="category_name">bird</field></block></value></block></statement><statement
-      name="conclusion"><block type="according_to" id="]!AH[LfAbhnCX[A)%IFL"><value
-      name="rule"><block type="doc_selector" id="k=^[Sv)tUg[)*rpIWz3|"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_2_section"></mutation><field name="doc_part_name">BA
-      2</field></block></value><statement name="statement"><block type="attribute_selector"
-      id=",y:Jk{%Am^H6g4$?amZ@"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
-      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
-      name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
-      name="first_element"><block type="true_value" id="%k?[?d}5k4mYi|CFK:Y7"></block></value><value
-      name="second_element"><block type="variable" id="$=:FBU4WdZ*T`WJ+KBY6"><field
-      name="variable_name">A</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(thing).
+      id="(^5.:,lX5N1?~UIArJEP" x="55" y="110"><statement name="statements"><block
+      type="new_attribute_declaration" id="!YlDD-GLrJe/Pxze3_%}"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" attribute_type="boolean"></mutation><field name="category_name">person</field><field
+      name="attribute_name">facial_hair_on_chin</field><field name="attribute_type">boolean</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">'s attribute name is</field><field name="second_element">value</field><field
+      name="postfix">'s facial hair is on the chin</field><next><block type="new_attribute_declaration"
+      id="aVWC|q-t]Tg;*94oHBk@"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"
+      attribute_type="boolean"></mutation><field name="category_name">person</field><field
+      name="attribute_name">facial_hair_below_chin</field><field name="attribute_type">boolean</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">'s facial hair </field><field name="second_element">value</field><field
+      name="postfix">'s facial hair is below the chin</field><next><block type="new_attribute_declaration"
+      id="/CTn7b%:u9OwzJ%@x./K"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"
+      attribute_type="boolean"></mutation><field name="category_name">person</field><field
+      name="attribute_name">qualifies_s1a</field><field name="attribute_type">boolean</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">'s attribute name is</field><field name="second_element">value</field><field
+      name="postfix">qualifies under section 1 a</field></block></next></block></next></block></statement></block><block
+      type="unattributed_rule" id="s=wncGB.;*X;Ej(E{18l" x="57" y="414"><statement
+      name="conditions"><block type="unary_attribute_selector" id="acY_?~r_XPF)uDeaoo[g"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="facial_hair_on_chin" attributetype="boolean"></mutation><field
+      name="prefix"></field><field name="postfix">'s facial hair is on the chin</field><value
+      name="first_element"><block type="variable" id="O[R`xyfiIHY6q%MGr6+:"><field
+      name="variable_name">Person</field></block></value></block></statement><statement
+      name="conclusion"><block type="according_to" id="j}U@]u|^uG{fZ+]kA:*?"><value
+      name="rule"><block type="doc_selector" id="jQV0xsua)cg-gqkXp`XK"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1__para_a_section"></mutation><field name="doc_part_name">BTA
+      1.a</field></block></value><statement name="statement"><block type="unary_attribute_selector"
+      id="RqOe]ZS]yeQ;i2wg`b!y"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s1a"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
+      under section 1 a</field><value name="first_element"><block type="variable"
+      id="]`*{A)#%/p/.80o)uq3;"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block><block
+      type="unattributed_rule" id="[qFF_a(p6PI-9Eb0ZTPU" x="64" y="595"><statement
+      name="conditions"><block type="unary_attribute_selector" id="$F^9JXICH!}NVM%kpP56"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="facial_hair_below_chin"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">'s
+      facial hair is below the chin</field><value name="first_element"><block type="variable"
+      id="zmbB#)O{3Du+nCoHR1Z7"><field name="variable_name">Person</field></block></value></block></statement><statement
+      name="conclusion"><block type="according_to" id=").4w1dD4=kl#_91c5c%w"><value
+      name="rule"><block type="doc_selector" id="?q^IE*;KBik5rWLcBe@g"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1__para_a_section"></mutation><field name="doc_part_name">BTA
+      1.a</field></block></value><statement name="statement"><block type="unary_attribute_selector"
+      id="_+ixlUatP_rK_QzEO8$d"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s1a"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
+      under section 1 a</field><value name="first_element"><block type="variable"
+      id="v[)}mLA`/`9M8(]p/q6("><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'blawx_attribute(person,facial_hair_on_chin,boolean).
 
-      #pred thing(X) :: ''@(X) is a thing''.
+      blawx_attribute_nlg(facial_hair_on_chin,not_applicable,"",not_applicable,"''s
+      facial hair is on the chin").
 
-      #pred according_to(R,thing(X)) :: ''according to @(R), @(X) is a thing''.
+      #pred facial_hair_on_chin(X) :: ''@(X) \''s facial hair is on the chin''.
 
-      #pred legally_holds(_,thing(X)) :: ''it legally holds that @(X) is a thing''.
+      #pred according_to(R,facial_hair_on_chin(X)) :: ''according to @(R), @(X) \''s
+      facial hair is on the chin''.
 
-      blawx_attribute(thing,flies,boolean).
+      #pred legally_holds(_,facial_hair_on_chin(X)) :: ''it legally holds that @(X)
+      \''s facial hair is on the chin''.
 
-      blawx_attribute_nlg(flies,vo,"it is","that","flies").
+      opposes(facial_hair_on_chin(X),-facial_hair_on_chin(X)).
 
-      #pred flies(Y,X) :: ''it is @(X) that @(Y) flies''.
+      opposes(-facial_hair_on_chin(X),facial_hair_on_chin(X)).
 
-      #pred according_to(R,flies(Y,X)) :: ''according to @(R), it is @(X) that @(Y)
-      flies''.
+      blawx_attribute(person,facial_hair_below_chin,boolean).
 
-      #pred legally_holds(_,flies(Y,X)) :: ''it legally holds that it is @(X) that
-      @(Y) flies''.
+      blawx_attribute_nlg(facial_hair_below_chin,not_applicable,"",not_applicable,"''s
+      facial hair is below the chin").
 
-      opposes(flies(X,true),flies(X,false)).
+      #pred facial_hair_below_chin(X) :: ''@(X) \''s facial hair is below the chin''.
 
-      opposes(flies(X,false),flies(X,true)).
+      #pred according_to(R,facial_hair_below_chin(X)) :: ''according to @(R), @(X)
+      \''s facial hair is below the chin''.
+
+      #pred legally_holds(_,facial_hair_below_chin(X)) :: ''it legally holds that
+      @(X) \''s facial hair is below the chin''.
+
+      opposes(facial_hair_below_chin(X),-facial_hair_below_chin(X)).
+
+      opposes(-facial_hair_below_chin(X),facial_hair_below_chin(X)).
+
+      blawx_attribute(person,qualifies_s1a,boolean).
+
+      blawx_attribute_nlg(qualifies_s1a,not_applicable,"",not_applicable,"qualifies
+      under section 1 a").
+
+      #pred qualifies_s1a(X) :: ''@(X) qualifies under section 1 a''.
+
+      #pred according_to(R,qualifies_s1a(X)) :: ''according to @(R), @(X) qualifies
+      under section 1 a''.
+
+      #pred legally_holds(_,qualifies_s1a(X)) :: ''it legally holds that @(X) qualifies
+      under section 1 a''.
+
+      opposes(qualifies_s1a(X),-qualifies_s1a(X)).
+
+      opposes(-qualifies_s1a(X),qualifies_s1a(X)).
 
 
-      thing(X) :-
+      according_to(sec_1__para_a_section,  qualifies_s1a(Person)) :-
 
-      bird(X).
+      facial_hair_on_chin(Person).
 
 
-      according_to(sec_2_section,  flies(A,true)) :-
+      according_to(sec_1__para_a_section,  qualifies_s1a(Person)) :-
 
-      bird(A).'
+      facial_hair_below_chin(Person).'
 - model: blawx.workspace
-  pk: 50
+  pk: 21
   fields:
-    ruledoc: 6
-    workspace_name: sec_2__span_penguin_section
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_rule"
-      id="v*SRmEi3pH763OYJq|KD" x="48" y="126"><statement name="conditions"><block
-      type="object_category" id="4mm1v|a~4L]sS3YnE,G;"><value name="object"><block
-      type="variable" id="x);G)U0x6rH0iv{-kvMm"><field name="variable_name">A</field></block></value><value
-      name="category"><block type="category_selector" id="bXI$~BjuWYp6{9Y@ukNr"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
-      name="category_name">penguin</field></block></value></block></statement><statement
-      name="conclusion"><block type="according_to" id="FMpf14kfg^mu4~(#xph?"><value
-      name="rule"><block type="doc_selector" id="O~?~iwJ%WmtGB,Qz=}b("><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_2__span_penguin_section"></mutation><field name="doc_part_name">BA
-      2penguin</field></block></value><statement name="statement"><block type="attribute_selector"
-      id="uTV54%14)U}^T-7{e^T#"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
-      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
-      name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
-      name="first_element"><block type="false_value" id=":Wt$Feq#6:i/PkqzrE`m"></block></value><value
-      name="second_element"><block type="variable" id="/e27:KP!fRzOK#Sxlazp"><field
-      name="variable_name">A</field></block></value></block></statement></block></statement></block><block
-      type="unattributed_fact" id="IO9/.,Irf{;C1^Yx?g1K" x="46" y="310"><statement
-      name="statements"><block type="overrules" id="-~*=Isc`r)08^UXT)2~~"><value name="defeating_rule"><block
-      type="doc_selector" id="{5Oqbf](E#@HB-(dNR6]"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_2__span_penguin_section"></mutation><field name="doc_part_name">BA
-      2penguin</field></block></value><value name="defeated_rule"><block type="doc_selector"
-      id="B/:zF{{r}/X(+?Ual(m|"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_2_section"></mutation><field
-      name="doc_part_name">BA 2</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'according_to(sec_2__span_penguin_section,  flies(A,false)) :-
+    ruledoc: 4
+    workspace_name: sec_1__para_b_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="(^5.:,lX5N1?~UIArJEP" x="59" y="112"><statement name="statements"><block
+      type="new_attribute_declaration" id="iS7L~wUVVw%#L$!ECPTK"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" attribute_type="boolean"></mutation><field name="category_name">person</field><field
+      name="attribute_name">facial_hair_continuous</field><field name="attribute_type">boolean</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">'s attribute name is</field><field name="second_element">value</field><field
+      name="postfix">'s facial hair is ear to ear below the nose</field><next><block
+      type="new_attribute_declaration" id="zgSWFz3LffbMH2O_kz4F"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" attribute_type="boolean"></mutation><field name="category_name">person</field><field
+      name="attribute_name">qualifies_s1b</field><field name="attribute_type">boolean</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">'s attribute name is</field><field name="second_element">value</field><field
+      name="postfix">qualifies under section 1 b</field></block></next></block></statement></block><block
+      type="unattributed_rule" id="z%K7H:2GbPpBT@fw|Q)V" x="58" y="340"><statement
+      name="conditions"><block type="unary_attribute_selector" id="I9BCMNWXwD]%|D7j7q`1"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="facial_hair_continuous"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">'s
+      facial hair is ear to ear below the nose</field><value name="first_element"><block
+      type="variable" id="O[R`xyfiIHY6q%MGr6+:"><field name="variable_name">Person</field></block></value></block></statement><statement
+      name="conclusion"><block type="according_to" id="N(]x%qpJjsngAq0U;x`9"><value
+      name="rule"><block type="doc_selector" id="@JlH4IQn]Ri,9Fk!~z$|"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_1__para_b_section"></mutation><field name="doc_part_name">BTA
+      1.b</field></block></value><statement name="statement"><block type="unary_attribute_selector"
+      id="@[lB9QRb//t4]j#re7r$"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s1b"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
+      under section 1 b</field><value name="first_element"><block type="variable"
+      id="oMOx1nXegE|@{tC78ChY"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'blawx_attribute(person,facial_hair_continuous,boolean).
 
-      penguin(A).
+      blawx_attribute_nlg(facial_hair_continuous,not_applicable,"",not_applicable,"''s
+      facial hair is ear to ear below the nose").
+
+      #pred facial_hair_continuous(X) :: ''@(X) \''s facial hair is ear to ear below
+      the nose''.
+
+      #pred according_to(R,facial_hair_continuous(X)) :: ''according to @(R), @(X)
+      \''s facial hair is ear to ear below the nose''.
+
+      #pred legally_holds(_,facial_hair_continuous(X)) :: ''it legally holds that
+      @(X) \''s facial hair is ear to ear below the nose''.
+
+      opposes(facial_hair_continuous(X),-facial_hair_continuous(X)).
+
+      opposes(-facial_hair_continuous(X),facial_hair_continuous(X)).
+
+      blawx_attribute(person,qualifies_s1b,boolean).
+
+      blawx_attribute_nlg(qualifies_s1b,not_applicable,"",not_applicable,"qualifies
+      under section 1 b").
+
+      #pred qualifies_s1b(X) :: ''@(X) qualifies under section 1 b''.
+
+      #pred according_to(R,qualifies_s1b(X)) :: ''according to @(R), @(X) qualifies
+      under section 1 b''.
+
+      #pred legally_holds(_,qualifies_s1b(X)) :: ''it legally holds that @(X) qualifies
+      under section 1 b''.
+
+      opposes(qualifies_s1b(X),-qualifies_s1b(X)).
+
+      opposes(-qualifies_s1b(X),qualifies_s1b(X)).
 
 
-      overrules(sec_2__span_penguin_section,sec_2_section).'
+      according_to(sec_1__para_b_section,  qualifies_s1b(Person)) :-
+
+      facial_hair_continuous(Person).'
 - model: blawx.blawxtest
   pk: 6
   fields:
-    ruledoc: 6
-    test_name: tweety
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="!_OG4OLP?RG1_nnO@)??" x="74" y="49"><statement name="statements"><block
-      type="object_declaration" id="E^n)El`).#e/px1k9O(Z"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="penguin" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
-      name="object_name">tweety</field><field name="postfix">is a penguin</field></block></statement></block><block
-      type="query" id="yLZRoj,S`oekI_y*{kip" x="59" y="157"><statement name="query"><block
-      type="holds" id="3H8/*vt$a~85UEiossL9"><statement name="statement"><block type="attribute_selector"
-      id="3qllX@`/Pbg0snWJFBK,"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
-      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
-      name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
-      name="first_element"><block type="variable" id="BxC:d9g+6DYY6l@I=5]["><field
-      name="variable_name">A</field></block></value><value name="second_element"><block
-      type="object_selector" id="lZ]]C~8RT[`RwZTaiD1j"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      objectname="tweety"></mutation><field name="object_name">tweety</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: 'penguin(tweety).
-
-
-      ?- legally_holds(_,  flies(tweety,A)).'
-- model: blawx.blawxtest
-  pk: 7
-  fields:
-    ruledoc: 6
-    test_name: negation
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="B`ucszQD3S|IX{pdrPS3" x="99" y="83"><statement name="statements"><block
-      type="object_declaration" id="nO42bKu=4qjq2vcZmTxS"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="penguin" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
-      name="object_name">tweety</field><field name="postfix">is a penguin</field></block></statement></block><block
-      type="query" id="`2@DgIS0!F)Xi1|H!JaE" x="69" y="220"><statement name="query"><block
-      type="default_negation" id="[;~X!!1dd6e7T5LfWklk"><statement name="default_negated_statement"><block
-      type="holds" id="?uBE$;IMDy:D$rcnIm6K"><statement name="statement"><block type="attribute_selector"
-      id="{i@4(!3:o=+4fD~MMP*G"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
-      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
-      name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
-      name="first_element"><block type="true_value" id="@K9W[=WCZfHtaTcVe$E_"></block></value><value
-      name="second_element"><block type="object_selector" id="5Wq{eQDw6/eNk=A0NUZI"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" objectname="tweety"></mutation><field name="object_name">tweety</field></block></value></block></statement></block></statement></block></statement></block></xml>
-    scasp_encoding: 'penguin(tweety).
-
-
-      ?- not legally_holds(_,  flies(tweety,true)).'
+    ruledoc: 4
+    test_name: are_they_bearded
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
+      id="oKTTPr8cFQ4jJLk|pBs]" x="95" y="187"><statement name="query"><block type="holds"
+      id=";~X+I|nCRz9OHErS9qlh"><statement name="statement"><block type="unary_attribute_selector"
+      id="|Q6cY}:41{#ug^9`A@GZ"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="bearded"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">is
+      bearded</field><value name="first_element"><block type="variable" id="1Yiokzjr!U)`JJ|*BHb/"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: ?- legally_holds(_,  bearded(Person)).
+    tutorial: ''
+    view: ''
+    fact_scenario: ''
