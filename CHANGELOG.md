@@ -46,12 +46,9 @@ This change makes the block language considerably smaller, as it replaces 4 bloc
 * Category Equivalency Block
 
 ### TODO
-* Make new attribute block work off new category blocks
-* Make new object category block work off new category blocks
-* Make new object blocks work off of new category blocks.
-* Make known attributes work off of new category blocks, and use unary style for true / false.
-* Make known objects work off of new new object blocks.
-* Remove redundant code
+* Attribute declaration block doesn't restore from save properly
+* when hiding elements of the attribute declaration block, they need to be removed from the tab list
+* Remove redundant code, stop blocks from using old versions.
 * Update block library
 * update the defeasibility library to use the new boolean style.
 * update scenario editor to deal with the new boolean style.
@@ -59,6 +56,13 @@ This change makes the block language considerably smaller, as it replaces 4 bloc
 * update documentation throughout
 
 ### Done
+* Code generation for new blocks
+* type checking uses new attribute_type options
+* Make known attributes work off of new category blocks, and use unary style for true / false.
+* Make known objects work off of new new object blocks.
+* Make new object blocks work off of new category blocks.
+* Make new attribute block work off new category blocks
+* Make new object category block work off new category blocks
 * Added the new attribute declaration block definition
 * Added the new category declaration block definition
 * Added a function for returning the currently known categories.

@@ -686,6 +686,13 @@ sCASP['attribute_selector'] = function (block) {
     return code;
 };
 
+sCASP['unary_attribute_selector'] = function (block) {
+    var value_first_element = sCASP.valueToCode(block, 'first_element', sCASP.ORDER_ATOMIC);
+    var predicate = this.blawxAttributeName;
+    var code = predicate + "(" + value_first_element + ")";
+    return code;
+};
+
 sCASP['assume'] = function (block) {
     // var statements_statements = sCASP.statementToCode(block, 'statements');
     var currentBlock = this.getInputTargetBlock('statements');
@@ -959,4 +966,5 @@ sCASP['new_object_category'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
     var code = category_name + "(" + value_object + ")";
     return code;
-  };
+};
+

@@ -14,28 +14,20 @@ knownAttributesCallback = function(workspace) {
             Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
             var blockList = tempWorkspace.getAllBlocks();
             for (var i = 0; i< blockList.length; i++) {
-            if (blockList[i].type == "attribute_declaration" |
-                blockList[i].type == "cardinality_up_to" |
-                blockList[i].type == "cardinality_or_more" |
-                blockList[i].type == "cardinality_between" |
-                blockList[i].type == "cardinality_exactly" |
-                blockList[i].type == "cardinality_any") {
+            if (blockList[i].type == "new_attribute_declaration") {
                 var attribute_name = blockList[i].getFieldValue('attribute_name');
-                var attribute_type = blockList[i].getInputTargetBlock('attribute_type').toString();
-                // At this point, I need to check to see if the next block is a customization.
-                var nextblock = blockList[i].getNextBlock();
-                if (nextblock && nextblock.type == "attribute_display") {
-                    // If it is, I need to get (where the next block is "block")
-                    var dropdown_order = nextblock.getFieldValue('order');
-                    var text_prefix = nextblock.getFieldValue('prefix');
-                    var text_infix = nextblock.getFieldValue('infix');
-                    var text_postfix = nextblock.getFieldValue('postfix');
-                    // The attribute name, and the order of the elements, is required
-                    // in order to generate code, so those pieces of information are
-                    // placed in THE MUTATOR.
+                var attribute_type = blockList[i].getFieldValue('attribute_type');
+                var dropdown_order = blockList[i].getFieldValue('order');
+                var text_prefix = blockList[i].getFieldValue('prefix');
+                var text_infix = blockList[i].getFieldValue('infix');
+                var text_postfix = blockList[i].getFieldValue('postfix');
+                // The attribute name, and the order of the elements, is required
+                // in order to generate code, so those pieces of information are
+                // placed in THE MUTATOR.
+                if (attribute_type == "boolean") { // use the unary version of the attribute selector
+                    var blockText = "<xml><block type='unary_attribute_selector'><mutation xmlns='http://www.w3.org/1999/xhtml' attributename='" + attribute_name + "' attributetype='" + attribute_type + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
+                } else { // all other attribute types use a binary attribute selector
                     var blockText = "<xml><block type='attribute_selector'><mutation xmlns='http://www.w3.org/1999/xhtml' attributename='" + attribute_name + "' attributetype='" + attribute_type + "' attributeorder='" + dropdown_order + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
-                } else {
-                    var blockText = "<xml><block type='attribute_selector'><mutation xmlns='http://www.w3.org/1999/xhtml' attributename='" + attribute_name + "' attributetype='" + attribute_type + "' attributeorder='ov'></mutation><field name='prefix'></field><field name='infix'>'s " + attribute_name + " is</field><field name='postfix'></field></block></xml>";
                 }
                 var block = Blockly.Xml.textToDom(blockText).firstChild;
                 // need to check for repeatedly adding the same block.
@@ -48,29 +40,18 @@ knownAttributesCallback = function(workspace) {
     var blockList = importDictionary[id].getAllBlocks();
     
     for (var i = 0; i< blockList.length; i++) {
-        if (blockList[i].type == "attribute_declaration" |
-            blockList[i].type == "cardinality_up_to" |
-            blockList[i].type == "cardinality_or_more" |
-            blockList[i].type == "cardinality_between" |
-            blockList[i].type == "cardinality_exactly" |
-            blockList[i].type == "cardinality_any") {
+        if (blockList[i].type == "new_attribute_declaration") {
             var attribute_name = blockList[i].getFieldValue('attribute_name');
-            var attribute_type = blockList[i].getInputTargetBlock('attribute_type').toString();
+            var attribute_type = blockList[i].getFieldValue('attribute_type');
             attributeTypes[attribute_name] = attribute_type;
-            // At this point, I need to check to see if the next block is a customization.
-            var nextblock = blockList[i].getNextBlock();
-            if (nextblock && nextblock.type == "attribute_display") {
-                // If it is, I need to get (where the next block is "block")
-                var dropdown_order = nextblock.getFieldValue('order');
-                var text_prefix = nextblock.getFieldValue('prefix');
-                var text_infix = nextblock.getFieldValue('infix');
-                var text_postfix = nextblock.getFieldValue('postfix');
-                // The attribute name, and the order of the elements, is required
-                // in order to generate code, so those pieces of information are
-                // placed in THE MUTATOR.
+            var dropdown_order = blockList[i].getFieldValue('order');
+            var text_prefix = blockList[i].getFieldValue('prefix');
+            var text_infix = blockList[i].getFieldValue('infix');
+            var text_postfix = blockList[i].getFieldValue('postfix');
+            if (attribute_type == "boolean") { // use the unary version of the attribute selector
+                var blockText = "<xml><block type='unary_attribute_selector'><mutation xmlns='http://www.w3.org/1999/xhtml' attributename='" + attribute_name + "' attributetype='" + attribute_type + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
+            } else { // all other attribute types use a binary attribute selector
                 var blockText = "<xml><block type='attribute_selector'><mutation xmlns='http://www.w3.org/1999/xhtml' attributename='" + attribute_name + "' attributetype='" + attribute_type + "' attributeorder='" + dropdown_order + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
-            } else {
-                var blockText = "<xml><block type='attribute_selector'><mutation xmlns='http://www.w3.org/1999/xhtml' attributename='" + attribute_name + "' attributetype='" + attribute_type + "' attributeorder='ov'></mutation><field name='prefix'></field><field name='infix'>'s " + attribute_name + " is</field><field name='postfix'></field></block></xml>";
             }
             var block = Blockly.Xml.textToDom(blockText).firstChild;
             // need to check for repeatedly adding the same block.
@@ -204,23 +185,12 @@ newObjectCallback = function(workspace) {
             Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
             var blockList = tempWorkspace.getAllBlocks();
             for (var i = 0; i< blockList.length; i++) {
-            if (blockList[i].type == "category_declaration") {
+            if (blockList[i].type == "new_category_declaration") {
                 // Get the name of the entity, insert a block of that type,
                 var category_name = blockList[i].getFieldValue('category_name'); 
-                var nextblock = blockList[i].getNextBlock();
-                if (nextblock && nextblock.type == "category_display") {
-                    // If it is, I need to get (where the next block is "block")
-                    var text_prefix = nextblock.getFieldValue('prefix');
-                    var text_postfix = nextblock.getFieldValue('postfix');
-                    // The category name, and the order of the elements, is required
-                    // in order to generate code, so those pieces of information are
-                    // placed in THE MUTATOR.
-                    
-                    var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
-                } else {
-                    var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='postfix'>is a " + category_name + "</field></block></xml>"
-                }
-                
+                var text_prefix = blockList[i].getFieldValue('prefix');
+                var text_postfix = blockList[i].getFieldValue('postfix');
+                var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
                 var block = Blockly.Xml.textToDom(blockText).firstChild;
                 // Need to add check to make sure I'm not repeatedly adding the same block.
                 xmlList.push(block);
@@ -231,22 +201,12 @@ newObjectCallback = function(workspace) {
     for (var id in importDictionary) {
     var blockList = importDictionary[id].getAllBlocks();
     for (var i = 0; i< blockList.length; i++) {
-        if (blockList[i].type == "category_declaration") {
+        if (blockList[i].type == "new_category_declaration") {
         // Get the name of the entity, insert a block of that type,
         var category_name = blockList[i].getFieldValue('category_name'); 
-        var nextblock = blockList[i].getNextBlock();
-        if (nextblock && nextblock.type == "category_display") {
-            // If it is, I need to get (where the next block is "block")
-            var text_prefix = nextblock.getFieldValue('prefix');
-            var text_postfix = nextblock.getFieldValue('postfix');
-            // The category name, and the order of the elements, is required
-            // in order to generate code, so those pieces of information are
-            // placed in THE MUTATOR.
-            
-            var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
-        } else {
-            var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='postfix'>is a " + category_name + "</field></block></xml>"
-        }
+        var text_prefix = blockList[i].getFieldValue('prefix');
+        var text_postfix = blockList[i].getFieldValue('postfix');
+        var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
         var block = Blockly.Xml.textToDom(blockText).firstChild;
         // Need to add check to make sure I'm not repeatedly adding the same block.
         xmlList.push(block);

@@ -189,11 +189,17 @@
             var myob = new ResizeObserver(onresize);
             myob.observe(blocklyArea);
             Blockly.svgResize(demoWorkspace);
-
+            demoWorkspace.addChangeListener(onCategoryChange);
+            var knownCategories = [];
+            var localCategories = [];
             window.onload = function() {
                 onresize();
                 liveCode(null);
                 $('#leftbar').collapse('show');
+                knownCategories = getKnownCategories();
+                updateLocalCategories();
+                
+                
             };
 
 

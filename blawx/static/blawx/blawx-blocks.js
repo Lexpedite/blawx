@@ -2876,6 +2876,39 @@ scasp_blockset = [{
   "colour": 15,
   "tooltip": "Use to create a category.",
   "helpUrl": "/docs/blocks/new_category/"
+},
+{
+  "type": "unary_attribute_selector",
+  "message0": "%1 %2 %3",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "input_value",
+      "name": "first_element",
+      "check": [
+        "VARIABLE",
+        "OBJECT"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "is attribute_name"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 135,
+  "tooltip": "Use to set or check the value of an object's attribute.",
+  "helpUrl": "/docs/blocks/attribute_selector"
 }]
 
 // TODO: A bunch of these things below are redundant as the blocks are being removed.
@@ -2883,6 +2916,9 @@ scasp_blockset = [{
 for (var i = 0; i < scasp_blockset.length; i++) {
   if (scasp_blockset[i].type == "attribute_selector") {
     scasp_blockset[i]['mutator'] = "attribute_selector_mutator"
+  };
+  if (scasp_blockset[i].type == "unary_attribute_selector" ) {
+    scasp_blockset[i]['mutator'] = "unary_attribute_selector_mutator"
   };
   if (scasp_blockset[i].type == "object_selector") {
     scasp_blockset[i]['mutator'] = "object_selector_mutator"
@@ -2941,12 +2977,12 @@ Blockly.Blocks['new_attribute_declaration'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("The category")
-        .appendField(new Blockly.FieldDropdown(this.generateCategories(),opt_validator=function(new_value){return new_value;}),"category_name")
+        .appendField(new Blockly.FieldDropdown(this.generateCategories),"category_name")
         .appendField("has an attribute")
         .appendField(new Blockly.FieldTextInput("attribute name"), "attribute_name");
     this.appendDummyInput()
         .appendField("which is of type")
-        .appendField(new Blockly.FieldDropdown(this.generateDataTypes(),opt_validator=function(new_value){return new_value;}),"attribute_type")
+        .appendField(new Blockly.FieldDropdown(this.generateDataTypes),"attribute_type")
         .appendField(", appearing as")
         .appendField(new Blockly.FieldDropdown([["object, then value","ov"], ["value, then object","vo"]]), "order");
     this.appendDummyInput()
@@ -2989,62 +3025,26 @@ Blockly.Blocks['new_attribute_declaration'] = {
 });
   },
   generateCategories: function() {
-    // console.log("All Workspaces:")
-    // console.log(all_workspaces)
-    var knownCategoriesList = [];
-    if (!headless) {
-      headless = true; // Don't loop.
-      var all_workspaces = getAllWorkspaces();
-    
-      for (var w = 0; w < all_workspaces.length; w++) {
-          // Go through the blocks in the workspace.
-          // If the block is an object declaration, add the relevant block to the xml
-          if (all_workspaces[w].xml_content) {
-              var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
-              var tempWorkspace = new Blockly.Workspace();
-              Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
-              var blockList = tempWorkspace.getAllBlocks();
-              // console.log("BlockList: " + blockList)
-              for (var i = 0; i< blockList.length; i++) {
-                  if (blockList[i].type == "category_declaration") {
-                      // Get the name of the entity, insert a block of that type,
-                      var category_name = blockList[i].getFieldValue('category_name');
-                      knownCategoriesList.push([category_name,category_name]); 
-                  }
-              }
-              delete tempWorkspace;
-          }
-      }
-      headless = false;
-      for (var id in importDictionary) {
-        var blockList = importDictionary[id].getAllBlocks();
-        for (var i = 0; i< blockList.length; i++) {
-            if (blockList[i].type == "category_declaration") {
-            // Get the name of the entity, insert a block of that type,
-            var category_name = blockList[i].getFieldValue('category_name'); 
-            knownCategoriesList.push([category_name,category_name]);
-            }
-        }
-      }
-      
-      if(knownCategoriesList.length > 0) {
-        return knownCategoriesList;
-      } else {
-        return [["No Categories Defined","none"]];
+    var allCategories = getAllCategories();
+    if (allCategories.length) {
+      var optionList = [];
+      for (var i =0; i< allCategories.length; i++) {
+        optionList.push([allCategories[i],allCategories[i]])
       }
     } else {
-      return [['this','this']];
+      var optionList = [['No Categories Defined','none']];
     }
-    //return [['this','this'],['that','that']];
+
+    return optionList;
   },
   generateDataTypes: function() {
     var options = [["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']];
-    var knownCategories = this.generateCategories();
-    for (var i=0; i < knownCategories.length; i++){
-      if (knownCategories[i][0] != "No Categories Defined") {
-        options.push(knownCategories[i]);
-      }
+    var allCategories = getAllCategories();
+    var optionList = [];
+    for (var i =0; i< allCategories.length; i++) {
+      options.push([allCategories[i],allCategories[i]])
     }
+  
     return options;
   },
   mutationToDom() {
@@ -3082,52 +3082,18 @@ Blockly.Blocks['new_object_category'] = {
  this.setHelpUrl("/docs/blocks/object_category/");
   },
   generateCategories: function() {
-    // console.log("All Workspaces:")
-    // console.log(all_workspaces)
-    var knownCategoriesList = [];
-    if (!headless) {
-      headless = true; // Don't loop.
-      var all_workspaces = getAllWorkspaces();
-    
-      for (var w = 0; w < all_workspaces.length; w++) {
-          // Go through the blocks in the workspace.
-          // If the block is an object declaration, add the relevant block to the xml
-          if (all_workspaces[w].xml_content) {
-              var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
-              var tempWorkspace = new Blockly.Workspace();
-              Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
-              var blockList = tempWorkspace.getAllBlocks();
-              // console.log("BlockList: " + blockList)
-              for (var i = 0; i< blockList.length; i++) {
-                  if (blockList[i].type == "category_declaration") {
-                      // Get the name of the entity, insert a block of that type,
-                      var category_name = blockList[i].getFieldValue('category_name');
-                      knownCategoriesList.push([category_name,category_name]); 
-                  }
-              }
-              delete tempWorkspace;
-          }
-      }
-      headless = false;
-      for (var id in importDictionary) {
-        var blockList = importDictionary[id].getAllBlocks();
-        for (var i = 0; i< blockList.length; i++) {
-            if (blockList[i].type == "category_declaration") {
-            // Get the name of the entity, insert a block of that type,
-            var category_name = blockList[i].getFieldValue('category_name'); 
-            knownCategoriesList.push([category_name,category_name]);
-            }
-        }
-      }
-      
-      if(knownCategoriesList.length > 0) {
-        return knownCategoriesList;
-      } else {
-        return [["No Categories Defined","none"]];
+    var allCategories = getAllCategories();
+    if (allCategories.length) {
+      var optionList = [];
+      for (var i =0; i< allCategories.length; i++) {
+        optionList.push([allCategories[i],allCategories[i]])
       }
     } else {
-      return [['this','this']];
+      var optionList = [['No Categories Defined','none']];
     }
+
+    return optionList;
+    
     //return [['this','this'],['that','that']];
   },
   mutationToDom() {
@@ -3146,3 +3112,57 @@ Blockly.Blocks['new_object_category'] = {
     this.setFieldValue(category_name,'category_name');
   }
 };
+
+function getAllCategories() {
+  return knownCategories.concat(localCategories);
+}
+
+function getKnownCategories() {
+
+  var all_workspaces = getAllWorkspaces();
+  var knownCategoriesList = [];
+  
+  for (var w = 0; w < all_workspaces.length; w++) {
+    // Go through the blocks in the workspace.
+    // If the block is an object declaration, add the relevant block to the xml
+    if (all_workspaces[w].xml_content) {
+      var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
+      var tempWorkspace = new Blockly.Workspace();
+      Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
+      var blockList = tempWorkspace.getAllBlocks();
+      // console.log("BlockList: " + blockList)
+      for (var i = 0; i< blockList.length; i++) {
+                  if (blockList[i].type == "category_declaration" || blockList[i].type == "new_category_declaration") {
+                    // Get the name of the entity, insert a block of that type,
+                      var category_name = blockList[i].getFieldValue('category_name');
+                      knownCategoriesList.push(category_name); 
+                    }
+                  }
+                  delete tempWorkspace;
+                }
+              }
+      for (var id in importDictionary) {
+        var blockList = importDictionary[id].getAllBlocks();
+        for (var i = 0; i< blockList.length; i++) {
+          if (blockList[i].type == "category_declaration") {
+            // Get the name of the entity, insert a block of that type,
+            var category_name = blockList[i].getFieldValue('category_name'); 
+            knownCategoriesList.push(category_name);
+          }
+        }
+      }
+      return knownCategoriesList;
+    }
+
+function updateLocalCategories() {
+  var blockList = demoWorkspace.getAllBlocks();
+  localCategories = [];
+  for (var i = 0; i< blockList.length; i++) {
+    if (blockList[i].type == "category_declaration" || blockList[i].type == "new_category_declaration") {
+      // Get the name of the entity, insert a block of that type,
+        var category_name = blockList[i].getFieldValue('category_name');
+        localCategories.push(category_name); 
+    }
+  }
+}
+
