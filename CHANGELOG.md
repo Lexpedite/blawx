@@ -34,6 +34,8 @@ This change makes the block language considerably smaller, as it replaces 4 bloc
 * New Attribute Declaration Block
 * New Object Category Block
 * New New Object Block
+* Removed an incomplete example
+* Reformulated Beard Tax Act example
 
 ### Fixed
 * Explanations in the test editor were being truncated
