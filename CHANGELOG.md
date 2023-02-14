@@ -36,6 +36,7 @@ This change makes the block language considerably smaller, as it replaces 4 bloc
 * New New Object Block
 
 ### Fixed
+* Explanations in the test editor were being truncated
 
 ### Removed
 * Data Type Blocks
@@ -46,15 +47,14 @@ This change makes the block language considerably smaller, as it replaces 4 bloc
 * Category Equivalency Block
 
 ### TODO
-* Problems saving new object category block?
-* Code is being generated with "none" in dropdown places.
-* Redundant options are appearing in option lists if you transition from the old style to the new. I think known Categories is duplicating localCategories.
+* Today doesn't work in the net 30 test.
+* Occasionally, when converting from old to new code a second boolean attribute declaration will not be formatted to hide fields
+  until reloaded.
+* update example code
 * Remove redundant code, stop blocks from using old versions.
 * Update block library
-* update the defeasibility library to use the new boolean style.
 * update scenario editor to deal with the new boolean style.
-* update example code to use the new attribute declaration block
-* update documentation throughout
+* update documentation
 
 ### Done
 * Removed hidden elements from tab list.

@@ -812,7 +812,7 @@ def generate_answers(answers):
     for (k,v) in a.items():
       if k == "Human":
           if v != '\n':
-            new_model['Tree'] = generate_list_of_lists(v[0:-5])
+            new_model['Tree'] = generate_list_of_lists(v[0:-1])
           else:
             new_model['Tree'] = ['No explanation.']
       elif k == 'Model':
