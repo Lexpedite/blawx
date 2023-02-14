@@ -934,7 +934,7 @@ sCASP['new_attribute_declaration'] = function(block) {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
         add_code = text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')
-        code += "#pred " + text_attribute_name + "(X) :: " + add_code.trim() + "'.\n"
+        code += "#pred " + text_attribute_name + "(X) :: '" + add_code.trim() + "'.\n"
         code += "#pred according_to(R," + text_attribute_name + "(X)) :: 'according to @(R), " + add_code.trim() + "'.\n"
         code += "#pred legally_holds(_," + text_attribute_name + "(X)) :: 'it legally holds that " + add_code.trim() + "'.\n"
         code += "opposes(" + text_attribute_name + "(X),-" + text_attribute_name + "(X)).\n";
