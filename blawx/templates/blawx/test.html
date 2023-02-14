@@ -196,9 +196,15 @@
                     }
                 }
             }
+            
+            demoWorkspace.addChangeListener(onCategoryChange);
+            var knownCategories = [];
+            var localCategories = [];
             window.onload = function() {
                 onresize();
                 liveCode(null);
+                knownCategories = getKnownCategories();
+                updateLocalCategories();
             };
 
             
