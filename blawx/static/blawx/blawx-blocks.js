@@ -3016,10 +3016,16 @@ Blockly.Blocks['new_attribute_declaration'] = {
     this.getField('second_element').setVisible(false);
     this.getField('infix').setVisible(false);
     this.getField('order').setVisible(false);
+    this.getField('second_element').setEnabled(false);
+    this.getField('infix').setEnabled(false);
+    this.getField('order').setEnabled(false);
   } else {
     this.getField('second_element').setVisible(true);
     this.getField('infix').setVisible(true);
     this.getField('order').setVisible(true);
+    this.getField('second_element').setEnabled(true);
+    this.getField('infix').setEnabled(true);
+    this.getField('order').setEnabled(true);
   }
   demoWorkspace.render();
 });
@@ -3040,7 +3046,6 @@ Blockly.Blocks['new_attribute_declaration'] = {
   generateDataTypes: function() {
     var options = [["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']];
     var allCategories = getAllCategories();
-    var optionList = [];
     for (var i =0; i< allCategories.length; i++) {
       options.push([allCategories[i],allCategories[i]])
     }
@@ -3062,8 +3067,9 @@ Blockly.Blocks['new_attribute_declaration'] = {
     // this.reshape(foo);
     var category_name = xmlElement.getAttribute('category_name');
     var attribute_type = xmlElement.getAttribute('attribute_type');
-    this.setFieldValue(category_name,'category_name');
-    this.setFieldValue(attribute_type,'attribute_type');
+    // These are causing errors, and can probably be solved, but if it works I have better things to do.
+    this.getField('category_name').selectedOption_ = [category_name,category_name];
+    this.getField('attribute_type').selectedOption_ = [attribute_type,attribute_type];
   }
 };
 
@@ -3109,9 +3115,11 @@ Blockly.Blocks['new_object_category'] = {
     // e.g. let foo = xmlElement.getAttribute('foo');
     // this.reshape(foo);
     var category_name = xmlElement.getAttribute('category_name');
-    this.setFieldValue(category_name,'category_name');
+    // This is just a god-awful kludge, that still sends warnings until the list catches up with the value.
+    this.getField('category_name').selectedOption_ = [category_name, category_name];
   }
 };
+
 
 function getAllCategories() {
   return knownCategories.concat(localCategories);
