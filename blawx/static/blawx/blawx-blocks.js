@@ -3122,7 +3122,7 @@ Blockly.Blocks['new_object_category'] = {
 
 
 function getAllCategories() {
-  return knownCategories.concat(localCategories);
+  return [... new Set(knownCategories.concat(localCategories))];
 }
 
 function getKnownCategories() {
