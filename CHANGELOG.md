@@ -18,13 +18,38 @@ they are treated as a statement about an object alone. This has considerable
 implications for the block language, and as a result, `.blawx` files exported prior to v1.4.0-alpha
 will not work from v1.4.0-alpha forward.
 
-True / False attributes are created in the usual way. However, specifying that a true or false attribute
+True / False attributes are created using the new attribute declaration block. Specifying that a true or false attribute
 has the value of "false" is done by using the "known false" block, and the new style of true / false
 attribute selector block, in a fact or conclusion. Stating that it has the value "true" is done by 
 merely using the new attribute selector block.
 
 This change makes the block language considerably smaller, as it replaces 4 blocks, and removes another 
 14.
+
+### Upgrade Notes
+
+The process for upgrading Blawx code to this version is as follows:
+* Phase 1: Replace declarations in all sections and tests
+  * replace all category declarations with a new category declaration with the same name and NLG (typically, "object is a X")
+  * replace all attribute declarations with a new attribute declaration with the same name and NLG
+* Phase 2: Replace Usage in all sections and tests
+  * replace all boolean attribute selectors with the new style of boolean attribute selector
+  * replace all object category blocks with the new style of object category block.
+  * replace new object declarations for categories where you changed the NLG
+  * replace attribute selectors for non-boolean attributes where you changed the NLG
+* Phase 3: Delete Orphaned Blocks
+  * find and delete orphaned true and false value blocks (explained below)
+
+Doing declarations across all code sections and tests first avoids the need to come back to any section of code more than twice.
+
+Because of changes in the type checking in attribute blocks, old-style boolean attribute blocks will reject
+the "True" or "False" value blocks, and orphan (disconnect) them. When that happens, they may not be visible in the workspace until the code has
+been saved and reloaded from save twice. All code being migrated should be opened at least
+twice, and any floating "True" or "False" blocks appearing in the top left of the workspace the second time it is opened should be deleted.
+
+There are circumstances in which adding more than one of the new style of attribute declaration block might cause
+that block not to update properly when the attribute type is set to "true / false". If this happens, add all the required attribute declarations,
+save and re-open the workspace, and the attribute declarations will then format themselves properly. This problem only occurs when migrating.
 
 ### Added
 
@@ -33,7 +58,6 @@ This change makes the block language considerably smaller, as it replaces 4 bloc
 * New Category Declaration Block
 * New Attribute Declaration Block
 * New Object Category Block
-* New New Object Block
 * Removed an incomplete example
 * Reformulated Beard Tax Act example
 
@@ -49,14 +73,31 @@ This change makes the block language considerably smaller, as it replaces 4 bloc
 * Category Equivalency Block
 
 ### TODO
-* Today doesn't work in the net 30 test.
-* Occasionally, when converting from old to new code a second boolean attribute declaration will not be formatted to hide fields
-  until reloaded.
 * update example code
+  * Old Age Security Act
 * Remove redundant code, stop blocks from using old versions.
 * Update block library
 * update scenario editor to deal with the new boolean style.
 * update documentation
+  * Step 2
+  * Step 3
+  * Code Editor
+  * Categories and Attributes
+  * Rules
+  * Facts and Assumptions
+  * Questions
+  * Variables
+  * Negation and Uncertainty
+  * Numerical Constraints
+  * Lists and Aggregation
+  * Logical Constraints
+  * Defaults and Exceptions
+  * Dates, Times, and Durations
+  * New Category
+  * New Attribute
+  * Attribute Selector
+  * New Object
+  * Object Category
 
 ### Done
 * Removed hidden elements from tab list.
