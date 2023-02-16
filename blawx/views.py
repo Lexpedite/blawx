@@ -24,7 +24,7 @@ from .serializers import CodeUpdateRequestSerializer, TestViewUpdateRequestSeria
 from .models import Workspace, DocPage, RuleDoc, BlawxTest
 
 from preferences import preferences
-
+from django.conf import settings
 
 from cobalt.hierarchical import Act
 import lxml
@@ -315,6 +315,12 @@ def get_all_code(request,pk):
         else:
             return HttpResponseForbidden()
     return Response(output)
+
+@api_view(['GET'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
+def version(request):
+    return Response({'version': settings.BLAWX_VERSION})
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])

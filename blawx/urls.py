@@ -32,4 +32,5 @@ urlpatterns = [
     path('create/', views.RuleDocCreateView.as_view(), name="ruledoc_create"),
     path('docs/<path:pk>/', views.DocumentView.as_view(), name="docs_page"),
     path("register/", views.register_request, name="register"),
+    path("version/",views.version,name="version"),
 ]
