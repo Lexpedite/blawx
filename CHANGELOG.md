@@ -58,6 +58,7 @@ save and re-open the workspace, and the attribute declarations will then format 
 * New Category Declaration Block
 * New Attribute Declaration Block
 * New Object Category Block
+* Examples re-implemented using new block language
 * Removed an incomplete example
 * Reformulated Beard Tax Act example
 
@@ -73,11 +74,18 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Category Equivalency Block
 
 ### TODO
-* update example code
-  * Old Age Security Act
+* Change the way the updateLocalCategories works so it doesn't drain so many cycles.
 * Remove redundant code, stop blocks from using old versions.
 * Update block library
 * update scenario editor to deal with the new boolean style.
+  * I'm realizing that I can't make changes to the scenario editor without also making changes to the reasoner endpoints.
+    I'm not sure it's worth it. I wanted to improve the scenario editor, which was why I needed to change the blawx language.
+    But now, if I try to make the current scenario editor work with the new booleans, I'm creating a bunch of work that I'm
+    immediately going to remove. So instead, I think I need to merge the changes to the scenario editor into this branch,
+    and THEN make the new scenario editor work with the new booleans. Which will add to the list of documentation I need to fix.
+* Update scenario editor views and default facts.
+* Verify that the example encodings are still working.
+  * Problem with OASA, any person, with no additional info, qualifies under section 4.
 * update documentation
   * Step 2
   * Step 3
@@ -98,6 +106,11 @@ save and re-open the workspace, and the attribute declarations will then format 
   * Attribute Selector
   * New Object
   * Object Category
+* If we also update the scenario editor
+  * Part 4
+  * Scenario Editor
+  * Blawx Web API
+
 
 ### Done
 * Removed hidden elements from tab list.
