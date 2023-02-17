@@ -27,6 +27,81 @@ class IgnorePermission(permissions.BasePermission):
     def has_permission(self, request, view):
          return True
 
+# New Proposed Format for JSON fact submissions, which adheres to the s(CASP) logic better,
+# and allows you to specify true, false, or unknown.
+
+# It is a dictionary with one key, "facts", which is a list of statements.
+# Each statement is a dictionary that has:
+# * a type key, with a value of either "true", "false", or "unknown" (text strings)
+# * a category key, with a value of the name of the category, or an attribute
+#   key, with the value of the attribute.
+# * An object key, which gives the symbol for the object (if of type true or false), or a variable object
+# * If it has an attribute key, a value key, which gives the value for the statement in text, or a variable object.
+# 
+# A variable object is an dictionary with only one key, "variable", and a string value for the name of the variable.
+# The variable names are ignored, and serve only to determine whether the same variable is being used in both the
+# object and the value key.
+
+# {
+#   facts: [
+#     {
+#       type: "true",
+#       category: "person",
+#       object: "jason"
+#     },
+#     {
+#       type: "unknown",
+#       attribute: "nice",
+#       object: "jason"
+#     },
+#     {
+#       type: "false",
+#       attribute: "friend",
+#       object: "jason",
+#       value: {variable: "one"}
+#     },
+#     {
+#       type: "true",
+#       attribute: "likes",
+#       object: {variable: "one"},
+#       value: {variable: "one"}
+#     }
+#   ]
+# }
+
+def newer_json_2_scasp(payload,ruledoc,testname):
+  output = ""
+
+  # Grab the ontology for the current test.
+  ontology = get_ontology_internal(ruledoc,testname)
+
+  # Go through the statements and convert them into s(CASP)
+  for fact in payload['facts']:
+    if 'category' in fact:
+      basic_predicate = fact['category']
+    elif 'attribute' in fact:
+      basic_predicate = fact['attribute']
+    truth_value = fact['type']
+    statement_object = fact['object']
+    if truth_value == "false":
+      predicate = "-" + basic_predicate
+    if truth_value != "unknown":
+      if 'value' in fact:
+        statement_value = fact['value']
+        attribute_type = "object"
+        for att in ontology['Attributes']:
+          if basic_predicate == att['Attribute']:
+            attribute_type = att['Type']
+            break
+        output += predicate + "(" + statement_object + "," + format_statement_value(statement_value,attribute_type) + ").\n"
+      else:
+        output += predicate + "(" + statement_object + ").\n"
+  for fact in payload['facts']:
+    if fact['type'] == "unknown":
+      # This statement is an abducibility:
+      break
+  return output
+
 # Proposed format for JSON submissions.
 # {
 #   person: {
@@ -59,6 +134,50 @@ class IgnorePermission(permissions.BasePermission):
 #     }
 #   }
 # }
+
+def format_statement_value(value,attribute_type):
+  iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
+  time_re = r"^(\d{2}):(\d{2})$"
+  iso8601_datetime_re = r"^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$"
+  iso8601_duration_re = r"^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$"
+  if attribute_type == "date":
+    matches = re.findall(iso8601_date_re,value,re.MULTILINE)
+    (year,month,day) = matches[0]
+    date_format = f"date({int(year)},{int(month)},{int(day)})"
+    return date_format
+  if attribute_type == "time":
+    matches = re.findall(time_re,value,re.MULTILINE)
+    (hour,minute) = matches[0]
+    time_format = f"time({int(hour)},{int(minute)},0)"
+    return time_format
+  if attribute_type == "datetime":
+    matches = re.findall(iso8601_datetime_re,value,re.MULTILINE)
+    (year,month,day,hour,minute) = matches[0]
+    datetime_format = f"datetime({int(year)},{int(month)},{int(day)},{int(hour)},{int(minute)},0)"
+    return datetime_format
+  if attribute_type == "duration":
+    matches = re.findall(iso8601_duration_re,value,re.MULTILINE)
+    (sign,years,months,days,hours,minutes,seconds) = matches[0]
+    if sign == "-":
+      sign_value = "-1"
+    else:
+      sign_value = "1"
+    if years == "":
+      years = "0Y"
+    if months == "":
+      months = "0M"
+    if days == "":
+      days = "0D"
+    if hours == "":
+      hours = "0H"
+    if minutes == "":
+      minutes = "0M"
+    if seconds == "":
+      seconds = "0S"
+    duration_format = f"duration({sign_value},{int(years[:-1])},{int(months[:-1])},{int(days[:-1])},{int(hours[:-1])},{int(minutes[:-1])},{int(seconds[:-1])})"
+    return duration_format
+  # If you get to this point, the raw representation is fine.
+  return value
 
 def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
   output = ""
@@ -216,7 +335,7 @@ def run_test(request,ruledoc,test_name):
     if request.user.has_perm('blawx.run',test):
       translated_facts = ""
       if request.data:
-        translated_facts = new_json_2_scasp(request.data,ruledoc,test_name)
+        translated_facts = newer_json_2_scasp(request.data,ruledoc,test_name)
         # print("Facts Generated for Run Request:\n")
         # print(translated_facts)
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
@@ -631,7 +750,7 @@ def interview(request,ruledoc,test_name):
       # Effectively, we're going to start over.
       translated_facts = ""
       if request.data:
-        translated_facts = new_json_2_scasp(request.data, ruledoc, test_name, False) #Generate answers INCLUDING assumptions in the submitted data
+        translated_facts = newer_json_2_scasp(request.data, ruledoc, test_name) #Generate answers INCLUDING assumptions in the submitted data
       print("Generated facts with assumptions:")
       print(str(translated_facts) + "\n")
 

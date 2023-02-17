@@ -112,7 +112,6 @@ save and re-open the workspace, and the attribute declarations will then format 
   * Scenario Editor
   * Blawx Web API
 
-
 ### Done
 * Removed hidden elements from tab list.
 * Fixed serialization for blocks with new dropdowns (sorta)
