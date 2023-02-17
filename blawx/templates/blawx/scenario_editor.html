@@ -1356,7 +1356,23 @@
                             break;
                         }
                     }
-                    output_html += '<li><a onclick="show_new_object(\'' + ontology['Categories'][c] + '\')" class="dropdown-item" href="#">' + prefix + ' [new object name] ' + postfix + '</a></li>';
+                    output_html += '<li><a onclick="show_new_object(\'' + ontology['Categories'][c] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>object</i> ' + postfix + '</a></li>';
+                }
+            }
+            for(var a=0; a < ontology['Attributes'].length; a++) {
+                for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                    if (ontology['Attributes'][a]['Attribute'] == ontology['AttributeNLG'][i]['Attribute']) {
+                        prefix = ontology['AttributeNLG'][i]['Prefix'];
+                        infix = ontology['AttributeNLG'][i]['Infix'];
+                        postfix = ontology['AttributeNLG'][i]['Postfix'];
+                        order = ontology['AttributeNLG'][i]['Order'];
+                        break;
+                    }
+                }
+                if (order == "ov") {
+                    output_html += '<li><a onclick="show new attribute(\'' + ontology['Attributes'][a]['Attribute'] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>object</i> ' + infix + ' <i>value</i> ' + postfix + '</a></li>';
+                } else {
+                    output_html += '<li><a onclick="show new attribute(\'' + ontology['Attributes'][a]['Attribute'] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>value</i> ' + infix + ' <i>object</i> ' + postfix + '</a></li>';
                 }
             }
             output_html += '</ul>';
