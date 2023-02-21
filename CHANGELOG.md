@@ -7,7 +7,6 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-
 ## NEW BOOLEAN BRANCH
 
 **Not backward compatible.**
@@ -132,6 +131,10 @@ save and re-open the workspace, and the attribute declarations will then format 
 * added new object category block
 * reorganized toolboxes
 * added opposes code generation for all category and attribute declarations, not just booleans, using constructive negation.
+
+## [v1.3.40-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.40-alpha) 2022-02-16
+
+Sets allowed hosts to all for testing and development purposes.
 
 ## [v1.3.39-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.39-alpha) 2022-02-16
 
