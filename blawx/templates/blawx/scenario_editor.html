@@ -1389,192 +1389,194 @@
                 }
             }
             for(var a = 0; a < ontology['Attributes'].length; a++) {
-                var prefix;
-                var infix;
-                var postfix;
-                var order;
-                var object_type;
-                var value_type;
-                var attribute_name;
-                attribute_name = ontology['Attributes'][a]['Attribute'];
-                object_type = ontology['Attributes'][a]['Category'];
-                value_type = ontology['Attributes'][a]['Type'];
-                var value_type_is_category;
-                if (['date','time','datetime','duration','number'].includes(value_type)) {
-                    value_type_is_category = false;
-                } else {
-                    value_type_is_category = true;
-                }
-                for (var i=0; i< ontology['AttributeNLG'].length; i++) {
-                    if (ontology['Attributes'][a]['Attribute'] == ontology['AttributeNLG'][i]['Attribute']) {
-                        prefix = ontology['AttributeNLG'][i]['Prefix'];
-                        infix = ontology['AttributeNLG'][i]['Infix'];
-                        postfix = ontology['AttributeNLG'][i]['Postfix'];
-                        order = ontology['AttributeNLG'][i]['Order'];
-                        break;
+                if (!hidden_by_view.includes('view_att_' + ontology['Attributes'][a]['Attribute'])) {
+                    var prefix;
+                    var infix;
+                    var postfix;
+                    var order;
+                    var object_type;
+                    var value_type;
+                    var attribute_name;
+                    attribute_name = ontology['Attributes'][a]['Attribute'];
+                    object_type = ontology['Attributes'][a]['Category'];
+                    value_type = ontology['Attributes'][a]['Type'];
+                    var value_type_is_category;
+                    if (['date','time','datetime','duration','number'].includes(value_type)) {
+                        value_type_is_category = false;
+                    } else {
+                        value_type_is_category = true;
                     }
-                }
-                output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2" id="new_attribute_' + attribute_name + '">';
-                output_html += '<div class="input-group">';
-                output_html += '<span class="input-group-text">It is</span>';
-                    
-                output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example" id="new_attribute_truth_type_' + attribute_name + '">';
-                output_html += '<option selected value="true">true that</option>';
-                output_html += '<option value="false">false that</option>';
-                output_html += '<option value="unknown">uncertain whether</option>';
-                output_html += '</select></div>';
+                    for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                        if (ontology['Attributes'][a]['Attribute'] == ontology['AttributeNLG'][i]['Attribute']) {
+                            prefix = ontology['AttributeNLG'][i]['Prefix'];
+                            infix = ontology['AttributeNLG'][i]['Infix'];
+                            postfix = ontology['AttributeNLG'][i]['Postfix'];
+                            order = ontology['AttributeNLG'][i]['Order'];
+                            break;
+                        }
+                    }
+                    output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2" id="new_attribute_' + attribute_name + '">';
+                    output_html += '<div class="input-group">';
+                    output_html += '<span class="input-group-text">It is</span>';
+                        
+                    output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example" id="new_attribute_truth_type_' + attribute_name + '">';
+                    output_html += '<option selected value="true">true that</option>';
+                    output_html += '<option value="false">false that</option>';
+                    output_html += '<option value="unknown">uncertain whether</option>';
+                    output_html += '</select></div>';
 
-                value_html = ""
-                switch(value_type) {
-                    case 'number':
-                        value_html += '<div class="input-group-text">';
-                        //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';    
-                        value_html += '<input onchange="save_new_value(\'' + attribute_name + '\')" type="number" class="form-control" aria-label="New value" id="new_attribute_value_' + attribute_name + '">';
-                        value_html += "</div>";
-                        break;
-                    case 'date':
-                        value_html += '<div class="input-group-text">';
-                        //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                        value_html += '<input type="date" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
-                        value_html += "</div>";
-                        break;
-                    case 'duration':
-                        value_html += '<div class="input-group-text">';
-                        //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                        value_html += '<span class="input-group-text px-1">S</span>';
-                        value_html += '<div class="input-group-text">';
-                        value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="new_attribute_value_' + attribute_name + '_direction">';
-                        value_html += '</div>';
-                        value_html += '<span class="input-group-text px-1">Y</span>';
-                        value_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="new_attribute_value_' + attribute_name + '_years">';
-                        value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                        value_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="new_attribute_value_' + attribute_name + '_months">';
-                        value_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
-                        value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="new_attribute_value_' + attribute_name + '_days">';
-                        value_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
-                        value_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="new_attribute_value_' + attribute_name + '_hours">';
-                        value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                        value_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="new_attribute_value_' + attribute_name + '_minutes">';
-                        value_html += "</div>";
-                        break;
-                    case 'boolean':
-                        break;
-                    case 'time':
-                        value_html += '<div class="input-group-text">';
-                        //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                        value_html += '<input type="time" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
-                        value_html += "</div>";
-                        break;
-                    case 'datetime':
-                        value_html += '<div class="input-group-text">';
-                        //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                        value_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
-                        value_html += "</div>";
-                        break;
-                    default:
-                        if (value_type_is_category) {
+                    value_html = ""
+                    switch(value_type) {
+                        case 'number':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';    
+                            value_html += '<input onchange="save_new_value(\'' + attribute_name + '\')" type="number" class="form-control" aria-label="New value" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        case 'date':
                             value_html += '<div class="input-group-text">';
                             //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                            value_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_value_' + attribute_name + '">';
-                            //for (var o=0; o < ontology['Objects'].length; o++) {
-                            //    if (ontology['Objects'][o]['Category'] == value_type) {
-                            //        value_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
-                            //    }
-                            //}
-                            for (var n=0; n < new_fact_data['facts'].length; n++) {
-                                if ('category' in new_fact_data['facts'][n]) {
-                                    if (new_fact_data['facts'][n]['category'] == value_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
-                                        value_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                            value_html += '<input type="date" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        case 'duration':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<span class="input-group-text px-1">S</span>';
+                            value_html += '<div class="input-group-text">';
+                            value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="new_attribute_value_' + attribute_name + '_direction">';
+                            value_html += '</div>';
+                            value_html += '<span class="input-group-text px-1">Y</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="new_attribute_value_' + attribute_name + '_years">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="new_attribute_value_' + attribute_name + '_months">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="new_attribute_value_' + attribute_name + '_days">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="new_attribute_value_' + attribute_name + '_hours">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="new_attribute_value_' + attribute_name + '_minutes">';
+                            value_html += "</div>";
+                            break;
+                        case 'boolean':
+                            break;
+                        case 'time':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<input type="time" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        case 'datetime':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        default:
+                            if (value_type_is_category) {
+                                value_html += '<div class="input-group-text">';
+                                //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                                value_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_value_' + attribute_name + '">';
+                                //for (var o=0; o < ontology['Objects'].length; o++) {
+                                //    if (ontology['Objects'][o]['Category'] == value_type) {
+                                //        value_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                                //    }
+                                //}
+                                for (var n=0; n < new_fact_data['facts'].length; n++) {
+                                    if ('category' in new_fact_data['facts'][n]) {
+                                        if (new_fact_data['facts'][n]['category'] == value_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                            value_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                        }
                                     }
                                 }
+                                //for (var f=0; f < fact_data.length; f++) {
+                                //    if ('category' in fact_data[f]) {
+                                //        if (fact_data[f]['category'] == value_type) {
+                                //            value_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                                //        }
+                                //    }
+                                //}
+                                value_html += '<option value="VAR">any ' + value_type + '</option>';
+                                value_html += '</select></div>';
+                            } else {
+                                value_html += "Can't Render Datatype";
                             }
-                            //for (var f=0; f < fact_data.length; f++) {
-                            //    if ('category' in fact_data[f]) {
-                            //        if (fact_data[f]['category'] == value_type) {
-                            //            value_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
-                            //        }
-                            //    }
-                            //}
-                            value_html += '<option value="VAR">any ' + value_type + '</option>';
-                            value_html += '</select></div>';
-                        } else {
-                            value_html += "Can't Render Datatype";
-                        }
-                }
+                    }
 
-                if (prefix != "") {
-                    output_html += '<span class="input-group-text">'+ prefix + '</span>';
-                }
-                if (order == "ov") {
-                    output_html += '<div class="input-group-text">';
-                    //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                    output_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_object_' + attribute_name + '">';
-                    //for (var o=0; o < ontology['Objects'].length; o++) {
-                    //    if (ontology['Objects'][o]['Category'] == object_type) {
-                    //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
-                    //    }
-                    //}
-                    for (var n=0; n < new_fact_data['facts'].length; n++) {
-                        if ('category' in new_fact_data['facts'][n]) {
-                            if (new_fact_data['facts'][n]['category'] == object_type  && typeof(new_fact_data['facts'][n]['object']) != "object") {
-                                output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                    if (prefix != "") {
+                        output_html += '<span class="input-group-text">'+ prefix + '</span>';
+                    }
+                    if (order == "ov") {
+                        output_html += '<div class="input-group-text">';
+                        //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                        output_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_object_' + attribute_name + '">';
+                        //for (var o=0; o < ontology['Objects'].length; o++) {
+                        //    if (ontology['Objects'][o]['Category'] == object_type) {
+                        //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                        //    }
+                        //}
+                        for (var n=0; n < new_fact_data['facts'].length; n++) {
+                            if ('category' in new_fact_data['facts'][n]) {
+                                if (new_fact_data['facts'][n]['category'] == object_type  && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                    output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                }
                             }
                         }
+                        //for (var f=0; f < fact_data.length; f++) {
+                        //    if ('category' in fact_data[f]) {
+                        //        if (fact_data[f]['category'] == object_type) {
+                        //            output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                        //        }
+                        //    }
+                        //}
+                        output_html += '<option value="VAR">any ' + object_type + '</option>';
+                        output_html += '</select></div>';
+                    } else {
+                        output_html += value_html;
                     }
-                    //for (var f=0; f < fact_data.length; f++) {
-                    //    if ('category' in fact_data[f]) {
-                    //        if (fact_data[f]['category'] == object_type) {
-                    //            output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
-                    //        }
-                    //    }
-                    //}
-                    output_html += '<option value="VAR">any ' + object_type + '</option>';
-                    output_html += '</select></div>';
-                } else {
-                    output_html += value_html;
-                }
-                if (infix != "" && infix != "not_applicable") {
-                    output_html += '<span class="input-group-text">'+ infix + '</span>';
-                }
-                if (order == "ov") {
-                    output_html += value_html;
-                } else {
-                    output_html += '<div class="input-group-text">';
-                    //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                    output_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_object_' + attribute_name + '">';
-                    //for (var o=0; o < ontology['Objects'].length; o++) {
-                    //    if (ontology['Objects'][o]['Category'] == object_type) {
-                    //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
-                    //    }
-                    //}
-                    for (var n=0; n < new_fact_data['facts'].length; n++) {
-                        if ('category' in new_fact_data['facts'][n]) {
-                            if (new_fact_data['facts'][n]['category'] == object_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
-                                output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                    if (infix != "" && infix != "not_applicable") {
+                        output_html += '<span class="input-group-text">'+ infix + '</span>';
+                    }
+                    if (order == "ov") {
+                        output_html += value_html;
+                    } else {
+                        output_html += '<div class="input-group-text">';
+                        //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                        output_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_object_' + attribute_name + '">';
+                        //for (var o=0; o < ontology['Objects'].length; o++) {
+                        //    if (ontology['Objects'][o]['Category'] == object_type) {
+                        //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                        //    }
+                        //}
+                        for (var n=0; n < new_fact_data['facts'].length; n++) {
+                            if ('category' in new_fact_data['facts'][n]) {
+                                if (new_fact_data['facts'][n]['category'] == object_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                    output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                }
                             }
                         }
+                        //for (var f=0; f < fact_data.length; f++) {
+                        //    if ('category' in fact_data[f]) {
+                        //        if (fact_data[f]['category'] == object_type) {
+                        //            output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                        //        }
+                        //    }
+                        //}
+                        output_html += '<option value="VAR">any ' + object_type + '</option>';
+                        output_html += '</select></div>';
                     }
-                    //for (var f=0; f < fact_data.length; f++) {
-                    //    if ('category' in fact_data[f]) {
-                    //        if (fact_data[f]['category'] == object_type) {
-                    //            output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
-                    //        }
-                    //    }
-                    //}
-                    output_html += '<option value="VAR">any ' + object_type + '</option>';
-                    output_html += '</select></div>';
+                    if (postfix != "") {
+                        output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                    }
+                    output_html += '<button onclick="save_new_value(\'' + attribute_name + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
+                    output_html += '</svg></button>';
+                    output_html += '<button onclick="cancel_new_value(\'' + attribute_name + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+                    output_html += '</svg></button></div></div>';    
                 }
-                if (postfix != "") {
-                    output_html += '<span class="input-group-text">'+ postfix + '</span>';
-                }
-                output_html += '<button onclick="save_new_value(\'' + attribute_name + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
-                output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
-                output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
-                output_html += '</svg></button>';
-                output_html += '<button onclick="cancel_new_value(\'' + attribute_name + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
-                output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
-                output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
-                output_html += '</svg></button></div></div>';
             }
             output_html += '<div id="new_objects">';
                 output_html += '<div class="dropdown">';
@@ -2085,56 +2087,20 @@
                 output += '<label class="form-check-label" for="view_cat_' + ontology['Categories'][i] + '">Hide Category ' + ontology['Categories'][i] + '</label>';
                 output += '</div>';
                 output += '</li>';
-                // For each attribute of that category
-                for(var j=0; j < ontology['Attributes'].length; j++) {
-                    if(ontology['Attributes'][j]['Category'] == ontology['Categories'][i]) {
-                        // Ask if they want to hide that attribute for all objects in the category
-                        output += '<li>';
-                        output += '<div class="form-check form-switch">';
-                        output += '<input onchange="toggle_view_hidden(\'' + 'view_cat_' + ontology['Categories'][i] + '_att_' + ontology['Attributes'][j]['Attribute'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_cat_' + ontology['Categories'][i] + '_att_' + ontology['Attributes'][j]['Attribute'] + '"';
-                        if(hidden_by_view.includes('view_cat_' + ontology['Categories'][i] + '_att_' + ontology['Attributes'][j]['Attribute'])) {
-                            output += ' checked';
-                        }
-                        output += '>';
-                        output += '<label class="form-check-label" for="view_cat_' + ontology['Categories'][i] + '_att_' + ontology['Attributes'][j]['Attribute'] + '">Hide Attribute ' + ontology['Attributes'][j]['Attribute'] + ' for all members of Category ' + ontology['Categories'][i] + '</label>';
-                        output += '</div>';
-                        output += '</li>';
-                    }
+            }
+            // For each attribute
+            for(var j=0; j < ontology['Attributes'].length; j++) {
+                // Ask if they want to hide that attribute for all objects in the category
+                output += '<li>';
+                output += '<div class="form-check form-switch">';
+                output += '<input onchange="toggle_view_hidden(\'' + 'view_att_' + ontology['Attributes'][j]['Attribute'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_att_' + ontology['Attributes'][j]['Attribute'] + '"';
+                if(hidden_by_view.includes('view_att_' + ontology['Attributes'][j]['Attribute'])) {
+                    output += ' checked';
                 }
-                // For each object in the category
-                for(var k=0; k < ontology['Objects'].length; k++) {
-                    if(ontology['Objects'][k]['Category'] == ontology['Categories'][i]) {
-                        // Ask if they want to hide that object.
-                        output += '<li>';
-                        output += '<div class="form-check form-switch">';
-                        output += '<input onchange="toggle_view_hidden(\'' + 'view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '"';
-                        if(hidden_by_view.includes('view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'])) {
-                            output += ' checked';
-                        }
-                        output += '>';
-                        output += '<label class="form-check-label" for="view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '">Hide Object ' + ontology['Objects'][k]['Object'] + ' from Category ' + ontology['Categories'][i] + '</label>';
-                        output += '</div>';
-                        output += '</li>';
-                        // For each attribute in the category
-                        for(var l=0; l < ontology['Attributes'].length; l++) {
-                            if(ontology['Attributes'][l]['Category'] == ontology['Categories'][i]) {
-                                // Ask if they want to hide that attribute for that object.
-                                output += '<li>';
-                                output += '<div class="form-check form-switch">';
-                                output += '<input onchange="toggle_view_hidden(\'' + 'view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '_att_' + ontology['Attributes'][l]['Attribute'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '_att_' + ontology['Attributes'][l]['Attribute'] + '"';
-                                if(hidden_by_view.includes('view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '_att_' + ontology['Attributes'][l]['Attribute'])) {
-                                    output += ' checked';
-                                }
-                                output += '>';
-                                output += '<label class="form-check-label" for="view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '_att_' + ontology['Attributes'][l]['Attribute'] + '">Hide Attribute ' + ontology['Attributes'][l]['Attribute'] + ' for Object ' + ontology['Objects'][k]['Object'] + ' from Category ' + ontology['Categories'][i] + '</label>';
-                                output += '</div>';
-                                output += '</li>';
-                                // It is possible to ask if the user wants to hide certain values, but I'm not sure that has any utility,
-                                // so I'm leaving it out.
-                            }
-                        }
-                    }
-                }
+                output += '>';
+                output += '<label class="form-check-label" for="view_att_' + ontology['Attributes'][j]['Attribute'] + '">Hide Attribute ' + ontology['Attributes'][j]['Attribute'] + '</label>';
+                output += '</div>';
+                output += '</li>';
             }
             output += '</ul>';
             view_form_element.innerHTML = output;

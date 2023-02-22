@@ -78,7 +78,6 @@ save and re-open the workspace, and the attribute declarations will then format 
   * Make the reasoner generate code from new fact structure
   * Revise the View functionality
   * Display relevant statements
-* Update scenario editor views and default facts.
 * Change the way the updateLocalCategories works so it doesn't drain so many cycles.
 * Remove redundant code, stop blocks from using old versions.
 * Update block library
