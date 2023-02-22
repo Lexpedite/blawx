@@ -79,14 +79,14 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Update block library
 * update scenario editor to deal with the new boolean style.
   * Make New Object Rows Display When Selected in "New Fact" button
-  * Make New Object Rows Create Facts
   * Make Cancel buttons work
+  * Make New Object Rows Create Facts when you click checkmark
   * Make sure all data types display properly
   * Make new fact statements possible to delete if they are not from the ontology
-  * Make it possible to specify new values in new object blocks, and create implied facts
+  * Make it possible to specify new objects in new attribute blocks, create implied objects
   * Save and Load Default Fact Scenarios
   * Revise the View functionality
-  * Make it possible to make ungrounded statements
+  * Make it possible to make and display ungrounded statements
   * Make it possible to get false and ungrounded statements from the ontology
   * Display relevant statements
 * Update scenario editor views and default facts.
