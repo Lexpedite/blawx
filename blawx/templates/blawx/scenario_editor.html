@@ -94,7 +94,7 @@
                 <div id="facttree" class="blawx-category tree-element p-2">
                 </div>
                 <div>
-                    <button class="btn btn-success {% if 'change_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'change_blawxtest' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="save_fact_scenario()">
+                    <button class="btn btn-success my-2 {% if 'change_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'change_blawxtest' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="save_fact_scenario()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
                             <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"></path>
                         </svg>
@@ -187,6 +187,7 @@
         var parsed_test_response = {'Relevant Attributes': [], 'Relevant Categories': []};
         var ontology = {};
         var fact_data = {};
+        var new_fact_data = {'facts': []};
         var hidden_by_view = [];
         const ontology_request = new XMLHttpRequest();
         ontology_request.onload = function () {
@@ -658,6 +659,8 @@
             values = ontology['Values'];
             for (var i=0; i < objects.length; i++) {
                 fact_data[objects[i]['Category']]['members'][objects[i]['Object']] = {};
+                var new_fact_statement = {'from_ontology': true, 'type': 'true','category': objects[i]['Category'], 'object': objects[i]['Object']}
+                new_fact_data['facts'].push(new_fact_statement);
             }
             for(var j=0; j< attributes.length; j++) {
                 // for each object in the category, add the empty attribute
@@ -681,6 +684,11 @@
                 }
                 // Now I should be able to add the value to the object in the fact_data
                 fact_data[value_category]['members'][values[l]['Object']][values[l]['Attribute']]['values'].push(values[l]['Value']);
+                var new_fact_statement = {'from_ontology': true, 'type': 'true','attribute': values[l]['Attribute'], 'object': values[l]['Object']}
+                if ('Value' in values[l]) {
+                    new_fact_statement['value'] = values[l]['Value']
+                }
+                new_fact_data['facts'].push(new_fact_statement);
             }
 
         }
@@ -1337,54 +1345,10 @@
         };
         function draw_facts(){
             var output_html = '<nav class="column" id="facttree">';
+            output_html += '<div id="new_known_objects">';
+            output_html += draw_new_fact_data();
+            output_html += "</div>";
             // TODO: Create an "add object" form, that lets you create objects of any category.
-            output_html += '<div id="new_objects">';
-            output_html += '<div class="dropdown">';
-            output_html += '<button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">Add Object Statment</button>';
-            output_html += '<ul class="dropdown-menu w-100">';
-            
-            var categories = Object.keys(fact_data);
-            
-            for(var c=0; c < ontology['Categories'].length; c++) {
-                if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
-                    var prefix = "";
-                    var postfix = "is a " + ontology['Categories'][c];
-                    for (var i=0; i< ontology['CategoryNLG'].length; i++) {
-                        if (ontology['CategoryNLG'][i]['Category'] == ontology['Categories'][c]) {
-                            prefix = ontology['CategoryNLG'][i]['Prefix'];
-                            postfix = ontology['CategoryNLG'][i]['Postfix'];
-                            break;
-                        }
-                    }
-                    output_html += '<li><a onclick="show_new_object(\'' + ontology['Categories'][c] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>object</i> ' + postfix + '</a></li>';
-                }
-            }
-            for(var a=0; a < ontology['Attributes'].length; a++) {
-                var attribute_name = ontology['Attributes'][a]['Attribute'];
-                var object_type = ontology['Attributes'][a]['Category'];
-                var value_type = ontology['Attributes'][a]['Type'];
-                for (var i=0; i< ontology['AttributeNLG'].length; i++) {
-                    if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
-                        prefix = ontology['AttributeNLG'][i]['Prefix'];
-                        infix = ontology['AttributeNLG'][i]['Infix'];
-                        postfix = ontology['AttributeNLG'][i]['Postfix'];
-                        order = ontology['AttributeNLG'][i]['Order'];
-                        break;
-                    }
-                }
-                if (value_type == "boolean") {
-                    output_html += '<li><a onclick="show new attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
-                } else {
-                    if (order == "ov") {
-                        output_html += '<li><a onclick="show new attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + infix + ' <i>' + value_type + '</i> ' + postfix + '</a></li>';
-                    } else {
-                        output_html += '<li><a onclick="show new attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' + value_type + '</i> ' + infix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
-                    }
-                }
-            }
-            output_html += '</ul>';
-            output_html += '</div>';
-            output_html += '</div>';
             // Loop through the categories and their NLG, and build the new object forms, here, for display when requested.
             for(var c=0; c < ontology['Categories'].length; c++) {
                 if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
@@ -1397,7 +1361,7 @@
                             break;
                         }
                     }
-                    output_html += '<div class="blawx_new_object row blawx-object tree-element p-2">';
+                    output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2">';
                     output_html += '<div class="input-group">';
                     output_html += '<span class="input-group-text">It is</span>';
                         
@@ -1450,7 +1414,7 @@
                         break;
                     }
                 }
-                output_html += '<div class="blawx_new_object row blawx-object tree-element p-2">';
+                output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2">';
                 output_html += '<div class="input-group">';
                 output_html += '<span class="input-group-text">It is</span>';
                     
@@ -1588,35 +1552,86 @@
                 output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
                 output_html += '</svg></button></div></div>';
             }
-            output_html += '<hr/>';        
+            output_html += '<div id="new_objects">';
+                output_html += '<div class="dropdown">';
+                output_html += '<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">';
+                output_html += '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>';
+                output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
+                output_html += '</svg>Add Fact</button>';
+                output_html += '<ul class="dropdown-menu w-100">';
+                
+                var categories = Object.keys(fact_data);
+                
+                for(var c=0; c < ontology['Categories'].length; c++) {
+                    if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
+                        var prefix = "";
+                        var postfix = "is a " + ontology['Categories'][c];
+                        for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                            if (ontology['CategoryNLG'][i]['Category'] == ontology['Categories'][c]) {
+                                prefix = ontology['CategoryNLG'][i]['Prefix'];
+                                postfix = ontology['CategoryNLG'][i]['Postfix'];
+                                break;
+                            }
+                        }
+                        output_html += '<li><a onclick="show_new_object(\'' + ontology['Categories'][c] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>object</i> ' + postfix + '</a></li>';
+                    }
+                }
+                for(var a=0; a < ontology['Attributes'].length; a++) {
+                    var attribute_name = ontology['Attributes'][a]['Attribute'];
+                    var object_type = ontology['Attributes'][a]['Category'];
+                    var value_type = ontology['Attributes'][a]['Type'];
+                    for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                        if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
+                            prefix = ontology['AttributeNLG'][i]['Prefix'];
+                            infix = ontology['AttributeNLG'][i]['Infix'];
+                            postfix = ontology['AttributeNLG'][i]['Postfix'];
+                            order = ontology['AttributeNLG'][i]['Order'];
+                            break;
+                        }
+                    }
+                    if (value_type == "boolean") {
+                        output_html += '<li><a onclick="show new attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                    } else {
+                        if (order == "ov") {
+                            output_html += '<li><a onclick="show new attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + infix + ' <i>' + value_type + '</i> ' + postfix + '</a></li>';
+                        } else {
+                            output_html += '<li><a onclick="show new attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' + value_type + '</i> ' + infix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                        }
+                    }
+                }
+                output_html += '</ul>';
+                output_html += '</div>';
+                output_html += '</div>';
+                
+            //output_html += '<hr/>';        
             // TODO: Skip drawing categories, go straight to drawing objects.
             // Go through the categories, and draw each
-            var categories = Object.keys(fact_data);
-            for(category in categories) {
-                if (!hidden_by_view.includes('view_cat_' + categories[category])) {
-                    output_html += draw_category(categories[category]);
-                }
-            }
+            //var categories = Object.keys(fact_data);
+            //for(category in categories) {
+            //    if (!hidden_by_view.includes('view_cat_' + categories[category])) {
+            //        output_html += draw_category(categories[category]);
+            //    }
+            //}
             output_html += '</nav>';
             // Output the result to facttree
             var target = document.getElementById('facttree');
             target.outerHTML = output_html;
-            var collapsing_elements = [];
-            collapsing_elements.push(...document.getElementsByClassName('blawx_category_content'));
-            collapsing_elements.push(...document.getElementsByClassName('blawx_object_contents'));
-            collapsing_elements.push(...document.getElementsByClassName('blawx_attribute_contents'));
-            for(var i=0; i<collapsing_elements.length; i++) {
-                document.getElementById(collapsing_elements[i].id).addEventListener('hide.bs.collapse', function () {
-                    if (event.target == event.currentTarget) {
-                        expanded[this.id] = false;
-                    }
-                });
-                document.getElementById(collapsing_elements[i].id).addEventListener('show.bs.collapse', function () {
-                    if (event.target == event.currentTarget) {
-                        expanded[this.id] = true;
-                    }
-                });
-            }
+            //var collapsing_elements = [];
+            //collapsing_elements.push(...document.getElementsByClassName('blawx_category_content'));
+            //collapsing_elements.push(...document.getElementsByClassName('blawx_object_contents'));
+            //collapsing_elements.push(...document.getElementsByClassName('blawx_attribute_contents'));
+            //for(var i=0; i<collapsing_elements.length; i++) {
+            //    document.getElementById(collapsing_elements[i].id).addEventListener('hide.bs.collapse', function () {
+            //        if (event.target == event.currentTarget) {
+            //            expanded[this.id] = false;
+            //        }
+            //    });
+            //    document.getElementById(collapsing_elements[i].id).addEventListener('show.bs.collapse', function () {
+            //        if (event.target == event.currentTarget) {
+            //            expanded[this.id] = true;
+            //        }
+            //    });
+            //}
         };
         function toggle_unground_new_object(category) {
             // Get the value of the checkbox
@@ -2090,6 +2105,57 @@
             save_fact_request.setRequestHeader('X-CSRFToken', csrftoken);
             payload.fact_scenario = fact_data;
             save_fact_request.send(body=JSON.stringify(payload));
+        }
+        function draw_new_fact_data() {
+            var output_html = "<h3>Facts</h3><ul>"
+            for(var f=0; f < new_fact_data['facts'].length; f++) {
+                output_html += "<li>";
+                if (new_fact_data['facts'][f]['type'] != "true") {
+                    if (new_fact_data['facts'][f]['type'] == "false") {
+                        output_html += "it is false that ";
+                    }
+                    if (new_fact_data['facts'][f]['type'] == "unknown") {
+                        output_html += "it is unknown whether ";
+                    }
+                } 
+                //else {
+                    //output_html += "it is true that ";
+                //}
+                if ('category' in new_fact_data['facts'][f]) {
+                    var prefix = "";
+                    var postfix = "";
+                    for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                        if (ontology['CategoryNLG'][i]['Category'] == new_fact_data['facts'][f]['category']) {
+                            prefix = ontology['CategoryNLG'][i]['Prefix'];
+                            postfix = ontology['CategoryNLG'][i]['Postfix'];
+                            break;
+                        }
+                    }
+                    output_html += prefix + ' ' + new_fact_data['facts'][f]['object'] + ' ' + postfix;
+                } else {
+                    var attribute_name = new_fact_data['facts'][f]['attribute'];
+                    for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                        if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
+                            prefix = ontology['AttributeNLG'][i]['Prefix'];
+                            infix = ontology['AttributeNLG'][i]['Infix'];
+                            postfix = ontology['AttributeNLG'][i]['Postfix'];
+                            order = ontology['AttributeNLG'][i]['Order'];
+                            break;
+                        }
+                    }
+                    if ('value' in new_fact_data['facts'][f]) {
+                        if (order == "ov") {
+                            output_html += prefix + ' ' +  new_fact_data['facts'][f]['object'] + ' ' + infix + ' ' + new_fact_data['facts'][f]['value'] + ' ' + postfix;
+                        } else {
+                            output_html += prefix + ' ' + new_fact_data['facts'][f]['value'] + ' ' + infix + ' ' +  new_fact_data['facts'][f]['object'] + ' ' + postfix;
+                        }
+                    } else {
+                        output_html += prefix + ' ' +  new_fact_data['facts'][f]['object'] + ' ' + postfix ;
+                    }
+                }
+                output_html += "</li>";
+            }
+            return output_html;
         }
     </script>
 </body>

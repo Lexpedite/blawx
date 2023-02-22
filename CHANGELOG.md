@@ -78,11 +78,17 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Remove redundant code, stop blocks from using old versions.
 * Update block library
 * update scenario editor to deal with the new boolean style.
-  * I'm realizing that I can't make changes to the scenario editor without also making changes to the reasoner endpoints.
-    I'm not sure it's worth it. I wanted to improve the scenario editor, which was why I needed to change the blawx language.
-    But now, if I try to make the current scenario editor work with the new booleans, I'm creating a bunch of work that I'm
-    immediately going to remove. So instead, I think I need to merge the changes to the scenario editor into this branch,
-    and THEN make the new scenario editor work with the new booleans. Which will add to the list of documentation I need to fix.
+  * Make New Object Rows Display When Selected in "New Fact" button
+  * Make New Object Rows Create Facts
+  * Make Cancel buttons work
+  * Make sure all data types display properly
+  * Make new fact statements possible to delete if they are not from the ontology
+  * Make it possible to specify new values in new object blocks, and create implied facts
+  * Save and Load Default Fact Scenarios
+  * Revise the View functionality
+  * Make it possible to make ungrounded statements
+  * Make it possible to get false and ungrounded statements from the ontology
+  * Display relevant statements
 * Update scenario editor views and default facts.
 * Verify that the example encodings are still working.
   * Problem with OASA, any person, with no additional info, qualifies under section 4.
