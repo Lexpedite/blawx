@@ -75,7 +75,6 @@ save and re-open the workspace, and the attribute declarations will then format 
 
 ### TODO
 * update scenario editor to deal with the new boolean style.
-  * customize "any object" in the display for unground attributes
   * Make the reasoner generate code from new fact structure
   * Save and Load Default Fact Scenarios
   * Revise the View functionality

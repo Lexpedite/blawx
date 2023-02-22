@@ -1483,7 +1483,7 @@
                             //}
                             for (var n=0; n < new_fact_data['facts'].length; n++) {
                                 if ('category' in new_fact_data['facts'][n]) {
-                                    if (new_fact_data['facts'][n]['category'] == value_type) {
+                                    if (new_fact_data['facts'][n]['category'] == value_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
                                         value_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
                                     }
                                 }
@@ -1516,7 +1516,7 @@
                     //}
                     for (var n=0; n < new_fact_data['facts'].length; n++) {
                         if ('category' in new_fact_data['facts'][n]) {
-                            if (new_fact_data['facts'][n]['category'] == object_type) {
+                            if (new_fact_data['facts'][n]['category'] == object_type  && typeof(new_fact_data['facts'][n]['object']) != "object") {
                                 output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
                             }
                         }
@@ -1549,7 +1549,7 @@
                     //}
                     for (var n=0; n < new_fact_data['facts'].length; n++) {
                         if ('category' in new_fact_data['facts'][n]) {
-                            if (new_fact_data['facts'][n]['category'] == object_type) {
+                            if (new_fact_data['facts'][n]['category'] == object_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
                                 output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
                             }
                         }
@@ -2209,12 +2209,23 @@
                     }
                     var object_display = new_fact_data['facts'][f]['object'];
                     if (typeof(object_display) == 'object') {
-                        object_display = "any object"; 
+                        for (var a=0; a < ontology['Attributes'].length; a++) {
+                            if (attribute_name == ontology['Attributes'][a]['Attribute']) {
+                                attribute_type = ontology['Attributes'][a]['Category'];
+                                break;
+                            }
+                        }
+                        object_display = "any " + attribute_type; 
                     }
                     if ('value' in new_fact_data['facts'][f]) {
                         var value_display = new_fact_data['facts'][f]['value'];
                         if (typeof(value_display) == 'object') {
-                            value_display = "any value";
+                            for (var c=0; c < ontology['Attributes'].length; c++) {
+                                if (attribute_name == ontology['Attributes'][c]['Attribute']) {
+                                    value_type = ontology['Attributes'][c]['Type'];
+                                }
+                            }
+                            value_display = "any " + value_type;
                         }
                         if (order == "ov") {
                             output_html += prefix + ' ' +  object_display + ' ' + infix + ' ' + value_display + ' ' + postfix;
