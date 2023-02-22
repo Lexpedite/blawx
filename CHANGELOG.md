@@ -74,22 +74,19 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Category Equivalency Block
 
 ### TODO
-* Change the way the updateLocalCategories works so it doesn't drain so many cycles.
-* Remove redundant code, stop blocks from using old versions.
-* Update block library
 * update scenario editor to deal with the new boolean style.
-  * Make New Object Rows Display When Selected in "New Fact" button
-  * Make Cancel buttons work
-  * Make New Object Rows Create Facts when you click checkmark
+  * Save new attribute
+  * Make sure delete works on attributes
   * Make sure all data types display properly
-  * Make new fact statements possible to delete if they are not from the ontology
   * Make it possible to specify new objects in new attribute blocks, create implied objects
   * Save and Load Default Fact Scenarios
   * Revise the View functionality
-  * Make it possible to make and display ungrounded statements
   * Make it possible to get false and ungrounded statements from the ontology
   * Display relevant statements
 * Update scenario editor views and default facts.
+* Change the way the updateLocalCategories works so it doesn't drain so many cycles.
+* Remove redundant code, stop blocks from using old versions.
+* Update block library
 * Verify that the example encodings are still working.
   * Problem with OASA, any person, with no additional info, qualifies under section 4.
 * update documentation
