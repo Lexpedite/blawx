@@ -1603,25 +1603,27 @@
                     }
                 }
                 for(var a=0; a < ontology['Attributes'].length; a++) {
-                    var attribute_name = ontology['Attributes'][a]['Attribute'];
-                    var object_type = ontology['Attributes'][a]['Category'];
-                    var value_type = ontology['Attributes'][a]['Type'];
-                    for (var i=0; i< ontology['AttributeNLG'].length; i++) {
-                        if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
-                            prefix = ontology['AttributeNLG'][i]['Prefix'];
-                            infix = ontology['AttributeNLG'][i]['Infix'];
-                            postfix = ontology['AttributeNLG'][i]['Postfix'];
-                            order = ontology['AttributeNLG'][i]['Order'];
-                            break;
+                    if (!hidden_by_view.includes('view_att_' + ontology['Attributes'][a]['Attribute'])) {    
+                        var attribute_name = ontology['Attributes'][a]['Attribute'];
+                        var object_type = ontology['Attributes'][a]['Category'];
+                        var value_type = ontology['Attributes'][a]['Type'];
+                        for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                            if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
+                                prefix = ontology['AttributeNLG'][i]['Prefix'];
+                                infix = ontology['AttributeNLG'][i]['Infix'];
+                                postfix = ontology['AttributeNLG'][i]['Postfix'];
+                                order = ontology['AttributeNLG'][i]['Order'];
+                                break;
+                            }
                         }
-                    }
-                    if (value_type == "boolean") {
-                        output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
-                    } else {
-                        if (order == "ov") {
-                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + infix + ' <i>' + value_type + '</i> ' + postfix + '</a></li>';
+                        if (value_type == "boolean") {
+                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
                         } else {
-                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' + value_type + '</i> ' + infix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                            if (order == "ov") {
+                                output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + infix + ' <i>' + value_type + '</i> ' + postfix + '</a></li>';
+                            } else {
+                                output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' + value_type + '</i> ' + infix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                            }
                         }
                     }
                 }
@@ -2135,82 +2137,94 @@
         function draw_new_fact_data() {
             var output_html = "<h3>Facts</h3><ul>"
             for(var f=0; f < new_fact_data['facts'].length; f++) {
-                output_html += "<li>";
-                if (new_fact_data['facts'][f]['type'] != "true") {
-                    if (new_fact_data['facts'][f]['type'] == "false") {
-                        output_html += "it is false that ";
-                    }
-                    if (new_fact_data['facts'][f]['type'] == "unknown") {
-                        output_html += "it is uncertain whether ";
-                    }
-                } 
-                //else {
-                    //output_html += "it is true that ";
-                //}
+                var hidden = false;
                 if ('category' in new_fact_data['facts'][f]) {
-                    var prefix = "";
-                    var postfix = "";
-                    for (var i=0; i< ontology['CategoryNLG'].length; i++) {
-                        if (ontology['CategoryNLG'][i]['Category'] == new_fact_data['facts'][f]['category']) {
-                            prefix = ontology['CategoryNLG'][i]['Prefix'];
-                            postfix = ontology['CategoryNLG'][i]['Postfix'];
-                            break;
-                        }
+                    if (hidden_by_view.includes('view_cat_' + new_fact_data['facts'][f]['category'])) {
+                        hidden = true;
                     }
-                    var object_display = new_fact_data['facts'][f]['object'];
-                    if (typeof(new_fact_data['facts'][f]['object']) == 'object') {
-                        object_display = "any object"
-                    }
-                    output_html += prefix + ' ' + object_display + ' ' + postfix;
                 } else {
-                    var attribute_name = new_fact_data['facts'][f]['attribute'];
-                    for (var i=0; i< ontology['AttributeNLG'].length; i++) {
-                        if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
-                            prefix = ontology['AttributeNLG'][i]['Prefix'];
-                            infix = ontology['AttributeNLG'][i]['Infix'];
-                            postfix = ontology['AttributeNLG'][i]['Postfix'];
-                            order = ontology['AttributeNLG'][i]['Order'];
-                            break;
-                        }
+                    if (hidden_by_view.includes('view_att_' + new_fact_data['facts'][f]['attribute'])) {
+                        hidden = true;
                     }
-                    var object_display = new_fact_data['facts'][f]['object'];
-                    if (typeof(object_display) == 'object') {
-                        for (var a=0; a < ontology['Attributes'].length; a++) {
-                            if (attribute_name == ontology['Attributes'][a]['Attribute']) {
-                                attribute_type = ontology['Attributes'][a]['Category'];
+                }
+                if (!hidden) {
+                    output_html += "<li>";
+                    if (new_fact_data['facts'][f]['type'] != "true") {
+                        if (new_fact_data['facts'][f]['type'] == "false") {
+                            output_html += "it is false that ";
+                        }
+                        if (new_fact_data['facts'][f]['type'] == "unknown") {
+                            output_html += "it is uncertain whether ";
+                        }
+                    } 
+                    //else {
+                        //output_html += "it is true that ";
+                    //}
+                    if ('category' in new_fact_data['facts'][f]) {
+                        var prefix = "";
+                        var postfix = "";
+                        for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                            if (ontology['CategoryNLG'][i]['Category'] == new_fact_data['facts'][f]['category']) {
+                                prefix = ontology['CategoryNLG'][i]['Prefix'];
+                                postfix = ontology['CategoryNLG'][i]['Postfix'];
                                 break;
                             }
                         }
-                        object_display = "any " + attribute_type; 
-                    }
-                    if ('value' in new_fact_data['facts'][f]) {
-                        var value_display = new_fact_data['facts'][f]['value'];
-                        if (typeof(value_display) == 'object') {
-                            for (var c=0; c < ontology['Attributes'].length; c++) {
-                                if (attribute_name == ontology['Attributes'][c]['Attribute']) {
-                                    value_type = ontology['Attributes'][c]['Type'];
+                        var object_display = new_fact_data['facts'][f]['object'];
+                        if (typeof(new_fact_data['facts'][f]['object']) == 'object') {
+                            object_display = "any object"
+                        }
+                        output_html += prefix + ' ' + object_display + ' ' + postfix;
+                    } else {
+                        var attribute_name = new_fact_data['facts'][f]['attribute'];
+                        for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                            if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
+                                prefix = ontology['AttributeNLG'][i]['Prefix'];
+                                infix = ontology['AttributeNLG'][i]['Infix'];
+                                postfix = ontology['AttributeNLG'][i]['Postfix'];
+                                order = ontology['AttributeNLG'][i]['Order'];
+                                break;
+                            }
+                        }
+                        var object_display = new_fact_data['facts'][f]['object'];
+                        if (typeof(object_display) == 'object') {
+                            for (var a=0; a < ontology['Attributes'].length; a++) {
+                                if (attribute_name == ontology['Attributes'][a]['Attribute']) {
+                                    attribute_type = ontology['Attributes'][a]['Category'];
+                                    break;
                                 }
                             }
-                            value_display = "any " + value_type;
+                            object_display = "any " + attribute_type; 
                         }
-                        if (order == "ov") {
-                            output_html += prefix + ' ' +  object_display + ' ' + infix + ' ' + value_display + ' ' + postfix;
+                        if ('value' in new_fact_data['facts'][f]) {
+                            var value_display = new_fact_data['facts'][f]['value'];
+                            if (typeof(value_display) == 'object') {
+                                for (var c=0; c < ontology['Attributes'].length; c++) {
+                                    if (attribute_name == ontology['Attributes'][c]['Attribute']) {
+                                        value_type = ontology['Attributes'][c]['Type'];
+                                    }
+                                }
+                                value_display = "any " + value_type;
+                            }
+                            if (order == "ov") {
+                                output_html += prefix + ' ' +  object_display + ' ' + infix + ' ' + value_display + ' ' + postfix;
+                            } else {
+                                output_html += prefix + ' ' + value_display + ' ' + infix + ' ' +  object_display + ' ' + postfix;
+                            }
                         } else {
-                            output_html += prefix + ' ' + value_display + ' ' + infix + ' ' +  object_display + ' ' + postfix;
+                            output_html += prefix + ' ' +  object_display + ' ' + postfix ;
                         }
-                    } else {
-                        output_html += prefix + ' ' +  object_display + ' ' + postfix ;
                     }
+                    if (!new_fact_data['facts'][f]['from_ontology']) {
+                        var delete_target
+                        output_html += '<button type="button" class="btn-close" onclick="delete_fact('+ JSON.stringify(new_fact_data['facts'][f]).replaceAll('"',"\'") +')" aria-label="Delete"></button>';
+                    } else {
+                        output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">';
+                        output_html += '<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>';
+                        output_html += '</svg>';
+                    }
+                    output_html += "</li>";
                 }
-                if (!new_fact_data['facts'][f]['from_ontology']) {
-                    var delete_target
-                    output_html += '<button type="button" class="btn-close" onclick="delete_fact('+ JSON.stringify(new_fact_data['facts'][f]).replaceAll('"',"\'") +')" aria-label="Delete"></button>';
-                } else {
-                    output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">';
-                    output_html += '<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>';
-                    output_html += '</svg>';
-                }
-                output_html += "</li>";
             }
             return output_html;
         }

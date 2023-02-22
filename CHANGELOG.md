@@ -75,8 +75,9 @@ save and re-open the workspace, and the attribute declarations will then format 
 
 ### TODO
 * update scenario editor to deal with the new boolean style.
-  * Make the reasoner generate code from new fact structure
   * Revise the View functionality
+    * Exclude existing facts based on hidden_by_view
+  * Make the reasoner generate code from new fact structure
   * Display relevant statements
 * Change the way the updateLocalCategories works so it doesn't drain so many cycles.
 * Remove redundant code, stop blocks from using old versions.
