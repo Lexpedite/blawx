@@ -1418,7 +1418,7 @@
                 output_html += '<div class="input-group">';
                 output_html += '<span class="input-group-text">It is</span>';
                     
-                output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example">';
+                output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example" id="new_attribute_truth_type_' + attribute_name + '">';
                 output_html += '<option selected value="true">true that</option>';
                 output_html += '<option value="false">false that</option>';
                 output_html += '<option value="unknown">uncertain whether</option>';
@@ -1429,13 +1429,13 @@
                     case 'number':
                         value_html += '<div class="input-group-text">';
                         //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';    
-                        value_html += '<input onchange="save_new_value(\'' + attribute_name + '\')" type="number" class="form-control" aria-label="New value" id="category_' + attribute_name + '_new_value">';
+                        value_html += '<input onchange="save_new_value(\'' + attribute_name + '\')" type="number" class="form-control" aria-label="New value" id="new_attribute_value_' + attribute_name + '">';
                         value_html += "</div>";
                         break;
                     case 'date':
                         value_html += '<div class="input-group-text">';
                         //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                        value_html += '<input type="date" class="form-control" aria-label="Date" id="category_' + attribute_name + '_new_value">';
+                        value_html += '<input type="date" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
                         value_html += "</div>";
                         break;
                     case 'duration':
@@ -1443,18 +1443,18 @@
                         //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
                         value_html += '<span class="input-group-text px-1">S</span>';
                         value_html += '<div class="input-group-text">';
-                        value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="category_' + attribute_name + '_new_direction">';
+                        value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="new_attribute_value_' + attribute_name + '_direction">';
                         value_html += '</div>';
                         value_html += '<span class="input-group-text px-1">Y</span>';
-                        value_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="category_' + attribute_name + '_new_years">';
+                        value_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="new_attribute_value_' + attribute_name + '_years">';
                         value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                        value_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="category_' + attribute_name + '_new_months">';
+                        value_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="new_attribute_value_' + attribute_name + '_months">';
                         value_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
-                        value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="category_' + attribute_name + '_new_days">';
+                        value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="new_attribute_value_' + attribute_name + '_days">';
                         value_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
-                        value_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="category_' + attribute_name + '_new_hours">';
+                        value_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="new_attribute_value_' + attribute_name + '_hours">';
                         value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                        value_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="category_' + attribute_name + '_new_minutes">';
+                        value_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="new_attribute_value_' + attribute_name + '_minutes">';
                         value_html += "</div>";
                         break;
                     case 'boolean':
@@ -1462,20 +1462,20 @@
                     case 'time':
                         value_html += '<div class="input-group-text">';
                         //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                        value_html += '<input type="time" class="form-control" aria-label="Date" id="category_' + attribute_name + '_new_value">';
+                        value_html += '<input type="time" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
                         value_html += "</div>";
                         break;
                     case 'datetime':
                         value_html += '<div class="input-group-text">';
                         //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                        value_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="category_' + attribute_name + '_new_value">';
+                        value_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
                         value_html += "</div>";
                         break;
                     default:
                         if (value_type_is_category) {
                             value_html += '<div class="input-group-text">';
                             //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                            value_html += '<select class="form-select" aria-label="Default select example">';
+                            value_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_value_' + attribute_name + '">';
                             //for (var o=0; o < ontology['Objects'].length; o++) {
                             //    if (ontology['Objects'][o]['Category'] == value_type) {
                             //        value_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
@@ -1508,7 +1508,7 @@
                 if (order == "ov") {
                     output_html += '<div class="input-group-text">';
                     //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                    output_html += '<select class="form-select" aria-label="Default select example">';
+                    output_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_object_' + attribute_name + '">';
                     //for (var o=0; o < ontology['Objects'].length; o++) {
                     //    if (ontology['Objects'][o]['Category'] == object_type) {
                     //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
@@ -1541,7 +1541,7 @@
                 } else {
                     output_html += '<div class="input-group-text">';
                     //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
-                    output_html += '<select class="form-select" aria-label="Default select example">';
+                    output_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_object_' + attribute_name + '">';
                     //for (var o=0; o < ontology['Objects'].length; o++) {
                     //    if (ontology['Objects'][o]['Category'] == object_type) {
                     //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
@@ -1764,11 +1764,13 @@
             target_input.focus();
         };
         function save_new_value(attribute){
+            var truth_target = document.getElementById('new_attribute_truth_type_' + attribute);
+            var truth_type = truth_target.value;
+            
             // Figure out what type of value this is.
             var attribute_type;
             for(var i =0; i<ontology['Attributes'].length; i++) {
-                if(ontology['Attributes'][i]['Category'] == category
-                  && ontology['Attributes'][i]['Attribute'] == attribute) {
+                if(ontology['Attributes'][i]['Attribute'] == attribute) {
                     attribute_type = ontology['Attributes'][i]['Type'];
                     break;
                   }
@@ -1786,14 +1788,15 @@
             //    }
             //}
             // else
+            
             if(attribute_type == "duration") {
                 // Get the new value
-                direction_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_direction');
-                year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_years');
-                month_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_months');
-                day_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_days');
-                hour_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_hours');
-                minute_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_minutes');
+                direction_target = document.getElementById('new_attribute_value_' + attribute + '_direction');
+                year_target = document.getElementById('new_attribute_value_' + attribute + '_years');
+                month_target = document.getElementById('new_attribute_value_' + attribute + '_months');
+                day_target = document.getElementById('new_attribute_value_' + attribute + '_days');
+                hour_target = document.getElementById('new_attribute_value_' + attribute + '_hours');
+                minute_target = document.getElementById('new_attribute_value_' + attribute + '_minutes');
                 if (direction_target.checked) {
                     new_direction = true;
                 } else {
@@ -1829,13 +1832,29 @@
                 if (parseInt(new_minute)) {
                     new_value += new_minute + "M";
                 }
-            } else {
+            } else if (attribute_type != "boolean") {
                 // Get the new value
-                target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+                target = document.getElementById('new_attribute_value_' + attribute);
                 new_value = target.value;    
             }
-            fact_data[category]['members'][object][attribute]['values'].push(new_value);
-            expanded[category + "_" + object + '_' + attribute + "_content"] = true;
+            var target_object = document.getElementById('new_attribute_object_' + attribute);
+            var new_object = target_object.value;
+            var new_fact_statement = {'from_ontology': false, 'type': truth_type, 'attribute': attribute};
+            if (new_object != "VAR") {
+                new_fact_statement['object'] = new_object;
+            } else {
+                new_fact_statement['object'] = {'variable': 'object'};
+            }
+            if (attribute_type != "boolean") {
+                if (new_value != "VAR") {
+                    new_fact_statement['value'] = new_value;
+                } else {
+                    new_fact_statement['value'] = {'variable': 'value'}
+                }
+            }
+            new_fact_data['facts'].push(new_fact_statement);
+            //fact_data[category]['members'][object][attribute]['values'].push(new_value);
+            //expanded[category + "_" + object + '_' + attribute + "_content"] = true;
             // redraw
             draw_facts();
         };
