@@ -77,11 +77,10 @@ save and re-open the workspace, and the attribute declarations will then format 
 * update scenario editor to deal with the new boolean style.
   * Save new attribute
   * Make sure delete works on attributes
-  * Make sure all data types display properly
-  * Make it possible to specify new objects in new attribute blocks, create implied objects
+  * Make sure all data types display properly in facts
+  * Make the reasoner generate code from new fact structure
   * Save and Load Default Fact Scenarios
   * Revise the View functionality
-  * Make it possible to get false and ungrounded statements from the ontology
   * Display relevant statements
 * Update scenario editor views and default facts.
 * Change the way the updateLocalCategories works so it doesn't drain so many cycles.
@@ -89,6 +88,9 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Update block library
 * Verify that the example encodings are still working.
   * Problem with OASA, any person, with no additional info, qualifies under section 4.
+* Future Work
+  * Make it possible to specify new objects in new attribute blocks, create implied objects
+  * Make it possible to get false and ungrounded statements from the ontology
 * update documentation
   * Step 2
   * Step 3
@@ -109,7 +111,6 @@ save and re-open the workspace, and the attribute declarations will then format 
   * Attribute Selector
   * New Object
   * Object Category
-* If we also update the scenario editor
   * Part 4
   * Scenario Editor
   * Blawx Web API

@@ -1476,18 +1476,25 @@
                             value_html += '<div class="input-group-text">';
                             //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
                             value_html += '<select class="form-select" aria-label="Default select example">';
-                            for (var o=0; o < ontology['Objects'].length; o++) {
-                                if (ontology['Objects'][o]['Category'] == value_type) {
-                                    value_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
-                                }
-                            }
-                            for (var f=0; f < fact_data.length; f++) {
-                                if ('category' in fact_data[f]) {
-                                    if (fact_data[f]['category'] == value_type) {
-                                        value_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                            //for (var o=0; o < ontology['Objects'].length; o++) {
+                            //    if (ontology['Objects'][o]['Category'] == value_type) {
+                            //        value_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                            //    }
+                            //}
+                            for (var n=0; n < new_fact_data['facts'].length; n++) {
+                                if ('category' in new_fact_data['facts'][n]) {
+                                    if (new_fact_data['facts'][n]['category'] == value_type) {
+                                        value_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
                                     }
                                 }
                             }
+                            //for (var f=0; f < fact_data.length; f++) {
+                            //    if ('category' in fact_data[f]) {
+                            //        if (fact_data[f]['category'] == value_type) {
+                            //            value_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                            //        }
+                            //    }
+                            //}
                             value_html += '<option value="VAR">any ' + value_type + '</option>';
                             value_html += '</select></div>';
                         } else {
@@ -1502,18 +1509,25 @@
                     output_html += '<div class="input-group-text">';
                     //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
                     output_html += '<select class="form-select" aria-label="Default select example">';
-                    for (var o=0; o < ontology['Objects'].length; o++) {
-                        if (ontology['Objects'][o]['Category'] == object_type) {
-                            output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
-                        }
-                    }
-                    for (var f=0; f < fact_data.length; f++) {
-                        if ('category' in fact_data[f]) {
-                            if (fact_data[f]['category'] == object_type) {
-                                output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                    //for (var o=0; o < ontology['Objects'].length; o++) {
+                    //    if (ontology['Objects'][o]['Category'] == object_type) {
+                    //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                    //    }
+                    //}
+                    for (var n=0; n < new_fact_data['facts'].length; n++) {
+                        if ('category' in new_fact_data['facts'][n]) {
+                            if (new_fact_data['facts'][n]['category'] == object_type) {
+                                output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
                             }
                         }
                     }
+                    //for (var f=0; f < fact_data.length; f++) {
+                    //    if ('category' in fact_data[f]) {
+                    //        if (fact_data[f]['category'] == object_type) {
+                    //            output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                    //        }
+                    //    }
+                    //}
                     output_html += '<option value="VAR">any ' + object_type + '</option>';
                     output_html += '</select></div>';
                 } else {
@@ -1528,18 +1542,25 @@
                     output_html += '<div class="input-group-text">';
                     //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
                     output_html += '<select class="form-select" aria-label="Default select example">';
-                    for (var o=0; o < ontology['Objects'].length; o++) {
-                        if (ontology['Objects'][o]['Category'] == object_type) {
-                            output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
-                        }
-                    }
-                    for (var f=0; f < fact_data.length; f++) {
-                        if ('category' in fact_data[f]) {
-                            if (fact_data[f]['category'] == object_type) {
-                                output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                    //for (var o=0; o < ontology['Objects'].length; o++) {
+                    //    if (ontology['Objects'][o]['Category'] == object_type) {
+                    //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                    //    }
+                    //}
+                    for (var n=0; n < new_fact_data['facts'].length; n++) {
+                        if ('category' in new_fact_data['facts'][n]) {
+                            if (new_fact_data['facts'][n]['category'] == object_type) {
+                                output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
                             }
                         }
                     }
+                    //for (var f=0; f < fact_data.length; f++) {
+                    //    if ('category' in fact_data[f]) {
+                    //        if (fact_data[f]['category'] == object_type) {
+                    //            output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                    //        }
+                    //    }
+                    //}
                     output_html += '<option value="VAR">any ' + object_type + '</option>';
                     output_html += '</select></div>';
                 }
@@ -2188,6 +2209,10 @@
                 if (!new_fact_data['facts'][f]['from_ontology']) {
                     var delete_target
                     output_html += '<button type="button" class="btn-close" onclick="delete_fact('+ JSON.stringify(new_fact_data['facts'][f]).replaceAll('"',"\'") +')" aria-label="Delete"></button>';
+                } else {
+                    output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">';
+                    output_html += '<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>';
+                    output_html += '</svg>';
                 }
                 output_html += "</li>";
             }
