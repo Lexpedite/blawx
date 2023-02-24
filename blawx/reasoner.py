@@ -989,18 +989,18 @@ blawxrun(Query, Human, Tree, Model) :-
         elif simplify_term(a) not in useful_assumptions:
           useful_assumptions.append(simplify_term(a))
       for ua in useful_assumptions:
-        if len(ua['args']) == 1:
-          relevant_categories.append(ua['functor'])
-        else:
-          relevant_attributes.append({'Attribute': ua['functor'], 'Arguments': ua['args']})
+        # if len(ua['args']) == 1:
+        #   relevant_categories.append(ua['functor'])
+        # else:
+          relevant_attributes.append({'functor': ua['functor'], 'args': ua['args']})
 
 
       
       # Return the results as JSON
       if relevance_query_answer == False:
-        return Response({ "Answers": [], "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
+        return Response({ "Answers": [], "Relevant Statements": relevant_attributes, "Transcript": transcript_output })
       else:
-        return Response({ "Answers": relevance_answers_processed, "Relevant Categories": relevant_categories, "Relevant Attributes": relevant_attributes, "Transcript": transcript_output })
+        return Response({ "Answers": relevance_answers_processed, "Relevant Statements": relevant_attributes, "Transcript": transcript_output })
     else:
       return HttpResponseForbidden()
 
