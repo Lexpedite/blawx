@@ -72,34 +72,155 @@ class IgnorePermission(permissions.BasePermission):
 def newer_json_2_scasp(payload,ruledoc,testname):
   output = ""
 
+  # TODO Need to convert this so it generates category checks on unground, and no disunities.
+
   # Grab the ontology for the current test.
   ontology = get_ontology_internal(ruledoc,testname)
 
+  # For doing abducibility, we need a list of all the known objects provided
+  # by the ontology and the user in each category.
+  # known_objects = {}
+  # for c in ontology['Categories']:
+  #   known_objects[c] = []
+  # for o in ontology['Objects']:
+  #   known_objects[o['Category']].append(o['Object'])
+  # for fact in payload['facts']:
+  #   if 'category' in fact and not fact['from_ontology'] and type(fact['object']) is not dict and fact['type'] == "true": # Last excludes variables, and false
+  #     known_objects[fact['category']].append(fact['object'])
+
+  # print("Known Objects Gathered:")
+  # print(known_objects)
   # Go through the statements and convert them into s(CASP)
   for fact in payload['facts']:
     if 'category' in fact:
       basic_predicate = fact['category']
+      is_attribute = False
     elif 'attribute' in fact:
+      is_attribute = True
       basic_predicate = fact['attribute']
+      attribute_type = "object"
+      for att in ontology['Attributes']:
+          if basic_predicate == att['Attribute']:
+            attribute_type = att['Type']
+            object_type = att['Category']
+            break
     truth_value = fact['type']
     statement_object = fact['object']
+    if type(statement_object) is dict:
+      statement_object = "X"
     if truth_value == "false":
       predicate = "-" + basic_predicate
+    else:
+      predicate = basic_predicate
     if truth_value != "unknown":
       if 'value' in fact:
         statement_value = fact['value']
-        attribute_type = "object"
-        for att in ontology['Attributes']:
+        if type(statement_value) is dict:
+          statement_value = "Y"
+        # attribute_type = "object"
+        # for att in ontology['Attributes']:
+        #   if basic_predicate == att['Attribute']:
+        #     attribute_type = att['Type']
+        #     object_type = att['Category']
+        #     break
+        output += predicate + "(" + statement_object + "," + format_statement_value(statement_value,attribute_type) + ")"
+        if statement_object == "X" or statement_value == "Y":
+          output += " :- "
+          if statement_object == "X":
+            output += object_type + "(X)"
+          if statement_object == "X" and statement_value == "Y":
+            output += ", "
+          if statement_value == "Y":
+            output += attribute_type + "(Y)"
+        output += ".\n"
+      else:
+        output += predicate + "(" + statement_object + ")"
+        if statement_object == "X" and is_attribute:
+          output += ":- " + object_type + "(X)"
+        output += ".\n"
+  for fact in payload['facts']:
+    if 'category' in fact:
+      basic_predicate = fact['category']
+      is_attribute = False
+    elif 'attribute' in fact:
+      basic_predicate = fact['attribute']
+      attribute_type = "object"
+      for att in ontology['Attributes']:
           if basic_predicate == att['Attribute']:
             attribute_type = att['Type']
+            object_type = att['Category']
             break
-        output += predicate + "(" + statement_object + "," + format_statement_value(statement_value,attribute_type) + ").\n"
-      else:
-        output += predicate + "(" + statement_object + ").\n"
-  for fact in payload['facts']:
+      is_attribute = True
+    truth_value = fact['type']
     if fact['type'] == "unknown":
       # This statement is an abducibility:
-      break
+      if 'category' in fact:
+        # If it is a category, we need -category(X) :- not category(X), x \= list of known objects in the category, and the opposite.
+        # We need to check to see if the variable is unground, and include the exclusions only if it is unground.
+        if type(fact['object']) is dict:
+          object_display = "X"
+        else:
+          object_display = fact['object'] 
+        output += basic_predicate + "(" + object_display + ") :- not -" + basic_predicate + "(" + object_display + ")"
+        if object_display == "X":
+          output += object_type + "(X)"
+        output += ".\n"
+        output += "-" + basic_predicate + "(" + object_display + ") :- not " + basic_predicate + "(" + object_display + ")"
+        if object_display == "X":
+          output += object_type + "(X)"
+        output += ".\n"
+      if 'attribute' in fact:
+        # If it is an attribute, we need attribute(X,Y) :- not -attribute(X,Y), X \= list of known objects in the category, Y \= list of known objects in target category, and the opposite.
+        # Get the object type for the attribute, and get the value type if it exists.
+        # for att in ontology['Attributes']:
+        #   if att['Attribute'] == fact['attribute']:
+        #     object_type = att['Category']
+        #     value_type = att['Type']
+        # We also need to know if the value_type is a category
+        value_is_object = attribute_type in ontology['Categories']
+        if type(fact['object']) is dict:
+          object_display = "X"
+        else:
+          object_display = fact['object']
+        if 'value' in fact and type(fact['value']) is dict:
+          value_display = "Y"
+        elif 'value' in fact:
+          value_display = fact['value']
+          # This will cause it to use the same variable name twice if both the subject and object are unground and they use the same variable name.
+          if object_display == "X" and value_display == "Y":
+            if fact['object']['variable'] == fact['value']['variable']:
+              value_display == "X"
+        if 'value' in fact: # This is the binary predicate type
+          output += basic_predicate + "(" + object_display + "," + value_display + ") :- "
+          if object_display == "X":
+            output += object_type + "(X)"
+          if object_display == "X" and (value_display == "X" or value_display == "Y"):
+            output += ", "
+          if value_display == "X" or value_display == "Y":
+            output += attribute_type + "(" + value_display + ")"
+          if object_display == "X" or (value_display == "X" or value_display == "Y"):
+            output += ", "
+          output += " not -" + basic_predicate + "(" + object_display + "," + value_display + ").\n"
+          output += "-" + basic_predicate + "(" + object_display + "," + value_display + ") :- "
+          if object_display == "X":
+            output += object_type + "(X)"
+          if object_display == "X" and (value_display == "X" or value_display == "Y"):
+            output += ", "
+          if value_display == "X" or value_display == "Y":
+            output += attribute_type + "(" + value_display + ")"
+          if object_display == "X" or (value_display == "X" or value_display == "Y"):
+            output += ", "
+          output += " not " + basic_predicate + "(" + object_display + "," + value_display + ").\n"
+        else: # This is the unary predicate type.
+          output += basic_predicate + "(" + object_display + ") :- "
+          if object_display == "X":
+            output += object_type + "(X), "
+          output += "not -" + basic_predicate + "(" + object_display + ").\n"
+          output += "-" + basic_predicate + "(" + object_display + ") :- "
+          if object_display == "X":
+            output += object_type + "(X), "
+          output += "not " + basic_predicate + "(" + object_display + ").\n"
+  # print(output)
   return output
 
 # Proposed format for JSON submissions.

@@ -26,6 +26,15 @@ merely using the new attribute selector block.
 This change makes the block language considerably smaller, as it replaces 4 blocks, and removes another 
 14.
 
+Significant changes have also been made to the fact interface in scenario editor, allowing for a
+number of important new features. Whereas previously, it was possible to specify known positive facts,
+and uncertainty about objects or attributes of objects, it is now possible to specify known true,
+known false, and uncertain facts, and it is possible to do that with both specific and general
+parameters.
+
+The interface has been simplified to a list of facts in natural language that can be deleted if they
+were provided by the user, and a single button that allows the user to make new statements.
+
 ### Upgrade Notes
 
 The process for upgrading Blawx code to this version is as follows:
@@ -61,6 +70,9 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Examples re-implemented using new block language
 * Removed an incomplete example
 * Reformulated Beard Tax Act example
+* Improved Facts Interface in Scenario Editor
+* New Payload Format for Interview endpoint
+* Revised uncertainty semantics for interview endpoint
 
 ### Fixed
 * Explanations in the test editor were being truncated
@@ -74,18 +86,17 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Category Equivalency Block
 
 ### TODO
-* update scenario editor to deal with the new boolean style.
-  * Revise the View functionality
-    * Exclude existing facts based on hidden_by_view
-  * Make the reasoner generate code from new fact structure
-  * Display relevant statements
-* Change the way the updateLocalCategories works so it doesn't drain so many cycles.
-* Remove redundant code, stop blocks from using old versions.
-* Update block library
+* Make data types display better in fact list
+  * durations and datetimes are less than ideal.
+* Display relevant statements in scenario editor
 * Verify that the example encodings are still working.
   * Problem with OASA, any person, with no additional info, qualifies under section 4.
+* Remove redundant code
+* Update block library
 * Future Work
+  * Create an advanced mode for truth types and unground options
   * Make it possible to specify new objects in new attribute blocks, create implied objects
+  * Change the way the updateLocalCategories works so it doesn't drain so many cycles.
   * Make it possible to get false and ungrounded statements from the ontology
 * update documentation
   * Step 2

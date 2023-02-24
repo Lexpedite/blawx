@@ -1970,7 +1970,7 @@
             testrun_request.onload = function () {
                 parsed_test_response = JSON.parse(this.responseText);
                 console.log("Test response received")
-                payload_element.innerHTML = '<pre>' + JSON.stringify(fact_data,null,2) + '</pre>'
+                payload_element.innerHTML = '<pre>' + JSON.stringify(new_fact_data,null,2) + '</pre>'
                 
                 response_element.innerHTML = '<pre>' + JSON.stringify(parsed_test_response,null,2) + '</pre>'
                 // If the question is answered
@@ -2062,7 +2062,7 @@
             console.log("Sending test request");
             answer_element.innerHTML = "Thinking...";
             testrun_request.setRequestHeader('X-CSRFToken', csrftoken);
-            testrun_request.send(JSON.stringify(fact_data));
+            testrun_request.send(JSON.stringify(new_fact_data));
         }
         var view_form_element = document.getElementById('viewform');
         function toggle_view_hidden(input) {
@@ -2229,8 +2229,16 @@
             return output_html;
         }
         function delete_fact(fact) {
-            var target_index = new_fact_data['facts'].indexOf(fact);
-            new_fact_data['facts'].splice(target_index,1);
+            var target_index = -1;
+            for (var ind=0; ind < new_fact_data['facts'].length; ind++) {
+                if (JSON.stringify(new_fact_data['facts'][ind]) == JSON.stringify(fact)) {
+                    target_index = ind;
+                    break;
+                }
+            }
+            if (target_index > -1) {
+                new_fact_data['facts'].splice(target_index,1);
+            }
             draw_facts();
         }
     </script>
