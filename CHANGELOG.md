@@ -7,9 +7,9 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## NEW BOOLEAN BRANCH
+## [v1.4.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.0-alpha) 2023-??-??
 
-**Not backward compatible.**
+**This release is not backward compatible.**
 
 This release makes a number of interface changes, and 
 significantly changes the way that Blawx deals with true / false values. Instead of
@@ -35,7 +35,7 @@ parameters.
 The interface has been simplified to a list of facts in natural language that can be deleted if they
 were provided by the user, and a single button that allows the user to make new statements.
 
-### Upgrade Notes
+### Upgrade Process
 
 The process for upgrading Blawx code to this version is as follows:
 * Phase 1: Replace declarations in all sections and tests
@@ -46,6 +46,7 @@ The process for upgrading Blawx code to this version is as follows:
   * replace all object category blocks with the new style of object category block.
   * replace new object declarations for categories where you changed the NLG
   * replace attribute selectors for non-boolean attributes where you changed the NLG
+  * replace category equivalence blocks with rules that use the new object category blocks in both the conditions and conclusion
 * Phase 3: Delete Orphaned Blocks
   * find and delete orphaned true and false value blocks (explained below)
 
@@ -60,7 +61,7 @@ There are circumstances in which adding more than one of the new style of attrib
 that block not to update properly when the attribute type is set to "true / false". If this happens, add all the required attribute declarations,
 save and re-open the workspace, and the attribute declarations will then format themselves properly. This problem only occurs when migrating.
 
-### Added
+**NB**: It will not be possible to migrate from pre-v1.4 code to post-v1.4 code indefinitely. At some point, old block types will be removed from the language, making upgrades more difficult or impossible. If you have code that you want to keep using, upgrade it now, or you may have to rewrite it from scratch in a future version.
 
 ### Changed
 * Toolboxes are reorganized
@@ -73,6 +74,7 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Improved Facts Interface in Scenario Editor
 * New Payload Format for Interview endpoint
 * Revised uncertainty semantics for interview endpoint
+* Updated documentation
 
 ### Fixed
 * Explanations in the test editor were being truncated
@@ -86,18 +88,13 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Category Equivalency Block
 
 ### TODO
+* Display relevant statements in scenario editor
 * Make data types display better in fact list
   * durations and datetimes are less than ideal.
-* Display relevant statements in scenario editor
 * Verify that the example encodings are still working.
   * Problem with OASA, any person, with no additional info, qualifies under section 4.
 * Remove redundant code
 * Update block library
-* Future Work
-  * Create an advanced mode for truth types and unground options
-  * Make it possible to specify new objects in new attribute blocks, create implied objects
-  * Change the way the updateLocalCategories works so it doesn't drain so many cycles.
-  * Make it possible to get false and ungrounded statements from the ontology
 * update documentation
   * Step 2
   * Step 3
@@ -122,32 +119,11 @@ save and re-open the workspace, and the attribute declarations will then format 
   * Scenario Editor
   * Blawx Web API
 
-### Done
-* Removed hidden elements from tab list.
-* Fixed serialization for blocks with new dropdowns (sorta)
-* Code generation for new blocks
-* type checking uses new attribute_type options
-* Make known attributes work off of new category blocks, and use unary style for true / false.
-* Make known objects work off of new new object blocks.
-* Make new object blocks work off of new category blocks.
-* Make new attribute block work off new category blocks
-* Make new object category block work off new category blocks
-* Added the new attribute declaration block definition
-* Added the new category declaration block definition
-* Added a function for returning the currently known categories.
-* Added code generation for the new blocks
-* Made the new attribute declaration block auto-generate categories into its drop-down list
-* made the new attribute declaration block mutate the NLG portion based on if the datatype is boolean
-* did code generation for the new attribute declaration block based on datatype.
-* added new object category block
-* reorganized toolboxes
-* added opposes code generation for all category and attribute declarations, not just booleans, using constructive negation.
-
-## [v1.3.40-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.40-alpha) 2022-02-16
+## [v1.3.40-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.40-alpha) 2023-02-16
 
 Sets allowed hosts to all for testing and development purposes.
 
-## [v1.3.39-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.39-alpha) 2022-02-16
+## [v1.3.39-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.39-alpha) 2023-02-16
 
 This release adds a simple version API endpoint that can be used to check versions and as a heartbeat to test whether
 your blawx server started properly.
@@ -155,7 +131,7 @@ your blawx server started properly.
 ### Adds
 * the `/version` endpoint will now return the version of the Blawx server as a JSON object `{'version': '1.3.39-alpha'}`
 
-## [v1.3.38-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.38-alpha) 2022-02-06
+## [v1.3.38-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.38-alpha) 2023-02-06
 
 This update improves the display of answers in the scenario editor, and makes it easier for developers to
 see how the Scenario Editor uses the Blawx reasoner API.
@@ -176,7 +152,7 @@ see how the Scenario Editor uses the Blawx reasoner API.
 ### Fixes
 * Pre-defined numerical values in code or tests would crash /onto endpoint.
 
-## [v1.3.37-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.37-alpha) 2022-01-12
+## [v1.3.37-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.37-alpha) 2023-01-12
 
 This release adds features for lists and aggregation.
 
@@ -188,7 +164,7 @@ This release adds features for lists and aggregation.
 * List Demonstration example project
 * Lists feature page in documentation.
 
-## [v1.3.36-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.36-alpha) 2022-01-09
+## [v1.3.36-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.36-alpha) 2023-01-09
 
 This release allows the owner of a test to save a default set of facts that should be loaded when that test is viewed
 in the scenario editor.
@@ -204,7 +180,7 @@ in the scenario editor.
 ### Changes
 * updates documentation to reflect availability of "save as" in test editor.
 
-## [v1.3.35-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.35-alpha) 2022-01-06
+## [v1.3.35-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.35-alpha) 2023-01-06
 
 This release fixes a problem in the Covid Test example, and adds the Old Age Security Act example.
 
@@ -214,7 +190,7 @@ This release fixes a problem in the Covid Test example, and adds the Old Age Sec
 ### Changes
 * Covid Test example no longer has extraneous blocks, and uses the views feature of the scenario editor.
 
-## [v1.3.34-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.34-alpha) 2022-01-06
+## [v1.3.34-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.34-alpha) 2023-01-06
 
 This update allows you to configure, from a new tab in the scenario editor, the elements that should and should not be
 displayed when using a particular test in the user interface for collecting facts. You can choose to hide
@@ -233,7 +209,7 @@ a test is viewed in that interface.
 * the owner of the test can save the current view
 * the scenario editor automatically uses the view last saved by the test owner.
 
-## [v1.3.33-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.33-alpha) 2022-01-05
+## [v1.3.33-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.33-alpha) 2023-01-05
 
 This update adds "time" to Blawx's date and duration capabilities. It includes new data types,
 new data statements, a revised duration datatype, a new example, and extensive documentation.
