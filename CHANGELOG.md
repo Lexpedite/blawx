@@ -89,7 +89,9 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Category Equivalency Block
 
 ### TODO
-* Explanations with abducibility are getting displayed wrong
+* Scenario editor does not know how to display CHS and nested "because" in the answers display
+* The new uncertainty method isn't using "#abducibile", which means "abduced" doesn't appear as a predicate
+  in the explanations. Need to figure out how to truncate that to make it work as well as it worked in 1.3.38-alpha.
 * Verify that the example encodings are still working.
   * Problem with OASA, any person, with no additional info, qualifies under section 4.
 * I think some of the code might be duplicated between answers and facts, could be rationalized
