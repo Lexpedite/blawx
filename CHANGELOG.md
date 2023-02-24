@@ -73,6 +73,7 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Reformulated Beard Tax Act example
 * Improved Facts Interface in Scenario Editor
 * New Payload Format for Interview endpoint
+* New Format for Relevance data in Ontology endpoint
 * Revised uncertainty semantics for interview endpoint
 * Updated documentation
 
@@ -88,11 +89,10 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Category Equivalency Block
 
 ### TODO
-* Display relevant statements in scenario editor
-* Make data types display better in fact list
-  * durations and datetimes are less than ideal.
+* Explanations with abducibility are getting displayed wrong
 * Verify that the example encodings are still working.
   * Problem with OASA, any person, with no additional info, qualifies under section 4.
+* I think some of the code might be duplicated between answers and facts, could be rationalized
 * Remove redundant code
 * Update block library
 * update documentation
