@@ -72,8 +72,7 @@ class IgnorePermission(permissions.BasePermission):
 def newer_json_2_scasp(payload,ruledoc,testname):
   output = ""
 
-  # TODO Need to convert this so it generates category checks on unground, and no disunities.
-
+ 
   # Grab the ontology for the current test.
   ontology = get_ontology_internal(ruledoc,testname)
 
@@ -324,9 +323,6 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
           for ko in known_objects:
             output += ", X \= " + ko
           output += ".\n"
-          # output += "#abducible " + category_name + "(X).\n"
-          # TODO: Here we need to add abducibility statements for the attributes of objects other than
-          # the ones specified?
           for att in ontology['Attributes']:
             if att['Category'] == category_name:
               output += "-" + att['Attribute'] + "(X,Y) :- not " + att['Attribute'] + "(X,Y)"
