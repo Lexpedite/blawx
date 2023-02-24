@@ -572,6 +572,14 @@
                             return prefix + " " + displayValue(object,human) + " " + postfix;
                         }
                     }
+                    for (var i=0; i < ontology.AttributeNLG.length; i++) {
+                        if (ontology.AttributeNLG[i].Attribute == predicate_name) {
+                            prefix = ontology.AttributeNLG[i].Prefix;
+                            postfix = ontology.AttributeNLG[i].Postfix;
+                            
+                            return prefix + " " + displayValue(object,human) + " " + postfix;
+                        }
+                    }
                     return displayValue(object,human) + " is a " + predicate_name;
                 } else { // it is an attribute
                     object = model.args[0];
@@ -2135,7 +2143,9 @@
             save_fact_request.send(body=JSON.stringify(payload));
         }
         function draw_new_fact_data() {
-            var output_html = "<h3>Facts</h3><ul>"
+            var output_html = ""
+            
+            output_html += "<h3>Facts</h3><ul>"
             for(var f=0; f < new_fact_data['facts'].length; f++) {
                 var hidden = false;
                 if ('category' in new_fact_data['facts'][f]) {
@@ -2198,13 +2208,51 @@
                         }
                         if ('value' in new_fact_data['facts'][f]) {
                             var value_display = new_fact_data['facts'][f]['value'];
-                            if (typeof(value_display) == 'object') {
-                                for (var c=0; c < ontology['Attributes'].length; c++) {
-                                    if (attribute_name == ontology['Attributes'][c]['Attribute']) {
-                                        value_type = ontology['Attributes'][c]['Type'];
-                                    }
+                            for (var c=0; c < ontology['Attributes'].length; c++) {
+                                if (attribute_name == ontology['Attributes'][c]['Attribute']) {
+                                    value_type = ontology['Attributes'][c]['Type'];
                                 }
+                            }
+                            if (typeof(value_display) == 'object') {   
                                 value_display = "any " + value_type;
+                            }
+                            if (value_type == "duration") {
+                                iso_duration = /^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$/
+                                matches = iso_duration.exec(value_display)
+                                var new_value_display = ""
+                                var future = true;
+                                if (matches[1] != undefined) {
+                                    future = false;
+                                }
+                                if (matches[2] != undefined) {
+                                    new_value_display += matches[2].slice(0,-1) + " years, ";
+                                }
+                                if (matches[3] != undefined) {
+                                    new_value_display += matches[3].slice(0,-1) + " months, ";
+                                }
+                                if (matches[4] != undefined) {
+                                    new_value_display += matches[4].slice(0,-1) + " days, ";
+                                }
+                                if (matches[5] != undefined) {
+                                    new_value_display += matches[5].slice(0,-1) + " hours, ";
+                                }
+                                if (matches[6] != undefined) {
+                                    new_value_display += matches[6].slice(0,-1) + " minutes, ";
+                                }
+                                if (matches[7] != undefined) {
+                                    new_value_display += matches[7].slice(0,-1) + " seconds, ";
+                                }
+                                if (future) {
+                                    new_value_display += " into the future";
+                                } else {
+                                    new_value_display += " into the past";
+                                }
+                                var last_comma = new_value_display.lastIndexOf(',');
+                                value_display = new_value_display.slice(0,last_comma) + new_value_display.slice(last_comma+1);
+
+                            }
+                            if (value_type == "datetime") {
+                                value_display = value_display.replace("T"," ")
                             }
                             if (order == "ov") {
                                 output_html += prefix + ' ' +  object_display + ' ' + infix + ' ' + value_display + ' ' + postfix;
@@ -2225,6 +2273,20 @@
                     }
                     output_html += "</li>";
                 }
+            }
+            output_html += "</ul>";
+            if ('Relevant Statements' in parsed_test_response) {
+
+                if (parsed_test_response['Relevant Statements'].length > 0) {
+                    output_html += "<h3>Relevant Statements</h3>";
+                    output_html += "<p>Answers to the following questions would be relevant for finding non-contingent answers to the question:</p>"
+                    output_html += "Is it true that... <ul>";
+                    for (var r=0; r < parsed_test_response['Relevant Statements'].length; r++) {
+                        output_html += "<li>" + answerNLG(parsed_test_response['Relevant Statements'][r])
+                        output_html += "?</li>";
+                    }
+                    output_html += "</ul>";
+                }           
             }
             return output_html;
         }
