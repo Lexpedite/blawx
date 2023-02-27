@@ -357,12 +357,13 @@
             if(statement != "query" && statement != "o_nmr_check") {
                 var statement_nlg = answerNLG(statement,true);
                 var negated = statement_nlg.match('there is no evidence that'); // is this a negated fact?
+                var assumed = statement_nlg.match('it is assumed that'); // is this an assumption?
                 var text_output = ""
                 output_html += "<p>"
-                if (!excluded.includes(predicate_name) && !negated) {
+                if (!excluded.includes(predicate_name) && !negated && !assumed) {
                     // Here we will need to check for assumptions, so they can be displayed.
                     text_output += "We know "
-                } else if (!negated) {
+                } else if (!negated && !assumed) {
                     text_output += "We can calculate that "
                 }
                 text_output += statement_nlg;
@@ -395,7 +396,7 @@
                     }
                     output_html += "</ul>"
                     output_html += "</p>"
-                } else if (!excluded.includes(predicate_name) && !negated) { // there are no reasons, so it was specified as a fact
+                } else if (!excluded.includes(predicate_name) && !negated && !assumed) { // there are no reasons, so it was specified as a fact
                         output_html += ", which was provided as a fact.</p>"
                 } else {
                     output_html += ".</p>"
@@ -470,26 +471,58 @@
                 return model.toString();
             } else if (Array.isArray(model)) {
                 return model.toString();
-            } else if (model.functor == "-") { // this is a "because" node
+            } else if (model.functor == "-") { // this is a "because" node or known false node
                 return "because";
-            } else if (model.functor == "not") {
+            } else if (model.functor == "not" && model.args[0].functor != "-") {
                 return "there is no evidence that " + answerNLG(model.args[0],human);
-            } else if (model.functor == "legally_holds") {
+            } else if (model.functor == "not" && model.args[0].functor == "-") {
+                return "it may be true that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "legally_holds" && model.args[1].functor != "-") {
                 return "it legally holds that according to " + addSectionReferences(model.args[0],human) + ", " + answerNLG(model.args[1],human);
-            } else if (model.functor == "according_to") {
+            } else if (model.functor == "legally_holds" && model.args[1].functor == "-") {
+                return "it legally holds that it is false that according to " + addSectionReferences(model.args[0].args[0],human) + ", " + answerNLG(model.args[0].args[1],human);
+            } else if (model.functor == "according_to" && model.args[1].functor != "-") {
                 return "according to " + addSectionReferences(model.args[0],human) + ', ' + answerNLG(model.args[1],human);
-            } else if (model.functor == "defeated") {
+            } else if (model.functor == "according_to" && model.args[0].functor == "-") {
+                return "according to " + addSectionReferences(model.args[0].args[0],human) + ', it is not true that ' + answerNLG(model.args[0].args[1],human);
+            } else if (model.functor == "defeated" && model.args[1].functor != "-") {
                 return "the conclusion in " + addSectionReferences(model.args[0],human) + " that " + answerNLG(model.args[1],human) + " is defeated"
-            } else if (model.functor == "refuted") {
+            } else if (model.functor == "defeated" && model.args[1].functor == "-") {
+                return "the conclusion in " + addSectionReferences(model.args[0].args[0],human) + " that it is not true that " + answerNLG(model.args[0].args[1],human) + " is defeated"
+            } else if (model.functor == "refuted" && model.args[1].functor != "-") {
                 return "the conclusion in " + addSectionReferences(model.args[0],human) + " that " + answerNLG(model.args[1],human) + " is refuted"
-            } else if (model.functor == "opposes") {
+            } else if (model.functor == "refuted" && model.args[1].functor == "-") {
+                return "the conclusion in " + addSectionReferences(model.args[0].args[0],human) + " that it is not true that " + answerNLG(model.args[0].args[1],human) + " is refuted"
+            } else if (model.functor == "opposes" && model.args[1].functor != "-" && model.args[0].functor != "-") { // THIS IS WRONG BECAUSE TWO THINGS MIGHT BE NEGATED...
                 return "the conclusion " + answerNLG(model.args[0],human) + " opposes the conclusion " + answerNLG(model.args[1],human);
-            } else if (model.functor == "overrules" ) {
+            } else if (model.functor == "opposes" && (model.args[1].functor == "-" || model.args[0].functor =="-")) {
+                var output = "the concluson ";
+                if (model.args[0].functor == "-") {
+                    output += "it is not true that " + answerNLG(model.args[0].args[0],human);
+                } else {
+                    output += answerNLG(model.args[0],human);
+                }
+                output += " opposes the conclusion that ";
+                if (model.args[1].functor == "-") {
+                    output += "it is not true that " + answerNLG(model.args[1].args[0],human);
+                } else {
+                    output += answerNLG(model.args[1],human);
+                }
+                return output;
+            } else if (model.functor == "overrules") {
                 return addSectionReferences(model.args[0],human) + " overrules " + addSectionReferences(model.args[1],human)
-            }else if (model.functor == "abduced" ) {
-                return "it is presumed that " + answerNLG(model.args[0],human);
-            } else if (model.functor == "proved" ) { 
+            } else if (model.functor == "abduced" && model.args[0].functor != "-") {
+                return "it is hypothesized that " + answerNLG(model.args[0],human);
+            } else if (model.functor == "abduced" && model.args[0].functor == "-") {
+                return "it is hypothesized that it is not the case that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "proved" && model.args[0].functor != "-" ) { 
                 return answerNLG(model.args[0],human); // Just display the NLG for the thing that was proved.
+            } else if (model.functor == "proved" && model.args[0].functor == "-" ) { 
+                return "it is not true that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "chs" && model.args[0].functor != "-") {
+                return "it is assumed that " + answerNLG(model.args[0],human);
+            } else if (model.functor == "chs" && model.args[0].functor == "-") {
+                return "it is assumed that it is not true that " + answerNLG(model.args[0].args[0],human);
             } else if (model.functor == "findall") {
                 return "finding all " + answerNLG(model.args[0],human) + " in " + answerNLG(model.args[1],human) + " gives " + answerNLG(model.args[2],human)
             } else if (model.functor == "count_blawx_list") {
