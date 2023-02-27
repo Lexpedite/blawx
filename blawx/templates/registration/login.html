@@ -32,7 +32,7 @@
 </form>
 {% if preferences.BlawxPreference.allow_registration %}
 <p>If you do not have an account, you can create one by clicking "Register" below!</p>
-<a href="{% url 'blawx:register' %}"><button class="btn btn-primary" >Register</button></a>
+<a href="{% url 'register' %}"><button class="btn btn-primary" >Register</button></a>
 {% endif %}
 
 <!-- {# Assumes you set up the password_reset view in your URLconf #}

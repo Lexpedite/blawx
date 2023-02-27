@@ -44,7 +44,7 @@ def register_request(request):
                 user = form.save()
                 login(request, user, 'django.contrib.auth.backends.ModelBackend')
                 messages.success(request, "Registration successful.")
-                return redirect("blawx:ruledocs")
+                return redirect("ruledocs")
             messages.error(request, "Unsuccessful registration. Invalid information.")
         if 'X-Forwarded-Email' in request.headers:
             form = UserCreationForm(initial={'username': request.headers['X-Forwarded-Email']})
@@ -210,7 +210,7 @@ class TestCreateView(PermissionRequiredMixin, CreateView):
     fields = ['test_name']
     
     def get_success_url(self):
-        return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
+        return reverse_lazy('ruledoc', args=(self.kwargs['pk'],))
     
     def form_valid(self, form):
         form.instance.ruledoc = RuleDoc.objects.get(pk=self.kwargs['pk'])
@@ -225,7 +225,7 @@ class TestDeleteView(PermissionRequiredMixin, DeleteView):
     model = BlawxTest
 
     def get_success_url(self):
-        return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
+        return reverse_lazy('ruledoc', args=(self.kwargs['pk'],))
     
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -239,7 +239,7 @@ class RuleDocCreateView(PermissionRequiredMixin, CreateView):
     permission_required = 'blawx.add_ruledoc'
     model = RuleDoc
     fields = ['ruledoc_name','rule_text','published']
-    success_url = reverse_lazy('blawx:ruledocs')
+    success_url = reverse_lazy('ruledocs')
 
     # This is a workaround to get the PermissionRequiredMixin to work with CreateView
     def get_object(self): return None
@@ -251,7 +251,7 @@ class RuleDocCreateView(PermissionRequiredMixin, CreateView):
 class RuleDocDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = 'blawx.delete_ruledoc'
     model = RuleDoc
-    success_url = reverse_lazy('blawx:ruledocs')
+    success_url = reverse_lazy('ruledocs')
 
 
     def get(self, request, *args, **kwargs):
@@ -266,7 +266,7 @@ class RuleDocEditView(PermissionRequiredMixin, UpdateView):
     fields = ['ruledoc_name','rule_text','published']
 
     def get_success_url(self):
-        return reverse_lazy('blawx:ruledoc', args=(self.kwargs['pk'],))
+        return reverse_lazy('ruledoc', args=(self.kwargs['pk'],))
 
 class DocumentView(generic.DetailView):
     model = DocPage

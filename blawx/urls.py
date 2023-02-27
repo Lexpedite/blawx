@@ -1,9 +1,12 @@
+from django.contrib import admin
 from django.urls import include, path
 from . import views, reasoner
 
 
 app_name = 'blawx'
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', views.RuleDocsView.as_view(), name='ruledocs'),
     path('import/', views.ruleDocImportView, name="import"),
     path('load_example/<slug:example_name>/',views.exampleLoadView, name="load"),
