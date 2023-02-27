@@ -121,6 +121,10 @@ save and re-open the workspace, and the attribute declarations will then format 
   * Scenario Editor
   * Blawx Web API
 
+## [v1.3.41-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.41-alpha) 2023-02-27
+
+Refactors code into a single Django app.
+
 ## [v1.3.40-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.40-alpha) 2023-02-16
 
 Sets allowed hosts to all for testing and development purposes.

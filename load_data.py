@@ -4,7 +4,7 @@ from pathlib import Path
 from django.core import management
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'newblawx.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blawx.settings')
 
 django.setup()
 
