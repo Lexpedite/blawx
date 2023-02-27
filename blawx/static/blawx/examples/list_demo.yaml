@@ -153,7 +153,5 @@
       type="variable" id="0U4`$K0qVhOsh-{37vrz"><field name="variable_name">AverageScore</field></block></value></block></statement></block></xml>
     scasp_encoding: ?- average_score(Person,AverageScore).
     tutorial: ''
-    view: '[''view_cat_person_att_average_score'']'
-    fact_scenario: '{''person'': {''members'': {''bob'': {''score'': {''values'':
-      [''4'', ''8''], ''values_known'': True}, ''average_score'': {''values'': [],
-      ''values_known'': True}}}, ''members_known'': True}}'
+    view: ''
+    fact_scenario: ''
