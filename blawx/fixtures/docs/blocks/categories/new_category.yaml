@@ -19,14 +19,12 @@
 
       The new category block is a statement, and can be stacked with other statements.
 
-      The new category block accepts a single field, which is the name of the category.
-      To be valid, the name of the category must begin with a lower-case letter and not
+      The new category block accepts the name of the category. To be valid, the name of the category must begin with a lower-case letter and not
       include any spaces.
+
+      It also accepts text that should appear before and after the name of the object in explanations.
 
       ## Tips
 
-      Multiple new category blocks with the same category
-      name will have no effect.
-
       Names of categories should be unique, but can safely
-      overlap with the names of attributes.
+      overlap with the names of non-boolean attributes.

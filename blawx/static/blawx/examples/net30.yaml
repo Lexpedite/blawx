@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 11
+  pk: 6
   fields:
     ruledoc_name: Net 30
     rule_text: "Net Thirty Act\r\n\r\n1. The payment due date of an invoice is 30
@@ -9,47 +9,42 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 52
+  pk: 26
   fields:
-    ruledoc: 11
+    ruledoc: 6
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 53
+  pk: 27
   fields:
-    ruledoc: 11
+    ruledoc: 6
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="k@UgO),H`ypuz6sm]+Ul" x="46" y="77"><statement name="statements"><block
-      type="category_declaration" id="n:b4zU2$|(F{i;o0rtkl"><field name="category_name">invoice</field><next><block
-      type="category_attribute" id="A`phtj0-mo2O-e~{:CZU"><value name="category"><block
-      type="category_selector" id="-G6^=~Kw`2#=EynG3K*u"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="invoice"></mutation><field name="category_name">invoice</field></block></value><statement
-      name="attributes"><block type="attribute_declaration" id="UGpA1z:!7(I/RJ@fTj@="><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="invoice_date" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">invoice_date</field><value name="attribute_type"><block
-      type="date_type_selector" id="!9IkL7c?SQIfOY?hB-MN"></block></value><next><block
-      type="attribute_display" id="^H%14f{KL=.X)VoJ10A!"><field name="order">ov</field><field
-      name="prefix">the invoice date of</field><field name="first_element">object</field><field
-      name="infix">is</field><field name="second_element">value</field><field name="postfix"></field><next><block
-      type="attribute_declaration" id="1I1BYJS;OJ#dUgHV~h=W"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attribute_name="payment_due_date" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">payment_due_date</field><value name="attribute_type"><block
-      type="date_type_selector" id="CRsScRmR(GC,y;;sxloN"></block></value><next><block
-      type="attribute_display" id="Hh$;u**,W^`:]_hugs@/"><field name="order">ov</field><field
-      name="prefix">the payment due date of</field><field name="first_element">object</field><field
-      name="infix">is</field><field name="second_element">value</field><field name="postfix"></field></block></next></block></next></block></next></block></statement></block></next></block></statement></block><block
+      type="new_category_declaration" id="$o)a];%h$!76E(`z,ojr"><field name="category_name">invoice</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="postfix">is
+      an invoice</field><next><block type="new_attribute_declaration" id="-[dqMF[];bPp[zN@]|ht"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="invoice" attribute_type="date"></mutation><field
+      name="category_name">invoice</field><field name="attribute_name">invoice_date</field><field
+      name="attribute_type">date</field><field name="order">ov</field><field name="prefix">the
+      invoice date of</field><field name="first_element">object</field><field name="infix">is</field><field
+      name="second_element">value</field><field name="postfix"></field><next><block
+      type="new_attribute_declaration" id="hsk3Qalcxf56rv8mtryE"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="invoice" attribute_type="date"></mutation><field name="category_name">invoice</field><field
+      name="attribute_name">payment_due_date</field><field name="attribute_type">date</field><field
+      name="order">ov</field><field name="prefix">the payment due date of</field><field
+      name="first_element">object</field><field name="infix">is</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></next></block></statement></block><block
       type="unattributed_rule" id="@3@kyQZdcB+?%6/f*fbK" x="33" y="393"><statement
-      name="conditions"><block type="object_category" id="Eg2?_*|YbG1oQ~1%y0Q4"><value
-      name="object"><block type="variable" id="trx/VZFS{vF5_zs0asxF"><field name="variable_name">Invoice</field></block></value><value
-      name="category"><block type="category_selector" id="TBpgEA_~5VgVZhtCKw6t"><mutation
+      name="conditions"><block type="new_object_category" id="8GG3rXp-~qvDas~,D;W."><mutation
       xmlns="http://www.w3.org/1999/xhtml" category_name="invoice"></mutation><field
-      name="category_name">invoice</field></block></value><next><block type="attribute_selector"
-      id="3qOdTpuU[RTH^#aiQK{u"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="invoice_date"
-      attributetype="Calendar Date" attributeorder="ov"></mutation><field name="prefix">the
-      invoice date of</field><field name="infix">is</field><field name="postfix"></field><value
-      name="first_element"><block type="variable" id="?kJtQ3y%;t+4EQ:|B%2n"><field
+      name="category_name">invoice</field><value name="object"><block type="variable"
+      id="trx/VZFS{vF5_zs0asxF"><field name="variable_name">Invoice</field></block></value><next><block
+      type="attribute_selector" id="FI_KT)=TV[bBP+CmHS@A"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="invoice_date" attributetype="date" attributeorder="ov"></mutation><field
+      name="prefix">the invoice date of</field><field name="infix">is</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="?kJtQ3y%;t+4EQ:|B%2n"><field
       name="variable_name">Invoice</field></block></value><value name="second_element"><block
       type="variable" id="LtR9+(Jed$4Fjq3j]Ks*"><field name="variable_name">Issue_date</field></block></value><next><block
       type="date_add" id=",HG{4AcFE#/bXSEe:~/6"><value name="duration"><block type="duration_value"
@@ -62,19 +57,25 @@
       name="rule"><block type="doc_selector" id="#glJ$YMY_J#j)%/H4nkd"><mutation xmlns="http://www.w3.org/1999/xhtml"
       section_reference="sec_1_section"></mutation><field name="doc_part_name">NTA
       1</field></block></value><statement name="statement"><block type="attribute_selector"
-      id="e=.NOA!3Rn~3yDwt/h9J"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="payment_due_date"
-      attributetype="Calendar Date" attributeorder="ov"></mutation><field name="prefix">the
+      id="}rRTv3(FU`n2da5NIJ@F"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="payment_due_date"
+      attributetype="date" attributeorder="ov"></mutation><field name="prefix">the
       payment due date of</field><field name="infix">is</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="xO6$a![B|p=}Q-ZzY@^?"><field
       name="variable_name">Invoice</field></block></value><value name="second_element"><block
       type="variable" id="5BADuW73xBw021=ulkRO"><field name="variable_name">Payment_date</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'blawx_category(invoice).
 
-      #pred invoice(X) :: ''@(X) is a invoice''.
+      blawx_category_nlg(invoice,"","is an invoice").
 
-      #pred according_to(R,invoice(X)) :: ''according to @(R), @(X) is a invoice''.
+      #pred invoice(X) :: ''@(X) is an invoice''.
 
-      #pred legally_holds(_,invoice(X)) :: ''it legally holds that @(X) is a invoice''.
+      #pred according_to(R,invoice(X)) :: ''according to @(R), @(X) is an invoice''.
+
+      #pred legally_holds(_,invoice(X)) :: ''it legally holds that @(X) is an invoice''.
+
+      opposes(invoice(X,Y),-invoice(X,Y)).
+
+      opposes(-invoice(X,Y),invoice(X,Y)).
 
       blawx_attribute(invoice,invoice_date,date).
 
@@ -88,6 +89,9 @@
       #pred legally_holds(_,invoice_date(X,Y)) :: ''it legally holds that the invoice
       date of @(X) is @(Y)''.
 
+      opposes(invoice_date(X,Y),-invoice_date(X,Y)).
+
+      opposes(-invoice_date(X,Y),invoice_date(X,Y)).
 
       blawx_attribute(invoice,payment_due_date,date).
 
@@ -101,6 +105,9 @@
       #pred legally_holds(_,payment_due_date(X,Y)) :: ''it legally holds that the
       payment due date of @(X) is @(Y)''.
 
+      opposes(payment_due_date(X,Y),-payment_due_date(X,Y)).
+
+      opposes(-payment_due_date(X,Y),payment_due_date(X,Y)).
 
 
       according_to(sec_1_section,  payment_due_date(Invoice,Payment_date)) :-
@@ -111,27 +118,27 @@
 
       datetime_add(Issue_date,duration(1,0,0,30,0,0,0),Payment_date).'
 - model: blawx.blawxtest
-  pk: 34
+  pk: 9
   fields:
-    ruledoc: 11
+    ruledoc: 6
     test_name: payment
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="P#L~+r`Yr{9+~{r{H0}F" x="82" y="83"><statement name="statements"><block
+      id="P#L~+r`Yr{9+~{r{H0}F" x="103" y="72"><statement name="statements"><block
       type="object_declaration" id="MOreAEf}RLD^r;r{Bu#b"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="invoice" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">test</field><field name="postfix">is a invoice</field><next><block
-      type="attribute_selector" id="QAGZ$[rIZWdDPm_m4tnX"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="invoice_date" attributetype="Calendar Date" attributeorder="ov"></mutation><field
+      type="attribute_selector" id="0P~%6knL2bNW0nVj5!yv"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="invoice_date" attributetype="date" attributeorder="ov"></mutation><field
       name="prefix">the invoice date of</field><field name="infix">is</field><field
       name="postfix"></field><value name="first_element"><block type="object_selector"
       id="6kLbJ2GwEToHj;bRT5_p"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="test"></mutation><field
       name="object_name">test</field></block></value><value name="second_element"><block
-      type="date_value" id="r{/dTzGZMA$*g[[l0}-/"><field name="year">2022</field><field
-      name="month">5</field><field name="day">11</field></block></value></block></next></block></statement></block><block
-      type="query" id="l`y*v[X(ub(qIQZ@Lv]U" x="55" y="289"><statement name="query"><block
+      type="date_value" id="Ah^^Auyo-S@NP9y$_nYs"><field name="year">2000</field><field
+      name="month">1</field><field name="day">1</field></block></value></block></next></block></statement></block><block
+      type="query" id="l`y*v[X(ub(qIQZ@Lv]U" x="105" y="192"><statement name="query"><block
       type="holds" id="AJqFLd;y|p%T3pc%cwz_"><statement name="statement"><block type="attribute_selector"
-      id="OMLVgmh})mYCOFh99@xt"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="payment_due_date"
-      attributetype="Calendar Date" attributeorder="ov"></mutation><field name="prefix">the
+      id="|t0iF}|=eJY0)-PP{7?4"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="payment_due_date"
+      attributetype="date" attributeorder="ov"></mutation><field name="prefix">the
       payment due date of</field><field name="infix">is</field><field name="postfix"></field><value
       name="first_element"><block type="object_selector" id="Y`~_z5z%A0GBOUWhuzcP"><mutation
       xmlns="http://www.w3.org/1999/xhtml" objectname="test"></mutation><field name="object_name">test</field></block></value><value
@@ -139,7 +146,7 @@
       name="variable_name">DueDate</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'invoice(test).
 
-      invoice_date(test,date(2022,5,11)).
+      invoice_date(test,date(2000,1,1)).
 
 
       ?- legally_holds(_,  payment_due_date(test,DueDate)).'

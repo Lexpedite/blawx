@@ -1,35 +1,44 @@
 - model: blawx.ruledoc
-  pk: 6
+  pk: 1
   fields:
-    owner: 3
     ruledoc_name: Bird Act
     rule_text: "Bird Act\r\n\r\n1. A Penguin is a Bird.\r\n2. If a thing is a bird,
       it flies, [penguin]{unless it is a penguin}."
     scasp_encoding: ''
     tutorial: ''
+    owner: 3
+    published: false
 - model: blawx.workspace
-  pk: 47
+  pk: 1
   fields:
-    ruledoc: 6
+    ruledoc: 1
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 48
+  pk: 2
   fields:
-    ruledoc: 6
+    ruledoc: 1
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="1!=3XhATcqkhE,+G7!n`" x="29" y="21"><statement name="statements"><block
-      type="category_declaration" id="?C.KFD2kEO21E6W.ONks"><field name="category_name">penguin</field><next><block
-      type="category_declaration" id="3P~S8bHQO]oK}4]=?JHC"><field name="category_name">bird</field><next><block
-      type="category_equivalence" id="|Ms$@Ek/S05Q$f?g:zhg"><value name="first_category"><block
-      type="category_selector" id="{[?,M5$]USglT$G/I=~K"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="penguin"></mutation><field name="category_name">penguin</field></block></value><value
-      name="second_category"><block type="category_selector" id="fS^El;2:!U_S-pl}Lf5`"><mutation
+      id="L~1O4v;8gSt_vFKU[ms:" x="49" y="47"><statement name="statements"><block
+      type="new_category_declaration" id="!7*tbuJ.OXTe/L=5$)G,"><field name="category_name">penguin</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="postfix">is
+      a penguin</field><next><block type="new_category_declaration" id="zg7)dhKv=!}R~@LP43aA"><field
+      name="category_name">bird</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="postfix">is a bird</field></block></next></block></statement></block><block
+      type="unattributed_rule" id="IBmf1!~-wvBW0t}a-uBd" x="36" y="206"><statement
+      name="conditions"><block type="new_object_category" id="M0:YnjWEFl[+8!]7l9L?"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
+      name="category_name">penguin</field><value name="object"><block type="variable"
+      id="sO1+!cu+WP41Xik#cmAa"><field name="variable_name">A</field></block></value></block></statement><statement
+      name="conclusion"><block type="new_object_category" id="/2k,MpEpy63|zO|}[+(1"><mutation
       xmlns="http://www.w3.org/1999/xhtml" category_name="bird"></mutation><field
-      name="category_name">bird</field></block></value></block></next></block></next></block></statement></block></xml>
+      name="category_name">bird</field><value name="object"><block type="variable"
+      id="Vv^Y;M~_ro_6i);^^IMX"><field name="variable_name">A</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_category(penguin).
+
+      blawx_category_nlg(penguin,"","is a penguin").
 
       #pred penguin(X) :: ''@(X) is a penguin''.
 
@@ -37,7 +46,13 @@
 
       #pred legally_holds(_,penguin(X)) :: ''it legally holds that @(X) is a penguin''.
 
+      opposes(penguin(X,Y),-penguin(X,Y)).
+
+      opposes(-penguin(X,Y),penguin(X,Y)).
+
       blawx_category(bird).
+
+      blawx_category_nlg(bird,"","is a bird").
 
       #pred bird(X) :: ''@(X) is a bird''.
 
@@ -45,50 +60,45 @@
 
       #pred legally_holds(_,bird(X)) :: ''it legally holds that @(X) is a bird''.
 
-      bird(X) :-
+      opposes(bird(X,Y),-bird(X,Y)).
 
-      penguin(X).'
+      opposes(-bird(X,Y),bird(X,Y)).
+
+
+      bird(A) :-
+
+      penguin(A).'
 - model: blawx.workspace
-  pk: 49
+  pk: 3
   fields:
-    ruledoc: 6
+    ruledoc: 1
     workspace_name: sec_2_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="j$faOKXkM8#g]oq9F5O8" x="46" y="14"><statement name="statements"><block
-      type="category_declaration" id="*;NX[+pzHTo3+A(iM0=0"><field name="category_name">thing</field><next><block
-      type="category_attribute" id="j$^nQ1H=P{.d8eu(VHaf"><value name="category"><block
-      type="category_selector" id="8TI5KQCm`44|351qKGY~"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="thing"></mutation><field name="category_name">thing</field></block></value><statement
-      name="attributes"><block type="attribute_declaration" id="s(m+;9RiNOHv,kIl4TT3"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="flies" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">flies</field><value name="attribute_type"><block type="true_false_type_selector"
-      id="A}j#z2tAyf2Z=IU}rfWr"></block></value><next><block type="attribute_display"
-      id="A2iY=RJDuRFEj9utEl7f"><field name="order">vo</field><field name="prefix">it
-      is</field><field name="first_element">value</field><field name="infix">that</field><field
-      name="second_element">object</field><field name="postfix">flies</field></block></next></block></statement><next><block
-      type="category_equivalence" id="bu=Q+{c/Z,UD.Fb)`7ZG"><value name="first_category"><block
-      type="category_selector" id="W?i[fBo#$z#7Hh;BVh#V"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="bird"></mutation><field name="category_name">bird</field></block></value><value
-      name="second_category"><block type="category_selector" id="iibAap;%gvy$C8:Aze5v"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="thing"></mutation><field
-      name="category_name">thing</field></block></value></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="6?fZqZY3/+aZs_yOf+CV" x="45" y="292"><statement
-      name="conditions"><block type="object_category" id="|w-~zBf|+TP7mA}ZjbTm"><value
-      name="object"><block type="variable" id="BosqU04_8`F4cX%R7H$4"><field name="variable_name">A</field></block></value><value
-      name="category"><block type="category_selector" id="glOF`upu#69fTb]$5P)U"><mutation
+      id="XNdt3+VC`RGs((RZa:OR" x="44" y="64"><statement name="statements"><block
+      type="new_category_declaration" id="J8A3._71x8aW=)j,86)3"><field name="category_name">thing</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="postfix">is
+      a thing</field><next><block type="new_attribute_declaration" id="Xy0#SOEd7pAd+K$pA)dE"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="thing" attribute_type="boolean"></mutation><field
+      name="category_name">thing</field><field name="attribute_name">flies</field><field
+      name="attribute_type">boolean</field><field name="order">ov</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="infix">'s attribute name is</field><field
+      name="second_element">value</field><field name="postfix">flies</field></block></next></block></statement></block><block
+      type="unattributed_rule" id="57{]Jo[T!KH~;N4_vs3{" x="156" y="259"><statement
+      name="conditions"><block type="new_object_category" id="~[0*My:AoAs;Y$lWm/6N"><mutation
       xmlns="http://www.w3.org/1999/xhtml" category_name="bird"></mutation><field
-      name="category_name">bird</field></block></value></block></statement><statement
-      name="conclusion"><block type="according_to" id="]!AH[LfAbhnCX[A)%IFL"><value
-      name="rule"><block type="doc_selector" id="k=^[Sv)tUg[)*rpIWz3|"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      name="category_name">bird</field><value name="object"><block type="variable"
+      id="ja%swYDtncK`v!+srxR="><field name="variable_name">A</field></block></value></block></statement><statement
+      name="conclusion"><block type="according_to" id="Fj^KWHY[lKs/Tl#$snSY"><value
+      name="rule"><block type="doc_selector" id="]#Y4EZ[@`4@pya,GDMGK"><mutation xmlns="http://www.w3.org/1999/xhtml"
       section_reference="sec_2_section"></mutation><field name="doc_part_name">BA
-      2</field></block></value><statement name="statement"><block type="attribute_selector"
-      id=",y:Jk{%Am^H6g4$?amZ@"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
-      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
-      name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
-      name="first_element"><block type="true_value" id="%k?[?d}5k4mYi|CFK:Y7"></block></value><value
-      name="second_element"><block type="variable" id="$=:FBU4WdZ*T`WJ+KBY6"><field
+      2</field></block></value><statement name="statement"><block type="unary_attribute_selector"
+      id="VzKP:i4$Ph0hxmb+[cHb"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">flies</field><value
+      name="first_element"><block type="variable" id="T%n#Pl7x}c(4n3`,Qf)N"><field
       name="variable_name">A</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'blawx_category(thing).
+
+      blawx_category_nlg(thing,"","is a thing").
 
       #pred thing(X) :: ''@(X) is a thing''.
 
@@ -96,109 +106,105 @@
 
       #pred legally_holds(_,thing(X)) :: ''it legally holds that @(X) is a thing''.
 
+      opposes(thing(X,Y),-thing(X,Y)).
+
+      opposes(-thing(X,Y),thing(X,Y)).
+
       blawx_attribute(thing,flies,boolean).
 
-      blawx_attribute_nlg(flies,vo,"it is","that","flies").
+      blawx_attribute_nlg(flies,not_applicable,"",not_applicable,"flies").
 
-      #pred flies(Y,X) :: ''it is @(X) that @(Y) flies''.
+      #pred flies(X) :: ''@(X) flies''.
 
-      #pred according_to(R,flies(Y,X)) :: ''according to @(R), it is @(X) that @(Y)
-      flies''.
+      #pred according_to(R,flies(X)) :: ''according to @(R), @(X) flies''.
 
-      #pred legally_holds(_,flies(Y,X)) :: ''it legally holds that it is @(X) that
-      @(Y) flies''.
+      #pred legally_holds(_,flies(X)) :: ''it legally holds that @(X) flies''.
 
-      opposes(flies(X,true),flies(X,false)).
+      opposes(flies(X),-flies(X)).
 
-      opposes(flies(X,false),flies(X,true)).
+      opposes(-flies(X),flies(X)).
 
 
-      thing(X) :-
-
-      bird(X).
-
-
-      according_to(sec_2_section,  flies(A,true)) :-
+      according_to(sec_2_section,  flies(A)) :-
 
       bird(A).'
 - model: blawx.workspace
-  pk: 50
+  pk: 4
   fields:
-    ruledoc: 6
+    ruledoc: 1
     workspace_name: sec_2__span_penguin_section
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_rule"
-      id="v*SRmEi3pH763OYJq|KD" x="48" y="126"><statement name="conditions"><block
-      type="object_category" id="4mm1v|a~4L]sS3YnE,G;"><value name="object"><block
-      type="variable" id="x);G)U0x6rH0iv{-kvMm"><field name="variable_name">A</field></block></value><value
-      name="category"><block type="category_selector" id="bXI$~BjuWYp6{9Y@ukNr"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
-      name="category_name">penguin</field></block></value></block></statement><statement
-      name="conclusion"><block type="according_to" id="FMpf14kfg^mu4~(#xph?"><value
-      name="rule"><block type="doc_selector" id="O~?~iwJ%WmtGB,Qz=}b("><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_2__span_penguin_section"></mutation><field name="doc_part_name">BA
-      2penguin</field></block></value><statement name="statement"><block type="attribute_selector"
-      id="uTV54%14)U}^T-7{e^T#"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
-      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
-      name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
-      name="first_element"><block type="false_value" id=":Wt$Feq#6:i/PkqzrE`m"></block></value><value
-      name="second_element"><block type="variable" id="/e27:KP!fRzOK#Sxlazp"><field
-      name="variable_name">A</field></block></value></block></statement></block></statement></block><block
-      type="unattributed_fact" id="IO9/.,Irf{;C1^Yx?g1K" x="46" y="310"><statement
-      name="statements"><block type="overrules" id="-~*=Isc`r)08^UXT)2~~"><value name="defeating_rule"><block
-      type="doc_selector" id="{5Oqbf](E#@HB-(dNR6]"><mutation xmlns="http://www.w3.org/1999/xhtml"
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="i^nWr-06Az5/;nVmX;?:" x="70" y="121"><statement name="statements"><block
+      type="overrules" id="RgP$rvZ@Z).WFv@AvQ[^"><value name="defeating_rule"><block
+      type="doc_selector" id="L=cQ.VpMq+~_Q@ag^UvN"><mutation xmlns="http://www.w3.org/1999/xhtml"
       section_reference="sec_2__span_penguin_section"></mutation><field name="doc_part_name">BA
       2penguin</field></block></value><value name="defeated_rule"><block type="doc_selector"
-      id="B/:zF{{r}/X(+?Ual(m|"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_2_section"></mutation><field
-      name="doc_part_name">BA 2</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'according_to(sec_2__span_penguin_section,  flies(A,false)) :-
+      id="5lFeZhKNE_;IVN.xeaUy"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_2_section"></mutation><field
+      name="doc_part_name">BA 2</field></block></value></block></statement></block><block
+      type="unattributed_rule" id="rwL@R.w``twMKN[JGTWN" x="25" y="228"><statement
+      name="conditions"><block type="new_object_category" id="GGb61.kTLoQKNvRt-=Uh"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
+      name="category_name">penguin</field><value name="object"><block type="variable"
+      id="m3%RbpNrRzT:{F|rFydZ"><field name="variable_name">A</field></block></value></block></statement><statement
+      name="conclusion"><block type="according_to" id="rS#i:9FF*9r^d`]c7ZO1"><value
+      name="rule"><block type="doc_selector" id="gtx??z9J:0eQTdlP97VR"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_2__span_penguin_section"></mutation><field name="doc_part_name">BA
+      2penguin</field></block></value><statement name="statement"><block type="logical_negation"
+      id="k`6%l;c7ogMBP;}45Y_T"><statement name="negated_statement"><block type="unary_attribute_selector"
+      id="+h!N98t)BVJuA`*g|ICK"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">flies</field><value
+      name="first_element"><block type="variable" id=";2uI%eXyn;969wfv0|#Y"><field
+      name="variable_name">A</field></block></value></block></statement></block></statement></block></statement></block></xml>
+    scasp_encoding: 'overrules(sec_2__span_penguin_section,sec_2_section).
 
-      penguin(A).
 
+      according_to(sec_2__span_penguin_section,  -flies(A)) :-
 
-      overrules(sec_2__span_penguin_section,sec_2_section).'
+      penguin(A).'
 - model: blawx.blawxtest
-  pk: 6
+  pk: 1
   fields:
-    ruledoc: 6
-    test_name: tweety
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="!_OG4OLP?RG1_nnO@)??" x="74" y="49"><statement name="statements"><block
-      type="object_declaration" id="E^n)El`).#e/px1k9O(Z"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="penguin" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
-      name="object_name">tweety</field><field name="postfix">is a penguin</field></block></statement></block><block
-      type="query" id="yLZRoj,S`oekI_y*{kip" x="59" y="157"><statement name="query"><block
-      type="holds" id="3H8/*vt$a~85UEiossL9"><statement name="statement"><block type="attribute_selector"
-      id="3qllX@`/Pbg0snWJFBK,"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
-      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
-      name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
-      name="first_element"><block type="variable" id="BxC:d9g+6DYY6l@I=5]["><field
-      name="variable_name">A</field></block></value><value name="second_element"><block
-      type="object_selector" id="lZ]]C~8RT[`RwZTaiD1j"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      objectname="tweety"></mutation><field name="object_name">tweety</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: 'penguin(tweety).
-
-
-      ?- legally_holds(_,  flies(tweety,A)).'
-- model: blawx.blawxtest
-  pk: 7
-  fields:
-    ruledoc: 6
+    ruledoc: 1
     test_name: negation
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="B`ucszQD3S|IX{pdrPS3" x="99" y="83"><statement name="statements"><block
-      type="object_declaration" id="nO42bKu=4qjq2vcZmTxS"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      id="~x|E/AunIA8exv1*|4wu" x="73" y="110"><statement name="statements"><block
+      type="object_declaration" id="~X7PIJRl3][mP}Kj^GEx"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="penguin" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">tweety</field><field name="postfix">is a penguin</field></block></statement></block><block
-      type="query" id="`2@DgIS0!F)Xi1|H!JaE" x="69" y="220"><statement name="query"><block
-      type="default_negation" id="[;~X!!1dd6e7T5LfWklk"><statement name="default_negated_statement"><block
-      type="holds" id="?uBE$;IMDy:D$rcnIm6K"><statement name="statement"><block type="attribute_selector"
-      id="{i@4(!3:o=+4fD~MMP*G"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
-      attributetype="Checkmark True / False" attributeorder="vo"></mutation><field
-      name="prefix">it is</field><field name="infix">that</field><field name="postfix">flies</field><value
-      name="first_element"><block type="true_value" id="@K9W[=WCZfHtaTcVe$E_"></block></value><value
-      name="second_element"><block type="object_selector" id="5Wq{eQDw6/eNk=A0NUZI"><mutation
+      type="query" id="2r-ElB0SFhIPg/~QN)[3" x="114" y="250"><statement name="query"><block
+      type="default_negation" id="U?_GEs(+}mM_tF;FcXV_"><statement name="default_negated_statement"><block
+      type="holds" id="tb]yjbc=%sq@W/5M]2wW"><statement name="statement"><block type="unary_attribute_selector"
+      id="!ee_YEn#0-P^$NdG7]?R"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">flies</field><value
+      name="first_element"><block type="object_selector" id="}rHhyxXfQYG5N=jt_EM5"><mutation
       xmlns="http://www.w3.org/1999/xhtml" objectname="tweety"></mutation><field name="object_name">tweety</field></block></value></block></statement></block></statement></block></statement></block></xml>
     scasp_encoding: 'penguin(tweety).
 
 
-      ?- not legally_holds(_,  flies(tweety,true)).'
+      ?- not legally_holds(_,  flies(tweety)).'
+    tutorial: ''
+    view: ''
+    fact_scenario: ''
+- model: blawx.blawxtest
+  pk: 2
+  fields:
+    ruledoc: 1
+    test_name: tweety
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="0[Zqs-3y=e}`dNc#5_h7" x="80" y="74"><statement name="statements"><block
+      type="object_declaration" id="`.`1Vt@)m1z6Q~e9vl;D"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="penguin" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">tweety</field><field name="postfix">is a penguin</field></block></statement></block><block
+      type="query" id="H3hq4W(+^nJ=cF*!!l,+" x="101" y="245"><statement name="query"><block
+      type="holds" id="_,hLWpuSF`jVR@W7)F#3"><statement name="statement"><block type="unary_attribute_selector"
+      id="54#y`fCXx6#SIsTtZ|B;"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="flies"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">flies</field><value
+      name="first_element"><block type="object_selector" id="+[6XLi0I.e/X%)$srZzl"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="tweety"></mutation><field name="object_name">tweety</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: 'penguin(tweety).
+
+
+      ?- legally_holds(_,  flies(tweety)).'
+    tutorial: ''
+    view: ''
+    fact_scenario: ''

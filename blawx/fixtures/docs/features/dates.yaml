@@ -5,6 +5,8 @@
     content: |
       # Dates, Times, and Durations
 
+      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
+
       Blawx allows you to record and deal with information about dates, times, and durations of time.
 
       It does this by providing four data types; date, time, datetime, and duration; by providing value blocks for

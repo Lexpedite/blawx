@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 2
+  pk: 11
   fields:
     ruledoc_name: Lists
     rule_text: "Lists Demonstration\r\n\r\n1. Lists Demonstration"
@@ -8,55 +8,50 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 3
+  pk: 53
   fields:
-    ruledoc: 2
+    ruledoc: 11
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 4
+  pk: 54
   fields:
-    ruledoc: 2
+    ruledoc: 11
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="LvE@V:2)~CiVq1R_Jl^%" x="117" y="73"><statement name="statements"><block
-      type="category_declaration" id="BS-Rr)Ig_6%u~r`%;O,A"><field name="category_name">person</field><next><block
-      type="category_attribute" id="AF%yJex%hvIVFNmB(C47"><value name="category"><block
-      type="category_selector" id="-d)Iml=#VT|{BKKepNr]"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person"></mutation><field name="category_name">person</field></block></value><statement
-      name="attributes"><block type="attribute_declaration" id="0qx{CP.ZHUOBNiY}i60X"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attribute_name="score" attribute_type="CATEGORY"></mutation><field
-      name="attribute_name">score</field><value name="attribute_type"><block type="number_type_selector"
-      id="%WQxhbdT|Y.KSV~]A^n;"></block></value><next><block type="attribute_display"
-      id="%bfS22:_3Dgk_p[zg?x1"><field name="order">ov</field><field name="prefix"></field><field
+      type="new_category_declaration" id="~O?:K!Dl/t#AT(Pw}xl$"><field name="category_name">person</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="postfix">is
+      a person</field><next><block type="new_attribute_declaration" id="pgF5Z$00ta:]!|af`)A2"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person" attribute_type="number"></mutation><field
+      name="category_name">person</field><field name="attribute_name">score</field><field
+      name="attribute_type">number</field><field name="order">ov</field><field name="prefix"></field><field
       name="first_element">object</field><field name="infix">'s score is</field><field
       name="second_element">value</field><field name="postfix"></field><next><block
-      type="attribute_declaration" id="0X1N]jh[{gS2JT0hyr)4"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attribute_name="average_score" attribute_type="CATEGORY"></mutation><field name="attribute_name">average_score</field><value
-      name="attribute_type"><block type="number_type_selector" id="6TVokYnn~e8::NQrr90!"></block></value><next><block
-      type="attribute_display" id=")LUGy@xs0@m~N-3yD1GM"><field name="order">ov</field><field
-      name="prefix"></field><field name="first_element">object</field><field name="infix">'s
-      average score adding a 10 is</field><field name="second_element">value</field><field
-      name="postfix"></field></block></next></block></next></block></next></block></statement></block></next></block></statement></block><block
+      type="new_attribute_declaration" id="nAe?@PXeM`F^%holL0?!"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" attribute_type="number"></mutation><field name="category_name">person</field><field
+      name="attribute_name">average_score</field><field name="attribute_type">number</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">'s average score adding a 10 is</field><field name="second_element">value</field><field
+      name="postfix"></field></block></next></block></next></block></statement></block><block
       type="unattributed_rule" id="Fa1i{bpaMei?1%EswHxR" x="105" y="390"><comment
       pinned="false" h="130" w="571">If the person has any scores, their average score
       plus ten is the average of that list of scores, plus a 10.</comment><statement
-      name="conditions"><block type="object_category" id=",Vq*6-$Y6XyrH6!mGCrH"><value
-      name="object"><block type="variable" id="(i)zJ^AXGkiUo,Jfb*:6"><field name="variable_name">Person</field></block></value><value
-      name="category"><block type="category_selector" id="0S]m`Hzoz1V-DVt_.#17"><mutation
+      name="conditions"><block type="new_object_category" id="=Fw_SYnmoY{]5#S8x!6("><mutation
       xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-      name="category_name">person</field></block></value><next><block type="collect_list"
-      id="EDhNLlrrI0iI^)}cUaWh"><value name="list_name"><block type="variable" id=")R?8j9Y)Zf*,u_eNMx$r"><field
-      name="variable_name">ListOfScores</field></block></value><value name="variable_name"><block
-      type="variable" id="wpE}c6(w:j$WvkX,%iAZ"><field name="variable_name">Score</field></block></value><statement
-      name="search"><block type="attribute_selector" id="p0k$F6qb#^RUYUEL$k@9"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="score" attributetype="#
-      Number" attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">'s
-      score is</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="rYB[o+_]jRVr!/Jj@O@T"><field name="variable_name">Person</field></block></value><value
-      name="second_element"><block type="variable" id="8vY1oo$9.4xc7g5+gb0z"><field
-      name="variable_name">Score</field></block></value></block></statement><next><block
+      name="category_name">person</field><value name="object"><block type="variable"
+      id="(i)zJ^AXGkiUo,Jfb*:6"><field name="variable_name">Person</field></block></value><next><block
+      type="collect_list" id="EDhNLlrrI0iI^)}cUaWh"><value name="list_name"><block
+      type="variable" id=")R?8j9Y)Zf*,u_eNMx$r"><field name="variable_name">ListOfScores</field></block></value><value
+      name="variable_name"><block type="variable" id="wpE}c6(w:j$WvkX,%iAZ"><field
+      name="variable_name">Score</field></block></value><statement name="search"><block
+      type="attribute_selector" id="p0k$F6qb#^RUYUEL$k@9"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="score" attributetype="# Number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">'s score is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="rYB[o+_]jRVr!/Jj@O@T"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="8vY1oo$9.4xc7g5+gb0z"><field name="variable_name">Score</field></block></value></block></statement><next><block
       type="list_aggregation" id="u@9J+UEPi;`o/ZXlDPrv"><field name="aggregation">cnt</field><value
       name="output"><block type="variable" id="HsdaY,w),;u3zwoPB.S0"><field name="variable_name">Count</field></block></value><value
       name="list"><block type="variable" id="OUF;p5U[N^s0%JAAk+Dg"><field name="variable_name">ListOfScores</field></block></value><next><block
@@ -81,11 +76,17 @@
       name="variable_name">AverageScore</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_category(person).
 
+      blawx_category_nlg(person,"","is a person").
+
       #pred person(X) :: ''@(X) is a person''.
 
       #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
 
       #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
+
+      opposes(person(X,Y),-person(X,Y)).
+
+      opposes(-person(X,Y),person(X,Y)).
 
       blawx_attribute(person,score,number).
 
@@ -99,6 +100,9 @@
       #pred legally_holds(_,score(X,Y)) :: ''it legally holds that @(X) \''s score
       is @(Y)''.
 
+      opposes(score(X,Y),-score(X,Y)).
+
+      opposes(-score(X,Y),score(X,Y)).
 
       blawx_attribute(person,average_score,number).
 
@@ -112,6 +116,9 @@
       #pred legally_holds(_,average_score(X,Y)) :: ''it legally holds that @(X) \''s
       average score adding a 10 is @(Y)''.
 
+      opposes(average_score(X,Y),-average_score(X,Y)).
+
+      opposes(-average_score(X,Y),average_score(X,Y)).
 
 
       % If the person has any scores, their average score plus
@@ -132,28 +139,19 @@
 
       average_blawx_list(NewScores , AverageScore).'
 - model: blawx.blawxtest
-  pk: 5
+  pk: 18
   fields:
-    ruledoc: 2
+    ruledoc: 11
     test_name: test
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="R5etSAjin{%Dsw[SO}L-" x="85" y="54"><statement name="statements"><block
-      type="object_declaration" id="5M9G-6oHr[f07X81gW,m"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
-      name="object_name">bob</field><field name="postfix">is a person</field></block></statement></block><block
-      type="query" id="^+{8:,2DA*9hulCAyA8s" x="62" y="311"><statement name="query"><block
-      type="attribute_selector" id="cy:J4WhzjV*wYmT1@KZQ"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="average_score" attributetype="# Number" attributeorder="ov"></mutation><field
-      name="prefix"></field><field name="infix">'s average score adding a 10 is</field><field
-      name="postfix"></field><value name="first_element"><block type="variable" id="qzY/;F,f0sWI}O0Jy{bb"><field
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
+      id="^+{8:,2DA*9hulCAyA8s" x="62" y="311"><statement name="query"><block type="attribute_selector"
+      id="cy:J4WhzjV*wYmT1@KZQ"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="average_score"
+      attributetype="# Number" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">'s average score adding a 10 is</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="qzY/;F,f0sWI}O0Jy{bb"><field
       name="variable_name">Person</field></block></value><value name="second_element"><block
       type="variable" id="0U4`$K0qVhOsh-{37vrz"><field name="variable_name">AverageScore</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'person(bob).
-
-
-      ?- average_score(Person,AverageScore).'
+    scasp_encoding: ?- average_score(Person,AverageScore).
     tutorial: ''
-    view: '[''view_cat_person_att_average_score'']'
-    fact_scenario: '{''person'': {''members'': {''bob'': {''score'': {''values'':
-      [''4'', ''8''], ''values_known'': True}, ''average_score'': {''values'': [],
-      ''values_known'': True}}}, ''members_known'': True}}'
+    view: ''
+    fact_scenario: ''

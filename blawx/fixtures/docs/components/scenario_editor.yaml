@@ -28,7 +28,7 @@
 
       To start the Scenario Editor, click on the "Scenario Editor" button in the test editor screen.
 
-      You will be taken to a user interface with a button bar across the top, followed by a set of tabs for "Facts" and "Answers".
+      You will be taken to a user interface with a button bar across the top, followed by a set of tabs for "Facts", "Answers", "View" and "Devel".
 
       ![Scenario Editor Interface](/static/blawx/docs/images/scenario_editor_interface.png)
 
@@ -36,7 +36,7 @@
 
       ![Scenario Editor Buttons](/static/blawx/docs/images/scenario_editor_buttons.png)
 
-      The buttons available in the BlawxBot interface are:
+      The buttons available in the Scenario Editor interface are:
 
       * Run - this runs the test with the currently defined fact scenario, and displays the answers.
       * Help - opens the Blawx documentation in a different window
@@ -49,75 +49,49 @@
       The main interface in the scenario editor page is the fact scenario editor form, which can be accessed
       by clicking on the "Facts" tab at the top of the interface.
 
-      The form is a nested tree. At the far left of the form you will see a list of the categories
-      that exist in your test. By clicking the "add" button with the plus icon, you can create
-      a new object in that category and give it a name.
+      The form consists of a list of facts, an "Add Fact" button, and a "Save Default Fact Scenario" button.
+      Facts are displayed in a bulleted list, followed by a lock icon if they were provided by the code, or
+      an "X" icon if they were provided by the user and can be deleted. Clicking on the "X" next a fact deletes it.
 
-      ![Add Button](/static/blawx/docs/images/add_button.png)
+      All facts and displayed using the natural language representation that was specified in the category and
+      attribute declaration blocks.
 
-      Note that names of objects must begin with a lowercase letter, cannot include spaces, and must be
-      unique. These requirements are not yet enforced by the Scenario Editor.
+      ### Adding Facts
 
-      If you create an object, you will be able to expand or collapse the category by clicking on the "arrow" icon.
-      The name of the objects you create can be changed in the interface.
-      Objects can be expanded or collapsed in the same way.
+      When you click on the Add Fact button, you are given a list of statement types that are available to make.
 
-      Objects will be displayed in the interface using the category customization specified in the code, if any.
+      ![Add Fact Menu](/static/blawx/docs/images/add_fact_menu.png)
 
-      You can add a value to an object's attribute by clicking the "add" button on the attribute name inside the object.
+      When you click on a statement type, a form for creating a statement of that type is displayed.
 
-      Values can be also be changed after they have been created. Values are displayed in the interface using the attribute
-      customization specified in the text, if any.
+      ![New Value Form](/static/blawx/docs/images/new_value_form.png)
 
-      Values and objects can be deleted by clicking on the delete button with the "trash can" icon on the right side.
+      When you choose to create a new value, you will be allowed to choose the object from a dropdown list. In this
+      list you can also choose "any". If the attribute type is a data type like duration, you will be shown a form
+      for entering the duration. If the attribute type is a category, you will be shown another dropdown.
+
+      The new statement form also has a "type" field, which allows you to choose "true", "false", or "unknown."
+
+      This combination allows you to specify a wide variety of certainties and uncertainties about your fact scenario.
+
+      If you choose to create a new object, you will be given a field in which to type the name of the object. Beside
+      that field there will be a checkbox, which can be used to instead use "any object" in place of the name.
+
+      ![Unground Object Statement](/static/blawx/docs/images/unground_category.png)
+
       
-      ![Delete Button](/static/blawx/docs/images/delete_button.png)
-      
-      You cannot delete categories, or attributes. Note that if your test or your encoding defines any objects, and the
-      values of attributes of those objects, those objects and values will also appear in your fact scenario editor form, but you will not be able
-      to modify or delete them.
+      ## Relevance
 
-      When setting the value of an attribute that has a category as it's type (for example, "friend" might be an attribute
-      of a person, and also refer to other persons), the interface will allow you to choose from the objects that already
-      exist in the target category. To refer to an object, it must be included in the category first. So for example,
-      if you want to say that jason and june are friends, you must first create both jason and june in the category "person",
-      and then in the "friend" attribute of june, add jason as a value.
+      If you have "unknown" statements, and click Run, the scenario editor will display all the answers that the reasoner
+      can derive using the facts and assumptions about unknown statements. It will also use that information to figure out what additional
+      data would result in an answer to the test question that does not require additional facts or assumptions.
 
-      If you are the owner of the test, you will have access to a "Save Default Facts" button which will save the current contents
-      of the scenario editor's facts screen as the default facts that should be loaded when a user views this test in the
-      scenario editor.
+      Those additionally relevant statements will be listed in the Fact screen after you click "Run".
 
-      ## Assumptions
+      If a statement is "unknown" in your facts, and it does not appear in the "Relevant Statements" list, adding information about that
+      statement cannot help find a non-contingent answer to the question.
 
-      ![Lock Button](/static/blawx/docs/images/lock_button.png)
-
-      In the Scenario Editor, every category and attribute has a "lock" button. It starts in the "locked" position, and if
-      you click on it, it switches to the "unlocked" position, and back again.
-
-      The lock button tells the reasoner which assumptions you would like it to make.
-
-      If you leave the lock "open" on a category (let's say "person"), that is equivalent to writing code that says "assume {X} is in the category person".
-      It allows Blawx to hypothesize the existence of additional members of that category in order to attempt to answer the question.
-
-      Similarly, if you leave the lock "open" on an object's attribute (let's say the "friend" attribute of the "bob" object), that
-      is equivalent to writing code that says "assume {X} is a friend of {bob}".
-
-      ### Relevance
-
-      If you leave a category or attribute unlocked, and click Run, the scenario editor will display all the answers that it
-      can derive using the facts and the assumptions specified. It will also use that information to figure out what additional
-      data would result in a certain answer to the test question that does not require additional facts or assumptions.
-      When adding an object to a category is relevant to finding more non-contingent answers, the "add" button for that category
-      will turn green. When adding a value to an object's attribute is relevant to finding more non-contingent answers, the
-      "add" button for that object's attribute will turn green.
-
-      If you leave a category or attribute value "unlocked", click "Run", and the "Add" button does NOT turn green, that means
-      that objects and values added in that location are irrelevant to the question you are answering. You can therefore "lock"
-      the category or attribute again, which might make your test run faster.
-
-      Note that there is no relevance information available until after you click "Run", and it will only be calculated for "unlocked"
-      categories and attributes.
-
+      Note that relevance is only calculated for statements that are listed as "unknown".
 
       ## Answers
 
@@ -139,13 +113,10 @@
       ## View
 
       The View tab of the scenario editor gives you the ability to customize the Facts tab by hiding various elements
-      from the display. You can hide entire categories, attributes for all members of a category, specific objects
-      that are present in the test, or specific attributes for specific objects present in the test.
+      from the display. You can hide categories and attributes. They will be hidden from both the fact list and the
+      Add Fact menu.
 
       ![View Tab](/static/blawx/docs/images/view_tab.png)
-
-      Only objects declared in the code or the test can be hidden in the View tab. Objects created by the user of
-      scenario editor cannot be hidden.
 
       If you are the owner of a test, you will have the option of clicking "Save View" in the View tab, which will make
       the current view the default for the scenario editor interface for that test. This can be used to simplify the
@@ -153,27 +124,17 @@
 
       # Tips
 
+      Having a large number of unknown fact statements can cause your questions to be answered more slowly. If you
+      find that questions are taking too long, try reducing the number of unknown fact statements you include in your
+      scenario.
+
       ## Known Problems
 
-      Scenario Editor is a very new feature, and there are a number of known issues:
+      * The Blawx reasoner cannot hypothesize with unknown objects if you are using object disequality blocks. Answers
+        will not display and relevance will not be calculated unless you create concrete objects, and set their attributes
+        to unknown.
 
-      * While you are editing an object name, other interface elements don't work. Click outside
-        of the object name field before continuing.
-      * If your rules contain the "_ is not the same object as _" object disequality block, at most one
-        object in that category can be assumed to exist by Blawx. You may find that unlocking all the categories
-        does not result in any answers in such rulesets. The current workaround is
-        to manually create a number of objects in the categories to which the disequality applies, and set their
-        attributes to unlocked. The number of objects you need to create is the number of different objects of the same
-        time referred to in the same rule, less one. For example if your rules include a disequality between two persons
-        in order to find siblings, you must create at least one (2-1=1) person before assumptions will work properly.
-
-      ## Lock Your Lists
-
-      Usually, you will want to lock all of your categories and attributes before running a query.
-
-      Note that leaving even a small number of categories and attributes unlocked at the same time can result in a large number of potential
-      answers to your question, which can slow down the speed of the reasoner and the Scenario Editor.
-
+      
       ## Selecting From Categories
       
       When setting the value of an attribute that has a category as it's type (for example, "friend" might be an attribute
@@ -184,22 +145,6 @@
 
       ## Duplicate Values
 
-      The Scenario Editor will allow you to add as many values as you like to an attribute, including duplicate values.
-      However, duplicate values do not have any meaning to the Blawx reasoner. It treats your fact scenario as if each
-      value occurred only once.
-
-      Note also that if you re-enter an object or value that was already provided by the code or your
-      test, it will appear in the list as normal, but it will be locked, and you will not be able to delete it.
-
-      ## True / False Values (You Usually Only Need One)
-
-      Because a true / false attribute can only hold two values, and duplicates of those values are meaningless, there
-      is never a reason to add more than two values to a true / false attribute for an object. The Scenario Editor will
-      let you add as many boolean values as you like, but no more than two can possibly be meaningful.
-
-      There are very few circumstances in which setting an objects true /false attribute to both true and false
-      will be meaningful. In most cases, the attribute models a thing that can only be true, false, or unknown about an
-      object. So it might seem unnecessary to allow the user to apply more than one.
-
-      However, while there are very few circumstances, there are more than zero, so you need to be careful you are not
-      inadvertently adding multiple true / false values unintentionally.
+      The Scenario Editor will allow you to add as many values as you like to an attribute, including duplicate and contradictory values.
+      Duplicate values do not have any meaning to the Blawx reasoner. It treats your fact scenario as if each
+      value occurred only once. Contradictory values may cause no answers to be found.

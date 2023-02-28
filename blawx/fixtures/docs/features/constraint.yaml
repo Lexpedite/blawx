@@ -5,6 +5,8 @@
     content: |
       # Logical Constraints
 
+      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
+
       **Note: The logical constraints feature is not currently working properly. This
       documentation describes how it is anticipated to work, but using logical constraints is
       not currently recommended.**

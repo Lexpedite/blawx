@@ -20,8 +20,8 @@
 
       The object category block is a statement block, and can be stacked with other statements.
 
-      The first internal connector expects an object or a variable. The second internal connector
-      expects a category selector.
+      The first internal connector expects an object or a variable. The second dropdown field
+      allows you to select a category.
 
       In a question or in the conditions of a rule or constraint, the block checks to see whether the object is
       a member of the category. In a conclusion or in a fact, it asserts that the membership is true.

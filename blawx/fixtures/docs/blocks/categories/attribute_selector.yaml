@@ -17,7 +17,7 @@
 
       ## Technical Details
 
-      The attribute selector block's appearance can vary due to the attribute display block.
+      The attribute selector block's appearance is determined by the attribute declaration block.
 
       It always has two internal connectors, one for the object, and one for the value. The object
       connector accepts an object or a variable. The value connector accepts a variable, or a value

@@ -1,19 +1,19 @@
 function blawxTypeToBlocklyType(blawxType) {
-    if (blawxType == 'Checkmark True / False') {
+    if (blawxType == 'boolean') {
       return 'Boolean';
-    } else if (blawxType == "# Number") {
+    } else if (blawxType == "number") {
       return 'Number';
     } else if (blawxType == "Text") {
       return 'String';
-    } else if (blawxType == "Calendar Date") {
+    } else if (blawxType == "date") {
       return 'DATE';
-    } else if (blawxType == "Calendar Clock Date / Time") {
+    } else if (blawxType == "datetime") {
       return 'DATETIME';
-    } else if (blawxType == "Clock Time") {
+    } else if (blawxType == "time") {
       return "TIME";
-    } else if (blawxType == "Stopwatch Duration") {
+    } else if (blawxType == "duration") {
       return "DURATION";
-    } else if (blawxType == "List") {
+    } else if (blawxType == "list") {
       return "LIST";
     } else {
       return 'OBJECT';
@@ -154,6 +154,24 @@ ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
   
 Blockly.Extensions.registerMutator('attribute_selector_mutator', ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);
 
+UNARY_ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
+  mutationToDom: function() {
+    //   console.log("Saving : " + this.blawxAttributeName + ", " + this.blawxAttributeType + ", " + this.blawxAttributeOrder)
+      var container = document.createElement('mutation');
+      container.setAttribute('attributename', this.blawxAttributeName);
+      container.setAttribute('attributetype', this.blawxAttributeType);
+      return container;
+  },
+  domToMutation: function(xmlElement) {
+      var attributeName = xmlElement.getAttribute('attributename');
+      var attributeType = xmlElement.getAttribute('attributetype');
+      this.blawxAttributeName = attributeName;
+      this.blawxAttributeType = attributeType;
+  }
+  }
+
+Blockly.Extensions.registerMutator('unary_attribute_selector_mutator', UNARY_ATTRIBUTE_SELECTOR_MUTATOR_MIXIN);
+
 RULE_SELECTOR_MUTATOR_MIXIN = {
   mutationToDom: function() {
       var container = document.createElement('mutation');
@@ -182,3 +200,11 @@ RULE_SELECTOR_MUTATOR_MIXIN = {
 //       }
 //   });
 //   });
+
+
+
+function onCategoryChange(event) {
+  if (event.type == Blockly.Events.BLOCK_CHANGE || event.type == Blockly.Events.BLOCK_DELETE || event.type == Blockly.Events.BLOCK_CREATE) {
+    updateLocalCategories();
+  }
+}

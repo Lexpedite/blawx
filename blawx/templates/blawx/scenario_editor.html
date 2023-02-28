@@ -94,7 +94,7 @@
                 <div id="facttree" class="blawx-category tree-element p-2">
                 </div>
                 <div>
-                    <button class="btn btn-success {% if 'change_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'change_blawxtest' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="save_fact_scenario()">
+                    <button class="btn btn-success my-2 {% if 'change_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'change_blawxtest' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="save_fact_scenario()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
                             <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"></path>
                         </svg>
@@ -161,7 +161,7 @@
     </div>
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
-            <span>Copyright &copy; Lexpedite Legal Technology Ltd. 2022</span> | <span>{{ BLAWX_VERSION }}</span>
+            <span>Copyright &copy; Lexpedite Legal Technology Ltd. 2022-2023</span> | <span>{{ BLAWX_VERSION }}</span>
         </div>
     </footer>
     <script>
@@ -187,6 +187,7 @@
         var parsed_test_response = {'Relevant Attributes': [], 'Relevant Categories': []};
         var ontology = {};
         var fact_data = {};
+        var new_fact_data = {'facts': []};
         var hidden_by_view = [];
         const ontology_request = new XMLHttpRequest();
         ontology_request.onload = function () {
@@ -195,7 +196,7 @@
                 hidden_by_view = ontology.View;
             }
             if(ontology.Facts != "") {
-                fact_data = ontology.Facts;
+                new_fact_data = ontology.Facts;
             } else {
                 initialize_facts();
             }
@@ -356,12 +357,13 @@
             if(statement != "query" && statement != "o_nmr_check") {
                 var statement_nlg = answerNLG(statement,true);
                 var negated = statement_nlg.match('there is no evidence that'); // is this a negated fact?
+                var assumed = statement_nlg.match('it is assumed that'); // is this an assumption?
                 var text_output = ""
                 output_html += "<p>"
-                if (!excluded.includes(predicate_name) && !negated) {
+                if (!excluded.includes(predicate_name) && !negated && !assumed) {
                     // Here we will need to check for assumptions, so they can be displayed.
                     text_output += "We know "
-                } else if (!negated) {
+                } else if (!negated && !assumed) {
                     text_output += "We can calculate that "
                 }
                 text_output += statement_nlg;
@@ -394,7 +396,7 @@
                     }
                     output_html += "</ul>"
                     output_html += "</p>"
-                } else if (!excluded.includes(predicate_name) && !negated) { // there are no reasons, so it was specified as a fact
+                } else if (!excluded.includes(predicate_name) && !negated && !assumed) { // there are no reasons, so it was specified as a fact
                         output_html += ", which was provided as a fact.</p>"
                 } else {
                     output_html += ".</p>"
@@ -469,26 +471,58 @@
                 return model.toString();
             } else if (Array.isArray(model)) {
                 return model.toString();
-            } else if (model.functor == "-") { // this is a "because" node
+            } else if (model.functor == "-") { // this is a "because" node or known false node
                 return "because";
-            } else if (model.functor == "not") {
+            } else if (model.functor == "not" && model.args[0].functor != "-") {
                 return "there is no evidence that " + answerNLG(model.args[0],human);
-            } else if (model.functor == "legally_holds") {
+            } else if (model.functor == "not" && model.args[0].functor == "-") {
+                return "it may be true that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "legally_holds" && model.args[1].functor != "-") {
                 return "it legally holds that according to " + addSectionReferences(model.args[0],human) + ", " + answerNLG(model.args[1],human);
-            } else if (model.functor == "according_to") {
+            } else if (model.functor == "legally_holds" && model.args[1].functor == "-") {
+                return "it legally holds that it is false that according to " + addSectionReferences(model.args[0],human) + ", " + answerNLG(model.args[1].args[0],human);
+            } else if (model.functor == "according_to" && model.args[1].functor != "-") {
                 return "according to " + addSectionReferences(model.args[0],human) + ', ' + answerNLG(model.args[1],human);
-            } else if (model.functor == "defeated") {
+            } else if (model.functor == "according_to" && model.args[1].functor == "-") {
+                return "according to " + addSectionReferences(model.args[0],human) + ', it is not true that ' + answerNLG(model.args[1].args[0],human);
+            } else if (model.functor == "defeated" && model.args[1].functor != "-") {
                 return "the conclusion in " + addSectionReferences(model.args[0],human) + " that " + answerNLG(model.args[1],human) + " is defeated"
-            } else if (model.functor == "refuted") {
+            } else if (model.functor == "defeated" && model.args[1].functor == "-") {
+                return "the conclusion in " + addSectionReferences(model.args[0],human) + " that it is not true that " + answerNLG(model.args[1].args[0],human) + " is defeated"
+            } else if (model.functor == "refuted" && model.args[1].functor != "-") {
                 return "the conclusion in " + addSectionReferences(model.args[0],human) + " that " + answerNLG(model.args[1],human) + " is refuted"
-            } else if (model.functor == "opposes") {
+            } else if (model.functor == "refuted" && model.args[1].functor == "-") {
+                return "the conclusion in " + addSectionReferences(model.args[0],human) + " that it is not true that " + answerNLG(model.args[1].args[0],human) + " is refuted"
+            } else if (model.functor == "opposes" && model.args[1].functor != "-" && model.args[0].functor != "-") { // THIS IS WRONG BECAUSE TWO THINGS MIGHT BE NEGATED...
                 return "the conclusion " + answerNLG(model.args[0],human) + " opposes the conclusion " + answerNLG(model.args[1],human);
-            } else if (model.functor == "overrules" ) {
+            } else if (model.functor == "opposes" && (model.args[1].functor == "-" || model.args[0].functor =="-")) {
+                var output = "the concluson ";
+                if (model.args[0].functor == "-") {
+                    output += "it is not true that " + answerNLG(model.args[0].args[0],human);
+                } else {
+                    output += answerNLG(model.args[0],human);
+                }
+                output += " opposes the conclusion that ";
+                if (model.args[1].functor == "-") {
+                    output += "it is not true that " + answerNLG(model.args[1].args[0],human);
+                } else {
+                    output += answerNLG(model.args[1],human);
+                }
+                return output;
+            } else if (model.functor == "overrules") {
                 return addSectionReferences(model.args[0],human) + " overrules " + addSectionReferences(model.args[1],human)
-            }else if (model.functor == "abduced" ) {
-                return "it is presumed that " + answerNLG(model.args[0],human);
-            } else if (model.functor == "proved" ) { 
+            } else if (model.functor == "abduced" && model.args[0].functor != "-") {
+                return "it is hypothesized that " + answerNLG(model.args[0],human);
+            } else if (model.functor == "abduced" && model.args[0].functor == "-") {
+                return "it is hypothesized that it is not the case that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "proved" && model.args[0].functor != "-" ) { 
                 return answerNLG(model.args[0],human); // Just display the NLG for the thing that was proved.
+            } else if (model.functor == "proved" && model.args[0].functor == "-" ) { 
+                return "it is not true that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "chs" && model.args[0].functor != "-") {
+                return "it is assumed that " + answerNLG(model.args[0],human);
+            } else if (model.functor == "chs" && model.args[0].functor == "-") {
+                return "it is assumed that it is not true that " + answerNLG(model.args[0].args[0],human);
             } else if (model.functor == "findall") {
                 return "finding all " + answerNLG(model.args[0],human) + " in " + answerNLG(model.args[1],human) + " gives " + answerNLG(model.args[2],human)
             } else if (model.functor == "count_blawx_list") {
@@ -571,6 +605,14 @@
                             return prefix + " " + displayValue(object,human) + " " + postfix;
                         }
                     }
+                    for (var i=0; i < ontology.AttributeNLG.length; i++) {
+                        if (ontology.AttributeNLG[i].Attribute == predicate_name) {
+                            prefix = ontology.AttributeNLG[i].Prefix;
+                            postfix = ontology.AttributeNLG[i].Postfix;
+                            
+                            return prefix + " " + displayValue(object,human) + " " + postfix;
+                        }
+                    }
                     return displayValue(object,human) + " is a " + predicate_name;
                 } else { // it is an attribute
                     object = model.args[0];
@@ -646,28 +688,16 @@
             return output_html;
         }
         
-        function initialize_facts() {
-            // For each category, add an object to the fact_data with 'members' and 'members_known'
+        function initialize_facts() { // TODO CLEANUP
             categories = ontology['Categories'];
-            for (var i=0; i < categories.length; i++) {
-                fact_data[categories[i]] = { 'members': {}, 'members_known': true };
-            }
+            
             // For each existing object, add it to the fact scenario.
             objects = ontology['Objects'];
             attributes = ontology['Attributes'];
             values = ontology['Values'];
             for (var i=0; i < objects.length; i++) {
-                fact_data[objects[i]['Category']]['members'][objects[i]['Object']] = {};
-            }
-            for(var j=0; j< attributes.length; j++) {
-                // for each object in the category, add the empty attribute
-                var category_objects = Object.keys(fact_data[attributes[j]['Category']]['members']);
-                for(var k=0; k<category_objects.length; k++) {
-                    fact_data[attributes[j]['Category']]['members'][category_objects[k]][attributes[j]['Attribute']] = {
-                        'values': [],
-                        'values_known': true
-                    }
-                }
+                var new_fact_statement = {'from_ontology': true, 'type': 'true','category': objects[i]['Category'], 'object': objects[i]['Object']}
+                new_fact_data['facts'].push(new_fact_statement);
             }
             for(var l=0; l<values.length; l++){
                 // I have an object, an attribute, and a value, but I don't have a category.
@@ -680,738 +710,369 @@
                     }
                 }
                 // Now I should be able to add the value to the object in the fact_data
-                fact_data[value_category]['members'][values[l]['Object']][values[l]['Attribute']]['values'].push(values[l]['Value']);
+                var new_fact_statement = {'from_ontology': true, 'type': 'true','attribute': values[l]['Attribute'], 'object': values[l]['Object']}
+                if ('Value' in values[l]) {
+                    new_fact_statement['value'] = values[l]['Value']
+                }
+                new_fact_data['facts'].push(new_fact_statement);
             }
 
         }
         
-        function toggle_lock(category){
-            target = document.getElementById('category_' + category);
-            if(target.classList.contains('blawx_locked')){
-                target.classList.remove('blawx_locked');
-                fact_data[category].members_known = false;
-            } else {
-                target.classList.add('blawx_locked');
-                fact_data[category].members_known = true;
-            }
-        }
-        function toggle_attribute_lock(category,object,attribute){
-            target = document.getElementById(category + '_' + object + '_' + attribute);
-            if(target.classList.contains('blawx_locked')){
-                target.classList.remove('blawx_locked');
-                fact_data[category].members[object][attribute].values_known = false;
-            } else {
-                target.classList.add('blawx_locked');
-                fact_data[category].members[object][attribute].values_known = true;
-            }
-        }
-        // const date_regex = new RegExp("^date\\((\\d{4}),(\\d{2}),(\\d{2})\\)$", 'gm');
-        function draw_value(category,object,attribute,value,index){
-            // Add the value, based on the type.
-            var attribute_type;
-            var attribute_source = null;
-            var from_ontology = false;
-            for(var i=0; i<ontology['Values'].length; i++) {
-                // I'm mildly concerned that this might not work in the future
-                // if it becomes possible to have the same attribute name in
-                // multiple categories.
-                if (
-                    ontology['Values'][i]['Value'] == value &&
-                    ontology['Values'][i]['Object'] == object &&
-                    ontology['Values'][i]['Attribute'] == attribute
-                ) {
-                    from_ontology = true;
-                    break;
-                }
-            }
-            for(var i=0; i<ontology['Attributes'].length; i++){
-                if (ontology['Attributes'][i]['Category'] == category && ontology['Attributes'][i]['Attribute'] == attribute) {
-                    switch (ontology['Attributes'][i]['Type']) {
-                        case 'number':
-                            attribute_type = 'number';
-                            break;
-                        case 'date':
-                            attribute_type = 'date';
-                            break;
-                        case 'duration':
-                            attribute_type = 'duration';
-                            break;
-                        case 'boolean':
-                            attribute_type = 'boolean';
-                            break;
-                        case 'time':
-                            attribute_type = 'time';
-                            break;
-                        case 'datetime':
-                            attribute_type = 'datetime';
-                            break;
-                        default:
-                            attribute_type = 'object';
-                            attribute_source = ontology['Attributes'][i]['Type'];
-                    }
-                    break;
-                }
-            }
-            // Open Value
-            var order = "ov";
-            var prefix = "";
-            var infix = "'s " + attribute + " is";
-            var postfix = "";
-            for(var i=0; i < ontology['AttributeNLG'].length; i++) {
-                if (ontology['AttributeNLG'][i]['Attribute'] == attribute) {
-                    order = ontology['AttributeNLG'][i]['Order'];
-                    prefix = ontology['AttributeNLG'][i]['Prefix'];
-                    infix = ontology['AttributeNLG'][i]['Infix'];
-                    postfix = ontology['AttributeNLG'][i]['Postfix'];
-                    break;
-                }
-            }
-            var output_html = '<div class="blawx_value input-group py-2">';
-            if (order == "ov") {
-                // If object is first, then we need prefix, object, and infix.
-                output_html += '<span class="input-group-text">'+ prefix + ' ' + object + ' ' + infix + '</span>';
-            } else {
-                // Otherwise, we just need prefix.
-                if (prefix != "") {
-                    output_html += '<span class="input-group-text">'+ prefix + '</span>';
-                }
-            }
-            switch(attribute_type) {
-                case 'number':
-                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
-                    output_html += ' type="number" class="form-control"';
-                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
-                    output_html += ' value="' + value + '"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += '>';
-                    break;
-                case 'date':
-                    output_html += '<input type="date" class="form-control" onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
-                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
-                    output_html += ' value="' + value + '"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += '>';
-                    break;
-                case 'duration':
-                    const iso8601_date_duration_re = /^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$/gm;
-                    match = iso8601_date_duration_re.exec(value);
-                    var sign_value = "";
-                    var year_value = "0";
-                    var month_value = "0";
-                    var day_value = "0";
-                    var hour_value = "0";
-                    var minute_value = "0";
-                    if (typeof(match[1]) === 'undefined') {
-                        sign_value = "checked"
-                    }
-                    if (typeof(match[2]) !== 'undefined') {
-                        year_value = match[2].slice(0,-1);
-                    }
-                    if (typeof(match[3]) !== 'undefined') {
-                        month_value = match[3].slice(0,-1);
-                    }
-                    if (typeof(match[4]) !== 'undefined') {
-                        day_value = match[4].slice(0,-1);
-                    }
-                    if (typeof(match[5]) !== 'undefined') {
-                        hour_value = match[5].slice(0,-1);
-                    }
-                    if (typeof(match[6]) !== 'undefined') {
-                        minute_value = match[6].slice(0,-1);
-                    }
-                    output_html += '<span class="input-group-text px-1">S</span>';
-                    output_html += '<div class="input-group-text">';
-                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" class="form-check-input" type="checkbox" aria-label="Duration Direction"';
-                    output_html += ' ' + sign_value;
-                    output_html += ' id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_direction"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += '>';
-                    output_html += '</div>';
-                    output_html += '<span class="input-group-text px-1">Y</span>';
-                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Years" value="' + year_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_years"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += '>';
-                    output_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Months" value="' + month_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_months"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += '>';
-                    output_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
-                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Days" value="' + day_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_days"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += '>';
-                    output_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
-                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Hours" value="' + hour_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_hours"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += '>';
-                    output_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                    output_html += '<input onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')" type="number" class="form-control" aria-label="Duration Minutes" value="' + minute_value + '" id="category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_minutes"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += '>';
-                    break;
-                case 'boolean':
-                    output_html += '<select class="form-select" aria-label="Choose value"';
-                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
-                    output_html += ' onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')">';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += ">";
-                    output_html += '<option value="true"';
-                    if (value == "true") {
-                        output_html += ' selected';
-                    }
-                    output_html += '>True</option>';
-                    output_html += '<option value="false"';
-                    if (value == "false") {
-                        output_html += ' selected';
-                    }
-                    output_html += '>False</option>';
-                    output_html += '</select>';
-                    break;
-                case 'time':
-                    output_html += '<input type="time" class="form-control" onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
-                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
-                    output_html += ' value="' + value + '"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += '>';
-                    break;
-                case 'datetime':
-                    output_html += '<input type="datetime-local" class="form-control" onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')"';
-                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
-                    output_html += ' value="' + value + '"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += '>';
-                    break;
-                case 'object':
-                    output_html += '<select class="form-select" aria-label="Choose value"';
-                    if(from_ontology) {
-                        output_html += ' disabled';
-                    }
-                    output_html += ' id="' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '"';
-                    output_html += ' onchange="update_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + value + '\',\'' + index + '\')">';
-                    var options = Object.keys(fact_data[attribute_source]['members']);
-                    for (var i=0; i<options.length; i++){
-                        output_html += '<option value="' + options[i] + '"';
-                        if (value == options[i]){
-                            output_html += ' selected';
-                        }
-                        output_html += '>' + options[i] + '</option>';
-                    }
-                    output_html += '</select>';
-                default:
-            }
-            if (order == "ov") {
-                // If object is first, then we need postfix.
-                if (postfix != "") {
-                    output_html += '<span class="input-group-text">'+ postfix + '</span>';
-                }
-            } else {
-                // Otherwise, we need infix, object, and postfix.
-                output_html += '<span class="input-group-text">'+ infix + ' ' + object + ' ' + postfix + '</span>';
-            }
-            // Add the delete button
-            if (!from_ontology) {
-                output_html += '<button onclick="delete_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\',\'' + index +'\')" class="btn btn-outline-secondary blawx_delete_object" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">';
-                output_html += '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>';
-                output_html += '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>';
-                output_html += '</svg></button>';
-                }
-            // Close Value
-            output_html += '</div>';
-            return output_html;
-        };
-        function draw_attribute(category,object,attribute){
-            //Add an empty class to the attribute if it has no values.
-            if(fact_data[category]['members'][object][attribute]['values'].length == 0) {
-                empty_attribute = true;
-            } else {
-                empty_attribute = false;
-            }
-            var output_html = "";
-            // Start the attribute
-            output_html += '<div class="blawx_attribute';
-            if (empty_attribute) {
-                output_html += ' blawx_empty';
-            }
-            if(fact_data[category]['members'][object][attribute]['values_known']) {
-                output_html += ' blawx_locked';
-            }
-            output_html += '" id="' + category + '_' + object + '_' + attribute + '">';
-            // Start the header
-            output_html += '<div class="blawx_attribute_header tree-element p-2" id="' + category + '_' + object + '_' + attribute + '_header">';
-            output_html += '<div class="input-group">';
-            // Add the arrow
-            output_html += '<button class="blawx_caret btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#' + category + '_' + object + '_' + attribute + '_content"><i class="bi bi-caret-right"></i></button>';
-            // add the name
-            output_html += '<input type="text" class="form-control" aria-label="Category Name" value="' + attribute + ' attribute for ' + object + '" disabled>';
-            // Add the add button
-            var relevant = false;
-            for (var i=0; i<parsed_test_response['Relevant Attributes'].length; i++) {
-                if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
-                    parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object) {
-                        relevant = true;
-                        break;
-                }
-            }
-            output_html += '<button onclick="show_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_add_button btn btn-outline-secondary';
-            if (relevant) {
-                output_html += ' blawx_relevant';
-            }
-            output_html += '" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
-            output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
-            output_html += '</svg></button>';
-            // Add both lock buttons
-            output_html += '<button onclick="toggle_attribute_lock(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_lock_button btn btn-outline-secondary" id="category_' + category + '_' + object + '_' + attribute + '_lock" autocomplete="off">';
-            output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">';
-            output_html += '<path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>';
-            output_html += '</svg></button>';
-            output_html += '<button onclick="toggle_attribute_lock(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="blawx_unlock_button btn btn-outline-secondary" id="category_' + category + '_' + object + '_' + attribute + '_unlock" autocomplete="off">';
-            output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">';
-            output_html += '<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>';
-            output_html += '</svg></button>';
-            // Close the header
-            output_html += '</div></div>';
-            // Add the new value
-            var order = "ov";
-            var prefix = "";
-            var infix = "'s " + attribute + " is";
-            var postfix = "";
-            for(var i=0; i < ontology['AttributeNLG'].length; i++) {
-                if (ontology['AttributeNLG'][i]['Attribute'] == attribute) {
-                    order = ontology['AttributeNLG'][i]['Order'];
-                    prefix = ontology['AttributeNLG'][i]['Prefix'];
-                    infix = ontology['AttributeNLG'][i]['Infix'];
-                    postfix = ontology['AttributeNLG'][i]['Postfix'];
-                    break;
-                }
-            }
-            output_html += '<div class="blawx_new_value row blawx-object tree-element p-2">';
-            output_html += '<div class="input-group">';
-            if (order == "ov") {
-                // If object is first, then we need prefix, object, and infix.
-                output_html += '<span class="input-group-text">'+ prefix + ' ' + object + ' ' + infix + '</span>';
-            } else {
-                // Otherwise, we just need prefix.
-                if (prefix != "") {
-                    output_html += '<span class="input-group-text">'+ prefix + '</span>';
-                }
-            }
-            // Change the interface based on the input type.
-            var attribute_type;
-            var attribute_source = null;
-            for(var i=0; i<ontology['Attributes'].length; i++){
-                if (ontology['Attributes'][i]['Category'] == category && ontology['Attributes'][i]['Attribute'] == attribute) {
-                    switch (ontology['Attributes'][i]['Type']) {
-                        case 'number':
-                            attribute_type = 'number';
-                            break;
-                        case 'date':
-                            attribute_type = 'date';
-                            break;
-                        case 'duration':
-                            attribute_type = 'duration';
-                            break;
-                        case 'boolean':
-                            attribute_type = 'boolean';
-                            break;
-                        case 'time':
-                            attribute_type = 'time';
-                            break;
-                        case 'datetime':
-                            attribute_type = 'datetime';
-                            break;
-                        default:
-                            attribute_type = 'object';
-                            attribute_source = ontology['Attributes'][i]['Type'];
-                    }
-                    break; // Once you have found the attribute you don't need to keep looking
-                }
-            }
-            switch(attribute_type) {
-                case 'number':
-                    output_html += '<input onchange="save_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" type="number" class="form-control" aria-label="New value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
-                    break;
-                case 'date':
-                    output_html += '<input type="date" class="form-control" aria-label="Date" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
-                    break;
-                case 'duration':
-                    output_html += '<span class="input-group-text px-1">S</span>';
-                    output_html += '<div class="input-group-text">';
-                    output_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="category_' + category + '_' + object + '_' + attribute + '_new_direction">';
-                    output_html += '</div>';
-                    output_html += '<span class="input-group-text px-1">Y</span>';
-                    output_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_years">';
-                    output_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                    output_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_months">';
-                    output_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
-                    output_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_days">';
-                    output_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
-                    output_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_hours">';
-                    output_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                    output_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="category_' + category + '_' + object + '_' + attribute + '_new_minutes">';
-                    break;
-                case 'boolean':
-                    output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
-                    var true_relevant = false;
-                    var false_relevant = false;
-                    for (var i=0; i < parsed_test_response['Relevant Attributes'].length; i++) {
-                        if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
-                            parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object &&
-                            parsed_test_response['Relevant Attributes'][i]['Arguments'][1] == "true") {
-                                true_relevant = true;
-                        }
-                        if (parsed_test_response['Relevant Attributes'][i]['Attribute'] == attribute &&
-                            parsed_test_response['Relevant Attributes'][i]['Arguments'][0] == object &&
-                            parsed_test_response['Relevant Attributes'][i]['Arguments'][1] == "false") {
-                                false_relevant = true;
-                        }
-                    }
-                    output_html += '<option value="true"';
-                    if (true_relevant) {
-                        output_html += ' class="blawx_relevant"';
-                    }
-                    output_html += '>True</option><option value="false"';
-                    if (false_relevant) {
-                        output_html += ' class="blawx_relevant"';
-                    }
-                    output_html += '>False</option>';
-                    output_html += '</select>';
-                    break;
-                case 'time':
-                    output_html += '<input type="time" class="form-control" aria-label="Date" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
-                    break;
-                case 'datetime':
-                    output_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
-                    break;
-                case 'object':
-                    output_html += '<select class="form-select" aria-label="Choose value" id="category_' + category + '_' + object + '_' + attribute + '_new_value">';
-                    var options = Object.keys(fact_data[attribute_source]['members']);
-                    for (var i=0; i<options.length; i++){
-                        var option_relevant = false;
-                        for (var j=0; j < parsed_test_response['Relevant Attributes'].length; j++) {
-                            if (parsed_test_response['Relevant Attributes'][j]['Attribute'] == attribute &&
-                                parsed_test_response['Relevant Attributes'][j]['Arguments'][0] == object &&
-                                parsed_test_response['Relevant Attributes'][j]['Arguments'][1] == options[i]) {
-                                    option_relevant = true;
-                                    break;
-                            }
-                        }
-                        output_html += '<option value="' + options[i] + '"';
-                        if (option_relevant) {
-                            output_html += ' class="blawx_relevant"';
-                        }
-                        output_html += '>' + options[i] + '</option>';
-                    }
-                    output_html += '</select>';
-                    break;
-                default:
-                    output_html += "Can't Render Datatype";
-            }
-            if (order == "ov") {
-                // If object is first, then we need postfix.
-                if (postfix != "") {
-                    output_html += '<span class="input-group-text">'+ postfix + '</span>';
-                }
-            } else {
-                // Otherwise, we need infix, object, and postfix.
-                output_html += '<span class="input-group-text">'+ infix + ' ' + object + ' ' + postfix + '</span>';
-            }
-            output_html += '<button onclick="save_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
-            output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
-            output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
-            output_html += '</svg></button>';
-            output_html += '<button onclick="cancel_new_value(\'' + category + '\',\'' + object + '\',\'' + attribute + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
-            output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
-            output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
-            output_html += '</svg></button></div></div>';
-            // Open the contents
-            var show = false;
-            if(category + '_' + object + '_' + attribute + '_content' in expanded){
-                show = expanded[category + '_' + object + '_' + attribute + '_content'];
-            }
-            output_html += '<div class="blawx_attribute_contents se_subparts collapse p-2 gy-2';
-            if(show) {output_html += ' show'; }
-            output_html += '" id="' + category + '_' + object + '_' + attribute + '_content">';
-            // add each of the existing values
-            for(var i=0; i<fact_data[category]['members'][object][attribute]['values'].length; i++){
-                output_html += draw_value(category,object,attribute,fact_data[category]['members'][object][attribute]['values'][i],i);
-            }
-            // Close the contents
-            output_html += '</div>';
-            // Close the attribute
-            output_html += '</div>';
-            return output_html;
-        };
-        function draw_object(category,object){
-            attributes = ontology['Attributes'];
-            attribute_found = [];
-            for(var i=0; i<attributes.length; i++) {
-                if (attributes[i]['Category'] == category) {
-                    attribute_found.push(attributes[i]['Attribute']);
-                }
-            }
-            var from_ontology = false;
-            for(var i=0; i<ontology['Objects'].length; i++) {
-                if (ontology['Objects'][i]['Category'] == category && ontology['Objects'][i]['Object'] == object) {
-                    from_ontology = true;
-                    break;
-                }
-            }
-            // Start the object
-            var object_html = '<div class="blawx_object';
-            if(attribute_found.length) {
-                object_html += ' blawx_has_attributes';
-            }
-            object_html += '" id="' + category + '_' + object + '">';
-            // Start the Object Header
-            object_html += '<div class="blawx_object_header row tree-element p-2" id="' + category + '_' + object + '_header"><div class="input-group">';
-            // Add the arrow
-            object_html += '<button class="blawx_caret btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#' + category + '_' + object + '_content"><i class="bi bi-caret-right"></i></button>';
-            // Add the name
-            
-            var prefix = "";
-            var postfix = "is a " + category;
-            for (var i=0; i< ontology['CategoryNLG'].length; i++) {
-                if (ontology['CategoryNLG'][i]['Category'] == category) {
-                    prefix = ontology['CategoryNLG'][i]['Prefix'];
-                    postfix = ontology['CategoryNLG'][i]['Postfix'];
-                    break;
-                }
-            }
-            if (prefix != "") {
-                object_html += '<span class="input-group-text">'+ prefix + '</span>';
-            }
-            object_html += '<input onchange="update_object(\'' + category + '\',\'' + object + '\')" type="text" class="form-control" aria-label="Object name" id="' + category + '_' + object + '_name" value="' + object + '"';
-            if (from_ontology) {
-                object_html += ' disabled';
-            }
-            object_html += '>';
-            if (postfix != "") {
-                object_html += '<span class="input-group-text">'+ postfix + '</span>';
-            }
-            // Add the delete button
-            if (!from_ontology) {
-                object_html += '<button onclick="delete_object(\'' + category + '\',\'' + object + '\')" class="btn btn-outline-secondary blawx_delete_object" type="button"';
-                object_html += '><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">';
-                object_html += '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>';
-                object_html += '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>';
-                object_html += '</svg></button>';
-            }
-            // Close the Object Header
-            object_html += '</div></div>';
-            // Open the Object Contents
-            var show = false;
-            if(category + '_' + object + '_content' in expanded) {
-                show = expanded[category + '_' + object + '_content'];
-            }
-            object_html += '<div class="blawx_object_contents se_subparts collapse';
-            if(show){object_html += ' show';}
-            object_html += '" id="' + category + '_' + object + '_content">';
-            // For each attribute, add it.
-            for(var i=0;i<attribute_found.length;i++) {
-                // Hide if hidden for this object or for all objects.
-                if(!hidden_by_view.includes('view_cat_' + category + "_obj_" + object + "_att_" + attribute_found[i]) &&
-                    !hidden_by_view.includes('view_cat_' + category + '_att_' + attribute_found[i])) {
-                        object_html += draw_attribute(category,object,attribute_found[i]);
-                    }
-            }
-            // Close the Object Contents
-            object_html += '</div>';
-            // Close the Object
-            object_html += '</div>';
-            return object_html;
-        };
-        function draw_category(category){
-            // The input category should have 'members_known','members' at least
-            input_category = fact_data[category];
-            var has_members = Object.entries(input_category['members']).length;
-            var locked = input_category['members_known'];
-            var output_html = '<div id="category_' + category + '" class="blawx_category';
-            if (locked) {
-                output_html += ' blawx_locked';
-            }
-            if (!has_members) {
-                output_html += ' blawx_empty';
-            }
-            output_html += '">';
-            output_html += '<div id="category_' + category + '_header" class="blawx_category_header tree-element p-2"><div class="input-group">';
-            // Add the arrow
-            // TODO: Add "show" if the category is in `expanded`
-            output_html += '<button class="blawx_caret btn btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#category_' + category + '_content" type="button"><i class="bi bi-caret-right"></i></button>';
-            // Add the name
-            output_html += '<input type="text" class="form-control" aria-label="Category Name" value="Category: ' + category + '" disabled>';
-            // Add the add button
-            var relevant = false;
-            for (var i=0; i<parsed_test_response['Relevant Categories'].length; i++) {
-                if (parsed_test_response['Relevant Categories'][i] == category) {
-                        relevant = true;
-                        break;
-                }
-            }
-            output_html += '<button onclick="show_new_object(\'' + category + '\')" class="blawx_add_button btn btn-outline-secondary';
-            if (relevant) {
-                output_html += ' blawx_relevant';
-            }
-            output_html += '" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">';
-            output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
-            output_html += '</svg></button>';
-            // Add both lock buttons
-            output_html += '<button onclick="toggle_lock(\'' + category + '\')" class="blawx_lock_button btn btn-outline-secondary" id="category_' + category + '_lock" autocomplete="off">';
-            output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">';
-            output_html += '<path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>';
-            output_html += '</svg></button>';
-            output_html += '<button onclick="toggle_lock(\'' + category + '\')" class="blawx_unlock_button btn btn-outline-secondary" id="category_' + category + '_unlock" autocomplete="off">';
-            output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">';
-            output_html += '<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>';
-            output_html += '</svg></button>';
-            output_html += '</div>'; // closes category header
-            output_html += '</div>';
-            // Add the new object
-            var prefix = "";
-            var postfix = "is a " + category;
-            for (var i=0; i< ontology['CategoryNLG'].length; i++) {
-                if (ontology['CategoryNLG'][i]['Category'] == category) {
-                    prefix = ontology['CategoryNLG'][i]['Prefix'];
-                    postfix = ontology['CategoryNLG'][i]['Postfix'];
-                    break;
-                }
-            }
-            output_html += '<div class="blawx_new_object row blawx-object tree-element p-2">';
-            output_html += '<div class="input-group">';
-            if (prefix != "") {
-                output_html += '<span class="input-group-text">'+ prefix + '</span>';
-            }
-            output_html += '<input onchange="save_new_object(\'' + category + '\')" type="text" class="form-control" aria-label="New object name" id="category_' + category + '_new_object">';
-            if (postfix != "") {
-                output_html += '<span class="input-group-text">'+ postfix + '</span>';
-            }
-            output_html += '<button onclick="save_new_object(\'' + category + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
-            output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
-            output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
-            output_html += '</svg></button>';
-            output_html += '<button onclick="cancel_new_object(\'' + category + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
-            output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
-            output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
-            output_html += '</svg></button></div></div>';
-            // Open Content
-            var show = false;
-            if('category_' + category + '_content' in expanded) {
-                show = expanded['category_' + category + '_content'];
-            }
-            output_html += '<div class="blawx_category_content se_subparts collapse';
-            if (show) { output_html += ' show';}
-            output_html += '" id="category_' + category + '_content">';
-            // add each member
-            var objects = Object.keys(input_category['members']);
-            for(var i = 0; i < objects.length; i++) {
-                if(!hidden_by_view.includes('view_cat_' + category + '_obj_' + objects[i])) {
-                    output_html += draw_object(category,objects[i]);
-                }
-            }
-            // Close Content
-            output_html += '</div>';
-            // Close the Category
-            output_html += '</div>';
-            // Return the output
-            return output_html;
-        };
+        
         function draw_facts(){
             var output_html = '<nav class="column" id="facttree">';
-            // Go through the categories, and draw each
-            var categories = Object.keys(fact_data);
-            for(category in categories) {
-                if (!hidden_by_view.includes('view_cat_' + categories[category])) {
-                    output_html += draw_category(categories[category]);
+            output_html += '<div id="new_known_objects">';
+            output_html += draw_new_fact_data();
+            output_html += "</div>";
+            // TODO: Create an "add object" form, that lets you create objects of any category.
+            // Loop through the categories and their NLG, and build the new object forms, here, for display when requested.
+            for(var c=0; c < ontology['Categories'].length; c++) {
+                if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
+                    var prefix = "";
+                    var postfix = "is a " + ontology['Categories'][c];
+                    for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                        if (ontology['CategoryNLG'][i]['Category'] == ontology['Categories'][c]) {
+                            prefix = ontology['CategoryNLG'][i]['Prefix'];
+                            postfix = ontology['CategoryNLG'][i]['Postfix'];
+                            break;
+                        }
+                    }
+                    output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2" id="new_category_' + ontology['Categories'][c] + '">';
+                    output_html += '<div class="input-group">';
+                    output_html += '<span class="input-group-text">It is</span>';
+                        
+                    output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example" id="new_object_truth_value_' + ontology['Categories'][c] + '">';
+                    output_html += '<option selected value="true">true that</option>';
+                    output_html += '<option value="false">false that</option>';
+                    output_html += '<option value="unknown">uncertain whether</option>';
+                    output_html += '</select></div>';
+                    if (prefix != "") {
+                        output_html += '<span class="input-group-text">'+ prefix + '</span>';
+                    }
+                    output_html += '<div class="input-group-text"><input onclick="toggle_unground_new_object(\'' + ontology['Categories'][c] + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input" id="new_object_toggle_check_' + ontology['Categories'][c] + '"><input onchange="save_new_object(\'' + ontology['Categories'][c] + '\')" type="text" class="form-control" aria-label="New object name" id="new_object_name_' + ontology['Categories'][c] + '">';
+                    output_html += '</div>';
+                    if (postfix != "") {
+                        output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                    }
+                    output_html += '<button onclick="save_new_object(\'' + ontology['Categories'][c] + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
+                    output_html += '</svg></button>';
+                    output_html += '<button onclick="cancel_new_object(\'' + ontology['Categories'][c] + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+                    output_html += '</svg></button></div></div>';
                 }
             }
+            for(var a = 0; a < ontology['Attributes'].length; a++) {
+                if (!hidden_by_view.includes('view_att_' + ontology['Attributes'][a]['Attribute'])) {
+                    var prefix;
+                    var infix;
+                    var postfix;
+                    var order;
+                    var object_type;
+                    var value_type;
+                    var attribute_name;
+                    attribute_name = ontology['Attributes'][a]['Attribute'];
+                    object_type = ontology['Attributes'][a]['Category'];
+                    value_type = ontology['Attributes'][a]['Type'];
+                    var value_type_is_category;
+                    if (['date','time','datetime','duration','number'].includes(value_type)) {
+                        value_type_is_category = false;
+                    } else {
+                        value_type_is_category = true;
+                    }
+                    for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                        if (ontology['Attributes'][a]['Attribute'] == ontology['AttributeNLG'][i]['Attribute']) {
+                            prefix = ontology['AttributeNLG'][i]['Prefix'];
+                            infix = ontology['AttributeNLG'][i]['Infix'];
+                            postfix = ontology['AttributeNLG'][i]['Postfix'];
+                            order = ontology['AttributeNLG'][i]['Order'];
+                            break;
+                        }
+                    }
+                    output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2" id="new_attribute_' + attribute_name + '">';
+                    output_html += '<div class="input-group">';
+                    output_html += '<span class="input-group-text">It is</span>';
+                        
+                    output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example" id="new_attribute_truth_type_' + attribute_name + '">';
+                    output_html += '<option selected value="true">true that</option>';
+                    output_html += '<option value="false">false that</option>';
+                    output_html += '<option value="unknown">uncertain whether</option>';
+                    output_html += '</select></div>';
+
+                    value_html = ""
+                    switch(value_type) {
+                        case 'number':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';    
+                            value_html += '<input onchange="save_new_value(\'' + attribute_name + '\')" type="number" class="form-control" aria-label="New value" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        case 'date':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<input type="date" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        case 'duration':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<span class="input-group-text px-1">S</span>';
+                            value_html += '<div class="input-group-text">';
+                            value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="new_attribute_value_' + attribute_name + '_direction">';
+                            value_html += '</div>';
+                            value_html += '<span class="input-group-text px-1">Y</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="new_attribute_value_' + attribute_name + '_years">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="new_attribute_value_' + attribute_name + '_months">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="new_attribute_value_' + attribute_name + '_days">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="new_attribute_value_' + attribute_name + '_hours">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="new_attribute_value_' + attribute_name + '_minutes">';
+                            value_html += "</div>";
+                            break;
+                        case 'boolean':
+                            break;
+                        case 'time':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<input type="time" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        case 'datetime':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        default:
+                            if (value_type_is_category) {
+                                value_html += '<div class="input-group-text">';
+                                //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                                value_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_value_' + attribute_name + '">';
+                                //for (var o=0; o < ontology['Objects'].length; o++) {
+                                //    if (ontology['Objects'][o]['Category'] == value_type) {
+                                //        value_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                                //    }
+                                //}
+                                for (var n=0; n < new_fact_data['facts'].length; n++) {
+                                    if ('category' in new_fact_data['facts'][n]) {
+                                        if (new_fact_data['facts'][n]['category'] == value_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                            value_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                        }
+                                    }
+                                }
+                                //for (var f=0; f < fact_data.length; f++) {
+                                //    if ('category' in fact_data[f]) {
+                                //        if (fact_data[f]['category'] == value_type) {
+                                //            value_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                                //        }
+                                //    }
+                                //}
+                                value_html += '<option value="VAR">any ' + value_type + '</option>';
+                                value_html += '</select></div>';
+                            } else {
+                                value_html += "Can't Render Datatype";
+                            }
+                    }
+
+                    if (prefix != "") {
+                        output_html += '<span class="input-group-text">'+ prefix + '</span>';
+                    }
+                    if (order == "ov") {
+                        output_html += '<div class="input-group-text">';
+                        //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                        output_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_object_' + attribute_name + '">';
+                        //for (var o=0; o < ontology['Objects'].length; o++) {
+                        //    if (ontology['Objects'][o]['Category'] == object_type) {
+                        //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                        //    }
+                        //}
+                        for (var n=0; n < new_fact_data['facts'].length; n++) {
+                            if ('category' in new_fact_data['facts'][n]) {
+                                if (new_fact_data['facts'][n]['category'] == object_type  && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                    output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                }
+                            }
+                        }
+                        //for (var f=0; f < fact_data.length; f++) {
+                        //    if ('category' in fact_data[f]) {
+                        //        if (fact_data[f]['category'] == object_type) {
+                        //            output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                        //        }
+                        //    }
+                        //}
+                        output_html += '<option value="VAR">any ' + object_type + '</option>';
+                        output_html += '</select></div>';
+                    } else {
+                        output_html += value_html;
+                    }
+                    if (infix != "" && infix != "not_applicable") {
+                        output_html += '<span class="input-group-text">'+ infix + '</span>';
+                    }
+                    if (order == "ov") {
+                        output_html += value_html;
+                    } else {
+                        output_html += '<div class="input-group-text">';
+                        //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                        output_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_object_' + attribute_name + '">';
+                        //for (var o=0; o < ontology['Objects'].length; o++) {
+                        //    if (ontology['Objects'][o]['Category'] == object_type) {
+                        //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                        //    }
+                        //}
+                        for (var n=0; n < new_fact_data['facts'].length; n++) {
+                            if ('category' in new_fact_data['facts'][n]) {
+                                if (new_fact_data['facts'][n]['category'] == object_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                    output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                }
+                            }
+                        }
+                        //for (var f=0; f < fact_data.length; f++) {
+                        //    if ('category' in fact_data[f]) {
+                        //        if (fact_data[f]['category'] == object_type) {
+                        //            output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                        //        }
+                        //    }
+                        //}
+                        output_html += '<option value="VAR">any ' + object_type + '</option>';
+                        output_html += '</select></div>';
+                    }
+                    if (postfix != "") {
+                        output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                    }
+                    output_html += '<button onclick="save_new_value(\'' + attribute_name + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
+                    output_html += '</svg></button>';
+                    output_html += '<button onclick="cancel_new_value(\'' + attribute_name + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+                    output_html += '</svg></button></div></div>';    
+                }
+            }
+            output_html += '<div id="new_objects">';
+                output_html += '<div class="dropdown">';
+                output_html += '<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">';
+                output_html += '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>';
+                output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
+                output_html += '</svg>Add Fact</button>';
+                output_html += '<ul class="dropdown-menu w-100">';
+                
+                var categories = Object.keys(fact_data);
+                
+                for(var c=0; c < ontology['Categories'].length; c++) {
+                    if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
+                        var prefix = "";
+                        var postfix = "is a " + ontology['Categories'][c];
+                        for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                            if (ontology['CategoryNLG'][i]['Category'] == ontology['Categories'][c]) {
+                                prefix = ontology['CategoryNLG'][i]['Prefix'];
+                                postfix = ontology['CategoryNLG'][i]['Postfix'];
+                                break;
+                            }
+                        }
+                        output_html += '<li><a onclick="show_new_object(\'' + ontology['Categories'][c] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>object</i> ' + postfix + '</a></li>';
+                    }
+                }
+                for(var a=0; a < ontology['Attributes'].length; a++) {
+                    if (!hidden_by_view.includes('view_att_' + ontology['Attributes'][a]['Attribute'])) {    
+                        var attribute_name = ontology['Attributes'][a]['Attribute'];
+                        var object_type = ontology['Attributes'][a]['Category'];
+                        var value_type = ontology['Attributes'][a]['Type'];
+                        for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                            if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
+                                prefix = ontology['AttributeNLG'][i]['Prefix'];
+                                infix = ontology['AttributeNLG'][i]['Infix'];
+                                postfix = ontology['AttributeNLG'][i]['Postfix'];
+                                order = ontology['AttributeNLG'][i]['Order'];
+                                break;
+                            }
+                        }
+                        if (value_type == "boolean") {
+                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                        } else {
+                            if (order == "ov") {
+                                output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + infix + ' <i>' + value_type + '</i> ' + postfix + '</a></li>';
+                            } else {
+                                output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' + value_type + '</i> ' + infix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                            }
+                        }
+                    }
+                }
+                output_html += '</ul>';
+                output_html += '</div>';
+                output_html += '</div>';
+                
+
             output_html += '</nav>';
             // Output the result to facttree
             var target = document.getElementById('facttree');
             target.outerHTML = output_html;
-            var collapsing_elements = [];
-            collapsing_elements.push(...document.getElementsByClassName('blawx_category_content'));
-            collapsing_elements.push(...document.getElementsByClassName('blawx_object_contents'));
-            collapsing_elements.push(...document.getElementsByClassName('blawx_attribute_contents'));
-            for(var i=0; i<collapsing_elements.length; i++) {
-                document.getElementById(collapsing_elements[i].id).addEventListener('hide.bs.collapse', function () {
-                    if (event.target == event.currentTarget) {
-                        expanded[this.id] = false;
-                    }
-                });
-                document.getElementById(collapsing_elements[i].id).addEventListener('show.bs.collapse', function () {
-                    if (event.target == event.currentTarget) {
-                        expanded[this.id] = true;
-                    }
-                });
+
+        };
+        function toggle_unground_new_object(category) {
+            // Get the value of the checkbox
+            var checkbox = document.getElementById('new_object_toggle_check_' + category);
+            var grounded = checkbox.checked;
+            // Get the target textbox
+            var target_input = document.getElementById('new_object_name_' + category);
+            // If checked, set the textbox to "ANYTHING" and disable it.
+            if (grounded) {
+                target_input.value = "any object";
+                target_input.disabled = true;
+            } else {
+                // Otherwise, set the textbox to blank, and enable it.
+                target_input.value = "";
+                target_input.disabled = false;
             }
-        };
+
+        }
         function show_new_object(category){
-            // Close any other open new object or value
-            // set the current new object to be visible.
-            target = document.getElementById('category_' + category);
-            target.classList.add('blawx_show_new');
-            // Set the current "lock" button to disabled.
-            target_button = document.getElementById('category_' + category + '_lock');
-            target_button.setAttribute('disabled','');
-            // Move the focus to the new object input.
-            target_input = document.getElementById('category_' + category + '_new_object');
-            target_input.focus();
+            
+            target = document.getElementById('new_category_' + category);
+            target.classList.add('show');
+
         };
+        function show_new_attribute(attribute) {
+            target = document.getElementById('new_attribute_' + attribute);
+            target.classList.add('show');
+        }
         function save_new_object(category){
             // Add the object to the data
-            target = document.getElementById('category_' + category + '_new_object');
+            target_name = document.getElementById('new_object_name_' + category);
+            target_truth_value = document.getElementById('new_object_truth_value_' + category)
             new_object_name = target.value;
-            fact_data[category]['members'][new_object_name] = {};
-            // add attributes to the new object
-            attributes = ontology['Attributes'];
-            var attributes_found = [];
-            for(var i=0; i< attributes.length;i++){
-                if(attributes[i]['Category'] == category) {
-                    attributes_found.push(attributes[i]['Attribute']);
-                }
+            var new_fact_statement = { 'from_ontology': false, 'type': target_truth_value.value, 'category': category}
+            if (target_name.value == "any object") {
+                new_fact_statement['object'] = {'variable': 'A'};
+            } else {
+                new_fact_statement['object'] = target_name.value;
             }
-            for(var i=0; i< attributes_found.length; i++) {
-                fact_data[category]['members'][new_object_name][attributes_found[i]] = {
-                    'values': [],
-                    'values_known': true
-                }
-            }
-            expanded['category_' + category + '_content'] = true;
-            expanded[category + '_' + new_object_name + '_content'] = true;
+            new_fact_data['facts'].push(new_fact_statement)
+            
             // redraw
             draw_facts();
         };
         function cancel_new_object(category){
             // Delete the value in the current new object
-            target_new_object = document.getElementById('category_' + category + '_new_object');
-            target_new_object.value='';
+            //target_new_object = document.getElementById('category_' + category + '_new_object');
+            //target_new_object.value='';
             // Return it to hidden.
-            target_category = document.getElementById('category_' + category);
-            target_category.classList.remove('blawx_show_new');
+            target_category = document.getElementById('new_category_' + category);
+            target_category.classList.remove('show');
             // Re-Enable the Lock Button
-            target_button = document.getElementById('category_' + category + '_lock');
-            target_button.removeAttribute('disabled');
+            //target_button = document.getElementById('category_' + category + '_lock');
+            //target_button.removeAttribute('disabled');
         };
+        function cancel_new_value(attribute){
+            target_attribute = document.getElementById('new_attribute_' + attribute);
+            target_attribute.classList.remove('show');
+        }
         function show_new_value(category,object,attribute){
             // Close any other open new object or value
             // set the current new object to be visible.
@@ -1437,37 +1098,28 @@
             }
             target_input.focus();
         };
-        function save_new_value(category,object,attribute){
+        function save_new_value(attribute){
+            var truth_target = document.getElementById('new_attribute_truth_type_' + attribute);
+            var truth_type = truth_target.value;
+            
             // Figure out what type of value this is.
             var attribute_type;
             for(var i =0; i<ontology['Attributes'].length; i++) {
-                if(ontology['Attributes'][i]['Category'] == category
-                  && ontology['Attributes'][i]['Attribute'] == attribute) {
+                if(ontology['Attributes'][i]['Attribute'] == attribute) {
                     attribute_type = ontology['Attributes'][i]['Type'];
                     break;
                   }
             }
-            // This ection is removed because booleans have been re-implemented as drop-downs, not checkboxes.
-            // For Booleans, check if it is "checked", it's value is not relevant.
-            //if(attribute_type == "boolean") {
-            //    // Get the new value
-            //    target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
-            //    new_value = target.value;    
-            //    if(target.checked) {
-            //        new_value = "true";
-            //    } else {
-            //        new_value = "false";
-            //    }
-            //}
-            // else
+            
+            
             if(attribute_type == "duration") {
                 // Get the new value
-                direction_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_direction');
-                year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_years');
-                month_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_months');
-                day_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_days');
-                hour_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_hours');
-                minute_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_minutes');
+                direction_target = document.getElementById('new_attribute_value_' + attribute + '_direction');
+                year_target = document.getElementById('new_attribute_value_' + attribute + '_years');
+                month_target = document.getElementById('new_attribute_value_' + attribute + '_months');
+                day_target = document.getElementById('new_attribute_value_' + attribute + '_days');
+                hour_target = document.getElementById('new_attribute_value_' + attribute + '_hours');
+                minute_target = document.getElementById('new_attribute_value_' + attribute + '_minutes');
                 if (direction_target.checked) {
                     new_direction = true;
                 } else {
@@ -1503,125 +1155,33 @@
                 if (parseInt(new_minute)) {
                     new_value += new_minute + "M";
                 }
-            } else {
+            } else if (attribute_type != "boolean") {
                 // Get the new value
-                target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+                target = document.getElementById('new_attribute_value_' + attribute);
                 new_value = target.value;    
             }
-            fact_data[category]['members'][object][attribute]['values'].push(new_value);
-            expanded[category + "_" + object + '_' + attribute + "_content"] = true;
-            // redraw
-            draw_facts();
-        };
-        function update_value(category,object,attribute,value,index){
-            // Figure out what type of value this is.
-            var attribute_type;
-            for(var i =0; i<ontology['Attributes'].length; i++) {
-                if(ontology['Attributes'][i]['Category'] == category
-                  && ontology['Attributes'][i]['Attribute'] == attribute) {
-                    attribute_type = ontology['Attributes'][i]['Type'];
-                    break;
-                  }
-            }
-            // This section is removed becoause booleans are re-implemented as drop-downs, not checkboxes.
-            //      If it is a boolean, fix the value.
-            //if(attribute_type == "boolean") {
-            //    //      Get the new value
-            //    target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
-            //    new_value = target.value;
-            //    if (target.checked) {
-            //        new_value = "true";
-            //    } else {
-            //        new_value = "false";
-            //    }
-            //} else
-            if (attribute_type == "duration") {
-                direction_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_direction');
-                year_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_years');
-                month_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_months');
-                day_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_days');
-                hour_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_hours');
-                minute_target = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_' + value + '_' + index + '_minutes');
-                if (direction_target.checked) {
-                    new_direction = true;
-                } else {
-                    new_direction = false;
-                }
-                new_year = year_target.value;
-                new_month = month_target.value;
-                new_day = day_target.value;
-                new_hour = hour_target.value;
-                new_minute = minute_target.value;
-                if (new_direction) {
-                    new_value = "";
-                } else {
-                    new_value = "-";
-                }
-                new_value += "P"
-                if (parseInt(new_year)) {
-                    new_value += new_year + "Y";
-                }
-                if (parseInt(new_month)) {
-                    new_value += new_month + "M";
-                }
-                // The idea here is that if all three are zero, it should come out as P0D
-                if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
-                    new_value += new_day + "D";
-                }
-                if (parseInt(new_hour) || parseInt(new_minute)) {
-                    new_value += "T"
-                }
-                if (parseInt(new_hour)) {
-                    new_value += new_hour + "H"
-                }
-                if (parseInt(new_minute)) {
-                    new_minute += new_minute + "M"
-                }
+            var target_object = document.getElementById('new_attribute_object_' + attribute);
+            var new_object = target_object.value;
+            var new_fact_statement = {'from_ontology': false, 'type': truth_type, 'attribute': attribute};
+            if (new_object != "VAR") {
+                new_fact_statement['object'] = new_object;
             } else {
-                //      Get the new value
-                target = document.getElementById(category + '_' + object + '_' + attribute + '_' + value + '_' + index);
-                new_value = target.value;
+                new_fact_statement['object'] = {'variable': 'object'};
             }
-            //      Replace the current value with the new value in the facts
-            // index_of_old = fact_data[category]['members'][object][attribute]['values'].indexOf(value)
-            fact_data[category]['members'][object][attribute]['values'][index] = new_value;
-            //      Redraw the interface
-            draw_facts();
-        }
-        function cancel_new_value(category,object,attribute){
-            // Delete the value in the current new value input
-            target_new_value = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
-            target_new_value.value='';
-            // Return it to hidden.
-            target_attribute = document.getElementById(category + '_' + object + '_' + attribute );
-            target_attribute.classList.remove('blawx_show_new');
-            // Re-Enable the Lock Button
-            target_button = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_lock');
-            target_button.removeAttribute('disabled');
-        };
-        function delete_object(category,object){
-            // Delete the object from the data
-            delete fact_data[category]['members'][object];
+            if (attribute_type != "boolean") {
+                if (new_value != "VAR") {
+                    new_fact_statement['value'] = new_value;
+                } else {
+                    new_fact_statement['value'] = {'variable': 'value'}
+                }
+            }
+            new_fact_data['facts'].push(new_fact_statement);
+            //fact_data[category]['members'][object][attribute]['values'].push(new_value);
+            //expanded[category + "_" + object + '_' + attribute + "_content"] = true;
             // redraw
             draw_facts();
         };
-        function update_object(category,object) {
-            //Get the new value of the object
-            target_object = document.getElementById(category + '_' + object + '_name');
-            new_object_name = target_object.value;
-            //Add it to the facts
-            
-            Object.assign(fact_data[category]['members'], {[new_object_name]: fact_data[category]['members'][object] });
-            delete fact_data[category]['members'][object];
-            draw_facts();
-        }
-        function delete_value(category,object,attribute,index){
-            // Delete the value from the data
-            fact_data[category]['members'][object][attribute]['values'].splice(index, 1);
-            
-            // redraw
-            draw_facts();
-        };
+        
         draw_facts();
         var answer_element = document.getElementById('answers');
         var payload_element = document.getElementById('payload');
@@ -1631,7 +1191,7 @@
             testrun_request.onload = function () {
                 parsed_test_response = JSON.parse(this.responseText);
                 console.log("Test response received")
-                payload_element.innerHTML = '<pre>' + JSON.stringify(fact_data,null,2) + '</pre>'
+                payload_element.innerHTML = '<pre>' + JSON.stringify(new_fact_data,null,2) + '</pre>'
                 
                 response_element.innerHTML = '<pre>' + JSON.stringify(parsed_test_response,null,2) + '</pre>'
                 // If the question is answered
@@ -1723,7 +1283,7 @@
             console.log("Sending test request");
             answer_element.innerHTML = "Thinking...";
             testrun_request.setRequestHeader('X-CSRFToken', csrftoken);
-            testrun_request.send(JSON.stringify(fact_data));
+            testrun_request.send(JSON.stringify(new_fact_data));
         }
         var view_form_element = document.getElementById('viewform');
         function toggle_view_hidden(input) {
@@ -1750,56 +1310,20 @@
                 output += '<label class="form-check-label" for="view_cat_' + ontology['Categories'][i] + '">Hide Category ' + ontology['Categories'][i] + '</label>';
                 output += '</div>';
                 output += '</li>';
-                // For each attribute of that category
-                for(var j=0; j < ontology['Attributes'].length; j++) {
-                    if(ontology['Attributes'][j]['Category'] == ontology['Categories'][i]) {
-                        // Ask if they want to hide that attribute for all objects in the category
-                        output += '<li>';
-                        output += '<div class="form-check form-switch">';
-                        output += '<input onchange="toggle_view_hidden(\'' + 'view_cat_' + ontology['Categories'][i] + '_att_' + ontology['Attributes'][j]['Attribute'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_cat_' + ontology['Categories'][i] + '_att_' + ontology['Attributes'][j]['Attribute'] + '"';
-                        if(hidden_by_view.includes('view_cat_' + ontology['Categories'][i] + '_att_' + ontology['Attributes'][j]['Attribute'])) {
-                            output += ' checked';
-                        }
-                        output += '>';
-                        output += '<label class="form-check-label" for="view_cat_' + ontology['Categories'][i] + '_att_' + ontology['Attributes'][j]['Attribute'] + '">Hide Attribute ' + ontology['Attributes'][j]['Attribute'] + ' for all members of Category ' + ontology['Categories'][i] + '</label>';
-                        output += '</div>';
-                        output += '</li>';
-                    }
+            }
+            // For each attribute
+            for(var j=0; j < ontology['Attributes'].length; j++) {
+                // Ask if they want to hide that attribute for all objects in the category
+                output += '<li>';
+                output += '<div class="form-check form-switch">';
+                output += '<input onchange="toggle_view_hidden(\'' + 'view_att_' + ontology['Attributes'][j]['Attribute'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_att_' + ontology['Attributes'][j]['Attribute'] + '"';
+                if(hidden_by_view.includes('view_att_' + ontology['Attributes'][j]['Attribute'])) {
+                    output += ' checked';
                 }
-                // For each object in the category
-                for(var k=0; k < ontology['Objects'].length; k++) {
-                    if(ontology['Objects'][k]['Category'] == ontology['Categories'][i]) {
-                        // Ask if they want to hide that object.
-                        output += '<li>';
-                        output += '<div class="form-check form-switch">';
-                        output += '<input onchange="toggle_view_hidden(\'' + 'view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '"';
-                        if(hidden_by_view.includes('view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'])) {
-                            output += ' checked';
-                        }
-                        output += '>';
-                        output += '<label class="form-check-label" for="view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '">Hide Object ' + ontology['Objects'][k]['Object'] + ' from Category ' + ontology['Categories'][i] + '</label>';
-                        output += '</div>';
-                        output += '</li>';
-                        // For each attribute in the category
-                        for(var l=0; l < ontology['Attributes'].length; l++) {
-                            if(ontology['Attributes'][l]['Category'] == ontology['Categories'][i]) {
-                                // Ask if they want to hide that attribute for that object.
-                                output += '<li>';
-                                output += '<div class="form-check form-switch">';
-                                output += '<input onchange="toggle_view_hidden(\'' + 'view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '_att_' + ontology['Attributes'][l]['Attribute'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '_att_' + ontology['Attributes'][l]['Attribute'] + '"';
-                                if(hidden_by_view.includes('view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '_att_' + ontology['Attributes'][l]['Attribute'])) {
-                                    output += ' checked';
-                                }
-                                output += '>';
-                                output += '<label class="form-check-label" for="view_cat_' + ontology['Categories'][i] + '_obj_' + ontology['Objects'][k]['Object'] + '_att_' + ontology['Attributes'][l]['Attribute'] + '">Hide Attribute ' + ontology['Attributes'][l]['Attribute'] + ' for Object ' + ontology['Objects'][k]['Object'] + ' from Category ' + ontology['Categories'][i] + '</label>';
-                                output += '</div>';
-                                output += '</li>';
-                                // It is possible to ask if the user wants to hide certain values, but I'm not sure that has any utility,
-                                // so I'm leaving it out.
-                            }
-                        }
-                    }
-                }
+                output += '>';
+                output += '<label class="form-check-label" for="view_att_' + ontology['Attributes'][j]['Attribute'] + '">Hide Attribute ' + ontology['Attributes'][j]['Attribute'] + '</label>';
+                output += '</div>';
+                output += '</li>';
             }
             output += '</ul>';
             view_form_element.innerHTML = output;
@@ -1828,8 +1352,169 @@
             save_fact_request.setRequestHeader("Content-Type", "application/json");
             console.log("Sending Fact Update");
             save_fact_request.setRequestHeader('X-CSRFToken', csrftoken);
-            payload.fact_scenario = fact_data;
+            payload.fact_scenario = new_fact_data;
             save_fact_request.send(body=JSON.stringify(payload));
+        }
+        function draw_new_fact_data() {
+            var output_html = ""
+            
+            output_html += "<h3>Facts</h3><ul>"
+            for(var f=0; f < new_fact_data['facts'].length; f++) {
+                var hidden = false;
+                if ('category' in new_fact_data['facts'][f]) {
+                    if (hidden_by_view.includes('view_cat_' + new_fact_data['facts'][f]['category'])) {
+                        hidden = true;
+                    }
+                } else {
+                    if (hidden_by_view.includes('view_att_' + new_fact_data['facts'][f]['attribute'])) {
+                        hidden = true;
+                    }
+                }
+                if (!hidden) {
+                    output_html += "<li>";
+                    if (new_fact_data['facts'][f]['type'] != "true") {
+                        if (new_fact_data['facts'][f]['type'] == "false") {
+                            output_html += "it is false that ";
+                        }
+                        if (new_fact_data['facts'][f]['type'] == "unknown") {
+                            output_html += "it is uncertain whether ";
+                        }
+                    } 
+                    //else {
+                        //output_html += "it is true that ";
+                    //}
+                    if ('category' in new_fact_data['facts'][f]) {
+                        var prefix = "";
+                        var postfix = "";
+                        for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                            if (ontology['CategoryNLG'][i]['Category'] == new_fact_data['facts'][f]['category']) {
+                                prefix = ontology['CategoryNLG'][i]['Prefix'];
+                                postfix = ontology['CategoryNLG'][i]['Postfix'];
+                                break;
+                            }
+                        }
+                        var object_display = new_fact_data['facts'][f]['object'];
+                        if (typeof(new_fact_data['facts'][f]['object']) == 'object') {
+                            object_display = "any object"
+                        }
+                        output_html += prefix + ' ' + object_display + ' ' + postfix;
+                    } else {
+                        var attribute_name = new_fact_data['facts'][f]['attribute'];
+                        for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                            if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
+                                prefix = ontology['AttributeNLG'][i]['Prefix'];
+                                infix = ontology['AttributeNLG'][i]['Infix'];
+                                postfix = ontology['AttributeNLG'][i]['Postfix'];
+                                order = ontology['AttributeNLG'][i]['Order'];
+                                break;
+                            }
+                        }
+                        var object_display = new_fact_data['facts'][f]['object'];
+                        if (typeof(object_display) == 'object') {
+                            for (var a=0; a < ontology['Attributes'].length; a++) {
+                                if (attribute_name == ontology['Attributes'][a]['Attribute']) {
+                                    attribute_type = ontology['Attributes'][a]['Category'];
+                                    break;
+                                }
+                            }
+                            object_display = "any " + attribute_type; 
+                        }
+                        if ('value' in new_fact_data['facts'][f]) {
+                            var value_display = new_fact_data['facts'][f]['value'];
+                            for (var c=0; c < ontology['Attributes'].length; c++) {
+                                if (attribute_name == ontology['Attributes'][c]['Attribute']) {
+                                    value_type = ontology['Attributes'][c]['Type'];
+                                }
+                            }
+                            if (typeof(value_display) == 'object') {   
+                                value_display = "any " + value_type;
+                            }
+                            if (value_type == "duration") {
+                                iso_duration = /^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$/
+                                matches = iso_duration.exec(value_display)
+                                var new_value_display = ""
+                                var future = true;
+                                if (matches[1] != undefined) {
+                                    future = false;
+                                }
+                                if (matches[2] != undefined) {
+                                    new_value_display += matches[2].slice(0,-1) + " years, ";
+                                }
+                                if (matches[3] != undefined) {
+                                    new_value_display += matches[3].slice(0,-1) + " months, ";
+                                }
+                                if (matches[4] != undefined) {
+                                    new_value_display += matches[4].slice(0,-1) + " days, ";
+                                }
+                                if (matches[5] != undefined) {
+                                    new_value_display += matches[5].slice(0,-1) + " hours, ";
+                                }
+                                if (matches[6] != undefined) {
+                                    new_value_display += matches[6].slice(0,-1) + " minutes, ";
+                                }
+                                if (matches[7] != undefined) {
+                                    new_value_display += matches[7].slice(0,-1) + " seconds, ";
+                                }
+                                if (future) {
+                                    new_value_display += " into the future";
+                                } else {
+                                    new_value_display += " into the past";
+                                }
+                                var last_comma = new_value_display.lastIndexOf(',');
+                                value_display = new_value_display.slice(0,last_comma) + new_value_display.slice(last_comma+1);
+
+                            }
+                            if (value_type == "datetime") {
+                                value_display = value_display.replace("T"," ")
+                            }
+                            if (order == "ov") {
+                                output_html += prefix + ' ' +  object_display + ' ' + infix + ' ' + value_display + ' ' + postfix;
+                            } else {
+                                output_html += prefix + ' ' + value_display + ' ' + infix + ' ' +  object_display + ' ' + postfix;
+                            }
+                        } else {
+                            output_html += prefix + ' ' +  object_display + ' ' + postfix ;
+                        }
+                    }
+                    if (!new_fact_data['facts'][f]['from_ontology']) {
+                        var delete_target
+                        output_html += '<button type="button" class="btn-close" onclick="delete_fact('+ JSON.stringify(new_fact_data['facts'][f]).replaceAll('"',"\'") +')" aria-label="Delete"></button>';
+                    } else {
+                        output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">';
+                        output_html += '<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>';
+                        output_html += '</svg>';
+                    }
+                    output_html += "</li>";
+                }
+            }
+            output_html += "</ul>";
+            if ('Relevant Statements' in parsed_test_response) {
+
+                if (parsed_test_response['Relevant Statements'].length > 0) {
+                    output_html += "<h3>Relevant Statements</h3>";
+                    output_html += "<p>Answers to the following questions would be relevant for finding non-contingent answers to the question:</p>"
+                    output_html += "Is it true that... <ul>";
+                    for (var r=0; r < parsed_test_response['Relevant Statements'].length; r++) {
+                        output_html += "<li>" + answerNLG(parsed_test_response['Relevant Statements'][r])
+                        output_html += "?</li>";
+                    }
+                    output_html += "</ul>";
+                }           
+            }
+            return output_html;
+        }
+        function delete_fact(fact) {
+            var target_index = -1;
+            for (var ind=0; ind < new_fact_data['facts'].length; ind++) {
+                if (JSON.stringify(new_fact_data['facts'][ind]) == JSON.stringify(fact)) {
+                    target_index = ind;
+                    break;
+                }
+            }
+            if (target_index > -1) {
+                new_fact_data['facts'].splice(target_index,1);
+            }
+            draw_facts();
         }
     </script>
 </body>

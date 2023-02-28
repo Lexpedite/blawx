@@ -18,14 +18,13 @@
       ## Technical Details
 
       The Objects drawer of the Blawx toolbox will include one new object block
-      for each defined category. By default, the new object block will read 
-      "(input) is a (category name)". However, the appearance of the new object 
-      block can be customized using the category display block. As such, the
+      for each defined category. The appearance of the new object 
+      block by the category declaration block. As such, the
       new object block may not actually include the name of the category to which
       it applies.
 
       For instance, you might have a category "person", which has a new object
-      block that reads "(input) is a human being".
+      block that reads "(object) is a human being".
 
       The new object block asserts that the named object is in the category.
 
@@ -58,6 +57,6 @@
       Note that it is not possible to declare that an object exists without assigning it to
       at least one category. But it is possible to take an object that has been created in one
       category and add it to additional categories later. This can be done by using the
-      new object block from more than one category, but with the same object name. The safer
+      new object block multiple times with different categories, but with the same object name. The safer
       method, however, is to create the object once, and then use the object category block
       to assign additional categories to it.
