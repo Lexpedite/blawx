@@ -5,10 +5,8 @@
     content: |
       # Wills Act Tutorial
 
-      All the tutorial projects are available under the New Project button.
+      Check out this video based on Blawx v1.4.0-alpha, which shows how to enter legislative text,
+      how to encode your rule, how to test your encoding in the scenario editor, and how to deploy the
+      encoding as a web API!
 
-      The Wills Act Tutorial contains a single-section rule, a single test, and no code. Instead, if you click the "Tutorial"
-      button in the button bar, it will take you through a short tutorial of how to encode your rule,
-      test it, and deploy it using BlawxBot.
-
-      If you are new to Blawx, this tutorial is a good place to start.
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/x5l4Ynfr4VU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
