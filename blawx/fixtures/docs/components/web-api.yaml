@@ -78,6 +78,7 @@
       The JSON is a dictionary with a single key, "facts", the value of which is a list of statements.
 
       A statement is a dictionary with:
+      
       * A 'from_ontology' key, the value of which is a `true` or `false` value. This is used to note which facts were already present in the code and were not provided by the user. Data provided by a user application
         should always set the 'from_ontology' value to `false`.
       * A 'type' key, the values of which can be the strings 'true','false', or 'unknown'.
