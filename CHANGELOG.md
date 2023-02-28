@@ -7,9 +7,9 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## [v1.4.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.0-alpha) 2023-??-??
+## [v1.4.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.0-alpha) 2023-02-28
 
-**This release is not backward compatible.**
+**This release is NOT backward compatible.**
 
 This release makes a number of interface changes, and 
 significantly changes the way that Blawx deals with true / false values. Instead of
@@ -63,6 +63,10 @@ save and re-open the workspace, and the attribute declarations will then format 
 
 **NB**: It will not be possible to migrate from pre-v1.4 code to post-v1.4 code indefinitely. At some point, old block types will be removed from the language, making upgrades more difficult or impossible. If you have code that you want to keep using, upgrade it now, or you may have to rewrite it from scratch in a future version.
 
+### Added
+* The Wills Act Tutorial example page in the documentation now links to a YouTube video demonstrating
+  the use of Blawx, and it is linked from the front page.
+
 ### Changed
 * Toolboxes are reorganized
 * New Category Declaration Block
@@ -72,10 +76,9 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Removed an incomplete example
 * Reformulated Beard Tax Act example
 * Improved Facts Interface in Scenario Editor
-* New Payload Format for Interview endpoint
-* New Format for Relevance data in Ontology endpoint
+* New Payload and Response Format for Interview endpoint
 * Revised uncertainty semantics for interview endpoint
-* Updated documentation
+* Updated (some) documentation (and marked the rest as out-of-date)
 
 ### Fixed
 * Explanations in the test editor were being truncated
@@ -87,30 +90,6 @@ save and re-open the workspace, and the attribute declarations will then format 
 * Category Attribute Block
 * Known Category Blocks
 * Category Equivalency Block
-
-### TODO
-* The new uncertainty method isn't using "#abducibile", which means "abduced" doesn't appear as a predicate
-  in the explanations. Need to figure out how to truncate that to make it work as well as it worked in 1.3.38-alpha.
-* Verify that the example encodings are still working.
-  * Problem with OASA, any person, with no additional info, qualifies under section 4.
-* I think some of the code might be duplicated between answers and facts, could be rationalized
-* Remove redundant code
-* Update block library
-* update documentation
-  * Step 2
-  * Step 3
-  * Part 4
-  * Categories and Attributes
-  * Rules
-  * Facts and Assumptions
-  * Questions
-  * Variables
-  * Negation and Uncertainty
-  * Numerical Constraints
-  * Lists and Aggregation
-  * Logical Constraints
-  * Defaults and Exceptions
-  * Dates, Times, and Durations
 
 ## [v1.3.41-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.41-alpha) 2023-02-27
 
