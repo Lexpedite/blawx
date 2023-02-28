@@ -2826,22 +2826,8 @@
 },
 {
   "type": "new_attribute_declaration",
-  "message0": "The category %1 has an attribute %2 %3 which is of type %4 , appearing as %5 %6 %7 %8 %9 %10 %11 %12 %13",
+  "message0": "has an attribute %1 %2 which is of type %3 , appearing as %4 %5 %6 %7 %8 %9 %10 %11 %12",
   "args0": [
-    {
-      "type": "field_dropdown",
-      "name": "category",
-      "options": [
-        [
-          "cat1",
-          "cat1"
-        ],
-        [
-          "cat2",
-          "cat2"
-        ]
-      ]
-    },
     {
       "type": "field_input",
       "name": "attribute_name",
@@ -3005,4 +2991,78 @@
   "colour": 15,
   "tooltip": "Use to create a category.",
   "helpUrl": "/docs/blocks/new_category/"
+},
+{
+  "type": "unary_attribute_selector",
+  "message0": "%1 %2 %3",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix",
+      "text": ""
+    },
+    {
+      "type": "input_value",
+      "name": "first_element",
+      "check": [
+        "VARIABLE",
+        "OBJECT"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "is attribute_name"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 135,
+  "tooltip": "Use to set or check the value of an object's attribute.",
+  "helpUrl": "/docs/blocks/attribute_selector"
+},
+{
+  "type": "new_object_category",
+  "message0": "%1 is in the category %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "object",
+      "check": [
+        "OBJECT",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "field_dropdown",
+      "name": "category_name",
+      "options": [
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ]
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 225,
+  "tooltip": "Use to add a category to an object, or check for category membership.",
+  "helpUrl": "/docs/blocks/object_category/"
 }]
