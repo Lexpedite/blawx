@@ -5,6 +5,8 @@
     content: |
       # Facts and Assumptions
 
+      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
+
       ## Facts
       A “Fact” in
       Blawx represents a thing that is known with certainty. If you have a fact, you

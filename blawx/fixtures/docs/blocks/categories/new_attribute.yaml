@@ -5,7 +5,7 @@
     content: |
       # New Attribute Block
 
-      ![New Attribute Block](/static/blawx/docs/images/blocks/new_attribute.png)
+      ![New Attribute Block](/static/blawx/docs/images/blocks/new_attribute_binary.png)
 
       ## Where Is It?
 
@@ -17,16 +17,31 @@
 
       ## Technical Details
 
-      The new attribute block must be placed inside a category attribute block, and applies
-      to the category named in the category attribute block. It requires an attribute name,
-      which must begin with a lowercase letter and not include spaces. It also requires a
-      data type, which must be one of the datatype blocks in the Data Types drawer of the Blawx
-      toolbox, or a category.
+      The new attribute block is a statement block, and can be stacked with other statements.
+
+      It accepts a category to which the attribute should be applied, specified in a dropdown,
+      a name for the attribute specified in a text field, and an attribute type specified in a dropdown.
+
+      To be valid, an attribute name should start with a lowercase letter and not have any spaces.
+
+      The datatype can be a scalar data type like "number", or another category.
+
+      The block also accepts an order for how the attribute should be displayed in natural language,
+      either with the object appearing first, or the value appearing first.  It also accepts prefix, infix,
+      and postfix text to define how the attribute should be expressed in natural language. This information
+      will be used in the attribute selector block for this attribute, as well as in explanations.
+
+      If you choose "true / false" as the attribute type, the block will no longer collect the order or infix
+      text, as they are not required.
+
+      ![New Attribute Block](/static/blawx/docs/images/blocks/new_attribute_unary.png)
+
 
       ## Tips
 
-      Note that if you specify a data type, and not a category, your attribute selector blocks
-      for that attribute will only accept the right type of value, and variables. If you choose
-      a category as the data type, your attribute selector blocks will accept any object, or variables.
+      Note that if you specify a data type as the attribute type your attribute selector blocks
+      will only accept the correct type of value, and variables in the value position. If you choose
+      a category as the data type, your attribute selector blocks will accept any object, or a variable.
 
-      Attribute names should be unique, even as between different categories.
+      Attribute names should be unique, even as between different categories. Boolean attributes must not
+      share names with categories.

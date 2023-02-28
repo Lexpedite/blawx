@@ -5,6 +5,8 @@
     content: |
       # Rules
 
+      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
+
       Rules are the most important part of encoding in Blawx. They are where
       you describe the inferences Blawx can make to generate legal conclusions.
 

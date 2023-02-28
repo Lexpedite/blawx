@@ -5,6 +5,8 @@
     content: |
       # Defaults and Exceptions
 
+      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
+
       Laws are typically drafted in a style where the rules that apply most generally are stated
       first, and more specific variations are stated later. Blawx calls this style
       "defaults and exceptions," and gives you a number of tools you can use to be able to

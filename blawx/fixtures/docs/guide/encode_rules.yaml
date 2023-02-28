@@ -6,6 +6,8 @@
     content: |
       # Step 2: Encode Rules
 
+      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
+
       In Step 1 of the Blawx Beginner's Guide, we showed you how to create a project, and
       provide Blawx with the legal text that your code will be based on.
 

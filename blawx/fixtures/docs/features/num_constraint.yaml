@@ -5,6 +5,8 @@
     content: |
       # Numerical Constraints
 
+      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
+
       **Note: This documentation describes a feature of Blawx that is not yet working
       as intended. This documentation will be updated when that problem is resolved.
       In the meantime, please do not rely on the numerical constraint blocks.**

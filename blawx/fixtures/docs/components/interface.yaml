@@ -26,14 +26,13 @@
       * Help - This will open the Blawx Documentation
       * Save - This will save the currently selected section's code to the Blawx server
       * Exit - This will return you to the Rule screen for the current Rule.
-      * Tutorial - This appears only if the current workspace includes tutorial content, and will display
-        the tutorial pane on the right side of the screen.
+      
 
       If you are using the Test Editor, there are three additional buttons:
 
       * Run - Runs the test in the test editor, opens up the output pane and displays the
         results.
-      * Bot - Starts BlawxBot using the current test.
+      * Scenario Editor - Starts Scenario Editor using the current test.
       * Delete - Deletes the current test from the Rule, and returns you to the Rule screen.
 
       In the Test Editor, there is also a "Save As" option that can be accessed by clicking on the drop-down
@@ -155,9 +154,9 @@
 
       ![Inputs](/static/blawx/docs/images/inputs.png)
 
-      Inputs may expect certain kinds of information. For example, the category
-      attribute block has an input that requires a category selector. If you
-      try to use a block that is not a category selector, it will not "fit".
+      Inputs may expect certain kinds of information. For example, the math operation block
+      accepts two number values, or variables. If you
+      try to use an object selector, it will not "fit".
 
       ![Inputs That Don't Fit](/static/blawx/docs/images/doesnt_fit.gif)
 

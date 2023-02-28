@@ -99,7 +99,7 @@ save and re-open the workspace, and the attribute declarations will then format 
 * update documentation
   * Step 2
   * Step 3
-  * Code Editor
+  * Part 4
   * Categories and Attributes
   * Rules
   * Facts and Assumptions
@@ -111,14 +111,6 @@ save and re-open the workspace, and the attribute declarations will then format 
   * Logical Constraints
   * Defaults and Exceptions
   * Dates, Times, and Durations
-  * New Category
-  * New Attribute
-  * Attribute Selector
-  * New Object
-  * Object Category
-  * Part 4
-  * Scenario Editor
-  * Blawx Web API
 
 ## [v1.3.41-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.3.41-alpha) 2023-02-27
 
