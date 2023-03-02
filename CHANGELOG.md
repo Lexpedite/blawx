@@ -22,6 +22,15 @@ and breaking changes will not necessarily result in changes to the main version 
   * Defaults and Exceptions
   * Overrules block
 
+## [v1.4.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.1-alpha) 2023-03-02
+
+This release fixes two bugs in how explanations were being displayed in the scenario editor.
+
+### Fixes
+
+* Some paragraphs in explanations were being repeated.
+* Paragraphs for logically false conclusions were not being displayed correctly.
+
 ## [v1.4.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.0-alpha) 2023-02-28
 
 **This release is NOT backward compatible.**
