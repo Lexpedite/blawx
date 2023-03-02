@@ -3065,4 +3065,35 @@
   "colour": 225,
   "tooltip": "Use to add a category to an object, or check for category membership.",
   "helpUrl": "/docs/blocks/object_category/"
+},
+{
+  "type": "attributed_rule",
+  "message0": "When we know: %1 %2 According to %3 : %4 %5",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "conditions",
+      "check": "OUTER"
+    },
+    {
+      "type": "input_value",
+      "name": "source",
+      "check": "RULE"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "conclusion",
+      "check": "OUTER"
+    }
+  ],
+  "inputsInline": true,
+  "colour": 270,
+  "tooltip": "Use to set out the conclusions that can be drawn from a rule.",
+  "helpUrl": "/docs/blocks/attributed_rule/"
 }]

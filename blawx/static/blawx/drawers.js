@@ -328,17 +328,13 @@ primaryDrawerCallback = function(workspace) {
             blocktext = current_doc
         }
 
-        var querytext = '<xml><block type="unattributed_rule">\
-        <statement name="conclusion">\
-        <block type="according_to">\
-        <value name="rule">\
+        var querytext = '<xml><block type="attributed_rule">\
+        <value name="source">\
         <block type="doc_selector">\
         <mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="' + current_section + '"></mutation>\
         <field name="doc_part_name">' + blocktext + '</field>\
         </block>\
         </value>\
-        </block>\
-        </statement>\
         </block></xml>';
         var queryblock = Blockly.Xml.textToDom(querytext).firstChild;
         xmlList.push(queryblock)
@@ -349,13 +345,13 @@ primaryDrawerCallback = function(workspace) {
         var block = Blockly.Xml.textToDom(blocktext).firstChild;
         xmlList.push(block);
     }
-    var querytext = '<xml><block type="query">\
-    <statement name="query">\
-      <block type="holds"></block>\
-    </statement>\
-  </block></xml>';
-    var queryblock = Blockly.Xml.textToDom(querytext).firstChild;
-    xmlList.push(queryblock)
+//     var querytext = '<xml><block type="query">\
+//     <statement name="query">\
+//       <block type="holds"></block>\
+//     </statement>\
+//   </block></xml>';
+//     var queryblock = Blockly.Xml.textToDom(querytext).firstChild;
+    // xmlList.push(queryblock)
     var blocktypes = ['assume','json_textfield']
     for (var i = 0; i < blocktypes.length; i++) {
         var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';

@@ -7223,4 +7223,86 @@
         <field name="HUE">225</field>
       </block>
     </value>
+  </block><block type="factory_base" id="~d~D:NZ[OE#ueyN0c9B!" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">attributed_rule</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="$.@5x$#9%n=Wd%m){9!v">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="do/~ZO1`cuK[L;q1{2K5">
+            <field name="TEXT">When we know:</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="j#;ZC+1S0I4sFD}l(;k9">
+            <field name="INPUTNAME">conditions</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="{wTM?K;QAKS|nBVWd/S%"></shadow>
+              <block type="type_other" id="Id1qEPl$=e^t=g$*AJQ1">
+                <field name="TYPE">OUTER</field>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="Nk:sNZf%1Ps1];--RAID">
+                <field name="INPUTNAME">source</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="Dg`LSEDKWE/}3cU.6-UF">
+                    <field name="TEXT">According to</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="Dw-7QnjKA;01ieJ.825S"></shadow>
+                  <block type="type_other" id="4bUSq!KsO^!IkDxM/?E$">
+                    <field name="TYPE">RULE</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_dummy" id="V1s~29`MC4!hME(0]I]y">
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_static" id="pt_(.0_g+hTJ;z#.Kd.u">
+                        <field name="TEXT">:</field>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="input_statement" id="$6XI.g`]~/U?(vwS.iO3">
+                        <field name="INPUTNAME">conclusion</field>
+                        <field name="ALIGN">LEFT</field>
+                        <value name="TYPE">
+                          <shadow type="type_null" id="zmIws+)[GJ4`i0b)|4##"></shadow>
+                          <block type="type_other" id=".HoDkqz7;zz#L~2#u;{0">
+                            <field name="TYPE">OUTER</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="jLN{^I``(uN0g2YqF7z$" deletable="false" movable="false">
+        <field name="TEXT">Use to set out the conclusions that can be drawn from a rule.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="owE1@A#g+,P5W]XO.d,-" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/attributed_rule/</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EvMB9xz7Y)#!#6/+ud?H">
+        <mutation colour="#805ba5"></mutation>
+        <field name="HUE">270</field>
+      </block>
+    </value>
   </block></xml>

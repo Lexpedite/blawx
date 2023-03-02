@@ -7,6 +7,21 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## Development Notes
+
+### To Do
+
+* Do code generation for annotated rule block
+  * It should generate two rules, conditions lead to section applies, section applies means conclusion.
+  * Conditions should include "not defeated"
+* Re-do code generation for overrules block to generate defeated statements.
+* Re-do code generation for according_to block to generate queries.
+* Update examples
+* Remove documentation for removed blocks
+* Update documentation
+  * Defaults and Exceptions
+  * Overrules block
+
 ## [v1.4.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.0-alpha) 2023-02-28
 
 **This release is NOT backward compatible.**
