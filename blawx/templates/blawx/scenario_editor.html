@@ -273,7 +273,7 @@
                 var parameters = statement.args;
                 var prefix = "ans" + answer + "_expl" + explanation + "_"
                 var node_name = prefix + "_" + predicate
-                for (var i =0; i < parameters.length; i++) {
+                for (var i =0; i < parameters.length; i++) { 
                     node_name += "_" + displayValue(parameters[i],false).replace("'",'_').replace('.','_')
                 }
             } else {
@@ -309,7 +309,7 @@
             var reasons = model.args[1];
             var predicate = statement.functor;
             var parameters = statement.args;
-            var node_name = getNodeName(model,answer,explanation)
+            var node_name = getNodeName(statement,answer,explanation)
             var show_subnodes = false;
             var target=model;
             if(predicate == "proved") {
@@ -472,7 +472,7 @@
             } else if (Array.isArray(model)) {
                 return model.toString();
             } else if (model.functor == "-") { // this is a "because" node or known false node
-                return "because";
+                return "it is not true that " + answerNLG(model.args[0],human);
             } else if (model.functor == "not" && model.args[0].functor != "-") {
                 return "there is no evidence that " + answerNLG(model.args[0],human);
             } else if (model.functor == "not" && model.args[0].functor == "-") {
@@ -636,59 +636,8 @@
                 }
             }
         }
-
-        function convertModelToTree(list, answer, explanation, prefix = "", root = true) {
-            output_html = "";
-            if (root) {
-                prefix = "ex_" + answer + "_" + explanation
-                output_html += '<div class="explanation">'
-                // An explanation may have more than one root conclusion it
-                // is trying to explain. So at this point it is potentially
-                // a list of lists, with no text elements.
-                // Run this again against each sub-element.
-                output_html += "<ul>"
-                for (var i = 0; i < list.length; i++) {
-                    output_html += "<li>"
-                    output_html += convertModelToTree(list[i], answer, explanation, prefix + '_' + i, false)
-                    output_html += "</li>"
-                }
-                output_html += "</ul>"
-                output_html += "</div>"
-            } else {
-                // Now we are inside a given root explanation.
-                // Each node is a piece of text, optionally followed by an array
-                // of reasons for that piece of text.
-                var has_reasons = Array.isArray(list[1]);
-                var target = prefix;
-                output_html += '<div class="explanation_node">'
-                if (has_reasons) {
-                    output_html += '<i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#' + target + '"></i>'
-                }
-                output_html += addSectionReferences(list[0])
-                output_html += '</div>'
-                // Now we have displayed the text, we optionally display each of the
-                // reasons, processing it using this formula if it, too, has reasons.
-                if (has_reasons) {
-                    output_html += '<div class="subparts collapse" id="' + target + '">'
-                    output_html += "<ul>"
-                    for (var j = 0; j < list[1].length; j++) {
-                        var reason_has_reasons = Array.isArray(list[1][j + 1]);
-                        output_html += "<li>"
-                        if (reason_has_reasons) {
-                            output_html += convertModelToTree(list[1].slice(j), answer, explanation, target + '_' + j, false)
-                            j++;
-                        } else {
-                            output_html += list[1][j]
-                        }
-                        output_html += "</li>"
-                    }
-                    output_html += '</ul></div>'
-                }
-            }
-            return output_html;
-        }
         
-        function initialize_facts() { // TODO CLEANUP
+        function initialize_facts() { 
             categories = ontology['Categories'];
             
             // For each existing object, add it to the fact scenario.
