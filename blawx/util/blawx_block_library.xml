@@ -316,20 +316,25 @@
     <field name="INLINE">AUTO</field>
     <field name="CONNECTIONS">BOTH</field>
     <statement name="INPUTS">
-      <block type="input_statement" id="O@08dO#)v0RXq/Nr9@[y">
-        <field name="INPUTNAME">negated_statement</field>
+      <block type="input_dummy" id="G0+,GV+_Cx+6hp;GLuG*">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="0]IEQM.U+47pH$-ZSW(g">
-            <field name="TEXT">known false</field>
+            <field name="TEXT">it is false that</field>
           </block>
         </statement>
-        <value name="TYPE">
-          <shadow type="type_null" id="P|-ZX|Ky?a_iQ+4jR3s-"></shadow>
-          <block type="type_other" id="DvOC8WAror1D[yk2p1))">
-            <field name="TYPE">OUTER</field>
+        <next>
+          <block type="input_statement" id="O@08dO#)v0RXq/Nr9@[y">
+            <field name="INPUTNAME">negated_statement</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="P|-ZX|Ky?a_iQ+4jR3s-"></shadow>
+              <block type="type_other" id="DvOC8WAror1D[yk2p1))">
+                <field name="TYPE">OUTER</field>
+              </block>
+            </value>
           </block>
-        </value>
+        </next>
       </block>
     </statement>
     <value name="TOOLTIP">
@@ -376,20 +381,25 @@
     <field name="INLINE">AUTO</field>
     <field name="CONNECTIONS">BOTH</field>
     <statement name="INPUTS">
-      <block type="input_statement" id="O@08dO#)v0RXq/Nr9@[y">
-        <field name="INPUTNAME">default_negated_statement</field>
+      <block type="input_dummy" id="Ae^R`EZ-j;P}{P?~J_f2">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="0]IEQM.U+47pH$-ZSW(g">
-            <field name="TEXT">not</field>
+            <field name="TEXT">there is no evidence that</field>
           </block>
         </statement>
-        <value name="TYPE">
-          <shadow type="type_null" id="P|-ZX|Ky?a_iQ+4jR3s-"></shadow>
-          <block type="type_other" id="DvOC8WAror1D[yk2p1))">
-            <field name="TYPE">OUTER</field>
+        <next>
+          <block type="input_statement" id="O@08dO#)v0RXq/Nr9@[y">
+            <field name="INPUTNAME">default_negated_statement</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="P|-ZX|Ky?a_iQ+4jR3s-"></shadow>
+              <block type="type_other" id="DvOC8WAror1D[yk2p1))">
+                <field name="TYPE">OUTER</field>
+              </block>
+            </value>
           </block>
-        </value>
+        </next>
       </block>
     </statement>
     <value name="TOOLTIP">
@@ -592,20 +602,25 @@
     <field name="INLINE">AUTO</field>
     <field name="CONNECTIONS">NONE</field>
     <statement name="INPUTS">
-      <block type="input_statement" id="+:q_msXGA:L{~[?oJN|;">
-        <field name="INPUTNAME">query</field>
+      <block type="input_dummy" id="MLkl_qoZ.PGNC4ZwIUZ]">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="d{Bl@=$E3^Z~@hm{isJu">
             <field name="TEXT">Is it true that:</field>
           </block>
         </statement>
-        <value name="TYPE">
-          <shadow type="type_null" id="^x_ZTFOQY7syi7u}|QGB"></shadow>
-          <block type="type_other" id="Thrdkq!*q.D{{v*`n+YW">
-            <field name="TYPE">OUTER</field>
+        <next>
+          <block type="input_statement" id="+:q_msXGA:L{~[?oJN|;">
+            <field name="INPUTNAME">query</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="^x_ZTFOQY7syi7u}|QGB"></shadow>
+              <block type="type_other" id="Thrdkq!*q.D{{v*`n+YW">
+                <field name="TYPE">OUTER</field>
+              </block>
+            </value>
           </block>
-        </value>
+        </next>
       </block>
     </statement>
     <value name="TOOLTIP">
@@ -702,35 +717,45 @@
     <field name="INLINE">AUTO</field>
     <field name="CONNECTIONS">NONE</field>
     <statement name="INPUTS">
-      <block type="input_statement" id="j#;ZC+1S0I4sFD}l(;k9">
-        <field name="INPUTNAME">conditions</field>
+      <block type="input_dummy" id="d4-J;{Zhjw%HGx,xXMfV">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="do/~ZO1`cuK[L;q1{2K5">
             <field name="TEXT">When we know:</field>
           </block>
         </statement>
-        <value name="TYPE">
-          <shadow type="type_null" id="{wTM?K;QAKS|nBVWd/S%"></shadow>
-          <block type="type_other" id="Id1qEPl$=e^t=g$*AJQ1">
-            <field name="TYPE">OUTER</field>
-          </block>
-        </value>
         <next>
-          <block type="input_statement" id="$6XI.g`]~/U?(vwS.iO3">
-            <field name="INPUTNAME">conclusion</field>
+          <block type="input_statement" id="j#;ZC+1S0I4sFD}l(;k9">
+            <field name="INPUTNAME">conditions</field>
             <field name="ALIGN">LEFT</field>
-            <statement name="FIELDS">
-              <block type="field_static" id=":4;g!A7EV+yaytoz,#u`">
-                <field name="TEXT">We also know:</field>
-              </block>
-            </statement>
             <value name="TYPE">
-              <shadow type="type_null" id="zmIws+)[GJ4`i0b)|4##"></shadow>
-              <block type="type_other" id=".HoDkqz7;zz#L~2#u;{0">
+              <shadow type="type_null" id="{wTM?K;QAKS|nBVWd/S%"></shadow>
+              <block type="type_other" id="Id1qEPl$=e^t=g$*AJQ1">
                 <field name="TYPE">OUTER</field>
               </block>
             </value>
+            <next>
+              <block type="input_dummy" id="%o#WH)dg8)Qag=Rr~7Ga">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id=":4;g!A7EV+yaytoz,#u`">
+                    <field name="TEXT">We also know:</field>
+                  </block>
+                </statement>
+                <next>
+                  <block type="input_statement" id="$6XI.g`]~/U?(vwS.iO3">
+                    <field name="INPUTNAME">conclusion</field>
+                    <field name="ALIGN">LEFT</field>
+                    <value name="TYPE">
+                      <shadow type="type_null" id="zmIws+)[GJ4`i0b)|4##"></shadow>
+                      <block type="type_other" id=".HoDkqz7;zz#L~2#u;{0">
+                        <field name="TYPE">OUTER</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
           </block>
         </next>
       </block>
@@ -982,6 +1007,11 @@
       <block type="input_value" id="m)d[=Q$JL/~SGxue1|CR">
         <field name="INPUTNAME">defeating_rule</field>
         <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="`j)XDY4m_FR9MP[[h;]%">
+            <field name="TEXT">the conclusion in </field>
+          </block>
+        </statement>
         <value name="TYPE">
           <shadow type="type_null" id="QUMD94W6Ko}D7zJ/R+#1"></shadow>
           <block type="type_group" id=".ps0g+GXsTlE7|5`GOW*">
@@ -999,30 +1029,64 @@
           </block>
         </value>
         <next>
-          <block type="input_value" id="Qq7UZ6x+A8JzZ3z;70?U">
-            <field name="INPUTNAME">defeated_rule</field>
+          <block type="input_statement" id="v%m`.by},/Wm_W-~Jjp6">
+            <field name="INPUTNAME">defeating_statement</field>
             <field name="ALIGN">LEFT</field>
             <statement name="FIELDS">
-              <block type="field_static" id="j!.(LdB0vb{QrtzetdBE">
-                <field name="TEXT">overrules</field>
+              <block type="field_static" id="xe^8r(|lN?wUbY+k@)5M">
+                <field name="TEXT">that</field>
               </block>
             </statement>
             <value name="TYPE">
-              <shadow type="type_null" id="Np-MS|xxhgaP0Qep0.-j"></shadow>
-              <block type="type_group" id="Ul07N:E:$kS`n-Lo{8aI">
-                <mutation types="2"></mutation>
-                <value name="TYPE0">
-                  <block type="type_other" id="}k}WHC(O_~a4UX,%:9$s">
-                    <field name="TYPE">RULE</field>
-                  </block>
-                </value>
-                <value name="TYPE1">
-                  <block type="type_other" id="rNV]k=Kg$M,n09qG]7{{">
-                    <field name="TYPE">VARIABLE</field>
-                  </block>
-                </value>
+              <shadow type="type_null" id="NPbCKxl-f,{n?5?i8/,s"></shadow>
+              <block type="type_other" id="@As[_x|RpO|8U(6c?iJ.">
+                <field name="TYPE">OUTER</field>
               </block>
             </value>
+            <next>
+              <block type="input_value" id="Qq7UZ6x+A8JzZ3z;70?U">
+                <field name="INPUTNAME">defeated_rule</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="j!.(LdB0vb{QrtzetdBE">
+                    <field name="TEXT">overrules the conclusion in</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="Np-MS|xxhgaP0Qep0.-j"></shadow>
+                  <block type="type_group" id="Ul07N:E:$kS`n-Lo{8aI">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id="}k}WHC(O_~a4UX,%:9$s">
+                        <field name="TYPE">RULE</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="rNV]k=Kg$M,n09qG]7{{">
+                        <field name="TYPE">VARIABLE</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_statement" id="yOk,};i*-F:%}4Xh/Atm">
+                    <field name="INPUTNAME">defeated_statement</field>
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_static" id="HO`,wl]TkMB^Iq*Tmap(">
+                        <field name="TEXT">that</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id="NPbCKxl-f,{n?5?i8/,s"></shadow>
+                      <block type="type_other" id="j(El:w]JQG8ueLVND4iV">
+                        <field name="TYPE">OUTER</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
           </block>
         </next>
       </block>
@@ -1394,20 +1458,25 @@
     <field name="INLINE">INT</field>
     <field name="CONNECTIONS">NONE</field>
     <statement name="INPUTS">
-      <block type="input_statement" id="+:q_msXGA:L{~[?oJN|;">
-        <field name="INPUTNAME">statements</field>
+      <block type="input_dummy" id=";#-dPy*EVk|^YdC27a[5">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="d{Bl@=$E3^Z~@hm{isJu">
             <field name="TEXT">We know</field>
           </block>
         </statement>
-        <value name="TYPE">
-          <shadow type="type_null" id="^x_ZTFOQY7syi7u}|QGB"></shadow>
-          <block type="type_other" id="Thrdkq!*q.D{{v*`n+YW">
-            <field name="TYPE">OUTER</field>
+        <next>
+          <block type="input_statement" id="+:q_msXGA:L{~[?oJN|;">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="^x_ZTFOQY7syi7u}|QGB"></shadow>
+              <block type="type_other" id="Thrdkq!*q.D{{v*`n+YW">
+                <field name="TYPE">OUTER</field>
+              </block>
+            </value>
           </block>
-        </value>
+        </next>
       </block>
     </statement>
     <value name="TOOLTIP">
@@ -1487,20 +1556,25 @@
     <field name="INLINE">INT</field>
     <field name="CONNECTIONS">NONE</field>
     <statement name="INPUTS">
-      <block type="input_statement" id="j#;ZC+1S0I4sFD}l(;k9">
-        <field name="INPUTNAME">conditions</field>
+      <block type="input_dummy" id="v,`!c`V0GuRm3:_$)J~,">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="do/~ZO1`cuK[L;q1{2K5">
             <field name="TEXT">It is never the case that:</field>
           </block>
         </statement>
-        <value name="TYPE">
-          <shadow type="type_null" id="{wTM?K;QAKS|nBVWd/S%"></shadow>
-          <block type="type_other" id="Id1qEPl$=e^t=g$*AJQ1">
-            <field name="TYPE">OUTER</field>
+        <next>
+          <block type="input_statement" id="j#;ZC+1S0I4sFD}l(;k9">
+            <field name="INPUTNAME">conditions</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="{wTM?K;QAKS|nBVWd/S%"></shadow>
+              <block type="type_other" id="Id1qEPl$=e^t=g$*AJQ1">
+                <field name="TYPE">OUTER</field>
+              </block>
+            </value>
           </block>
-        </value>
+        </next>
       </block>
     </statement>
     <value name="TOOLTIP">
@@ -4586,20 +4660,25 @@
     <field name="INLINE">EXT</field>
     <field name="CONNECTIONS">NONE</field>
     <statement name="INPUTS">
-      <block type="input_statement" id="=:-L,;zhweTa-#T*Xuu;">
-        <field name="INPUTNAME">statements</field>
+      <block type="input_dummy" id="-)V+*IP*|qWNcn-,anmo">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="`{NFQw}ty*u:JGjU^=uM">
             <field name="TEXT">Assume:</field>
           </block>
         </statement>
-        <value name="TYPE">
-          <shadow type="type_null" id=".dyhv?n)WG]89Xh!M.yR"></shadow>
-          <block type="type_other" id="p~CvB:h^f`qj29mDh^JU">
-            <field name="TYPE">OUTER</field>
+        <next>
+          <block type="input_statement" id="=:-L,;zhweTa-#T*Xuu;">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id=".dyhv?n)WG]89Xh!M.yR"></shadow>
+              <block type="type_other" id="p~CvB:h^f`qj29mDh^JU">
+                <field name="TYPE">OUTER</field>
+              </block>
+            </value>
           </block>
-        </value>
+        </next>
       </block>
     </statement>
     <value name="TOOLTIP">
@@ -4861,23 +4940,55 @@
     <field name="INLINE">INT</field>
     <field name="CONNECTIONS">BOTH</field>
     <statement name="INPUTS">
-      <block type="input_dummy" id="r@%xNRV-ki,d@w:;KQgz">
+      <block type="input_value" id="IvwMZjV6c9Y6y}dny}B!">
+        <field name="INPUTNAME">section</field>
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="C]_Y/^4uofCaZVWD@hJ_">
-            <field name="TEXT">Holds that</field>
+            <field name="TEXT">The conclusion in</field>
           </block>
         </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="gN@8Xl{A^{h@5U4LF*fG"></shadow>
+          <block type="type_group" id="[Bwnc$O~h+3*o4?YaG/{">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="Xw1[)(V^%FRI{!lubml[">
+                <field name="TYPE">RULE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="nM*i4.KmCgh^WZQK3T[a">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+          </block>
+        </value>
         <next>
           <block type="input_statement" id="(79F(%@d)S[it`eM2=D!">
             <field name="INPUTNAME">statement</field>
             <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id=":H+qYj.+-Up{~J@W+_fG">
+                <field name="TEXT">that</field>
+              </block>
+            </statement>
             <value name="TYPE">
               <shadow type="type_null" id=":jg!`^*w3Ow_{axvbiK,"></shadow>
               <block type="type_other" id="AT6rncg6feKyBn4{=+ot">
                 <field name="TYPE">OUTER</field>
               </block>
             </value>
+            <next>
+              <block type="input_dummy" id="r@%xNRV-ki,d@w:;KQgz">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="#jF[N5I1G[+[vUS^/QE*">
+                    <field name="TEXT">holds</field>
+                  </block>
+                </statement>
+              </block>
+            </next>
           </block>
         </next>
       </block>
@@ -7229,7 +7340,7 @@
     <field name="INLINE">INT</field>
     <field name="CONNECTIONS">NONE</field>
     <statement name="INPUTS">
-      <block type="input_dummy" id="$.@5x$#9%n=Wd%m){9!v">
+      <block type="input_dummy" id="f=6zBHu[7TLEXt*to$[M">
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="do/~ZO1`cuK[L;q1{2K5">
@@ -7247,38 +7358,60 @@
               </block>
             </value>
             <next>
-              <block type="input_value" id="Nk:sNZf%1Ps1];--RAID">
+              <block type="input_value" id="@e6*d1McHIn?3d.+~:zB">
                 <field name="INPUTNAME">source</field>
                 <field name="ALIGN">LEFT</field>
                 <statement name="FIELDS">
                   <block type="field_static" id="Dg`LSEDKWE/}3cU.6-UF">
-                    <field name="TEXT">According to</field>
+                    <field name="TEXT">We also know that according to</field>
                   </block>
                 </statement>
                 <value name="TYPE">
-                  <shadow type="type_null" id="Dw-7QnjKA;01ieJ.825S"></shadow>
-                  <block type="type_other" id="4bUSq!KsO^!IkDxM/?E$">
+                  <shadow type="type_null" id="$eb3aWOF(T98u?9`ap_n"></shadow>
+                  <block type="type_other" id="l^)Q7}_d)6mL5fbv-q|Y">
                     <field name="TYPE">RULE</field>
                   </block>
                 </value>
                 <next>
-                  <block type="input_dummy" id="V1s~29`MC4!hME(0]I]y">
+                  <block type="input_statement" id="$6XI.g`]~/U?(vwS.iO3">
+                    <field name="INPUTNAME">conclusion</field>
                     <field name="ALIGN">LEFT</field>
-                    <statement name="FIELDS">
-                      <block type="field_static" id="pt_(.0_g+hTJ;z#.Kd.u">
-                        <field name="TEXT">:</field>
+                    <value name="TYPE">
+                      <shadow type="type_null" id="zmIws+)[GJ4`i0b)|4##"></shadow>
+                      <block type="type_other" id=".HoDkqz7;zz#L~2#u;{0">
+                        <field name="TYPE">OUTER</field>
                       </block>
-                    </statement>
+                    </value>
                     <next>
-                      <block type="input_statement" id="$6XI.g`]~/U?(vwS.iO3">
-                        <field name="INPUTNAME">conclusion</field>
+                      <block type="input_dummy" id="V1s~29`MC4!hME(0]I]y">
                         <field name="ALIGN">LEFT</field>
-                        <value name="TYPE">
-                          <shadow type="type_null" id="zmIws+)[GJ4`i0b)|4##"></shadow>
-                          <block type="type_other" id=".HoDkqz7;zz#L~2#u;{0">
-                            <field name="TYPE">OUTER</field>
+                        <statement name="FIELDS">
+                          <block type="field_checkbox" id="|a63Y08.hSZs1V{v@h]J">
+                            <field name="CHECKED">TRUE</field>
+                            <field name="FIELDNAME">defeasible</field>
+                            <next>
+                              <block type="field_static" id="]8YFQ.cP?SewNx5N**U;">
+                                <field name="TEXT">subject to exceptions</field>
+                              </block>
+                            </next>
                           </block>
-                        </value>
+                        </statement>
+                        <next>
+                          <block type="input_dummy" id="AF/YtRMsn[1P61|AWK.$">
+                            <field name="ALIGN">LEFT</field>
+                            <statement name="FIELDS">
+                              <block type="field_checkbox" id="KL-M/vq519IWg?sKl@It">
+                                <field name="CHECKED">TRUE</field>
+                                <field name="FIELDNAME">inapplicable</field>
+                                <next>
+                                  <block type="field_static" id="BXnUGzXTg5TrL!v*B0*e">
+                                    <field name="TEXT">subect to applicability</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
                       </block>
                     </next>
                   </block>
@@ -7303,6 +7436,195 @@
       <block type="colour_hue" id="EvMB9xz7Y)#!#6/+ud?H">
         <mutation colour="#805ba5"></mutation>
         <field name="HUE">270</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="3WP=d}Sj}=@xEdF9R!Z," deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">defeated</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="m)d[=Q$JL/~SGxue1|CR">
+        <field name="INPUTNAME">defeating_rule</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="`j)XDY4m_FR9MP[[h;]%">
+            <field name="TEXT">the conclusion in </field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="QUMD94W6Ko}D7zJ/R+#1"></shadow>
+          <block type="type_group" id=".ps0g+GXsTlE7|5`GOW*">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="4_iiW,ZUi5L-a?FprfA?">
+                <field name="TYPE">RULE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="`H(ouuXwccPu8VOzJ2D%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_statement" id="v%m`.by},/Wm_W-~Jjp6">
+            <field name="INPUTNAME">defeating_statement</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="xe^8r(|lN?wUbY+k@)5M">
+                <field name="TEXT">that</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="NPbCKxl-f,{n?5?i8/,s"></shadow>
+              <block type="type_other" id="@As[_x|RpO|8U(6c?iJ.">
+                <field name="TYPE">OUTER</field>
+              </block>
+            </value>
+            <next>
+              <block type="input_dummy" id="?[#zXwGYb;fz6wwJTpq*">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="FhWu,7e3HqVaz0PpQ$gD">
+                    <field name="TEXT">is defeated</field>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="IJq^aW/ZB-(32Ih/xxla" deletable="false" movable="false">
+        <field name="TEXT">Use to specify or test that a conclusion in a section is defeated</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="d0zivw5W1._!^+iCigZc" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/defeated/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="1c,ZqrxqFruX{(/`Re(9"></shadow>
+      <block type="type_group" id="SXaHn-:o_*o,WaC1g04x">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="D!v;87fw0S-UnQ0{s3G2">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="hh^QDYbX;(3p=+v6=d5;">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="_+q=YzE}v(tgnq+]W{Zv"></shadow>
+      <block type="type_other" id="j~jaS7o{A|lAE?lM4QxP">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="bx2qFEfo118{yIKHo9O6">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="3WP=d}Sj}=@xEdF9R!Z," deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">applies</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="m)d[=Q$JL/~SGxue1|CR">
+        <field name="INPUTNAME">applicable_rule</field>
+        <field name="ALIGN">LEFT</field>
+        <value name="TYPE">
+          <shadow type="type_null" id="QUMD94W6Ko}D7zJ/R+#1"></shadow>
+          <block type="type_group" id=".ps0g+GXsTlE7|5`GOW*">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="4_iiW,ZUi5L-a?FprfA?">
+                <field name="TYPE">RULE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="`H(ouuXwccPu8VOzJ2D%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="LAkd/,GL(]rGjNeg#Ice">
+            <field name="INPUTNAME">object</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="[TDutn/uz_XXzCk~4uZW">
+                <field name="TEXT">applies to</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="QUMD94W6Ko}D7zJ/R+#1"></shadow>
+              <block type="type_group" id="G%-g!9hl]},90:QJ9eQk">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="@q}{LWkD,N;61Dx0t4*7">
+                    <field name="TYPE">OBJECT</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="!#FSr__f:p@ehOk~l*vL">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="IJq^aW/ZB-(32Ih/xxla" deletable="false" movable="false">
+        <field name="TEXT">Use to specify or test if a section applies to an object</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="d0zivw5W1._!^+iCigZc" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/applies/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="1c,ZqrxqFruX{(/`Re(9"></shadow>
+      <block type="type_group" id="SXaHn-:o_*o,WaC1g04x">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="D!v;87fw0S-UnQ0{s3G2">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="hh^QDYbX;(3p=+v6=d5;">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="_+q=YzE}v(tgnq+]W{Zv"></shadow>
+      <block type="type_other" id="j~jaS7o{A|lAE?lM4QxP">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="bx2qFEfo118{yIKHo9O6">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
       </block>
     </value>
   </block></xml>
