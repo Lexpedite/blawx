@@ -1,18 +1,17 @@
 ldap_code = """
-#pred overrules(R1,R2) :: 'the conclusion in @(R1) overrules the conclusion in @(R2)'.
-#pred opposes(C1,C2) :: 'the conclusion @(C1) opposes the conclusion @(C2)'.
-#pred defeated(R,_) :: 'the conclusion in @(R) is defeated'.
-#pred refuted(R,_) :: 'the conclusion in @(R) is refuted'.
+% We need language for the applies predicate that is not related to any other predicate.
+#pred blawx_applies(Y,X) :: '@(Y) applies to @(X)'.
+#pred holds(user,blawx_applies,Y,Z) :: 'it is provided as a fact that @(Y) applies to @(Z)'.
+#pred holds(user,-blawx_applies,Y,Z) :: 'it is provided as a fact that it is not the case that @(Y) applies to @(Z)'.
+#pred holds(X,blawx_applies,Y,Z) :: 'the conclusion in @(X) that @(Y) applies to @(Z) holds'.
+#pred holds(X,-blawx_applies,Y,Z) :: 'the conclusion in @(X) that it is not the case that @(Y) applies to @(Z) holds'.
+#pred according_to(X,blawx_applies,Y,Z) :: 'according to @(X) @(Y) applies to @(Z)'.
+#pred according_to(X,-blawx_applies,Y,Z) :: 'according to @(X) it is not the case that @(Y) applies to @(Z)'.
+#pred defeated(X,blawx_applies,Y,Z) :: 'the conclusion in @(X) that @(Y) applies to @(Z) is defeated'.
+#pred defeated(X,-blawx_applies,Y,Z) :: 'the conclusion in @(X) that it is not the case that @(Y) applies to @(Z) is defeated'.
+-blawx_applies(X,Y) :- holds(_,-blawx_applies,X,Y).
+blawx_applies(X,Y) :- holds(_,blawx_applies,X,Y).
 
-refuted(R,C) :-
-    opposes(C,OC),
-    overrules(OR,R),
-    according_to(OR,OC).
-
-defeated(R,C) :-
-    refuted(R,C).
-
-legally_holds(R,C) :-
-    according_to(R,C),
-    not defeated(R,C). 
+% We presume that sections apply to things unless we have evidence they don't.
+blawx_applies(X,Y) :- not -blawx_applies(X,Y).
 """
