@@ -1048,7 +1048,16 @@ sCASP['attributed_rule'] = function(block) {
             first_rule += "blawx_applies(" + value_source + "," + applicable_targets[t].trim() + "),\n";
         }
     }
-    first_rule += statements_conditions + ".\n";
+    currentBlock = this.getInputTargetBlock('conditions');
+    while (currentBlock) {
+        var codeForBlock = getCodeForSingleBlock(currentBlock);
+        currentBlock = currentBlock.getNextBlock();
+        first_rule += codeForBlock;
+        if (currentBlock) {
+            first_rule += ",\n";
+        }
+    }
+    first_rule += ".\n";
 
     var second_rule = "holds(" + value_source + ",";
     for (var i = 0; i< conclusion_parameters.length; i++) {
