@@ -271,8 +271,26 @@ sCASP['doc_selector'] = function (block) {
 
 sCASP['overrules'] = function (block) {
     var value_defeating_rule = sCASP.valueToCode(block, 'defeating_rule', sCASP.ORDER_ATOMIC);
+    var statements_defeating_statement = sCASP.statementToCode(block, 'defeating_statement');
     var value_defeated_rule = sCASP.valueToCode(block, 'defeated_rule', sCASP.ORDER_ATOMIC);
-    var code = 'overrules(' + value_defeating_rule + ',' + value_defeated_rule + ')';
+    var statements_defeated_statement = sCASP.statementToCode(block, 'defeated_statement');
+    var code = "blawx_defeated(" + value_defeated_rule + ",";
+    var first_params = deconstruct_term(statements_defeated_statement);
+    for (var i = 0; i< first_params.length; i++) {
+        code += first_params[i].trim();
+        if (i+1 < first_params.length) {
+            code += ",";
+        }
+    }
+    code += ") :- holds(" + value_defeating_rule + ",";
+    var second_params = deconstruct_term(statements_defeating_statement);
+    for (var i = 0; i< second_params.length; i++) {
+        code += second_params[i].trim();
+        if (i+1 < second_params.length) {
+            code += ",";
+        }
+    }
+    code += ")";
     return code;
 };
 
@@ -723,7 +741,16 @@ sCASP['opposes'] = function (block) {
 sCASP['according_to'] = function (block) {
     var value_rule = sCASP.valueToCode(block, 'rule', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'according_to(' + value_rule + ',' + statements_statement + ')';
+    var parameters = [value_rule];
+    parameters = parameters.concat(deconstruct_term(statements_statement));
+    var code = 'according_to('
+    for(var i=0; i< parameters.length; i++) {
+        code += parameters[i].trim();
+        if (i+1 < parameters.length) {
+            code += ",";
+        }
+    }
+    code += ')';
     return code;
 };
 
@@ -734,8 +761,18 @@ sCASP['scope'] = function (block) {
 };
 
 sCASP['holds'] = function (block) {
+    var value_rule = sCASP.valueToCode(block, 'section', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'legally_holds(_,' + statements_statement + ')';
+    var parameters = [value_rule];
+    parameters = parameters.concat(deconstruct_term(statements_statement));
+    var code = 'holds('
+    for(var i=0; i< parameters.length; i++) {
+        code += parameters[i].trim();
+        if (i+1 < parameters.length) {
+            code += ",";
+        }
+    }
+    code += ')';
     return code;
 };
 
@@ -907,38 +944,40 @@ sCASP['new_attribute_declaration'] = function(block) {
     if (dropdown_attribute_type != "boolean") {
         code += "blawx_attribute_nlg(" + text_attribute_name + "," + dropdown_order + ",\"" + text_prefix + "\",\"" + text_infix + "\",\"" + text_postfix + "\").\n"
         code += "#pred " + text_attribute_name + "(";
+        var variable_order;
         if (dropdown_order == "ov") {
-            code += "X,Y";
+            variable_order = "X,Y";
         } else {
-            code += "Y,X";
+            variable_order = "Y,X";
         }
+        code += variable_order;
         add_code = text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_infix.replace(/'/g, '\\\'') + " @(Y) " + text_postfix.replace(/'/g, '\\\'')
         code += ") :: '" + add_code.trim() + "'.\n"
-        code += "#pred according_to(R," + text_attribute_name + "(";
-        if (dropdown_order == "ov") {
-            code += "X,Y";
-        } else {
-            code += "Y,X";
-        }
-        code += ")) :: 'according to @(R), " + add_code.trim() + "'.\n"
-        code += "#pred legally_holds(_," + text_attribute_name + "(";
-        if (dropdown_order == "ov") {
-            code += "X,Y";
-        } else {
-            code += "Y,X";
-        }
-        code += ")) :: 'it legally holds that " + add_code.trim() + "'.\n"
-        code += "opposes(" + text_attribute_name + "(X,Y),-" + text_attribute_name + "(X,Y)).\n";
-        code += "opposes(-" + text_attribute_name + "(X,Y)," + text_attribute_name + "(X,Y)).\n";
+        code += '#pred holds(user,' + text_attribute_name + ',' + variable_order + ") :: 'it is provided as a fact that " + add_code.trim() + "'.\n";
+        code += '#pred holds(user,-' + text_attribute_name + ',' + variable_order + ") :: 'it is provided as a fact that it is not the case that " + add_code.trim() + "'.\n";
+        code += '#pred holds(Z,' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " holds'.\n";
+        code += '#pred holds(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that it is not the case that " + add_code.trim() + " holds'.\n";
+        code += '#pred according_to(Z,' + text_attribute_name + ',' + variable_order + ") :: 'according to @(Z), " + add_code.trim() + "'.\n";
+        code += '#pred according_to(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
+        code += '#pred blawx_defeated(Z,' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+        code += '#pred blawx_defeated(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+        code += text_attribute_name + "(X,Y) :- holds(_," + text_attribute_name + ",X,Y).\n";
+        code += "-" + text_attribute_name + "(X,Y) :- holds(_,-" + text_attribute_name + ",X,Y).\n";
     } else {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
         add_code = text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')
         code += "#pred " + text_attribute_name + "(X) :: '" + add_code.trim() + "'.\n"
-        code += "#pred according_to(R," + text_attribute_name + "(X)) :: 'according to @(R), " + add_code.trim() + "'.\n"
-        code += "#pred legally_holds(_," + text_attribute_name + "(X)) :: 'it legally holds that " + add_code.trim() + "'.\n"
-        code += "opposes(" + text_attribute_name + "(X),-" + text_attribute_name + "(X)).\n";
-        code += "opposes(-" + text_attribute_name + "(X)," + text_attribute_name + "(X)).\n";
+        code += '#pred holds(user,' + text_attribute_name + ",X) :: 'it is provided as a fact that " + add_code.trim() + "'.\n";
+        code += '#pred holds(user,-' + text_attribute_name + ",X) :: 'it is provided as a fact that it is not the case that " + add_code.trim() + "'.\n";
+        code += '#pred holds(Z,' + text_attribute_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " holds'.\n";
+        code += '#pred holds(Z,-' + text_attribute_name + ",X) :: 'the conclusion in @(Z) that it is not the case that " + add_code.trim() + " holds'.\n";
+        code += '#pred according_to(Z,' + text_attribute_name + ",X) :: 'according to @(Z), " + add_code.trim() + "'.\n";
+        code += '#pred according_to(Z,-' + text_attribute_name + ",X) :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
+        code += '#pred blawx_defeated(Z,' + text_attribute_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+        code += '#pred blawx_defeated(Z,-' + text_attribute_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+        code += text_attribute_name + "(X) :- holds(_," + text_attribute_name + ",X).\n";
+        code += "-" + text_attribute_name + "(X) :- holds(_,-" + text_attribute_name + ",X).\n";
     }
     return code;
 };
@@ -950,21 +989,131 @@ sCASP['new_category_declaration'] = function(block) {
     var code = "blawx_category(" + text_category_name + ").\n";
     code += "blawx_category_nlg(" + text_category_name + ",\"" + text_prefix + "\",\"" + text_postfix + "\").\n"
     code += "#pred " + text_category_name + "(X) :: '";
-    code += (text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')).trim() + "'.\n";
-    code += "#pred according_to(R," + text_category_name + "(X)) :: '";
-    code += "according to @(R), " + (text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')).trim() + "'.\n";
-    code += "#pred legally_holds(_," + text_category_name + "(X)) :: '";
-    code += "it legally holds that " + (text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')).trim() + "'.\n";
-    code += "opposes(" + text_category_name + "(X,Y),-" + text_category_name + "(X,Y)).\n";
-    code += "opposes(-" + text_category_name + "(X,Y)," + text_category_name + "(X,Y)).\n";
+    add_code = (text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')).trim()
+    code += add_code + "'.\n";
+    code += '#pred holds(user,' + text_category_name + ",X) :: 'it is provided as a fact that " + add_code.trim() + "'.\n";
+    code += '#pred holds(user,-' + text_category_name + ",X) :: 'it is provided as a fact that it is not the case that " + add_code.trim() + "'.\n";
+    code += '#pred holds(Z,' + text_category_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " holds'.\n";
+    code += '#pred holds(Z,-' + text_category_name + ",X) :: 'the conclusion in @(Z) that it is not the case that " + add_code.trim() + " holds'.\n";
+    code += '#pred according_to(Z,' + text_category_name + ",X) :: 'according to @(Z), " + add_code.trim() + "'.\n";
+    code += '#pred according_to(Z,-' + text_category_name + ",X) :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
+    code += '#pred blawx_defeated(Z,' + text_category_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+    code += '#pred blawx_defeated(Z,-' + text_category_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+    code += text_category_name + "(X) :- holds(_," + text_category_name + ",X).\n";
+    code += "-" + text_category_name + "(X) :- holds(_,-" + text_category_name + ",X).\n";
     return code;
 };
 
 sCASP['new_object_category'] = function(block) {
     var value_object = sCASP.valueToCode(block, 'object', sCASP.ORDER_ATOMIC);
     var category_name = block.getFieldValue('category_name');
-    // TODO: Assemble JavaScript into code variable.
     var code = category_name + "(" + value_object + ")";
     return code;
 };
 
+sCASP['attributed_rule'] = function(block) {
+    var statements_conditions = sCASP.statementToCode(block, 'conditions');
+    var value_source = sCASP.valueToCode(block, 'source', sCASP.ORDER_ATOMIC);
+    var statements_conclusion = sCASP.statementToCode(block, 'conclusion');
+    var checkbox_defeasible = block.getFieldValue('defeasible') === 'TRUE';
+    var checkbox_inapplicable = block.getFieldValue('inapplicable') === 'TRUE';
+    // There are two rules. The first is if conditions, according to. The second is if according to, holds.
+    // IF the user has said applicability, the first rule checks for applicability.
+    // IF the user has said defeasible, the second rule checks for defeats.
+    // In order to check for defeats, we just need the conclusion, so that's fine. But to check for applicability,
+    // we need the list of objects whose categories have been tested in the conditions.
+    var applicable_targets = [];
+    if (checkbox_inapplicable) {
+        // So get the next block from the conditions connector, check if it is an object category block, if so add
+        // to the list of categories, repeat until there is no next block.
+        var statement = this.getInputTargetBlock('conditions');
+        while(statement) {
+            if (statement.type == "new_object_category") {
+                applicable_targets.push(sCASP.valueToCode(statement,'object', sCASP.ORDER_ATOMIC));
+            }
+            statement = statement.getNextBlock();
+        }
+    }
+    var first_rule = "according_to(" + value_source + ",";
+    var conclusion_parameters = deconstruct_term(statements_conclusion);
+    for (var i = 0; i< conclusion_parameters.length; i++) {
+        first_rule += conclusion_parameters[i].trim();
+        if (i+1 < conclusion_parameters.length) {
+            first_rule += ",";
+        }
+    }
+    first_rule += ") :- ";
+    if (checkbox_inapplicable) {
+        for(var t=0; t < applicable_targets.length; t++) {
+            first_rule += "blawx_applies(" + value_source + "," + applicable_targets[t].trim() + "),\n";
+        }
+    }
+    first_rule += statements_conditions + ".\n";
+
+    var second_rule = "holds(" + value_source + ",";
+    for (var i = 0; i< conclusion_parameters.length; i++) {
+        second_rule += conclusion_parameters[i].trim();
+        if (i+1 < conclusion_parameters.length) {
+            second_rule += ",";
+        }
+    }
+    second_rule += ") :- according_to(" + value_source + ",";
+    for (var i = 0; i< conclusion_parameters.length; i++) {
+        second_rule += conclusion_parameters[i].trim();
+        if (i+1 < conclusion_parameters.length) {
+            second_rule += ",";
+        }
+    }
+    second_rule += ")";
+    if (checkbox_defeasible) {
+        second_rule += ", not blawx_defeated(" + value_source + ",";
+        for (var i = 0; i< conclusion_parameters.length; i++) {
+            second_rule += conclusion_parameters[i].trim();
+            if (i+1 < conclusion_parameters.length) {
+                second_rule += ",";
+            }
+        }
+        second_rule += ")";
+    }
+    second_rule += ".\n";
+    var code = first_rule + '\n' + second_rule;
+    return code;
+};
+
+sCASP['defeated'] = function(block) {
+    var value_defeating_rule = sCASP.valueToCode(block, 'defeating_rule', sCASP.ORDER_ATOMIC);
+    var statements_defeating_statement = sCASP.statementToCode(block, 'defeating_statement');
+    var parameters = [value_defeating_rule];
+    parameters = parameters.concat(deconstruct_term(statements_defeating_statement));
+    var code = 'blawx_defeated(';
+    for(var i=0; i< parameters.length; i++) {
+        code += parameters[i].trim();
+        if (i+1 < parameters.length) {
+            code += ",";
+        }
+    }
+    code += ")";
+    return code;
+};
+
+sCASP['applies'] = function(block) {
+    var value_applicable_rule = sCASP.valueToCode(block, 'applicable_rule', sCASP.ORDER_ATOMIC);
+    var value_object = sCASP.valueToCode(block, 'object', sCASP.ORDER_ATOMIC);
+    var code = 'blawx_applies(' + value_applicable_rule + ',' + value_object + ')';
+    return code;
+};
+
+function deconstruct_term(term) {
+    var elements = [];
+    const term_pattern = /(?<functor>[^\(\)]*)\((?<parameters>.*)\)/gm
+    const param_pattern = /(?:([^,\(\)]+(?:\([^\)]+\))?)(?:,?))/gm;
+    var matches = term_pattern.exec(term);
+    if (matches !== null) {
+        elements.push(matches[1]);
+        param_matches = matches[2].matchAll(param_pattern);
+        for(const match of param_matches) {
+            elements.push(match[1]);
+        }
+    } 
+    return elements;
+}

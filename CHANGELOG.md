@@ -11,16 +11,21 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### To Do
 
-* Do code generation for annotated rule block
-  * It should generate two rules, conditions lead to section applies, section applies means conclusion.
-  * Conditions should include "not defeated"
-* Re-do code generation for overrules block to generate defeated statements.
-* Re-do code generation for according_to block to generate queries.
+* Test
+* Add example for applicability
+* Add example for defeated defeaters
 * Update examples
 * Remove documentation for removed blocks
+* Add documentation for new blocks
+  * defeated
+  * applies
+  * Annotated Rule
 * Update documentation
   * Defaults and Exceptions
   * Overrules block
+  * Holds
+  * According To
+
 
 ## [v1.4.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.1-alpha) 2023-03-02
 
