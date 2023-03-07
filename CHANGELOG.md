@@ -7,12 +7,37 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.5.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.0-alpha) 2023-03-07
+
+This release revises the way defaults and exceptions are dealt with, simplifies getting access to legislative text in explanations,
+and makes it possible to specify objects to which a rule does not apply.
+
+### Changes
+* Overrules Block
+* Holds Block
+* Associated documentation
+
+### Adds
+* Attributed Rule Block
+* Defeated Block
+* Applies Block
+
+### Removes
+* Override Block
+
+### Fixes
+* Defeating rules can now themselves be defeated.
+* Rules can be defeated by multiple other rules.
+* Links to legislative material can be obtained without using defeasibility.
+* Rules can be disabled in addition to contradicted.
+
 ## Development Notes
 
 ### To Do
 
 * Testing
 * Maybe if there is no defeasibility, the attributed rule should only generate one rule that concludes holds to simplify the explanations?
+* Maybe we need an attributed fact block? Inapplicability is often stated as a fact, and we want to know where that fact came from...
 * Make explanations show up properly in the scenario editor again.
 * Update documentation
   * Defaults and Exceptions - underway
