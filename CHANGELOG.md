@@ -47,13 +47,10 @@ order to be defeasible. Checking the "subject to exceptions" checkbox has that s
 ### To Do
 
 * Testing
-* Maybe if there is no defeasibility, the attributed rule should only generate one rule that concludes holds to simplify the explanations?
-* Maybe we need an attributed fact block? Inapplicability is often stated as a fact, and we want to know where that fact came from...
 * Make explanations show up properly in the scenario editor again.
 * Fix Bugs:
   * R34 test fails with stack error
   * OASA examples seem to run super slow?
-  * Explanations showing up as "undefined" in the scenario editor.
   * There is a problem that the categories from other workspaces are not updated when you change categories in
     the rule editor. Need to refresh after saving a page with new categories, or something.
   * There is a problem where some answers are being displayed multiple times in the scenario editor, see basic new beard act example.

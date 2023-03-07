@@ -132,11 +132,17 @@
 
       ![Big Bird Inapplicability](/static/blawx/docs/images/big_bird.png)
 
+      This will be enough for Blawx to know that section 1 does not apply to big bird. But you may want Blawx to be able to explain exactly
+      why section 1 does not apply to big bird, in which case we need to create a fact that is attributed to a section.  Unlike attributed
+      rules, attributed facts can be created using the "holds" block, like this:
+
+      ![Big Bird Attributed Inapplicability](/static/blawx/docs/images/attributed_big_bird.png)
+
       In this case, section 1 concludes a logical negative, and we want to know why that logical negative does not apply to big bird, so in
       a test you might ask "why is there no evidence that it is not true that big bird can talk?", like this:
 
       ![Big Bird Question](/static/blawx/docs/images/big_bird_question.png)
 
-      The answer will be that there is no evidence section 1 concludes that big bird cannot talk, because section 1 does not apply to big bird.
+      The answer will be that there is no evidence section 1 concludes that big bird cannot talk, because section 2 held that section 1 does not apply to big bird.
 
 
