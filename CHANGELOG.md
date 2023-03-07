@@ -16,7 +16,6 @@ and breaking changes will not necessarily result in changes to the main version 
 * Make explanations show up properly in the scenario editor again.
 * Update documentation
   * Defaults and Exceptions - underway
-  * Add new example to interface and docs - in the folder, but not linked.
 * Fix Bugs:
   * R34 test fails with stack error
   * OASA examples seem to run super slow?
