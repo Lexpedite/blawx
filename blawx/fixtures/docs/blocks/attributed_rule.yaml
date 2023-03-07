@@ -26,6 +26,15 @@
       out the new conclusion that can be drawn when the conditions are known to
       be true. This should be a single statement.
 
+      It also has two checkboxes for "subject to exceptions" and "subject to inapplicability".
+
+      If you choose "subject to exceptions", the conclusion in that rule can be defeated by conclusions
+      in other rules, typically set out using the overrules block.
+
+      If you choose "subject to inapplicability", the effect of that rule can be turned off with regard
+      to specific objects, typically by using the "applies" block, and wrapping it in the "it is false that"
+      negation block.
+
       ## Technical Details
 
       The rule block is an outer block.
@@ -36,10 +45,11 @@
 
       Its bottom statement connector accepts exactly one conclusion statement.
 
-      The attributed rule connector actually generates two rules, which can be summarized like this:
+      The attributed rule connector actually uses three different rules to reach a conclusion, which can be summarized like this:
 
-      1. If the conditions are true, and the section is not overruled, then according to the section the conclusion is true.
-      2. If according to the section the conclusion is true, the conclusion is true.
+      1. If the conditions are true, and (if subject to applicability) the section applies, then according to the section the conclusion is tentativley true.
+      2. If according to the section the conclusion is tentatively true, and (if subject to exceptions) no exceptions apply, the conclusion in this section holds.
+      3. If a conclusion in any section holds, that conclusion is true.
 
       See the defaults and exceptions portion of the documentation for more details.
 

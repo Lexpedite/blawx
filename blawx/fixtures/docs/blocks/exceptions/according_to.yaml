@@ -14,18 +14,19 @@
       ## What Does It Do?
 
       The According To block is used to query whether a given conclusion
-      was reached by a given section of the rules, and was not overruled.
+      was reached by a given section of the rules, regardless of whether that conclusion by that section was also overruled.
       
       ## Technical Details
       According to is a statement block, which can be stacked vertically with other statements.
-      Its input connection accepts only a block that returns one or more sections, or a variable.
+      Its input connection accepts a section selector or a variable.
       Right now there is no way in blawx to assign a section value to a variable, so the only
-      variable block that should be used is the "any" variable block. It also accepts a single statements block, which is the conclusion that the
-      statement relates to.
-
+      variable block that should be used is the "any" variable block.
+      
+      It also accepts a statements stack, which should be a single statement block representing the conclusion that may
+      or may not have tentatively held.
 
       ## Tips
 
-      Because the according to block tests whether a section reached a conclusion *and that conclusion was not defeated*,
-      the according to block should not be used in facts or rule conclusions. You should instead use an attributed rule,
-      which will generate conclusions that can be queried using the according to block.
+      It is often not necessary to use the "according to" block. If you use "attributed rules", "according to" statements
+      are created automatically for you. And if you query a conclusion, the explanation will indicate which sections of
+      your rules found that conclusion. It is most useful for debugging defaults and exceptions in your code.

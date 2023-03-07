@@ -4,8 +4,7 @@
     ruledoc_name: New Bird Act
     rule_text: "New Bird Act\r\n\r\n1. Penguins are birds.\r\n2. Birds fly.\r\n3.
       Despite 2, penguins do not fly, subject to 4.\r\n4. Penguins on planes can fly.\r\n5.
-      Despite 3, cartoon penguins with jetpacks can fly.\r\n6. Section 5 does not
-      apply to pingu."
+      Despite 3, cartoon penguins with jetpacks can fly, [pingu]{except for pingu}."
     scasp_encoding: ''
     tutorial: ''
     owner: 3
@@ -438,21 +437,31 @@
   fields:
     ruledoc: 1
     workspace_name: sec_6_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"></xml>
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 39
+  fields:
+    ruledoc: 1
+    workspace_name: sec_5__span_pingu_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="~5Jjg+_O-eBwgLF1T9n;" x="34" y="51"><statement name="statements"><block
+      id="~5Jjg+_O-eBwgLF1T9n;" x="135" y="131"><statement name="statements"><block
       type="object_declaration" id=",`l9FVEcoN)KX2sH}o%_"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="penguin" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">pingu</field><field name="postfix">is a penguin</field><next><block
+      type="holds" id="=]zr*iD!=}1eeu.fow!,"><value name="section"><block type="doc_selector"
+      id="-`Bw}GZ*;CvN0r`2|:7{"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_5__span_pingu_section"></mutation><field
+      name="doc_part_name">NBA 5pingu</field></block></value><statement name="statement"><block
       type="logical_negation" id="N/#|u11X2qZ/Va3,~dhs"><statement name="negated_statement"><block
       type="applies" id="b{Um]+x/1fn,*(jgeK#A"><value name="applicable_rule"><block
       type="doc_selector" id="V]n7Up3`$(^sq+#.{=@e"><mutation xmlns="http://www.w3.org/1999/xhtml"
       section_reference="sec_5_section"></mutation><field name="doc_part_name">NBA
       5</field></block></value><value name="object"><block type="object_selector"
       id=";|YvD[;b4grR+1*AD/)@"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="pingu"></mutation><field
-      name="object_name">pingu</field></block></value></block></statement></block></next></block></statement></block></xml>
+      name="object_name">pingu</field></block></value></block></statement></block></statement></block></next></block></statement></block></xml>
     scasp_encoding: 'penguin(pingu).
 
-      -blawx_applies(sec_5_section,pingu).'
+      holds(sec_5__span_pingu_section,-blawx_applies,sec_5_section,pingu).'
 - model: blawx.blawxtest
   pk: 1
   fields:
@@ -509,7 +518,7 @@
       name="postfix">is on a plane</field><value name="first_element"><block type="object_selector"
       id="d^.T:@wfMQzbeskKFNxV"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="pingu"></mutation><field
       name="object_name">pingu</field></block></value></block></statement></block><block
-      type="query" id="sBc[P#(ST6I8cyH+Vs?C" x="97" y="214"><comment pinned="true"
+      type="query" id="sBc[P#(ST6I8cyH+Vs?C" x="97" y="214"><comment pinned="false"
       h="101" w="333">Pingu can fly, because section 2 applies, because section 3
       would defeat it, but section 4 defeats section 3. Also, section 4 applies on
       its own.</comment><statement name="query"><block type="unary_attribute_selector"

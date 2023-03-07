@@ -1,30 +1,62 @@
 - model: blawx.docpage
   pk: features/defaults
   fields:
-    title: Defaults and Exceptions
+    title: Defaults, Exceptions and Applicability
     content: |
-      # Defaults and Exceptions
-
-      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
+      # Defaults, Exceptions and Applicability
 
       Laws are typically drafted in a style where the rules that apply most generally are stated
       first, and more specific variations are stated later. Blawx calls this style
-      "defaults and exceptions," and gives you a number of tools you can use to be able to
-      encode defaults and exceptions without needing to modify multiple sections of code when
-      a new exception is created.
+      "defaults and exceptions." Laws are also frequently written in a style where one section of a
+      rule "turns off" the effect of another section of the rule. Blawx calls this "applicability."
+      
+      Blawx gives you some powerful tools to be able to represent defaults, exceptions, and applicability
+      in your code in a way that closely matches the way they are used in legislation, making your code
+      easier to create, and much easier to maintain.
 
       ## Defaults and Exceptions in Blawx
 
       The basic system of dealing with defaults and exceptions in Blawx can be described by these steps:
 
-      * You indicate which sections of law led to which conclusions.
-      * You can indicate which conclusions contradict one another.
-      * You can indicate which sections overrule which other sections.
-      * You can ask which conclusions are not overruled.
-
-      Blawx provides one block for each of these four capabilities, plus blocks that allow you
-      to specify sections of the law.
+      * Indicate which sections of the law led to what conclusions, and whether those conclusions are subject to exceptions.
+      * Indicate which conclusions overrule which other conclusions.
       
+      The first part is done using the "attributed rule" block, and the second part is done using the "overrules" block.
+
+      ### Attributed Rules
+
+      ### Overrules
+
+      ### Holds
+
+      ## Advanced Defaults and Exceptions
+
+      Most of what you will want to do will be possible using the "attributed rule", "overrule" and "holds" block as described above.
+      However, if you need to troubleshoot your defaults and exceptions, or if you want to build your defeasibility rules yourself,
+      Blawx allows you to do that by using the unattributed rule block alongside the "holds", "overrule", "according to", and "defeated"
+      blocks.
+
+      ## Applicability
+
+      In addition to situations where two sections of a rule come to incompatible conclusions, and one conclusion needs to win out over the
+      other, there are also frequently situations in which one section of a rule will simply cause another section of the law to conclude
+      nothing. Take for example, a rule like this:
+      ```
+      1. Birds can't talk.
+      2. Section 1 does not apply to Big Bird.
+      ```
+      Here you can see that section 2 doesn't reach any conclusion of its own, it just prevents section 1 from reaching a conclusion about
+      Big Bird specifically.
+
+      Blawx allows you to encode this sort of relationship using the attributed rule block and the "applies" block.  The process is this:
+
+      * Indicate which rules can be made inapplicable by selecting "subject to inapplicability" on the attributed rule block.
+      * Indicate which rules **do not** apply to which objects using the applies block, wrapped in a "it is false that" block.
+
+      In Blawx, every rule applies to every object by default. (Note: This may change in future versions.)  So to change the applicability,
+      you need to say that something does not apply. You do that by wrapping the "applies" block in a logical negation, and saying what rule
+      does not apply to what object. This statement can also be the conclusion of a rule.
+
       ## According To
 
       You indicate that a section of law reached a conclusion by using the "according to" block
