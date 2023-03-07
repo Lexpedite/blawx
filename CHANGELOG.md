@@ -9,13 +9,25 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## [v1.5.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.0-alpha) 2023-03-07
 
-This release revises the way defaults and exceptions are dealt with, simplifies getting access to legislative text in explanations,
-and makes it possible to specify objects to which a rule does not apply.
+**This release is NOT backward compatible.**
+
+This release revises the way defaults and exceptions are dealt with, simplifies getting access to legislative text in explanations without using defeasibility,
+and makes it possible to specify objects to which a rule does not apply. All examples have been updated to the new
+block language, and the documentation relevant to defautlts, exceptions, and applicability has been updated.
+
+### Upgrade Notes
+
+To bring code from pre v1.5.0-alpha up to date, you will primarily need to update overrules blocks, update "holds" blocks,
+replace "according to" blocks with "holds" blocks where appropriate, and switch to attributed rules where the conclusions are
+subject to exceptions. Most questions which previously used the "holds" block can now have the holds block left out, and will
+work properly. Note that conclusions in attributed rule blocks also no longer need to be wrapped in "according to" blocks in
+order to be defeasible. Checking the "subject to exceptions" checkbox has that same effect.
 
 ### Changes
 * Overrules Block
 * Holds Block
 * Associated documentation
+* Updated examples to new block language
 
 ### Adds
 * Attributed Rule Block
@@ -30,8 +42,7 @@ and makes it possible to specify objects to which a rule does not apply.
 * Rules can be defeated by multiple other rules.
 * Links to legislative material can be obtained without using defeasibility.
 * Rules can be disabled in addition to contradicted.
-
-## Development Notes
+* Problem in OASA example encoding has been resolved.
 
 ### To Do
 
@@ -39,8 +50,6 @@ and makes it possible to specify objects to which a rule does not apply.
 * Maybe if there is no defeasibility, the attributed rule should only generate one rule that concludes holds to simplify the explanations?
 * Maybe we need an attributed fact block? Inapplicability is often stated as a fact, and we want to know where that fact came from...
 * Make explanations show up properly in the scenario editor again.
-* Update documentation
-  * Defaults and Exceptions - underway
 * Fix Bugs:
   * R34 test fails with stack error
   * OASA examples seem to run super slow?
