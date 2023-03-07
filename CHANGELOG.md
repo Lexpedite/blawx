@@ -12,43 +12,30 @@ and breaking changes will not necessarily result in changes to the main version 
 ### To Do
 
 * Testing
-  * Check what happens if you try to use a non-user-generated statement in a reified form.
+* Maybe if there is no defeasibility, the attributed rule should only generate one rule that concludes holds to simplify the explanations?
 * Make explanations show up properly in the scenario editor again.
-* Update examples
-  * Covid
-  * Rule34
-  * Wills Act
-  * Old Age Security
 * Update documentation
   * Defaults and Exceptions - underway
-  * Add new example to interface and docs - v3 is in the folder, but not linked.
+  * Add new example to interface and docs - in the folder, but not linked.
 * Fix Bugs:
+  * R34 test fails with stack error
+  * OASA examples seem to run super slow?
   * Explanations showing up as "undefined" in the scenario editor.
-  * The explanation in the last test of the new bird act is so "wide" that it is completely invisible on the screen.
   * There is a problem that the categories from other workspaces are not updated when you change categories in
     the rule editor. Need to refresh after saving a page with new categories, or something.
   * There is a problem where some answers are being displayed multiple times in the scenario editor, see basic new beard act example.
-  * There is a bug in the covid test example, in the good_test old_test examples, where the type-checking for the attribute selectors is
-    broken, and the datetime values seem to have been deleted, and can't be replaced. I'm also getting a drawer error.
 * Create New Issues:
+  * Deal better with "wide" (deep) explanations in the test editor.
+  * Cannot reverse reasoning over date calculations? See "old test" test in covid example and negate conclusion, query doesn't terminate.
+  * Unexpected end of input in buttons.js error
+  * It is possible to take things that should only ever be stated in a condition and put them in a conclusion (like A is blawx_today)
+  * There are some statements that use infix notation, and when they are placed in a conclusion in which they are to be reified, the code generation will fail.
   * There is a problem that comments are showing up where they don't belong, when the comment window is closed.
   * There is a problem in how hypothetical reasoning works with the new defeasibility method. In Rock Paper Scissors, the hypothetical
     test returns only two answers unless you specify the players and make them disjoint.
   * Need to see if there is a way to use applicability in the third part of the siblings act demo. Doesn't seem to work, yet.
   * Should consider whether blocks that make rules, like overrules, should be outer blocks instead of statements, to avoid their
     being used in rules and questions.
-
-### Defeasibility
-
-* Defaults and Exceptions
-* Relationships Specified At Default or Exception.
-* Override is conclusion-specific.
-* Applicability by default, but can be excluded
-* If something can be defeated in multiple ways, it still works.
-* A defeating rule can be defeated.
-* What happens if you have a defeating loop? Both positive and negative explanations will fail.
-
-
 
 ## [v1.4.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.1-alpha) 2023-03-02
 

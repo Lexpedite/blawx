@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 8
+  pk: 10
   fields:
     ruledoc_name: Wills Act
     rule_text: "Wills Act\r\n\r\n1. A person over the age of 18 may make a will.\r\n2.
@@ -9,16 +9,16 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 32
+  pk: 40
   fields:
-    ruledoc: 8
+    ruledoc: 10
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 33
+  pk: 41
   fields:
-    ruledoc: 8
+    ruledoc: 10
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="aECNt(H}#:DQpaQ]yKzK" x="38" y="32"><statement name="statements"><block
@@ -36,9 +36,9 @@
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">is</field><field name="second_element">value</field><field name="postfix">years
       of age</field></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="L[LYC]li52NUh_}lUA2M" x="41" y="295"><statement
-      name="conditions"><block type="new_object_category" id="A3oF)YvGz4/#G2O7BDL="><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      type="attributed_rule" id="-)vwG6{saE[5(3r^=%j]" x="41" y="304"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="A3oF)YvGz4/#G2O7BDL="><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
       name="category_name">person</field><value name="object"><block type="variable"
       id="jho?N`]_2;HUXOYqek;V"><field name="variable_name">Person</field></block></value><next><block
       type="attribute_selector" id="epHy#fCq9w*au[SN=*Q*"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -50,28 +50,44 @@
       type="numerical_constraint" id="6vV--u~Y[3y3%;tjG_|+"><field name="operator">gte</field><value
       name="first_comparator"><block type="variable" id="j,e5WF5E$Le^xbU01)NB"><field
       name="variable_name">Age</field></block></value><value name="second_comparator"><block
-      type="number_value" id="$muy%R..)5M)/W!B}d/0"><field name="value">18</field></block></value></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="?jc|`wwV`[Q9S4$]G0]I"><value
-      name="rule"><block type="doc_selector" id="@q.Yh)n);-35~wJ+[Ug1"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_1_section"></mutation><field name="doc_part_name">WA
-      1</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="1XuJny0Zwc7~TBX:[]n="><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="eligible"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">may
-      make a will</field><value name="first_element"><block type="variable" id=".:1I{23gTb=FRerN{p{$"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      type="number_value" id="$muy%R..)5M)/W!B}d/0"><field name="value">18</field></block></value></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="@Sh{%4~,p5;XAs;8Bxic"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1_section"></mutation><field
+      name="doc_part_name">WA 1</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="1XuJny0Zwc7~TBX:[]n="><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="eligible" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">may make a will</field><value name="first_element"><block type="variable"
+      id=".:1I{23gTb=FRerN{p{$"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_category(person).
 
       blawx_category_nlg(person,"","is a person").
 
       #pred person(X) :: ''@(X) is a person''.
 
-      #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
+      #pred holds(user,person,X) :: ''it is provided as a fact that @(X) is a person''.
 
-      #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
+      #pred holds(user,-person,X) :: ''it is provided as a fact that it is not the
+      case that @(X) is a person''.
 
-      opposes(person(X,Y),-person(X,Y)).
+      #pred holds(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a person holds''.
 
-      opposes(-person(X,Y),person(X,Y)).
+      #pred holds(Z,-person,X) :: ''the conclusion in @(Z) that it is not the case
+      that @(X) is a person holds''.
+
+      #pred according_to(Z,person,X) :: ''according to @(Z), @(X) is a person''.
+
+      #pred according_to(Z,-person,X) :: ''according to @(Z), it is not the case that
+      @(X) is a person''.
+
+      #pred blawx_defeated(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a
+      person is defeated''.
+
+      #pred blawx_defeated(Z,-person,X) :: ''the conclusion in @(Z) that @(X) is a
+      person is defeated''.
+
+      person(X) :- holds(_,person,X).
+
+      -person(X) :- holds(_,-person,X).
 
       blawx_attribute(person,eligible,boolean).
 
@@ -79,14 +95,32 @@
 
       #pred eligible(X) :: ''@(X) may make a will''.
 
-      #pred according_to(R,eligible(X)) :: ''according to @(R), @(X) may make a will''.
-
-      #pred legally_holds(_,eligible(X)) :: ''it legally holds that @(X) may make
+      #pred holds(user,eligible,X) :: ''it is provided as a fact that @(X) may make
       a will''.
 
-      opposes(eligible(X),-eligible(X)).
+      #pred holds(user,-eligible,X) :: ''it is provided as a fact that it is not the
+      case that @(X) may make a will''.
 
-      opposes(-eligible(X),eligible(X)).
+      #pred holds(Z,eligible,X) :: ''the conclusion in @(Z) that @(X) may make a will
+      holds''.
+
+      #pred holds(Z,-eligible,X) :: ''the conclusion in @(Z) that it is not the case
+      that @(X) may make a will holds''.
+
+      #pred according_to(Z,eligible,X) :: ''according to @(Z), @(X) may make a will''.
+
+      #pred according_to(Z,-eligible,X) :: ''according to @(Z), it is not the case
+      that @(X) may make a will''.
+
+      #pred blawx_defeated(Z,eligible,X) :: ''the conclusion in @(Z) that @(X) may
+      make a will is defeated''.
+
+      #pred blawx_defeated(Z,-eligible,X) :: ''the conclusion in @(Z) that @(X) may
+      make a will is defeated''.
+
+      eligible(X) :- holds(_,eligible,X).
+
+      -eligible(X) :- holds(_,-eligible,X).
 
       blawx_attribute(person,age,number).
 
@@ -94,28 +128,47 @@
 
       #pred age(X,Y) :: ''@(X) is @(Y) years of age''.
 
-      #pred according_to(R,age(X,Y)) :: ''according to @(R), @(X) is @(Y) years of
-      age''.
-
-      #pred legally_holds(_,age(X,Y)) :: ''it legally holds that @(X) is @(Y) years
+      #pred holds(user,age,X,Y) :: ''it is provided as a fact that @(X) is @(Y) years
       of age''.
 
-      opposes(age(X,Y),-age(X,Y)).
+      #pred holds(user,-age,X,Y) :: ''it is provided as a fact that it is not the
+      case that @(X) is @(Y) years of age''.
 
-      opposes(-age(X,Y),age(X,Y)).
+      #pred holds(Z,age,X,Y) :: ''the conclusion in @(Z) that @(X) is @(Y) years of
+      age holds''.
+
+      #pred holds(Z,-age,X,Y) :: ''the conclusion in @(Z) that it is not the case
+      that @(X) is @(Y) years of age holds''.
+
+      #pred according_to(Z,age,X,Y) :: ''according to @(Z), @(X) is @(Y) years of
+      age''.
+
+      #pred according_to(Z,-age,X,Y) :: ''according to @(Z), it is not the case that
+      @(X) is @(Y) years of age''.
+
+      #pred blawx_defeated(Z,age,X,Y) :: ''the conclusion in @(Z) that @(X) is @(Y)
+      years of age is defeated''.
+
+      #pred blawx_defeated(Z,-age,X,Y) :: ''the conclusion in @(Z) that @(X) is @(Y)
+      years of age is defeated''.
+
+      age(X,Y) :- holds(_,age,X,Y).
+
+      -age(X,Y) :- holds(_,-age,X,Y).
 
 
-      according_to(sec_1_section,  eligible(Person)) :-
-
-      person(Person),
+      according_to(sec_1_section,eligible,Person) :- person(Person),
 
       age(Person,Age),
 
-      Age #>= 18.'
+      Age #>= 18.
+
+
+      holds(sec_1_section,eligible,Person) :- according_to(sec_1_section,eligible,Person).'
 - model: blawx.workspace
-  pk: 34
+  pk: 42
   fields:
-    ruledoc: 8
+    ruledoc: 10
     workspace_name: sec_2_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="aECNt(H}#:DQpaQ]yKzK" x="66" y="88"><statement name="statements"><block
@@ -125,9 +178,9 @@
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">'s attribute name is</field><field name="second_element">value</field><field
       name="postfix">is an active military member</field></block></statement></block><block
-      type="unattributed_rule" id="L[LYC]li52NUh_}lUA2M" x="66" y="430"><statement
-      name="conditions"><block type="new_object_category" id="B{{Ws(Z!;NCo2XudMu1}"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      type="attributed_rule" id="!};mTU3-1Y@s2ShVd032" x="67" y="232"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="B{{Ws(Z!;NCo2XudMu1}"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
       name="category_name">person</field><value name="object"><block type="variable"
       id="jho?N`]_2;HUXOYqek;V"><field name="variable_name">Person</field></block></value><next><block
       type="unary_attribute_selector" id="8oxQ-w3]/vG9u+0[)e9%"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -143,15 +196,14 @@
       type="numerical_constraint" id="6vV--u~Y[3y3%;tjG_|+"><field name="operator">gte</field><value
       name="first_comparator"><block type="variable" id="j,e5WF5E$Le^xbU01)NB"><field
       name="variable_name">Age</field></block></value><value name="second_comparator"><block
-      type="number_value" id="$muy%R..)5M)/W!B}d/0"><field name="value">14</field></block></value></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="?jc|`wwV`[Q9S4$]G0]I"><value
-      name="rule"><block type="doc_selector" id="w+E*LE/iH]AV`7d{l(O*"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_2_section"></mutation><field name="doc_part_name">WA
-      2</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="Hgv%dX]#VH6Dc7~Y9iqN"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="eligible"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">may
-      make a will</field><value name="first_element"><block type="variable" id="g]^4lzu|)Qp6`!FKFg{h"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      type="number_value" id="$muy%R..)5M)/W!B}d/0"><field name="value">14</field></block></value></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="UG#{YYIJo}U$`E8GU{]K"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_2_section"></mutation><field
+      name="doc_part_name">WA 2</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="Hgv%dX]#VH6Dc7~Y9iqN"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="eligible" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">may make a will</field><value name="first_element"><block type="variable"
+      id="g]^4lzu|)Qp6`!FKFg{h"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,military,boolean).
 
       blawx_attribute_nlg(military,not_applicable,"",not_applicable,"is an active
@@ -159,39 +211,57 @@
 
       #pred military(X) :: ''@(X) is an active military member''.
 
-      #pred according_to(R,military(X)) :: ''according to @(R), @(X) is an active
+      #pred holds(user,military,X) :: ''it is provided as a fact that @(X) is an active
       military member''.
 
-      #pred legally_holds(_,military(X)) :: ''it legally holds that @(X) is an active
-      military member''.
+      #pred holds(user,-military,X) :: ''it is provided as a fact that it is not the
+      case that @(X) is an active military member''.
 
-      opposes(military(X),-military(X)).
+      #pred holds(Z,military,X) :: ''the conclusion in @(Z) that @(X) is an active
+      military member holds''.
 
-      opposes(-military(X),military(X)).
+      #pred holds(Z,-military,X) :: ''the conclusion in @(Z) that it is not the case
+      that @(X) is an active military member holds''.
+
+      #pred according_to(Z,military,X) :: ''according to @(Z), @(X) is an active military
+      member''.
+
+      #pred according_to(Z,-military,X) :: ''according to @(Z), it is not the case
+      that @(X) is an active military member''.
+
+      #pred blawx_defeated(Z,military,X) :: ''the conclusion in @(Z) that @(X) is
+      an active military member is defeated''.
+
+      #pred blawx_defeated(Z,-military,X) :: ''the conclusion in @(Z) that @(X) is
+      an active military member is defeated''.
+
+      military(X) :- holds(_,military,X).
+
+      -military(X) :- holds(_,-military,X).
 
 
-      according_to(sec_2_section,  eligible(Person)) :-
-
-      person(Person),
+      according_to(sec_2_section,eligible,Person) :- person(Person),
 
       military(Person),
 
       age(Person,Age),
 
-      Age #>= 14.'
+      Age #>= 14.
+
+
+      holds(sec_2_section,eligible,Person) :- according_to(sec_2_section,eligible,Person).'
 - model: blawx.blawxtest
-  pk: 14
+  pk: 21
   fields:
-    ruledoc: 8
+    ruledoc: 10
     test_name: valid_will
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
-      id="[H%F(8shmmOZ^!_dk%fF" x="49" y="271"><statement name="query"><block type="holds"
-      id="u-3URjiN[]xrf.EsitK6"><statement name="statement"><block type="unary_attribute_selector"
+      id="[H%F(8shmmOZ^!_dk%fF" x="49" y="271"><statement name="query"><block type="unary_attribute_selector"
       id="GiCx]Hr/(hG=WAopR#m;"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="eligible"
       attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">may
       make a will</field><value name="first_element"><block type="variable" id="dhkXp21P}xgt!ogYtSTC"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: ?- legally_holds(_,  eligible(Person)).
+      name="variable_name">Person</field></block></value></block></statement></block></xml>
+    scasp_encoding: ?- eligible(Person).
     tutorial: ''
     view: ''
     fact_scenario: ''

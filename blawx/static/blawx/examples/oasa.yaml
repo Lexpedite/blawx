@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 4
+  pk: 11
   fields:
     ruledoc_name: Old Age Security Act
     rule_text: "Old Age Security Act\r\n\r\nPayment of full pension\r\n3.\r\n  (1)
@@ -31,16 +31,16 @@
     owner: 3
     published: true
 - model: blawx.workspace
-  pk: 44
+  pk: 43
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 45
+  pk: 44
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="c5vOdJSO[]Pdd}X[HUj}" x="58" y="52"><statement name="statements"><block
@@ -52,36 +52,53 @@
       name="attribute_type">boolean</field><field name="order">ov</field><field name="prefix"></field><field
       name="first_element">object</field><field name="infix">'s attribute name is</field><field
       name="second_element">value</field><field name="postfix">was a pensioner on
-      July 1 1977</field></block></next></block></statement></block><block type="unattributed_rule"
-      id="GB%P/vPu347%8m]YFPiY" x="56" y="286"><statement name="conditions"><block
-      type="new_object_category" id="2d2vx#ZqPr~JZn1V]v}R"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person"></mutation><field name="category_name">person</field><value
-      name="object"><block type="variable" id="V)Uz3V?-ykz|p-%G#rJ!"><field name="variable_name">Person</field></block></value><next><block
+      July 1 1977</field></block></next></block></statement></block><block type="attributed_rule"
+      id="OU-R/%Oy6gE=6XBg|^tP" x="56" y="256"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="2d2vx#ZqPr~JZn1V]v}R"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field><value name="object"><block type="variable"
+      id="V)Uz3V?-ykz|p-%G#rJ!"><field name="variable_name">Person</field></block></value><next><block
       type="unary_attribute_selector" id=",!)gkI]d^vW,!zs0L[+/"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="pensioner_july" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">was a pensioner on July 1 1977</field><value name="first_element"><block
-      type="variable" id="BZ`1Ng]y(@lASqs_=YXA"><field name="variable_name">Person</field></block></value></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="cU#YSJTwC?]B_m2vNCIW"><value
-      name="rule"><block type="doc_selector" id="zJWLvxFN.#ZU,+K%tR4V"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_a_section"></mutation><field name="doc_part_name">OASA
-      3.1.a</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="=J,+JFg){%=Q`9K]JFz0"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s3_1_a"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
-      under s3(1)(a)</field><value name="first_element"><block type="variable" id="Y.,4$X*[JQJ9wavt$o3P"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      type="variable" id="BZ`1Ng]y(@lASqs_=YXA"><field name="variable_name">Person</field></block></value></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="WH}e7h0|V:?C2Icbyyj)"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_a_section"></mutation><field
+      name="doc_part_name">OASA 3.1.a</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="=J,+JFg){%=Q`9K]JFz0"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="qualifies_s3_1_a" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">qualifies under s3(1)(a)</field><value name="first_element"><block
+      type="variable" id="Y.,4$X*[JQJ9wavt$o3P"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_category(person).
 
       blawx_category_nlg(person,"","is a person").
 
       #pred person(X) :: ''@(X) is a person''.
 
-      #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
+      #pred holds(user,person,X) :: ''it is provided as a fact that @(X) is a person''.
 
-      #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
+      #pred holds(user,-person,X) :: ''it is provided as a fact that it is not the
+      case that @(X) is a person''.
 
-      opposes(person(X,Y),-person(X,Y)).
+      #pred holds(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a person holds''.
 
-      opposes(-person(X,Y),person(X,Y)).
+      #pred holds(Z,-person,X) :: ''the conclusion in @(Z) that it is not the case
+      that @(X) is a person holds''.
+
+      #pred according_to(Z,person,X) :: ''according to @(Z), @(X) is a person''.
+
+      #pred according_to(Z,-person,X) :: ''according to @(Z), it is not the case that
+      @(X) is a person''.
+
+      #pred blawx_defeated(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a
+      person is defeated''.
+
+      #pred blawx_defeated(Z,-person,X) :: ''the conclusion in @(Z) that @(X) is a
+      person is defeated''.
+
+      person(X) :- holds(_,person,X).
+
+      -person(X) :- holds(_,-person,X).
 
       blawx_attribute(person,pensioner_july,boolean).
 
@@ -90,26 +107,45 @@
 
       #pred pensioner_july(X) :: ''@(X) was a pensioner on July 1 1977''.
 
-      #pred according_to(R,pensioner_july(X)) :: ''according to @(R), @(X) was a pensioner
-      on July 1 1977''.
-
-      #pred legally_holds(_,pensioner_july(X)) :: ''it legally holds that @(X) was
+      #pred holds(user,pensioner_july,X) :: ''it is provided as a fact that @(X) was
       a pensioner on July 1 1977''.
 
-      opposes(pensioner_july(X),-pensioner_july(X)).
+      #pred holds(user,-pensioner_july,X) :: ''it is provided as a fact that it is
+      not the case that @(X) was a pensioner on July 1 1977''.
 
-      opposes(-pensioner_july(X),pensioner_july(X)).
+      #pred holds(Z,pensioner_july,X) :: ''the conclusion in @(Z) that @(X) was a
+      pensioner on July 1 1977 holds''.
+
+      #pred holds(Z,-pensioner_july,X) :: ''the conclusion in @(Z) that it is not
+      the case that @(X) was a pensioner on July 1 1977 holds''.
+
+      #pred according_to(Z,pensioner_july,X) :: ''according to @(Z), @(X) was a pensioner
+      on July 1 1977''.
+
+      #pred according_to(Z,-pensioner_july,X) :: ''according to @(Z), it is not the
+      case that @(X) was a pensioner on July 1 1977''.
+
+      #pred blawx_defeated(Z,pensioner_july,X) :: ''the conclusion in @(Z) that @(X)
+      was a pensioner on July 1 1977 is defeated''.
+
+      #pred blawx_defeated(Z,-pensioner_july,X) :: ''the conclusion in @(Z) that @(X)
+      was a pensioner on July 1 1977 is defeated''.
+
+      pensioner_july(X) :- holds(_,pensioner_july,X).
+
+      -pensioner_july(X) :- holds(_,-pensioner_july,X).
 
 
-      according_to(sec_3__subsec_1__para_a_section,  qualifies_s3_1_a(Person)) :-
+      according_to(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person) :- person(Person),
 
-      person(Person),
+      pensioner_july(Person).
 
-      pensioner_july(Person).'
+
+      holds(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person) :- according_to(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person).'
 - model: blawx.workspace
-  pk: 46
+  pk: 45
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1__para_b__subpara_i_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="SVKEzrr:KnIMpu8XNQYa" x="31" y="55"><statement name="statements"><block
@@ -137,13 +173,13 @@
       name="order">ov</field><field name="prefix">as of July 1977</field><field name="first_element">object</field><field
       name="infix">'s attribute name is</field><field name="second_element">value</field><field
       name="postfix">had resided in Canada after 18 years of age</field></block></next></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="Kt#1e!X2hs4-uhVS])2=" x="39" y="427"><statement
-      name="conditions"><block type="default_negation" id="?=2[+CVf@S`DG*3)M*bi"><statement
-      name="default_negated_statement"><block type="unary_attribute_selector" id="ZXBQR3e3KwVW{n[-ccbr"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="pensioner_july" attributetype="boolean"></mutation><field
-      name="prefix"></field><field name="postfix">was a pensioner on July 1 1977</field><value
-      name="first_element"><block type="variable" id="dpYc|vk@||@pzg#(!*FX"><field
-      name="variable_name">Person</field></block></value></block></statement><next><block
+      type="attributed_rule" id="dWi?#}z+j8iB_d[(}9.f" x="31" y="431"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="default_negation"
+      id="?=2[+CVf@S`DG*3)M*bi"><statement name="default_negated_statement"><block
+      type="unary_attribute_selector" id="ZXBQR3e3KwVW{n[-ccbr"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="pensioner_july" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">was a pensioner on July 1 1977</field><value name="first_element"><block
+      type="variable" id="dpYc|vk@||@pzg#(!*FX"><field name="variable_name">Person</field></block></value></block></statement><next><block
       type="attribute_selector" id="#S[bUT];u)ny4.m33P~y"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="birthdate" attributetype="Calendar Date" attributeorder="ov"></mutation><field
       name="prefix"></field><field name="infix">was born on</field><field name="postfix"></field><value
@@ -164,23 +200,22 @@
       attributename="resided_in_canada_july" attributetype="boolean"></mutation><field
       name="prefix">as of July 1977</field><field name="postfix">resided in Canada</field><value
       name="first_element"><block type="variable" id="u8PFJ@n0gqK1F(;?^tF`"><field
-      name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="^Djj:VT!Zo|qPAtlxv}6"><value
-      name="rule"><block type="doc_selector" id="#W[XeAbs{-aUgSF88)J("><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_b__subpara_i_section"></mutation><field
-      name="doc_part_name">OASA 3.1.b.i</field></block></value><statement name="statement"><block
+      name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="yeEyCJxrs;TOEJ|f-z{r"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b__subpara_i_section"></mutation><field
+      name="doc_part_name">OASA 3.1.b.i</field></block></value><statement name="conclusion"><block
       type="unary_attribute_selector" id="=.WNw$yByk;-U.*F:Id="><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_residence_requirement_s3_1_b_i" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">meets the residence requirements
       of section 3(1)(b)(i)</field><value name="first_element"><block type="variable"
-      id="JA%H~Gurj(+VisU`{r5~"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block><block
-      type="unattributed_rule" id="OYK/x)sBZXsp2h8PWVW," x="40" y="777"><statement
-      name="conditions"><block type="default_negation" id="M6y:@M)hM~kqxco}P?-k"><statement
-      name="default_negated_statement"><block type="unary_attribute_selector" id="EP:uY]n;w}OxS0$+cx@~"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="pensioner_july" attributetype="boolean"></mutation><field
-      name="prefix"></field><field name="postfix">was a pensioner on July 1 1977</field><value
-      name="first_element"><block type="variable" id="q+ZokY.{`$fCsbJR`Gbz"><field
-      name="variable_name">Person</field></block></value></block></statement><next><block
+      id="JA%H~Gurj(+VisU`{r5~"><field name="variable_name">Person</field></block></value></block></statement></block><block
+      type="attributed_rule" id="iZV_I?kh50-vz|(5|~JU" x="38" y="812"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="default_negation"
+      id="M6y:@M)hM~kqxco}P?-k"><statement name="default_negated_statement"><block
+      type="unary_attribute_selector" id="EP:uY]n;w}OxS0$+cx@~"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="pensioner_july" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">was a pensioner on July 1 1977</field><value name="first_element"><block
+      type="variable" id="q+ZokY.{`$fCsbJR`Gbz"><field name="variable_name">Person</field></block></value></block></statement><next><block
       type="default_negation" id="jJa},,z^`Su)dm1OFh#X"><statement name="default_negated_statement"><block
       type="unary_attribute_selector" id=";79EaT_Y;IBXl.)IDvs*"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="resided_in_canada_july" attributetype="boolean"></mutation><field
@@ -207,23 +242,22 @@
       attributename="possessed_valid_immigration_visa_july" attributetype="boolean"></mutation><field
       name="prefix">as of July 1977</field><field name="postfix">possessed a valid
       immigration visa</field><value name="first_element"><block type="variable" id="ck_UW`HW4E{#Z7Shf7Q8"><field
-      name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="aaA5{aH|[4=`njrA1`3)"><value
-      name="rule"><block type="doc_selector" id="dMJS8+,Nedyi3WL=ZNiC"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_b__subpara_i_section"></mutation><field
-      name="doc_part_name">OASA 3.1.b.i</field></block></value><statement name="statement"><block
+      name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="/w]+%]@vz.B[92Cv+zJO"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b__subpara_i_section"></mutation><field
+      name="doc_part_name">OASA 3.1.b.i</field></block></value><statement name="conclusion"><block
       type="unary_attribute_selector" id="_sfF|pVucI7N;Ek?0*tH"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_residence_requirement_s3_1_b_i" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">meets the residence requirements
       of section 3(1)(b)(i)</field><value name="first_element"><block type="variable"
-      id="W|5BjO)x@v}V6w6QVn61"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block><block
-      type="unattributed_rule" id="cL(FhP5Dw`?2Aq_/^:+v" x="48" y="1225"><statement
-      name="conditions"><block type="default_negation" id="@dA:QnaNGiUcyafK`Qn~"><statement
-      name="default_negated_statement"><block type="unary_attribute_selector" id="H;u95kMrW`XnT(R-.g2D"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="pensioner_july" attributetype="boolean"></mutation><field
-      name="prefix"></field><field name="postfix">was a pensioner on July 1 1977</field><value
-      name="first_element"><block type="variable" id="NWfE!RFcZdx{jCivQw^p"><field
-      name="variable_name">Person</field></block></value></block></statement><next><block
+      id="W|5BjO)x@v}V6w6QVn61"><field name="variable_name">Person</field></block></value></block></statement></block><block
+      type="attributed_rule" id="Zn.VYz6Rc9;PG)RkMfKe" x="40" y="1271"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="default_negation"
+      id="@dA:QnaNGiUcyafK`Qn~"><statement name="default_negated_statement"><block
+      type="unary_attribute_selector" id="H;u95kMrW`XnT(R-.g2D"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="pensioner_july" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">was a pensioner on July 1 1977</field><value name="first_element"><block
+      type="variable" id="NWfE!RFcZdx{jCivQw^p"><field name="variable_name">Person</field></block></value></block></statement><next><block
       type="default_negation" id="N,q8EfCv%Cg]n2j;ihVa"><statement name="default_negated_statement"><block
       type="unary_attribute_selector" id="rDux3eoxGqFn$659O3;:"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="resided_in_canada_july" attributetype="boolean"></mutation><field
@@ -250,31 +284,48 @@
       attributename="resided_in_canada_after_18_as_of_july" attributetype="boolean"></mutation><field
       name="prefix">as of July 1977</field><field name="postfix">had resided in Canada
       after 18 years of age</field><value name="first_element"><block type="variable"
-      id="8!H9~,mV5K(UO|^ue+,."><field name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="^43]hJ!)+Cow~{TQr0uc"><value
-      name="rule"><block type="doc_selector" id="H![BuT|kU`_Ld{4B]S%?"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_b__subpara_i_section"></mutation><field
-      name="doc_part_name">OASA 3.1.b.i</field></block></value><statement name="statement"><block
+      id="8!H9~,mV5K(UO|^ue+,."><field name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="FR*zZ.CD=OG1g7;vP`*0"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b__subpara_i_section"></mutation><field
+      name="doc_part_name">OASA 3.1.b.i</field></block></value><statement name="conclusion"><block
       type="unary_attribute_selector" id="*4L?:7PvOL%TY]$DP$X("><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_residence_requirement_s3_1_b_i" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">meets the residence requirements
       of section 3(1)(b)(i)</field><value name="first_element"><block type="variable"
-      id="89{qB3OHP+7XA*`8NRdt"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      id="89{qB3OHP+7XA*`8NRdt"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,birthdate,date).
 
       blawx_attribute_nlg(birthdate,ov,"","was born on","").
 
       #pred birthdate(X,Y) :: ''@(X) was born on @(Y)''.
 
-      #pred according_to(R,birthdate(X,Y)) :: ''according to @(R), @(X) was born on
+      #pred holds(user,birthdate,X,Y) :: ''it is provided as a fact that @(X) was
+      born on @(Y)''.
+
+      #pred holds(user,-birthdate,X,Y) :: ''it is provided as a fact that it is not
+      the case that @(X) was born on @(Y)''.
+
+      #pred holds(Z,birthdate,X,Y) :: ''the conclusion in @(Z) that @(X) was born
+      on @(Y) holds''.
+
+      #pred holds(Z,-birthdate,X,Y) :: ''the conclusion in @(Z) that it is not the
+      case that @(X) was born on @(Y) holds''.
+
+      #pred according_to(Z,birthdate,X,Y) :: ''according to @(Z), @(X) was born on
       @(Y)''.
 
-      #pred legally_holds(_,birthdate(X,Y)) :: ''it legally holds that @(X) was born
-      on @(Y)''.
+      #pred according_to(Z,-birthdate,X,Y) :: ''according to @(Z), it is not the case
+      that @(X) was born on @(Y)''.
 
-      opposes(birthdate(X,Y),-birthdate(X,Y)).
+      #pred blawx_defeated(Z,birthdate,X,Y) :: ''the conclusion in @(Z) that @(X)
+      was born on @(Y) is defeated''.
 
-      opposes(-birthdate(X,Y),birthdate(X,Y)).
+      #pred blawx_defeated(Z,-birthdate,X,Y) :: ''the conclusion in @(Z) that @(X)
+      was born on @(Y) is defeated''.
+
+      birthdate(X,Y) :- holds(_,birthdate,X,Y).
+
+      -birthdate(X,Y) :- holds(_,-birthdate,X,Y).
 
       blawx_attribute(person,resided_in_canada_july,boolean).
 
@@ -283,15 +334,33 @@
 
       #pred resided_in_canada_july(X) :: ''as of July 1977 @(X) resided in Canada''.
 
-      #pred according_to(R,resided_in_canada_july(X)) :: ''according to @(R), as of
-      July 1977 @(X) resided in Canada''.
-
-      #pred legally_holds(_,resided_in_canada_july(X)) :: ''it legally holds that
+      #pred holds(user,resided_in_canada_july,X) :: ''it is provided as a fact that
       as of July 1977 @(X) resided in Canada''.
 
-      opposes(resided_in_canada_july(X),-resided_in_canada_july(X)).
+      #pred holds(user,-resided_in_canada_july,X) :: ''it is provided as a fact that
+      it is not the case that as of July 1977 @(X) resided in Canada''.
 
-      opposes(-resided_in_canada_july(X),resided_in_canada_july(X)).
+      #pred holds(Z,resided_in_canada_july,X) :: ''the conclusion in @(Z) that as
+      of July 1977 @(X) resided in Canada holds''.
+
+      #pred holds(Z,-resided_in_canada_july,X) :: ''the conclusion in @(Z) that it
+      is not the case that as of July 1977 @(X) resided in Canada holds''.
+
+      #pred according_to(Z,resided_in_canada_july,X) :: ''according to @(Z), as of
+      July 1977 @(X) resided in Canada''.
+
+      #pred according_to(Z,-resided_in_canada_july,X) :: ''according to @(Z), it is
+      not the case that as of July 1977 @(X) resided in Canada''.
+
+      #pred blawx_defeated(Z,resided_in_canada_july,X) :: ''the conclusion in @(Z)
+      that as of July 1977 @(X) resided in Canada is defeated''.
+
+      #pred blawx_defeated(Z,-resided_in_canada_july,X) :: ''the conclusion in @(Z)
+      that as of July 1977 @(X) resided in Canada is defeated''.
+
+      resided_in_canada_july(X) :- holds(_,resided_in_canada_july,X).
+
+      -resided_in_canada_july(X) :- holds(_,-resided_in_canada_july,X).
 
       blawx_attribute(person,possessed_valid_immigration_visa_july,boolean).
 
@@ -301,15 +370,36 @@
       #pred possessed_valid_immigration_visa_july(X) :: ''as of July 1977 @(X) possessed
       a valid immigration visa''.
 
-      #pred according_to(R,possessed_valid_immigration_visa_july(X)) :: ''according
-      to @(R), as of July 1977 @(X) possessed a valid immigration visa''.
+      #pred holds(user,possessed_valid_immigration_visa_july,X) :: ''it is provided
+      as a fact that as of July 1977 @(X) possessed a valid immigration visa''.
 
-      #pred legally_holds(_,possessed_valid_immigration_visa_july(X)) :: ''it legally
-      holds that as of July 1977 @(X) possessed a valid immigration visa''.
+      #pred holds(user,-possessed_valid_immigration_visa_july,X) :: ''it is provided
+      as a fact that it is not the case that as of July 1977 @(X) possessed a valid
+      immigration visa''.
 
-      opposes(possessed_valid_immigration_visa_july(X),-possessed_valid_immigration_visa_july(X)).
+      #pred holds(Z,possessed_valid_immigration_visa_july,X) :: ''the conclusion in
+      @(Z) that as of July 1977 @(X) possessed a valid immigration visa holds''.
 
-      opposes(-possessed_valid_immigration_visa_july(X),possessed_valid_immigration_visa_july(X)).
+      #pred holds(Z,-possessed_valid_immigration_visa_july,X) :: ''the conclusion
+      in @(Z) that it is not the case that as of July 1977 @(X) possessed a valid
+      immigration visa holds''.
+
+      #pred according_to(Z,possessed_valid_immigration_visa_july,X) :: ''according
+      to @(Z), as of July 1977 @(X) possessed a valid immigration visa''.
+
+      #pred according_to(Z,-possessed_valid_immigration_visa_july,X) :: ''according
+      to @(Z), it is not the case that as of July 1977 @(X) possessed a valid immigration
+      visa''.
+
+      #pred blawx_defeated(Z,possessed_valid_immigration_visa_july,X) :: ''the conclusion
+      in @(Z) that as of July 1977 @(X) possessed a valid immigration visa is defeated''.
+
+      #pred blawx_defeated(Z,-possessed_valid_immigration_visa_july,X) :: ''the conclusion
+      in @(Z) that as of July 1977 @(X) possessed a valid immigration visa is defeated''.
+
+      possessed_valid_immigration_visa_july(X) :- holds(_,possessed_valid_immigration_visa_july,X).
+
+      -possessed_valid_immigration_visa_july(X) :- holds(_,-possessed_valid_immigration_visa_july,X).
 
       blawx_attribute(person,resided_in_canada_after_18_as_of_july,boolean).
 
@@ -319,21 +409,43 @@
       #pred resided_in_canada_after_18_as_of_july(X) :: ''as of July 1977 @(X) had
       resided in Canada after 18 years of age''.
 
-      #pred according_to(R,resided_in_canada_after_18_as_of_july(X)) :: ''according
-      to @(R), as of July 1977 @(X) had resided in Canada after 18 years of age''.
+      #pred holds(user,resided_in_canada_after_18_as_of_july,X) :: ''it is provided
+      as a fact that as of July 1977 @(X) had resided in Canada after 18 years of
+      age''.
 
-      #pred legally_holds(_,resided_in_canada_after_18_as_of_july(X)) :: ''it legally
-      holds that as of July 1977 @(X) had resided in Canada after 18 years of age''.
+      #pred holds(user,-resided_in_canada_after_18_as_of_july,X) :: ''it is provided
+      as a fact that it is not the case that as of July 1977 @(X) had resided in Canada
+      after 18 years of age''.
 
-      opposes(resided_in_canada_after_18_as_of_july(X),-resided_in_canada_after_18_as_of_july(X)).
+      #pred holds(Z,resided_in_canada_after_18_as_of_july,X) :: ''the conclusion in
+      @(Z) that as of July 1977 @(X) had resided in Canada after 18 years of age holds''.
 
-      opposes(-resided_in_canada_after_18_as_of_july(X),resided_in_canada_after_18_as_of_july(X)).
+      #pred holds(Z,-resided_in_canada_after_18_as_of_july,X) :: ''the conclusion
+      in @(Z) that it is not the case that as of July 1977 @(X) had resided in Canada
+      after 18 years of age holds''.
+
+      #pred according_to(Z,resided_in_canada_after_18_as_of_july,X) :: ''according
+      to @(Z), as of July 1977 @(X) had resided in Canada after 18 years of age''.
+
+      #pred according_to(Z,-resided_in_canada_after_18_as_of_july,X) :: ''according
+      to @(Z), it is not the case that as of July 1977 @(X) had resided in Canada
+      after 18 years of age''.
+
+      #pred blawx_defeated(Z,resided_in_canada_after_18_as_of_july,X) :: ''the conclusion
+      in @(Z) that as of July 1977 @(X) had resided in Canada after 18 years of age
+      is defeated''.
+
+      #pred blawx_defeated(Z,-resided_in_canada_after_18_as_of_july,X) :: ''the conclusion
+      in @(Z) that as of July 1977 @(X) had resided in Canada after 18 years of age
+      is defeated''.
+
+      resided_in_canada_after_18_as_of_july(X) :- holds(_,resided_in_canada_after_18_as_of_july,X).
+
+      -resided_in_canada_after_18_as_of_july(X) :- holds(_,-resided_in_canada_after_18_as_of_july,X).
 
 
-      according_to(sec_3__subsec_1__para_b__subpara_i_section,  meets_residence_requirement_s3_1_b_i(Person))
-      :-
-
-      not pensioner_july(Person),
+      according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- not pensioner_july(Person),
 
       birthdate(Person,Birthdate),
 
@@ -344,10 +456,12 @@
       resided_in_canada_july(Person).
 
 
-      according_to(sec_3__subsec_1__para_b__subpara_i_section,  meets_residence_requirement_s3_1_b_i(Person))
-      :-
+      holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).
 
-      not pensioner_july(Person),
+
+      according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- not pensioner_july(Person),
 
       not resided_in_canada_july(Person),
 
@@ -360,10 +474,12 @@
       possessed_valid_immigration_visa_july(Person).
 
 
-      according_to(sec_3__subsec_1__para_b__subpara_i_section,  meets_residence_requirement_s3_1_b_i(Person))
-      :-
+      holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).
 
-      not pensioner_july(Person),
+
+      according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- not pensioner_july(Person),
 
       not resided_in_canada_july(Person),
 
@@ -373,15 +489,20 @@
 
       not_after(DateAttaining25Years,date(1977,7,1)),
 
-      resided_in_canada_after_18_as_of_july(Person).'
+      resided_in_canada_after_18_as_of_july(Person).
+
+
+      holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).'
 - model: blawx.workspace
-  pk: 47
+  pk: 46
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1__para_b__subpara_ii_section
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_rule"
-      id=".$bHPv#i/J#e83On1{TD" x="58" y="337"><comment pinned="false" h="184" w="261">A
-      more typical method of calculating age would be to take the years from the duration
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
+      id="2v/}04+7rW2-;ucg6fRV" x="319" y="100"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><comment pinned="false" h="80" w="160">A more
+      typical method of calculating age would be to take the years from the duration
       obtained by subtracting the birthdate from today, but currently Blawx's date
       subtraction returns only days, not years, which raises leap-year risks, so this
       is more accurate because it accounts for leap-years.</comment><statement name="conditions"><block
@@ -401,16 +522,15 @@
       name="second_date"><block type="variable" id="fo%n[C-zO3[OXA2,,+N}"><field name="variable_name">DateAttaining65</field></block></value><next><block
       type="date_comparison" id=";raKx0Ntbdqota;IqGq,"><field name="comparison">lte</field><value
       name="first_date"><block type="variable" id="NM[0;aEVe7PXd0)Q6HRg"><field name="variable_name">DateAttaining65</field></block></value><value
-      name="second_date"><block type="variable" id="HJ+S1hb1NmZ1[#|!I]R5"><field name="variable_name">Today</field></block></value></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="KiGgT+s,g~I2RS*sM,(E"><value
-      name="rule"><block type="doc_selector" id="Ndz;,KK8W}Gsy~uERKqY"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_b__subpara_ii_section"></mutation><field
-      name="doc_part_name">OASA 3.1.b.ii</field></block></value><statement name="statement"><block
+      name="second_date"><block type="variable" id="HJ+S1hb1NmZ1[#|!I]R5"><field name="variable_name">Today</field></block></value></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="J4#[JQc_pQ3e:E+lbBTf"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b__subpara_ii_section"></mutation><field
+      name="doc_part_name">OASA 3.1.b.ii</field></block></value><statement name="conclusion"><block
       type="unary_attribute_selector" id="/%i3c0/Q(IsHWfGb`:)/"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_age_requirement_s3_1_b_ii" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">meets the age requirement of section
       3(1)(b)(ii)</field><value name="first_element"><block type="variable" id=":J/GUQ?%q;O#zv{-j!Sk"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: '% A more typical method of calculating age would be to take
 
       % the years from the duration obtained by subtracting the
@@ -421,20 +541,22 @@
 
       % so this is more accurate because it accounts for leap-years.
 
-      according_to(sec_3__subsec_1__para_b__subpara_ii_section,  meets_age_requirement_s3_1_b_ii(Person))
-      :-
-
-      blawx_today(Today),
+      according_to(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person)
+      :- blawx_today(Today),
 
       birthdate(Person,Birthdate),
 
       datetime_add(Birthdate,duration(1,65,0,0,0,0,0),DateAttaining65),
 
-      not_after(DateAttaining65,Today).'
+      not_after(DateAttaining65,Today).
+
+
+      holds(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person).'
 - model: blawx.workspace
-  pk: 48
+  pk: 47
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="L5r^S.Hc=ufydzQsKujx" x="48" y="16"><statement name="statements"><block
@@ -457,12 +579,12 @@
       name="first_element">object</field><field name="infix">'s attribute name is</field><field
       name="second_element">value</field><field name="postfix">meets the residence
       duration requirement of section 3(1)(b)(iii)</field></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="GjVgolY?tA2(p~qxE;l=" x="37" y="307"><statement
-      name="conditions"><block type="new_object_category" id="K8p[(-+0I~TJ8~deujO1"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      type="attributed_rule" id="M[_PhpS3aP4]fq%6n~)C" x="54" y="322"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="N%f|D@ou5d(T6X-[ikDh"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
       name="category_name">person</field><value name="object"><block type="variable"
-      id="h}h2xDF@[Q=82y^$]BB]"><field name="variable_name">Person</field></block></value><next><block
-      type="according_to" id="8GUmBj]`brNp]^q#@Rlm"><value name="rule"><block type="doc_selector"
+      id="J((dC)GBKitlEs{@_Qq["><field name="variable_name">Person</field></block></value><next><block
+      type="holds" id=",%_maUo`)^kcrrr3G)Cj"><value name="section"><block type="doc_selector"
       id="zRme(6+(Wz,`N+1P0g:6"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b__subpara_i_section"></mutation><field
       name="doc_part_name">OASA 3.1.b.i</field></block></value><statement name="statement"><block
       type="unary_attribute_selector" id="565I]J1A^nI._CG^ljXX"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -470,7 +592,7 @@
       name="prefix"></field><field name="postfix">meets the residence requirements
       of section 3(1)(b)(i)</field><value name="first_element"><block type="variable"
       id="BcvXO]Fi5{O:{aI~i2*T"><field name="variable_name">Person</field></block></value></block></statement><next><block
-      type="according_to" id="j4x*6-r^E[BtIhAM|5Ar"><value name="rule"><block type="doc_selector"
+      type="holds" id=";J_St]hoWRjEM:2y,tcJ"><value name="section"><block type="doc_selector"
       id="nWS65od9t./OWYEySLZn"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b__subpara_ii_section"></mutation><field
       name="doc_part_name">OASA 3.1.b.ii</field></block></value><statement name="statement"><block
       type="unary_attribute_selector" id="Zw]?uCBqCsG=w:PXOI4["><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -478,22 +600,21 @@
       name="prefix"></field><field name="postfix">meets the age requirement of section
       3(1)(b)(ii)</field><value name="first_element"><block type="variable" id="tWA}^U!w-[q29Js0B{{D"><field
       name="variable_name">Person</field></block></value></block></statement><next><block
-      type="according_to" id="T:[u;yP!~-U3(WOhwx*:"><value name="rule"><block type="doc_selector"
+      type="holds" id="YfewaRD+NenfbB/EA-p^"><value name="section"><block type="doc_selector"
       id="Wh:IZCc6_-@vVY3l539h"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b__subpara_iii_section"></mutation><field
       name="doc_part_name">OASA 3.1.b.iii</field></block></value><statement name="statement"><block
       type="unary_attribute_selector" id="rj^pz)P3v9S0E]jLq=6/"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_residence_duration_requirement_s3_1_b_iii" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">meets the residence duration requirement
       of section 3(1)(b)(iii)</field><value name="first_element"><block type="variable"
-      id="Z?fV]QY([qPr6ba:APIr"><field name="variable_name">Person</field></block></value></block></statement></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="%n2/K24PQ*[lD:;579rW"><value
-      name="rule"><block type="doc_selector" id="!wOFp6`wLAe.t6.aa,ZO"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_b_section"></mutation><field name="doc_part_name">OASA
-      3.1.b</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="l+4:ckfieNjqGSj}.d1_"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s3_1_b"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
-      under s3(1)(b)</field><value name="first_element"><block type="variable" id="lvVwG#m!z([tgV`by$H|"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      id="Z?fV]QY([qPr6ba:APIr"><field name="variable_name">Person</field></block></value></block></statement></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="wbRO,eVnkFSzGgt5G~DZ"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b_section"></mutation><field
+      name="doc_part_name">OASA 3.1.b</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="l+4:ckfieNjqGSj}.d1_"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="qualifies_s3_1_b" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">qualifies under s3(1)(b)</field><value name="first_element"><block
+      type="variable" id="lvVwG#m!z([tgV`by$H|"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,meets_residence_requirement_s3_1_b_i,boolean).
 
       blawx_attribute_nlg(meets_residence_requirement_s3_1_b_i,not_applicable,"",not_applicable,"meets
@@ -502,15 +623,38 @@
       #pred meets_residence_requirement_s3_1_b_i(X) :: ''@(X) meets the residence
       requirements of section 3(1)(b)(i)''.
 
-      #pred according_to(R,meets_residence_requirement_s3_1_b_i(X)) :: ''according
-      to @(R), @(X) meets the residence requirements of section 3(1)(b)(i)''.
+      #pred holds(user,meets_residence_requirement_s3_1_b_i,X) :: ''it is provided
+      as a fact that @(X) meets the residence requirements of section 3(1)(b)(i)''.
 
-      #pred legally_holds(_,meets_residence_requirement_s3_1_b_i(X)) :: ''it legally
-      holds that @(X) meets the residence requirements of section 3(1)(b)(i)''.
+      #pred holds(user,-meets_residence_requirement_s3_1_b_i,X) :: ''it is provided
+      as a fact that it is not the case that @(X) meets the residence requirements
+      of section 3(1)(b)(i)''.
 
-      opposes(meets_residence_requirement_s3_1_b_i(X),-meets_residence_requirement_s3_1_b_i(X)).
+      #pred holds(Z,meets_residence_requirement_s3_1_b_i,X) :: ''the conclusion in
+      @(Z) that @(X) meets the residence requirements of section 3(1)(b)(i) holds''.
 
-      opposes(-meets_residence_requirement_s3_1_b_i(X),meets_residence_requirement_s3_1_b_i(X)).
+      #pred holds(Z,-meets_residence_requirement_s3_1_b_i,X) :: ''the conclusion in
+      @(Z) that it is not the case that @(X) meets the residence requirements of section
+      3(1)(b)(i) holds''.
+
+      #pred according_to(Z,meets_residence_requirement_s3_1_b_i,X) :: ''according
+      to @(Z), @(X) meets the residence requirements of section 3(1)(b)(i)''.
+
+      #pred according_to(Z,-meets_residence_requirement_s3_1_b_i,X) :: ''according
+      to @(Z), it is not the case that @(X) meets the residence requirements of section
+      3(1)(b)(i)''.
+
+      #pred blawx_defeated(Z,meets_residence_requirement_s3_1_b_i,X) :: ''the conclusion
+      in @(Z) that @(X) meets the residence requirements of section 3(1)(b)(i) is
+      defeated''.
+
+      #pred blawx_defeated(Z,-meets_residence_requirement_s3_1_b_i,X) :: ''the conclusion
+      in @(Z) that @(X) meets the residence requirements of section 3(1)(b)(i) is
+      defeated''.
+
+      meets_residence_requirement_s3_1_b_i(X) :- holds(_,meets_residence_requirement_s3_1_b_i,X).
+
+      -meets_residence_requirement_s3_1_b_i(X) :- holds(_,-meets_residence_requirement_s3_1_b_i,X).
 
       blawx_attribute(person,meets_age_requirement_s3_1_b_ii,boolean).
 
@@ -520,15 +664,35 @@
       #pred meets_age_requirement_s3_1_b_ii(X) :: ''@(X) meets the age requirement
       of section 3(1)(b)(ii)''.
 
-      #pred according_to(R,meets_age_requirement_s3_1_b_ii(X)) :: ''according to @(R),
+      #pred holds(user,meets_age_requirement_s3_1_b_ii,X) :: ''it is provided as a
+      fact that @(X) meets the age requirement of section 3(1)(b)(ii)''.
+
+      #pred holds(user,-meets_age_requirement_s3_1_b_ii,X) :: ''it is provided as
+      a fact that it is not the case that @(X) meets the age requirement of section
+      3(1)(b)(ii)''.
+
+      #pred holds(Z,meets_age_requirement_s3_1_b_ii,X) :: ''the conclusion in @(Z)
+      that @(X) meets the age requirement of section 3(1)(b)(ii) holds''.
+
+      #pred holds(Z,-meets_age_requirement_s3_1_b_ii,X) :: ''the conclusion in @(Z)
+      that it is not the case that @(X) meets the age requirement of section 3(1)(b)(ii)
+      holds''.
+
+      #pred according_to(Z,meets_age_requirement_s3_1_b_ii,X) :: ''according to @(Z),
       @(X) meets the age requirement of section 3(1)(b)(ii)''.
 
-      #pred legally_holds(_,meets_age_requirement_s3_1_b_ii(X)) :: ''it legally holds
-      that @(X) meets the age requirement of section 3(1)(b)(ii)''.
+      #pred according_to(Z,-meets_age_requirement_s3_1_b_ii,X) :: ''according to @(Z),
+      it is not the case that @(X) meets the age requirement of section 3(1)(b)(ii)''.
 
-      opposes(meets_age_requirement_s3_1_b_ii(X),-meets_age_requirement_s3_1_b_ii(X)).
+      #pred blawx_defeated(Z,meets_age_requirement_s3_1_b_ii,X) :: ''the conclusion
+      in @(Z) that @(X) meets the age requirement of section 3(1)(b)(ii) is defeated''.
 
-      opposes(-meets_age_requirement_s3_1_b_ii(X),meets_age_requirement_s3_1_b_ii(X)).
+      #pred blawx_defeated(Z,-meets_age_requirement_s3_1_b_ii,X) :: ''the conclusion
+      in @(Z) that @(X) meets the age requirement of section 3(1)(b)(ii) is defeated''.
+
+      meets_age_requirement_s3_1_b_ii(X) :- holds(_,meets_age_requirement_s3_1_b_ii,X).
+
+      -meets_age_requirement_s3_1_b_ii(X) :- holds(_,-meets_age_requirement_s3_1_b_ii,X).
 
       blawx_attribute(person,meets_residence_duration_requirement_s3_1_b_iii,boolean).
 
@@ -538,32 +702,56 @@
       #pred meets_residence_duration_requirement_s3_1_b_iii(X) :: ''@(X) meets the
       residence duration requirement of section 3(1)(b)(iii)''.
 
-      #pred according_to(R,meets_residence_duration_requirement_s3_1_b_iii(X)) ::
-      ''according to @(R), @(X) meets the residence duration requirement of section
-      3(1)(b)(iii)''.
+      #pred holds(user,meets_residence_duration_requirement_s3_1_b_iii,X) :: ''it
+      is provided as a fact that @(X) meets the residence duration requirement of
+      section 3(1)(b)(iii)''.
 
-      #pred legally_holds(_,meets_residence_duration_requirement_s3_1_b_iii(X)) ::
-      ''it legally holds that @(X) meets the residence duration requirement of section
-      3(1)(b)(iii)''.
+      #pred holds(user,-meets_residence_duration_requirement_s3_1_b_iii,X) :: ''it
+      is provided as a fact that it is not the case that @(X) meets the residence
+      duration requirement of section 3(1)(b)(iii)''.
 
-      opposes(meets_residence_duration_requirement_s3_1_b_iii(X),-meets_residence_duration_requirement_s3_1_b_iii(X)).
+      #pred holds(Z,meets_residence_duration_requirement_s3_1_b_iii,X) :: ''the conclusion
+      in @(Z) that @(X) meets the residence duration requirement of section 3(1)(b)(iii)
+      holds''.
 
-      opposes(-meets_residence_duration_requirement_s3_1_b_iii(X),meets_residence_duration_requirement_s3_1_b_iii(X)).
+      #pred holds(Z,-meets_residence_duration_requirement_s3_1_b_iii,X) :: ''the conclusion
+      in @(Z) that it is not the case that @(X) meets the residence duration requirement
+      of section 3(1)(b)(iii) holds''.
+
+      #pred according_to(Z,meets_residence_duration_requirement_s3_1_b_iii,X) :: ''according
+      to @(Z), @(X) meets the residence duration requirement of section 3(1)(b)(iii)''.
+
+      #pred according_to(Z,-meets_residence_duration_requirement_s3_1_b_iii,X) ::
+      ''according to @(Z), it is not the case that @(X) meets the residence duration
+      requirement of section 3(1)(b)(iii)''.
+
+      #pred blawx_defeated(Z,meets_residence_duration_requirement_s3_1_b_iii,X) ::
+      ''the conclusion in @(Z) that @(X) meets the residence duration requirement
+      of section 3(1)(b)(iii) is defeated''.
+
+      #pred blawx_defeated(Z,-meets_residence_duration_requirement_s3_1_b_iii,X) ::
+      ''the conclusion in @(Z) that @(X) meets the residence duration requirement
+      of section 3(1)(b)(iii) is defeated''.
+
+      meets_residence_duration_requirement_s3_1_b_iii(X) :- holds(_,meets_residence_duration_requirement_s3_1_b_iii,X).
+
+      -meets_residence_duration_requirement_s3_1_b_iii(X) :- holds(_,-meets_residence_duration_requirement_s3_1_b_iii,X).
 
 
-      according_to(sec_3__subsec_1__para_b_section,  qualifies_s3_1_b(Person)) :-
+      according_to(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person) :- person(Person),
 
-      person(Person),
+      holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person),
 
-      according_to(sec_3__subsec_1__para_b__subpara_i_section,  meets_residence_requirement_s3_1_b_i(Person)),
+      holds(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person),
 
-      according_to(sec_3__subsec_1__para_b__subpara_ii_section,  meets_age_requirement_s3_1_b_ii(Person)),
+      holds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person).
 
-      according_to(sec_3__subsec_1__para_b__subpara_iii_section,  meets_residence_duration_requirement_s3_1_b_iii(Person)).'
+
+      holds(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person) :- according_to(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person).'
 - model: blawx.workspace
-  pk: 49
+  pk: 48
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1__para_c_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="109#+%mTdaC7F)O;Gf8W" x="80" y="32"><statement name="statements"><block
@@ -585,43 +773,42 @@
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">'s attribute name is</field><field name="second_element">value</field><field
       name="postfix">satisfies the residency requirement of s3(1)(c)(iii)</field></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="s5f*Eg8AM23}qT|PFaQP" x="80" y="397"><statement
-      name="conditions"><block type="object_category" id="2Ki6|+2Z|4(y`@:}7Ox|"><value
-      name="object"><block type="variable" id="kMcX2Yf9*C`.hn[tY$k@"><field name="variable_name">Person</field></block></value><value
-      name="category"><block type="category_selector" id="`#0)D~YMMQWOqfyW)t*j"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-      name="category_name">person</field></block></value><next><block type="according_to"
-      id="O{,Z`eKoMpCtI=G;dp=y"><value name="rule"><block type="doc_selector" id="s[F[pQ]]g2f5P~|4S=sl"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_c__subpara_i_section"></mutation><field
+      type="attributed_rule" id="cVLaOA2)r@^qfWr{/4EG" x="81" y="335"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="object_category"
+      id="cB6CGN5O#:O-rOWPo7yF"><value name="object"><block type="variable" id="i(n/{Oq2_z`?XO/cNMYp"><field
+      name="variable_name">Person</field></block></value><value name="category"><block
+      type="category_selector" id=".a;~~fy.tWk2lPZVD@2+"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field></block></value><next><block
+      type="holds" id="lw^S$Qukh6:-odr_^[|["><value name="section"><block type="doc_selector"
+      id="s[F[pQ]]g2f5P~|4S=sl"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_c__subpara_i_section"></mutation><field
       name="doc_part_name">OASA 3.1.c.i</field></block></value><statement name="statement"><block
       type="unary_attribute_selector" id="]5GrM_ZWlaNcyl)Nog?F"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_s3_1_c_i" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies the non-pensioner requirement of s3(1)(c)(i)</field><value
       name="first_element"><block type="variable" id="Fxj{EJJ4L{9x88tFvk#c"><field
       name="variable_name">Person</field></block></value></block></statement><next><block
-      type="according_to" id="5d45m^@c.vc_}HPYm~g?"><value name="rule"><block type="doc_selector"
+      type="holds" id="0c;#DU`v9!P#.|A|#fue"><value name="section"><block type="doc_selector"
       id="n@=FV1`J(xL}g$BsXoxJ"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_c__subpara_ii_section"></mutation><field
       name="doc_part_name">OASA 3.1.c.ii</field></block></value><statement name="statement"><block
       type="unary_attribute_selector" id="@3(H3wv,tG|RePES|g?X"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_s3_1_c_ii" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies the age requirement of s3(1)(c)(ii)</field><value name="first_element"><block
       type="variable" id="Oe[d9%-Zz4_.H^KL2#v`"><field name="variable_name">Person</field></block></value></block></statement><next><block
-      type="according_to" id="lHg}!N2VJf8WRkTHat=j"><value name="rule"><block type="doc_selector"
+      type="holds" id="=%0i-W}Ktn8LftFopk.5"><value name="section"><block type="doc_selector"
       id="%7Sm0.x=Ee-3k[T}_S.t"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_c__subpara_iii_section"></mutation><field
       name="doc_part_name">OASA 3.1.c.iii</field></block></value><statement name="statement"><block
       type="unary_attribute_selector" id="UPVA0zk8d=p8h+d0-d:6"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_s3_1_c_iii" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies the residency requirement of s3(1)(c)(iii)</field><value
       name="first_element"><block type="variable" id="MQihSF@vvaM|-?$[/A|-"><field
-      name="variable_name">Person</field></block></value></block></statement></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="/|lYo^P`E9k8-E}g;`$#"><value
-      name="rule"><block type="doc_selector" id=")rSYDp7}j+jeH7Ycy;K*"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_c_section"></mutation><field name="doc_part_name">OASA
-      3.1.c</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="RJw/Q_2U@=!ZE49C~D2D"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s3_1_c"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
-      under s3(1)(c)</field><value name="first_element"><block type="variable" id="5[hm/tvQ{w=^bnUU2Pw!"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      name="variable_name">Person</field></block></value></block></statement></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="n|d5ANtktnuDSo^b6+3*"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_c_section"></mutation><field
+      name="doc_part_name">OASA 3.1.c</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="RJw/Q_2U@=!ZE49C~D2D"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="qualifies_s3_1_c" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">qualifies under s3(1)(c)</field><value name="first_element"><block
+      type="variable" id="5[hm/tvQ{w=^bnUU2Pw!"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,meets_s3_1_c_i,boolean).
 
       blawx_attribute_nlg(meets_s3_1_c_i,not_applicable,"",not_applicable,"satisfies
@@ -630,15 +817,33 @@
       #pred meets_s3_1_c_i(X) :: ''@(X) satisfies the non-pensioner requirement of
       s3(1)(c)(i)''.
 
-      #pred according_to(R,meets_s3_1_c_i(X)) :: ''according to @(R), @(X) satisfies
+      #pred holds(user,meets_s3_1_c_i,X) :: ''it is provided as a fact that @(X) satisfies
       the non-pensioner requirement of s3(1)(c)(i)''.
 
-      #pred legally_holds(_,meets_s3_1_c_i(X)) :: ''it legally holds that @(X) satisfies
+      #pred holds(user,-meets_s3_1_c_i,X) :: ''it is provided as a fact that it is
+      not the case that @(X) satisfies the non-pensioner requirement of s3(1)(c)(i)''.
+
+      #pred holds(Z,meets_s3_1_c_i,X) :: ''the conclusion in @(Z) that @(X) satisfies
+      the non-pensioner requirement of s3(1)(c)(i) holds''.
+
+      #pred holds(Z,-meets_s3_1_c_i,X) :: ''the conclusion in @(Z) that it is not
+      the case that @(X) satisfies the non-pensioner requirement of s3(1)(c)(i) holds''.
+
+      #pred according_to(Z,meets_s3_1_c_i,X) :: ''according to @(Z), @(X) satisfies
       the non-pensioner requirement of s3(1)(c)(i)''.
 
-      opposes(meets_s3_1_c_i(X),-meets_s3_1_c_i(X)).
+      #pred according_to(Z,-meets_s3_1_c_i,X) :: ''according to @(Z), it is not the
+      case that @(X) satisfies the non-pensioner requirement of s3(1)(c)(i)''.
 
-      opposes(-meets_s3_1_c_i(X),meets_s3_1_c_i(X)).
+      #pred blawx_defeated(Z,meets_s3_1_c_i,X) :: ''the conclusion in @(Z) that @(X)
+      satisfies the non-pensioner requirement of s3(1)(c)(i) is defeated''.
+
+      #pred blawx_defeated(Z,-meets_s3_1_c_i,X) :: ''the conclusion in @(Z) that @(X)
+      satisfies the non-pensioner requirement of s3(1)(c)(i) is defeated''.
+
+      meets_s3_1_c_i(X) :- holds(_,meets_s3_1_c_i,X).
+
+      -meets_s3_1_c_i(X) :- holds(_,-meets_s3_1_c_i,X).
 
       blawx_attribute(person,meets_s3_1_c_ii,boolean).
 
@@ -647,15 +852,33 @@
 
       #pred meets_s3_1_c_ii(X) :: ''@(X) satisfies the age requirement of s3(1)(c)(ii)''.
 
-      #pred according_to(R,meets_s3_1_c_ii(X)) :: ''according to @(R), @(X) satisfies
+      #pred holds(user,meets_s3_1_c_ii,X) :: ''it is provided as a fact that @(X)
+      satisfies the age requirement of s3(1)(c)(ii)''.
+
+      #pred holds(user,-meets_s3_1_c_ii,X) :: ''it is provided as a fact that it is
+      not the case that @(X) satisfies the age requirement of s3(1)(c)(ii)''.
+
+      #pred holds(Z,meets_s3_1_c_ii,X) :: ''the conclusion in @(Z) that @(X) satisfies
+      the age requirement of s3(1)(c)(ii) holds''.
+
+      #pred holds(Z,-meets_s3_1_c_ii,X) :: ''the conclusion in @(Z) that it is not
+      the case that @(X) satisfies the age requirement of s3(1)(c)(ii) holds''.
+
+      #pred according_to(Z,meets_s3_1_c_ii,X) :: ''according to @(Z), @(X) satisfies
       the age requirement of s3(1)(c)(ii)''.
 
-      #pred legally_holds(_,meets_s3_1_c_ii(X)) :: ''it legally holds that @(X) satisfies
-      the age requirement of s3(1)(c)(ii)''.
+      #pred according_to(Z,-meets_s3_1_c_ii,X) :: ''according to @(Z), it is not the
+      case that @(X) satisfies the age requirement of s3(1)(c)(ii)''.
 
-      opposes(meets_s3_1_c_ii(X),-meets_s3_1_c_ii(X)).
+      #pred blawx_defeated(Z,meets_s3_1_c_ii,X) :: ''the conclusion in @(Z) that @(X)
+      satisfies the age requirement of s3(1)(c)(ii) is defeated''.
 
-      opposes(-meets_s3_1_c_ii(X),meets_s3_1_c_ii(X)).
+      #pred blawx_defeated(Z,-meets_s3_1_c_ii,X) :: ''the conclusion in @(Z) that
+      @(X) satisfies the age requirement of s3(1)(c)(ii) is defeated''.
+
+      meets_s3_1_c_ii(X) :- holds(_,meets_s3_1_c_ii,X).
+
+      -meets_s3_1_c_ii(X) :- holds(_,-meets_s3_1_c_ii,X).
 
       blawx_attribute(person,meets_s3_1_c_iii,boolean).
 
@@ -664,35 +887,54 @@
 
       #pred meets_s3_1_c_iii(X) :: ''@(X) satisfies the residency requirement of s3(1)(c)(iii)''.
 
-      #pred according_to(R,meets_s3_1_c_iii(X)) :: ''according to @(R), @(X) satisfies
+      #pred holds(user,meets_s3_1_c_iii,X) :: ''it is provided as a fact that @(X)
+      satisfies the residency requirement of s3(1)(c)(iii)''.
+
+      #pred holds(user,-meets_s3_1_c_iii,X) :: ''it is provided as a fact that it
+      is not the case that @(X) satisfies the residency requirement of s3(1)(c)(iii)''.
+
+      #pred holds(Z,meets_s3_1_c_iii,X) :: ''the conclusion in @(Z) that @(X) satisfies
+      the residency requirement of s3(1)(c)(iii) holds''.
+
+      #pred holds(Z,-meets_s3_1_c_iii,X) :: ''the conclusion in @(Z) that it is not
+      the case that @(X) satisfies the residency requirement of s3(1)(c)(iii) holds''.
+
+      #pred according_to(Z,meets_s3_1_c_iii,X) :: ''according to @(Z), @(X) satisfies
       the residency requirement of s3(1)(c)(iii)''.
 
-      #pred legally_holds(_,meets_s3_1_c_iii(X)) :: ''it legally holds that @(X) satisfies
-      the residency requirement of s3(1)(c)(iii)''.
+      #pred according_to(Z,-meets_s3_1_c_iii,X) :: ''according to @(Z), it is not
+      the case that @(X) satisfies the residency requirement of s3(1)(c)(iii)''.
 
-      opposes(meets_s3_1_c_iii(X),-meets_s3_1_c_iii(X)).
+      #pred blawx_defeated(Z,meets_s3_1_c_iii,X) :: ''the conclusion in @(Z) that
+      @(X) satisfies the residency requirement of s3(1)(c)(iii) is defeated''.
 
-      opposes(-meets_s3_1_c_iii(X),meets_s3_1_c_iii(X)).
+      #pred blawx_defeated(Z,-meets_s3_1_c_iii,X) :: ''the conclusion in @(Z) that
+      @(X) satisfies the residency requirement of s3(1)(c)(iii) is defeated''.
+
+      meets_s3_1_c_iii(X) :- holds(_,meets_s3_1_c_iii,X).
+
+      -meets_s3_1_c_iii(X) :- holds(_,-meets_s3_1_c_iii,X).
 
 
-      according_to(sec_3__subsec_1__para_c_section,  qualifies_s3_1_c(Person)) :-
+      according_to(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person) :- person(Person),
 
-      person(Person),
+      holds(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person),
 
-      according_to(sec_3__subsec_1__para_c__subpara_i_section,  meets_s3_1_c_i(Person)),
+      holds(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person),
 
-      according_to(sec_3__subsec_1__para_c__subpara_ii_section,  meets_s3_1_c_ii(Person)),
+      holds(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person).
 
-      according_to(sec_3__subsec_1__para_c__subpara_iii_section,  meets_s3_1_c_iii(Person)).'
+
+      holds(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person) :- according_to(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person).'
 - model: blawx.workspace
-  pk: 50
+  pk: 49
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
-      id="+wiRc,{vWYCb,a0_j9)u" x="23" y="34"><statement name="statements"><block
-      type="new_attribute_declaration" id="r-qQ_I:c~hi3PwwSLQEA"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person" attribute_type="boolean"></mutation><field name="category_name">person</field><field
+      id="+wiRc,{vWYCb,a0_j9)u" x="0" y="0"><statement name="statements"><block type="new_attribute_declaration"
+      id="r-qQ_I:c~hi3PwwSLQEA"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"
+      attribute_type="boolean"></mutation><field name="category_name">person</field><field
       name="attribute_name">may_be_paid_full_monthly_pension</field><field name="attribute_type">boolean</field><field
       name="order">ov</field><field name="prefix">a full monthly pension may be paid
       to</field><field name="first_element">object</field><field name="infix">'s attribute
@@ -715,69 +957,80 @@
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">'s attribute name is</field><field name="second_element">value</field><field
       name="postfix">qualifies under s3(1)(c)</field></block></next></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="-Q)/NYN_8~y6ru,XrtC/" x="18" y="489"><statement
-      name="conditions"><block type="according_to" id="x}E(sVYc0]u;1hgj~8+M"><value
-      name="rule"><block type="doc_selector" id="_/Y#2moi98}Xyq[xh:-,"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_a_section"></mutation><field name="doc_part_name">OASA
-      3.1.a</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="|-`YvT3.?ltt[IKG0Tdw"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s3_1_a"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
-      under s3(1)(a)</field><value name="first_element"><block type="variable" id="Xt4k!8I+lK~#%NMs~f$V"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement><statement
-      name="conclusion"><block type="according_to" id="stFFqeri7$56nZZlgq@S"><value
-      name="rule"><block type="doc_selector" id="59i?K]:i;*Xzn=tujxi$"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1_section"></mutation><field name="doc_part_name">OASA
-      3.1</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="CFgl:r{cO@d1_QY;)]v+"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_be_paid_full_monthly_pension"
-      attributetype="boolean"></mutation><field name="prefix">a full monthly pension
-      may be paid to</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="/De*i]*Myd%y*,xo4:8`"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block><block
-      type="unattributed_rule" id="9E%UV]u(Z67=I_V:hyV8" x="20" y="716"><statement
-      name="conditions"><block type="according_to" id="=AU}ciIr:Bl}_N1kNn:l"><value
-      name="rule"><block type="doc_selector" id="YuR))r8u?):2ZLm{Uqi{"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_b_section"></mutation><field name="doc_part_name">OASA
-      3.1.b</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="VL;@/nzvMDk+0;x7Zw*X"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s3_1_b"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
-      under s3(1)(b)</field><value name="first_element"><block type="variable" id="%hrQ)(^h2h%R2x_8#^GT"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement><statement
-      name="conclusion"><block type="according_to" id="amrE#7(_hc-blx4AD;-["><value
-      name="rule"><block type="doc_selector" id="o=x$cknmYs-.z1^FVuJP"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1_section"></mutation><field name="doc_part_name">OASA
-      3.1</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="CLa,pad5qwwn*QlPS/y@"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_be_paid_full_monthly_pension"
-      attributetype="boolean"></mutation><field name="prefix">a full monthly pension
-      may be paid to</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="l]SsKD+Lkz8Eq1Dy_Uai"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block><block
-      type="unattributed_rule" id="XkdN@xLD2T%XB9y6?C2P" x="23" y="953"><statement
-      name="conditions"><block type="according_to" id="M(p@,a^a^9IOT80=+0,["><value
-      name="rule"><block type="doc_selector" id="68j,s]d0myEOw{@4C;Q,"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_c_section"></mutation><field name="doc_part_name">OASA
-      3.1.c</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="HaN6W)g2FEKR=vl(,rv+"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s3_1_c"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
-      under s3(1)(c)</field><value name="first_element"><block type="variable" id="P72lzrOai8fg7Oml?[[y"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement><statement
-      name="conclusion"><block type="according_to" id="Jcn.P/N6D9i`xoYnBvG."><value
-      name="rule"><block type="doc_selector" id="+2voAGg8JZt%aSgznu*6"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1_section"></mutation><field name="doc_part_name">OASA
-      3.1</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="}PLeER/)=).@!bvYvo5G"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_be_paid_full_monthly_pension"
-      attributetype="boolean"></mutation><field name="prefix">a full monthly pension
-      may be paid to</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="}vk~_[[OL7#RJ$D~gp#s"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block><block
-      type="unattributed_fact" id=",=]tc[UgOa~j`JiaidTF" x="37" y="1195"><comment
-      pinned="false" h="259" w="330">Ideally, we would be able to more accurately
-      represent "this Act and the regulations" in the "Subject to" clause, but scope
-      references for legislation and related legislation are not yet implemented in
-      Blawx. That being the case, we will mention specific sections in conflict, here,
-      to give effect to the defeasibility declaration in the law.</comment><statement
-      name="statements"><block type="overrules" id="z=Q3^U(E+:w8~)eK*!lI"><value name="defeating_rule"><block
+      type="attributed_rule" id="f-%HVqTOFh#k)xH~J2yy" x="0" y="375"><field name="defeasible">TRUE</field><field
+      name="inapplicable">TRUE</field><statement name="conditions"><block type="holds"
+      id="+x.0?1s2P$es6)9~+(Fj"><value name="section"><block type="doc_selector" id="_/Y#2moi98}Xyq[xh:-,"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_a_section"></mutation><field
+      name="doc_part_name">OASA 3.1.a</field></block></value><statement name="statement"><block
+      type="unary_attribute_selector" id="|-`YvT3.?ltt[IKG0Tdw"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="qualifies_s3_1_a" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">qualifies under s3(1)(a)</field><value name="first_element"><block
+      type="variable" id="Xt4k!8I+lK~#%NMs~f$V"><field name="variable_name">Person</field></block></value></block></statement></block></statement><value
+      name="source"><block type="doc_selector" id="Lf0G_5{@3jPQy.9.Hz5:"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1_section"></mutation><field
+      name="doc_part_name">OASA 3.1</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="CFgl:r{cO@d1_QY;)]v+"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="may_be_paid_full_monthly_pension" attributetype="boolean"></mutation><field
+      name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="/De*i]*Myd%y*,xo4:8`"><field
+      name="variable_name">Person</field></block></value></block></statement></block><block
+      type="attributed_rule" id="rr`H5k$=npST1CYMKp$8" x="0" y="631"><field name="defeasible">TRUE</field><field
+      name="inapplicable">TRUE</field><statement name="conditions"><block type="holds"
+      id="SK;K]cPJ||ibjkA?x_@!"><value name="section"><block type="doc_selector" id="YuR))r8u?):2ZLm{Uqi{"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b_section"></mutation><field
+      name="doc_part_name">OASA 3.1.b</field></block></value><statement name="statement"><block
+      type="unary_attribute_selector" id="VL;@/nzvMDk+0;x7Zw*X"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="qualifies_s3_1_b" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">qualifies under s3(1)(b)</field><value name="first_element"><block
+      type="variable" id="%hrQ)(^h2h%R2x_8#^GT"><field name="variable_name">Person</field></block></value></block></statement></block></statement><value
+      name="source"><block type="doc_selector" id="l73#EUtU,2Pv$5:)c4}E"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1_section"></mutation><field
+      name="doc_part_name">OASA 3.1</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="CLa,pad5qwwn*QlPS/y@"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="may_be_paid_full_monthly_pension" attributetype="boolean"></mutation><field
+      name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="l]SsKD+Lkz8Eq1Dy_Uai"><field
+      name="variable_name">Person</field></block></value></block></statement></block><block
+      type="attributed_rule" id="=CS+F@h$G~qNu!?l}VOk" x="0" y="887"><field name="defeasible">TRUE</field><field
+      name="inapplicable">TRUE</field><statement name="conditions"><block type="holds"
+      id="P=sm]J0PNlP@~]5ZM8n)"><value name="section"><block type="doc_selector" id="68j,s]d0myEOw{@4C;Q,"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_c_section"></mutation><field
+      name="doc_part_name">OASA 3.1.c</field></block></value><statement name="statement"><block
+      type="unary_attribute_selector" id="HaN6W)g2FEKR=vl(,rv+"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="qualifies_s3_1_c" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">qualifies under s3(1)(c)</field><value name="first_element"><block
+      type="variable" id="P72lzrOai8fg7Oml?[[y"><field name="variable_name">Person</field></block></value></block></statement></block></statement><value
+      name="source"><block type="doc_selector" id="$L#rX#`b0QKSs4tLKkb{"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1_section"></mutation><field
+      name="doc_part_name">OASA 3.1</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="}PLeER/)=).@!bvYvo5G"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="may_be_paid_full_monthly_pension" attributetype="boolean"></mutation><field
+      name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="}vk~_[[OL7#RJ$D~gp#s"><field
+      name="variable_name">Person</field></block></value></block></statement></block><block
+      type="unattributed_fact" id=",=]tc[UgOa~j`JiaidTF" x="0" y="1143"><comment pinned="false"
+      h="259" w="330">Ideally, we would be able to more accurately represent "this
+      Act and the regulations" in the "Subject to" clause, but scope references for
+      legislation and related legislation are not yet implemented in Blawx. That being
+      the case, we will mention specific sections in conflict, here, to give effect
+      to the defeasibility declaration in the law.</comment><statement name="statements"><block
+      type="overrules" id="z=Q3^U(E+:w8~)eK*!lI"><value name="defeating_rule"><block
       type="doc_selector" id="wqq79b.bdH[;SZ0ciZWM"><mutation xmlns="http://www.w3.org/1999/xhtml"
       section_reference="sec_4__subsec_1_section"></mutation><field name="doc_part_name">OASA
-      4.1</field></block></value><value name="defeated_rule"><block type="doc_selector"
-      id="[YICtgEx4qa_}+2K@a*Q"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1_section"></mutation><field
-      name="doc_part_name">OASA 3.1</field></block></value></block></statement></block></xml>
+      4.1</field></block></value><statement name="defeating_statement"><block type="logical_negation"
+      id="bGgPGio^4v9=$^?=?Zd,"><statement name="negated_statement"><block type="unary_attribute_selector"
+      id="PSJv+qAZSnc:xZ+zmi!m"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_be_paid_full_monthly_pension"
+      attributetype="boolean"></mutation><field name="prefix">a full monthly pension
+      may be paid to</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="o_.3JmWm5CvU]K#*hb[^"><field name="variable_name">Person</field></block></value></block></statement></block></statement><value
+      name="defeated_rule"><block type="doc_selector" id="[YICtgEx4qa_}+2K@a*Q"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1_section"></mutation><field
+      name="doc_part_name">OASA 3.1</field></block></value><statement name="defeated_statement"><block
+      type="unary_attribute_selector" id="Q-*U/Zwho1;Q`B*o!aHF"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="may_be_paid_full_monthly_pension" attributetype="boolean"></mutation><field
+      name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="DTtwa%Hb)uVyr#O93AlZ"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,may_be_paid_full_monthly_pension,boolean).
 
       blawx_attribute_nlg(may_be_paid_full_monthly_pension,not_applicable,"a full
@@ -786,15 +1039,33 @@
       #pred may_be_paid_full_monthly_pension(X) :: ''a full monthly pension may be
       paid to @(X)''.
 
-      #pred according_to(R,may_be_paid_full_monthly_pension(X)) :: ''according to
-      @(R), a full monthly pension may be paid to @(X)''.
+      #pred holds(user,may_be_paid_full_monthly_pension,X) :: ''it is provided as
+      a fact that a full monthly pension may be paid to @(X)''.
 
-      #pred legally_holds(_,may_be_paid_full_monthly_pension(X)) :: ''it legally holds
-      that a full monthly pension may be paid to @(X)''.
+      #pred holds(user,-may_be_paid_full_monthly_pension,X) :: ''it is provided as
+      a fact that it is not the case that a full monthly pension may be paid to @(X)''.
 
-      opposes(may_be_paid_full_monthly_pension(X),-may_be_paid_full_monthly_pension(X)).
+      #pred holds(Z,may_be_paid_full_monthly_pension,X) :: ''the conclusion in @(Z)
+      that a full monthly pension may be paid to @(X) holds''.
 
-      opposes(-may_be_paid_full_monthly_pension(X),may_be_paid_full_monthly_pension(X)).
+      #pred holds(Z,-may_be_paid_full_monthly_pension,X) :: ''the conclusion in @(Z)
+      that it is not the case that a full monthly pension may be paid to @(X) holds''.
+
+      #pred according_to(Z,may_be_paid_full_monthly_pension,X) :: ''according to @(Z),
+      a full monthly pension may be paid to @(X)''.
+
+      #pred according_to(Z,-may_be_paid_full_monthly_pension,X) :: ''according to
+      @(Z), it is not the case that a full monthly pension may be paid to @(X)''.
+
+      #pred blawx_defeated(Z,may_be_paid_full_monthly_pension,X) :: ''the conclusion
+      in @(Z) that a full monthly pension may be paid to @(X) is defeated''.
+
+      #pred blawx_defeated(Z,-may_be_paid_full_monthly_pension,X) :: ''the conclusion
+      in @(Z) that a full monthly pension may be paid to @(X) is defeated''.
+
+      may_be_paid_full_monthly_pension(X) :- holds(_,may_be_paid_full_monthly_pension,X).
+
+      -may_be_paid_full_monthly_pension(X) :- holds(_,-may_be_paid_full_monthly_pension,X).
 
       blawx_attribute(person,qualifies_s3_1_a,boolean).
 
@@ -803,15 +1074,33 @@
 
       #pred qualifies_s3_1_a(X) :: ''@(X) qualifies under s3(1)(a)''.
 
-      #pred according_to(R,qualifies_s3_1_a(X)) :: ''according to @(R), @(X) qualifies
+      #pred holds(user,qualifies_s3_1_a,X) :: ''it is provided as a fact that @(X)
+      qualifies under s3(1)(a)''.
+
+      #pred holds(user,-qualifies_s3_1_a,X) :: ''it is provided as a fact that it
+      is not the case that @(X) qualifies under s3(1)(a)''.
+
+      #pred holds(Z,qualifies_s3_1_a,X) :: ''the conclusion in @(Z) that @(X) qualifies
+      under s3(1)(a) holds''.
+
+      #pred holds(Z,-qualifies_s3_1_a,X) :: ''the conclusion in @(Z) that it is not
+      the case that @(X) qualifies under s3(1)(a) holds''.
+
+      #pred according_to(Z,qualifies_s3_1_a,X) :: ''according to @(Z), @(X) qualifies
       under s3(1)(a)''.
 
-      #pred legally_holds(_,qualifies_s3_1_a(X)) :: ''it legally holds that @(X) qualifies
-      under s3(1)(a)''.
+      #pred according_to(Z,-qualifies_s3_1_a,X) :: ''according to @(Z), it is not
+      the case that @(X) qualifies under s3(1)(a)''.
 
-      opposes(qualifies_s3_1_a(X),-qualifies_s3_1_a(X)).
+      #pred blawx_defeated(Z,qualifies_s3_1_a,X) :: ''the conclusion in @(Z) that
+      @(X) qualifies under s3(1)(a) is defeated''.
 
-      opposes(-qualifies_s3_1_a(X),qualifies_s3_1_a(X)).
+      #pred blawx_defeated(Z,-qualifies_s3_1_a,X) :: ''the conclusion in @(Z) that
+      @(X) qualifies under s3(1)(a) is defeated''.
+
+      qualifies_s3_1_a(X) :- holds(_,qualifies_s3_1_a,X).
+
+      -qualifies_s3_1_a(X) :- holds(_,-qualifies_s3_1_a,X).
 
       blawx_attribute(person,qualifies_s3_1_b,boolean).
 
@@ -820,15 +1109,33 @@
 
       #pred qualifies_s3_1_b(X) :: ''@(X) qualifies under s3(1)(b)''.
 
-      #pred according_to(R,qualifies_s3_1_b(X)) :: ''according to @(R), @(X) qualifies
+      #pred holds(user,qualifies_s3_1_b,X) :: ''it is provided as a fact that @(X)
+      qualifies under s3(1)(b)''.
+
+      #pred holds(user,-qualifies_s3_1_b,X) :: ''it is provided as a fact that it
+      is not the case that @(X) qualifies under s3(1)(b)''.
+
+      #pred holds(Z,qualifies_s3_1_b,X) :: ''the conclusion in @(Z) that @(X) qualifies
+      under s3(1)(b) holds''.
+
+      #pred holds(Z,-qualifies_s3_1_b,X) :: ''the conclusion in @(Z) that it is not
+      the case that @(X) qualifies under s3(1)(b) holds''.
+
+      #pred according_to(Z,qualifies_s3_1_b,X) :: ''according to @(Z), @(X) qualifies
       under s3(1)(b)''.
 
-      #pred legally_holds(_,qualifies_s3_1_b(X)) :: ''it legally holds that @(X) qualifies
-      under s3(1)(b)''.
+      #pred according_to(Z,-qualifies_s3_1_b,X) :: ''according to @(Z), it is not
+      the case that @(X) qualifies under s3(1)(b)''.
 
-      opposes(qualifies_s3_1_b(X),-qualifies_s3_1_b(X)).
+      #pred blawx_defeated(Z,qualifies_s3_1_b,X) :: ''the conclusion in @(Z) that
+      @(X) qualifies under s3(1)(b) is defeated''.
 
-      opposes(-qualifies_s3_1_b(X),qualifies_s3_1_b(X)).
+      #pred blawx_defeated(Z,-qualifies_s3_1_b,X) :: ''the conclusion in @(Z) that
+      @(X) qualifies under s3(1)(b) is defeated''.
+
+      qualifies_s3_1_b(X) :- holds(_,qualifies_s3_1_b,X).
+
+      -qualifies_s3_1_b(X) :- holds(_,-qualifies_s3_1_b,X).
 
       blawx_attribute(person,qualifies_s3_1_c,boolean).
 
@@ -837,33 +1144,57 @@
 
       #pred qualifies_s3_1_c(X) :: ''@(X) qualifies under s3(1)(c)''.
 
-      #pred according_to(R,qualifies_s3_1_c(X)) :: ''according to @(R), @(X) qualifies
+      #pred holds(user,qualifies_s3_1_c,X) :: ''it is provided as a fact that @(X)
+      qualifies under s3(1)(c)''.
+
+      #pred holds(user,-qualifies_s3_1_c,X) :: ''it is provided as a fact that it
+      is not the case that @(X) qualifies under s3(1)(c)''.
+
+      #pred holds(Z,qualifies_s3_1_c,X) :: ''the conclusion in @(Z) that @(X) qualifies
+      under s3(1)(c) holds''.
+
+      #pred holds(Z,-qualifies_s3_1_c,X) :: ''the conclusion in @(Z) that it is not
+      the case that @(X) qualifies under s3(1)(c) holds''.
+
+      #pred according_to(Z,qualifies_s3_1_c,X) :: ''according to @(Z), @(X) qualifies
       under s3(1)(c)''.
 
-      #pred legally_holds(_,qualifies_s3_1_c(X)) :: ''it legally holds that @(X) qualifies
-      under s3(1)(c)''.
+      #pred according_to(Z,-qualifies_s3_1_c,X) :: ''according to @(Z), it is not
+      the case that @(X) qualifies under s3(1)(c)''.
 
-      opposes(qualifies_s3_1_c(X),-qualifies_s3_1_c(X)).
+      #pred blawx_defeated(Z,qualifies_s3_1_c,X) :: ''the conclusion in @(Z) that
+      @(X) qualifies under s3(1)(c) is defeated''.
 
-      opposes(-qualifies_s3_1_c(X),qualifies_s3_1_c(X)).
+      #pred blawx_defeated(Z,-qualifies_s3_1_c,X) :: ''the conclusion in @(Z) that
+      @(X) qualifies under s3(1)(c) is defeated''.
 
+      qualifies_s3_1_c(X) :- holds(_,qualifies_s3_1_c,X).
 
-      according_to(sec_3__subsec_1_section,  may_be_paid_full_monthly_pension(Person))
-      :-
-
-      according_to(sec_3__subsec_1__para_a_section,  qualifies_s3_1_a(Person)).
-
-
-      according_to(sec_3__subsec_1_section,  may_be_paid_full_monthly_pension(Person))
-      :-
-
-      according_to(sec_3__subsec_1__para_b_section,  qualifies_s3_1_b(Person)).
+      -qualifies_s3_1_c(X) :- holds(_,-qualifies_s3_1_c,X).
 
 
-      according_to(sec_3__subsec_1_section,  may_be_paid_full_monthly_pension(Person))
-      :-
+      according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
+      :- holds(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person).
 
-      according_to(sec_3__subsec_1__para_c_section,  qualifies_s3_1_c(Person)).
+
+      holds(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person) :- according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person),
+      not blawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person).
+
+
+      according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
+      :- holds(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person).
+
+
+      holds(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person) :- according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person),
+      not blawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person).
+
+
+      according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
+      :- holds(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person).
+
+
+      holds(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person) :- according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person),
+      not blawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person).
 
 
       % Ideally, we would be able to more accurately represent
@@ -878,11 +1209,12 @@
 
       % give effect to the defeasibility declaration in the law.
 
-      overrules(sec_4__subsec_1_section,sec_3__subsec_1_section).'
+      blawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
+      :- holds(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person).'
 - model: blawx.workspace
-  pk: 51
+  pk: 50
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1__para_b__subpara_iii_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="Sp@/sc_CHiBc[}/t!syw" x="54" y="39"><statement name="statements"><block
@@ -906,28 +1238,28 @@
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">'s attribute name is</field><field name="second_element">value</field><field
       name="postfix">resided in Canada for the year prior to approval</field></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="C6QBa]1-B-6,L%;c6#i8" x="51" y="399"><statement
-      name="conditions"><block type="unary_attribute_selector" id="}7`]M4+~Uxm.Bd2c7;^W"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="resided_in_canada_10_years_prior_to_approval"
+      type="attributed_rule" id="+w+JWS6F7zsp8_SV02$/" x="52" y="367"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="unary_attribute_selector"
+      id="}7`]M4+~Uxm.Bd2c7;^W"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="resided_in_canada_10_years_prior_to_approval"
       attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">resided
       in canada for 10 years prior to approval</field><value name="first_element"><block
-      type="variable" id="mV;b?r-`)(R!jRNMpB$|"><field name="variable_name">Person</field></block></value></block></statement><statement
-      name="conclusion"><block type="according_to" id="{`[J_,5A{k/qclB2PHdB"><value
-      name="rule"><block type="doc_selector" id="3/8yz-|h.1DZxy33^6*s"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_b__subpara_iii_section"></mutation><field
-      name="doc_part_name">OASA 3.1.b.iii</field></block></value><statement name="statement"><block
+      type="variable" id="mV;b?r-`)(R!jRNMpB$|"><field name="variable_name">Person</field></block></value></block></statement><value
+      name="source"><block type="doc_selector" id="?@?c`cYg%Y|f3%o0?NQT"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b__subpara_iii_section"></mutation><field
+      name="doc_part_name">OASA 3.1.b.iii</field></block></value><statement name="conclusion"><block
       type="unary_attribute_selector" id="p,UU.X$t;kgP}jy%SllK"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_residence_duration_requirement_s3_1_b_iii" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">meets the residence duration requirement
       of section 3(1)(b)(iii)</field><value name="first_element"><block type="variable"
-      id="]2+@X(9|:6C@lUgRc|oy"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block><block
-      type="unattributed_rule" id="a+%l8eGHrMT3n|$nde.D" x="46" y="575"><statement
-      name="conditions"><block type="default_negation" id="Ko:@qF#5YnX]+iM1n{LM"><statement
-      name="default_negated_statement"><block type="unary_attribute_selector" id="n)K8N}Uz_DV754+^:5iQ"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="resided_in_canada_10_years_prior_to_approval"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">resided
-      in canada for 10 years prior to approval</field><value name="first_element"><block
-      type="variable" id="8+[H)g`seAGZn@k4:Bzf"><field name="variable_name">Person</field></block></value></block></statement><next><block
+      id="]2+@X(9|:6C@lUgRc|oy"><field name="variable_name">Person</field></block></value></block></statement></block><block
+      type="attributed_rule" id="IL1aU0$Ewgyog?kdjR^(" x="55" y="561"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="default_negation"
+      id="Ko:@qF#5YnX]+iM1n{LM"><statement name="default_negated_statement"><block
+      type="unary_attribute_selector" id="n)K8N}Uz_DV754+^:5iQ"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="resided_in_canada_10_years_prior_to_approval" attributetype="boolean"></mutation><field
+      name="prefix"></field><field name="postfix">resided in canada for 10 years prior
+      to approval</field><value name="first_element"><block type="variable" id="8+[H)g`seAGZn@k4:Bzf"><field
+      name="variable_name">Person</field></block></value></block></statement><next><block
       type="unary_attribute_selector" id=":s]WU3(|F8!2TAyme+C("><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_aggregate_residence_requirement_s3_1_b_iii" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">was in Canada more than away between
@@ -937,16 +1269,15 @@
       attributename="has_resided_one_year_prior_to_approval" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">resided in Canada for the year prior
       to approval</field><value name="first_element"><block type="variable" id="ve-gR`k}bl|32+/}1~R)"><field
-      name="variable_name">Person</field></block></value></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="D.9jN~UF8=;7Koe.BvCX"><value
-      name="rule"><block type="doc_selector" id="#vXq),eT;hf9~+Z-}1Hj"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_b__subpara_iii_section"></mutation><field
-      name="doc_part_name">OASA 3.1.b.iii</field></block></value><statement name="statement"><block
+      name="variable_name">Person</field></block></value></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="/e]dT]NCZFEVYyHM}_e4"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b__subpara_iii_section"></mutation><field
+      name="doc_part_name">OASA 3.1.b.iii</field></block></value><statement name="conclusion"><block
       type="unary_attribute_selector" id="I27[`*tlIt39NP|ehk#5"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_residence_duration_requirement_s3_1_b_iii" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">meets the residence duration requirement
       of section 3(1)(b)(iii)</field><value name="first_element"><block type="variable"
-      id="}:,Mw3(AX|fY@1{1vKB7"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      id="}:,Mw3(AX|fY@1{1vKB7"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,resided_in_canada_10_years_prior_to_approval,boolean).
 
       blawx_attribute_nlg(resided_in_canada_10_years_prior_to_approval,not_applicable,"",not_applicable,"resided
@@ -955,15 +1286,38 @@
       #pred resided_in_canada_10_years_prior_to_approval(X) :: ''@(X) resided in canada
       for 10 years prior to approval''.
 
-      #pred according_to(R,resided_in_canada_10_years_prior_to_approval(X)) :: ''according
-      to @(R), @(X) resided in canada for 10 years prior to approval''.
+      #pred holds(user,resided_in_canada_10_years_prior_to_approval,X) :: ''it is
+      provided as a fact that @(X) resided in canada for 10 years prior to approval''.
 
-      #pred legally_holds(_,resided_in_canada_10_years_prior_to_approval(X)) :: ''it
-      legally holds that @(X) resided in canada for 10 years prior to approval''.
+      #pred holds(user,-resided_in_canada_10_years_prior_to_approval,X) :: ''it is
+      provided as a fact that it is not the case that @(X) resided in canada for 10
+      years prior to approval''.
 
-      opposes(resided_in_canada_10_years_prior_to_approval(X),-resided_in_canada_10_years_prior_to_approval(X)).
+      #pred holds(Z,resided_in_canada_10_years_prior_to_approval,X) :: ''the conclusion
+      in @(Z) that @(X) resided in canada for 10 years prior to approval holds''.
 
-      opposes(-resided_in_canada_10_years_prior_to_approval(X),resided_in_canada_10_years_prior_to_approval(X)).
+      #pred holds(Z,-resided_in_canada_10_years_prior_to_approval,X) :: ''the conclusion
+      in @(Z) that it is not the case that @(X) resided in canada for 10 years prior
+      to approval holds''.
+
+      #pred according_to(Z,resided_in_canada_10_years_prior_to_approval,X) :: ''according
+      to @(Z), @(X) resided in canada for 10 years prior to approval''.
+
+      #pred according_to(Z,-resided_in_canada_10_years_prior_to_approval,X) :: ''according
+      to @(Z), it is not the case that @(X) resided in canada for 10 years prior to
+      approval''.
+
+      #pred blawx_defeated(Z,resided_in_canada_10_years_prior_to_approval,X) :: ''the
+      conclusion in @(Z) that @(X) resided in canada for 10 years prior to approval
+      is defeated''.
+
+      #pred blawx_defeated(Z,-resided_in_canada_10_years_prior_to_approval,X) :: ''the
+      conclusion in @(Z) that @(X) resided in canada for 10 years prior to approval
+      is defeated''.
+
+      resided_in_canada_10_years_prior_to_approval(X) :- holds(_,resided_in_canada_10_years_prior_to_approval,X).
+
+      -resided_in_canada_10_years_prior_to_approval(X) :- holds(_,-resided_in_canada_10_years_prior_to_approval,X).
 
       blawx_attribute(person,meets_aggregate_residence_requirement_s3_1_b_iii,boolean).
 
@@ -973,17 +1327,41 @@
       #pred meets_aggregate_residence_requirement_s3_1_b_iii(X) :: ''@(X) was in Canada
       more than away between 18 and 10 years prior to approval''.
 
-      #pred according_to(R,meets_aggregate_residence_requirement_s3_1_b_iii(X)) ::
-      ''according to @(R), @(X) was in Canada more than away between 18 and 10 years
+      #pred holds(user,meets_aggregate_residence_requirement_s3_1_b_iii,X) :: ''it
+      is provided as a fact that @(X) was in Canada more than away between 18 and
+      10 years prior to approval''.
+
+      #pred holds(user,-meets_aggregate_residence_requirement_s3_1_b_iii,X) :: ''it
+      is provided as a fact that it is not the case that @(X) was in Canada more than
+      away between 18 and 10 years prior to approval''.
+
+      #pred holds(Z,meets_aggregate_residence_requirement_s3_1_b_iii,X) :: ''the conclusion
+      in @(Z) that @(X) was in Canada more than away between 18 and 10 years prior
+      to approval holds''.
+
+      #pred holds(Z,-meets_aggregate_residence_requirement_s3_1_b_iii,X) :: ''the
+      conclusion in @(Z) that it is not the case that @(X) was in Canada more than
+      away between 18 and 10 years prior to approval holds''.
+
+      #pred according_to(Z,meets_aggregate_residence_requirement_s3_1_b_iii,X) ::
+      ''according to @(Z), @(X) was in Canada more than away between 18 and 10 years
       prior to approval''.
 
-      #pred legally_holds(_,meets_aggregate_residence_requirement_s3_1_b_iii(X)) ::
-      ''it legally holds that @(X) was in Canada more than away between 18 and 10
-      years prior to approval''.
+      #pred according_to(Z,-meets_aggregate_residence_requirement_s3_1_b_iii,X) ::
+      ''according to @(Z), it is not the case that @(X) was in Canada more than away
+      between 18 and 10 years prior to approval''.
 
-      opposes(meets_aggregate_residence_requirement_s3_1_b_iii(X),-meets_aggregate_residence_requirement_s3_1_b_iii(X)).
+      #pred blawx_defeated(Z,meets_aggregate_residence_requirement_s3_1_b_iii,X) ::
+      ''the conclusion in @(Z) that @(X) was in Canada more than away between 18 and
+      10 years prior to approval is defeated''.
 
-      opposes(-meets_aggregate_residence_requirement_s3_1_b_iii(X),meets_aggregate_residence_requirement_s3_1_b_iii(X)).
+      #pred blawx_defeated(Z,-meets_aggregate_residence_requirement_s3_1_b_iii,X)
+      :: ''the conclusion in @(Z) that @(X) was in Canada more than away between 18
+      and 10 years prior to approval is defeated''.
+
+      meets_aggregate_residence_requirement_s3_1_b_iii(X) :- holds(_,meets_aggregate_residence_requirement_s3_1_b_iii,X).
+
+      -meets_aggregate_residence_requirement_s3_1_b_iii(X) :- holds(_,-meets_aggregate_residence_requirement_s3_1_b_iii,X).
 
       blawx_attribute(person,has_resided_one_year_prior_to_approval,boolean).
 
@@ -993,47 +1371,73 @@
       #pred has_resided_one_year_prior_to_approval(X) :: ''@(X) resided in Canada
       for the year prior to approval''.
 
-      #pred according_to(R,has_resided_one_year_prior_to_approval(X)) :: ''according
-      to @(R), @(X) resided in Canada for the year prior to approval''.
+      #pred holds(user,has_resided_one_year_prior_to_approval,X) :: ''it is provided
+      as a fact that @(X) resided in Canada for the year prior to approval''.
 
-      #pred legally_holds(_,has_resided_one_year_prior_to_approval(X)) :: ''it legally
-      holds that @(X) resided in Canada for the year prior to approval''.
+      #pred holds(user,-has_resided_one_year_prior_to_approval,X) :: ''it is provided
+      as a fact that it is not the case that @(X) resided in Canada for the year prior
+      to approval''.
 
-      opposes(has_resided_one_year_prior_to_approval(X),-has_resided_one_year_prior_to_approval(X)).
+      #pred holds(Z,has_resided_one_year_prior_to_approval,X) :: ''the conclusion
+      in @(Z) that @(X) resided in Canada for the year prior to approval holds''.
 
-      opposes(-has_resided_one_year_prior_to_approval(X),has_resided_one_year_prior_to_approval(X)).
+      #pred holds(Z,-has_resided_one_year_prior_to_approval,X) :: ''the conclusion
+      in @(Z) that it is not the case that @(X) resided in Canada for the year prior
+      to approval holds''.
+
+      #pred according_to(Z,has_resided_one_year_prior_to_approval,X) :: ''according
+      to @(Z), @(X) resided in Canada for the year prior to approval''.
+
+      #pred according_to(Z,-has_resided_one_year_prior_to_approval,X) :: ''according
+      to @(Z), it is not the case that @(X) resided in Canada for the year prior to
+      approval''.
+
+      #pred blawx_defeated(Z,has_resided_one_year_prior_to_approval,X) :: ''the conclusion
+      in @(Z) that @(X) resided in Canada for the year prior to approval is defeated''.
+
+      #pred blawx_defeated(Z,-has_resided_one_year_prior_to_approval,X) :: ''the conclusion
+      in @(Z) that @(X) resided in Canada for the year prior to approval is defeated''.
+
+      has_resided_one_year_prior_to_approval(X) :- holds(_,has_resided_one_year_prior_to_approval,X).
+
+      -has_resided_one_year_prior_to_approval(X) :- holds(_,-has_resided_one_year_prior_to_approval,X).
 
 
-      according_to(sec_3__subsec_1__para_b__subpara_iii_section,  meets_residence_duration_requirement_s3_1_b_iii(Person))
-      :-
-
-      resided_in_canada_10_years_prior_to_approval(Person).
+      according_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
+      :- resided_in_canada_10_years_prior_to_approval(Person).
 
 
-      according_to(sec_3__subsec_1__para_b__subpara_iii_section,  meets_residence_duration_requirement_s3_1_b_iii(Person))
-      :-
+      holds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person).
 
-      not resided_in_canada_10_years_prior_to_approval(Person),
+
+      according_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
+      :- not resided_in_canada_10_years_prior_to_approval(Person),
 
       meets_aggregate_residence_requirement_s3_1_b_iii(Person),
 
-      has_resided_one_year_prior_to_approval(Person).'
+      has_resided_one_year_prior_to_approval(Person).
+
+
+      holds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person).'
 - model: blawx.workspace
-  pk: 52
+  pk: 51
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1__para_c__subpara_ii_section
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_rule"
-      id="bl}F}bWT5[aM.:%S89Vv" x="41" y="84"><statement name="conditions"><block
-      type="today" id="=_q.Las$,.2$I:)KetnE"><value name="NAME"><block type="variable"
-      id="RKl.57VoWO$4WX4go1)}"><field name="variable_name">Today</field></block></value><next><block
-      type="attribute_selector" id="Fy7|VU*xkV#{sw6VYF)2"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="birthdate" attributetype="Calendar Date" attributeorder="ov"></mutation><field
-      name="prefix"></field><field name="infix">was born on</field><field name="postfix"></field><value
-      name="first_element"><block type="variable" id="$@81-trb#cDO?PwXj(WP"><field
-      name="variable_name">Person</field></block></value><value name="second_element"><block
-      type="variable" id="oWl.WLT8xmMiREU;1p3x"><field name="variable_name">Birthdate</field></block></value><next><block
-      type="date_add" id="9^EZ]HEPbTxOUKI3cGri"><value name="duration"><block type="duration_value"
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
+      id="k){=+o!P$q~v5U0F#_P=" x="94" y="131"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="today"
+      id="=_q.Las$,.2$I:)KetnE"><value name="NAME"><block type="variable" id="RKl.57VoWO$4WX4go1)}"><field
+      name="variable_name">Today</field></block></value><next><block type="attribute_selector"
+      id="Fy7|VU*xkV#{sw6VYF)2"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="birthdate"
+      attributetype="Calendar Date" attributeorder="ov"></mutation><field name="prefix"></field><field
+      name="infix">was born on</field><field name="postfix"></field><value name="first_element"><block
+      type="variable" id="$@81-trb#cDO?PwXj(WP"><field name="variable_name">Person</field></block></value><value
+      name="second_element"><block type="variable" id="oWl.WLT8xmMiREU;1p3x"><field
+      name="variable_name">Birthdate</field></block></value><next><block type="date_add"
+      id="9^EZ]HEPbTxOUKI3cGri"><value name="duration"><block type="duration_value"
       id="281zC2M:4=^twC_%jPe_"><field name="sign">1</field><field name="years">65</field><field
       name="months">0</field><field name="days">0</field><field name="hours">0</field><field
       name="minutes">0</field><field name="seconds">0</field></block></value><value
@@ -1041,54 +1445,56 @@
       name="second_date"><block type="variable" id="fo%n[C-zO3[OXA2,,+N}"><field name="variable_name">DateAttaining65</field></block></value><next><block
       type="date_comparison" id=";raKx0Ntbdqota;IqGq,"><field name="comparison">lte</field><value
       name="first_date"><block type="variable" id="NM[0;aEVe7PXd0)Q6HRg"><field name="variable_name">DateAttaining65</field></block></value><value
-      name="second_date"><block type="variable" id="HJ+S1hb1NmZ1[#|!I]R5"><field name="variable_name">Today</field></block></value></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="$tV.*N=]xmx#lv,,!S|9"><value
-      name="rule"><block type="doc_selector" id="M0%~57n8^0h];gLDj3HS"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_c__subpara_ii_section"></mutation><field
-      name="doc_part_name">OASA 3.1.c.ii</field></block></value><statement name="statement"><block
+      name="second_date"><block type="variable" id="HJ+S1hb1NmZ1[#|!I]R5"><field name="variable_name">Today</field></block></value></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="N8Rt!M$q[:@$0=VI2Bti"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_c__subpara_ii_section"></mutation><field
+      name="doc_part_name">OASA 3.1.c.ii</field></block></value><statement name="conclusion"><block
       type="unary_attribute_selector" id="(BrWx(!P5uIw5k)^[QnL"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_s3_1_c_ii" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies the age requirement of s3(1)(c)(ii)</field><value name="first_element"><block
-      type="variable" id="Qo-L!`bFF@c:RoiRZWcO"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: 'according_to(sec_3__subsec_1__para_c__subpara_ii_section,  meets_s3_1_c_ii(Person))
-      :-
-
-      blawx_today(Today),
+      type="variable" id="Qo-L!`bFF@c:RoiRZWcO"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
+    scasp_encoding: 'according_to(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person)
+      :- blawx_today(Today),
 
       birthdate(Person,Birthdate),
 
       datetime_add(Birthdate,duration(1,65,0,0,0,0,0),DateAttaining65),
 
-      not_after(DateAttaining65,Today).'
+      not_after(DateAttaining65,Today).
+
+
+      holds(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person) :-
+      according_to(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person).'
 - model: blawx.workspace
-  pk: 53
+  pk: 52
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1__para_c__subpara_i_section
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_rule"
-      id="8hS(B5N$7w{Mk^k/;ICu" x="50" y="193"><statement name="conditions"><block
-      type="default_negation" id="icn6{[cS]8=(TAHH[5+-"><statement name="default_negated_statement"><block
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
+      id="}t$U;#Mab.m{k?t`oQ``" x="178" y="154"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="default_negation"
+      id="icn6{[cS]8=(TAHH[5+-"><statement name="default_negated_statement"><block
       type="unary_attribute_selector" id="OD-Qu~Ew]y(n[/](N}.F"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="pensioner_july" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">was a pensioner on July 1 1977</field><value name="first_element"><block
-      type="variable" id="?s8QD=H6nYbD3O*TIl^E"><field name="variable_name">Person</field></block></value></block></statement></block></statement><statement
-      name="conclusion"><block type="according_to" id="5]exAA/ea}up`rf39#P/"><value
-      name="rule"><block type="doc_selector" id="D0lL=wANq5_0/AX.z/c8"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_c__subpara_i_section"></mutation><field
-      name="doc_part_name">OASA 3.1.c.i</field></block></value><statement name="statement"><block
+      type="variable" id="?s8QD=H6nYbD3O*TIl^E"><field name="variable_name">Person</field></block></value></block></statement></block></statement><value
+      name="source"><block type="doc_selector" id="FAB5%#%U0HG[qumG8w4/"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_c__subpara_i_section"></mutation><field
+      name="doc_part_name">OASA 3.1.c.i</field></block></value><statement name="conclusion"><block
       type="unary_attribute_selector" id="epyt@O[m4@T6b4e%w]Jv"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_s3_1_c_i" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies the non-pensioner requirement of s3(1)(c)(i)</field><value
       name="first_element"><block type="variable" id="Xv%0pCaV9hz}e%5cJnl%"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: 'according_to(sec_3__subsec_1__para_c__subpara_i_section,  meets_s3_1_c_i(Person))
-      :-
+      name="variable_name">Person</field></block></value></block></statement></block></xml>
+    scasp_encoding: 'according_to(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person)
+      :- not pensioner_july(Person).
 
-      not pensioner_july(Person).'
+
+      holds(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person) :- according_to(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person).'
 - model: blawx.workspace
-  pk: 54
+  pk: 53
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1__para_c__subpara_iii_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="0qpz9A@(U,C=Anc!8#mt" x="40" y="59"><statement name="statements"><block
@@ -1098,21 +1504,20 @@
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">'s attribute name is</field><field name="second_element">value</field><field
       name="postfix">resided in Canada at least 40 years since the age of 18</field></block></statement></block><block
-      type="unattributed_rule" id="[;?L{LJ@4r3f-g^5lYn." x="39" y="194"><statement
-      name="conditions"><block type="unary_attribute_selector" id="68.=a)hZxLllJZ{=EbFN"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="resided_40_years_after_18_yoa"
+      type="attributed_rule" id="l}ltE(z[I;~,vI(O(mK^" x="47" y="229"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="unary_attribute_selector"
+      id="68.=a)hZxLllJZ{=EbFN"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="resided_40_years_after_18_yoa"
       attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">resided
       in Canada at least 40 years since the age of 18</field><value name="first_element"><block
-      type="variable" id="N+hE@-D;J3y(gd;Ge_`4"><field name="variable_name">Person</field></block></value></block></statement><statement
-      name="conclusion"><block type="according_to" id=");bE/;[B}:QZc4$AnL`~"><value
-      name="rule"><block type="doc_selector" id="J(#_.t[/poTG}e-hGnM!"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_c__subpara_iii_section"></mutation><field
-      name="doc_part_name">OASA 3.1.c.iii</field></block></value><statement name="statement"><block
+      type="variable" id="N+hE@-D;J3y(gd;Ge_`4"><field name="variable_name">Person</field></block></value></block></statement><value
+      name="source"><block type="doc_selector" id="eU!eAU4L4o!=xkHymkcA"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_c__subpara_iii_section"></mutation><field
+      name="doc_part_name">OASA 3.1.c.iii</field></block></value><statement name="conclusion"><block
       type="unary_attribute_selector" id="=!lvJkU(7{4S#@**ts7;"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="meets_s3_1_c_iii" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies the residency requirement of s3(1)(c)(iii)</field><value
       name="first_element"><block type="variable" id="yl(3q#Z%_s/n;Km2iF2Z"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,resided_40_years_after_18_yoa,boolean).
 
       blawx_attribute_nlg(resided_40_years_after_18_yoa,not_applicable,"",not_applicable,"resided
@@ -1121,32 +1526,57 @@
       #pred resided_40_years_after_18_yoa(X) :: ''@(X) resided in Canada at least
       40 years since the age of 18''.
 
-      #pred according_to(R,resided_40_years_after_18_yoa(X)) :: ''according to @(R),
-      @(X) resided in Canada at least 40 years since the age of 18''.
-
-      #pred legally_holds(_,resided_40_years_after_18_yoa(X)) :: ''it legally holds
+      #pred holds(user,resided_40_years_after_18_yoa,X) :: ''it is provided as a fact
       that @(X) resided in Canada at least 40 years since the age of 18''.
 
-      opposes(resided_40_years_after_18_yoa(X),-resided_40_years_after_18_yoa(X)).
+      #pred holds(user,-resided_40_years_after_18_yoa,X) :: ''it is provided as a
+      fact that it is not the case that @(X) resided in Canada at least 40 years since
+      the age of 18''.
 
-      opposes(-resided_40_years_after_18_yoa(X),resided_40_years_after_18_yoa(X)).
+      #pred holds(Z,resided_40_years_after_18_yoa,X) :: ''the conclusion in @(Z) that
+      @(X) resided in Canada at least 40 years since the age of 18 holds''.
+
+      #pred holds(Z,-resided_40_years_after_18_yoa,X) :: ''the conclusion in @(Z)
+      that it is not the case that @(X) resided in Canada at least 40 years since
+      the age of 18 holds''.
+
+      #pred according_to(Z,resided_40_years_after_18_yoa,X) :: ''according to @(Z),
+      @(X) resided in Canada at least 40 years since the age of 18''.
+
+      #pred according_to(Z,-resided_40_years_after_18_yoa,X) :: ''according to @(Z),
+      it is not the case that @(X) resided in Canada at least 40 years since the age
+      of 18''.
+
+      #pred blawx_defeated(Z,resided_40_years_after_18_yoa,X) :: ''the conclusion
+      in @(Z) that @(X) resided in Canada at least 40 years since the age of 18 is
+      defeated''.
+
+      #pred blawx_defeated(Z,-resided_40_years_after_18_yoa,X) :: ''the conclusion
+      in @(Z) that @(X) resided in Canada at least 40 years since the age of 18 is
+      defeated''.
+
+      resided_40_years_after_18_yoa(X) :- holds(_,resided_40_years_after_18_yoa,X).
+
+      -resided_40_years_after_18_yoa(X) :- holds(_,-resided_40_years_after_18_yoa,X).
 
 
-      according_to(sec_3__subsec_1__para_c__subpara_iii_section,  meets_s3_1_c_iii(Person))
-      :-
+      according_to(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person)
+      :- resided_40_years_after_18_yoa(Person).
 
-      resided_40_years_after_18_yoa(Person).'
+
+      holds(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person)
+      :- according_to(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person).'
 - model: blawx.workspace
-  pk: 55
+  pk: 54
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 56
+  pk: 55
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_4__subsec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="fZ?RE;oHlZN6#(t[0dYe" x="-11" y="-131"><statement name="statements"><block
@@ -1162,45 +1592,44 @@
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">'s attribute name is</field><field name="second_element">value</field><field
       name="postfix">satisfies section 4(1)(b)</field></block></next></block></statement></block><block
-      type="unattributed_rule" id="|^xV11SGsp|/^3k}FsJ." x="3" y="76"><comment pinned="false"
-      h="270" w="616">Arguably, this should reach a conclusion about "eligibility",
-      and "ineligibility" and "payability" would contradict one another, and the contradiction
-      be resolved using defeasibility. However, the defeasibility system currently
-      suffers from a flaw in how s(CASP) resolves universal quantification, and does
-      not work if there are multiple overriding relationships for the same predicate.
-      </comment><statement name="conditions"><block type="new_object_category" id="f@Y7eTSb[zn^6NuT%;fo"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-      name="category_name">person</field><value name="object"><block type="variable"
-      id="FiZ]YOVd4ULrMXi)O3*`"><field name="variable_name">Person</field></block></value><next><block
-      type="default_negation" id="IJe?xWT91d:}OdiP=j1["><statement name="default_negated_statement"><block
-      type="unary_attribute_selector" id="TN5hyA4q]rRxdr,9e*30"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      type="attributed_rule" id="A}h)-OaI#}TtzW}oR04C" x="-10" y="87"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><comment pinned="false" h="153" w="424">"Eligible"
+      and "full monthly pension may be paid to" have been combined into a single statement.
+      Therefore, this section says that if your are not a pensioner, and neither a
+      nor b is true, a full monthly pension may not be paid.</comment><statement name="conditions"><block
+      type="new_object_category" id="@O8^4`gBU3p5ch!q_I90"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field><value
+      name="object"><block type="variable" id="la#rVBZQ+g@4gGfJt(Ff"><field name="variable_name">Person</field></block></value><next><block
+      type="default_negation" id="h(8?[sGv$*f{9HFke-Tr"><statement name="default_negated_statement"><block
+      type="unary_attribute_selector" id="[sZ`=I@A/NyHJp6JAO}*"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="pensioner_july" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">was a pensioner on July 1 1977</field><value name="first_element"><block
-      type="variable" id="jz5aO`jy=K$qMmP49%OZ"><field name="variable_name">Person</field></block></value></block></statement><next><block
-      type="default_negation" id="Dqp{gkQtT$GLy73Q/gr]"><statement name="default_negated_statement"><block
-      type="according_to" id="]*yfq!yEmy33)O}A:Qn="><value name="rule"><block type="doc_selector"
+      type="variable" id="TYO4OOmec35EJ5y83KS-"><field name="variable_name">Person</field></block></value></block></statement><next><block
+      type="default_negation" id="CfdU9pUu!Q=(I=`pv%r7"><statement name="default_negated_statement"><block
+      type="holds" id="W*8OJlfx`ikznD/H%`Ag"><value name="section"><block type="doc_selector"
       id="p6WcI`z3Mdkq5`aUZ4A7"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_4__subsec_1__para_a_section"></mutation><field
       name="doc_part_name">OASA 4.1.a</field></block></value><statement name="statement"><block
       type="unary_attribute_selector" id="1lVU:{3LP=4;?-l/RpI+"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="satisfies_4_1_a" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies section 4(1)(a)</field><value name="first_element"><block
       type="variable" id="v^2~/o#YZbBCfmxzPmCJ"><field name="variable_name">Person</field></block></value></block></statement></block></statement><next><block
-      type="default_negation" id="h(mU/04~8MZHK=_zPQ75"><statement name="default_negated_statement"><block
-      type="according_to" id="Fva[^Lb4VF:F5#RUI1xL"><value name="rule"><block type="doc_selector"
+      type="default_negation" id="`k3OPxjoJeA4hnglkz/o"><statement name="default_negated_statement"><block
+      type="holds" id="$+V%DyI5*,xC$FO]ew@I"><value name="section"><block type="doc_selector"
       id="|fsq7=9(|G_~7MLQwZUV"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_4__subsec_1__para_b_section"></mutation><field
       name="doc_part_name">OASA 4.1.b</field></block></value><statement name="statement"><block
       type="unary_attribute_selector" id="heg^2F~c?{|FcJGkX1w#"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="satisfies_4_1_b" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies section 4(1)(b)</field><value name="first_element"><block
-      type="variable" id="2DEAAH;mD+0I:4bfANfw"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="9B_`=^gGJJvp8T=5:[u5"><value
-      name="rule"><block type="doc_selector" id="~[Y|;eQPN}If|Zq@Q?Lp"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_4__subsec_1_section"></mutation><field name="doc_part_name">OASA
-      4.1</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="Pf1#)ZRQ3jl1z/D1+_;Y"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_be_paid_full_monthly_pension"
-      attributetype="boolean"></mutation><field name="prefix">a full monthly pension
-      may be paid to</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="8OL}DN)#Nsr*2)Z/81;7"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      type="variable" id="2DEAAH;mD+0I:4bfANfw"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="sDfit;3=jzP1KR:kq.uD"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_4__subsec_1_section"></mutation><field
+      name="doc_part_name">OASA 4.1</field></block></value><statement name="conclusion"><block
+      type="logical_negation" id="8WCBo9~]T@QV=+6r5M8M"><statement name="negated_statement"><block
+      type="unary_attribute_selector" id="Pf1#)ZRQ3jl1z/D1+_;Y"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="may_be_paid_full_monthly_pension" attributetype="boolean"></mutation><field
+      name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="8OL}DN)#Nsr*2)Z/81;7"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,satisfies_4_1_a,boolean).
 
       blawx_attribute_nlg(satisfies_4_1_a,not_applicable,"",not_applicable,"satisfies
@@ -1208,15 +1637,33 @@
 
       #pred satisfies_4_1_a(X) :: ''@(X) satisfies section 4(1)(a)''.
 
-      #pred according_to(R,satisfies_4_1_a(X)) :: ''according to @(R), @(X) satisfies
+      #pred holds(user,satisfies_4_1_a,X) :: ''it is provided as a fact that @(X)
+      satisfies section 4(1)(a)''.
+
+      #pred holds(user,-satisfies_4_1_a,X) :: ''it is provided as a fact that it is
+      not the case that @(X) satisfies section 4(1)(a)''.
+
+      #pred holds(Z,satisfies_4_1_a,X) :: ''the conclusion in @(Z) that @(X) satisfies
+      section 4(1)(a) holds''.
+
+      #pred holds(Z,-satisfies_4_1_a,X) :: ''the conclusion in @(Z) that it is not
+      the case that @(X) satisfies section 4(1)(a) holds''.
+
+      #pred according_to(Z,satisfies_4_1_a,X) :: ''according to @(Z), @(X) satisfies
       section 4(1)(a)''.
 
-      #pred legally_holds(_,satisfies_4_1_a(X)) :: ''it legally holds that @(X) satisfies
-      section 4(1)(a)''.
+      #pred according_to(Z,-satisfies_4_1_a,X) :: ''according to @(Z), it is not the
+      case that @(X) satisfies section 4(1)(a)''.
 
-      opposes(satisfies_4_1_a(X),-satisfies_4_1_a(X)).
+      #pred blawx_defeated(Z,satisfies_4_1_a,X) :: ''the conclusion in @(Z) that @(X)
+      satisfies section 4(1)(a) is defeated''.
 
-      opposes(-satisfies_4_1_a(X),satisfies_4_1_a(X)).
+      #pred blawx_defeated(Z,-satisfies_4_1_a,X) :: ''the conclusion in @(Z) that
+      @(X) satisfies section 4(1)(a) is defeated''.
+
+      satisfies_4_1_a(X) :- holds(_,satisfies_4_1_a,X).
+
+      -satisfies_4_1_a(X) :- holds(_,-satisfies_4_1_a,X).
 
       blawx_attribute(person,satisfies_4_1_b,boolean).
 
@@ -1225,43 +1672,58 @@
 
       #pred satisfies_4_1_b(X) :: ''@(X) satisfies section 4(1)(b)''.
 
-      #pred according_to(R,satisfies_4_1_b(X)) :: ''according to @(R), @(X) satisfies
+      #pred holds(user,satisfies_4_1_b,X) :: ''it is provided as a fact that @(X)
+      satisfies section 4(1)(b)''.
+
+      #pred holds(user,-satisfies_4_1_b,X) :: ''it is provided as a fact that it is
+      not the case that @(X) satisfies section 4(1)(b)''.
+
+      #pred holds(Z,satisfies_4_1_b,X) :: ''the conclusion in @(Z) that @(X) satisfies
+      section 4(1)(b) holds''.
+
+      #pred holds(Z,-satisfies_4_1_b,X) :: ''the conclusion in @(Z) that it is not
+      the case that @(X) satisfies section 4(1)(b) holds''.
+
+      #pred according_to(Z,satisfies_4_1_b,X) :: ''according to @(Z), @(X) satisfies
       section 4(1)(b)''.
 
-      #pred legally_holds(_,satisfies_4_1_b(X)) :: ''it legally holds that @(X) satisfies
-      section 4(1)(b)''.
+      #pred according_to(Z,-satisfies_4_1_b,X) :: ''according to @(Z), it is not the
+      case that @(X) satisfies section 4(1)(b)''.
 
-      opposes(satisfies_4_1_b(X),-satisfies_4_1_b(X)).
+      #pred blawx_defeated(Z,satisfies_4_1_b,X) :: ''the conclusion in @(Z) that @(X)
+      satisfies section 4(1)(b) is defeated''.
 
-      opposes(-satisfies_4_1_b(X),satisfies_4_1_b(X)).
+      #pred blawx_defeated(Z,-satisfies_4_1_b,X) :: ''the conclusion in @(Z) that
+      @(X) satisfies section 4(1)(b) is defeated''.
+
+      satisfies_4_1_b(X) :- holds(_,satisfies_4_1_b,X).
+
+      -satisfies_4_1_b(X) :- holds(_,-satisfies_4_1_b,X).
 
 
-      % Arguably, this should reach a conclusion about "eligibility", and
+      % "Eligible" and "full monthly pension may be paid to" have been
 
-      % "ineligibility" and "payability" would contradict one another, and
+      % combined into a single statement. Therefore, this section
 
-      % the contradiction be resolved using defeasibility. However, the
+      % says that if your are not a pensioner, and neither a
 
-      % defeasibility system currently suffers from a flaw in how s(CASP)
+      % nor b is true, a full monthly pension may not be paid.
 
-      % resolves universal quantification, and does not work if there
-
-      % are multiple overriding relationships for the same predicate.
-
-      according_to(sec_4__subsec_1_section,  may_be_paid_full_monthly_pension(Person))
-      :-
-
-      person(Person),
+      according_to(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person)
+      :- person(Person),
 
       not pensioner_july(Person),
 
-      not according_to(sec_4__subsec_1__para_a_section,  satisfies_4_1_a(Person)),
+      not holds(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person),
 
-      not according_to(sec_4__subsec_1__para_b_section,  satisfies_4_1_b(Person)).'
+      not holds(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person).
+
+
+      holds(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person) :- according_to(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person).'
 - model: blawx.workspace
-  pk: 57
+  pk: 56
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_4__subsec_1__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="C@IOG)1*g8eiX~s=aF|Y" x="-23" y="-98"><statement name="statements"><block
@@ -1271,20 +1733,19 @@
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">'s attribute name is</field><field name="second_element">value</field><field
       name="postfix">was a citizen or legal resident the day before approval</field></block></statement></block><block
-      type="unattributed_rule" id="V`)0~iIATeLDBsj|$}jZ" x="-24" y="53"><statement
-      name="conditions"><block type="unary_attribute_selector" id="{N2tXc|0d?Hgu6XArtV@"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="citizen_or_resident_before_approval"
+      type="attributed_rule" id="No~it`#-GY[5j2e!I6k(" x="-25" y="50"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="unary_attribute_selector"
+      id="{N2tXc|0d?Hgu6XArtV@"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="citizen_or_resident_before_approval"
       attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">was
       a citizen or legal resident the day before approval</field><value name="first_element"><block
-      type="variable" id="2.^IPjdq@$o}TV)8Ke{3"><field name="variable_name">Person</field></block></value></block></statement><statement
-      name="conclusion"><block type="according_to" id="aySGO}v/f)!wE$9Oxk!O"><value
-      name="rule"><block type="doc_selector" id=".mN42Fr`F_qNZkQ^Sx;N"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_4__subsec_1__para_a_section"></mutation><field name="doc_part_name">OASA
-      4.1.a</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="Z$ZeblCjE,E96GGWw=+r"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="satisfies_4_1_a"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">satisfies
-      section 4(1)(a)</field><value name="first_element"><block type="variable" id="pcjQRTs{Q|/oT8R:UCqq"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      type="variable" id="2.^IPjdq@$o}TV)8Ke{3"><field name="variable_name">Person</field></block></value></block></statement><value
+      name="source"><block type="doc_selector" id=":,p2x|U`!8u:CJf[PyCD"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_4__subsec_1__para_a_section"></mutation><field
+      name="doc_part_name">OASA 4.1.a</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="Z$ZeblCjE,E96GGWw=+r"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="satisfies_4_1_a" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">satisfies section 4(1)(a)</field><value name="first_element"><block
+      type="variable" id="pcjQRTs{Q|/oT8R:UCqq"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,citizen_or_resident_before_approval,boolean).
 
       blawx_attribute_nlg(citizen_or_resident_before_approval,not_applicable,"",not_applicable,"was
@@ -1293,24 +1754,48 @@
       #pred citizen_or_resident_before_approval(X) :: ''@(X) was a citizen or legal
       resident the day before approval''.
 
-      #pred according_to(R,citizen_or_resident_before_approval(X)) :: ''according
-      to @(R), @(X) was a citizen or legal resident the day before approval''.
+      #pred holds(user,citizen_or_resident_before_approval,X) :: ''it is provided
+      as a fact that @(X) was a citizen or legal resident the day before approval''.
 
-      #pred legally_holds(_,citizen_or_resident_before_approval(X)) :: ''it legally
-      holds that @(X) was a citizen or legal resident the day before approval''.
+      #pred holds(user,-citizen_or_resident_before_approval,X) :: ''it is provided
+      as a fact that it is not the case that @(X) was a citizen or legal resident
+      the day before approval''.
 
-      opposes(citizen_or_resident_before_approval(X),-citizen_or_resident_before_approval(X)).
+      #pred holds(Z,citizen_or_resident_before_approval,X) :: ''the conclusion in
+      @(Z) that @(X) was a citizen or legal resident the day before approval holds''.
 
-      opposes(-citizen_or_resident_before_approval(X),citizen_or_resident_before_approval(X)).
+      #pred holds(Z,-citizen_or_resident_before_approval,X) :: ''the conclusion in
+      @(Z) that it is not the case that @(X) was a citizen or legal resident the day
+      before approval holds''.
+
+      #pred according_to(Z,citizen_or_resident_before_approval,X) :: ''according to
+      @(Z), @(X) was a citizen or legal resident the day before approval''.
+
+      #pred according_to(Z,-citizen_or_resident_before_approval,X) :: ''according
+      to @(Z), it is not the case that @(X) was a citizen or legal resident the day
+      before approval''.
+
+      #pred blawx_defeated(Z,citizen_or_resident_before_approval,X) :: ''the conclusion
+      in @(Z) that @(X) was a citizen or legal resident the day before approval is
+      defeated''.
+
+      #pred blawx_defeated(Z,-citizen_or_resident_before_approval,X) :: ''the conclusion
+      in @(Z) that @(X) was a citizen or legal resident the day before approval is
+      defeated''.
+
+      citizen_or_resident_before_approval(X) :- holds(_,citizen_or_resident_before_approval,X).
+
+      -citizen_or_resident_before_approval(X) :- holds(_,-citizen_or_resident_before_approval,X).
 
 
-      according_to(sec_4__subsec_1__para_a_section,  satisfies_4_1_a(Person)) :-
+      according_to(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person) :- citizen_or_resident_before_approval(Person).
 
-      citizen_or_resident_before_approval(Person).'
+
+      holds(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person) :- according_to(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person).'
 - model: blawx.workspace
-  pk: 58
+  pk: 57
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_4__subsec_1__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="C@IOG)1*g8eiX~s=aF|Y" x="10" y="101"><statement name="statements"><block
@@ -1320,20 +1805,19 @@
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">'s attribute name is</field><field name="second_element">value</field><field
       name="postfix">was a citizen or legal resident the day before departure</field></block></statement></block><block
-      type="unattributed_rule" id="V`)0~iIATeLDBsj|$}jZ" x="16" y="291"><statement
-      name="conditions"><block type="unary_attribute_selector" id="7zd+zevz^Ff6j0;nH#St"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="citizen_or_resident_before_approval"
+      type="attributed_rule" id="X6{?J^wjJ_jBTUSZ6mqu" x="20" y="249"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="unary_attribute_selector"
+      id="7zd+zevz^Ff6j0;nH#St"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="citizen_or_resident_before_approval"
       attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">was
       a citizen or legal resident the day before approval</field><value name="first_element"><block
-      type="variable" id="Z{(R?yT9uP_Q/j-1rfUF"><field name="variable_name">Person</field></block></value></block></statement><statement
-      name="conclusion"><block type="according_to" id="aySGO}v/f)!wE$9Oxk!O"><value
-      name="rule"><block type="doc_selector" id="!3fQ1Rr)(TZ[pbk3uSZJ"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_4__subsec_1__para_b_section"></mutation><field name="doc_part_name">OASA
-      4.1.b</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="L28GRpBB0w$*%v[|9uJ*"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="satisfies_4_1_b"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">satisfies
-      section 4(1)(b)</field><value name="first_element"><block type="variable" id="pcjQRTs{Q|/oT8R:UCqq"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+      type="variable" id="Z{(R?yT9uP_Q/j-1rfUF"><field name="variable_name">Person</field></block></value></block></statement><value
+      name="source"><block type="doc_selector" id="~5RD/0n[#@)u.X)(FPyB"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_4__subsec_1__para_b_section"></mutation><field
+      name="doc_part_name">OASA 4.1.b</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="L28GRpBB0w$*%v[|9uJ*"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="satisfies_4_1_b" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">satisfies section 4(1)(b)</field><value name="first_element"><block
+      type="variable" id="pcjQRTs{Q|/oT8R:UCqq"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: 'blawx_attribute(person,citizen_or_resident_before_departure,boolean).
 
       blawx_attribute_nlg(citizen_or_resident_before_departure,not_applicable,"",not_applicable,"was
@@ -1342,47 +1826,70 @@
       #pred citizen_or_resident_before_departure(X) :: ''@(X) was a citizen or legal
       resident the day before departure''.
 
-      #pred according_to(R,citizen_or_resident_before_departure(X)) :: ''according
-      to @(R), @(X) was a citizen or legal resident the day before departure''.
+      #pred holds(user,citizen_or_resident_before_departure,X) :: ''it is provided
+      as a fact that @(X) was a citizen or legal resident the day before departure''.
 
-      #pred legally_holds(_,citizen_or_resident_before_departure(X)) :: ''it legally
-      holds that @(X) was a citizen or legal resident the day before departure''.
+      #pred holds(user,-citizen_or_resident_before_departure,X) :: ''it is provided
+      as a fact that it is not the case that @(X) was a citizen or legal resident
+      the day before departure''.
 
-      opposes(citizen_or_resident_before_departure(X),-citizen_or_resident_before_departure(X)).
+      #pred holds(Z,citizen_or_resident_before_departure,X) :: ''the conclusion in
+      @(Z) that @(X) was a citizen or legal resident the day before departure holds''.
 
-      opposes(-citizen_or_resident_before_departure(X),citizen_or_resident_before_departure(X)).
+      #pred holds(Z,-citizen_or_resident_before_departure,X) :: ''the conclusion in
+      @(Z) that it is not the case that @(X) was a citizen or legal resident the day
+      before departure holds''.
+
+      #pred according_to(Z,citizen_or_resident_before_departure,X) :: ''according
+      to @(Z), @(X) was a citizen or legal resident the day before departure''.
+
+      #pred according_to(Z,-citizen_or_resident_before_departure,X) :: ''according
+      to @(Z), it is not the case that @(X) was a citizen or legal resident the day
+      before departure''.
+
+      #pred blawx_defeated(Z,citizen_or_resident_before_departure,X) :: ''the conclusion
+      in @(Z) that @(X) was a citizen or legal resident the day before departure is
+      defeated''.
+
+      #pred blawx_defeated(Z,-citizen_or_resident_before_departure,X) :: ''the conclusion
+      in @(Z) that @(X) was a citizen or legal resident the day before departure is
+      defeated''.
+
+      citizen_or_resident_before_departure(X) :- holds(_,citizen_or_resident_before_departure,X).
+
+      -citizen_or_resident_before_departure(X) :- holds(_,-citizen_or_resident_before_departure,X).
 
 
-      according_to(sec_4__subsec_1__para_b_section,  satisfies_4_1_b(Person)) :-
+      according_to(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person) :- citizen_or_resident_before_approval(Person).
 
-      citizen_or_resident_before_approval(Person).'
+
+      holds(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person) :- according_to(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person).'
 - model: blawx.workspace
-  pk: 59
+  pk: 58
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_4_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 60
+  pk: 59
   fields:
-    ruledoc: 4
+    ruledoc: 11
     workspace_name: sec_3__subsec_1__para_b__subpara_i__span_immigration_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.blawxtest
-  pk: 3
+  pk: 22
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_3_1
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
-      id="Q8InM;qw!CZCjX$$bb8n" x="89" y="250"><statement name="query"><block type="holds"
-      id="v]/-~3Ut95IfW.@F[L#0"><statement name="statement"><block type="unary_attribute_selector"
+      id="Q8InM;qw!CZCjX$$bb8n" x="89" y="250"><statement name="query"><block type="unary_attribute_selector"
       id="B@8)k;0UaO.22Pv{XKbb"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_be_paid_full_monthly_pension"
       attributetype="boolean"></mutation><field name="prefix">a full monthly pension
       may be paid to</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="K?7xt@Sw;_T(N37QbJ1r"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: ?- legally_holds(_,  may_be_paid_full_monthly_pension(Person)).
+      type="variable" id="K?7xt@Sw;_T(N37QbJ1r"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
+    scasp_encoding: ?- may_be_paid_full_monthly_pension(Person).
     tutorial: ''
     view: '[''view_cat_person_att_meets_age_requirement_s3_1_b_ii'', ''view_cat_person_att_meets_residence_duration_requirement_s3_1_b_iii'',
       ''view_cat_person_att_meets_s3_1_c_i'', ''view_cat_person_att_meets_s3_1_c_ii'',
@@ -1391,24 +1898,20 @@
       ''view_cat_person_att_satisfies_4_1_a'', ''view_cat_person_att_satisfies_4_1_b'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 4
+  pk: 23
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_3_1_a
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="true_value"
-      id="}e4T/,#s(Gl-sp[|o!JG" x="0" y="0"></block><block type="query" id="$N$4N9Yt@P%fIh1qo$z("
-      x="85" y="207"><statement name="query"><block type="according_to" id="i^@JUG~u[@rn*qc)gTR*"><value
-      name="rule"><block type="doc_selector" id="iQxUvs0}0L]#acN#rt]("><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_3__subsec_1__para_a_section"></mutation><field name="doc_part_name">OASA
-      3.1.a</field></block></value><statement name="statement"><block type="unary_attribute_selector"
-      id="M.Pd=Td(6cjw+N3(XkY{"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s3_1_a"
-      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
-      under s3(1)(a)</field><value name="first_element"><block type="variable" id="UAxuSrZBmy*@iJL}*7]e"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: 'true.
-
-
-      ?- according_to(sec_3__subsec_1__para_a_section,  qualifies_s3_1_a(Person)).'
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
+      id="$N$4N9Yt@P%fIh1qo$z(" x="85" y="207"><statement name="query"><block type="according_to"
+      id="qyj|m`:~26RTZ7TgI5u/"><value name="rule"><block type="doc_selector" id="GHVj9SX67}8^9GS*xO+%"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_a_section"></mutation><field
+      name="doc_part_name">OASA 3.1.a</field></block></value><statement name="statement"><block
+      type="unary_attribute_selector" id="M.Pd=Td(6cjw+N3(XkY{"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="qualifies_s3_1_a" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">qualifies under s3(1)(a)</field><value name="first_element"><block
+      type="variable" id="UAxuSrZBmy*@iJL}*7]e"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
+    scasp_encoding: ?- according_to(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person).
     tutorial: ''
     view: '[''view_cat_person_att_birthdate'', ''view_cat_person_att_resided_in_canada_july'',
       ''view_cat_person_att_possessed_valid_immigration_visa_july'', ''view_cat_person_att_resided_in_canada_after_18_as_of_july'',
@@ -1423,9 +1926,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 5
+  pk: 24
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_3_1_b
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="b45P79[j~H@U#Tpe[Q0?" x="161" y="289"><statement name="query"><block type="according_to"
@@ -1448,9 +1951,9 @@
       ''view_cat_person_att_resided_40_years_after_18_yoa'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 6
+  pk: 25
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_3_1_c
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="{,Ih5k/U:U$Dn0tc{D.=" x="126" y="314"><statement name="query"><block type="according_to"
@@ -1475,9 +1978,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 7
+  pk: 26
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_3_1_b_i
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="3GnJl-qbNhs(}SHR)q.y" x="66" y="255"><statement name="query"><block type="according_to"
@@ -1502,9 +2005,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 8
+  pk: 27
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_3_1_b_ii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="CLUc$RA|lkd/oQ$y#06*" x="75" y="289"><statement name="query"><block type="according_to"
@@ -1531,9 +2034,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 9
+  pk: 28
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_3_1_c_i
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="B5rp;*txE]JpuW{.}pCz" x="92" y="321"><statement name="query"><block type="according_to"
@@ -1559,9 +2062,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 10
+  pk: 29
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_3_1_c_ii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="_0LNmTPcoH;=}PVUisM!" x="70" y="263"><statement name="query"><block type="according_to"
@@ -1586,9 +2089,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 11
+  pk: 30
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_3_1_b_iii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id=":Uu[*vSt,LW8=1//bfpd" x="93" y="213"><statement name="query"><block type="according_to"
@@ -1614,9 +2117,9 @@
       ''view_cat_person_att_pensioner_july'', ''view_cat_person_att_birthdate'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 12
+  pk: 31
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_3_1_c_iii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="CCbA=7g95-6zwLTJ1wnD" x="119" y="323"><statement name="query"><block type="according_to"
@@ -1642,21 +2145,22 @@
       ''view_cat_person_att_citizen_or_resident_before_departure'', ''view_cat_person_att_resided_in_canada_after_18_as_of_july'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 13
+  pk: 32
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_4_1
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="Kri=g;hPM1VB.r#pLRqV" x="59" y="324"><statement name="query"><block type="according_to"
       id=".}@2*BF7B8nC-6Mf{6*U"><value name="rule"><block type="doc_selector" id="!N.v_=IG+xBXi4Aq.f3E"><mutation
       xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_4__subsec_1_section"></mutation><field
       name="doc_part_name">OASA 4.1</field></block></value><statement name="statement"><block
+      type="logical_negation" id="U}6y$.r-3_s~9jTqoXl%"><statement name="negated_statement"><block
       type="unary_attribute_selector" id="Q}+~cYze(ntIfkD3Em^5"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="may_be_paid_full_monthly_pension" attributetype="boolean"></mutation><field
       name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id=":0tuG,V=2K3!z-m!gcaA"><field
-      name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: ?- according_to(sec_4__subsec_1_section,  may_be_paid_full_monthly_pension(Person)).
+      name="variable_name">Person</field></block></value></block></statement></block></statement></block></statement></block></xml>
+    scasp_encoding: ?- according_to(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person).
     tutorial: ''
     view: '[''view_cat_person_att_birthdate'', ''view_cat_person_att_resided_in_canada_july'',
       ''view_cat_person_att_possessed_valid_immigration_visa_july'', ''view_cat_person_att_resided_in_canada_after_18_as_of_july'',
@@ -1670,9 +2174,9 @@
       ''view_cat_person_att_satisfies_4_1_a'', ''view_cat_person_att_satisfies_4_1_b'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 14
+  pk: 33
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_4_1_a
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="#(Tg!n]s7a-UBCVm0LG`" x="96" y="267"><statement name="query"><block type="according_to"
@@ -1698,9 +2202,9 @@
       ''view_cat_person_att_satisfies_4_1_b'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 15
+  pk: 34
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_4_1_b
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="(9ydD85Yn#_BVeS!)N;l" x="134" y="276"><statement name="query"><block type="according_to"
@@ -1726,25 +2230,24 @@
       ''view_cat_person_att_resided_in_canada_july'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 16
+  pk: 35
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: generic_eligible
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
-      id="t2fN+~va](ApjzsD`Bay" x="80" y="316"><statement name="query"><block type="holds"
-      id="i^|s5ga$M2w6hHV4nNN`"><statement name="statement"><block type="unary_attribute_selector"
+      id="t2fN+~va](ApjzsD`Bay" x="80" y="316"><statement name="query"><block type="unary_attribute_selector"
       id="VS5[yqnQPK|swIpR-7z3"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_be_paid_full_monthly_pension"
       attributetype="boolean"></mutation><field name="prefix">a full monthly pension
       may be paid to</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="@*.yaV{mq4o0[tUO6r=("><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: ?- legally_holds(_,  may_be_paid_full_monthly_pension(Person)).
+      type="variable" id="@*.yaV{mq4o0[tUO6r=("><field name="variable_name">Person</field></block></value></block></statement></block></xml>
+    scasp_encoding: ?- may_be_paid_full_monthly_pension(Person).
     tutorial: ''
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 17
+  pk: 36
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: true_or_false
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="r?$kLlAR1KCd=TwIk;gB" x="50" y="128"><statement name="statements"><block
@@ -1752,32 +2255,30 @@
       category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">bob</field><field name="postfix">is a person</field></block></statement></block><block
       type="query" id="7~=$P3uxU$Jd2GaXd.Fj" x="55" y="233"><statement name="query"><block
-      type="holds" id="xAs56KhhT`F/T0.}Xu%d"><statement name="statement"><block type="unary_attribute_selector"
-      id="}9}8a#v[|Z%=$p[2,WFk"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_be_paid_full_monthly_pension"
-      attributetype="boolean"></mutation><field name="prefix">a full monthly pension
-      may be paid to</field><field name="postfix"></field><value name="first_element"><block
-      type="object_selector" id="^!IB[_PR6-#GBw2b0}6f"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      objectname="bob"></mutation><field name="object_name">bob</field></block></value></block></statement></block></statement></block></xml>
+      type="unary_attribute_selector" id="}9}8a#v[|Z%=$p[2,WFk"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="may_be_paid_full_monthly_pension" attributetype="boolean"></mutation><field
+      name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="^!IB[_PR6-#GBw2b0}6f"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field name="object_name">bob</field></block></value></block></statement></block></xml>
     scasp_encoding: 'person(bob).
 
 
-      ?- legally_holds(_,  may_be_paid_full_monthly_pension(bob)).'
+      ?- may_be_paid_full_monthly_pension(bob).'
     tutorial: ''
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 18
+  pk: 37
   fields:
-    ruledoc: 4
+    ruledoc: 11
     test_name: search
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
-      id="jS[=lqTA3BIxhGNpe%`m" x="62" y="185"><statement name="query"><block type="holds"
-      id="j.e=GHq(C)Qa,{}?H--T"><statement name="statement"><block type="unary_attribute_selector"
+      id="jS[=lqTA3BIxhGNpe%`m" x="62" y="185"><statement name="query"><block type="unary_attribute_selector"
       id="|i?0by2+cWm:{UzvA0RB"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="may_be_paid_full_monthly_pension"
       attributetype="boolean"></mutation><field name="prefix">a full monthly pension
       may be paid to</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="4Jr:7pgs(Eo4a!)OD6U%"><field name="variable_name">Someone</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: ?- legally_holds(_,  may_be_paid_full_monthly_pension(Someone)).
+      type="variable" id="4Jr:7pgs(Eo4a!)OD6U%"><field name="variable_name">Someone</field></block></value></block></statement></block></xml>
+    scasp_encoding: ?- may_be_paid_full_monthly_pension(Someone).
     tutorial: ''
     view: ''
     fact_scenario: ''
