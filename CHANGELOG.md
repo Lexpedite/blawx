@@ -26,46 +26,36 @@ order to be defeasible. Checking the "subject to exceptions" checkbox has that s
 ### Changes
 * Overrules Block
 * Holds Block
-* Associated documentation
 * Updated examples to new block language
+* New version of Bird Act example demonstrating enhanced features
+* Updates to documentation for changed blocks, changed examples, and defaults, exceptions, and applicability
 
 ### Adds
 * Attributed Rule Block
 * Defeated Block
 * Applies Block
+* New Documentation
+* In addition to being contradicted, rules can now also be made inapplicable to certain objects.
 
 ### Removes
-* Override Block
+* Opposes Block
+* Documentation for opposes block
 
 ### Fixes
-* Defeating rules can now themselves be defeated.
-* Rules can be defeated by multiple other rules.
-* Links to legislative material can be obtained without using defeasibility.
-* Rules can be disabled in addition to contradicted.
-* Problem in OASA example encoding has been resolved.
+* Defeating rules will not longer defeat if they are themselves defeated
+* Rules can be defeated by multiple other rules
+* Links to legislative material can be obtained without checking for defeating rules
+* Rules can be disabled in addition to contradicted
+* Error in OASA example that made people eligible by default
 
 ### To Do
 
-* Testing
-* Make explanations show up properly in the scenario editor again.
-* Fix Bugs:
-  * R34 test fails with stack error
-  * OASA examples seem to run super slow?
-  * There is a problem that the categories from other workspaces are not updated when you change categories in
-    the rule editor. Need to refresh after saving a page with new categories, or something.
-  * There is a problem where some answers are being displayed multiple times in the scenario editor, see basic new beard act example.
-* Create New Issues:
-  * Deal better with "wide" (deep) explanations in the test editor.
-  * Cannot reverse reasoning over date calculations? See "old test" test in covid example and negate conclusion, query doesn't terminate.
-  * Unexpected end of input in buttons.js error
-  * It is possible to take things that should only ever be stated in a condition and put them in a conclusion (like A is blawx_today)
-  * There are some statements that use infix notation, and when they are placed in a conclusion in which they are to be reified, the code generation will fail.
-  * There is a problem that comments are showing up where they don't belong, when the comment window is closed.
-  * There is a problem in how hypothetical reasoning works with the new defeasibility method. In Rock Paper Scissors, the hypothetical
-    test returns only two answers unless you specify the players and make them disjoint.
-  * Need to see if there is a way to use applicability in the third part of the siblings act demo. Doesn't seem to work, yet.
-  * Should consider whether blocks that make rules, like overrules, should be outer blocks instead of statements, to avoid their
-    being used in rules and questions.
+* R34 test fails with stack error
+* OASA examples seem to run super slow? Rough estimate, about 2X slower.
+* There is a problem that the categories from other workspaces are not updated when you change categories in
+  the rule editor. Need to refresh after saving a page with new categories, or something.
+* There is a problem where some answers are being displayed multiple times in the scenario editor, see basic new beard act example.
+
 
 ## [v1.4.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.1-alpha) 2023-03-02
 
