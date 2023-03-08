@@ -246,6 +246,9 @@
                             current_doc = current_doc.replace("__span_","");
                         }
                         current_doc = abbreviation + " " + current_doc
+                        // Update the categories available
+                        knownCategories = getKnownCategories();
+                        updateLocalCategories();
                     }   
                 });
             }

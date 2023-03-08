@@ -47,15 +47,12 @@ order to be defeasible. Checking the "subject to exceptions" checkbox has that s
 * Links to legislative material can be obtained without checking for defeating rules
 * Rules can be disabled in addition to contradicted
 * Error in OASA example that made people eligible by default
+* New categories not available in the code editor
 
 ### To Do
 
 * R34 test fails with stack error
 * OASA examples seem to run super slow? Rough estimate, about 2X slower.
-* There is a problem that the categories from other workspaces are not updated when you change categories in
-  the rule editor. Need to refresh after saving a page with new categories, or something.
-* There is a problem where some answers are being displayed multiple times in the scenario editor, see basic new beard act example.
-
 
 ## [v1.4.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.1-alpha) 2023-03-02
 
