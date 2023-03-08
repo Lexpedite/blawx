@@ -11,7 +11,7 @@
 		{{ register_form.as_p }}                    
 		<button class="btn btn-primary" type="submit">Register</button>
 	</form>
-	<p>If you already have an account, <a href="/login">login</a> instead.</p>
+	<p>If you already have an account, <a href="{% url 'login' %}">login</a> instead.</p>
 </div>
 
 {% endblock %}
