@@ -49,11 +49,12 @@ order to be defeasible. Checking the "subject to exceptions" checkbox has that s
 * Rules can be disabled in addition to contradicted
 * Error in OASA example that made people eligible by default
 * New categories not available in the code editor
+* Reasoner endpoints were returning duplicate explanations
 
 ### To Do
 * Update the generated code in all of the examples
-* Figure out why there are still duplicate explanations, and get rid of them.
 * R34 test fails with stack error
+* Double check updates to documentation
 
 ## [v1.4.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.1-alpha) 2023-03-02
 
