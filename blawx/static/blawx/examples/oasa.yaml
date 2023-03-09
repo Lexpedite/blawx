@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 11
+  pk: 1
   fields:
     ruledoc_name: Old Age Security Act
     rule_text: "Old Age Security Act\r\n\r\nPayment of full pension\r\n3.\r\n  (1)
@@ -31,16 +31,16 @@
     owner: 3
     published: true
 - model: blawx.workspace
-  pk: 43
+  pk: 1
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 44
+  pk: 2
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="c5vOdJSO[]Pdd}X[HUj}" x="58" y="52"><statement name="statements"><block
@@ -69,83 +69,37 @@
       attributename="qualifies_s3_1_a" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">qualifies under s3(1)(a)</field><value name="first_element"><block
       type="variable" id="Y.,4$X*[JQJ9wavt$o3P"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(person).
-
-      blawx_category_nlg(person,"","is a person").
-
-      #pred person(X) :: ''@(X) is a person''.
-
-      #pred holds(user,person,X) :: ''it is provided as a fact that @(X) is a person''.
-
-      #pred holds(user,-person,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is a person''.
-
-      #pred holds(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a person holds''.
-
-      #pred holds(Z,-person,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is a person holds''.
-
-      #pred according_to(Z,person,X) :: ''according to @(Z), @(X) is a person''.
-
-      #pred according_to(Z,-person,X) :: ''according to @(Z), it is not the case that
-      @(X) is a person''.
-
-      #pred blawx_defeated(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a
-      person is defeated''.
-
-      #pred blawx_defeated(Z,-person,X) :: ''the conclusion in @(Z) that @(X) is a
-      person is defeated''.
-
-      person(X) :- holds(_,person,X).
-
-      -person(X) :- holds(_,-person,X).
-
-      blawx_attribute(person,pensioner_july,boolean).
-
-      blawx_attribute_nlg(pensioner_july,not_applicable,"",not_applicable,"was a pensioner
-      on July 1 1977").
-
-      #pred pensioner_july(X) :: ''@(X) was a pensioner on July 1 1977''.
-
-      #pred holds(user,pensioner_july,X) :: ''it is provided as a fact that @(X) was
-      a pensioner on July 1 1977''.
-
-      #pred holds(user,-pensioner_july,X) :: ''it is provided as a fact that it is
-      not the case that @(X) was a pensioner on July 1 1977''.
-
-      #pred holds(Z,pensioner_july,X) :: ''the conclusion in @(Z) that @(X) was a
-      pensioner on July 1 1977 holds''.
-
-      #pred holds(Z,-pensioner_july,X) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) was a pensioner on July 1 1977 holds''.
-
-      #pred according_to(Z,pensioner_july,X) :: ''according to @(Z), @(X) was a pensioner
-      on July 1 1977''.
-
-      #pred according_to(Z,-pensioner_july,X) :: ''according to @(Z), it is not the
-      case that @(X) was a pensioner on July 1 1977''.
-
-      #pred blawx_defeated(Z,pensioner_july,X) :: ''the conclusion in @(Z) that @(X)
-      was a pensioner on July 1 1977 is defeated''.
-
-      #pred blawx_defeated(Z,-pensioner_july,X) :: ''the conclusion in @(Z) that @(X)
-      was a pensioner on July 1 1977 is defeated''.
-
-      pensioner_july(X) :- holds(_,pensioner_july,X).
-
-      -pensioner_july(X) :- holds(_,-pensioner_july,X).
-
-
-      according_to(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person) :- person(Person),
-
-      pensioner_july(Person).
-
-
-      holds(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person) :- according_to(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person).'
+    scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
+      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
+      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
+      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
+      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
+      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
+      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
+      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\nblawx_attribute(person,pensioner_july,boolean).\nblawx_attribute_nlg(pensioner_july,not_applicable,\"\",not_applicable,\"was
+      a pensioner on July 1 1977\").\n#pred pensioner_july(X) :: '@(X) was a pensioner
+      on July 1 1977'.\n#pred holds(user,pensioner_july,X) :: 'it is provided as a
+      fact that @(X) was a pensioner on July 1 1977'.\n#pred holds(user,-pensioner_july,X)
+      :: 'it is provided as a fact that it is not the case that @(X) was a pensioner
+      on July 1 1977'.\n#pred holds(Z,pensioner_july,X) :: 'the conclusion in @(Z)
+      that @(X) was a pensioner on July 1 1977 holds'.\n#pred holds(Z,-pensioner_july,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) was a pensioner
+      on July 1 1977 holds'.\n#pred according_to(Z,pensioner_july,X) :: 'according
+      to @(Z), @(X) was a pensioner on July 1 1977'.\n#pred according_to(Z,-pensioner_july,X)
+      :: 'according to @(Z), it is not the case that @(X) was a pensioner on July
+      1 1977'.\n#pred blawx_defeated(Z,pensioner_july,X) :: 'the conclusion in @(Z)
+      that @(X) was a pensioner on July 1 1977 is defeated'.\n#pred blawx_defeated(Z,-pensioner_july,X)
+      :: 'the conclusion in @(Z) that @(X) was a pensioner on July 1 1977 is defeated'.\n\naccording_to(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person)
+      :- person(Person),\npensioner_july(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person)
+      :- according_to(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  qualifies_s3_1_a(Person) :- holds(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person)."
 - model: blawx.workspace
-  pk: 45
+  pk: 3
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_b__subpara_i_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="SVKEzrr:KnIMpu8XNQYa" x="31" y="55"><statement name="statements"><block
@@ -293,211 +247,84 @@
       name="prefix"></field><field name="postfix">meets the residence requirements
       of section 3(1)(b)(i)</field><value name="first_element"><block type="variable"
       id="89{qB3OHP+7XA*`8NRdt"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,birthdate,date).
-
-      blawx_attribute_nlg(birthdate,ov,"","was born on","").
-
-      #pred birthdate(X,Y) :: ''@(X) was born on @(Y)''.
-
-      #pred holds(user,birthdate,X,Y) :: ''it is provided as a fact that @(X) was
-      born on @(Y)''.
-
-      #pred holds(user,-birthdate,X,Y) :: ''it is provided as a fact that it is not
-      the case that @(X) was born on @(Y)''.
-
-      #pred holds(Z,birthdate,X,Y) :: ''the conclusion in @(Z) that @(X) was born
-      on @(Y) holds''.
-
-      #pred holds(Z,-birthdate,X,Y) :: ''the conclusion in @(Z) that it is not the
-      case that @(X) was born on @(Y) holds''.
-
-      #pred according_to(Z,birthdate,X,Y) :: ''according to @(Z), @(X) was born on
-      @(Y)''.
-
-      #pred according_to(Z,-birthdate,X,Y) :: ''according to @(Z), it is not the case
-      that @(X) was born on @(Y)''.
-
-      #pred blawx_defeated(Z,birthdate,X,Y) :: ''the conclusion in @(Z) that @(X)
-      was born on @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-birthdate,X,Y) :: ''the conclusion in @(Z) that @(X)
-      was born on @(Y) is defeated''.
-
-      birthdate(X,Y) :- holds(_,birthdate,X,Y).
-
-      -birthdate(X,Y) :- holds(_,-birthdate,X,Y).
-
-      blawx_attribute(person,resided_in_canada_july,boolean).
-
-      blawx_attribute_nlg(resided_in_canada_july,not_applicable,"as of July 1977",not_applicable,"resided
-      in Canada").
-
-      #pred resided_in_canada_july(X) :: ''as of July 1977 @(X) resided in Canada''.
-
-      #pred holds(user,resided_in_canada_july,X) :: ''it is provided as a fact that
-      as of July 1977 @(X) resided in Canada''.
-
-      #pred holds(user,-resided_in_canada_july,X) :: ''it is provided as a fact that
-      it is not the case that as of July 1977 @(X) resided in Canada''.
-
-      #pred holds(Z,resided_in_canada_july,X) :: ''the conclusion in @(Z) that as
-      of July 1977 @(X) resided in Canada holds''.
-
-      #pred holds(Z,-resided_in_canada_july,X) :: ''the conclusion in @(Z) that it
-      is not the case that as of July 1977 @(X) resided in Canada holds''.
-
-      #pred according_to(Z,resided_in_canada_july,X) :: ''according to @(Z), as of
-      July 1977 @(X) resided in Canada''.
-
-      #pred according_to(Z,-resided_in_canada_july,X) :: ''according to @(Z), it is
-      not the case that as of July 1977 @(X) resided in Canada''.
-
-      #pred blawx_defeated(Z,resided_in_canada_july,X) :: ''the conclusion in @(Z)
-      that as of July 1977 @(X) resided in Canada is defeated''.
-
-      #pred blawx_defeated(Z,-resided_in_canada_july,X) :: ''the conclusion in @(Z)
-      that as of July 1977 @(X) resided in Canada is defeated''.
-
-      resided_in_canada_july(X) :- holds(_,resided_in_canada_july,X).
-
-      -resided_in_canada_july(X) :- holds(_,-resided_in_canada_july,X).
-
-      blawx_attribute(person,possessed_valid_immigration_visa_july,boolean).
-
-      blawx_attribute_nlg(possessed_valid_immigration_visa_july,not_applicable,"as
-      of July 1977",not_applicable,"possessed a valid immigration visa").
-
-      #pred possessed_valid_immigration_visa_july(X) :: ''as of July 1977 @(X) possessed
-      a valid immigration visa''.
-
-      #pred holds(user,possessed_valid_immigration_visa_july,X) :: ''it is provided
-      as a fact that as of July 1977 @(X) possessed a valid immigration visa''.
-
-      #pred holds(user,-possessed_valid_immigration_visa_july,X) :: ''it is provided
-      as a fact that it is not the case that as of July 1977 @(X) possessed a valid
-      immigration visa''.
-
-      #pred holds(Z,possessed_valid_immigration_visa_july,X) :: ''the conclusion in
-      @(Z) that as of July 1977 @(X) possessed a valid immigration visa holds''.
-
-      #pred holds(Z,-possessed_valid_immigration_visa_july,X) :: ''the conclusion
-      in @(Z) that it is not the case that as of July 1977 @(X) possessed a valid
-      immigration visa holds''.
-
-      #pred according_to(Z,possessed_valid_immigration_visa_july,X) :: ''according
-      to @(Z), as of July 1977 @(X) possessed a valid immigration visa''.
-
-      #pred according_to(Z,-possessed_valid_immigration_visa_july,X) :: ''according
-      to @(Z), it is not the case that as of July 1977 @(X) possessed a valid immigration
-      visa''.
-
-      #pred blawx_defeated(Z,possessed_valid_immigration_visa_july,X) :: ''the conclusion
-      in @(Z) that as of July 1977 @(X) possessed a valid immigration visa is defeated''.
-
-      #pred blawx_defeated(Z,-possessed_valid_immigration_visa_july,X) :: ''the conclusion
-      in @(Z) that as of July 1977 @(X) possessed a valid immigration visa is defeated''.
-
-      possessed_valid_immigration_visa_july(X) :- holds(_,possessed_valid_immigration_visa_july,X).
-
-      -possessed_valid_immigration_visa_july(X) :- holds(_,-possessed_valid_immigration_visa_july,X).
-
-      blawx_attribute(person,resided_in_canada_after_18_as_of_july,boolean).
-
-      blawx_attribute_nlg(resided_in_canada_after_18_as_of_july,not_applicable,"as
-      of July 1977",not_applicable,"had resided in Canada after 18 years of age").
-
-      #pred resided_in_canada_after_18_as_of_july(X) :: ''as of July 1977 @(X) had
-      resided in Canada after 18 years of age''.
-
-      #pred holds(user,resided_in_canada_after_18_as_of_july,X) :: ''it is provided
-      as a fact that as of July 1977 @(X) had resided in Canada after 18 years of
-      age''.
-
-      #pred holds(user,-resided_in_canada_after_18_as_of_july,X) :: ''it is provided
-      as a fact that it is not the case that as of July 1977 @(X) had resided in Canada
-      after 18 years of age''.
-
-      #pred holds(Z,resided_in_canada_after_18_as_of_july,X) :: ''the conclusion in
-      @(Z) that as of July 1977 @(X) had resided in Canada after 18 years of age holds''.
-
-      #pred holds(Z,-resided_in_canada_after_18_as_of_july,X) :: ''the conclusion
-      in @(Z) that it is not the case that as of July 1977 @(X) had resided in Canada
-      after 18 years of age holds''.
-
-      #pred according_to(Z,resided_in_canada_after_18_as_of_july,X) :: ''according
-      to @(Z), as of July 1977 @(X) had resided in Canada after 18 years of age''.
-
-      #pred according_to(Z,-resided_in_canada_after_18_as_of_july,X) :: ''according
-      to @(Z), it is not the case that as of July 1977 @(X) had resided in Canada
-      after 18 years of age''.
-
-      #pred blawx_defeated(Z,resided_in_canada_after_18_as_of_july,X) :: ''the conclusion
-      in @(Z) that as of July 1977 @(X) had resided in Canada after 18 years of age
-      is defeated''.
-
-      #pred blawx_defeated(Z,-resided_in_canada_after_18_as_of_july,X) :: ''the conclusion
-      in @(Z) that as of July 1977 @(X) had resided in Canada after 18 years of age
-      is defeated''.
-
-      resided_in_canada_after_18_as_of_july(X) :- holds(_,resided_in_canada_after_18_as_of_july,X).
-
-      -resided_in_canada_after_18_as_of_july(X) :- holds(_,-resided_in_canada_after_18_as_of_july,X).
-
-
-      according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
-      :- not pensioner_july(Person),
-
-      birthdate(Person,Birthdate),
-
-      datetime_add(Birthdate,duration(1,25,0,0,0,0,0),DateAttaining25Years),
-
-      not_after(DateAttaining25Years,date(1977,7,1)),
-
-      resided_in_canada_july(Person).
-
-
-      holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
-      :- according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).
-
-
-      according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
-      :- not pensioner_july(Person),
-
-      not resided_in_canada_july(Person),
-
-      birthdate(Person,Birthdate),
-
-      datetime_add(Birthdate,duration(1,25,0,0,0,0,0),DateAttaining25Years),
-
-      not_after(DateAttaining25Years,date(1977,7,1)),
-
-      possessed_valid_immigration_visa_july(Person).
-
-
-      holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
-      :- according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).
-
-
-      according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
-      :- not pensioner_july(Person),
-
-      not resided_in_canada_july(Person),
-
-      birthdate(Person,Birthdate),
-
-      datetime_add(Birthdate,duration(1,25,0,0,0,0,0),DateAttaining25Years),
-
-      not_after(DateAttaining25Years,date(1977,7,1)),
-
-      resided_in_canada_after_18_as_of_july(Person).
-
-
-      holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
-      :- according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).'
+    scasp_encoding: "blawx_attribute(person,birthdate,date).\nblawx_attribute_nlg(birthdate,ov,\"\",\"was
+      born on\",\"\").\n#pred birthdate(X,Y) :: '@(X) was born on @(Y)'.\n#pred holds(user,birthdate,X,Y)
+      :: 'it is provided as a fact that @(X) was born on @(Y)'.\n#pred holds(user,-birthdate,X,Y)
+      :: 'it is provided as a fact that it is not the case that @(X) was born on @(Y)'.\n#pred
+      holds(Z,birthdate,X,Y) :: 'the conclusion in @(Z) that @(X) was born on @(Y)
+      holds'.\n#pred holds(Z,-birthdate,X,Y) :: 'the conclusion in @(Z) that it is
+      not the case that @(X) was born on @(Y) holds'.\n#pred according_to(Z,birthdate,X,Y)
+      :: 'according to @(Z), @(X) was born on @(Y)'.\n#pred according_to(Z,-birthdate,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) was born on @(Y)'.\n#pred
+      blawx_defeated(Z,birthdate,X,Y) :: 'the conclusion in @(Z) that @(X) was born
+      on @(Y) is defeated'.\n#pred blawx_defeated(Z,-birthdate,X,Y) :: 'the conclusion
+      in @(Z) that @(X) was born on @(Y) is defeated'.\nblawx_attribute(person,resided_in_canada_july,boolean).\nblawx_attribute_nlg(resided_in_canada_july,not_applicable,\"as
+      of July 1977\",not_applicable,\"resided in Canada\").\n#pred resided_in_canada_july(X)
+      :: 'as of July 1977 @(X) resided in Canada'.\n#pred holds(user,resided_in_canada_july,X)
+      :: 'it is provided as a fact that as of July 1977 @(X) resided in Canada'.\n#pred
+      holds(user,-resided_in_canada_july,X) :: 'it is provided as a fact that it is
+      not the case that as of July 1977 @(X) resided in Canada'.\n#pred holds(Z,resided_in_canada_july,X)
+      :: 'the conclusion in @(Z) that as of July 1977 @(X) resided in Canada holds'.\n#pred
+      holds(Z,-resided_in_canada_july,X) :: 'the conclusion in @(Z) that it is not
+      the case that as of July 1977 @(X) resided in Canada holds'.\n#pred according_to(Z,resided_in_canada_july,X)
+      :: 'according to @(Z), as of July 1977 @(X) resided in Canada'.\n#pred according_to(Z,-resided_in_canada_july,X)
+      :: 'according to @(Z), it is not the case that as of July 1977 @(X) resided
+      in Canada'.\n#pred blawx_defeated(Z,resided_in_canada_july,X) :: 'the conclusion
+      in @(Z) that as of July 1977 @(X) resided in Canada is defeated'.\n#pred blawx_defeated(Z,-resided_in_canada_july,X)
+      :: 'the conclusion in @(Z) that as of July 1977 @(X) resided in Canada is defeated'.\nblawx_attribute(person,possessed_valid_immigration_visa_july,boolean).\nblawx_attribute_nlg(possessed_valid_immigration_visa_july,not_applicable,\"as
+      of July 1977\",not_applicable,\"possessed a valid immigration visa\").\n#pred
+      possessed_valid_immigration_visa_july(X) :: 'as of July 1977 @(X) possessed
+      a valid immigration visa'.\n#pred holds(user,possessed_valid_immigration_visa_july,X)
+      :: 'it is provided as a fact that as of July 1977 @(X) possessed a valid immigration
+      visa'.\n#pred holds(user,-possessed_valid_immigration_visa_july,X) :: 'it is
+      provided as a fact that it is not the case that as of July 1977 @(X) possessed
+      a valid immigration visa'.\n#pred holds(Z,possessed_valid_immigration_visa_july,X)
+      :: 'the conclusion in @(Z) that as of July 1977 @(X) possessed a valid immigration
+      visa holds'.\n#pred holds(Z,-possessed_valid_immigration_visa_july,X) :: 'the
+      conclusion in @(Z) that it is not the case that as of July 1977 @(X) possessed
+      a valid immigration visa holds'.\n#pred according_to(Z,possessed_valid_immigration_visa_july,X)
+      :: 'according to @(Z), as of July 1977 @(X) possessed a valid immigration visa'.\n#pred
+      according_to(Z,-possessed_valid_immigration_visa_july,X) :: 'according to @(Z),
+      it is not the case that as of July 1977 @(X) possessed a valid immigration visa'.\n#pred
+      blawx_defeated(Z,possessed_valid_immigration_visa_july,X) :: 'the conclusion
+      in @(Z) that as of July 1977 @(X) possessed a valid immigration visa is defeated'.\n#pred
+      blawx_defeated(Z,-possessed_valid_immigration_visa_july,X) :: 'the conclusion
+      in @(Z) that as of July 1977 @(X) possessed a valid immigration visa is defeated'.\nblawx_attribute(person,resided_in_canada_after_18_as_of_july,boolean).\nblawx_attribute_nlg(resided_in_canada_after_18_as_of_july,not_applicable,\"as
+      of July 1977\",not_applicable,\"had resided in Canada after 18 years of age\").\n#pred
+      resided_in_canada_after_18_as_of_july(X) :: 'as of July 1977 @(X) had resided
+      in Canada after 18 years of age'.\n#pred holds(user,resided_in_canada_after_18_as_of_july,X)
+      :: 'it is provided as a fact that as of July 1977 @(X) had resided in Canada
+      after 18 years of age'.\n#pred holds(user,-resided_in_canada_after_18_as_of_july,X)
+      :: 'it is provided as a fact that it is not the case that as of July 1977 @(X)
+      had resided in Canada after 18 years of age'.\n#pred holds(Z,resided_in_canada_after_18_as_of_july,X)
+      :: 'the conclusion in @(Z) that as of July 1977 @(X) had resided in Canada after
+      18 years of age holds'.\n#pred holds(Z,-resided_in_canada_after_18_as_of_july,X)
+      :: 'the conclusion in @(Z) that it is not the case that as of July 1977 @(X)
+      had resided in Canada after 18 years of age holds'.\n#pred according_to(Z,resided_in_canada_after_18_as_of_july,X)
+      :: 'according to @(Z), as of July 1977 @(X) had resided in Canada after 18 years
+      of age'.\n#pred according_to(Z,-resided_in_canada_after_18_as_of_july,X) ::
+      'according to @(Z), it is not the case that as of July 1977 @(X) had resided
+      in Canada after 18 years of age'.\n#pred blawx_defeated(Z,resided_in_canada_after_18_as_of_july,X)
+      :: 'the conclusion in @(Z) that as of July 1977 @(X) had resided in Canada after
+      18 years of age is defeated'.\n#pred blawx_defeated(Z,-resided_in_canada_after_18_as_of_july,X)
+      :: 'the conclusion in @(Z) that as of July 1977 @(X) had resided in Canada after
+      18 years of age is defeated'.\n\naccording_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- not pensioner_july(Person),\nbirthdate(Person,Birthdate),\ndatetime_add(Birthdate,duration(1,25,0,0,0,0,0),DateAttaining25Years),\nnot_after(DateAttaining25Years,date(1977,7,1)),\nresided_in_canada_july(Person).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  meets_residence_requirement_s3_1_b_i(Person) :- holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).\n\naccording_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- not pensioner_july(Person),\nnot resided_in_canada_july(Person),\nbirthdate(Person,Birthdate),\ndatetime_add(Birthdate,duration(1,25,0,0,0,0,0),DateAttaining25Years),\nnot_after(DateAttaining25Years,date(1977,7,1)),\npossessed_valid_immigration_visa_july(Person).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  meets_residence_requirement_s3_1_b_i(Person) :- holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).\n\naccording_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- not pensioner_july(Person),\nnot resided_in_canada_july(Person),\nbirthdate(Person,Birthdate),\ndatetime_add(Birthdate,duration(1,25,0,0,0,0,0),DateAttaining25Years),\nnot_after(DateAttaining25Years,date(1977,7,1)),\nresided_in_canada_after_18_as_of_july(Person).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  meets_residence_requirement_s3_1_b_i(Person) :- holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)."
 - model: blawx.workspace
-  pk: 46
+  pk: 4
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_b__subpara_ii_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
       id="2v/}04+7rW2-;ucg6fRV" x="319" y="100"><field name="defeasible">FALSE</field><field
@@ -531,32 +358,19 @@
       name="prefix"></field><field name="postfix">meets the age requirement of section
       3(1)(b)(ii)</field><value name="first_element"><block type="variable" id=":J/GUQ?%q;O#zv{-j!Sk"><field
       name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: '% A more typical method of calculating age would be to take
-
-      % the years from the duration obtained by subtracting the
-
-      % birthdate from today, but currently Blawx''s date subtraction
-
-      % returns only days, not years, which raises leap-year risks,
-
-      % so this is more accurate because it accounts for leap-years.
-
-      according_to(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person)
-      :- blawx_today(Today),
-
-      birthdate(Person,Birthdate),
-
-      datetime_add(Birthdate,duration(1,65,0,0,0,0,0),DateAttaining65),
-
-      not_after(DateAttaining65,Today).
-
-
-      holds(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person)
-      :- according_to(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person).'
+    scasp_encoding: "% A more typical method of calculating age would be to take\n%
+      the years from the duration obtained by subtracting the\n% birthdate from today,
+      but currently Blawx's date subtraction\n% returns only days, not years, which
+      raises leap-year risks,\n% so this is more accurate because it accounts for
+      leap-years.\naccording_to(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person)
+      :- blawx_today(Today),\nbirthdate(Person,Birthdate),\ndatetime_add(Birthdate,duration(1,65,0,0,0,0,0),DateAttaining65),\nnot_after(DateAttaining65,Today).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  meets_age_requirement_s3_1_b_ii(Person) :- holds(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person)."
 - model: blawx.workspace
-  pk: 47
+  pk: 5
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="L5r^S.Hc=ufydzQsKujx" x="48" y="16"><statement name="statements"><block
@@ -615,143 +429,69 @@
       attributename="qualifies_s3_1_b" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">qualifies under s3(1)(b)</field><value name="first_element"><block
       type="variable" id="lvVwG#m!z([tgV`by$H|"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,meets_residence_requirement_s3_1_b_i,boolean).
-
-      blawx_attribute_nlg(meets_residence_requirement_s3_1_b_i,not_applicable,"",not_applicable,"meets
-      the residence requirements of section 3(1)(b)(i)").
-
-      #pred meets_residence_requirement_s3_1_b_i(X) :: ''@(X) meets the residence
-      requirements of section 3(1)(b)(i)''.
-
-      #pred holds(user,meets_residence_requirement_s3_1_b_i,X) :: ''it is provided
-      as a fact that @(X) meets the residence requirements of section 3(1)(b)(i)''.
-
-      #pred holds(user,-meets_residence_requirement_s3_1_b_i,X) :: ''it is provided
-      as a fact that it is not the case that @(X) meets the residence requirements
-      of section 3(1)(b)(i)''.
-
-      #pred holds(Z,meets_residence_requirement_s3_1_b_i,X) :: ''the conclusion in
-      @(Z) that @(X) meets the residence requirements of section 3(1)(b)(i) holds''.
-
-      #pred holds(Z,-meets_residence_requirement_s3_1_b_i,X) :: ''the conclusion in
-      @(Z) that it is not the case that @(X) meets the residence requirements of section
-      3(1)(b)(i) holds''.
-
-      #pred according_to(Z,meets_residence_requirement_s3_1_b_i,X) :: ''according
-      to @(Z), @(X) meets the residence requirements of section 3(1)(b)(i)''.
-
-      #pred according_to(Z,-meets_residence_requirement_s3_1_b_i,X) :: ''according
-      to @(Z), it is not the case that @(X) meets the residence requirements of section
-      3(1)(b)(i)''.
-
-      #pred blawx_defeated(Z,meets_residence_requirement_s3_1_b_i,X) :: ''the conclusion
-      in @(Z) that @(X) meets the residence requirements of section 3(1)(b)(i) is
-      defeated''.
-
-      #pred blawx_defeated(Z,-meets_residence_requirement_s3_1_b_i,X) :: ''the conclusion
-      in @(Z) that @(X) meets the residence requirements of section 3(1)(b)(i) is
-      defeated''.
-
-      meets_residence_requirement_s3_1_b_i(X) :- holds(_,meets_residence_requirement_s3_1_b_i,X).
-
-      -meets_residence_requirement_s3_1_b_i(X) :- holds(_,-meets_residence_requirement_s3_1_b_i,X).
-
-      blawx_attribute(person,meets_age_requirement_s3_1_b_ii,boolean).
-
-      blawx_attribute_nlg(meets_age_requirement_s3_1_b_ii,not_applicable,"",not_applicable,"meets
-      the age requirement of section 3(1)(b)(ii)").
-
-      #pred meets_age_requirement_s3_1_b_ii(X) :: ''@(X) meets the age requirement
-      of section 3(1)(b)(ii)''.
-
-      #pred holds(user,meets_age_requirement_s3_1_b_ii,X) :: ''it is provided as a
-      fact that @(X) meets the age requirement of section 3(1)(b)(ii)''.
-
-      #pred holds(user,-meets_age_requirement_s3_1_b_ii,X) :: ''it is provided as
-      a fact that it is not the case that @(X) meets the age requirement of section
-      3(1)(b)(ii)''.
-
-      #pred holds(Z,meets_age_requirement_s3_1_b_ii,X) :: ''the conclusion in @(Z)
-      that @(X) meets the age requirement of section 3(1)(b)(ii) holds''.
-
-      #pred holds(Z,-meets_age_requirement_s3_1_b_ii,X) :: ''the conclusion in @(Z)
-      that it is not the case that @(X) meets the age requirement of section 3(1)(b)(ii)
-      holds''.
-
-      #pred according_to(Z,meets_age_requirement_s3_1_b_ii,X) :: ''according to @(Z),
-      @(X) meets the age requirement of section 3(1)(b)(ii)''.
-
-      #pred according_to(Z,-meets_age_requirement_s3_1_b_ii,X) :: ''according to @(Z),
-      it is not the case that @(X) meets the age requirement of section 3(1)(b)(ii)''.
-
-      #pred blawx_defeated(Z,meets_age_requirement_s3_1_b_ii,X) :: ''the conclusion
-      in @(Z) that @(X) meets the age requirement of section 3(1)(b)(ii) is defeated''.
-
-      #pred blawx_defeated(Z,-meets_age_requirement_s3_1_b_ii,X) :: ''the conclusion
-      in @(Z) that @(X) meets the age requirement of section 3(1)(b)(ii) is defeated''.
-
-      meets_age_requirement_s3_1_b_ii(X) :- holds(_,meets_age_requirement_s3_1_b_ii,X).
-
-      -meets_age_requirement_s3_1_b_ii(X) :- holds(_,-meets_age_requirement_s3_1_b_ii,X).
-
-      blawx_attribute(person,meets_residence_duration_requirement_s3_1_b_iii,boolean).
-
-      blawx_attribute_nlg(meets_residence_duration_requirement_s3_1_b_iii,not_applicable,"",not_applicable,"meets
-      the residence duration requirement of section 3(1)(b)(iii)").
-
-      #pred meets_residence_duration_requirement_s3_1_b_iii(X) :: ''@(X) meets the
-      residence duration requirement of section 3(1)(b)(iii)''.
-
-      #pred holds(user,meets_residence_duration_requirement_s3_1_b_iii,X) :: ''it
-      is provided as a fact that @(X) meets the residence duration requirement of
-      section 3(1)(b)(iii)''.
-
-      #pred holds(user,-meets_residence_duration_requirement_s3_1_b_iii,X) :: ''it
+    scasp_encoding: "blawx_attribute(person,meets_residence_requirement_s3_1_b_i,boolean).\nblawx_attribute_nlg(meets_residence_requirement_s3_1_b_i,not_applicable,\"\",not_applicable,\"meets
+      the residence requirements of section 3(1)(b)(i)\").\n#pred meets_residence_requirement_s3_1_b_i(X)
+      :: '@(X) meets the residence requirements of section 3(1)(b)(i)'.\n#pred holds(user,meets_residence_requirement_s3_1_b_i,X)
+      :: 'it is provided as a fact that @(X) meets the residence requirements of section
+      3(1)(b)(i)'.\n#pred holds(user,-meets_residence_requirement_s3_1_b_i,X) :: 'it
       is provided as a fact that it is not the case that @(X) meets the residence
-      duration requirement of section 3(1)(b)(iii)''.
-
-      #pred holds(Z,meets_residence_duration_requirement_s3_1_b_iii,X) :: ''the conclusion
-      in @(Z) that @(X) meets the residence duration requirement of section 3(1)(b)(iii)
-      holds''.
-
-      #pred holds(Z,-meets_residence_duration_requirement_s3_1_b_iii,X) :: ''the conclusion
-      in @(Z) that it is not the case that @(X) meets the residence duration requirement
-      of section 3(1)(b)(iii) holds''.
-
-      #pred according_to(Z,meets_residence_duration_requirement_s3_1_b_iii,X) :: ''according
-      to @(Z), @(X) meets the residence duration requirement of section 3(1)(b)(iii)''.
-
-      #pred according_to(Z,-meets_residence_duration_requirement_s3_1_b_iii,X) ::
-      ''according to @(Z), it is not the case that @(X) meets the residence duration
-      requirement of section 3(1)(b)(iii)''.
-
-      #pred blawx_defeated(Z,meets_residence_duration_requirement_s3_1_b_iii,X) ::
-      ''the conclusion in @(Z) that @(X) meets the residence duration requirement
-      of section 3(1)(b)(iii) is defeated''.
-
-      #pred blawx_defeated(Z,-meets_residence_duration_requirement_s3_1_b_iii,X) ::
-      ''the conclusion in @(Z) that @(X) meets the residence duration requirement
-      of section 3(1)(b)(iii) is defeated''.
-
-      meets_residence_duration_requirement_s3_1_b_iii(X) :- holds(_,meets_residence_duration_requirement_s3_1_b_iii,X).
-
-      -meets_residence_duration_requirement_s3_1_b_iii(X) :- holds(_,-meets_residence_duration_requirement_s3_1_b_iii,X).
-
-
-      according_to(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person) :- person(Person),
-
-      holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person),
-
-      holds(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person),
-
-      holds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person).
-
-
-      holds(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person) :- according_to(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person).'
+      requirements of section 3(1)(b)(i)'.\n#pred holds(Z,meets_residence_requirement_s3_1_b_i,X)
+      :: 'the conclusion in @(Z) that @(X) meets the residence requirements of section
+      3(1)(b)(i) holds'.\n#pred holds(Z,-meets_residence_requirement_s3_1_b_i,X) ::
+      'the conclusion in @(Z) that it is not the case that @(X) meets the residence
+      requirements of section 3(1)(b)(i) holds'.\n#pred according_to(Z,meets_residence_requirement_s3_1_b_i,X)
+      :: 'according to @(Z), @(X) meets the residence requirements of section 3(1)(b)(i)'.\n#pred
+      according_to(Z,-meets_residence_requirement_s3_1_b_i,X) :: 'according to @(Z),
+      it is not the case that @(X) meets the residence requirements of section 3(1)(b)(i)'.\n#pred
+      blawx_defeated(Z,meets_residence_requirement_s3_1_b_i,X) :: 'the conclusion
+      in @(Z) that @(X) meets the residence requirements of section 3(1)(b)(i) is
+      defeated'.\n#pred blawx_defeated(Z,-meets_residence_requirement_s3_1_b_i,X)
+      :: 'the conclusion in @(Z) that @(X) meets the residence requirements of section
+      3(1)(b)(i) is defeated'.\nblawx_attribute(person,meets_age_requirement_s3_1_b_ii,boolean).\nblawx_attribute_nlg(meets_age_requirement_s3_1_b_ii,not_applicable,\"\",not_applicable,\"meets
+      the age requirement of section 3(1)(b)(ii)\").\n#pred meets_age_requirement_s3_1_b_ii(X)
+      :: '@(X) meets the age requirement of section 3(1)(b)(ii)'.\n#pred holds(user,meets_age_requirement_s3_1_b_ii,X)
+      :: 'it is provided as a fact that @(X) meets the age requirement of section
+      3(1)(b)(ii)'.\n#pred holds(user,-meets_age_requirement_s3_1_b_ii,X) :: 'it is
+      provided as a fact that it is not the case that @(X) meets the age requirement
+      of section 3(1)(b)(ii)'.\n#pred holds(Z,meets_age_requirement_s3_1_b_ii,X) ::
+      'the conclusion in @(Z) that @(X) meets the age requirement of section 3(1)(b)(ii)
+      holds'.\n#pred holds(Z,-meets_age_requirement_s3_1_b_ii,X) :: 'the conclusion
+      in @(Z) that it is not the case that @(X) meets the age requirement of section
+      3(1)(b)(ii) holds'.\n#pred according_to(Z,meets_age_requirement_s3_1_b_ii,X)
+      :: 'according to @(Z), @(X) meets the age requirement of section 3(1)(b)(ii)'.\n#pred
+      according_to(Z,-meets_age_requirement_s3_1_b_ii,X) :: 'according to @(Z), it
+      is not the case that @(X) meets the age requirement of section 3(1)(b)(ii)'.\n#pred
+      blawx_defeated(Z,meets_age_requirement_s3_1_b_ii,X) :: 'the conclusion in @(Z)
+      that @(X) meets the age requirement of section 3(1)(b)(ii) is defeated'.\n#pred
+      blawx_defeated(Z,-meets_age_requirement_s3_1_b_ii,X) :: 'the conclusion in @(Z)
+      that @(X) meets the age requirement of section 3(1)(b)(ii) is defeated'.\nblawx_attribute(person,meets_residence_duration_requirement_s3_1_b_iii,boolean).\nblawx_attribute_nlg(meets_residence_duration_requirement_s3_1_b_iii,not_applicable,\"\",not_applicable,\"meets
+      the residence duration requirement of section 3(1)(b)(iii)\").\n#pred meets_residence_duration_requirement_s3_1_b_iii(X)
+      :: '@(X) meets the residence duration requirement of section 3(1)(b)(iii)'.\n#pred
+      holds(user,meets_residence_duration_requirement_s3_1_b_iii,X) :: 'it is provided
+      as a fact that @(X) meets the residence duration requirement of section 3(1)(b)(iii)'.\n#pred
+      holds(user,-meets_residence_duration_requirement_s3_1_b_iii,X) :: 'it is provided
+      as a fact that it is not the case that @(X) meets the residence duration requirement
+      of section 3(1)(b)(iii)'.\n#pred holds(Z,meets_residence_duration_requirement_s3_1_b_iii,X)
+      :: 'the conclusion in @(Z) that @(X) meets the residence duration requirement
+      of section 3(1)(b)(iii) holds'.\n#pred holds(Z,-meets_residence_duration_requirement_s3_1_b_iii,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) meets the residence
+      duration requirement of section 3(1)(b)(iii) holds'.\n#pred according_to(Z,meets_residence_duration_requirement_s3_1_b_iii,X)
+      :: 'according to @(Z), @(X) meets the residence duration requirement of section
+      3(1)(b)(iii)'.\n#pred according_to(Z,-meets_residence_duration_requirement_s3_1_b_iii,X)
+      :: 'according to @(Z), it is not the case that @(X) meets the residence duration
+      requirement of section 3(1)(b)(iii)'.\n#pred blawx_defeated(Z,meets_residence_duration_requirement_s3_1_b_iii,X)
+      :: 'the conclusion in @(Z) that @(X) meets the residence duration requirement
+      of section 3(1)(b)(iii) is defeated'.\n#pred blawx_defeated(Z,-meets_residence_duration_requirement_s3_1_b_iii,X)
+      :: 'the conclusion in @(Z) that @(X) meets the residence duration requirement
+      of section 3(1)(b)(iii) is defeated'.\n\naccording_to(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person)
+      :- person(Person),\nholds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person),\nholds(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person),\nholds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person)
+      :- according_to(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  qualifies_s3_1_b(Person) :- holds(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person)."
 - model: blawx.workspace
-  pk: 48
+  pk: 6
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_c_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="109#+%mTdaC7F)O;Gf8W" x="80" y="32"><statement name="statements"><block
@@ -809,127 +549,62 @@
       attributename="qualifies_s3_1_c" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">qualifies under s3(1)(c)</field><value name="first_element"><block
       type="variable" id="5[hm/tvQ{w=^bnUU2Pw!"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,meets_s3_1_c_i,boolean).
-
-      blawx_attribute_nlg(meets_s3_1_c_i,not_applicable,"",not_applicable,"satisfies
-      the non-pensioner requirement of s3(1)(c)(i)").
-
-      #pred meets_s3_1_c_i(X) :: ''@(X) satisfies the non-pensioner requirement of
-      s3(1)(c)(i)''.
-
-      #pred holds(user,meets_s3_1_c_i,X) :: ''it is provided as a fact that @(X) satisfies
-      the non-pensioner requirement of s3(1)(c)(i)''.
-
-      #pred holds(user,-meets_s3_1_c_i,X) :: ''it is provided as a fact that it is
-      not the case that @(X) satisfies the non-pensioner requirement of s3(1)(c)(i)''.
-
-      #pred holds(Z,meets_s3_1_c_i,X) :: ''the conclusion in @(Z) that @(X) satisfies
-      the non-pensioner requirement of s3(1)(c)(i) holds''.
-
-      #pred holds(Z,-meets_s3_1_c_i,X) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) satisfies the non-pensioner requirement of s3(1)(c)(i) holds''.
-
-      #pred according_to(Z,meets_s3_1_c_i,X) :: ''according to @(Z), @(X) satisfies
-      the non-pensioner requirement of s3(1)(c)(i)''.
-
-      #pred according_to(Z,-meets_s3_1_c_i,X) :: ''according to @(Z), it is not the
-      case that @(X) satisfies the non-pensioner requirement of s3(1)(c)(i)''.
-
-      #pred blawx_defeated(Z,meets_s3_1_c_i,X) :: ''the conclusion in @(Z) that @(X)
-      satisfies the non-pensioner requirement of s3(1)(c)(i) is defeated''.
-
-      #pred blawx_defeated(Z,-meets_s3_1_c_i,X) :: ''the conclusion in @(Z) that @(X)
-      satisfies the non-pensioner requirement of s3(1)(c)(i) is defeated''.
-
-      meets_s3_1_c_i(X) :- holds(_,meets_s3_1_c_i,X).
-
-      -meets_s3_1_c_i(X) :- holds(_,-meets_s3_1_c_i,X).
-
-      blawx_attribute(person,meets_s3_1_c_ii,boolean).
-
-      blawx_attribute_nlg(meets_s3_1_c_ii,not_applicable,"",not_applicable,"satisfies
-      the age requirement of s3(1)(c)(ii)").
-
-      #pred meets_s3_1_c_ii(X) :: ''@(X) satisfies the age requirement of s3(1)(c)(ii)''.
-
-      #pred holds(user,meets_s3_1_c_ii,X) :: ''it is provided as a fact that @(X)
-      satisfies the age requirement of s3(1)(c)(ii)''.
-
-      #pred holds(user,-meets_s3_1_c_ii,X) :: ''it is provided as a fact that it is
-      not the case that @(X) satisfies the age requirement of s3(1)(c)(ii)''.
-
-      #pred holds(Z,meets_s3_1_c_ii,X) :: ''the conclusion in @(Z) that @(X) satisfies
-      the age requirement of s3(1)(c)(ii) holds''.
-
-      #pred holds(Z,-meets_s3_1_c_ii,X) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) satisfies the age requirement of s3(1)(c)(ii) holds''.
-
-      #pred according_to(Z,meets_s3_1_c_ii,X) :: ''according to @(Z), @(X) satisfies
-      the age requirement of s3(1)(c)(ii)''.
-
-      #pred according_to(Z,-meets_s3_1_c_ii,X) :: ''according to @(Z), it is not the
-      case that @(X) satisfies the age requirement of s3(1)(c)(ii)''.
-
-      #pred blawx_defeated(Z,meets_s3_1_c_ii,X) :: ''the conclusion in @(Z) that @(X)
-      satisfies the age requirement of s3(1)(c)(ii) is defeated''.
-
-      #pred blawx_defeated(Z,-meets_s3_1_c_ii,X) :: ''the conclusion in @(Z) that
-      @(X) satisfies the age requirement of s3(1)(c)(ii) is defeated''.
-
-      meets_s3_1_c_ii(X) :- holds(_,meets_s3_1_c_ii,X).
-
-      -meets_s3_1_c_ii(X) :- holds(_,-meets_s3_1_c_ii,X).
-
-      blawx_attribute(person,meets_s3_1_c_iii,boolean).
-
-      blawx_attribute_nlg(meets_s3_1_c_iii,not_applicable,"",not_applicable,"satisfies
-      the residency requirement of s3(1)(c)(iii)").
-
-      #pred meets_s3_1_c_iii(X) :: ''@(X) satisfies the residency requirement of s3(1)(c)(iii)''.
-
-      #pred holds(user,meets_s3_1_c_iii,X) :: ''it is provided as a fact that @(X)
-      satisfies the residency requirement of s3(1)(c)(iii)''.
-
-      #pred holds(user,-meets_s3_1_c_iii,X) :: ''it is provided as a fact that it
-      is not the case that @(X) satisfies the residency requirement of s3(1)(c)(iii)''.
-
-      #pred holds(Z,meets_s3_1_c_iii,X) :: ''the conclusion in @(Z) that @(X) satisfies
-      the residency requirement of s3(1)(c)(iii) holds''.
-
-      #pred holds(Z,-meets_s3_1_c_iii,X) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) satisfies the residency requirement of s3(1)(c)(iii) holds''.
-
-      #pred according_to(Z,meets_s3_1_c_iii,X) :: ''according to @(Z), @(X) satisfies
-      the residency requirement of s3(1)(c)(iii)''.
-
-      #pred according_to(Z,-meets_s3_1_c_iii,X) :: ''according to @(Z), it is not
-      the case that @(X) satisfies the residency requirement of s3(1)(c)(iii)''.
-
-      #pred blawx_defeated(Z,meets_s3_1_c_iii,X) :: ''the conclusion in @(Z) that
-      @(X) satisfies the residency requirement of s3(1)(c)(iii) is defeated''.
-
-      #pred blawx_defeated(Z,-meets_s3_1_c_iii,X) :: ''the conclusion in @(Z) that
-      @(X) satisfies the residency requirement of s3(1)(c)(iii) is defeated''.
-
-      meets_s3_1_c_iii(X) :- holds(_,meets_s3_1_c_iii,X).
-
-      -meets_s3_1_c_iii(X) :- holds(_,-meets_s3_1_c_iii,X).
-
-
-      according_to(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person) :- person(Person),
-
-      holds(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person),
-
-      holds(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person),
-
-      holds(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person).
-
-
-      holds(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person) :- according_to(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person).'
+    scasp_encoding: "blawx_attribute(person,meets_s3_1_c_i,boolean).\nblawx_attribute_nlg(meets_s3_1_c_i,not_applicable,\"\",not_applicable,\"satisfies
+      the non-pensioner requirement of s3(1)(c)(i)\").\n#pred meets_s3_1_c_i(X) ::
+      '@(X) satisfies the non-pensioner requirement of s3(1)(c)(i)'.\n#pred holds(user,meets_s3_1_c_i,X)
+      :: 'it is provided as a fact that @(X) satisfies the non-pensioner requirement
+      of s3(1)(c)(i)'.\n#pred holds(user,-meets_s3_1_c_i,X) :: 'it is provided as
+      a fact that it is not the case that @(X) satisfies the non-pensioner requirement
+      of s3(1)(c)(i)'.\n#pred holds(Z,meets_s3_1_c_i,X) :: 'the conclusion in @(Z)
+      that @(X) satisfies the non-pensioner requirement of s3(1)(c)(i) holds'.\n#pred
+      holds(Z,-meets_s3_1_c_i,X) :: 'the conclusion in @(Z) that it is not the case
+      that @(X) satisfies the non-pensioner requirement of s3(1)(c)(i) holds'.\n#pred
+      according_to(Z,meets_s3_1_c_i,X) :: 'according to @(Z), @(X) satisfies the non-pensioner
+      requirement of s3(1)(c)(i)'.\n#pred according_to(Z,-meets_s3_1_c_i,X) :: 'according
+      to @(Z), it is not the case that @(X) satisfies the non-pensioner requirement
+      of s3(1)(c)(i)'.\n#pred blawx_defeated(Z,meets_s3_1_c_i,X) :: 'the conclusion
+      in @(Z) that @(X) satisfies the non-pensioner requirement of s3(1)(c)(i) is
+      defeated'.\n#pred blawx_defeated(Z,-meets_s3_1_c_i,X) :: 'the conclusion in
+      @(Z) that @(X) satisfies the non-pensioner requirement of s3(1)(c)(i) is defeated'.\nblawx_attribute(person,meets_s3_1_c_ii,boolean).\nblawx_attribute_nlg(meets_s3_1_c_ii,not_applicable,\"\",not_applicable,\"satisfies
+      the age requirement of s3(1)(c)(ii)\").\n#pred meets_s3_1_c_ii(X) :: '@(X) satisfies
+      the age requirement of s3(1)(c)(ii)'.\n#pred holds(user,meets_s3_1_c_ii,X) ::
+      'it is provided as a fact that @(X) satisfies the age requirement of s3(1)(c)(ii)'.\n#pred
+      holds(user,-meets_s3_1_c_ii,X) :: 'it is provided as a fact that it is not the
+      case that @(X) satisfies the age requirement of s3(1)(c)(ii)'.\n#pred holds(Z,meets_s3_1_c_ii,X)
+      :: 'the conclusion in @(Z) that @(X) satisfies the age requirement of s3(1)(c)(ii)
+      holds'.\n#pred holds(Z,-meets_s3_1_c_ii,X) :: 'the conclusion in @(Z) that it
+      is not the case that @(X) satisfies the age requirement of s3(1)(c)(ii) holds'.\n#pred
+      according_to(Z,meets_s3_1_c_ii,X) :: 'according to @(Z), @(X) satisfies the
+      age requirement of s3(1)(c)(ii)'.\n#pred according_to(Z,-meets_s3_1_c_ii,X)
+      :: 'according to @(Z), it is not the case that @(X) satisfies the age requirement
+      of s3(1)(c)(ii)'.\n#pred blawx_defeated(Z,meets_s3_1_c_ii,X) :: 'the conclusion
+      in @(Z) that @(X) satisfies the age requirement of s3(1)(c)(ii) is defeated'.\n#pred
+      blawx_defeated(Z,-meets_s3_1_c_ii,X) :: 'the conclusion in @(Z) that @(X) satisfies
+      the age requirement of s3(1)(c)(ii) is defeated'.\nblawx_attribute(person,meets_s3_1_c_iii,boolean).\nblawx_attribute_nlg(meets_s3_1_c_iii,not_applicable,\"\",not_applicable,\"satisfies
+      the residency requirement of s3(1)(c)(iii)\").\n#pred meets_s3_1_c_iii(X) ::
+      '@(X) satisfies the residency requirement of s3(1)(c)(iii)'.\n#pred holds(user,meets_s3_1_c_iii,X)
+      :: 'it is provided as a fact that @(X) satisfies the residency requirement of
+      s3(1)(c)(iii)'.\n#pred holds(user,-meets_s3_1_c_iii,X) :: 'it is provided as
+      a fact that it is not the case that @(X) satisfies the residency requirement
+      of s3(1)(c)(iii)'.\n#pred holds(Z,meets_s3_1_c_iii,X) :: 'the conclusion in
+      @(Z) that @(X) satisfies the residency requirement of s3(1)(c)(iii) holds'.\n#pred
+      holds(Z,-meets_s3_1_c_iii,X) :: 'the conclusion in @(Z) that it is not the case
+      that @(X) satisfies the residency requirement of s3(1)(c)(iii) holds'.\n#pred
+      according_to(Z,meets_s3_1_c_iii,X) :: 'according to @(Z), @(X) satisfies the
+      residency requirement of s3(1)(c)(iii)'.\n#pred according_to(Z,-meets_s3_1_c_iii,X)
+      :: 'according to @(Z), it is not the case that @(X) satisfies the residency
+      requirement of s3(1)(c)(iii)'.\n#pred blawx_defeated(Z,meets_s3_1_c_iii,X) ::
+      'the conclusion in @(Z) that @(X) satisfies the residency requirement of s3(1)(c)(iii)
+      is defeated'.\n#pred blawx_defeated(Z,-meets_s3_1_c_iii,X) :: 'the conclusion
+      in @(Z) that @(X) satisfies the residency requirement of s3(1)(c)(iii) is defeated'.\n\naccording_to(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person)
+      :- person(Person),\nholds(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person),\nholds(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person),\nholds(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person)
+      :- according_to(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  qualifies_s3_1_c(Person) :- holds(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person)."
 - model: blawx.workspace
-  pk: 49
+  pk: 7
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="+wiRc,{vWYCb,a0_j9)u" x="0" y="0"><statement name="statements"><block type="new_attribute_declaration"
@@ -974,15 +649,16 @@
       name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="/De*i]*Myd%y*,xo4:8`"><field
       name="variable_name">Person</field></block></value></block></statement></block><block
-      type="attributed_rule" id="rr`H5k$=npST1CYMKp$8" x="0" y="631"><field name="defeasible">TRUE</field><field
-      name="inapplicable">TRUE</field><statement name="conditions"><block type="holds"
-      id="SK;K]cPJ||ibjkA?x_@!"><value name="section"><block type="doc_selector" id="YuR))r8u?):2ZLm{Uqi{"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_b_section"></mutation><field
-      name="doc_part_name">OASA 3.1.b</field></block></value><statement name="statement"><block
-      type="unary_attribute_selector" id="VL;@/nzvMDk+0;x7Zw*X"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="qualifies_s3_1_b" attributetype="boolean"></mutation><field name="prefix"></field><field
-      name="postfix">qualifies under s3(1)(b)</field><value name="first_element"><block
-      type="variable" id="%hrQ)(^h2h%R2x_8#^GT"><field name="variable_name">Person</field></block></value></block></statement></block></statement><value
+      type="attributed_rule" id="rr`H5k$=npST1CYMKp$8" disabled="true" x="0" y="631"><field
+      name="defeasible">TRUE</field><field name="inapplicable">TRUE</field><statement
+      name="conditions"><block type="holds" id="SK;K]cPJ||ibjkA?x_@!"><value name="section"><block
+      type="doc_selector" id="YuR))r8u?):2ZLm{Uqi{"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_3__subsec_1__para_b_section"></mutation><field name="doc_part_name">OASA
+      3.1.b</field></block></value><statement name="statement"><block type="unary_attribute_selector"
+      id="VL;@/nzvMDk+0;x7Zw*X"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s3_1_b"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
+      under s3(1)(b)</field><value name="first_element"><block type="variable" id="%hrQ)(^h2h%R2x_8#^GT"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement><value
       name="source"><block type="doc_selector" id="l73#EUtU,2Pv$5:)c4}E"><mutation
       xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1_section"></mutation><field
       name="doc_part_name">OASA 3.1</field></block></value><statement name="conclusion"><block
@@ -991,15 +667,16 @@
       name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="l]SsKD+Lkz8Eq1Dy_Uai"><field
       name="variable_name">Person</field></block></value></block></statement></block><block
-      type="attributed_rule" id="=CS+F@h$G~qNu!?l}VOk" x="0" y="887"><field name="defeasible">TRUE</field><field
-      name="inapplicable">TRUE</field><statement name="conditions"><block type="holds"
-      id="P=sm]J0PNlP@~]5ZM8n)"><value name="section"><block type="doc_selector" id="68j,s]d0myEOw{@4C;Q,"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1__para_c_section"></mutation><field
-      name="doc_part_name">OASA 3.1.c</field></block></value><statement name="statement"><block
-      type="unary_attribute_selector" id="HaN6W)g2FEKR=vl(,rv+"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="qualifies_s3_1_c" attributetype="boolean"></mutation><field name="prefix"></field><field
-      name="postfix">qualifies under s3(1)(c)</field><value name="first_element"><block
-      type="variable" id="P72lzrOai8fg7Oml?[[y"><field name="variable_name">Person</field></block></value></block></statement></block></statement><value
+      type="attributed_rule" id="=CS+F@h$G~qNu!?l}VOk" disabled="true" x="0" y="887"><field
+      name="defeasible">TRUE</field><field name="inapplicable">TRUE</field><statement
+      name="conditions"><block type="holds" id="P=sm]J0PNlP@~]5ZM8n)"><value name="section"><block
+      type="doc_selector" id="68j,s]d0myEOw{@4C;Q,"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_3__subsec_1__para_c_section"></mutation><field name="doc_part_name">OASA
+      3.1.c</field></block></value><statement name="statement"><block type="unary_attribute_selector"
+      id="HaN6W)g2FEKR=vl(,rv+"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="qualifies_s3_1_c"
+      attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">qualifies
+      under s3(1)(c)</field><value name="first_element"><block type="variable" id="P72lzrOai8fg7Oml?[[y"><field
+      name="variable_name">Person</field></block></value></block></statement></block></statement><value
       name="source"><block type="doc_selector" id="$L#rX#`b0QKSs4tLKkb{"><mutation
       xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3__subsec_1_section"></mutation><field
       name="doc_part_name">OASA 3.1</field></block></value><statement name="conclusion"><block
@@ -1031,190 +708,73 @@
       name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="DTtwa%Hb)uVyr#O93AlZ"><field
       name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,may_be_paid_full_monthly_pension,boolean).
-
-      blawx_attribute_nlg(may_be_paid_full_monthly_pension,not_applicable,"a full
-      monthly pension may be paid to",not_applicable,"").
-
-      #pred may_be_paid_full_monthly_pension(X) :: ''a full monthly pension may be
-      paid to @(X)''.
-
-      #pred holds(user,may_be_paid_full_monthly_pension,X) :: ''it is provided as
-      a fact that a full monthly pension may be paid to @(X)''.
-
-      #pred holds(user,-may_be_paid_full_monthly_pension,X) :: ''it is provided as
-      a fact that it is not the case that a full monthly pension may be paid to @(X)''.
-
-      #pred holds(Z,may_be_paid_full_monthly_pension,X) :: ''the conclusion in @(Z)
-      that a full monthly pension may be paid to @(X) holds''.
-
-      #pred holds(Z,-may_be_paid_full_monthly_pension,X) :: ''the conclusion in @(Z)
-      that it is not the case that a full monthly pension may be paid to @(X) holds''.
-
-      #pred according_to(Z,may_be_paid_full_monthly_pension,X) :: ''according to @(Z),
-      a full monthly pension may be paid to @(X)''.
-
-      #pred according_to(Z,-may_be_paid_full_monthly_pension,X) :: ''according to
-      @(Z), it is not the case that a full monthly pension may be paid to @(X)''.
-
-      #pred blawx_defeated(Z,may_be_paid_full_monthly_pension,X) :: ''the conclusion
-      in @(Z) that a full monthly pension may be paid to @(X) is defeated''.
-
-      #pred blawx_defeated(Z,-may_be_paid_full_monthly_pension,X) :: ''the conclusion
-      in @(Z) that a full monthly pension may be paid to @(X) is defeated''.
-
-      may_be_paid_full_monthly_pension(X) :- holds(_,may_be_paid_full_monthly_pension,X).
-
-      -may_be_paid_full_monthly_pension(X) :- holds(_,-may_be_paid_full_monthly_pension,X).
-
-      blawx_attribute(person,qualifies_s3_1_a,boolean).
-
-      blawx_attribute_nlg(qualifies_s3_1_a,not_applicable,"",not_applicable,"qualifies
-      under s3(1)(a)").
-
-      #pred qualifies_s3_1_a(X) :: ''@(X) qualifies under s3(1)(a)''.
-
-      #pred holds(user,qualifies_s3_1_a,X) :: ''it is provided as a fact that @(X)
-      qualifies under s3(1)(a)''.
-
-      #pred holds(user,-qualifies_s3_1_a,X) :: ''it is provided as a fact that it
-      is not the case that @(X) qualifies under s3(1)(a)''.
-
-      #pred holds(Z,qualifies_s3_1_a,X) :: ''the conclusion in @(Z) that @(X) qualifies
-      under s3(1)(a) holds''.
-
-      #pred holds(Z,-qualifies_s3_1_a,X) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) qualifies under s3(1)(a) holds''.
-
-      #pred according_to(Z,qualifies_s3_1_a,X) :: ''according to @(Z), @(X) qualifies
-      under s3(1)(a)''.
-
-      #pred according_to(Z,-qualifies_s3_1_a,X) :: ''according to @(Z), it is not
-      the case that @(X) qualifies under s3(1)(a)''.
-
-      #pred blawx_defeated(Z,qualifies_s3_1_a,X) :: ''the conclusion in @(Z) that
-      @(X) qualifies under s3(1)(a) is defeated''.
-
-      #pred blawx_defeated(Z,-qualifies_s3_1_a,X) :: ''the conclusion in @(Z) that
-      @(X) qualifies under s3(1)(a) is defeated''.
-
-      qualifies_s3_1_a(X) :- holds(_,qualifies_s3_1_a,X).
-
-      -qualifies_s3_1_a(X) :- holds(_,-qualifies_s3_1_a,X).
-
-      blawx_attribute(person,qualifies_s3_1_b,boolean).
-
-      blawx_attribute_nlg(qualifies_s3_1_b,not_applicable,"",not_applicable,"qualifies
-      under s3(1)(b)").
-
-      #pred qualifies_s3_1_b(X) :: ''@(X) qualifies under s3(1)(b)''.
-
-      #pred holds(user,qualifies_s3_1_b,X) :: ''it is provided as a fact that @(X)
-      qualifies under s3(1)(b)''.
-
-      #pred holds(user,-qualifies_s3_1_b,X) :: ''it is provided as a fact that it
-      is not the case that @(X) qualifies under s3(1)(b)''.
-
-      #pred holds(Z,qualifies_s3_1_b,X) :: ''the conclusion in @(Z) that @(X) qualifies
-      under s3(1)(b) holds''.
-
-      #pred holds(Z,-qualifies_s3_1_b,X) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) qualifies under s3(1)(b) holds''.
-
-      #pred according_to(Z,qualifies_s3_1_b,X) :: ''according to @(Z), @(X) qualifies
-      under s3(1)(b)''.
-
-      #pred according_to(Z,-qualifies_s3_1_b,X) :: ''according to @(Z), it is not
-      the case that @(X) qualifies under s3(1)(b)''.
-
-      #pred blawx_defeated(Z,qualifies_s3_1_b,X) :: ''the conclusion in @(Z) that
-      @(X) qualifies under s3(1)(b) is defeated''.
-
-      #pred blawx_defeated(Z,-qualifies_s3_1_b,X) :: ''the conclusion in @(Z) that
-      @(X) qualifies under s3(1)(b) is defeated''.
-
-      qualifies_s3_1_b(X) :- holds(_,qualifies_s3_1_b,X).
-
-      -qualifies_s3_1_b(X) :- holds(_,-qualifies_s3_1_b,X).
-
-      blawx_attribute(person,qualifies_s3_1_c,boolean).
-
-      blawx_attribute_nlg(qualifies_s3_1_c,not_applicable,"",not_applicable,"qualifies
-      under s3(1)(c)").
-
-      #pred qualifies_s3_1_c(X) :: ''@(X) qualifies under s3(1)(c)''.
-
-      #pred holds(user,qualifies_s3_1_c,X) :: ''it is provided as a fact that @(X)
-      qualifies under s3(1)(c)''.
-
-      #pred holds(user,-qualifies_s3_1_c,X) :: ''it is provided as a fact that it
-      is not the case that @(X) qualifies under s3(1)(c)''.
-
-      #pred holds(Z,qualifies_s3_1_c,X) :: ''the conclusion in @(Z) that @(X) qualifies
-      under s3(1)(c) holds''.
-
-      #pred holds(Z,-qualifies_s3_1_c,X) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) qualifies under s3(1)(c) holds''.
-
-      #pred according_to(Z,qualifies_s3_1_c,X) :: ''according to @(Z), @(X) qualifies
-      under s3(1)(c)''.
-
-      #pred according_to(Z,-qualifies_s3_1_c,X) :: ''according to @(Z), it is not
-      the case that @(X) qualifies under s3(1)(c)''.
-
-      #pred blawx_defeated(Z,qualifies_s3_1_c,X) :: ''the conclusion in @(Z) that
-      @(X) qualifies under s3(1)(c) is defeated''.
-
-      #pred blawx_defeated(Z,-qualifies_s3_1_c,X) :: ''the conclusion in @(Z) that
-      @(X) qualifies under s3(1)(c) is defeated''.
-
-      qualifies_s3_1_c(X) :- holds(_,qualifies_s3_1_c,X).
-
-      -qualifies_s3_1_c(X) :- holds(_,-qualifies_s3_1_c,X).
-
-
-      according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
-      :- holds(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person).
-
-
-      holds(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person) :- according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person),
-      not blawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person).
-
-
-      according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
-      :- holds(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person).
-
-
-      holds(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person) :- according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person),
-      not blawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person).
-
-
-      according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
-      :- holds(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person).
-
-
-      holds(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person) :- according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person),
-      not blawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person).
-
-
-      % Ideally, we would be able to more accurately represent
-
-      % "this Act and the regulations" in the "Subject to" clause,
-
-      % but scope references for legislation and related legislation
-
-      % are not yet implemented in Blawx. That being the case,
-
-      % we will mention specific sections in conflict, here, to
-
-      % give effect to the defeasibility declaration in the law.
-
-      blawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
-      :- holds(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person).'
+    scasp_encoding: "blawx_attribute(person,may_be_paid_full_monthly_pension,boolean).\nblawx_attribute_nlg(may_be_paid_full_monthly_pension,not_applicable,\"a
+      full monthly pension may be paid to\",not_applicable,\"\").\n#pred may_be_paid_full_monthly_pension(X)
+      :: 'a full monthly pension may be paid to @(X)'.\n#pred holds(user,may_be_paid_full_monthly_pension,X)
+      :: 'it is provided as a fact that a full monthly pension may be paid to @(X)'.\n#pred
+      holds(user,-may_be_paid_full_monthly_pension,X) :: 'it is provided as a fact
+      that it is not the case that a full monthly pension may be paid to @(X)'.\n#pred
+      holds(Z,may_be_paid_full_monthly_pension,X) :: 'the conclusion in @(Z) that
+      a full monthly pension may be paid to @(X) holds'.\n#pred holds(Z,-may_be_paid_full_monthly_pension,X)
+      :: 'the conclusion in @(Z) that it is not the case that a full monthly pension
+      may be paid to @(X) holds'.\n#pred according_to(Z,may_be_paid_full_monthly_pension,X)
+      :: 'according to @(Z), a full monthly pension may be paid to @(X)'.\n#pred according_to(Z,-may_be_paid_full_monthly_pension,X)
+      :: 'according to @(Z), it is not the case that a full monthly pension may be
+      paid to @(X)'.\n#pred blawx_defeated(Z,may_be_paid_full_monthly_pension,X) ::
+      'the conclusion in @(Z) that a full monthly pension may be paid to @(X) is defeated'.\n#pred
+      blawx_defeated(Z,-may_be_paid_full_monthly_pension,X) :: 'the conclusion in
+      @(Z) that a full monthly pension may be paid to @(X) is defeated'.\nblawx_attribute(person,qualifies_s3_1_a,boolean).\nblawx_attribute_nlg(qualifies_s3_1_a,not_applicable,\"\",not_applicable,\"qualifies
+      under s3(1)(a)\").\n#pred qualifies_s3_1_a(X) :: '@(X) qualifies under s3(1)(a)'.\n#pred
+      holds(user,qualifies_s3_1_a,X) :: 'it is provided as a fact that @(X) qualifies
+      under s3(1)(a)'.\n#pred holds(user,-qualifies_s3_1_a,X) :: 'it is provided as
+      a fact that it is not the case that @(X) qualifies under s3(1)(a)'.\n#pred holds(Z,qualifies_s3_1_a,X)
+      :: 'the conclusion in @(Z) that @(X) qualifies under s3(1)(a) holds'.\n#pred
+      holds(Z,-qualifies_s3_1_a,X) :: 'the conclusion in @(Z) that it is not the case
+      that @(X) qualifies under s3(1)(a) holds'.\n#pred according_to(Z,qualifies_s3_1_a,X)
+      :: 'according to @(Z), @(X) qualifies under s3(1)(a)'.\n#pred according_to(Z,-qualifies_s3_1_a,X)
+      :: 'according to @(Z), it is not the case that @(X) qualifies under s3(1)(a)'.\n#pred
+      blawx_defeated(Z,qualifies_s3_1_a,X) :: 'the conclusion in @(Z) that @(X) qualifies
+      under s3(1)(a) is defeated'.\n#pred blawx_defeated(Z,-qualifies_s3_1_a,X) ::
+      'the conclusion in @(Z) that @(X) qualifies under s3(1)(a) is defeated'.\nblawx_attribute(person,qualifies_s3_1_b,boolean).\nblawx_attribute_nlg(qualifies_s3_1_b,not_applicable,\"\",not_applicable,\"qualifies
+      under s3(1)(b)\").\n#pred qualifies_s3_1_b(X) :: '@(X) qualifies under s3(1)(b)'.\n#pred
+      holds(user,qualifies_s3_1_b,X) :: 'it is provided as a fact that @(X) qualifies
+      under s3(1)(b)'.\n#pred holds(user,-qualifies_s3_1_b,X) :: 'it is provided as
+      a fact that it is not the case that @(X) qualifies under s3(1)(b)'.\n#pred holds(Z,qualifies_s3_1_b,X)
+      :: 'the conclusion in @(Z) that @(X) qualifies under s3(1)(b) holds'.\n#pred
+      holds(Z,-qualifies_s3_1_b,X) :: 'the conclusion in @(Z) that it is not the case
+      that @(X) qualifies under s3(1)(b) holds'.\n#pred according_to(Z,qualifies_s3_1_b,X)
+      :: 'according to @(Z), @(X) qualifies under s3(1)(b)'.\n#pred according_to(Z,-qualifies_s3_1_b,X)
+      :: 'according to @(Z), it is not the case that @(X) qualifies under s3(1)(b)'.\n#pred
+      blawx_defeated(Z,qualifies_s3_1_b,X) :: 'the conclusion in @(Z) that @(X) qualifies
+      under s3(1)(b) is defeated'.\n#pred blawx_defeated(Z,-qualifies_s3_1_b,X) ::
+      'the conclusion in @(Z) that @(X) qualifies under s3(1)(b) is defeated'.\nblawx_attribute(person,qualifies_s3_1_c,boolean).\nblawx_attribute_nlg(qualifies_s3_1_c,not_applicable,\"\",not_applicable,\"qualifies
+      under s3(1)(c)\").\n#pred qualifies_s3_1_c(X) :: '@(X) qualifies under s3(1)(c)'.\n#pred
+      holds(user,qualifies_s3_1_c,X) :: 'it is provided as a fact that @(X) qualifies
+      under s3(1)(c)'.\n#pred holds(user,-qualifies_s3_1_c,X) :: 'it is provided as
+      a fact that it is not the case that @(X) qualifies under s3(1)(c)'.\n#pred holds(Z,qualifies_s3_1_c,X)
+      :: 'the conclusion in @(Z) that @(X) qualifies under s3(1)(c) holds'.\n#pred
+      holds(Z,-qualifies_s3_1_c,X) :: 'the conclusion in @(Z) that it is not the case
+      that @(X) qualifies under s3(1)(c) holds'.\n#pred according_to(Z,qualifies_s3_1_c,X)
+      :: 'according to @(Z), @(X) qualifies under s3(1)(c)'.\n#pred according_to(Z,-qualifies_s3_1_c,X)
+      :: 'according to @(Z), it is not the case that @(X) qualifies under s3(1)(c)'.\n#pred
+      blawx_defeated(Z,qualifies_s3_1_c,X) :: 'the conclusion in @(Z) that @(X) qualifies
+      under s3(1)(c) is defeated'.\n#pred blawx_defeated(Z,-qualifies_s3_1_c,X) ::
+      'the conclusion in @(Z) that @(X) qualifies under s3(1)(c) is defeated'.\n\naccording_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
+      :- holds(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person).\n\n% BLAWX
+      CHECK DUPLICATES\nholds(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
+      :- according_to(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person),
+      not blawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  may_be_paid_full_monthly_pension(Person) :- holds(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person).\n\n%
+      Ideally, we would be able to more accurately represent\n% \"this Act and the
+      regulations\" in the \"Subject to\" clause,\n% but scope references for legislation
+      and related legislation\n% are not yet implemented in Blawx. That being the
+      case,\n% we will mention specific sections in conflict, here, to\n% give effect
+      to the defeasibility declaration in the law.\nblawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
+      :- holds(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person)."
 - model: blawx.workspace
-  pk: 50
+  pk: 8
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_b__subpara_iii_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="Sp@/sc_CHiBc[}/t!syw" x="54" y="39"><statement name="statements"><block
@@ -1278,153 +838,74 @@
       name="prefix"></field><field name="postfix">meets the residence duration requirement
       of section 3(1)(b)(iii)</field><value name="first_element"><block type="variable"
       id="}:,Mw3(AX|fY@1{1vKB7"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,resided_in_canada_10_years_prior_to_approval,boolean).
-
-      blawx_attribute_nlg(resided_in_canada_10_years_prior_to_approval,not_applicable,"",not_applicable,"resided
-      in canada for 10 years prior to approval").
-
-      #pred resided_in_canada_10_years_prior_to_approval(X) :: ''@(X) resided in canada
-      for 10 years prior to approval''.
-
-      #pred holds(user,resided_in_canada_10_years_prior_to_approval,X) :: ''it is
-      provided as a fact that @(X) resided in canada for 10 years prior to approval''.
-
-      #pred holds(user,-resided_in_canada_10_years_prior_to_approval,X) :: ''it is
-      provided as a fact that it is not the case that @(X) resided in canada for 10
-      years prior to approval''.
-
-      #pred holds(Z,resided_in_canada_10_years_prior_to_approval,X) :: ''the conclusion
-      in @(Z) that @(X) resided in canada for 10 years prior to approval holds''.
-
-      #pred holds(Z,-resided_in_canada_10_years_prior_to_approval,X) :: ''the conclusion
-      in @(Z) that it is not the case that @(X) resided in canada for 10 years prior
-      to approval holds''.
-
-      #pred according_to(Z,resided_in_canada_10_years_prior_to_approval,X) :: ''according
-      to @(Z), @(X) resided in canada for 10 years prior to approval''.
-
-      #pred according_to(Z,-resided_in_canada_10_years_prior_to_approval,X) :: ''according
+    scasp_encoding: "blawx_attribute(person,resided_in_canada_10_years_prior_to_approval,boolean).\nblawx_attribute_nlg(resided_in_canada_10_years_prior_to_approval,not_applicable,\"\",not_applicable,\"resided
+      in canada for 10 years prior to approval\").\n#pred resided_in_canada_10_years_prior_to_approval(X)
+      :: '@(X) resided in canada for 10 years prior to approval'.\n#pred holds(user,resided_in_canada_10_years_prior_to_approval,X)
+      :: 'it is provided as a fact that @(X) resided in canada for 10 years prior
+      to approval'.\n#pred holds(user,-resided_in_canada_10_years_prior_to_approval,X)
+      :: 'it is provided as a fact that it is not the case that @(X) resided in canada
+      for 10 years prior to approval'.\n#pred holds(Z,resided_in_canada_10_years_prior_to_approval,X)
+      :: 'the conclusion in @(Z) that @(X) resided in canada for 10 years prior to
+      approval holds'.\n#pred holds(Z,-resided_in_canada_10_years_prior_to_approval,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) resided in canada
+      for 10 years prior to approval holds'.\n#pred according_to(Z,resided_in_canada_10_years_prior_to_approval,X)
+      :: 'according to @(Z), @(X) resided in canada for 10 years prior to approval'.\n#pred
+      according_to(Z,-resided_in_canada_10_years_prior_to_approval,X) :: 'according
       to @(Z), it is not the case that @(X) resided in canada for 10 years prior to
-      approval''.
-
-      #pred blawx_defeated(Z,resided_in_canada_10_years_prior_to_approval,X) :: ''the
-      conclusion in @(Z) that @(X) resided in canada for 10 years prior to approval
-      is defeated''.
-
-      #pred blawx_defeated(Z,-resided_in_canada_10_years_prior_to_approval,X) :: ''the
-      conclusion in @(Z) that @(X) resided in canada for 10 years prior to approval
-      is defeated''.
-
-      resided_in_canada_10_years_prior_to_approval(X) :- holds(_,resided_in_canada_10_years_prior_to_approval,X).
-
-      -resided_in_canada_10_years_prior_to_approval(X) :- holds(_,-resided_in_canada_10_years_prior_to_approval,X).
-
-      blawx_attribute(person,meets_aggregate_residence_requirement_s3_1_b_iii,boolean).
-
-      blawx_attribute_nlg(meets_aggregate_residence_requirement_s3_1_b_iii,not_applicable,"",not_applicable,"was
-      in Canada more than away between 18 and 10 years prior to approval").
-
-      #pred meets_aggregate_residence_requirement_s3_1_b_iii(X) :: ''@(X) was in Canada
-      more than away between 18 and 10 years prior to approval''.
-
-      #pred holds(user,meets_aggregate_residence_requirement_s3_1_b_iii,X) :: ''it
-      is provided as a fact that @(X) was in Canada more than away between 18 and
-      10 years prior to approval''.
-
-      #pred holds(user,-meets_aggregate_residence_requirement_s3_1_b_iii,X) :: ''it
-      is provided as a fact that it is not the case that @(X) was in Canada more than
-      away between 18 and 10 years prior to approval''.
-
-      #pred holds(Z,meets_aggregate_residence_requirement_s3_1_b_iii,X) :: ''the conclusion
-      in @(Z) that @(X) was in Canada more than away between 18 and 10 years prior
-      to approval holds''.
-
-      #pred holds(Z,-meets_aggregate_residence_requirement_s3_1_b_iii,X) :: ''the
-      conclusion in @(Z) that it is not the case that @(X) was in Canada more than
-      away between 18 and 10 years prior to approval holds''.
-
-      #pred according_to(Z,meets_aggregate_residence_requirement_s3_1_b_iii,X) ::
-      ''according to @(Z), @(X) was in Canada more than away between 18 and 10 years
-      prior to approval''.
-
-      #pred according_to(Z,-meets_aggregate_residence_requirement_s3_1_b_iii,X) ::
-      ''according to @(Z), it is not the case that @(X) was in Canada more than away
-      between 18 and 10 years prior to approval''.
-
-      #pred blawx_defeated(Z,meets_aggregate_residence_requirement_s3_1_b_iii,X) ::
-      ''the conclusion in @(Z) that @(X) was in Canada more than away between 18 and
-      10 years prior to approval is defeated''.
-
-      #pred blawx_defeated(Z,-meets_aggregate_residence_requirement_s3_1_b_iii,X)
-      :: ''the conclusion in @(Z) that @(X) was in Canada more than away between 18
-      and 10 years prior to approval is defeated''.
-
-      meets_aggregate_residence_requirement_s3_1_b_iii(X) :- holds(_,meets_aggregate_residence_requirement_s3_1_b_iii,X).
-
-      -meets_aggregate_residence_requirement_s3_1_b_iii(X) :- holds(_,-meets_aggregate_residence_requirement_s3_1_b_iii,X).
-
-      blawx_attribute(person,has_resided_one_year_prior_to_approval,boolean).
-
-      blawx_attribute_nlg(has_resided_one_year_prior_to_approval,not_applicable,"",not_applicable,"resided
-      in Canada for the year prior to approval").
-
-      #pred has_resided_one_year_prior_to_approval(X) :: ''@(X) resided in Canada
-      for the year prior to approval''.
-
-      #pred holds(user,has_resided_one_year_prior_to_approval,X) :: ''it is provided
-      as a fact that @(X) resided in Canada for the year prior to approval''.
-
-      #pred holds(user,-has_resided_one_year_prior_to_approval,X) :: ''it is provided
-      as a fact that it is not the case that @(X) resided in Canada for the year prior
-      to approval''.
-
-      #pred holds(Z,has_resided_one_year_prior_to_approval,X) :: ''the conclusion
-      in @(Z) that @(X) resided in Canada for the year prior to approval holds''.
-
-      #pred holds(Z,-has_resided_one_year_prior_to_approval,X) :: ''the conclusion
-      in @(Z) that it is not the case that @(X) resided in Canada for the year prior
-      to approval holds''.
-
-      #pred according_to(Z,has_resided_one_year_prior_to_approval,X) :: ''according
-      to @(Z), @(X) resided in Canada for the year prior to approval''.
-
-      #pred according_to(Z,-has_resided_one_year_prior_to_approval,X) :: ''according
-      to @(Z), it is not the case that @(X) resided in Canada for the year prior to
-      approval''.
-
-      #pred blawx_defeated(Z,has_resided_one_year_prior_to_approval,X) :: ''the conclusion
-      in @(Z) that @(X) resided in Canada for the year prior to approval is defeated''.
-
-      #pred blawx_defeated(Z,-has_resided_one_year_prior_to_approval,X) :: ''the conclusion
-      in @(Z) that @(X) resided in Canada for the year prior to approval is defeated''.
-
-      has_resided_one_year_prior_to_approval(X) :- holds(_,has_resided_one_year_prior_to_approval,X).
-
-      -has_resided_one_year_prior_to_approval(X) :- holds(_,-has_resided_one_year_prior_to_approval,X).
-
-
-      according_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
-      :- resided_in_canada_10_years_prior_to_approval(Person).
-
-
-      holds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
-      :- according_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person).
-
-
-      according_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
-      :- not resided_in_canada_10_years_prior_to_approval(Person),
-
-      meets_aggregate_residence_requirement_s3_1_b_iii(Person),
-
-      has_resided_one_year_prior_to_approval(Person).
-
-
-      holds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
-      :- according_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person).'
+      approval'.\n#pred blawx_defeated(Z,resided_in_canada_10_years_prior_to_approval,X)
+      :: 'the conclusion in @(Z) that @(X) resided in canada for 10 years prior to
+      approval is defeated'.\n#pred blawx_defeated(Z,-resided_in_canada_10_years_prior_to_approval,X)
+      :: 'the conclusion in @(Z) that @(X) resided in canada for 10 years prior to
+      approval is defeated'.\nblawx_attribute(person,meets_aggregate_residence_requirement_s3_1_b_iii,boolean).\nblawx_attribute_nlg(meets_aggregate_residence_requirement_s3_1_b_iii,not_applicable,\"\",not_applicable,\"was
+      in Canada more than away between 18 and 10 years prior to approval\").\n#pred
+      meets_aggregate_residence_requirement_s3_1_b_iii(X) :: '@(X) was in Canada more
+      than away between 18 and 10 years prior to approval'.\n#pred holds(user,meets_aggregate_residence_requirement_s3_1_b_iii,X)
+      :: 'it is provided as a fact that @(X) was in Canada more than away between
+      18 and 10 years prior to approval'.\n#pred holds(user,-meets_aggregate_residence_requirement_s3_1_b_iii,X)
+      :: 'it is provided as a fact that it is not the case that @(X) was in Canada
+      more than away between 18 and 10 years prior to approval'.\n#pred holds(Z,meets_aggregate_residence_requirement_s3_1_b_iii,X)
+      :: 'the conclusion in @(Z) that @(X) was in Canada more than away between 18
+      and 10 years prior to approval holds'.\n#pred holds(Z,-meets_aggregate_residence_requirement_s3_1_b_iii,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) was in Canada more
+      than away between 18 and 10 years prior to approval holds'.\n#pred according_to(Z,meets_aggregate_residence_requirement_s3_1_b_iii,X)
+      :: 'according to @(Z), @(X) was in Canada more than away between 18 and 10 years
+      prior to approval'.\n#pred according_to(Z,-meets_aggregate_residence_requirement_s3_1_b_iii,X)
+      :: 'according to @(Z), it is not the case that @(X) was in Canada more than
+      away between 18 and 10 years prior to approval'.\n#pred blawx_defeated(Z,meets_aggregate_residence_requirement_s3_1_b_iii,X)
+      :: 'the conclusion in @(Z) that @(X) was in Canada more than away between 18
+      and 10 years prior to approval is defeated'.\n#pred blawx_defeated(Z,-meets_aggregate_residence_requirement_s3_1_b_iii,X)
+      :: 'the conclusion in @(Z) that @(X) was in Canada more than away between 18
+      and 10 years prior to approval is defeated'.\nblawx_attribute(person,has_resided_one_year_prior_to_approval,boolean).\nblawx_attribute_nlg(has_resided_one_year_prior_to_approval,not_applicable,\"\",not_applicable,\"resided
+      in Canada for the year prior to approval\").\n#pred has_resided_one_year_prior_to_approval(X)
+      :: '@(X) resided in Canada for the year prior to approval'.\n#pred holds(user,has_resided_one_year_prior_to_approval,X)
+      :: 'it is provided as a fact that @(X) resided in Canada for the year prior
+      to approval'.\n#pred holds(user,-has_resided_one_year_prior_to_approval,X) ::
+      'it is provided as a fact that it is not the case that @(X) resided in Canada
+      for the year prior to approval'.\n#pred holds(Z,has_resided_one_year_prior_to_approval,X)
+      :: 'the conclusion in @(Z) that @(X) resided in Canada for the year prior to
+      approval holds'.\n#pred holds(Z,-has_resided_one_year_prior_to_approval,X) ::
+      'the conclusion in @(Z) that it is not the case that @(X) resided in Canada
+      for the year prior to approval holds'.\n#pred according_to(Z,has_resided_one_year_prior_to_approval,X)
+      :: 'according to @(Z), @(X) resided in Canada for the year prior to approval'.\n#pred
+      according_to(Z,-has_resided_one_year_prior_to_approval,X) :: 'according to @(Z),
+      it is not the case that @(X) resided in Canada for the year prior to approval'.\n#pred
+      blawx_defeated(Z,has_resided_one_year_prior_to_approval,X) :: 'the conclusion
+      in @(Z) that @(X) resided in Canada for the year prior to approval is defeated'.\n#pred
+      blawx_defeated(Z,-has_resided_one_year_prior_to_approval,X) :: 'the conclusion
+      in @(Z) that @(X) resided in Canada for the year prior to approval is defeated'.\n\naccording_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
+      :- resided_in_canada_10_years_prior_to_approval(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  meets_residence_duration_requirement_s3_1_b_iii(Person)
+      :- holds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person).\n\naccording_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
+      :- not resided_in_canada_10_years_prior_to_approval(Person),\nmeets_aggregate_residence_requirement_s3_1_b_iii(Person),\nhas_resided_one_year_prior_to_approval(Person).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)
+      :- according_to(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  meets_residence_duration_requirement_s3_1_b_iii(Person)
+      :- holds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)."
 - model: blawx.workspace
-  pk: 51
+  pk: 9
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_c__subpara_ii_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
       id="k){=+o!P$q~v5U0F#_P=" x="94" y="131"><field name="defeasible">FALSE</field><field
@@ -1453,22 +934,15 @@
       attributename="meets_s3_1_c_ii" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies the age requirement of s3(1)(c)(ii)</field><value name="first_element"><block
       type="variable" id="Qo-L!`bFF@c:RoiRZWcO"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'according_to(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person)
-      :- blawx_today(Today),
-
-      birthdate(Person,Birthdate),
-
-      datetime_add(Birthdate,duration(1,65,0,0,0,0,0),DateAttaining65),
-
-      not_after(DateAttaining65,Today).
-
-
-      holds(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person) :-
-      according_to(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person).'
+    scasp_encoding: "according_to(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person)
+      :- blawx_today(Today),\nbirthdate(Person,Birthdate),\ndatetime_add(Birthdate,duration(1,65,0,0,0,0,0),DateAttaining65),\nnot_after(DateAttaining65,Today).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person)
+      :- according_to(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  meets_s3_1_c_ii(Person) :- holds(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person)."
 - model: blawx.workspace
-  pk: 52
+  pk: 10
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_c__subpara_i_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
       id="}t$U;#Mab.m{k?t`oQ``" x="178" y="154"><field name="defeasible">FALSE</field><field
@@ -1486,15 +960,14 @@
       name="postfix">satisfies the non-pensioner requirement of s3(1)(c)(i)</field><value
       name="first_element"><block type="variable" id="Xv%0pCaV9hz}e%5cJnl%"><field
       name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'according_to(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person)
-      :- not pensioner_july(Person).
-
-
-      holds(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person) :- according_to(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person).'
+    scasp_encoding: "according_to(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person)
+      :- not pensioner_july(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person)
+      :- according_to(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  meets_s3_1_c_i(Person) :- holds(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person)."
 - model: blawx.workspace
-  pk: 53
+  pk: 11
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_c__subpara_iii_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="0qpz9A@(U,C=Anc!8#mt" x="40" y="59"><statement name="statements"><block
@@ -1518,65 +991,39 @@
       name="postfix">satisfies the residency requirement of s3(1)(c)(iii)</field><value
       name="first_element"><block type="variable" id="yl(3q#Z%_s/n;Km2iF2Z"><field
       name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,resided_40_years_after_18_yoa,boolean).
-
-      blawx_attribute_nlg(resided_40_years_after_18_yoa,not_applicable,"",not_applicable,"resided
-      in Canada at least 40 years since the age of 18").
-
-      #pred resided_40_years_after_18_yoa(X) :: ''@(X) resided in Canada at least
-      40 years since the age of 18''.
-
-      #pred holds(user,resided_40_years_after_18_yoa,X) :: ''it is provided as a fact
-      that @(X) resided in Canada at least 40 years since the age of 18''.
-
-      #pred holds(user,-resided_40_years_after_18_yoa,X) :: ''it is provided as a
-      fact that it is not the case that @(X) resided in Canada at least 40 years since
-      the age of 18''.
-
-      #pred holds(Z,resided_40_years_after_18_yoa,X) :: ''the conclusion in @(Z) that
-      @(X) resided in Canada at least 40 years since the age of 18 holds''.
-
-      #pred holds(Z,-resided_40_years_after_18_yoa,X) :: ''the conclusion in @(Z)
-      that it is not the case that @(X) resided in Canada at least 40 years since
-      the age of 18 holds''.
-
-      #pred according_to(Z,resided_40_years_after_18_yoa,X) :: ''according to @(Z),
-      @(X) resided in Canada at least 40 years since the age of 18''.
-
-      #pred according_to(Z,-resided_40_years_after_18_yoa,X) :: ''according to @(Z),
-      it is not the case that @(X) resided in Canada at least 40 years since the age
-      of 18''.
-
-      #pred blawx_defeated(Z,resided_40_years_after_18_yoa,X) :: ''the conclusion
-      in @(Z) that @(X) resided in Canada at least 40 years since the age of 18 is
-      defeated''.
-
-      #pred blawx_defeated(Z,-resided_40_years_after_18_yoa,X) :: ''the conclusion
-      in @(Z) that @(X) resided in Canada at least 40 years since the age of 18 is
-      defeated''.
-
-      resided_40_years_after_18_yoa(X) :- holds(_,resided_40_years_after_18_yoa,X).
-
-      -resided_40_years_after_18_yoa(X) :- holds(_,-resided_40_years_after_18_yoa,X).
-
-
-      according_to(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person)
-      :- resided_40_years_after_18_yoa(Person).
-
-
-      holds(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person)
-      :- according_to(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person).'
+    scasp_encoding: "blawx_attribute(person,resided_40_years_after_18_yoa,boolean).\nblawx_attribute_nlg(resided_40_years_after_18_yoa,not_applicable,\"\",not_applicable,\"resided
+      in Canada at least 40 years since the age of 18\").\n#pred resided_40_years_after_18_yoa(X)
+      :: '@(X) resided in Canada at least 40 years since the age of 18'.\n#pred holds(user,resided_40_years_after_18_yoa,X)
+      :: 'it is provided as a fact that @(X) resided in Canada at least 40 years since
+      the age of 18'.\n#pred holds(user,-resided_40_years_after_18_yoa,X) :: 'it is
+      provided as a fact that it is not the case that @(X) resided in Canada at least
+      40 years since the age of 18'.\n#pred holds(Z,resided_40_years_after_18_yoa,X)
+      :: 'the conclusion in @(Z) that @(X) resided in Canada at least 40 years since
+      the age of 18 holds'.\n#pred holds(Z,-resided_40_years_after_18_yoa,X) :: 'the
+      conclusion in @(Z) that it is not the case that @(X) resided in Canada at least
+      40 years since the age of 18 holds'.\n#pred according_to(Z,resided_40_years_after_18_yoa,X)
+      :: 'according to @(Z), @(X) resided in Canada at least 40 years since the age
+      of 18'.\n#pred according_to(Z,-resided_40_years_after_18_yoa,X) :: 'according
+      to @(Z), it is not the case that @(X) resided in Canada at least 40 years since
+      the age of 18'.\n#pred blawx_defeated(Z,resided_40_years_after_18_yoa,X) ::
+      'the conclusion in @(Z) that @(X) resided in Canada at least 40 years since
+      the age of 18 is defeated'.\n#pred blawx_defeated(Z,-resided_40_years_after_18_yoa,X)
+      :: 'the conclusion in @(Z) that @(X) resided in Canada at least 40 years since
+      the age of 18 is defeated'.\n\naccording_to(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person)
+      :- resided_40_years_after_18_yoa(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person)
+      :- according_to(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  meets_s3_1_c_iii(Person) :- holds(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person)."
 - model: blawx.workspace
-  pk: 54
+  pk: 12
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 55
+  pk: 13
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_4__subsec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="fZ?RE;oHlZN6#(t[0dYe" x="-11" y="-131"><statement name="statements"><block
@@ -1630,100 +1077,44 @@
       name="prefix">a full monthly pension may be paid to</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="8OL}DN)#Nsr*2)Z/81;7"><field
       name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,satisfies_4_1_a,boolean).
-
-      blawx_attribute_nlg(satisfies_4_1_a,not_applicable,"",not_applicable,"satisfies
-      section 4(1)(a)").
-
-      #pred satisfies_4_1_a(X) :: ''@(X) satisfies section 4(1)(a)''.
-
-      #pred holds(user,satisfies_4_1_a,X) :: ''it is provided as a fact that @(X)
-      satisfies section 4(1)(a)''.
-
-      #pred holds(user,-satisfies_4_1_a,X) :: ''it is provided as a fact that it is
-      not the case that @(X) satisfies section 4(1)(a)''.
-
-      #pred holds(Z,satisfies_4_1_a,X) :: ''the conclusion in @(Z) that @(X) satisfies
-      section 4(1)(a) holds''.
-
-      #pred holds(Z,-satisfies_4_1_a,X) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) satisfies section 4(1)(a) holds''.
-
-      #pred according_to(Z,satisfies_4_1_a,X) :: ''according to @(Z), @(X) satisfies
-      section 4(1)(a)''.
-
-      #pred according_to(Z,-satisfies_4_1_a,X) :: ''according to @(Z), it is not the
-      case that @(X) satisfies section 4(1)(a)''.
-
-      #pred blawx_defeated(Z,satisfies_4_1_a,X) :: ''the conclusion in @(Z) that @(X)
-      satisfies section 4(1)(a) is defeated''.
-
-      #pred blawx_defeated(Z,-satisfies_4_1_a,X) :: ''the conclusion in @(Z) that
-      @(X) satisfies section 4(1)(a) is defeated''.
-
-      satisfies_4_1_a(X) :- holds(_,satisfies_4_1_a,X).
-
-      -satisfies_4_1_a(X) :- holds(_,-satisfies_4_1_a,X).
-
-      blawx_attribute(person,satisfies_4_1_b,boolean).
-
-      blawx_attribute_nlg(satisfies_4_1_b,not_applicable,"",not_applicable,"satisfies
-      section 4(1)(b)").
-
-      #pred satisfies_4_1_b(X) :: ''@(X) satisfies section 4(1)(b)''.
-
-      #pred holds(user,satisfies_4_1_b,X) :: ''it is provided as a fact that @(X)
-      satisfies section 4(1)(b)''.
-
-      #pred holds(user,-satisfies_4_1_b,X) :: ''it is provided as a fact that it is
-      not the case that @(X) satisfies section 4(1)(b)''.
-
-      #pred holds(Z,satisfies_4_1_b,X) :: ''the conclusion in @(Z) that @(X) satisfies
-      section 4(1)(b) holds''.
-
-      #pred holds(Z,-satisfies_4_1_b,X) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) satisfies section 4(1)(b) holds''.
-
-      #pred according_to(Z,satisfies_4_1_b,X) :: ''according to @(Z), @(X) satisfies
-      section 4(1)(b)''.
-
-      #pred according_to(Z,-satisfies_4_1_b,X) :: ''according to @(Z), it is not the
-      case that @(X) satisfies section 4(1)(b)''.
-
-      #pred blawx_defeated(Z,satisfies_4_1_b,X) :: ''the conclusion in @(Z) that @(X)
-      satisfies section 4(1)(b) is defeated''.
-
-      #pred blawx_defeated(Z,-satisfies_4_1_b,X) :: ''the conclusion in @(Z) that
-      @(X) satisfies section 4(1)(b) is defeated''.
-
-      satisfies_4_1_b(X) :- holds(_,satisfies_4_1_b,X).
-
-      -satisfies_4_1_b(X) :- holds(_,-satisfies_4_1_b,X).
-
-
-      % "Eligible" and "full monthly pension may be paid to" have been
-
-      % combined into a single statement. Therefore, this section
-
-      % says that if your are not a pensioner, and neither a
-
-      % nor b is true, a full monthly pension may not be paid.
-
-      according_to(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person)
-      :- person(Person),
-
-      not pensioner_july(Person),
-
-      not holds(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person),
-
-      not holds(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person).
-
-
-      holds(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person) :- according_to(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person).'
+    scasp_encoding: "blawx_attribute(person,satisfies_4_1_a,boolean).\nblawx_attribute_nlg(satisfies_4_1_a,not_applicable,\"\",not_applicable,\"satisfies
+      section 4(1)(a)\").\n#pred satisfies_4_1_a(X) :: '@(X) satisfies section 4(1)(a)'.\n#pred
+      holds(user,satisfies_4_1_a,X) :: 'it is provided as a fact that @(X) satisfies
+      section 4(1)(a)'.\n#pred holds(user,-satisfies_4_1_a,X) :: 'it is provided as
+      a fact that it is not the case that @(X) satisfies section 4(1)(a)'.\n#pred
+      holds(Z,satisfies_4_1_a,X) :: 'the conclusion in @(Z) that @(X) satisfies section
+      4(1)(a) holds'.\n#pred holds(Z,-satisfies_4_1_a,X) :: 'the conclusion in @(Z)
+      that it is not the case that @(X) satisfies section 4(1)(a) holds'.\n#pred according_to(Z,satisfies_4_1_a,X)
+      :: 'according to @(Z), @(X) satisfies section 4(1)(a)'.\n#pred according_to(Z,-satisfies_4_1_a,X)
+      :: 'according to @(Z), it is not the case that @(X) satisfies section 4(1)(a)'.\n#pred
+      blawx_defeated(Z,satisfies_4_1_a,X) :: 'the conclusion in @(Z) that @(X) satisfies
+      section 4(1)(a) is defeated'.\n#pred blawx_defeated(Z,-satisfies_4_1_a,X) ::
+      'the conclusion in @(Z) that @(X) satisfies section 4(1)(a) is defeated'.\nblawx_attribute(person,satisfies_4_1_b,boolean).\nblawx_attribute_nlg(satisfies_4_1_b,not_applicable,\"\",not_applicable,\"satisfies
+      section 4(1)(b)\").\n#pred satisfies_4_1_b(X) :: '@(X) satisfies section 4(1)(b)'.\n#pred
+      holds(user,satisfies_4_1_b,X) :: 'it is provided as a fact that @(X) satisfies
+      section 4(1)(b)'.\n#pred holds(user,-satisfies_4_1_b,X) :: 'it is provided as
+      a fact that it is not the case that @(X) satisfies section 4(1)(b)'.\n#pred
+      holds(Z,satisfies_4_1_b,X) :: 'the conclusion in @(Z) that @(X) satisfies section
+      4(1)(b) holds'.\n#pred holds(Z,-satisfies_4_1_b,X) :: 'the conclusion in @(Z)
+      that it is not the case that @(X) satisfies section 4(1)(b) holds'.\n#pred according_to(Z,satisfies_4_1_b,X)
+      :: 'according to @(Z), @(X) satisfies section 4(1)(b)'.\n#pred according_to(Z,-satisfies_4_1_b,X)
+      :: 'according to @(Z), it is not the case that @(X) satisfies section 4(1)(b)'.\n#pred
+      blawx_defeated(Z,satisfies_4_1_b,X) :: 'the conclusion in @(Z) that @(X) satisfies
+      section 4(1)(b) is defeated'.\n#pred blawx_defeated(Z,-satisfies_4_1_b,X) ::
+      'the conclusion in @(Z) that @(X) satisfies section 4(1)(b) is defeated'.\n\n%
+      \"Eligible\" and \"full monthly pension may be paid to\" have been\n% combined
+      into a single statement. Therefore, this section\n% says that if your are not
+      a pensioner, and neither a\n% nor b is true, a full monthly pension may not
+      be paid.\naccording_to(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person)
+      :- person(Person),\nnot pensioner_july(Person),\nnot holds(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person),\nnot
+      holds(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person).\n\n% BLAWX CHECK
+      DUPLICATES\nholds(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person)
+      :- according_to(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  -may_be_paid_full_monthly_pension(Person) :- holds(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person)."
 - model: blawx.workspace
-  pk: 56
+  pk: 14
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_4__subsec_1__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="C@IOG)1*g8eiX~s=aF|Y" x="-23" y="-98"><statement name="statements"><block
@@ -1746,56 +1137,32 @@
       attributename="satisfies_4_1_a" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies section 4(1)(a)</field><value name="first_element"><block
       type="variable" id="pcjQRTs{Q|/oT8R:UCqq"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,citizen_or_resident_before_approval,boolean).
-
-      blawx_attribute_nlg(citizen_or_resident_before_approval,not_applicable,"",not_applicable,"was
-      a citizen or legal resident the day before approval").
-
-      #pred citizen_or_resident_before_approval(X) :: ''@(X) was a citizen or legal
-      resident the day before approval''.
-
-      #pred holds(user,citizen_or_resident_before_approval,X) :: ''it is provided
-      as a fact that @(X) was a citizen or legal resident the day before approval''.
-
-      #pred holds(user,-citizen_or_resident_before_approval,X) :: ''it is provided
-      as a fact that it is not the case that @(X) was a citizen or legal resident
-      the day before approval''.
-
-      #pred holds(Z,citizen_or_resident_before_approval,X) :: ''the conclusion in
-      @(Z) that @(X) was a citizen or legal resident the day before approval holds''.
-
-      #pred holds(Z,-citizen_or_resident_before_approval,X) :: ''the conclusion in
-      @(Z) that it is not the case that @(X) was a citizen or legal resident the day
-      before approval holds''.
-
-      #pred according_to(Z,citizen_or_resident_before_approval,X) :: ''according to
-      @(Z), @(X) was a citizen or legal resident the day before approval''.
-
-      #pred according_to(Z,-citizen_or_resident_before_approval,X) :: ''according
-      to @(Z), it is not the case that @(X) was a citizen or legal resident the day
-      before approval''.
-
-      #pred blawx_defeated(Z,citizen_or_resident_before_approval,X) :: ''the conclusion
-      in @(Z) that @(X) was a citizen or legal resident the day before approval is
-      defeated''.
-
-      #pred blawx_defeated(Z,-citizen_or_resident_before_approval,X) :: ''the conclusion
-      in @(Z) that @(X) was a citizen or legal resident the day before approval is
-      defeated''.
-
-      citizen_or_resident_before_approval(X) :- holds(_,citizen_or_resident_before_approval,X).
-
-      -citizen_or_resident_before_approval(X) :- holds(_,-citizen_or_resident_before_approval,X).
-
-
-      according_to(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person) :- citizen_or_resident_before_approval(Person).
-
-
-      holds(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person) :- according_to(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person).'
+    scasp_encoding: "blawx_attribute(person,citizen_or_resident_before_approval,boolean).\nblawx_attribute_nlg(citizen_or_resident_before_approval,not_applicable,\"\",not_applicable,\"was
+      a citizen or legal resident the day before approval\").\n#pred citizen_or_resident_before_approval(X)
+      :: '@(X) was a citizen or legal resident the day before approval'.\n#pred holds(user,citizen_or_resident_before_approval,X)
+      :: 'it is provided as a fact that @(X) was a citizen or legal resident the day
+      before approval'.\n#pred holds(user,-citizen_or_resident_before_approval,X)
+      :: 'it is provided as a fact that it is not the case that @(X) was a citizen
+      or legal resident the day before approval'.\n#pred holds(Z,citizen_or_resident_before_approval,X)
+      :: 'the conclusion in @(Z) that @(X) was a citizen or legal resident the day
+      before approval holds'.\n#pred holds(Z,-citizen_or_resident_before_approval,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) was a citizen or
+      legal resident the day before approval holds'.\n#pred according_to(Z,citizen_or_resident_before_approval,X)
+      :: 'according to @(Z), @(X) was a citizen or legal resident the day before approval'.\n#pred
+      according_to(Z,-citizen_or_resident_before_approval,X) :: 'according to @(Z),
+      it is not the case that @(X) was a citizen or legal resident the day before
+      approval'.\n#pred blawx_defeated(Z,citizen_or_resident_before_approval,X) ::
+      'the conclusion in @(Z) that @(X) was a citizen or legal resident the day before
+      approval is defeated'.\n#pred blawx_defeated(Z,-citizen_or_resident_before_approval,X)
+      :: 'the conclusion in @(Z) that @(X) was a citizen or legal resident the day
+      before approval is defeated'.\n\naccording_to(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person)
+      :- citizen_or_resident_before_approval(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person)
+      :- according_to(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  satisfies_4_1_a(Person) :- holds(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person)."
 - model: blawx.workspace
-  pk: 57
+  pk: 15
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_4__subsec_1__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="C@IOG)1*g8eiX~s=aF|Y" x="10" y="101"><statement name="statements"><block
@@ -1818,70 +1185,46 @@
       attributename="satisfies_4_1_b" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">satisfies section 4(1)(b)</field><value name="first_element"><block
       type="variable" id="pcjQRTs{Q|/oT8R:UCqq"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,citizen_or_resident_before_departure,boolean).
-
-      blawx_attribute_nlg(citizen_or_resident_before_departure,not_applicable,"",not_applicable,"was
-      a citizen or legal resident the day before departure").
-
-      #pred citizen_or_resident_before_departure(X) :: ''@(X) was a citizen or legal
-      resident the day before departure''.
-
-      #pred holds(user,citizen_or_resident_before_departure,X) :: ''it is provided
-      as a fact that @(X) was a citizen or legal resident the day before departure''.
-
-      #pred holds(user,-citizen_or_resident_before_departure,X) :: ''it is provided
-      as a fact that it is not the case that @(X) was a citizen or legal resident
-      the day before departure''.
-
-      #pred holds(Z,citizen_or_resident_before_departure,X) :: ''the conclusion in
-      @(Z) that @(X) was a citizen or legal resident the day before departure holds''.
-
-      #pred holds(Z,-citizen_or_resident_before_departure,X) :: ''the conclusion in
-      @(Z) that it is not the case that @(X) was a citizen or legal resident the day
-      before departure holds''.
-
-      #pred according_to(Z,citizen_or_resident_before_departure,X) :: ''according
-      to @(Z), @(X) was a citizen or legal resident the day before departure''.
-
-      #pred according_to(Z,-citizen_or_resident_before_departure,X) :: ''according
-      to @(Z), it is not the case that @(X) was a citizen or legal resident the day
-      before departure''.
-
-      #pred blawx_defeated(Z,citizen_or_resident_before_departure,X) :: ''the conclusion
-      in @(Z) that @(X) was a citizen or legal resident the day before departure is
-      defeated''.
-
-      #pred blawx_defeated(Z,-citizen_or_resident_before_departure,X) :: ''the conclusion
-      in @(Z) that @(X) was a citizen or legal resident the day before departure is
-      defeated''.
-
-      citizen_or_resident_before_departure(X) :- holds(_,citizen_or_resident_before_departure,X).
-
-      -citizen_or_resident_before_departure(X) :- holds(_,-citizen_or_resident_before_departure,X).
-
-
-      according_to(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person) :- citizen_or_resident_before_approval(Person).
-
-
-      holds(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person) :- according_to(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person).'
+    scasp_encoding: "blawx_attribute(person,citizen_or_resident_before_departure,boolean).\nblawx_attribute_nlg(citizen_or_resident_before_departure,not_applicable,\"\",not_applicable,\"was
+      a citizen or legal resident the day before departure\").\n#pred citizen_or_resident_before_departure(X)
+      :: '@(X) was a citizen or legal resident the day before departure'.\n#pred holds(user,citizen_or_resident_before_departure,X)
+      :: 'it is provided as a fact that @(X) was a citizen or legal resident the day
+      before departure'.\n#pred holds(user,-citizen_or_resident_before_departure,X)
+      :: 'it is provided as a fact that it is not the case that @(X) was a citizen
+      or legal resident the day before departure'.\n#pred holds(Z,citizen_or_resident_before_departure,X)
+      :: 'the conclusion in @(Z) that @(X) was a citizen or legal resident the day
+      before departure holds'.\n#pred holds(Z,-citizen_or_resident_before_departure,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) was a citizen or
+      legal resident the day before departure holds'.\n#pred according_to(Z,citizen_or_resident_before_departure,X)
+      :: 'according to @(Z), @(X) was a citizen or legal resident the day before departure'.\n#pred
+      according_to(Z,-citizen_or_resident_before_departure,X) :: 'according to @(Z),
+      it is not the case that @(X) was a citizen or legal resident the day before
+      departure'.\n#pred blawx_defeated(Z,citizen_or_resident_before_departure,X)
+      :: 'the conclusion in @(Z) that @(X) was a citizen or legal resident the day
+      before departure is defeated'.\n#pred blawx_defeated(Z,-citizen_or_resident_before_departure,X)
+      :: 'the conclusion in @(Z) that @(X) was a citizen or legal resident the day
+      before departure is defeated'.\n\naccording_to(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person)
+      :- citizen_or_resident_before_approval(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person)
+      :- according_to(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  satisfies_4_1_b(Person) :- holds(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person)."
 - model: blawx.workspace
-  pk: 58
+  pk: 16
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_4_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 59
+  pk: 17
   fields:
-    ruledoc: 11
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_b__subpara_i__span_immigration_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.blawxtest
-  pk: 22
+  pk: 1
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_3_1
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="Q8InM;qw!CZCjX$$bb8n" x="89" y="250"><statement name="query"><block type="unary_attribute_selector"
@@ -1898,9 +1241,9 @@
       ''view_cat_person_att_satisfies_4_1_a'', ''view_cat_person_att_satisfies_4_1_b'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 23
+  pk: 2
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_3_1_a
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="$N$4N9Yt@P%fIh1qo$z(" x="85" y="207"><statement name="query"><block type="according_to"
@@ -1926,9 +1269,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 24
+  pk: 3
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_3_1_b
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="b45P79[j~H@U#Tpe[Q0?" x="161" y="289"><statement name="query"><block type="according_to"
@@ -1951,9 +1294,9 @@
       ''view_cat_person_att_resided_40_years_after_18_yoa'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 25
+  pk: 4
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_3_1_c
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="{,Ih5k/U:U$Dn0tc{D.=" x="126" y="314"><statement name="query"><block type="according_to"
@@ -1978,9 +1321,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 26
+  pk: 5
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_3_1_b_i
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="3GnJl-qbNhs(}SHR)q.y" x="66" y="255"><statement name="query"><block type="according_to"
@@ -2005,9 +1348,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 27
+  pk: 6
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_3_1_b_ii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="CLUc$RA|lkd/oQ$y#06*" x="75" y="289"><statement name="query"><block type="according_to"
@@ -2034,9 +1377,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 28
+  pk: 7
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_3_1_c_i
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="B5rp;*txE]JpuW{.}pCz" x="92" y="321"><statement name="query"><block type="according_to"
@@ -2062,9 +1405,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 29
+  pk: 8
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_3_1_c_ii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="_0LNmTPcoH;=}PVUisM!" x="70" y="263"><statement name="query"><block type="according_to"
@@ -2089,9 +1432,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 30
+  pk: 9
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_3_1_b_iii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id=":Uu[*vSt,LW8=1//bfpd" x="93" y="213"><statement name="query"><block type="according_to"
@@ -2117,9 +1460,9 @@
       ''view_cat_person_att_pensioner_july'', ''view_cat_person_att_birthdate'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 31
+  pk: 10
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_3_1_c_iii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="CCbA=7g95-6zwLTJ1wnD" x="119" y="323"><statement name="query"><block type="according_to"
@@ -2145,9 +1488,9 @@
       ''view_cat_person_att_citizen_or_resident_before_departure'', ''view_cat_person_att_resided_in_canada_after_18_as_of_july'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 32
+  pk: 11
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_4_1
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="Kri=g;hPM1VB.r#pLRqV" x="59" y="324"><statement name="query"><block type="according_to"
@@ -2174,9 +1517,9 @@
       ''view_cat_person_att_satisfies_4_1_a'', ''view_cat_person_att_satisfies_4_1_b'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 33
+  pk: 12
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_4_1_a
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="#(Tg!n]s7a-UBCVm0LG`" x="96" y="267"><statement name="query"><block type="according_to"
@@ -2202,9 +1545,9 @@
       ''view_cat_person_att_satisfies_4_1_b'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 34
+  pk: 13
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_4_1_b
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="(9ydD85Yn#_BVeS!)N;l" x="134" y="276"><statement name="query"><block type="according_to"
@@ -2230,9 +1573,9 @@
       ''view_cat_person_att_resided_in_canada_july'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 35
+  pk: 14
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: generic_eligible
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="t2fN+~va](ApjzsD`Bay" x="80" y="316"><statement name="query"><block type="unary_attribute_selector"
@@ -2245,9 +1588,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 36
+  pk: 15
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: true_or_false
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="r?$kLlAR1KCd=TwIk;gB" x="50" y="128"><statement name="statements"><block
@@ -2268,9 +1611,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 37
+  pk: 16
   fields:
-    ruledoc: 11
+    ruledoc: 1
     test_name: search
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="jS[=lqTA3BIxhGNpe%`m" x="62" y="185"><statement name="query"><block type="unary_attribute_selector"

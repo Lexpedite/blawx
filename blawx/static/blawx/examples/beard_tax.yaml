@@ -11,14 +11,14 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 21
+  pk: 31
   fields:
     ruledoc: 4
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 22
+  pk: 32
   fields:
     ruledoc: 4
     workspace_name: sec_1_section
@@ -95,128 +95,49 @@
       attributename="bearded" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">is bearded</field><value name="first_element"><block type="variable"
       id="PmZksLyP)}6DV3/SS~Ti"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(person).
-
-      blawx_category_nlg(person,"","is a person").
-
-      #pred person(X) :: ''@(X) is a person''.
-
-      #pred holds(user,person,X) :: ''it is provided as a fact that @(X) is a person''.
-
-      #pred holds(user,-person,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is a person''.
-
-      #pred holds(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a person holds''.
-
-      #pred holds(Z,-person,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is a person holds''.
-
-      #pred according_to(Z,person,X) :: ''according to @(Z), @(X) is a person''.
-
-      #pred according_to(Z,-person,X) :: ''according to @(Z), it is not the case that
-      @(X) is a person''.
-
-      #pred blawx_defeated(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a
-      person is defeated''.
-
-      #pred blawx_defeated(Z,-person,X) :: ''the conclusion in @(Z) that @(X) is a
-      person is defeated''.
-
-      person(X) :- holds(_,person,X).
-
-      -person(X) :- holds(_,-person,X).
-
-      blawx_attribute(person,bearded,boolean).
-
-      blawx_attribute_nlg(bearded,not_applicable,"",not_applicable,"is bearded").
-
-      #pred bearded(X) :: ''@(X) is bearded''.
-
-      #pred holds(user,bearded,X) :: ''it is provided as a fact that @(X) is bearded''.
-
-      #pred holds(user,-bearded,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is bearded''.
-
-      #pred holds(Z,bearded,X) :: ''the conclusion in @(Z) that @(X) is bearded holds''.
-
-      #pred holds(Z,-bearded,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is bearded holds''.
-
-      #pred according_to(Z,bearded,X) :: ''according to @(Z), @(X) is bearded''.
-
-      #pred according_to(Z,-bearded,X) :: ''according to @(Z), it is not the case
-      that @(X) is bearded''.
-
-      #pred blawx_defeated(Z,bearded,X) :: ''the conclusion in @(Z) that @(X) is bearded
-      is defeated''.
-
-      #pred blawx_defeated(Z,-bearded,X) :: ''the conclusion in @(Z) that @(X) is
-      bearded is defeated''.
-
-      bearded(X) :- holds(_,bearded,X).
-
-      -bearded(X) :- holds(_,-bearded,X).
-
-      blawx_attribute(person,facial_hair_length_mm,number).
-
-      blawx_attribute_nlg(facial_hair_length_mm,ov,"","''s facial hair is","mm in
-      length").
-
-      #pred facial_hair_length_mm(X,Y) :: ''@(X) \''s facial hair is @(Y) mm in length''.
-
-      #pred holds(user,facial_hair_length_mm,X,Y) :: ''it is provided as a fact that
-      @(X) \''s facial hair is @(Y) mm in length''.
-
-      #pred holds(user,-facial_hair_length_mm,X,Y) :: ''it is provided as a fact that
-      it is not the case that @(X) \''s facial hair is @(Y) mm in length''.
-
-      #pred holds(Z,facial_hair_length_mm,X,Y) :: ''the conclusion in @(Z) that @(X)
-      \''s facial hair is @(Y) mm in length holds''.
-
-      #pred holds(Z,-facial_hair_length_mm,X,Y) :: ''the conclusion in @(Z) that it
-      is not the case that @(X) \''s facial hair is @(Y) mm in length holds''.
-
-      #pred according_to(Z,facial_hair_length_mm,X,Y) :: ''according to @(Z), @(X)
-      \''s facial hair is @(Y) mm in length''.
-
-      #pred according_to(Z,-facial_hair_length_mm,X,Y) :: ''according to @(Z), it
-      is not the case that @(X) \''s facial hair is @(Y) mm in length''.
-
-      #pred blawx_defeated(Z,facial_hair_length_mm,X,Y) :: ''the conclusion in @(Z)
-      that @(X) \''s facial hair is @(Y) mm in length is defeated''.
-
-      #pred blawx_defeated(Z,-facial_hair_length_mm,X,Y) :: ''the conclusion in @(Z)
-      that @(X) \''s facial hair is @(Y) mm in length is defeated''.
-
-      facial_hair_length_mm(X,Y) :- holds(_,facial_hair_length_mm,X,Y).
-
-      -facial_hair_length_mm(X,Y) :- holds(_,-facial_hair_length_mm,X,Y).
-
-
-      according_to(sec_1_section,bearded,Person) :- person(Person),
-
-      Length #>= 5,
-
-      facial_hair_length_mm(Person,Length),
-
-      according_to(sec_1__para_a_section,qualifies_s1a,Person).
-
-
-      holds(sec_1_section,bearded,Person) :- according_to(sec_1_section,bearded,Person).
-
-
-      according_to(sec_1_section,bearded,Person) :- person(Person),
-
-      Length #>= 5,
-
-      facial_hair_length_mm(Person,Length),
-
-      qualifies_s1b(Person).
-
-
-      holds(sec_1_section,bearded,Person) :- according_to(sec_1_section,bearded,Person).'
+    scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
+      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
+      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
+      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
+      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
+      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
+      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
+      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\nblawx_attribute(person,bearded,boolean).\nblawx_attribute_nlg(bearded,not_applicable,\"\",not_applicable,\"is
+      bearded\").\n#pred bearded(X) :: '@(X) is bearded'.\n#pred holds(user,bearded,X)
+      :: 'it is provided as a fact that @(X) is bearded'.\n#pred holds(user,-bearded,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is bearded'.\n#pred
+      holds(Z,bearded,X) :: 'the conclusion in @(Z) that @(X) is bearded holds'.\n#pred
+      holds(Z,-bearded,X) :: 'the conclusion in @(Z) that it is not the case that
+      @(X) is bearded holds'.\n#pred according_to(Z,bearded,X) :: 'according to @(Z),
+      @(X) is bearded'.\n#pred according_to(Z,-bearded,X) :: 'according to @(Z), it
+      is not the case that @(X) is bearded'.\n#pred blawx_defeated(Z,bearded,X) ::
+      'the conclusion in @(Z) that @(X) is bearded is defeated'.\n#pred blawx_defeated(Z,-bearded,X)
+      :: 'the conclusion in @(Z) that @(X) is bearded is defeated'.\nblawx_attribute(person,facial_hair_length_mm,number).\nblawx_attribute_nlg(facial_hair_length_mm,ov,\"\",\"'s
+      facial hair is\",\"mm in length\").\n#pred facial_hair_length_mm(X,Y) :: '@(X)
+      \\'s facial hair is @(Y) mm in length'.\n#pred holds(user,facial_hair_length_mm,X,Y)
+      :: 'it is provided as a fact that @(X) \\'s facial hair is @(Y) mm in length'.\n#pred
+      holds(user,-facial_hair_length_mm,X,Y) :: 'it is provided as a fact that it
+      is not the case that @(X) \\'s facial hair is @(Y) mm in length'.\n#pred holds(Z,facial_hair_length_mm,X,Y)
+      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is @(Y) mm in length holds'.\n#pred
+      holds(Z,-facial_hair_length_mm,X,Y) :: 'the conclusion in @(Z) that it is not
+      the case that @(X) \\'s facial hair is @(Y) mm in length holds'.\n#pred according_to(Z,facial_hair_length_mm,X,Y)
+      :: 'according to @(Z), @(X) \\'s facial hair is @(Y) mm in length'.\n#pred according_to(Z,-facial_hair_length_mm,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) \\'s facial hair is @(Y)
+      mm in length'.\n#pred blawx_defeated(Z,facial_hair_length_mm,X,Y) :: 'the conclusion
+      in @(Z) that @(X) \\'s facial hair is @(Y) mm in length is defeated'.\n#pred
+      blawx_defeated(Z,-facial_hair_length_mm,X,Y) :: 'the conclusion in @(Z) that
+      @(X) \\'s facial hair is @(Y) mm in length is defeated'.\n\naccording_to(sec_1_section,bearded,Person)
+      :- person(Person),\nLength #>= 5,\nfacial_hair_length_mm(Person,Length),\naccording_to(sec_1__para_a_section,qualifies_s1a,Person).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_1_section,bearded,Person) :- according_to(sec_1_section,bearded,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  bearded(Person) :- holds(sec_1_section,bearded,Person).\n\naccording_to(sec_1_section,bearded,Person)
+      :- person(Person),\nLength #>= 5,\nfacial_hair_length_mm(Person,Length),\nqualifies_s1b(Person).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_1_section,bearded,Person) :- according_to(sec_1_section,bearded,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  bearded(Person) :- holds(sec_1_section,bearded,Person)."
 - model: blawx.workspace
-  pk: 23
+  pk: 33
   fields:
     ruledoc: 4
     workspace_name: sec_1__para_a_section
@@ -266,124 +187,54 @@
       attributename="qualifies_s1a" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">qualifies under section 1 a</field><value name="first_element"><block
       type="variable" id="v[)}mLA`/`9M8(]p/q6("><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,facial_hair_on_chin,boolean).
-
-      blawx_attribute_nlg(facial_hair_on_chin,not_applicable,"",not_applicable,"''s
-      facial hair is on the chin").
-
-      #pred facial_hair_on_chin(X) :: ''@(X) \''s facial hair is on the chin''.
-
-      #pred holds(user,facial_hair_on_chin,X) :: ''it is provided as a fact that @(X)
-      \''s facial hair is on the chin''.
-
-      #pred holds(user,-facial_hair_on_chin,X) :: ''it is provided as a fact that
-      it is not the case that @(X) \''s facial hair is on the chin''.
-
-      #pred holds(Z,facial_hair_on_chin,X) :: ''the conclusion in @(Z) that @(X) \''s
-      facial hair is on the chin holds''.
-
-      #pred holds(Z,-facial_hair_on_chin,X) :: ''the conclusion in @(Z) that it is
-      not the case that @(X) \''s facial hair is on the chin holds''.
-
-      #pred according_to(Z,facial_hair_on_chin,X) :: ''according to @(Z), @(X) \''s
-      facial hair is on the chin''.
-
-      #pred according_to(Z,-facial_hair_on_chin,X) :: ''according to @(Z), it is not
-      the case that @(X) \''s facial hair is on the chin''.
-
-      #pred blawx_defeated(Z,facial_hair_on_chin,X) :: ''the conclusion in @(Z) that
-      @(X) \''s facial hair is on the chin is defeated''.
-
-      #pred blawx_defeated(Z,-facial_hair_on_chin,X) :: ''the conclusion in @(Z) that
-      @(X) \''s facial hair is on the chin is defeated''.
-
-      facial_hair_on_chin(X) :- holds(_,facial_hair_on_chin,X).
-
-      -facial_hair_on_chin(X) :- holds(_,-facial_hair_on_chin,X).
-
-      blawx_attribute(person,facial_hair_below_chin,boolean).
-
-      blawx_attribute_nlg(facial_hair_below_chin,not_applicable,"",not_applicable,"''s
-      facial hair is below the chin").
-
-      #pred facial_hair_below_chin(X) :: ''@(X) \''s facial hair is below the chin''.
-
-      #pred holds(user,facial_hair_below_chin,X) :: ''it is provided as a fact that
-      @(X) \''s facial hair is below the chin''.
-
-      #pred holds(user,-facial_hair_below_chin,X) :: ''it is provided as a fact that
-      it is not the case that @(X) \''s facial hair is below the chin''.
-
-      #pred holds(Z,facial_hair_below_chin,X) :: ''the conclusion in @(Z) that @(X)
-      \''s facial hair is below the chin holds''.
-
-      #pred holds(Z,-facial_hair_below_chin,X) :: ''the conclusion in @(Z) that it
-      is not the case that @(X) \''s facial hair is below the chin holds''.
-
-      #pred according_to(Z,facial_hair_below_chin,X) :: ''according to @(Z), @(X)
-      \''s facial hair is below the chin''.
-
-      #pred according_to(Z,-facial_hair_below_chin,X) :: ''according to @(Z), it is
-      not the case that @(X) \''s facial hair is below the chin''.
-
-      #pred blawx_defeated(Z,facial_hair_below_chin,X) :: ''the conclusion in @(Z)
-      that @(X) \''s facial hair is below the chin is defeated''.
-
-      #pred blawx_defeated(Z,-facial_hair_below_chin,X) :: ''the conclusion in @(Z)
-      that @(X) \''s facial hair is below the chin is defeated''.
-
-      facial_hair_below_chin(X) :- holds(_,facial_hair_below_chin,X).
-
-      -facial_hair_below_chin(X) :- holds(_,-facial_hair_below_chin,X).
-
-      blawx_attribute(person,qualifies_s1a,boolean).
-
-      blawx_attribute_nlg(qualifies_s1a,not_applicable,"",not_applicable,"qualifies
-      under section 1 a").
-
-      #pred qualifies_s1a(X) :: ''@(X) qualifies under section 1 a''.
-
-      #pred holds(user,qualifies_s1a,X) :: ''it is provided as a fact that @(X) qualifies
-      under section 1 a''.
-
-      #pred holds(user,-qualifies_s1a,X) :: ''it is provided as a fact that it is
-      not the case that @(X) qualifies under section 1 a''.
-
-      #pred holds(Z,qualifies_s1a,X) :: ''the conclusion in @(Z) that @(X) qualifies
-      under section 1 a holds''.
-
-      #pred holds(Z,-qualifies_s1a,X) :: ''the conclusion in @(Z) that it is not the
-      case that @(X) qualifies under section 1 a holds''.
-
-      #pred according_to(Z,qualifies_s1a,X) :: ''according to @(Z), @(X) qualifies
-      under section 1 a''.
-
-      #pred according_to(Z,-qualifies_s1a,X) :: ''according to @(Z), it is not the
-      case that @(X) qualifies under section 1 a''.
-
-      #pred blawx_defeated(Z,qualifies_s1a,X) :: ''the conclusion in @(Z) that @(X)
-      qualifies under section 1 a is defeated''.
-
-      #pred blawx_defeated(Z,-qualifies_s1a,X) :: ''the conclusion in @(Z) that @(X)
-      qualifies under section 1 a is defeated''.
-
-      qualifies_s1a(X) :- holds(_,qualifies_s1a,X).
-
-      -qualifies_s1a(X) :- holds(_,-qualifies_s1a,X).
-
-
-      according_to(sec_1__para_a_section,qualifies_s1a,Person) :- facial_hair_on_chin(Person).
-
-
-      holds(sec_1__para_a_section,qualifies_s1a,Person) :- according_to(sec_1__para_a_section,qualifies_s1a,Person).
-
-
-      according_to(sec_1__para_a_section,qualifies_s1a,Person) :- facial_hair_below_chin(Person).
-
-
-      holds(sec_1__para_a_section,qualifies_s1a,Person) :- according_to(sec_1__para_a_section,qualifies_s1a,Person).'
+    scasp_encoding: "blawx_attribute(person,facial_hair_on_chin,boolean).\nblawx_attribute_nlg(facial_hair_on_chin,not_applicable,\"\",not_applicable,\"'s
+      facial hair is on the chin\").\n#pred facial_hair_on_chin(X) :: '@(X) \\'s facial
+      hair is on the chin'.\n#pred holds(user,facial_hair_on_chin,X) :: 'it is provided
+      as a fact that @(X) \\'s facial hair is on the chin'.\n#pred holds(user,-facial_hair_on_chin,X)
+      :: 'it is provided as a fact that it is not the case that @(X) \\'s facial hair
+      is on the chin'.\n#pred holds(Z,facial_hair_on_chin,X) :: 'the conclusion in
+      @(Z) that @(X) \\'s facial hair is on the chin holds'.\n#pred holds(Z,-facial_hair_on_chin,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) \\'s facial hair
+      is on the chin holds'.\n#pred according_to(Z,facial_hair_on_chin,X) :: 'according
+      to @(Z), @(X) \\'s facial hair is on the chin'.\n#pred according_to(Z,-facial_hair_on_chin,X)
+      :: 'according to @(Z), it is not the case that @(X) \\'s facial hair is on the
+      chin'.\n#pred blawx_defeated(Z,facial_hair_on_chin,X) :: 'the conclusion in
+      @(Z) that @(X) \\'s facial hair is on the chin is defeated'.\n#pred blawx_defeated(Z,-facial_hair_on_chin,X)
+      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is on the chin is defeated'.\nblawx_attribute(person,facial_hair_below_chin,boolean).\nblawx_attribute_nlg(facial_hair_below_chin,not_applicable,\"\",not_applicable,\"'s
+      facial hair is below the chin\").\n#pred facial_hair_below_chin(X) :: '@(X)
+      \\'s facial hair is below the chin'.\n#pred holds(user,facial_hair_below_chin,X)
+      :: 'it is provided as a fact that @(X) \\'s facial hair is below the chin'.\n#pred
+      holds(user,-facial_hair_below_chin,X) :: 'it is provided as a fact that it is
+      not the case that @(X) \\'s facial hair is below the chin'.\n#pred holds(Z,facial_hair_below_chin,X)
+      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is below the chin holds'.\n#pred
+      holds(Z,-facial_hair_below_chin,X) :: 'the conclusion in @(Z) that it is not
+      the case that @(X) \\'s facial hair is below the chin holds'.\n#pred according_to(Z,facial_hair_below_chin,X)
+      :: 'according to @(Z), @(X) \\'s facial hair is below the chin'.\n#pred according_to(Z,-facial_hair_below_chin,X)
+      :: 'according to @(Z), it is not the case that @(X) \\'s facial hair is below
+      the chin'.\n#pred blawx_defeated(Z,facial_hair_below_chin,X) :: 'the conclusion
+      in @(Z) that @(X) \\'s facial hair is below the chin is defeated'.\n#pred blawx_defeated(Z,-facial_hair_below_chin,X)
+      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is below the chin is defeated'.\nblawx_attribute(person,qualifies_s1a,boolean).\nblawx_attribute_nlg(qualifies_s1a,not_applicable,\"\",not_applicable,\"qualifies
+      under section 1 a\").\n#pred qualifies_s1a(X) :: '@(X) qualifies under section
+      1 a'.\n#pred holds(user,qualifies_s1a,X) :: 'it is provided as a fact that @(X)
+      qualifies under section 1 a'.\n#pred holds(user,-qualifies_s1a,X) :: 'it is
+      provided as a fact that it is not the case that @(X) qualifies under section
+      1 a'.\n#pred holds(Z,qualifies_s1a,X) :: 'the conclusion in @(Z) that @(X) qualifies
+      under section 1 a holds'.\n#pred holds(Z,-qualifies_s1a,X) :: 'the conclusion
+      in @(Z) that it is not the case that @(X) qualifies under section 1 a holds'.\n#pred
+      according_to(Z,qualifies_s1a,X) :: 'according to @(Z), @(X) qualifies under
+      section 1 a'.\n#pred according_to(Z,-qualifies_s1a,X) :: 'according to @(Z),
+      it is not the case that @(X) qualifies under section 1 a'.\n#pred blawx_defeated(Z,qualifies_s1a,X)
+      :: 'the conclusion in @(Z) that @(X) qualifies under section 1 a is defeated'.\n#pred
+      blawx_defeated(Z,-qualifies_s1a,X) :: 'the conclusion in @(Z) that @(X) qualifies
+      under section 1 a is defeated'.\n\naccording_to(sec_1__para_a_section,qualifies_s1a,Person)
+      :- facial_hair_on_chin(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1__para_a_section,qualifies_s1a,Person)
+      :- according_to(sec_1__para_a_section,qualifies_s1a,Person).\n\n% BLAWX CHECK
+      DUPLICATES\n  qualifies_s1a(Person) :- holds(sec_1__para_a_section,qualifies_s1a,Person).\n\naccording_to(sec_1__para_a_section,qualifies_s1a,Person)
+      :- facial_hair_below_chin(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1__para_a_section,qualifies_s1a,Person)
+      :- according_to(sec_1__para_a_section,qualifies_s1a,Person).\n\n% BLAWX CHECK
+      DUPLICATES\n  qualifies_s1a(Person) :- holds(sec_1__para_a_section,qualifies_s1a,Person)."
 - model: blawx.workspace
-  pk: 24
+  pk: 34
   fields:
     ruledoc: 4
     workspace_name: sec_1__para_b_section
@@ -414,84 +265,41 @@
       attributename="qualifies_s1b" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">qualifies under section 1 b</field><value name="first_element"><block
       type="variable" id="oMOx1nXegE|@{tC78ChY"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,facial_hair_continuous,boolean).
-
-      blawx_attribute_nlg(facial_hair_continuous,not_applicable,"",not_applicable,"''s
-      facial hair is ear to ear below the nose").
-
-      #pred facial_hair_continuous(X) :: ''@(X) \''s facial hair is ear to ear below
-      the nose''.
-
-      #pred holds(user,facial_hair_continuous,X) :: ''it is provided as a fact that
-      @(X) \''s facial hair is ear to ear below the nose''.
-
-      #pred holds(user,-facial_hair_continuous,X) :: ''it is provided as a fact that
-      it is not the case that @(X) \''s facial hair is ear to ear below the nose''.
-
-      #pred holds(Z,facial_hair_continuous,X) :: ''the conclusion in @(Z) that @(X)
-      \''s facial hair is ear to ear below the nose holds''.
-
-      #pred holds(Z,-facial_hair_continuous,X) :: ''the conclusion in @(Z) that it
-      is not the case that @(X) \''s facial hair is ear to ear below the nose holds''.
-
-      #pred according_to(Z,facial_hair_continuous,X) :: ''according to @(Z), @(X)
-      \''s facial hair is ear to ear below the nose''.
-
-      #pred according_to(Z,-facial_hair_continuous,X) :: ''according to @(Z), it is
-      not the case that @(X) \''s facial hair is ear to ear below the nose''.
-
-      #pred blawx_defeated(Z,facial_hair_continuous,X) :: ''the conclusion in @(Z)
-      that @(X) \''s facial hair is ear to ear below the nose is defeated''.
-
-      #pred blawx_defeated(Z,-facial_hair_continuous,X) :: ''the conclusion in @(Z)
-      that @(X) \''s facial hair is ear to ear below the nose is defeated''.
-
-      facial_hair_continuous(X) :- holds(_,facial_hair_continuous,X).
-
-      -facial_hair_continuous(X) :- holds(_,-facial_hair_continuous,X).
-
-      blawx_attribute(person,qualifies_s1b,boolean).
-
-      blawx_attribute_nlg(qualifies_s1b,not_applicable,"",not_applicable,"qualifies
-      under section 1 b").
-
-      #pred qualifies_s1b(X) :: ''@(X) qualifies under section 1 b''.
-
-      #pred holds(user,qualifies_s1b,X) :: ''it is provided as a fact that @(X) qualifies
-      under section 1 b''.
-
-      #pred holds(user,-qualifies_s1b,X) :: ''it is provided as a fact that it is
-      not the case that @(X) qualifies under section 1 b''.
-
-      #pred holds(Z,qualifies_s1b,X) :: ''the conclusion in @(Z) that @(X) qualifies
-      under section 1 b holds''.
-
-      #pred holds(Z,-qualifies_s1b,X) :: ''the conclusion in @(Z) that it is not the
-      case that @(X) qualifies under section 1 b holds''.
-
-      #pred according_to(Z,qualifies_s1b,X) :: ''according to @(Z), @(X) qualifies
-      under section 1 b''.
-
-      #pred according_to(Z,-qualifies_s1b,X) :: ''according to @(Z), it is not the
-      case that @(X) qualifies under section 1 b''.
-
-      #pred blawx_defeated(Z,qualifies_s1b,X) :: ''the conclusion in @(Z) that @(X)
-      qualifies under section 1 b is defeated''.
-
-      #pred blawx_defeated(Z,-qualifies_s1b,X) :: ''the conclusion in @(Z) that @(X)
-      qualifies under section 1 b is defeated''.
-
-      qualifies_s1b(X) :- holds(_,qualifies_s1b,X).
-
-      -qualifies_s1b(X) :- holds(_,-qualifies_s1b,X).
-
-
-      according_to(sec_1__para_b_section,qualifies_s1b,Person) :- facial_hair_continuous(Person).
-
-
-      holds(sec_1__para_b_section,qualifies_s1b,Person) :- according_to(sec_1__para_b_section,qualifies_s1b,Person).'
+    scasp_encoding: "blawx_attribute(person,facial_hair_continuous,boolean).\nblawx_attribute_nlg(facial_hair_continuous,not_applicable,\"\",not_applicable,\"'s
+      facial hair is ear to ear below the nose\").\n#pred facial_hair_continuous(X)
+      :: '@(X) \\'s facial hair is ear to ear below the nose'.\n#pred holds(user,facial_hair_continuous,X)
+      :: 'it is provided as a fact that @(X) \\'s facial hair is ear to ear below
+      the nose'.\n#pred holds(user,-facial_hair_continuous,X) :: 'it is provided as
+      a fact that it is not the case that @(X) \\'s facial hair is ear to ear below
+      the nose'.\n#pred holds(Z,facial_hair_continuous,X) :: 'the conclusion in @(Z)
+      that @(X) \\'s facial hair is ear to ear below the nose holds'.\n#pred holds(Z,-facial_hair_continuous,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) \\'s facial hair
+      is ear to ear below the nose holds'.\n#pred according_to(Z,facial_hair_continuous,X)
+      :: 'according to @(Z), @(X) \\'s facial hair is ear to ear below the nose'.\n#pred
+      according_to(Z,-facial_hair_continuous,X) :: 'according to @(Z), it is not the
+      case that @(X) \\'s facial hair is ear to ear below the nose'.\n#pred blawx_defeated(Z,facial_hair_continuous,X)
+      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is ear to ear below the
+      nose is defeated'.\n#pred blawx_defeated(Z,-facial_hair_continuous,X) :: 'the
+      conclusion in @(Z) that @(X) \\'s facial hair is ear to ear below the nose is
+      defeated'.\nblawx_attribute(person,qualifies_s1b,boolean).\nblawx_attribute_nlg(qualifies_s1b,not_applicable,\"\",not_applicable,\"qualifies
+      under section 1 b\").\n#pred qualifies_s1b(X) :: '@(X) qualifies under section
+      1 b'.\n#pred holds(user,qualifies_s1b,X) :: 'it is provided as a fact that @(X)
+      qualifies under section 1 b'.\n#pred holds(user,-qualifies_s1b,X) :: 'it is
+      provided as a fact that it is not the case that @(X) qualifies under section
+      1 b'.\n#pred holds(Z,qualifies_s1b,X) :: 'the conclusion in @(Z) that @(X) qualifies
+      under section 1 b holds'.\n#pred holds(Z,-qualifies_s1b,X) :: 'the conclusion
+      in @(Z) that it is not the case that @(X) qualifies under section 1 b holds'.\n#pred
+      according_to(Z,qualifies_s1b,X) :: 'according to @(Z), @(X) qualifies under
+      section 1 b'.\n#pred according_to(Z,-qualifies_s1b,X) :: 'according to @(Z),
+      it is not the case that @(X) qualifies under section 1 b'.\n#pred blawx_defeated(Z,qualifies_s1b,X)
+      :: 'the conclusion in @(Z) that @(X) qualifies under section 1 b is defeated'.\n#pred
+      blawx_defeated(Z,-qualifies_s1b,X) :: 'the conclusion in @(Z) that @(X) qualifies
+      under section 1 b is defeated'.\n\naccording_to(sec_1__para_b_section,qualifies_s1b,Person)
+      :- facial_hair_continuous(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1__para_b_section,qualifies_s1b,Person)
+      :- according_to(sec_1__para_b_section,qualifies_s1b,Person).\n\n% BLAWX CHECK
+      DUPLICATES\n  qualifies_s1b(Person) :- holds(sec_1__para_b_section,qualifies_s1b,Person)."
 - model: blawx.blawxtest
-  pk: 9
+  pk: 21
   fields:
     ruledoc: 4
     test_name: are_they_bearded

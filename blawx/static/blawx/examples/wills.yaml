@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 10
+  pk: 8
   fields:
     ruledoc_name: Wills Act
     rule_text: "Wills Act\r\n\r\n1. A person over the age of 18 may make a will.\r\n2.
@@ -9,16 +9,16 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 40
+  pk: 49
   fields:
-    ruledoc: 10
+    ruledoc: 8
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 41
+  pk: 50
   fields:
-    ruledoc: 10
+    ruledoc: 8
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="aECNt(H}#:DQpaQ]yKzK" x="38" y="32"><statement name="statements"><block
@@ -58,117 +58,45 @@
       attributename="eligible" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">may make a will</field><value name="first_element"><block type="variable"
       id=".:1I{23gTb=FRerN{p{$"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(person).
-
-      blawx_category_nlg(person,"","is a person").
-
-      #pred person(X) :: ''@(X) is a person''.
-
-      #pred holds(user,person,X) :: ''it is provided as a fact that @(X) is a person''.
-
-      #pred holds(user,-person,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is a person''.
-
-      #pred holds(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a person holds''.
-
-      #pred holds(Z,-person,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is a person holds''.
-
-      #pred according_to(Z,person,X) :: ''according to @(Z), @(X) is a person''.
-
-      #pred according_to(Z,-person,X) :: ''according to @(Z), it is not the case that
-      @(X) is a person''.
-
-      #pred blawx_defeated(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a
-      person is defeated''.
-
-      #pred blawx_defeated(Z,-person,X) :: ''the conclusion in @(Z) that @(X) is a
-      person is defeated''.
-
-      person(X) :- holds(_,person,X).
-
-      -person(X) :- holds(_,-person,X).
-
-      blawx_attribute(person,eligible,boolean).
-
-      blawx_attribute_nlg(eligible,not_applicable,"",not_applicable,"may make a will").
-
-      #pred eligible(X) :: ''@(X) may make a will''.
-
-      #pred holds(user,eligible,X) :: ''it is provided as a fact that @(X) may make
-      a will''.
-
-      #pred holds(user,-eligible,X) :: ''it is provided as a fact that it is not the
-      case that @(X) may make a will''.
-
-      #pred holds(Z,eligible,X) :: ''the conclusion in @(Z) that @(X) may make a will
-      holds''.
-
-      #pred holds(Z,-eligible,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) may make a will holds''.
-
-      #pred according_to(Z,eligible,X) :: ''according to @(Z), @(X) may make a will''.
-
-      #pred according_to(Z,-eligible,X) :: ''according to @(Z), it is not the case
-      that @(X) may make a will''.
-
-      #pred blawx_defeated(Z,eligible,X) :: ''the conclusion in @(Z) that @(X) may
-      make a will is defeated''.
-
-      #pred blawx_defeated(Z,-eligible,X) :: ''the conclusion in @(Z) that @(X) may
-      make a will is defeated''.
-
-      eligible(X) :- holds(_,eligible,X).
-
-      -eligible(X) :- holds(_,-eligible,X).
-
-      blawx_attribute(person,age,number).
-
-      blawx_attribute_nlg(age,ov,"","is","years of age").
-
-      #pred age(X,Y) :: ''@(X) is @(Y) years of age''.
-
-      #pred holds(user,age,X,Y) :: ''it is provided as a fact that @(X) is @(Y) years
-      of age''.
-
-      #pred holds(user,-age,X,Y) :: ''it is provided as a fact that it is not the
-      case that @(X) is @(Y) years of age''.
-
-      #pred holds(Z,age,X,Y) :: ''the conclusion in @(Z) that @(X) is @(Y) years of
-      age holds''.
-
-      #pred holds(Z,-age,X,Y) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is @(Y) years of age holds''.
-
-      #pred according_to(Z,age,X,Y) :: ''according to @(Z), @(X) is @(Y) years of
-      age''.
-
-      #pred according_to(Z,-age,X,Y) :: ''according to @(Z), it is not the case that
-      @(X) is @(Y) years of age''.
-
-      #pred blawx_defeated(Z,age,X,Y) :: ''the conclusion in @(Z) that @(X) is @(Y)
-      years of age is defeated''.
-
-      #pred blawx_defeated(Z,-age,X,Y) :: ''the conclusion in @(Z) that @(X) is @(Y)
-      years of age is defeated''.
-
-      age(X,Y) :- holds(_,age,X,Y).
-
-      -age(X,Y) :- holds(_,-age,X,Y).
-
-
-      according_to(sec_1_section,eligible,Person) :- person(Person),
-
-      age(Person,Age),
-
-      Age #>= 18.
-
-
-      holds(sec_1_section,eligible,Person) :- according_to(sec_1_section,eligible,Person).'
+    scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
+      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
+      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
+      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
+      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
+      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
+      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
+      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\nblawx_attribute(person,eligible,boolean).\nblawx_attribute_nlg(eligible,not_applicable,\"\",not_applicable,\"may
+      make a will\").\n#pred eligible(X) :: '@(X) may make a will'.\n#pred holds(user,eligible,X)
+      :: 'it is provided as a fact that @(X) may make a will'.\n#pred holds(user,-eligible,X)
+      :: 'it is provided as a fact that it is not the case that @(X) may make a will'.\n#pred
+      holds(Z,eligible,X) :: 'the conclusion in @(Z) that @(X) may make a will holds'.\n#pred
+      holds(Z,-eligible,X) :: 'the conclusion in @(Z) that it is not the case that
+      @(X) may make a will holds'.\n#pred according_to(Z,eligible,X) :: 'according
+      to @(Z), @(X) may make a will'.\n#pred according_to(Z,-eligible,X) :: 'according
+      to @(Z), it is not the case that @(X) may make a will'.\n#pred blawx_defeated(Z,eligible,X)
+      :: 'the conclusion in @(Z) that @(X) may make a will is defeated'.\n#pred blawx_defeated(Z,-eligible,X)
+      :: 'the conclusion in @(Z) that @(X) may make a will is defeated'.\nblawx_attribute(person,age,number).\nblawx_attribute_nlg(age,ov,\"\",\"is\",\"years
+      of age\").\n#pred age(X,Y) :: '@(X) is @(Y) years of age'.\n#pred holds(user,age,X,Y)
+      :: 'it is provided as a fact that @(X) is @(Y) years of age'.\n#pred holds(user,-age,X,Y)
+      :: 'it is provided as a fact that it is not the case that @(X) is @(Y) years
+      of age'.\n#pred holds(Z,age,X,Y) :: 'the conclusion in @(Z) that @(X) is @(Y)
+      years of age holds'.\n#pred holds(Z,-age,X,Y) :: 'the conclusion in @(Z) that
+      it is not the case that @(X) is @(Y) years of age holds'.\n#pred according_to(Z,age,X,Y)
+      :: 'according to @(Z), @(X) is @(Y) years of age'.\n#pred according_to(Z,-age,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) is @(Y) years of age'.\n#pred
+      blawx_defeated(Z,age,X,Y) :: 'the conclusion in @(Z) that @(X) is @(Y) years
+      of age is defeated'.\n#pred blawx_defeated(Z,-age,X,Y) :: 'the conclusion in
+      @(Z) that @(X) is @(Y) years of age is defeated'.\n\naccording_to(sec_1_section,eligible,Person)
+      :- person(Person),\nage(Person,Age),\nAge #>= 18.\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1_section,eligible,Person)
+      :- according_to(sec_1_section,eligible,Person).\n\n% BLAWX CHECK DUPLICATES\n
+      \ eligible(Person) :- holds(sec_1_section,eligible,Person)."
 - model: blawx.workspace
-  pk: 42
+  pk: 51
   fields:
-    ruledoc: 10
+    ruledoc: 8
     workspace_name: sec_2_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="aECNt(H}#:DQpaQ]yKzK" x="66" y="88"><statement name="statements"><block
@@ -204,56 +132,26 @@
       attributename="eligible" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">may make a will</field><value name="first_element"><block type="variable"
       id="g]^4lzu|)Qp6`!FKFg{h"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,military,boolean).
-
-      blawx_attribute_nlg(military,not_applicable,"",not_applicable,"is an active
-      military member").
-
-      #pred military(X) :: ''@(X) is an active military member''.
-
-      #pred holds(user,military,X) :: ''it is provided as a fact that @(X) is an active
-      military member''.
-
-      #pred holds(user,-military,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is an active military member''.
-
-      #pred holds(Z,military,X) :: ''the conclusion in @(Z) that @(X) is an active
-      military member holds''.
-
-      #pred holds(Z,-military,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is an active military member holds''.
-
-      #pred according_to(Z,military,X) :: ''according to @(Z), @(X) is an active military
-      member''.
-
-      #pred according_to(Z,-military,X) :: ''according to @(Z), it is not the case
-      that @(X) is an active military member''.
-
-      #pred blawx_defeated(Z,military,X) :: ''the conclusion in @(Z) that @(X) is
-      an active military member is defeated''.
-
-      #pred blawx_defeated(Z,-military,X) :: ''the conclusion in @(Z) that @(X) is
-      an active military member is defeated''.
-
-      military(X) :- holds(_,military,X).
-
-      -military(X) :- holds(_,-military,X).
-
-
-      according_to(sec_2_section,eligible,Person) :- person(Person),
-
-      military(Person),
-
-      age(Person,Age),
-
-      Age #>= 14.
-
-
-      holds(sec_2_section,eligible,Person) :- according_to(sec_2_section,eligible,Person).'
+    scasp_encoding: "blawx_attribute(person,military,boolean).\nblawx_attribute_nlg(military,not_applicable,\"\",not_applicable,\"is
+      an active military member\").\n#pred military(X) :: '@(X) is an active military
+      member'.\n#pred holds(user,military,X) :: 'it is provided as a fact that @(X)
+      is an active military member'.\n#pred holds(user,-military,X) :: 'it is provided
+      as a fact that it is not the case that @(X) is an active military member'.\n#pred
+      holds(Z,military,X) :: 'the conclusion in @(Z) that @(X) is an active military
+      member holds'.\n#pred holds(Z,-military,X) :: 'the conclusion in @(Z) that it
+      is not the case that @(X) is an active military member holds'.\n#pred according_to(Z,military,X)
+      :: 'according to @(Z), @(X) is an active military member'.\n#pred according_to(Z,-military,X)
+      :: 'according to @(Z), it is not the case that @(X) is an active military member'.\n#pred
+      blawx_defeated(Z,military,X) :: 'the conclusion in @(Z) that @(X) is an active
+      military member is defeated'.\n#pred blawx_defeated(Z,-military,X) :: 'the conclusion
+      in @(Z) that @(X) is an active military member is defeated'.\n\naccording_to(sec_2_section,eligible,Person)
+      :- person(Person),\nmilitary(Person),\nage(Person,Age),\nAge #>= 14.\n\n% BLAWX
+      CHECK DUPLICATES\nholds(sec_2_section,eligible,Person) :- according_to(sec_2_section,eligible,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  eligible(Person) :- holds(sec_2_section,eligible,Person)."
 - model: blawx.blawxtest
-  pk: 21
+  pk: 31
   fields:
-    ruledoc: 10
+    ruledoc: 8
     test_name: valid_will
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="[H%F(8shmmOZ^!_dk%fF" x="49" y="271"><statement name="query"><block type="unary_attribute_selector"

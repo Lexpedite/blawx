@@ -9,14 +9,14 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 29
+  pk: 43
   fields:
     ruledoc: 6
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 30
+  pk: 44
   fields:
     ruledoc: 6
     workspace_name: sec_1_section
@@ -62,117 +62,49 @@
       name="postfix"></field><value name="first_element"><block type="variable" id="xO6$a![B|p=}Q-ZzY@^?"><field
       name="variable_name">Invoice</field></block></value><value name="second_element"><block
       type="variable" id="5BADuW73xBw021=ulkRO"><field name="variable_name">Payment_date</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(invoice).
-
-      blawx_category_nlg(invoice,"","is an invoice").
-
-      #pred invoice(X) :: ''@(X) is an invoice''.
-
-      #pred holds(user,invoice,X) :: ''it is provided as a fact that @(X) is an invoice''.
-
-      #pred holds(user,-invoice,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is an invoice''.
-
-      #pred holds(Z,invoice,X) :: ''the conclusion in @(Z) that @(X) is an invoice
-      holds''.
-
-      #pred holds(Z,-invoice,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is an invoice holds''.
-
-      #pred according_to(Z,invoice,X) :: ''according to @(Z), @(X) is an invoice''.
-
-      #pred according_to(Z,-invoice,X) :: ''according to @(Z), it is not the case
-      that @(X) is an invoice''.
-
-      #pred blawx_defeated(Z,invoice,X) :: ''the conclusion in @(Z) that @(X) is an
-      invoice is defeated''.
-
-      #pred blawx_defeated(Z,-invoice,X) :: ''the conclusion in @(Z) that @(X) is
-      an invoice is defeated''.
-
-      invoice(X) :- holds(_,invoice,X).
-
-      -invoice(X) :- holds(_,-invoice,X).
-
-      blawx_attribute(invoice,invoice_date,date).
-
-      blawx_attribute_nlg(invoice_date,ov,"the invoice date of","is","").
-
-      #pred invoice_date(X,Y) :: ''the invoice date of @(X) is @(Y)''.
-
-      #pred holds(user,invoice_date,X,Y) :: ''it is provided as a fact that the invoice
-      date of @(X) is @(Y)''.
-
-      #pred holds(user,-invoice_date,X,Y) :: ''it is provided as a fact that it is
-      not the case that the invoice date of @(X) is @(Y)''.
-
-      #pred holds(Z,invoice_date,X,Y) :: ''the conclusion in @(Z) that the invoice
-      date of @(X) is @(Y) holds''.
-
-      #pred holds(Z,-invoice_date,X,Y) :: ''the conclusion in @(Z) that it is not
-      the case that the invoice date of @(X) is @(Y) holds''.
-
-      #pred according_to(Z,invoice_date,X,Y) :: ''according to @(Z), the invoice date
-      of @(X) is @(Y)''.
-
-      #pred according_to(Z,-invoice_date,X,Y) :: ''according to @(Z), it is not the
-      case that the invoice date of @(X) is @(Y)''.
-
-      #pred blawx_defeated(Z,invoice_date,X,Y) :: ''the conclusion in @(Z) that the
-      invoice date of @(X) is @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-invoice_date,X,Y) :: ''the conclusion in @(Z) that the
-      invoice date of @(X) is @(Y) is defeated''.
-
-      invoice_date(X,Y) :- holds(_,invoice_date,X,Y).
-
-      -invoice_date(X,Y) :- holds(_,-invoice_date,X,Y).
-
-      blawx_attribute(invoice,payment_due_date,date).
-
-      blawx_attribute_nlg(payment_due_date,ov,"the payment due date of","is","").
-
-      #pred payment_due_date(X,Y) :: ''the payment due date of @(X) is @(Y)''.
-
-      #pred holds(user,payment_due_date,X,Y) :: ''it is provided as a fact that the
-      payment due date of @(X) is @(Y)''.
-
-      #pred holds(user,-payment_due_date,X,Y) :: ''it is provided as a fact that it
-      is not the case that the payment due date of @(X) is @(Y)''.
-
-      #pred holds(Z,payment_due_date,X,Y) :: ''the conclusion in @(Z) that the payment
-      due date of @(X) is @(Y) holds''.
-
-      #pred holds(Z,-payment_due_date,X,Y) :: ''the conclusion in @(Z) that it is
-      not the case that the payment due date of @(X) is @(Y) holds''.
-
-      #pred according_to(Z,payment_due_date,X,Y) :: ''according to @(Z), the payment
-      due date of @(X) is @(Y)''.
-
-      #pred according_to(Z,-payment_due_date,X,Y) :: ''according to @(Z), it is not
-      the case that the payment due date of @(X) is @(Y)''.
-
-      #pred blawx_defeated(Z,payment_due_date,X,Y) :: ''the conclusion in @(Z) that
-      the payment due date of @(X) is @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-payment_due_date,X,Y) :: ''the conclusion in @(Z) that
-      the payment due date of @(X) is @(Y) is defeated''.
-
-      payment_due_date(X,Y) :- holds(_,payment_due_date,X,Y).
-
-      -payment_due_date(X,Y) :- holds(_,-payment_due_date,X,Y).
-
-
-      according_to(sec_1_section,payment_due_date,Invoice,Payment_date) :- invoice(Invoice),
-
-      invoice_date(Invoice,Issue_date),
-
-      datetime_add(Issue_date,duration(1,0,0,30,0,0,0),Payment_date).
-
-
-      holds(sec_1_section,payment_due_date,Invoice,Payment_date) :- according_to(sec_1_section,payment_due_date,Invoice,Payment_date).'
+    scasp_encoding: "blawx_category(invoice).\nblawx_category_nlg(invoice,\"\",\"is
+      an invoice\").\n#pred invoice(X) :: '@(X) is an invoice'.\n#pred holds(user,invoice,X)
+      :: 'it is provided as a fact that @(X) is an invoice'.\n#pred holds(user,-invoice,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is an invoice'.\n#pred
+      holds(Z,invoice,X) :: 'the conclusion in @(Z) that @(X) is an invoice holds'.\n#pred
+      holds(Z,-invoice,X) :: 'the conclusion in @(Z) that it is not the case that
+      @(X) is an invoice holds'.\n#pred according_to(Z,invoice,X) :: 'according to
+      @(Z), @(X) is an invoice'.\n#pred according_to(Z,-invoice,X) :: 'according to
+      @(Z), it is not the case that @(X) is an invoice'.\n#pred blawx_defeated(Z,invoice,X)
+      :: 'the conclusion in @(Z) that @(X) is an invoice is defeated'.\n#pred blawx_defeated(Z,-invoice,X)
+      :: 'the conclusion in @(Z) that @(X) is an invoice is defeated'.\nblawx_attribute(invoice,invoice_date,date).\nblawx_attribute_nlg(invoice_date,ov,\"the
+      invoice date of\",\"is\",\"\").\n#pred invoice_date(X,Y) :: 'the invoice date
+      of @(X) is @(Y)'.\n#pred holds(user,invoice_date,X,Y) :: 'it is provided as
+      a fact that the invoice date of @(X) is @(Y)'.\n#pred holds(user,-invoice_date,X,Y)
+      :: 'it is provided as a fact that it is not the case that the invoice date of
+      @(X) is @(Y)'.\n#pred holds(Z,invoice_date,X,Y) :: 'the conclusion in @(Z) that
+      the invoice date of @(X) is @(Y) holds'.\n#pred holds(Z,-invoice_date,X,Y) ::
+      'the conclusion in @(Z) that it is not the case that the invoice date of @(X)
+      is @(Y) holds'.\n#pred according_to(Z,invoice_date,X,Y) :: 'according to @(Z),
+      the invoice date of @(X) is @(Y)'.\n#pred according_to(Z,-invoice_date,X,Y)
+      :: 'according to @(Z), it is not the case that the invoice date of @(X) is @(Y)'.\n#pred
+      blawx_defeated(Z,invoice_date,X,Y) :: 'the conclusion in @(Z) that the invoice
+      date of @(X) is @(Y) is defeated'.\n#pred blawx_defeated(Z,-invoice_date,X,Y)
+      :: 'the conclusion in @(Z) that the invoice date of @(X) is @(Y) is defeated'.\nblawx_attribute(invoice,payment_due_date,date).\nblawx_attribute_nlg(payment_due_date,ov,\"the
+      payment due date of\",\"is\",\"\").\n#pred payment_due_date(X,Y) :: 'the payment
+      due date of @(X) is @(Y)'.\n#pred holds(user,payment_due_date,X,Y) :: 'it is
+      provided as a fact that the payment due date of @(X) is @(Y)'.\n#pred holds(user,-payment_due_date,X,Y)
+      :: 'it is provided as a fact that it is not the case that the payment due date
+      of @(X) is @(Y)'.\n#pred holds(Z,payment_due_date,X,Y) :: 'the conclusion in
+      @(Z) that the payment due date of @(X) is @(Y) holds'.\n#pred holds(Z,-payment_due_date,X,Y)
+      :: 'the conclusion in @(Z) that it is not the case that the payment due date
+      of @(X) is @(Y) holds'.\n#pred according_to(Z,payment_due_date,X,Y) :: 'according
+      to @(Z), the payment due date of @(X) is @(Y)'.\n#pred according_to(Z,-payment_due_date,X,Y)
+      :: 'according to @(Z), it is not the case that the payment due date of @(X)
+      is @(Y)'.\n#pred blawx_defeated(Z,payment_due_date,X,Y) :: 'the conclusion in
+      @(Z) that the payment due date of @(X) is @(Y) is defeated'.\n#pred blawx_defeated(Z,-payment_due_date,X,Y)
+      :: 'the conclusion in @(Z) that the payment due date of @(X) is @(Y) is defeated'.\n\naccording_to(sec_1_section,payment_due_date,Invoice,Payment_date)
+      :- invoice(Invoice),\ninvoice_date(Invoice,Issue_date),\ndatetime_add(Issue_date,duration(1,0,0,30,0,0,0),Payment_date).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_1_section,payment_due_date,Invoice,Payment_date)
+      :- according_to(sec_1_section,payment_due_date,Invoice,Payment_date).\n\n% BLAWX
+      CHECK DUPLICATES\n  payment_due_date(Invoice,Payment_date) :- holds(sec_1_section,payment_due_date,Invoice,Payment_date)."
 - model: blawx.blawxtest
-  pk: 12
+  pk: 26
   fields:
     ruledoc: 6
     test_name: payment

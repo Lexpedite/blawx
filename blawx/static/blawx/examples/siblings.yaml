@@ -10,14 +10,14 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 31
+  pk: 45
   fields:
     ruledoc: 7
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 32
+  pk: 46
   fields:
     ruledoc: 7
     workspace_name: sec_1_section
@@ -68,127 +68,52 @@
       name="first_element"><block type="variable" id="$AN?Q-Yo|MrAA$tWecb0"><field
       name="variable_name">B</field></block></value><value name="second_element"><block
       type="variable" id="@1Cr^9lovIX5H]b$v;a`"><field name="variable_name">A</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(person).
-
-      blawx_category_nlg(person,"","is a person").
-
-      #pred person(X) :: ''@(X) is a person''.
-
-      #pred holds(user,person,X) :: ''it is provided as a fact that @(X) is a person''.
-
-      #pred holds(user,-person,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is a person''.
-
-      #pred holds(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a person holds''.
-
-      #pred holds(Z,-person,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is a person holds''.
-
-      #pred according_to(Z,person,X) :: ''according to @(Z), @(X) is a person''.
-
-      #pred according_to(Z,-person,X) :: ''according to @(Z), it is not the case that
-      @(X) is a person''.
-
-      #pred blawx_defeated(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a
-      person is defeated''.
-
-      #pred blawx_defeated(Z,-person,X) :: ''the conclusion in @(Z) that @(X) is a
-      person is defeated''.
-
-      person(X) :- holds(_,person,X).
-
-      -person(X) :- holds(_,-person,X).
-
-      blawx_attribute(person,parent,person).
-
-      blawx_attribute_nlg(parent,vo,"","is a parent of","").
-
-      #pred parent(Y,X) :: ''@(X) is a parent of @(Y)''.
-
-      #pred holds(user,parent,Y,X) :: ''it is provided as a fact that @(X) is a parent
-      of @(Y)''.
-
-      #pred holds(user,-parent,Y,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is a parent of @(Y)''.
-
-      #pred holds(Z,parent,Y,X) :: ''the conclusion in @(Z) that @(X) is a parent
-      of @(Y) holds''.
-
-      #pred holds(Z,-parent,Y,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is a parent of @(Y) holds''.
-
-      #pred according_to(Z,parent,Y,X) :: ''according to @(Z), @(X) is a parent of
-      @(Y)''.
-
-      #pred according_to(Z,-parent,Y,X) :: ''according to @(Z), it is not the case
-      that @(X) is a parent of @(Y)''.
-
-      #pred blawx_defeated(Z,parent,Y,X) :: ''the conclusion in @(Z) that @(X) is
-      a parent of @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-parent,Y,X) :: ''the conclusion in @(Z) that @(X) is
-      a parent of @(Y) is defeated''.
-
-      parent(X,Y) :- holds(_,parent,X,Y).
-
-      -parent(X,Y) :- holds(_,-parent,X,Y).
-
-      blawx_attribute(person,sibling,person).
-
-      blawx_attribute_nlg(sibling,vo,"","is a sibling of","").
-
-      #pred sibling(Y,X) :: ''@(X) is a sibling of @(Y)''.
-
-      #pred holds(user,sibling,Y,X) :: ''it is provided as a fact that @(X) is a sibling
-      of @(Y)''.
-
-      #pred holds(user,-sibling,Y,X) :: ''it is provided as a fact that it is not
-      the case that @(X) is a sibling of @(Y)''.
-
-      #pred holds(Z,sibling,Y,X) :: ''the conclusion in @(Z) that @(X) is a sibling
-      of @(Y) holds''.
-
-      #pred holds(Z,-sibling,Y,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is a sibling of @(Y) holds''.
-
-      #pred according_to(Z,sibling,Y,X) :: ''according to @(Z), @(X) is a sibling
-      of @(Y)''.
-
-      #pred according_to(Z,-sibling,Y,X) :: ''according to @(Z), it is not the case
-      that @(X) is a sibling of @(Y)''.
-
-      #pred blawx_defeated(Z,sibling,Y,X) :: ''the conclusion in @(Z) that @(X) is
-      a sibling of @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-sibling,Y,X) :: ''the conclusion in @(Z) that @(X) is
-      a sibling of @(Y) is defeated''.
-
-      sibling(X,Y) :- holds(_,sibling,X,Y).
-
-      -sibling(X,Y) :- holds(_,-sibling,X,Y).
-
-
-      according_to(sec_1_section,sibling,A,B) :- person(A),
-
-      person(B),
-
-      person(C),
-
-      parent(A,C),
-
-      parent(B,C).
-
-
-      holds(sec_1_section,sibling,A,B) :- according_to(sec_1_section,sibling,A,B).'
+    scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
+      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
+      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
+      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
+      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
+      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
+      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
+      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\nblawx_attribute(person,parent,person).\nblawx_attribute_nlg(parent,vo,\"\",\"is
+      a parent of\",\"\").\n#pred parent(Y,X) :: '@(X) is a parent of @(Y)'.\n#pred
+      holds(user,parent,Y,X) :: 'it is provided as a fact that @(X) is a parent of
+      @(Y)'.\n#pred holds(user,-parent,Y,X) :: 'it is provided as a fact that it is
+      not the case that @(X) is a parent of @(Y)'.\n#pred holds(Z,parent,Y,X) :: 'the
+      conclusion in @(Z) that @(X) is a parent of @(Y) holds'.\n#pred holds(Z,-parent,Y,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) is a parent of
+      @(Y) holds'.\n#pred according_to(Z,parent,Y,X) :: 'according to @(Z), @(X) is
+      a parent of @(Y)'.\n#pred according_to(Z,-parent,Y,X) :: 'according to @(Z),
+      it is not the case that @(X) is a parent of @(Y)'.\n#pred blawx_defeated(Z,parent,Y,X)
+      :: 'the conclusion in @(Z) that @(X) is a parent of @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-parent,Y,X) :: 'the conclusion in @(Z) that @(X) is a parent
+      of @(Y) is defeated'.\nblawx_attribute(person,sibling,person).\nblawx_attribute_nlg(sibling,vo,\"\",\"is
+      a sibling of\",\"\").\n#pred sibling(Y,X) :: '@(X) is a sibling of @(Y)'.\n#pred
+      holds(user,sibling,Y,X) :: 'it is provided as a fact that @(X) is a sibling
+      of @(Y)'.\n#pred holds(user,-sibling,Y,X) :: 'it is provided as a fact that
+      it is not the case that @(X) is a sibling of @(Y)'.\n#pred holds(Z,sibling,Y,X)
+      :: 'the conclusion in @(Z) that @(X) is a sibling of @(Y) holds'.\n#pred holds(Z,-sibling,Y,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) is a sibling of
+      @(Y) holds'.\n#pred according_to(Z,sibling,Y,X) :: 'according to @(Z), @(X)
+      is a sibling of @(Y)'.\n#pred according_to(Z,-sibling,Y,X) :: 'according to
+      @(Z), it is not the case that @(X) is a sibling of @(Y)'.\n#pred blawx_defeated(Z,sibling,Y,X)
+      :: 'the conclusion in @(Z) that @(X) is a sibling of @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-sibling,Y,X) :: 'the conclusion in @(Z) that @(X) is a sibling
+      of @(Y) is defeated'.\n\naccording_to(sec_1_section,sibling,A,B) :- person(A),\nperson(B),\nperson(C),\nparent(A,C),\nparent(B,C).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_1_section,sibling,A,B) :- according_to(sec_1_section,sibling,A,B).\n\n%
+      BLAWX CHECK DUPLICATES\n  sibling(A,B) :- holds(sec_1_section,sibling,A,B)."
 - model: blawx.workspace
-  pk: 33
+  pk: 47
   fields:
     ruledoc: 7
     workspace_name: sec_3_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"></xml>
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 34
+  pk: 48
   fields:
     ruledoc: 7
     workspace_name: sec_2_section
@@ -219,49 +144,23 @@
       xmlns="http://www.w3.org/1999/xhtml" objectname="opg"></mutation><field name="object_name">opg</field></block></value><value
       name="second_element"><block type="variable" id="X;a.*JNt_mX(;Ht9(81|"><field
       name="variable_name">Person</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(person,ward,boolean).
-
-      blawx_attribute_nlg(ward,not_applicable,"",not_applicable,"is a ward of the
-      state").
-
-      #pred ward(X) :: ''@(X) is a ward of the state''.
-
-      #pred holds(user,ward,X) :: ''it is provided as a fact that @(X) is a ward of
-      the state''.
-
-      #pred holds(user,-ward,X) :: ''it is provided as a fact that it is not the case
-      that @(X) is a ward of the state''.
-
-      #pred holds(Z,ward,X) :: ''the conclusion in @(Z) that @(X) is a ward of the
-      state holds''.
-
-      #pred holds(Z,-ward,X) :: ''the conclusion in @(Z) that it is not the case that
-      @(X) is a ward of the state holds''.
-
-      #pred according_to(Z,ward,X) :: ''according to @(Z), @(X) is a ward of the state''.
-
-      #pred according_to(Z,-ward,X) :: ''according to @(Z), it is not the case that
-      @(X) is a ward of the state''.
-
-      #pred blawx_defeated(Z,ward,X) :: ''the conclusion in @(Z) that @(X) is a ward
-      of the state is defeated''.
-
-      #pred blawx_defeated(Z,-ward,X) :: ''the conclusion in @(Z) that @(X) is a ward
-      of the state is defeated''.
-
-      ward(X) :- holds(_,ward,X).
-
-      -ward(X) :- holds(_,-ward,X).
-
-      person(opg).
-
-
-      according_to(sec_2_section,parent,Person,opg) :- ward(Person).
-
-
-      holds(sec_2_section,parent,Person,opg) :- according_to(sec_2_section,parent,Person,opg).'
+    scasp_encoding: "blawx_attribute(person,ward,boolean).\nblawx_attribute_nlg(ward,not_applicable,\"\",not_applicable,\"is
+      a ward of the state\").\n#pred ward(X) :: '@(X) is a ward of the state'.\n#pred
+      holds(user,ward,X) :: 'it is provided as a fact that @(X) is a ward of the state'.\n#pred
+      holds(user,-ward,X) :: 'it is provided as a fact that it is not the case that
+      @(X) is a ward of the state'.\n#pred holds(Z,ward,X) :: 'the conclusion in @(Z)
+      that @(X) is a ward of the state holds'.\n#pred holds(Z,-ward,X) :: 'the conclusion
+      in @(Z) that it is not the case that @(X) is a ward of the state holds'.\n#pred
+      according_to(Z,ward,X) :: 'according to @(Z), @(X) is a ward of the state'.\n#pred
+      according_to(Z,-ward,X) :: 'according to @(Z), it is not the case that @(X)
+      is a ward of the state'.\n#pred blawx_defeated(Z,ward,X) :: 'the conclusion
+      in @(Z) that @(X) is a ward of the state is defeated'.\n#pred blawx_defeated(Z,-ward,X)
+      :: 'the conclusion in @(Z) that @(X) is a ward of the state is defeated'.\nperson(opg).\n\naccording_to(sec_2_section,parent,Person,opg)
+      :- ward(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_2_section,parent,Person,opg)
+      :- according_to(sec_2_section,parent,Person,opg).\n\n% BLAWX CHECK DUPLICATES\n
+      \ parent(Person,opg) :- holds(sec_2_section,parent,Person,opg)."
 - model: blawx.blawxtest
-  pk: 13
+  pk: 27
   fields:
     ruledoc: 7
     test_name: broken_test
@@ -317,7 +216,7 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 14
+  pk: 28
   fields:
     ruledoc: 7
     test_name: broken_code
@@ -372,7 +271,7 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 15
+  pk: 29
   fields:
     ruledoc: 7
     test_name: broken_rule
@@ -409,7 +308,7 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 16
+  pk: 30
   fields:
     ruledoc: 7
     test_name: automation

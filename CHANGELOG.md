@@ -52,9 +52,7 @@ order to be defeasible. Checking the "subject to exceptions" checkbox has that s
 * Reasoner endpoints were returning duplicate explanations
 
 ### To Do
-* Update the generated code in all of the examples
 * R34 test fails with stack error
-* Double check updates to documentation
 
 ## [v1.4.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.1-alpha) 2023-03-02
 

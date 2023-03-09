@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 8
+  pk: 9
   fields:
     ruledoc_name: Covid Test
     rule_text: "Covid Test Rule\r\n\r\n1. A person may board a flight if they have
@@ -10,16 +10,16 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 35
+  pk: 52
   fields:
-    ruledoc: 8
+    ruledoc: 9
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 36
+  pk: 53
   fields:
-    ruledoc: 8
+    ruledoc: 9
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="/VkgyzyW3Xot[^le+r(Z" x="47" y="53"><statement name="statements"><block
@@ -134,367 +134,130 @@
       name="postfix"></field><value name="first_element"><block type="variable" id="Hv_vcEVTe$YiS~6$6H7I"><field
       name="variable_name">Person</field></block></value><value name="second_element"><block
       type="variable" id="^Su_hE%A/=dWzYkGu1Xv"><field name="variable_name">Flight</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(person).
-
-      blawx_category_nlg(person,"","is a person").
-
-      #pred person(X) :: ''@(X) is a person''.
-
-      #pred holds(user,person,X) :: ''it is provided as a fact that @(X) is a person''.
-
-      #pred holds(user,-person,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is a person''.
-
-      #pred holds(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a person holds''.
-
-      #pred holds(Z,-person,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is a person holds''.
-
-      #pred according_to(Z,person,X) :: ''according to @(Z), @(X) is a person''.
-
-      #pred according_to(Z,-person,X) :: ''according to @(Z), it is not the case that
-      @(X) is a person''.
-
-      #pred blawx_defeated(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a
-      person is defeated''.
-
-      #pred blawx_defeated(Z,-person,X) :: ''the conclusion in @(Z) that @(X) is a
-      person is defeated''.
-
-      person(X) :- holds(_,person,X).
-
-      -person(X) :- holds(_,-person,X).
-
-      blawx_category(flight).
-
-      blawx_category_nlg(flight,"","is a flight").
-
-      #pred flight(X) :: ''@(X) is a flight''.
-
-      #pred holds(user,flight,X) :: ''it is provided as a fact that @(X) is a flight''.
-
-      #pred holds(user,-flight,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is a flight''.
-
-      #pred holds(Z,flight,X) :: ''the conclusion in @(Z) that @(X) is a flight holds''.
-
-      #pred holds(Z,-flight,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is a flight holds''.
-
-      #pred according_to(Z,flight,X) :: ''according to @(Z), @(X) is a flight''.
-
-      #pred according_to(Z,-flight,X) :: ''according to @(Z), it is not the case that
-      @(X) is a flight''.
-
-      #pred blawx_defeated(Z,flight,X) :: ''the conclusion in @(Z) that @(X) is a
-      flight is defeated''.
-
-      #pred blawx_defeated(Z,-flight,X) :: ''the conclusion in @(Z) that @(X) is a
-      flight is defeated''.
-
-      flight(X) :- holds(_,flight,X).
-
-      -flight(X) :- holds(_,-flight,X).
-
-      blawx_category(test_result).
-
-      blawx_category_nlg(test_result,"","is a test_result").
-
-      #pred test_result(X) :: ''@(X) is a test_result''.
-
-      #pred holds(user,test_result,X) :: ''it is provided as a fact that @(X) is a
-      test_result''.
-
-      #pred holds(user,-test_result,X) :: ''it is provided as a fact that it is not
-      the case that @(X) is a test_result''.
-
-      #pred holds(Z,test_result,X) :: ''the conclusion in @(Z) that @(X) is a test_result
-      holds''.
-
-      #pred holds(Z,-test_result,X) :: ''the conclusion in @(Z) that it is not the
-      case that @(X) is a test_result holds''.
-
-      #pred according_to(Z,test_result,X) :: ''according to @(Z), @(X) is a test_result''.
-
-      #pred according_to(Z,-test_result,X) :: ''according to @(Z), it is not the case
-      that @(X) is a test_result''.
-
-      #pred blawx_defeated(Z,test_result,X) :: ''the conclusion in @(Z) that @(X)
-      is a test_result is defeated''.
-
-      #pred blawx_defeated(Z,-test_result,X) :: ''the conclusion in @(Z) that @(X)
-      is a test_result is defeated''.
-
-      test_result(X) :- holds(_,test_result,X).
-
-      -test_result(X) :- holds(_,-test_result,X).
-
-      blawx_category(test).
-
-      blawx_category_nlg(test,"","is a test").
-
-      #pred test(X) :: ''@(X) is a test''.
-
-      #pred holds(user,test,X) :: ''it is provided as a fact that @(X) is a test''.
-
-      #pred holds(user,-test,X) :: ''it is provided as a fact that it is not the case
-      that @(X) is a test''.
-
-      #pred holds(Z,test,X) :: ''the conclusion in @(Z) that @(X) is a test holds''.
-
-      #pred holds(Z,-test,X) :: ''the conclusion in @(Z) that it is not the case that
-      @(X) is a test holds''.
-
-      #pred according_to(Z,test,X) :: ''according to @(Z), @(X) is a test''.
-
-      #pred according_to(Z,-test,X) :: ''according to @(Z), it is not the case that
-      @(X) is a test''.
-
-      #pred blawx_defeated(Z,test,X) :: ''the conclusion in @(Z) that @(X) is a test
-      is defeated''.
-
-      #pred blawx_defeated(Z,-test,X) :: ''the conclusion in @(Z) that @(X) is a test
-      is defeated''.
-
-      test(X) :- holds(_,test,X).
-
-      -test(X) :- holds(_,-test,X).
-
-      blawx_attribute(person,ticketed_for,flight).
-
-      blawx_attribute_nlg(ticketed_for,ov,"","has a ticket for","").
-
-      #pred ticketed_for(X,Y) :: ''@(X) has a ticket for @(Y)''.
-
-      #pred holds(user,ticketed_for,X,Y) :: ''it is provided as a fact that @(X) has
-      a ticket for @(Y)''.
-
-      #pred holds(user,-ticketed_for,X,Y) :: ''it is provided as a fact that it is
-      not the case that @(X) has a ticket for @(Y)''.
-
-      #pred holds(Z,ticketed_for,X,Y) :: ''the conclusion in @(Z) that @(X) has a
-      ticket for @(Y) holds''.
-
-      #pred holds(Z,-ticketed_for,X,Y) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) has a ticket for @(Y) holds''.
-
-      #pred according_to(Z,ticketed_for,X,Y) :: ''according to @(Z), @(X) has a ticket
-      for @(Y)''.
-
-      #pred according_to(Z,-ticketed_for,X,Y) :: ''according to @(Z), it is not the
-      case that @(X) has a ticket for @(Y)''.
-
-      #pred blawx_defeated(Z,ticketed_for,X,Y) :: ''the conclusion in @(Z) that @(X)
-      has a ticket for @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-ticketed_for,X,Y) :: ''the conclusion in @(Z) that @(X)
-      has a ticket for @(Y) is defeated''.
-
-      ticketed_for(X,Y) :- holds(_,ticketed_for,X,Y).
-
-      -ticketed_for(X,Y) :- holds(_,-ticketed_for,X,Y).
-
-      blawx_attribute(person,may_board,flight).
-
-      blawx_attribute_nlg(may_board,ov,"","is permitted to board","").
-
-      #pred may_board(X,Y) :: ''@(X) is permitted to board @(Y)''.
-
-      #pred holds(user,may_board,X,Y) :: ''it is provided as a fact that @(X) is permitted
-      to board @(Y)''.
-
-      #pred holds(user,-may_board,X,Y) :: ''it is provided as a fact that it is not
-      the case that @(X) is permitted to board @(Y)''.
-
-      #pred holds(Z,may_board,X,Y) :: ''the conclusion in @(Z) that @(X) is permitted
-      to board @(Y) holds''.
-
-      #pred holds(Z,-may_board,X,Y) :: ''the conclusion in @(Z) that it is not the
-      case that @(X) is permitted to board @(Y) holds''.
-
-      #pred according_to(Z,may_board,X,Y) :: ''according to @(Z), @(X) is permitted
-      to board @(Y)''.
-
-      #pred according_to(Z,-may_board,X,Y) :: ''according to @(Z), it is not the case
-      that @(X) is permitted to board @(Y)''.
-
-      #pred blawx_defeated(Z,may_board,X,Y) :: ''the conclusion in @(Z) that @(X)
-      is permitted to board @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-may_board,X,Y) :: ''the conclusion in @(Z) that @(X)
-      is permitted to board @(Y) is defeated''.
-
-      may_board(X,Y) :- holds(_,may_board,X,Y).
-
-      -may_board(X,Y) :- holds(_,-may_board,X,Y).
-
-      blawx_attribute(test,subject,person).
-
-      blawx_attribute_nlg(subject,vo,"","took a covid test","").
-
-      #pred subject(Y,X) :: ''@(X) took a covid test @(Y)''.
-
-      #pred holds(user,subject,Y,X) :: ''it is provided as a fact that @(X) took a
-      covid test @(Y)''.
-
-      #pred holds(user,-subject,Y,X) :: ''it is provided as a fact that it is not
-      the case that @(X) took a covid test @(Y)''.
-
-      #pred holds(Z,subject,Y,X) :: ''the conclusion in @(Z) that @(X) took a covid
-      test @(Y) holds''.
-
-      #pred holds(Z,-subject,Y,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) took a covid test @(Y) holds''.
-
-      #pred according_to(Z,subject,Y,X) :: ''according to @(Z), @(X) took a covid
-      test @(Y)''.
-
-      #pred according_to(Z,-subject,Y,X) :: ''according to @(Z), it is not the case
-      that @(X) took a covid test @(Y)''.
-
-      #pred blawx_defeated(Z,subject,Y,X) :: ''the conclusion in @(Z) that @(X) took
-      a covid test @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-subject,Y,X) :: ''the conclusion in @(Z) that @(X) took
-      a covid test @(Y) is defeated''.
-
-      subject(X,Y) :- holds(_,subject,X,Y).
-
-      -subject(X,Y) :- holds(_,-subject,X,Y).
-
-      blawx_attribute(test,result,test_result).
-
-      blawx_attribute_nlg(result,ov,"the result of","was","").
-
-      #pred result(X,Y) :: ''the result of @(X) was @(Y)''.
-
-      #pred holds(user,result,X,Y) :: ''it is provided as a fact that the result of
-      @(X) was @(Y)''.
-
-      #pred holds(user,-result,X,Y) :: ''it is provided as a fact that it is not the
-      case that the result of @(X) was @(Y)''.
-
-      #pred holds(Z,result,X,Y) :: ''the conclusion in @(Z) that the result of @(X)
-      was @(Y) holds''.
-
-      #pred holds(Z,-result,X,Y) :: ''the conclusion in @(Z) that it is not the case
-      that the result of @(X) was @(Y) holds''.
-
-      #pred according_to(Z,result,X,Y) :: ''according to @(Z), the result of @(X)
-      was @(Y)''.
-
-      #pred according_to(Z,-result,X,Y) :: ''according to @(Z), it is not the case
-      that the result of @(X) was @(Y)''.
-
-      #pred blawx_defeated(Z,result,X,Y) :: ''the conclusion in @(Z) that the result
-      of @(X) was @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-result,X,Y) :: ''the conclusion in @(Z) that the result
-      of @(X) was @(Y) is defeated''.
-
-      result(X,Y) :- holds(_,result,X,Y).
-
-      -result(X,Y) :- holds(_,-result,X,Y).
-
-      blawx_attribute(test,administered_at,datetime).
-
-      blawx_attribute_nlg(administered_at,ov,"","was administered at","").
-
-      #pred administered_at(X,Y) :: ''@(X) was administered at @(Y)''.
-
-      #pred holds(user,administered_at,X,Y) :: ''it is provided as a fact that @(X)
-      was administered at @(Y)''.
-
-      #pred holds(user,-administered_at,X,Y) :: ''it is provided as a fact that it
-      is not the case that @(X) was administered at @(Y)''.
-
-      #pred holds(Z,administered_at,X,Y) :: ''the conclusion in @(Z) that @(X) was
-      administered at @(Y) holds''.
-
-      #pred holds(Z,-administered_at,X,Y) :: ''the conclusion in @(Z) that it is not
-      the case that @(X) was administered at @(Y) holds''.
-
-      #pred according_to(Z,administered_at,X,Y) :: ''according to @(Z), @(X) was administered
-      at @(Y)''.
-
-      #pred according_to(Z,-administered_at,X,Y) :: ''according to @(Z), it is not
-      the case that @(X) was administered at @(Y)''.
-
-      #pred blawx_defeated(Z,administered_at,X,Y) :: ''the conclusion in @(Z) that
-      @(X) was administered at @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-administered_at,X,Y) :: ''the conclusion in @(Z) that
-      @(X) was administered at @(Y) is defeated''.
-
-      administered_at(X,Y) :- holds(_,administered_at,X,Y).
-
-      -administered_at(X,Y) :- holds(_,-administered_at,X,Y).
-
-      blawx_attribute(flight,scheduled_departure,datetime).
-
-      blawx_attribute_nlg(scheduled_departure,ov,"","is scheduled to depart at","").
-
-      #pred scheduled_departure(X,Y) :: ''@(X) is scheduled to depart at @(Y)''.
-
-      #pred holds(user,scheduled_departure,X,Y) :: ''it is provided as a fact that
-      @(X) is scheduled to depart at @(Y)''.
-
-      #pred holds(user,-scheduled_departure,X,Y) :: ''it is provided as a fact that
-      it is not the case that @(X) is scheduled to depart at @(Y)''.
-
-      #pred holds(Z,scheduled_departure,X,Y) :: ''the conclusion in @(Z) that @(X)
-      is scheduled to depart at @(Y) holds''.
-
-      #pred holds(Z,-scheduled_departure,X,Y) :: ''the conclusion in @(Z) that it
-      is not the case that @(X) is scheduled to depart at @(Y) holds''.
-
-      #pred according_to(Z,scheduled_departure,X,Y) :: ''according to @(Z), @(X) is
-      scheduled to depart at @(Y)''.
-
-      #pred according_to(Z,-scheduled_departure,X,Y) :: ''according to @(Z), it is
-      not the case that @(X) is scheduled to depart at @(Y)''.
-
-      #pred blawx_defeated(Z,scheduled_departure,X,Y) :: ''the conclusion in @(Z)
-      that @(X) is scheduled to depart at @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-scheduled_departure,X,Y) :: ''the conclusion in @(Z)
-      that @(X) is scheduled to depart at @(Y) is defeated''.
-
-      scheduled_departure(X,Y) :- holds(_,scheduled_departure,X,Y).
-
-      -scheduled_departure(X,Y) :- holds(_,-scheduled_departure,X,Y).
-
-      test_result(positive).
-
-      test_result(negative).
-
-
-      according_to(sec_1_section,may_board,Person,Flight) :- person(Person),
-
-      flight(Flight),
-
-      test(Test),
-
-      ticketed_for(Person,Flight),
-
-      subject(Test,Person),
-
-      scheduled_departure(Flight,ScheduledDeparture),
-
-      result(Test,negative),
-
-      administered_at(Test,TestTime),
-
-      datetime_diff_duration(ScheduledDeparture,TestTime,DurationFromTestToDeparture),
-
-      lte(DurationFromTestToDeparture,duration(1,0,0,0,72,0,0)).
-
-
-      holds(sec_1_section,may_board,Person,Flight) :- according_to(sec_1_section,may_board,Person,Flight).'
+    scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
+      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
+      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
+      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
+      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
+      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
+      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
+      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\nblawx_category(flight).\nblawx_category_nlg(flight,\"\",\"is
+      a flight\").\n#pred flight(X) :: '@(X) is a flight'.\n#pred holds(user,flight,X)
+      :: 'it is provided as a fact that @(X) is a flight'.\n#pred holds(user,-flight,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a flight'.\n#pred
+      holds(Z,flight,X) :: 'the conclusion in @(Z) that @(X) is a flight holds'.\n#pred
+      holds(Z,-flight,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a flight holds'.\n#pred according_to(Z,flight,X) :: 'according to @(Z), @(X)
+      is a flight'.\n#pred according_to(Z,-flight,X) :: 'according to @(Z), it is
+      not the case that @(X) is a flight'.\n#pred blawx_defeated(Z,flight,X) :: 'the
+      conclusion in @(Z) that @(X) is a flight is defeated'.\n#pred blawx_defeated(Z,-flight,X)
+      :: 'the conclusion in @(Z) that @(X) is a flight is defeated'.\nblawx_category(test_result).\nblawx_category_nlg(test_result,\"\",\"is
+      a test_result\").\n#pred test_result(X) :: '@(X) is a test_result'.\n#pred holds(user,test_result,X)
+      :: 'it is provided as a fact that @(X) is a test_result'.\n#pred holds(user,-test_result,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a test_result'.\n#pred
+      holds(Z,test_result,X) :: 'the conclusion in @(Z) that @(X) is a test_result
+      holds'.\n#pred holds(Z,-test_result,X) :: 'the conclusion in @(Z) that it is
+      not the case that @(X) is a test_result holds'.\n#pred according_to(Z,test_result,X)
+      :: 'according to @(Z), @(X) is a test_result'.\n#pred according_to(Z,-test_result,X)
+      :: 'according to @(Z), it is not the case that @(X) is a test_result'.\n#pred
+      blawx_defeated(Z,test_result,X) :: 'the conclusion in @(Z) that @(X) is a test_result
+      is defeated'.\n#pred blawx_defeated(Z,-test_result,X) :: 'the conclusion in
+      @(Z) that @(X) is a test_result is defeated'.\nblawx_category(test).\nblawx_category_nlg(test,\"\",\"is
+      a test\").\n#pred test(X) :: '@(X) is a test'.\n#pred holds(user,test,X) ::
+      'it is provided as a fact that @(X) is a test'.\n#pred holds(user,-test,X) ::
+      'it is provided as a fact that it is not the case that @(X) is a test'.\n#pred
+      holds(Z,test,X) :: 'the conclusion in @(Z) that @(X) is a test holds'.\n#pred
+      holds(Z,-test,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a test holds'.\n#pred according_to(Z,test,X) :: 'according to @(Z), @(X)
+      is a test'.\n#pred according_to(Z,-test,X) :: 'according to @(Z), it is not
+      the case that @(X) is a test'.\n#pred blawx_defeated(Z,test,X) :: 'the conclusion
+      in @(Z) that @(X) is a test is defeated'.\n#pred blawx_defeated(Z,-test,X) ::
+      'the conclusion in @(Z) that @(X) is a test is defeated'.\nblawx_attribute(person,ticketed_for,flight).\nblawx_attribute_nlg(ticketed_for,ov,\"\",\"has
+      a ticket for\",\"\").\n#pred ticketed_for(X,Y) :: '@(X) has a ticket for @(Y)'.\n#pred
+      holds(user,ticketed_for,X,Y) :: 'it is provided as a fact that @(X) has a ticket
+      for @(Y)'.\n#pred holds(user,-ticketed_for,X,Y) :: 'it is provided as a fact
+      that it is not the case that @(X) has a ticket for @(Y)'.\n#pred holds(Z,ticketed_for,X,Y)
+      :: 'the conclusion in @(Z) that @(X) has a ticket for @(Y) holds'.\n#pred holds(Z,-ticketed_for,X,Y)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) has a ticket for
+      @(Y) holds'.\n#pred according_to(Z,ticketed_for,X,Y) :: 'according to @(Z),
+      @(X) has a ticket for @(Y)'.\n#pred according_to(Z,-ticketed_for,X,Y) :: 'according
+      to @(Z), it is not the case that @(X) has a ticket for @(Y)'.\n#pred blawx_defeated(Z,ticketed_for,X,Y)
+      :: 'the conclusion in @(Z) that @(X) has a ticket for @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-ticketed_for,X,Y) :: 'the conclusion in @(Z) that @(X) has
+      a ticket for @(Y) is defeated'.\nblawx_attribute(person,may_board,flight).\nblawx_attribute_nlg(may_board,ov,\"\",\"is
+      permitted to board\",\"\").\n#pred may_board(X,Y) :: '@(X) is permitted to board
+      @(Y)'.\n#pred holds(user,may_board,X,Y) :: 'it is provided as a fact that @(X)
+      is permitted to board @(Y)'.\n#pred holds(user,-may_board,X,Y) :: 'it is provided
+      as a fact that it is not the case that @(X) is permitted to board @(Y)'.\n#pred
+      holds(Z,may_board,X,Y) :: 'the conclusion in @(Z) that @(X) is permitted to
+      board @(Y) holds'.\n#pred holds(Z,-may_board,X,Y) :: 'the conclusion in @(Z)
+      that it is not the case that @(X) is permitted to board @(Y) holds'.\n#pred
+      according_to(Z,may_board,X,Y) :: 'according to @(Z), @(X) is permitted to board
+      @(Y)'.\n#pred according_to(Z,-may_board,X,Y) :: 'according to @(Z), it is not
+      the case that @(X) is permitted to board @(Y)'.\n#pred blawx_defeated(Z,may_board,X,Y)
+      :: 'the conclusion in @(Z) that @(X) is permitted to board @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-may_board,X,Y) :: 'the conclusion in @(Z) that @(X) is permitted
+      to board @(Y) is defeated'.\nblawx_attribute(test,subject,person).\nblawx_attribute_nlg(subject,vo,\"\",\"took
+      a covid test\",\"\").\n#pred subject(Y,X) :: '@(X) took a covid test @(Y)'.\n#pred
+      holds(user,subject,Y,X) :: 'it is provided as a fact that @(X) took a covid
+      test @(Y)'.\n#pred holds(user,-subject,Y,X) :: 'it is provided as a fact that
+      it is not the case that @(X) took a covid test @(Y)'.\n#pred holds(Z,subject,Y,X)
+      :: 'the conclusion in @(Z) that @(X) took a covid test @(Y) holds'.\n#pred holds(Z,-subject,Y,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) took a covid test
+      @(Y) holds'.\n#pred according_to(Z,subject,Y,X) :: 'according to @(Z), @(X)
+      took a covid test @(Y)'.\n#pred according_to(Z,-subject,Y,X) :: 'according to
+      @(Z), it is not the case that @(X) took a covid test @(Y)'.\n#pred blawx_defeated(Z,subject,Y,X)
+      :: 'the conclusion in @(Z) that @(X) took a covid test @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-subject,Y,X) :: 'the conclusion in @(Z) that @(X) took a covid
+      test @(Y) is defeated'.\nblawx_attribute(test,result,test_result).\nblawx_attribute_nlg(result,ov,\"the
+      result of\",\"was\",\"\").\n#pred result(X,Y) :: 'the result of @(X) was @(Y)'.\n#pred
+      holds(user,result,X,Y) :: 'it is provided as a fact that the result of @(X)
+      was @(Y)'.\n#pred holds(user,-result,X,Y) :: 'it is provided as a fact that
+      it is not the case that the result of @(X) was @(Y)'.\n#pred holds(Z,result,X,Y)
+      :: 'the conclusion in @(Z) that the result of @(X) was @(Y) holds'.\n#pred holds(Z,-result,X,Y)
+      :: 'the conclusion in @(Z) that it is not the case that the result of @(X) was
+      @(Y) holds'.\n#pred according_to(Z,result,X,Y) :: 'according to @(Z), the result
+      of @(X) was @(Y)'.\n#pred according_to(Z,-result,X,Y) :: 'according to @(Z),
+      it is not the case that the result of @(X) was @(Y)'.\n#pred blawx_defeated(Z,result,X,Y)
+      :: 'the conclusion in @(Z) that the result of @(X) was @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-result,X,Y) :: 'the conclusion in @(Z) that the result of
+      @(X) was @(Y) is defeated'.\nblawx_attribute(test,administered_at,datetime).\nblawx_attribute_nlg(administered_at,ov,\"\",\"was
+      administered at\",\"\").\n#pred administered_at(X,Y) :: '@(X) was administered
+      at @(Y)'.\n#pred holds(user,administered_at,X,Y) :: 'it is provided as a fact
+      that @(X) was administered at @(Y)'.\n#pred holds(user,-administered_at,X,Y)
+      :: 'it is provided as a fact that it is not the case that @(X) was administered
+      at @(Y)'.\n#pred holds(Z,administered_at,X,Y) :: 'the conclusion in @(Z) that
+      @(X) was administered at @(Y) holds'.\n#pred holds(Z,-administered_at,X,Y) ::
+      'the conclusion in @(Z) that it is not the case that @(X) was administered at
+      @(Y) holds'.\n#pred according_to(Z,administered_at,X,Y) :: 'according to @(Z),
+      @(X) was administered at @(Y)'.\n#pred according_to(Z,-administered_at,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) was administered at @(Y)'.\n#pred
+      blawx_defeated(Z,administered_at,X,Y) :: 'the conclusion in @(Z) that @(X) was
+      administered at @(Y) is defeated'.\n#pred blawx_defeated(Z,-administered_at,X,Y)
+      :: 'the conclusion in @(Z) that @(X) was administered at @(Y) is defeated'.\nblawx_attribute(flight,scheduled_departure,datetime).\nblawx_attribute_nlg(scheduled_departure,ov,\"\",\"is
+      scheduled to depart at\",\"\").\n#pred scheduled_departure(X,Y) :: '@(X) is
+      scheduled to depart at @(Y)'.\n#pred holds(user,scheduled_departure,X,Y) ::
+      'it is provided as a fact that @(X) is scheduled to depart at @(Y)'.\n#pred
+      holds(user,-scheduled_departure,X,Y) :: 'it is provided as a fact that it is
+      not the case that @(X) is scheduled to depart at @(Y)'.\n#pred holds(Z,scheduled_departure,X,Y)
+      :: 'the conclusion in @(Z) that @(X) is scheduled to depart at @(Y) holds'.\n#pred
+      holds(Z,-scheduled_departure,X,Y) :: 'the conclusion in @(Z) that it is not
+      the case that @(X) is scheduled to depart at @(Y) holds'.\n#pred according_to(Z,scheduled_departure,X,Y)
+      :: 'according to @(Z), @(X) is scheduled to depart at @(Y)'.\n#pred according_to(Z,-scheduled_departure,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) is scheduled to depart at
+      @(Y)'.\n#pred blawx_defeated(Z,scheduled_departure,X,Y) :: 'the conclusion in
+      @(Z) that @(X) is scheduled to depart at @(Y) is defeated'.\n#pred blawx_defeated(Z,-scheduled_departure,X,Y)
+      :: 'the conclusion in @(Z) that @(X) is scheduled to depart at @(Y) is defeated'.\ntest_result(positive).\ntest_result(negative).\n\naccording_to(sec_1_section,may_board,Person,Flight)
+      :- person(Person),\nflight(Flight),\ntest(Test),\nticketed_for(Person,Flight),\nsubject(Test,Person),\nscheduled_departure(Flight,ScheduledDeparture),\nresult(Test,negative),\nadministered_at(Test,TestTime),\ndatetime_diff_duration(ScheduledDeparture,TestTime,DurationFromTestToDeparture),\nlte(DurationFromTestToDeparture,duration(1,0,0,0,72,0,0)).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_1_section,may_board,Person,Flight) :- according_to(sec_1_section,may_board,Person,Flight).\n\n%
+      BLAWX CHECK DUPLICATES\n  may_board(Person,Flight) :- holds(sec_1_section,may_board,Person,Flight)."
 - model: blawx.blawxtest
-  pk: 17
+  pk: 32
   fields:
-    ruledoc: 8
+    ruledoc: 9
     test_name: can_fly
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="U*RvlVr.!T)x:88LbXnM" x="90" y="249"><comment pinned="false" h="146" w="524">This
@@ -512,17 +275,11 @@
     view: '[''view_cat_test_result'', ''view_cat_person_att_may_board'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 18
+  pk: 33
   fields:
-    ruledoc: 8
+    ruledoc: 9
     test_name: good_test
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="datetime_value"
-      id="{7yxTg-hzX(PgN#_s_)$" x="0" y="0"><field name="year">2023</field><field
-      name="month">1</field><field name="day">4</field><field name="hours">12</field><field
-      name="minutes">0</field><field name="seconds">0</field></block><block type="datetime_value"
-      id="4bg9zh|bYcx$8Mf0ay_-" x="0" y="0"><field name="year">2023</field><field
-      name="month">1</field><field name="day">6</field><field name="hours">12</field><field
-      name="minutes">0</field><field name="seconds">0</field></block><block type="unattributed_fact"
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="~6[h`_zeg/KMr3bFg1H8" x="68" y="49"><statement name="statements"><block
       type="object_declaration" id="?BV-:}T-x#1d@$dL]iEJ"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
@@ -584,13 +341,7 @@
       name="object_name">bob</field></block></value><value name="second_element"><block
       type="object_selector" id="qZy.OIGaLJ^vH@DEDg_g"><mutation xmlns="http://www.w3.org/1999/xhtml"
       objectname="flight_to_hawaii"></mutation><field name="object_name">flight_to_hawaii</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'datetime(2023,1,4,12,0,0).
-
-
-      datetime(2023,1,6,12,0,0).
-
-
-      person(bob).
+    scasp_encoding: 'person(bob).
 
       flight(flight_to_hawaii).
 
@@ -612,17 +363,11 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 19
+  pk: 34
   fields:
-    ruledoc: 8
+    ruledoc: 9
     test_name: old_test
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="datetime_value"
-      id="2s03~stdCLhmW|wknB7p" x="0" y="0"><field name="year">2023</field><field
-      name="month">1</field><field name="day">6</field><field name="hours">12</field><field
-      name="minutes">0</field><field name="seconds">0</field></block><block type="datetime_value"
-      id="K~xk$Bc|(VRCBcJ!#j.3" x="0" y="0"><field name="year">2023</field><field
-      name="month">1</field><field name="day">1</field><field name="hours">12</field><field
-      name="minutes">0</field><field name="seconds">0</field></block><block type="unattributed_fact"
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="zC:]x}y1*:_,v-w1e;sv" x="111" y="89"><statement name="statements"><block
       type="object_declaration" id="2[p)j.[5lnm[d)VzKUc_"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
@@ -684,13 +429,7 @@
       name="object_name">bob</field></block></value><value name="second_element"><block
       type="object_selector" id="_|e,|k1,)9RLTTULh=1="><mutation xmlns="http://www.w3.org/1999/xhtml"
       objectname="flight_to_hawaii"></mutation><field name="object_name">flight_to_hawaii</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'datetime(2023,1,6,12,0,0).
-
-
-      datetime(2023,1,1,12,0,0).
-
-
-      person(bob).
+    scasp_encoding: 'person(bob).
 
       flight(flight_to_hawaii).
 

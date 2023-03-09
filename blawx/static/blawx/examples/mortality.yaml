@@ -8,14 +8,14 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 19
+  pk: 29
   fields:
     ruledoc: 3
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 20
+  pk: 30
   fields:
     ruledoc: 3
     workspace_name: sec_1_section
@@ -37,75 +37,31 @@
       type="new_object_category" id="9Z;zlYqV80Hl,]r:_lYv"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="mortal"></mutation><field name="category_name">mortal</field><value
       name="object"><block type="variable" id="5nP(jMWSc(9_Nx9dPU4d"><field name="variable_name">A</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(human).
-
-      blawx_category_nlg(human,"","is a human").
-
-      #pred human(X) :: ''@(X) is a human''.
-
-      #pred holds(user,human,X) :: ''it is provided as a fact that @(X) is a human''.
-
-      #pred holds(user,-human,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is a human''.
-
-      #pred holds(Z,human,X) :: ''the conclusion in @(Z) that @(X) is a human holds''.
-
-      #pred holds(Z,-human,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is a human holds''.
-
-      #pred according_to(Z,human,X) :: ''according to @(Z), @(X) is a human''.
-
-      #pred according_to(Z,-human,X) :: ''according to @(Z), it is not the case that
-      @(X) is a human''.
-
-      #pred blawx_defeated(Z,human,X) :: ''the conclusion in @(Z) that @(X) is a human
-      is defeated''.
-
-      #pred blawx_defeated(Z,-human,X) :: ''the conclusion in @(Z) that @(X) is a
-      human is defeated''.
-
-      human(X) :- holds(_,human,X).
-
-      -human(X) :- holds(_,-human,X).
-
-      blawx_category(mortal).
-
-      blawx_category_nlg(mortal,"","is a mortal").
-
-      #pred mortal(X) :: ''@(X) is a mortal''.
-
-      #pred holds(user,mortal,X) :: ''it is provided as a fact that @(X) is a mortal''.
-
-      #pred holds(user,-mortal,X) :: ''it is provided as a fact that it is not the
-      case that @(X) is a mortal''.
-
-      #pred holds(Z,mortal,X) :: ''the conclusion in @(Z) that @(X) is a mortal holds''.
-
-      #pred holds(Z,-mortal,X) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) is a mortal holds''.
-
-      #pred according_to(Z,mortal,X) :: ''according to @(Z), @(X) is a mortal''.
-
-      #pred according_to(Z,-mortal,X) :: ''according to @(Z), it is not the case that
-      @(X) is a mortal''.
-
-      #pred blawx_defeated(Z,mortal,X) :: ''the conclusion in @(Z) that @(X) is a
-      mortal is defeated''.
-
-      #pred blawx_defeated(Z,-mortal,X) :: ''the conclusion in @(Z) that @(X) is a
-      mortal is defeated''.
-
-      mortal(X) :- holds(_,mortal,X).
-
-      -mortal(X) :- holds(_,-mortal,X).
-
-
-      according_to(sec_1_section,mortal,A) :- human(A).
-
-
-      holds(sec_1_section,mortal,A) :- according_to(sec_1_section,mortal,A).'
+    scasp_encoding: "blawx_category(human).\nblawx_category_nlg(human,\"\",\"is a
+      human\").\n#pred human(X) :: '@(X) is a human'.\n#pred holds(user,human,X) ::
+      'it is provided as a fact that @(X) is a human'.\n#pred holds(user,-human,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a human'.\n#pred
+      holds(Z,human,X) :: 'the conclusion in @(Z) that @(X) is a human holds'.\n#pred
+      holds(Z,-human,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a human holds'.\n#pred according_to(Z,human,X) :: 'according to @(Z), @(X)
+      is a human'.\n#pred according_to(Z,-human,X) :: 'according to @(Z), it is not
+      the case that @(X) is a human'.\n#pred blawx_defeated(Z,human,X) :: 'the conclusion
+      in @(Z) that @(X) is a human is defeated'.\n#pred blawx_defeated(Z,-human,X)
+      :: 'the conclusion in @(Z) that @(X) is a human is defeated'.\nblawx_category(mortal).\nblawx_category_nlg(mortal,\"\",\"is
+      a mortal\").\n#pred mortal(X) :: '@(X) is a mortal'.\n#pred holds(user,mortal,X)
+      :: 'it is provided as a fact that @(X) is a mortal'.\n#pred holds(user,-mortal,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a mortal'.\n#pred
+      holds(Z,mortal,X) :: 'the conclusion in @(Z) that @(X) is a mortal holds'.\n#pred
+      holds(Z,-mortal,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a mortal holds'.\n#pred according_to(Z,mortal,X) :: 'according to @(Z), @(X)
+      is a mortal'.\n#pred according_to(Z,-mortal,X) :: 'according to @(Z), it is
+      not the case that @(X) is a mortal'.\n#pred blawx_defeated(Z,mortal,X) :: 'the
+      conclusion in @(Z) that @(X) is a mortal is defeated'.\n#pred blawx_defeated(Z,-mortal,X)
+      :: 'the conclusion in @(Z) that @(X) is a mortal is defeated'.\n\naccording_to(sec_1_section,mortal,A)
+      :- human(A).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1_section,mortal,A) :- according_to(sec_1_section,mortal,A).\n\n%
+      BLAWX CHECK DUPLICATES\n  mortal(A) :- holds(sec_1_section,mortal,A)."
 - model: blawx.blawxtest
-  pk: 8
+  pk: 20
   fields:
     ruledoc: 3
     test_name: Socrates

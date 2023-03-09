@@ -13,14 +13,14 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 8
+  pk: 18
   fields:
     ruledoc: 2
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 9
+  pk: 19
   fields:
     ruledoc: 2
     workspace_name: sec_1_section
@@ -64,10 +64,6 @@
       #pred blawx_defeated(Z,-game,X) :: ''the conclusion in @(Z) that @(X) is a game
       is defeated''.
 
-      game(X) :- holds(_,game,X).
-
-      -game(X) :- holds(_,-game,X).
-
       blawx_category(player).
 
       blawx_category_nlg(player,"","is a player").
@@ -94,10 +90,6 @@
 
       #pred blawx_defeated(Z,-player,X) :: ''the conclusion in @(Z) that @(X) is a
       player is defeated''.
-
-      player(X) :- holds(_,player,X).
-
-      -player(X) :- holds(_,-player,X).
 
       blawx_attribute(game,player,player).
 
@@ -126,13 +118,9 @@
       in @(Y) is defeated''.
 
       #pred blawx_defeated(Z,-player,Y,X) :: ''the conclusion in @(Z) that @(X) played
-      in @(Y) is defeated''.
-
-      player(X,Y) :- holds(_,player,X,Y).
-
-      -player(X,Y) :- holds(_,-player,X,Y).'
+      in @(Y) is defeated''.'
 - model: blawx.workspace
-  pk: 10
+  pk: 20
   fields:
     ruledoc: 2
     workspace_name: sec_2_section
@@ -166,13 +154,9 @@
       is defeated''.
 
       #pred blawx_defeated(Z,-sign,X) :: ''the conclusion in @(Z) that @(X) is a sign
-      is defeated''.
-
-      sign(X) :- holds(_,sign,X).
-
-      -sign(X) :- holds(_,-sign,X).'
+      is defeated''.'
 - model: blawx.workspace
-  pk: 11
+  pk: 21
   fields:
     ruledoc: 2
     workspace_name: sec_2__para_a_section
@@ -183,7 +167,7 @@
       name="object_name">rock</field><field name="postfix">is a sign</field></block></statement></block></xml>
     scasp_encoding: sign(rock).
 - model: blawx.workspace
-  pk: 12
+  pk: 22
   fields:
     ruledoc: 2
     workspace_name: sec_2__para_b_section
@@ -194,7 +178,7 @@
       name="object_name">paper</field><field name="postfix">is a sign</field></block></statement></block></xml>
     scasp_encoding: sign(paper).
 - model: blawx.workspace
-  pk: 13
+  pk: 23
   fields:
     ruledoc: 2
     workspace_name: sec_2__para_c_section
@@ -205,7 +189,7 @@
       name="object_name">scissors</field><field name="postfix">is a sign</field></block></statement></block></xml>
     scasp_encoding: sign(scissors).
 - model: blawx.workspace
-  pk: 14
+  pk: 24
   fields:
     ruledoc: 2
     workspace_name: sec_3__para_a_section
@@ -221,7 +205,7 @@
       name="object_name">scissors</field></block></value></block></statement></block></xml>
     scasp_encoding: beats(rock,scissors).
 - model: blawx.workspace
-  pk: 15
+  pk: 25
   fields:
     ruledoc: 2
     workspace_name: sec_3_section
@@ -257,13 +241,9 @@
       @(Y) is defeated''.
 
       #pred blawx_defeated(Z,-beats,X,Y) :: ''the conclusion in @(Z) that @(X) beats
-      @(Y) is defeated''.
-
-      beats(X,Y) :- holds(_,beats,X,Y).
-
-      -beats(X,Y) :- holds(_,-beats,X,Y).'
+      @(Y) is defeated''.'
 - model: blawx.workspace
-  pk: 16
+  pk: 26
   fields:
     ruledoc: 2
     workspace_name: sec_3__para_b_section
@@ -278,7 +258,7 @@
       xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field name="object_name">rock</field></block></value></block></statement></block></xml>
     scasp_encoding: beats(paper,rock).
 - model: blawx.workspace
-  pk: 17
+  pk: 27
   fields:
     ruledoc: 2
     workspace_name: sec_3__para_c_section
@@ -294,7 +274,7 @@
       objectname="paper"></mutation><field name="object_name">paper</field></block></value></block></statement></block></xml>
     scasp_encoding: beats(scissors,paper).
 - model: blawx.workspace
-  pk: 18
+  pk: 28
   fields:
     ruledoc: 2
     workspace_name: sec_4_section
@@ -364,94 +344,33 @@
       name="first_element"><block type="variable" id="//}tGADTWqR;V(9%()KP"><field
       name="variable_name">Game</field></block></value><value name="second_element"><block
       type="variable" id="ag,!^lQb:dB}bgV-;vE."><field name="variable_name">Player1</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_attribute(game,winner,player).
-
-      blawx_attribute_nlg(winner,ov,"the winner of","is","").
-
-      #pred winner(X,Y) :: ''the winner of @(X) is @(Y)''.
-
-      #pred holds(user,winner,X,Y) :: ''it is provided as a fact that the winner of
-      @(X) is @(Y)''.
-
-      #pred holds(user,-winner,X,Y) :: ''it is provided as a fact that it is not the
-      case that the winner of @(X) is @(Y)''.
-
-      #pred holds(Z,winner,X,Y) :: ''the conclusion in @(Z) that the winner of @(X)
-      is @(Y) holds''.
-
-      #pred holds(Z,-winner,X,Y) :: ''the conclusion in @(Z) that it is not the case
-      that the winner of @(X) is @(Y) holds''.
-
-      #pred according_to(Z,winner,X,Y) :: ''according to @(Z), the winner of @(X)
-      is @(Y)''.
-
-      #pred according_to(Z,-winner,X,Y) :: ''according to @(Z), it is not the case
-      that the winner of @(X) is @(Y)''.
-
-      #pred blawx_defeated(Z,winner,X,Y) :: ''the conclusion in @(Z) that the winner
-      of @(X) is @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-winner,X,Y) :: ''the conclusion in @(Z) that the winner
-      of @(X) is @(Y) is defeated''.
-
-      winner(X,Y) :- holds(_,winner,X,Y).
-
-      -winner(X,Y) :- holds(_,-winner,X,Y).
-
-      blawx_attribute(player,throw,sign).
-
-      blawx_attribute_nlg(throw,ov,"","threw","").
-
-      #pred throw(X,Y) :: ''@(X) threw @(Y)''.
-
-      #pred holds(user,throw,X,Y) :: ''it is provided as a fact that @(X) threw @(Y)''.
-
-      #pred holds(user,-throw,X,Y) :: ''it is provided as a fact that it is not the
-      case that @(X) threw @(Y)''.
-
-      #pred holds(Z,throw,X,Y) :: ''the conclusion in @(Z) that @(X) threw @(Y) holds''.
-
-      #pred holds(Z,-throw,X,Y) :: ''the conclusion in @(Z) that it is not the case
-      that @(X) threw @(Y) holds''.
-
-      #pred according_to(Z,throw,X,Y) :: ''according to @(Z), @(X) threw @(Y)''.
-
-      #pred according_to(Z,-throw,X,Y) :: ''according to @(Z), it is not the case
-      that @(X) threw @(Y)''.
-
-      #pred blawx_defeated(Z,throw,X,Y) :: ''the conclusion in @(Z) that @(X) threw
-      @(Y) is defeated''.
-
-      #pred blawx_defeated(Z,-throw,X,Y) :: ''the conclusion in @(Z) that @(X) threw
-      @(Y) is defeated''.
-
-      throw(X,Y) :- holds(_,throw,X,Y).
-
-      -throw(X,Y) :- holds(_,-throw,X,Y).
-
-
-      according_to(sec_4_section,winner,Game,Player1) :- game(Game),
-
-      player(Player1),
-
-      player(Player2),
-
-      Player1 \= Player2,
-
-      player(Game,Player1),
-
-      player(Game,Player2),
-
-      throw(Player1,Throw1),
-
-      throw(Player2,Throw2),
-
-      beats(Throw1,Throw2).
-
-
-      holds(sec_4_section,winner,Game,Player1) :- according_to(sec_4_section,winner,Game,Player1).'
+    scasp_encoding: "blawx_attribute(game,winner,player).\nblawx_attribute_nlg(winner,ov,\"the
+      winner of\",\"is\",\"\").\n#pred winner(X,Y) :: 'the winner of @(X) is @(Y)'.\n#pred
+      holds(user,winner,X,Y) :: 'it is provided as a fact that the winner of @(X)
+      is @(Y)'.\n#pred holds(user,-winner,X,Y) :: 'it is provided as a fact that it
+      is not the case that the winner of @(X) is @(Y)'.\n#pred holds(Z,winner,X,Y)
+      :: 'the conclusion in @(Z) that the winner of @(X) is @(Y) holds'.\n#pred holds(Z,-winner,X,Y)
+      :: 'the conclusion in @(Z) that it is not the case that the winner of @(X) is
+      @(Y) holds'.\n#pred according_to(Z,winner,X,Y) :: 'according to @(Z), the winner
+      of @(X) is @(Y)'.\n#pred according_to(Z,-winner,X,Y) :: 'according to @(Z),
+      it is not the case that the winner of @(X) is @(Y)'.\n#pred blawx_defeated(Z,winner,X,Y)
+      :: 'the conclusion in @(Z) that the winner of @(X) is @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-winner,X,Y) :: 'the conclusion in @(Z) that the winner of
+      @(X) is @(Y) is defeated'.\nblawx_attribute(player,throw,sign).\nblawx_attribute_nlg(throw,ov,\"\",\"threw\",\"\").\n#pred
+      throw(X,Y) :: '@(X) threw @(Y)'.\n#pred holds(user,throw,X,Y) :: 'it is provided
+      as a fact that @(X) threw @(Y)'.\n#pred holds(user,-throw,X,Y) :: 'it is provided
+      as a fact that it is not the case that @(X) threw @(Y)'.\n#pred holds(Z,throw,X,Y)
+      :: 'the conclusion in @(Z) that @(X) threw @(Y) holds'.\n#pred holds(Z,-throw,X,Y)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) threw @(Y) holds'.\n#pred
+      according_to(Z,throw,X,Y) :: 'according to @(Z), @(X) threw @(Y)'.\n#pred according_to(Z,-throw,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) threw @(Y)'.\n#pred blawx_defeated(Z,throw,X,Y)
+      :: 'the conclusion in @(Z) that @(X) threw @(Y) is defeated'.\n#pred blawx_defeated(Z,-throw,X,Y)
+      :: 'the conclusion in @(Z) that @(X) threw @(Y) is defeated'.\n\naccording_to(sec_4_section,winner,Game,Player1)
+      :- game(Game),\nplayer(Player1),\nplayer(Player2),\nPlayer1 \\= Player2,\nplayer(Game,Player1),\nplayer(Game,Player2),\nthrow(Player1,Throw1),\nthrow(Player2,Throw2),\nbeats(Throw1,Throw2).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_4_section,winner,Game,Player1) :- according_to(sec_4_section,winner,Game,Player1).\n\n%
+      BLAWX CHECK DUPLICATES\n  winner(Game,Player1) :- holds(sec_4_section,winner,Game,Player1)."
 - model: blawx.blawxtest
-  pk: 5
+  pk: 17
   fields:
     ruledoc: 2
     test_name: bobjane
@@ -525,7 +444,7 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 6
+  pk: 18
   fields:
     ruledoc: 2
     test_name: hypothetical
@@ -560,9 +479,9 @@
       name="variable_name">A</field></block></value><value name="second_element"><block
       type="variable" id="OD}H:m;/Zk1wrhZCM+Pi"><field name="variable_name">B</field></block></value></block></statement></block><block
       type="query" id="~~#dH%nQ*}tcOz=aC_I8" x="85" y="483"><comment pinned="false"
-      h="120.800048828125" w="359.1999816894531">We ask specifically whether bob won
-      any games so that we don't get the same three answers twice, once for each possible
-      player.</comment><statement name="query"><block type="attribute_selector" id="2PQ|z{/R+t8XL$?{eUC,"><mutation
+      h="120" w="359">We ask specifically whether bob won any games so that we don't
+      get the same three answers twice, once for each possible player.</comment><statement
+      name="query"><block type="attribute_selector" id="2PQ|z{/R+t8XL$?{eUC,"><mutation
       xmlns="http://www.w3.org/1999/xhtml" attributename="winner" attributetype="player"
       attributeorder="ov"></mutation><field name="prefix">the winner of</field><field
       name="infix">is</field><field name="postfix"></field><value name="first_element"><block
@@ -600,7 +519,7 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 7
+  pk: 19
   fields:
     ruledoc: 2
     test_name: who_wins
