@@ -457,10 +457,54 @@ def run_test(request,ruledoc,test_name):
         # print(translated_facts)
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       ruleset = ""
+      # for ws in wss:
+      #   ruleset += "\n\n" + ws.scasp_encoding
+      # ruleset += "\n\n" + test.scasp_encoding
+      unique_rules = []
       for ws in wss:
-        ruleset += "\n\n" + ws.scasp_encoding
-      ruleset += "\n\n" + test.scasp_encoding
+        # Go line by line through the code in each workspace. If the line is "% BLAWX CHECK DUPLICATE" then ignore that line and simplify the next line,
+        ruleset += "\n\n"
+        workspace_lines = ws.scasp_encoding.splitlines()
+        register_duplicate = False
+        for line in workspace_lines:
+          if line == "% BLAWX CHECK DUPLICATE\n":
+            register_duplicate = True
+            continue
+          elif register_duplicate == True:
+            # and add it to a checked list if it's not already in the list.
+            register_duplicate = False
+            simplified_line = simplify_rule(line)
+            if simplified_line not in unique_rules:
+              register_duplicate += simplified_line
+            continue
+          else:
+            # Otherwise, add it to the code.
+            ruleset += line + "\n"
+
+        
+      # do the same thing for the test.
+      ruleset += "\n\n"
+      test_lines = test.scasp_encoding.splitlines()
+      register_duplicate = False
+      for line in test_lines:
+        if line == "% BLAWX CHECK DUPLICATE\n":
+          register_duplicate = True
+          continue
+        elif register_duplicate == True:
+          register_duplicate = False
+          simplified_line = simplify_rule(line)
+          if simplified_line not in unique_rules:
+            register_duplicate += simplified_line
+          continue
+        else:
+          ruleset += line + "\n"
+
+      # Now add all the checked duplicate rules.
+      for ur in unique_rules:
+        ruleset += ur + "\n"
       
+
+
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
 :- use_module(library(scasp)).
@@ -762,6 +806,16 @@ def get_ontology(request,ruledoc,test_name):
     else:
       return HttpResponseForbidden()
 
+def simplify_rule(rule):
+  # Find all of the variables.
+  variables = get_variables(rule)
+  # Give each variable a replacement in the order in which they appear.
+  replacements = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q']
+  # Replace all instances of each variable with its replacement.
+  for index, var in enumerate(variables):
+    rule = rule.replace(var,replacements[index])
+  return rule
+
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([AllowAny])
@@ -874,9 +928,49 @@ def interview(request,ruledoc,test_name):
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
       ruleset = ""
+      unique_rules = []
       for ws in wss:
-        ruleset += "\n\n" + ws.scasp_encoding
-      ruleset += "\n\n" + test.scasp_encoding
+        # Go line by line through the code in each workspace. If the line is "% BLAWX CHECK DUPLICATE" then ignore that line and simplify the next line,
+        ruleset += "\n\n"
+        workspace_lines = ws.scasp_encoding.splitlines()
+        register_duplicate = False
+        for line in workspace_lines:
+          if line == "% BLAWX CHECK DUPLICATE\n":
+            register_duplicate = True
+            continue
+          elif register_duplicate == True:
+            # and add it to a checked list if it's not already in the list.
+            register_duplicate = False
+            simplified_line = simplify_rule(line)
+            if simplified_line not in unique_rules:
+              register_duplicate += simplified_line
+            continue
+          else:
+            # Otherwise, add it to the code.
+            ruleset += line + "\n"
+
+        
+      # do the same thing for the test.
+      ruleset += "\n\n"
+      test_lines = test.scasp_encoding.splitlines()
+      register_duplicate = False
+      for line in test_lines:
+        if line == "% BLAWX CHECK DUPLICATE\n":
+          register_duplicate = True
+          continue
+        elif register_duplicate == True:
+          register_duplicate = False
+          simplified_line = simplify_rule(line)
+          if simplified_line not in unique_rules:
+            register_duplicate += simplified_line
+          continue
+        else:
+          ruleset += line + "\n"
+
+      # Now add all the checked duplicate rules.
+      for ur in unique_rules:
+        ruleset += ur + "\n"
+      
       
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
