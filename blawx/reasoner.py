@@ -1169,7 +1169,14 @@ def generate_answers(answers):
     else:
       for a in result:
         if new_model['Variables'] == a['Variables']:
-          a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw'], 'Residuals': new_model['Residuals']})
+          # If this explanation is not identical to another one
+          duplicate = False
+          for m in a['Models']:
+            if json.dumps(m['Raw'].args[1][0]) == json.dumps(new_model['Raw'].args[1][0]):
+              duplicate = True
+              break
+          if not duplicate:
+            a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw'], 'Residuals': new_model['Residuals']})
   return result
 
 def generate_list_of_lists(string):
