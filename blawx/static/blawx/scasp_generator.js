@@ -961,8 +961,6 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred according_to(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
         code += '#pred blawx_defeated(Z,' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
         code += '#pred blawx_defeated(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
-        code += text_attribute_name + "(X,Y) :- holds(_," + text_attribute_name + ",X,Y).\n";
-        code += "-" + text_attribute_name + "(X,Y) :- holds(_,-" + text_attribute_name + ",X,Y).\n";
     } else {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
@@ -976,8 +974,6 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred according_to(Z,-' + text_attribute_name + ",X) :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
         code += '#pred blawx_defeated(Z,' + text_attribute_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
         code += '#pred blawx_defeated(Z,-' + text_attribute_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
-        code += text_attribute_name + "(X) :- holds(_," + text_attribute_name + ",X).\n";
-        code += "-" + text_attribute_name + "(X) :- holds(_,-" + text_attribute_name + ",X).\n";
     }
     return code;
 };
@@ -999,8 +995,6 @@ sCASP['new_category_declaration'] = function(block) {
     code += '#pred according_to(Z,-' + text_category_name + ",X) :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
     code += '#pred blawx_defeated(Z,' + text_category_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
     code += '#pred blawx_defeated(Z,-' + text_category_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
-    code += text_category_name + "(X) :- holds(_," + text_category_name + ",X).\n";
-    code += "-" + text_category_name + "(X) :- holds(_,-" + text_category_name + ",X).\n";
     return code;
 };
 
@@ -1059,7 +1053,7 @@ sCASP['attributed_rule'] = function(block) {
     }
     first_rule += ".\n";
 
-    var second_rule = "holds(" + value_source + ",";
+    var second_rule = "% BLAWX CHECK DUPLICATES\n" + "holds(" + value_source + ",";
     for (var i = 0; i< conclusion_parameters.length; i++) {
         second_rule += conclusion_parameters[i].trim();
         if (i+1 < conclusion_parameters.length) {
@@ -1085,7 +1079,17 @@ sCASP['attributed_rule'] = function(block) {
         second_rule += ")";
     }
     second_rule += ".\n";
-    var code = first_rule + '\n' + second_rule;
+
+    var third_rule = "% BLAWX CHECK DUPLICATES\n" + statements_conclusion + " :- "
+    third_rule += "holds(" + value_source + ",";
+    for (var i = 0; i< conclusion_parameters.length; i++) {
+        third_rule += conclusion_parameters[i].trim();
+        if (i+1 < conclusion_parameters.length) {
+            third_rule += ",";
+        }
+    }
+    third_rule += ").\n"
+    var code = first_rule + '\n' + second_rule + '\n' + third_rule;
     return code;
 };
 
