@@ -11,9 +11,10 @@ and breaking changes will not necessarily result in changes to the main version 
 
 **This release is NOT backward compatible.**
 
-This release revises the way defaults and exceptions are dealt with, simplifies getting access to legislative text in explanations without using defeasibility,
-and makes it possible to specify objects to which a rule does not apply. All examples have been updated to the new
-block language, and the documentation relevant to defautlts, exceptions, and applicability has been updated.
+This release revises the way defaults and exceptions are dealt with, dramatically speeds up code using defaults and exceptions,
+simplifies getting access to legislative text in explanations without using defaults and exceptions,
+and makes it possible to specify objects to which a rule does not "apply." All examples have been updated to the new
+block language, and the documentation relevant to defaults, exceptions, and applicability has been updated.
 
 ### Upgrade Notes
 
@@ -50,9 +51,9 @@ order to be defeasible. Checking the "subject to exceptions" checkbox has that s
 * New categories not available in the code editor
 
 ### To Do
-
+* Update the generated code in all of the examples
+* Figure out why there are still duplicate explanations, and get rid of them.
 * R34 test fails with stack error
-* OASA examples seem to run super slow? Rough estimate, about 2X slower.
 
 ## [v1.4.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.1-alpha) 2023-03-02
 

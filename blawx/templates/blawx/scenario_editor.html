@@ -217,7 +217,6 @@
                 return "any section"; // This is variable, return it as is.
             }
             if (!(text+human in section_texts)) {
-
                 // Search the string for the list of section references
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", "../../../rule/" + text.slice(0,-8) + "/", false);
@@ -326,6 +325,9 @@
                 // first argument, get the model from the index, and change the target to that model.
                 var proved_statement = getNodeName(parameters[0],answer,explanation)
                 target = explanation_node_index[proved_statement];
+            }
+            if(statement == "o_nmr_check") {
+                return []
             }
             if(statement == "query") {
                 show_subnodes = true;
