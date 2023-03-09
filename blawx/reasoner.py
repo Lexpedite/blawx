@@ -1172,7 +1172,7 @@ def generate_answers(answers):
           # If this explanation is not identical to another one
           duplicate = False
           for m in a['Models']:
-            if json.dumps(m['Raw'].args[1][0]) == json.dumps(new_model['Raw'].args[1][0]):
+            if json.dumps(m['Raw']['args'][1][0]) == json.dumps(new_model['Raw']['args'][1][0]):
               duplicate = True
               break
           if not duplicate:
