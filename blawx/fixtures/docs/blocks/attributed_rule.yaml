@@ -1,0 +1,67 @@
+- model: blawx.docpage
+  pk: blocks/attributed_rule
+  fields:
+    title: Attributed Rule Block
+    content: |
+      # Attributed Rule Block
+
+      ![Rule Block](/static/blawx/docs/images/blocks/attributed_rule.png)
+
+      ## Where Is It?
+
+      The attributed rule block is found in the Primary drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The attributed rule block is used to set out rules with which Blawx can infer new
+      information from facts, and attribute that conclusion to a section of the legislation.
+
+      The first statement connector, labeled "When we know:", allows you to set
+      out the conditions in which the rule is true.
+
+      The second input connector allows you to specify the section of the rule to which the
+      conclusion can be attributed.
+
+      The third statement connector allows you to set
+      out the new conclusion that can be drawn when the conditions are known to
+      be true. This should be a single statement.
+
+      It also has two checkboxes for "subject to exceptions" and "subject to inapplicability".
+
+      If you choose "subject to exceptions", the conclusion in that rule can be defeated by conclusions
+      in other rules, typically set out using the overrules block.
+
+      If you choose "subject to inapplicability", the effect of that rule can be turned off with regard
+      to specific objects, typically by using the "applies" block, and wrapping it in the "it is false that"
+      negation block.
+
+      ## Technical Details
+
+      The rule block is an outer block.
+
+      Its top statement connector accepts a stack of one or more condition statements.
+      These statements are treated as though they are all connected with an "and"
+      operator, and all variable names are shared among them, and with the conclusion.
+
+      Its bottom statement connector accepts exactly one conclusion statement.
+
+      The attributed rule connector actually uses three different rules to reach a conclusion, which can be summarized like this:
+
+      1. If the conditions are true, and (if subject to applicability) the section applies, then according to the section the conclusion is tentativley true.
+      2. If according to the section the conclusion is tentatively true, and (if subject to exceptions) no exceptions apply, the conclusion in this section holds.
+      3. If the conclusion in this section holds, that conclusion is true.
+
+      See the defaults and exceptions portion of the documentation for more details.
+
+      ## Tips
+
+      Blawx does not currently support an "or" operator. In the meantime, if the same
+      conclusion can be reached in multiple ways, that should be represented by
+      multiple rules with the same conclusion.
+
+      If multiple rules with the same conclusion, attributed to the same rule exist, all of them will be
+      affected by overrules blocks.
+
+      Typically, you will want to avoid having variables in the conclusion that are not
+      also present in the conditions.
+

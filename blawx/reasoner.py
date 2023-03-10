@@ -457,10 +457,54 @@ def run_test(request,ruledoc,test_name):
         # print(translated_facts)
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       ruleset = ""
+      # for ws in wss:
+      #   ruleset += "\n\n" + ws.scasp_encoding
+      # ruleset += "\n\n" + test.scasp_encoding
+      unique_rules = []
       for ws in wss:
-        ruleset += "\n\n" + ws.scasp_encoding
-      ruleset += "\n\n" + test.scasp_encoding
+        # Go line by line through the code in each workspace. If the line is "% BLAWX CHECK DUPLICATE" then ignore that line and simplify the next line,
+        ruleset += "\n\n"
+        workspace_lines = ws.scasp_encoding.splitlines()
+        register_duplicate = False
+        for line in workspace_lines:
+          if line == "% BLAWX CHECK DUPLICATES":
+            register_duplicate = True
+            continue
+          elif register_duplicate == True:
+            # and add it to a checked list if it's not already in the list.
+            register_duplicate = False
+            simplified_line = simplify_rule(line)
+            if simplified_line not in unique_rules:
+              unique_rules.append(simplified_line)
+            continue
+          else:
+            # Otherwise, add it to the code.
+            ruleset += line + "\n"
+
+        
+      # do the same thing for the test.
+      ruleset += "\n\n"
+      test_lines = test.scasp_encoding.splitlines()
+      register_duplicate = False
+      for line in test_lines:
+        if line == "% BLAWX CHECK DUPLICATES":
+          register_duplicate = True
+          continue
+        elif register_duplicate == True:
+          register_duplicate = False
+          simplified_line = simplify_rule(line)
+          if simplified_line not in unique_rules:
+            unique_rules.append(simplified_line)
+          continue
+        else:
+          ruleset += line + "\n"
+
+      # Now add all the checked duplicate rules.
+      for ur in unique_rules:
+        ruleset += ur + "\n"
       
+
+
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
 :- use_module(library(scasp)).
@@ -762,14 +806,24 @@ def get_ontology(request,ruledoc,test_name):
     else:
       return HttpResponseForbidden()
 
+def simplify_rule(rule):
+  # Find all of the variables.
+  variables = get_variables(rule)
+  # Give each variable a replacement in the order in which they appear.
+  replacements = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q']
+  # Replace all instances of each variable with its replacement.
+  for index, var in enumerate(variables):
+    rule = rule.replace(var,replacements[index])
+  return rule
+
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([AllowAny])
 def interview(request,ruledoc,test_name):
-    print("Dealing with interview request.\n")
+    #print("Dealing with interview request.\n")
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     if request.user.has_perm('blawx.run',test):
-      print("User has permissions.\n")
+      #print("User has permissions.\n")
 #       translated_facts = ""
 #       if request.data:
 #         translated_facts = new_json_2_scasp(request.data, ruledoc,test_name,True) #Generate answers ignoring assumptions in the submitted data
@@ -868,15 +922,55 @@ def interview(request,ruledoc,test_name):
       translated_facts = ""
       if request.data:
         translated_facts = newer_json_2_scasp(request.data, ruledoc, test_name) #Generate answers INCLUDING assumptions in the submitted data
-      print("Generated facts with assumptions:")
-      print(str(translated_facts) + "\n")
+      #print("Generated facts with assumptions:")
+      #print(str(translated_facts) + "\n")
 
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
       ruleset = ""
+      unique_rules = []
       for ws in wss:
-        ruleset += "\n\n" + ws.scasp_encoding
-      ruleset += "\n\n" + test.scasp_encoding
+        # Go line by line through the code in each workspace. If the line is "% BLAWX CHECK DUPLICATE" then ignore that line and simplify the next line,
+        ruleset += "\n\n"
+        workspace_lines = ws.scasp_encoding.splitlines()
+        register_duplicate = False
+        for line in workspace_lines:
+          if line == "% BLAWX CHECK DUPLICATES":
+            register_duplicate = True
+            continue
+          elif register_duplicate == True:
+            # and add it to a checked list if it's not already in the list.
+            register_duplicate = False
+            simplified_line = simplify_rule(line)
+            if simplified_line not in unique_rules:
+              unique_rules.append(simplified_line)
+            continue
+          else:
+            # Otherwise, add it to the code.
+            ruleset += line + "\n"
+
+        
+      # do the same thing for the test.
+      ruleset += "\n\n"
+      test_lines = test.scasp_encoding.splitlines()
+      register_duplicate = False
+      for line in test_lines:
+        if line == "% BLAWX CHECK DUPLICATES":
+          register_duplicate = True
+          continue
+        elif register_duplicate == True:
+          register_duplicate = False
+          simplified_line = simplify_rule(line)
+          if simplified_line not in unique_rules:
+            unique_rules.append(simplified_line)
+          continue
+        else:
+          ruleset += line + "\n"
+
+      # Now add all the checked duplicate rules.
+      for ur in unique_rules:
+        ruleset += ur + "\n"
+      
       
       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
       rulefile.write("""
@@ -921,7 +1015,7 @@ blawxrun(Query, Human, Tree, Model) :-
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      # print(temprulefile.read())
+      print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -934,7 +1028,7 @@ blawxrun(Query, Human, Tree, Model) :-
 
                 with redirect_stderr(transcript):
                     load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
-                print("Loading generated prolog file: " + str(load_file_answer) + '\n')
+                #print("Loading generated prolog file: " + str(load_file_answer) + '\n')
                 transcript.write(str(load_file_answer) + '\n')
                 if os.path.exists(rulefilename):
                     rules = open(rulefilename)
@@ -947,8 +1041,8 @@ blawxrun(Query, Human, Tree, Model) :-
                 with redirect_stderr(transcript):
                     # print("blawxrun(" + query + ",Human,Model).")
                     relevance_query_answer = swipl_thread.query("blawxrun(" + query + ",Human, Tree, Model).")
-                print("Running Relevance Query:")
-                print(str(relevance_query_answer) + "\n")
+                #print("Running Relevance Query:")
+                #print(str(relevance_query_answer) + "\n")
                 transcript.write(str(relevance_query_answer) + '\n')
 
                 transcript.close()
@@ -977,9 +1071,9 @@ blawxrun(Query, Human, Tree, Model) :-
       useful_assumptions = []
       relevant_categories = []
       relevant_attributes= []
-      print("Generating Answers")
+      #print("Generating Answers")
       relevance_answers_processed = generate_answers(relevance_query_answer)
-      print(str(relevance_answers_processed) + '\n')
+      #print(str(relevance_answers_processed) + '\n')
       for a in relevance_answers_processed:
         for m in a['Models']:
           assumptions.extend(find_assumptions(m['Raw']))
@@ -1039,7 +1133,7 @@ def generate_answers(answers):
   models = []
   result = []
   for a in answers:
-    print(answers)
+    #print(answers)
     new_model = {}
     new_model['Variables'] = {}
     new_model['Terms'] = {}
@@ -1064,8 +1158,8 @@ def generate_answers(answers):
     # The variable names are not used to distinguish answers, so I think we can move residuals
     # inside the model structure, and test variables without them, then change the scenario
     # editor code to process residuals from the model, not from the variables.
-    print("Searching for: " + str(new_model['Variables']))
-    print("Among: " + str([r['Variables'] for r in result]) + '\n')
+    #print("Searching for: " + str(new_model['Variables']))
+    #print("Among: " + str([r['Variables'] for r in result]) + '\n')
     if new_model['Variables'] not in [r['Variables'] for r in result]:
       new_answer = {}
       new_answer['Variables'] = new_model['Variables']
@@ -1075,7 +1169,15 @@ def generate_answers(answers):
     else:
       for a in result:
         if new_model['Variables'] == a['Variables']:
-          a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw'], 'Residuals': new_model['Residuals']})
+          # If this explanation is not identical to another one
+          duplicate = False
+          for m in a['Models']:
+            if 'args' in m['Raw']:
+              if json.dumps(m['Raw']['args'][1][0]) == json.dumps(new_model['Raw']['args'][1][0]):
+                duplicate = True
+                break
+          if not duplicate:
+            a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw'], 'Residuals': new_model['Residuals']})
   return result
 
 def generate_list_of_lists(string):

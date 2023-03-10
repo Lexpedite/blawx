@@ -1,0 +1,40 @@
+- model: blawx.docpage
+  pk: blocks/defeated
+  fields:
+    title: Defeated Block
+    content: |
+      # Defeated Block
+
+      ![Defeated Block](/static/blawx/docs/images/blocks/defeated.png)
+
+      ## Where Is It?
+
+      The Defeated block is located in the exceptions drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Defeated block is used to query or state whether a conclusion reached according to
+      a given section of the rules is defeated by another conclusion. Note that a conclusion need not
+      defeasibly hold to be defeated. The defeated block only states that **if** the defeated conclusion
+      would otherwise have held, it would be defeated. Not that it actually held and was defeated.
+
+      If you want to know if something actually held and was defeated, you need to check both the "according to"
+      and "defeated" blocks using the same section and conclusion.
+
+      ## Technical Details
+
+      The Defeated block is a statement block which can be stacked with other statements. It accepts
+      an input value which is a section selector or a variable, and an internal statement stack, which should be a single statement block, which is the conclusion
+      that may or may not be defeated.
+
+      ## Tips
+
+      Generally, you don't need to use the defeated block in your code.
+      Instead of making statements about defeating explicitly, it is easier to use the "overrules" block. Instead of asking
+      questions about defeats, it is easier to ask whether the conclusion is true, or whether there is no evidence that it
+      is true. If something is not true because it is defeated, that fact will appear in the explanations.
+
+      The main use of the defeated block is for troubleshooting problems with defeasibility in your rules.
+      
+      The defeated block will only have an effect on rules and conclusions where the attributed rule block
+      has been set "subject to exceptions", or in unattributed rules where it is being checked explicitly.

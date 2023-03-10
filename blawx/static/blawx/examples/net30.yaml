@@ -9,14 +9,14 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 26
+  pk: 43
   fields:
     ruledoc: 6
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 27
+  pk: 44
   fields:
     ruledoc: 6
     workspace_name: sec_1_section
@@ -36,9 +36,9 @@
       name="order">ov</field><field name="prefix">the payment due date of</field><field
       name="first_element">object</field><field name="infix">is</field><field name="second_element">value</field><field
       name="postfix"></field></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="@3@kyQZdcB+?%6/f*fbK" x="33" y="393"><statement
-      name="conditions"><block type="new_object_category" id="8GG3rXp-~qvDas~,D;W."><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="invoice"></mutation><field
+      type="attributed_rule" id="Q;GIL/%er4+#+y2z69a_" x="42" y="373"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="8GG3rXp-~qvDas~,D;W."><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="invoice"></mutation><field
       name="category_name">invoice</field><value name="object"><block type="variable"
       id="trx/VZFS{vF5_zs0asxF"><field name="variable_name">Invoice</field></block></value><next><block
       type="attribute_selector" id="FI_KT)=TV[bBP+CmHS@A"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -52,73 +52,59 @@
       name="months">0</field><field name="days">30</field><field name="hours">0</field><field
       name="minutes">0</field><field name="seconds">0</field></block></value><value
       name="first_date"><block type="variable" id="s$HKU$91aQm`CE[f;9dD"><field name="variable_name">Issue_date</field></block></value><value
-      name="second_date"><block type="variable" id="1SnRFvM]=H7S=I*kOspM"><field name="variable_name">Payment_date</field></block></value></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="according_to" id="bjs0wnS,@Fu_S$i5;^_b"><value
-      name="rule"><block type="doc_selector" id="#glJ$YMY_J#j)%/H4nkd"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      section_reference="sec_1_section"></mutation><field name="doc_part_name">NTA
-      1</field></block></value><statement name="statement"><block type="attribute_selector"
-      id="}rRTv3(FU`n2da5NIJ@F"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="payment_due_date"
-      attributetype="date" attributeorder="ov"></mutation><field name="prefix">the
-      payment due date of</field><field name="infix">is</field><field name="postfix"></field><value
-      name="first_element"><block type="variable" id="xO6$a![B|p=}Q-ZzY@^?"><field
+      name="second_date"><block type="variable" id="1SnRFvM]=H7S=I*kOspM"><field name="variable_name">Payment_date</field></block></value></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="T2pn:VMTP(zWPgoDUyMu"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1_section"></mutation><field
+      name="doc_part_name">NTA 1</field></block></value><statement name="conclusion"><block
+      type="attribute_selector" id="}rRTv3(FU`n2da5NIJ@F"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="payment_due_date" attributetype="date" attributeorder="ov"></mutation><field
+      name="prefix">the payment due date of</field><field name="infix">is</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="xO6$a![B|p=}Q-ZzY@^?"><field
       name="variable_name">Invoice</field></block></value><value name="second_element"><block
-      type="variable" id="5BADuW73xBw021=ulkRO"><field name="variable_name">Payment_date</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(invoice).
-
-      blawx_category_nlg(invoice,"","is an invoice").
-
-      #pred invoice(X) :: ''@(X) is an invoice''.
-
-      #pred according_to(R,invoice(X)) :: ''according to @(R), @(X) is an invoice''.
-
-      #pred legally_holds(_,invoice(X)) :: ''it legally holds that @(X) is an invoice''.
-
-      opposes(invoice(X,Y),-invoice(X,Y)).
-
-      opposes(-invoice(X,Y),invoice(X,Y)).
-
-      blawx_attribute(invoice,invoice_date,date).
-
-      blawx_attribute_nlg(invoice_date,ov,"the invoice date of","is","").
-
-      #pred invoice_date(X,Y) :: ''the invoice date of @(X) is @(Y)''.
-
-      #pred according_to(R,invoice_date(X,Y)) :: ''according to @(R), the invoice
-      date of @(X) is @(Y)''.
-
-      #pred legally_holds(_,invoice_date(X,Y)) :: ''it legally holds that the invoice
-      date of @(X) is @(Y)''.
-
-      opposes(invoice_date(X,Y),-invoice_date(X,Y)).
-
-      opposes(-invoice_date(X,Y),invoice_date(X,Y)).
-
-      blawx_attribute(invoice,payment_due_date,date).
-
-      blawx_attribute_nlg(payment_due_date,ov,"the payment due date of","is","").
-
-      #pred payment_due_date(X,Y) :: ''the payment due date of @(X) is @(Y)''.
-
-      #pred according_to(R,payment_due_date(X,Y)) :: ''according to @(R), the payment
-      due date of @(X) is @(Y)''.
-
-      #pred legally_holds(_,payment_due_date(X,Y)) :: ''it legally holds that the
-      payment due date of @(X) is @(Y)''.
-
-      opposes(payment_due_date(X,Y),-payment_due_date(X,Y)).
-
-      opposes(-payment_due_date(X,Y),payment_due_date(X,Y)).
-
-
-      according_to(sec_1_section,  payment_due_date(Invoice,Payment_date)) :-
-
-      invoice(Invoice),
-
-      invoice_date(Invoice,Issue_date),
-
-      datetime_add(Issue_date,duration(1,0,0,30,0,0,0),Payment_date).'
+      type="variable" id="5BADuW73xBw021=ulkRO"><field name="variable_name">Payment_date</field></block></value></block></statement></block></xml>
+    scasp_encoding: "blawx_category(invoice).\nblawx_category_nlg(invoice,\"\",\"is
+      an invoice\").\n#pred invoice(X) :: '@(X) is an invoice'.\n#pred holds(user,invoice,X)
+      :: 'it is provided as a fact that @(X) is an invoice'.\n#pred holds(user,-invoice,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is an invoice'.\n#pred
+      holds(Z,invoice,X) :: 'the conclusion in @(Z) that @(X) is an invoice holds'.\n#pred
+      holds(Z,-invoice,X) :: 'the conclusion in @(Z) that it is not the case that
+      @(X) is an invoice holds'.\n#pred according_to(Z,invoice,X) :: 'according to
+      @(Z), @(X) is an invoice'.\n#pred according_to(Z,-invoice,X) :: 'according to
+      @(Z), it is not the case that @(X) is an invoice'.\n#pred blawx_defeated(Z,invoice,X)
+      :: 'the conclusion in @(Z) that @(X) is an invoice is defeated'.\n#pred blawx_defeated(Z,-invoice,X)
+      :: 'the conclusion in @(Z) that @(X) is an invoice is defeated'.\nblawx_attribute(invoice,invoice_date,date).\nblawx_attribute_nlg(invoice_date,ov,\"the
+      invoice date of\",\"is\",\"\").\n#pred invoice_date(X,Y) :: 'the invoice date
+      of @(X) is @(Y)'.\n#pred holds(user,invoice_date,X,Y) :: 'it is provided as
+      a fact that the invoice date of @(X) is @(Y)'.\n#pred holds(user,-invoice_date,X,Y)
+      :: 'it is provided as a fact that it is not the case that the invoice date of
+      @(X) is @(Y)'.\n#pred holds(Z,invoice_date,X,Y) :: 'the conclusion in @(Z) that
+      the invoice date of @(X) is @(Y) holds'.\n#pred holds(Z,-invoice_date,X,Y) ::
+      'the conclusion in @(Z) that it is not the case that the invoice date of @(X)
+      is @(Y) holds'.\n#pred according_to(Z,invoice_date,X,Y) :: 'according to @(Z),
+      the invoice date of @(X) is @(Y)'.\n#pred according_to(Z,-invoice_date,X,Y)
+      :: 'according to @(Z), it is not the case that the invoice date of @(X) is @(Y)'.\n#pred
+      blawx_defeated(Z,invoice_date,X,Y) :: 'the conclusion in @(Z) that the invoice
+      date of @(X) is @(Y) is defeated'.\n#pred blawx_defeated(Z,-invoice_date,X,Y)
+      :: 'the conclusion in @(Z) that the invoice date of @(X) is @(Y) is defeated'.\nblawx_attribute(invoice,payment_due_date,date).\nblawx_attribute_nlg(payment_due_date,ov,\"the
+      payment due date of\",\"is\",\"\").\n#pred payment_due_date(X,Y) :: 'the payment
+      due date of @(X) is @(Y)'.\n#pred holds(user,payment_due_date,X,Y) :: 'it is
+      provided as a fact that the payment due date of @(X) is @(Y)'.\n#pred holds(user,-payment_due_date,X,Y)
+      :: 'it is provided as a fact that it is not the case that the payment due date
+      of @(X) is @(Y)'.\n#pred holds(Z,payment_due_date,X,Y) :: 'the conclusion in
+      @(Z) that the payment due date of @(X) is @(Y) holds'.\n#pred holds(Z,-payment_due_date,X,Y)
+      :: 'the conclusion in @(Z) that it is not the case that the payment due date
+      of @(X) is @(Y) holds'.\n#pred according_to(Z,payment_due_date,X,Y) :: 'according
+      to @(Z), the payment due date of @(X) is @(Y)'.\n#pred according_to(Z,-payment_due_date,X,Y)
+      :: 'according to @(Z), it is not the case that the payment due date of @(X)
+      is @(Y)'.\n#pred blawx_defeated(Z,payment_due_date,X,Y) :: 'the conclusion in
+      @(Z) that the payment due date of @(X) is @(Y) is defeated'.\n#pred blawx_defeated(Z,-payment_due_date,X,Y)
+      :: 'the conclusion in @(Z) that the payment due date of @(X) is @(Y) is defeated'.\n\naccording_to(sec_1_section,payment_due_date,Invoice,Payment_date)
+      :- invoice(Invoice),\ninvoice_date(Invoice,Issue_date),\ndatetime_add(Issue_date,duration(1,0,0,30,0,0,0),Payment_date).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_1_section,payment_due_date,Invoice,Payment_date)
+      :- according_to(sec_1_section,payment_due_date,Invoice,Payment_date).\n\n% BLAWX
+      CHECK DUPLICATES\n  payment_due_date(Invoice,Payment_date) :- holds(sec_1_section,payment_due_date,Invoice,Payment_date)."
 - model: blawx.blawxtest
-  pk: 9
+  pk: 26
   fields:
     ruledoc: 6
     test_name: payment
@@ -136,20 +122,19 @@
       type="date_value" id="Ah^^Auyo-S@NP9y$_nYs"><field name="year">2000</field><field
       name="month">1</field><field name="day">1</field></block></value></block></next></block></statement></block><block
       type="query" id="l`y*v[X(ub(qIQZ@Lv]U" x="105" y="192"><statement name="query"><block
-      type="holds" id="AJqFLd;y|p%T3pc%cwz_"><statement name="statement"><block type="attribute_selector"
-      id="|t0iF}|=eJY0)-PP{7?4"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="payment_due_date"
-      attributetype="date" attributeorder="ov"></mutation><field name="prefix">the
-      payment due date of</field><field name="infix">is</field><field name="postfix"></field><value
-      name="first_element"><block type="object_selector" id="Y`~_z5z%A0GBOUWhuzcP"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" objectname="test"></mutation><field name="object_name">test</field></block></value><value
-      name="second_element"><block type="variable" id="TPkiE-t:#R=P3jXv[EbJ"><field
-      name="variable_name">DueDate</field></block></value></block></statement></block></statement></block></xml>
+      type="attribute_selector" id="|t0iF}|=eJY0)-PP{7?4"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="payment_due_date" attributetype="date" attributeorder="ov"></mutation><field
+      name="prefix">the payment due date of</field><field name="infix">is</field><field
+      name="postfix"></field><value name="first_element"><block type="object_selector"
+      id="Y`~_z5z%A0GBOUWhuzcP"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="test"></mutation><field
+      name="object_name">test</field></block></value><value name="second_element"><block
+      type="variable" id="TPkiE-t:#R=P3jXv[EbJ"><field name="variable_name">DueDate</field></block></value></block></statement></block></xml>
     scasp_encoding: 'invoice(test).
 
       invoice_date(test,date(2000,1,1)).
 
 
-      ?- legally_holds(_,  payment_due_date(test,DueDate)).'
+      ?- payment_due_date(test,DueDate).'
     tutorial: ''
     view: ''
     fact_scenario: ''

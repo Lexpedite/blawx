@@ -5,6 +5,8 @@
     content: |
       # Opposes Block
 
+      **This block is deprecated as of v1.5.0-alpha, and may be removed at any time.**
+
       ![Opposes Block](/static/blawx/docs/images/blocks/opposes.png)
 
       ## Where Is It?

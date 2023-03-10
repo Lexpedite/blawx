@@ -210,11 +210,13 @@
         var expanded={}; // A list of tree elements that have been expanded.
         var section_texts = {};
         function addSectionReferences(text,human) {
+            if (text == "user") {
+                return "the facts provided by the user";
+            }
             if (text.charAt(0) === text.charAt(0).toUpperCase()) {
                 return "any section"; // This is variable, return it as is.
             }
             if (!(text+human in section_texts)) {
-
                 // Search the string for the list of section references
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", "../../../rule/" + text.slice(0,-8) + "/", false);
@@ -323,6 +325,9 @@
                 // first argument, get the model from the index, and change the target to that model.
                 var proved_statement = getNodeName(parameters[0],answer,explanation)
                 target = explanation_node_index[proved_statement];
+            }
+            if(statement == "o_nmr_check") {
+                return []
             }
             if(statement == "query") {
                 show_subnodes = true;
@@ -456,6 +461,24 @@
             }
         }
 
+        function convertToNode(array) {
+            // This function is to de-reify parameters in a term and convert them into the data structure that is used
+            // in the answerNLG function, rather than have to completely rewrite answerNLG to be able to deal with two different
+            // data structures...
+            // Essentially, it takes an array where the first element is the functor, and the rest are the arguments.
+            // If any of the parameters are also terms, the correct structure should already be there.
+            // If array[0] is an object with functor "-", 
+            if (array[0].hasOwnProperty('functor') && array[0].functor == "-") {
+                var object = {};
+                object['functor'] = '-';
+                object['args'] = [];
+                object['args'].push({'functor': array[0].args[0], 'args': array.slice(1)})
+            } else {
+                var object = {'functor': array[0], 'args': array.slice(1)};
+            }
+            return object
+        }
+
         function answerNLG(model,human) {
             if(model == "query") { // this is the root of a model
                 // This doesn't need a representation
@@ -471,46 +494,37 @@
                 return model.toString();
             } else if (Array.isArray(model)) {
                 return model.toString();
-            } else if (model.functor == "-") { // this is a "because" node or known false node
+            } else if (model.functor == "-") { // this is a known false node
                 return "it is not true that " + answerNLG(model.args[0],human);
             } else if (model.functor == "not" && model.args[0].functor != "-") {
                 return "there is no evidence that " + answerNLG(model.args[0],human);
             } else if (model.functor == "not" && model.args[0].functor == "-") {
                 return "it may be true that " + answerNLG(model.args[0].args[0],human);
-            } else if (model.functor == "legally_holds" && model.args[1].functor != "-") {
-                return "it legally holds that according to " + addSectionReferences(model.args[0],human) + ", " + answerNLG(model.args[1],human);
-            } else if (model.functor == "legally_holds" && model.args[1].functor == "-") {
-                return "it legally holds that it is false that according to " + addSectionReferences(model.args[0],human) + ", " + answerNLG(model.args[1].args[0],human);
-            } else if (model.functor == "according_to" && model.args[1].functor != "-") {
-                return "according to " + addSectionReferences(model.args[0],human) + ', ' + answerNLG(model.args[1],human);
-            } else if (model.functor == "according_to" && model.args[1].functor == "-") {
-                return "according to " + addSectionReferences(model.args[0],human) + ', it is not true that ' + answerNLG(model.args[1].args[0],human);
-            } else if (model.functor == "defeated" && model.args[1].functor != "-") {
-                return "the conclusion in " + addSectionReferences(model.args[0],human) + " that " + answerNLG(model.args[1],human) + " is defeated"
-            } else if (model.functor == "defeated" && model.args[1].functor == "-") {
-                return "the conclusion in " + addSectionReferences(model.args[0],human) + " that it is not true that " + answerNLG(model.args[1].args[0],human) + " is defeated"
-            } else if (model.functor == "refuted" && model.args[1].functor != "-") {
-                return "the conclusion in " + addSectionReferences(model.args[0],human) + " that " + answerNLG(model.args[1],human) + " is refuted"
-            } else if (model.functor == "refuted" && model.args[1].functor == "-") {
-                return "the conclusion in " + addSectionReferences(model.args[0],human) + " that it is not true that " + answerNLG(model.args[1].args[0],human) + " is refuted"
-            } else if (model.functor == "opposes" && model.args[1].functor != "-" && model.args[0].functor != "-") { // THIS IS WRONG BECAUSE TWO THINGS MIGHT BE NEGATED...
-                return "the conclusion " + answerNLG(model.args[0],human) + " opposes the conclusion " + answerNLG(model.args[1],human);
-            } else if (model.functor == "opposes" && (model.args[1].functor == "-" || model.args[0].functor =="-")) {
-                var output = "the concluson ";
-                if (model.args[0].functor == "-") {
-                    output += "it is not true that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "holds") {
+                // Now we need to convert the rest of the data to fit the old format.
+                var section = model.args[0];
+                var statement = convertToNode(model.args.slice(1));
+                if (statement.functor != "-") {
+                    return "it holds that according to " + addSectionReferences(section,human) + ", " + answerNLG(statement,human);
                 } else {
-                    output += answerNLG(model.args[0],human);
+                    return "it holds that it is false that according to " + addSectionReferences(section,human) + ", " + answerNLG(statement,human);
                 }
-                output += " opposes the conclusion that ";
-                if (model.args[1].functor == "-") {
-                    output += "it is not true that " + answerNLG(model.args[1].args[0],human);
+            } else if (model.functor == "according_to") {
+                var section = model.args[0];
+                var statement = convertToNode(model.args.slice(1));
+                if (statement.functor != "-") {
+                    return "according to " + addSectionReferences(section,human) + ', ' + answerNLG(statement,human);
                 } else {
-                    output += answerNLG(model.args[1],human);
+                    return "according to " + addSectionReferences(section,human) + ', it is not true that ' + answerNLG(statement,human);
                 }
-                return output;
-            } else if (model.functor == "overrules") {
-                return addSectionReferences(model.args[0],human) + " overrules " + addSectionReferences(model.args[1],human)
+            } else if (model.functor == "defeated") {
+                var section = model.args[0];
+                var statement = convertToNode(model.args.slice(1));
+                if (statement.functor != "-") {
+                    return "the conclusion in " + addSectionReferences(section,human) + " that " + answerNLG(statement,human) + " is defeated"
+                } else {
+                    return "the conclusion in " + addSectionReferences(model.args[0],human) + " that it is not true that " + answerNLG(statement,human) + " is defeated"
+                }
             } else if (model.functor == "abduced" && model.args[0].functor != "-") {
                 return "it is hypothesized that " + answerNLG(model.args[0],human);
             } else if (model.functor == "abduced" && model.args[0].functor == "-") {

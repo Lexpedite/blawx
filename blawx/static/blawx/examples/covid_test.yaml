@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 10
+  pk: 9
   fields:
     ruledoc_name: Covid Test
     rule_text: "Covid Test Rule\r\n\r\n1. A person may board a flight if they have
@@ -10,16 +10,16 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 51
+  pk: 52
   fields:
-    ruledoc: 10
+    ruledoc: 9
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 52
+  pk: 53
   fields:
-    ruledoc: 10
+    ruledoc: 9
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="/VkgyzyW3Xot[^le+r(Z" x="47" y="53"><statement name="statements"><block
@@ -72,9 +72,9 @@
       type="object_declaration" id="LIJG^YMKpXl#JVFTe+g2"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="test_result" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">negative</field><field name="postfix">is a test_result</field></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="aLoY$}g)e~Lk6[CPP;zy" x="51" y="946"><statement
-      name="conditions"><block type="new_object_category" id="d#KS4{A^Fg7EC0q~H~cc"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      type="attributed_rule" id="Nr;%A)+_.%n{@Eb`YwHd" x="37" y="905"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="d#KS4{A^Fg7EC0q~H~cc"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
       name="category_name">person</field><value name="object"><block type="variable"
       id="y-]ckU*=JTsEmFw:%:-!"><field name="variable_name">Person</field></block></value><next><block
       type="new_object_category" id="{c(vqW+q3,~H8@@#a+rf"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -124,196 +124,140 @@
       name="second_date"><block type="duration_value" id=".[R|dFgHZ$sP`.n=v|eQ"><field
       name="sign">1</field><field name="years">0</field><field name="months">0</field><field
       name="days">0</field><field name="hours">72</field><field name="minutes">0</field><field
-      name="seconds">0</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="attribute_selector" id="sf(MO(7ze)N^.FIBrJJJ"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="may_board" attributetype="flight"
-      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">is
-      permitted to board</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="Hv_vcEVTe$YiS~6$6H7I"><field name="variable_name">Person</field></block></value><value
-      name="second_element"><block type="variable" id="^Su_hE%A/=dWzYkGu1Xv"><field
-      name="variable_name">Flight</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(person).
-
-      blawx_category_nlg(person,"","is a person").
-
-      #pred person(X) :: ''@(X) is a person''.
-
-      #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
-
-      #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
-
-      opposes(person(X,Y),-person(X,Y)).
-
-      opposes(-person(X,Y),person(X,Y)).
-
-      blawx_category(flight).
-
-      blawx_category_nlg(flight,"","is a flight").
-
-      #pred flight(X) :: ''@(X) is a flight''.
-
-      #pred according_to(R,flight(X)) :: ''according to @(R), @(X) is a flight''.
-
-      #pred legally_holds(_,flight(X)) :: ''it legally holds that @(X) is a flight''.
-
-      opposes(flight(X,Y),-flight(X,Y)).
-
-      opposes(-flight(X,Y),flight(X,Y)).
-
-      blawx_category(test_result).
-
-      blawx_category_nlg(test_result,"","is a test_result").
-
-      #pred test_result(X) :: ''@(X) is a test_result''.
-
-      #pred according_to(R,test_result(X)) :: ''according to @(R), @(X) is a test_result''.
-
-      #pred legally_holds(_,test_result(X)) :: ''it legally holds that @(X) is a test_result''.
-
-      opposes(test_result(X,Y),-test_result(X,Y)).
-
-      opposes(-test_result(X,Y),test_result(X,Y)).
-
-      blawx_category(test).
-
-      blawx_category_nlg(test,"","is a test").
-
-      #pred test(X) :: ''@(X) is a test''.
-
-      #pred according_to(R,test(X)) :: ''according to @(R), @(X) is a test''.
-
-      #pred legally_holds(_,test(X)) :: ''it legally holds that @(X) is a test''.
-
-      opposes(test(X,Y),-test(X,Y)).
-
-      opposes(-test(X,Y),test(X,Y)).
-
-      blawx_attribute(person,ticketed_for,flight).
-
-      blawx_attribute_nlg(ticketed_for,ov,"","has a ticket for","").
-
-      #pred ticketed_for(X,Y) :: ''@(X) has a ticket for @(Y)''.
-
-      #pred according_to(R,ticketed_for(X,Y)) :: ''according to @(R), @(X) has a ticket
-      for @(Y)''.
-
-      #pred legally_holds(_,ticketed_for(X,Y)) :: ''it legally holds that @(X) has
-      a ticket for @(Y)''.
-
-      opposes(ticketed_for(X,Y),-ticketed_for(X,Y)).
-
-      opposes(-ticketed_for(X,Y),ticketed_for(X,Y)).
-
-      blawx_attribute(person,may_board,flight).
-
-      blawx_attribute_nlg(may_board,ov,"","is permitted to board","").
-
-      #pred may_board(X,Y) :: ''@(X) is permitted to board @(Y)''.
-
-      #pred according_to(R,may_board(X,Y)) :: ''according to @(R), @(X) is permitted
-      to board @(Y)''.
-
-      #pred legally_holds(_,may_board(X,Y)) :: ''it legally holds that @(X) is permitted
-      to board @(Y)''.
-
-      opposes(may_board(X,Y),-may_board(X,Y)).
-
-      opposes(-may_board(X,Y),may_board(X,Y)).
-
-      blawx_attribute(test,subject,person).
-
-      blawx_attribute_nlg(subject,vo,"","took a covid test","").
-
-      #pred subject(Y,X) :: ''@(X) took a covid test @(Y)''.
-
-      #pred according_to(R,subject(Y,X)) :: ''according to @(R), @(X) took a covid
-      test @(Y)''.
-
-      #pred legally_holds(_,subject(Y,X)) :: ''it legally holds that @(X) took a covid
-      test @(Y)''.
-
-      opposes(subject(X,Y),-subject(X,Y)).
-
-      opposes(-subject(X,Y),subject(X,Y)).
-
-      blawx_attribute(test,result,test_result).
-
-      blawx_attribute_nlg(result,ov,"the result of","was","").
-
-      #pred result(X,Y) :: ''the result of @(X) was @(Y)''.
-
-      #pred according_to(R,result(X,Y)) :: ''according to @(R), the result of @(X)
-      was @(Y)''.
-
-      #pred legally_holds(_,result(X,Y)) :: ''it legally holds that the result of
-      @(X) was @(Y)''.
-
-      opposes(result(X,Y),-result(X,Y)).
-
-      opposes(-result(X,Y),result(X,Y)).
-
-      blawx_attribute(test,administered_at,datetime).
-
-      blawx_attribute_nlg(administered_at,ov,"","was administered at","").
-
-      #pred administered_at(X,Y) :: ''@(X) was administered at @(Y)''.
-
-      #pred according_to(R,administered_at(X,Y)) :: ''according to @(R), @(X) was
-      administered at @(Y)''.
-
-      #pred legally_holds(_,administered_at(X,Y)) :: ''it legally holds that @(X)
-      was administered at @(Y)''.
-
-      opposes(administered_at(X,Y),-administered_at(X,Y)).
-
-      opposes(-administered_at(X,Y),administered_at(X,Y)).
-
-      blawx_attribute(flight,scheduled_departure,datetime).
-
-      blawx_attribute_nlg(scheduled_departure,ov,"","is scheduled to depart at","").
-
-      #pred scheduled_departure(X,Y) :: ''@(X) is scheduled to depart at @(Y)''.
-
-      #pred according_to(R,scheduled_departure(X,Y)) :: ''according to @(R), @(X)
-      is scheduled to depart at @(Y)''.
-
-      #pred legally_holds(_,scheduled_departure(X,Y)) :: ''it legally holds that @(X)
-      is scheduled to depart at @(Y)''.
-
-      opposes(scheduled_departure(X,Y),-scheduled_departure(X,Y)).
-
-      opposes(-scheduled_departure(X,Y),scheduled_departure(X,Y)).
-
-      test_result(positive).
-
-      test_result(negative).
-
-
-      may_board(Person,Flight) :-
-
-      person(Person),
-
-      flight(Flight),
-
-      test(Test),
-
-      ticketed_for(Person,Flight),
-
-      subject(Test,Person),
-
-      scheduled_departure(Flight,ScheduledDeparture),
-
-      result(Test,negative),
-
-      administered_at(Test,TestTime),
-
-      datetime_diff_duration(ScheduledDeparture,TestTime,DurationFromTestToDeparture),
-
-      lte(DurationFromTestToDeparture,duration(1,0,0,0,72,0,0)).'
+      name="seconds">0</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="Vm6y$RqZ*E(zWL8xd+_I"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1_section"></mutation><field
+      name="doc_part_name">CTR 1</field></block></value><statement name="conclusion"><block
+      type="attribute_selector" id="sf(MO(7ze)N^.FIBrJJJ"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="may_board" attributetype="flight" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">is permitted to board</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="Hv_vcEVTe$YiS~6$6H7I"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="^Su_hE%A/=dWzYkGu1Xv"><field name="variable_name">Flight</field></block></value></block></statement></block></xml>
+    scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
+      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
+      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
+      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
+      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
+      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
+      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
+      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\nblawx_category(flight).\nblawx_category_nlg(flight,\"\",\"is
+      a flight\").\n#pred flight(X) :: '@(X) is a flight'.\n#pred holds(user,flight,X)
+      :: 'it is provided as a fact that @(X) is a flight'.\n#pred holds(user,-flight,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a flight'.\n#pred
+      holds(Z,flight,X) :: 'the conclusion in @(Z) that @(X) is a flight holds'.\n#pred
+      holds(Z,-flight,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a flight holds'.\n#pred according_to(Z,flight,X) :: 'according to @(Z), @(X)
+      is a flight'.\n#pred according_to(Z,-flight,X) :: 'according to @(Z), it is
+      not the case that @(X) is a flight'.\n#pred blawx_defeated(Z,flight,X) :: 'the
+      conclusion in @(Z) that @(X) is a flight is defeated'.\n#pred blawx_defeated(Z,-flight,X)
+      :: 'the conclusion in @(Z) that @(X) is a flight is defeated'.\nblawx_category(test_result).\nblawx_category_nlg(test_result,\"\",\"is
+      a test_result\").\n#pred test_result(X) :: '@(X) is a test_result'.\n#pred holds(user,test_result,X)
+      :: 'it is provided as a fact that @(X) is a test_result'.\n#pred holds(user,-test_result,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a test_result'.\n#pred
+      holds(Z,test_result,X) :: 'the conclusion in @(Z) that @(X) is a test_result
+      holds'.\n#pred holds(Z,-test_result,X) :: 'the conclusion in @(Z) that it is
+      not the case that @(X) is a test_result holds'.\n#pred according_to(Z,test_result,X)
+      :: 'according to @(Z), @(X) is a test_result'.\n#pred according_to(Z,-test_result,X)
+      :: 'according to @(Z), it is not the case that @(X) is a test_result'.\n#pred
+      blawx_defeated(Z,test_result,X) :: 'the conclusion in @(Z) that @(X) is a test_result
+      is defeated'.\n#pred blawx_defeated(Z,-test_result,X) :: 'the conclusion in
+      @(Z) that @(X) is a test_result is defeated'.\nblawx_category(test).\nblawx_category_nlg(test,\"\",\"is
+      a test\").\n#pred test(X) :: '@(X) is a test'.\n#pred holds(user,test,X) ::
+      'it is provided as a fact that @(X) is a test'.\n#pred holds(user,-test,X) ::
+      'it is provided as a fact that it is not the case that @(X) is a test'.\n#pred
+      holds(Z,test,X) :: 'the conclusion in @(Z) that @(X) is a test holds'.\n#pred
+      holds(Z,-test,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a test holds'.\n#pred according_to(Z,test,X) :: 'according to @(Z), @(X)
+      is a test'.\n#pred according_to(Z,-test,X) :: 'according to @(Z), it is not
+      the case that @(X) is a test'.\n#pred blawx_defeated(Z,test,X) :: 'the conclusion
+      in @(Z) that @(X) is a test is defeated'.\n#pred blawx_defeated(Z,-test,X) ::
+      'the conclusion in @(Z) that @(X) is a test is defeated'.\nblawx_attribute(person,ticketed_for,flight).\nblawx_attribute_nlg(ticketed_for,ov,\"\",\"has
+      a ticket for\",\"\").\n#pred ticketed_for(X,Y) :: '@(X) has a ticket for @(Y)'.\n#pred
+      holds(user,ticketed_for,X,Y) :: 'it is provided as a fact that @(X) has a ticket
+      for @(Y)'.\n#pred holds(user,-ticketed_for,X,Y) :: 'it is provided as a fact
+      that it is not the case that @(X) has a ticket for @(Y)'.\n#pred holds(Z,ticketed_for,X,Y)
+      :: 'the conclusion in @(Z) that @(X) has a ticket for @(Y) holds'.\n#pred holds(Z,-ticketed_for,X,Y)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) has a ticket for
+      @(Y) holds'.\n#pred according_to(Z,ticketed_for,X,Y) :: 'according to @(Z),
+      @(X) has a ticket for @(Y)'.\n#pred according_to(Z,-ticketed_for,X,Y) :: 'according
+      to @(Z), it is not the case that @(X) has a ticket for @(Y)'.\n#pred blawx_defeated(Z,ticketed_for,X,Y)
+      :: 'the conclusion in @(Z) that @(X) has a ticket for @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-ticketed_for,X,Y) :: 'the conclusion in @(Z) that @(X) has
+      a ticket for @(Y) is defeated'.\nblawx_attribute(person,may_board,flight).\nblawx_attribute_nlg(may_board,ov,\"\",\"is
+      permitted to board\",\"\").\n#pred may_board(X,Y) :: '@(X) is permitted to board
+      @(Y)'.\n#pred holds(user,may_board,X,Y) :: 'it is provided as a fact that @(X)
+      is permitted to board @(Y)'.\n#pred holds(user,-may_board,X,Y) :: 'it is provided
+      as a fact that it is not the case that @(X) is permitted to board @(Y)'.\n#pred
+      holds(Z,may_board,X,Y) :: 'the conclusion in @(Z) that @(X) is permitted to
+      board @(Y) holds'.\n#pred holds(Z,-may_board,X,Y) :: 'the conclusion in @(Z)
+      that it is not the case that @(X) is permitted to board @(Y) holds'.\n#pred
+      according_to(Z,may_board,X,Y) :: 'according to @(Z), @(X) is permitted to board
+      @(Y)'.\n#pred according_to(Z,-may_board,X,Y) :: 'according to @(Z), it is not
+      the case that @(X) is permitted to board @(Y)'.\n#pred blawx_defeated(Z,may_board,X,Y)
+      :: 'the conclusion in @(Z) that @(X) is permitted to board @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-may_board,X,Y) :: 'the conclusion in @(Z) that @(X) is permitted
+      to board @(Y) is defeated'.\nblawx_attribute(test,subject,person).\nblawx_attribute_nlg(subject,vo,\"\",\"took
+      a covid test\",\"\").\n#pred subject(Y,X) :: '@(X) took a covid test @(Y)'.\n#pred
+      holds(user,subject,Y,X) :: 'it is provided as a fact that @(X) took a covid
+      test @(Y)'.\n#pred holds(user,-subject,Y,X) :: 'it is provided as a fact that
+      it is not the case that @(X) took a covid test @(Y)'.\n#pred holds(Z,subject,Y,X)
+      :: 'the conclusion in @(Z) that @(X) took a covid test @(Y) holds'.\n#pred holds(Z,-subject,Y,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) took a covid test
+      @(Y) holds'.\n#pred according_to(Z,subject,Y,X) :: 'according to @(Z), @(X)
+      took a covid test @(Y)'.\n#pred according_to(Z,-subject,Y,X) :: 'according to
+      @(Z), it is not the case that @(X) took a covid test @(Y)'.\n#pred blawx_defeated(Z,subject,Y,X)
+      :: 'the conclusion in @(Z) that @(X) took a covid test @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-subject,Y,X) :: 'the conclusion in @(Z) that @(X) took a covid
+      test @(Y) is defeated'.\nblawx_attribute(test,result,test_result).\nblawx_attribute_nlg(result,ov,\"the
+      result of\",\"was\",\"\").\n#pred result(X,Y) :: 'the result of @(X) was @(Y)'.\n#pred
+      holds(user,result,X,Y) :: 'it is provided as a fact that the result of @(X)
+      was @(Y)'.\n#pred holds(user,-result,X,Y) :: 'it is provided as a fact that
+      it is not the case that the result of @(X) was @(Y)'.\n#pred holds(Z,result,X,Y)
+      :: 'the conclusion in @(Z) that the result of @(X) was @(Y) holds'.\n#pred holds(Z,-result,X,Y)
+      :: 'the conclusion in @(Z) that it is not the case that the result of @(X) was
+      @(Y) holds'.\n#pred according_to(Z,result,X,Y) :: 'according to @(Z), the result
+      of @(X) was @(Y)'.\n#pred according_to(Z,-result,X,Y) :: 'according to @(Z),
+      it is not the case that the result of @(X) was @(Y)'.\n#pred blawx_defeated(Z,result,X,Y)
+      :: 'the conclusion in @(Z) that the result of @(X) was @(Y) is defeated'.\n#pred
+      blawx_defeated(Z,-result,X,Y) :: 'the conclusion in @(Z) that the result of
+      @(X) was @(Y) is defeated'.\nblawx_attribute(test,administered_at,datetime).\nblawx_attribute_nlg(administered_at,ov,\"\",\"was
+      administered at\",\"\").\n#pred administered_at(X,Y) :: '@(X) was administered
+      at @(Y)'.\n#pred holds(user,administered_at,X,Y) :: 'it is provided as a fact
+      that @(X) was administered at @(Y)'.\n#pred holds(user,-administered_at,X,Y)
+      :: 'it is provided as a fact that it is not the case that @(X) was administered
+      at @(Y)'.\n#pred holds(Z,administered_at,X,Y) :: 'the conclusion in @(Z) that
+      @(X) was administered at @(Y) holds'.\n#pred holds(Z,-administered_at,X,Y) ::
+      'the conclusion in @(Z) that it is not the case that @(X) was administered at
+      @(Y) holds'.\n#pred according_to(Z,administered_at,X,Y) :: 'according to @(Z),
+      @(X) was administered at @(Y)'.\n#pred according_to(Z,-administered_at,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) was administered at @(Y)'.\n#pred
+      blawx_defeated(Z,administered_at,X,Y) :: 'the conclusion in @(Z) that @(X) was
+      administered at @(Y) is defeated'.\n#pred blawx_defeated(Z,-administered_at,X,Y)
+      :: 'the conclusion in @(Z) that @(X) was administered at @(Y) is defeated'.\nblawx_attribute(flight,scheduled_departure,datetime).\nblawx_attribute_nlg(scheduled_departure,ov,\"\",\"is
+      scheduled to depart at\",\"\").\n#pred scheduled_departure(X,Y) :: '@(X) is
+      scheduled to depart at @(Y)'.\n#pred holds(user,scheduled_departure,X,Y) ::
+      'it is provided as a fact that @(X) is scheduled to depart at @(Y)'.\n#pred
+      holds(user,-scheduled_departure,X,Y) :: 'it is provided as a fact that it is
+      not the case that @(X) is scheduled to depart at @(Y)'.\n#pred holds(Z,scheduled_departure,X,Y)
+      :: 'the conclusion in @(Z) that @(X) is scheduled to depart at @(Y) holds'.\n#pred
+      holds(Z,-scheduled_departure,X,Y) :: 'the conclusion in @(Z) that it is not
+      the case that @(X) is scheduled to depart at @(Y) holds'.\n#pred according_to(Z,scheduled_departure,X,Y)
+      :: 'according to @(Z), @(X) is scheduled to depart at @(Y)'.\n#pred according_to(Z,-scheduled_departure,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) is scheduled to depart at
+      @(Y)'.\n#pred blawx_defeated(Z,scheduled_departure,X,Y) :: 'the conclusion in
+      @(Z) that @(X) is scheduled to depart at @(Y) is defeated'.\n#pred blawx_defeated(Z,-scheduled_departure,X,Y)
+      :: 'the conclusion in @(Z) that @(X) is scheduled to depart at @(Y) is defeated'.\ntest_result(positive).\ntest_result(negative).\n\naccording_to(sec_1_section,may_board,Person,Flight)
+      :- person(Person),\nflight(Flight),\ntest(Test),\nticketed_for(Person,Flight),\nsubject(Test,Person),\nscheduled_departure(Flight,ScheduledDeparture),\nresult(Test,negative),\nadministered_at(Test,TestTime),\ndatetime_diff_duration(ScheduledDeparture,TestTime,DurationFromTestToDeparture),\nlte(DurationFromTestToDeparture,duration(1,0,0,0,72,0,0)).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_1_section,may_board,Person,Flight) :- according_to(sec_1_section,may_board,Person,Flight).\n\n%
+      BLAWX CHECK DUPLICATES\n  may_board(Person,Flight) :- holds(sec_1_section,may_board,Person,Flight)."
 - model: blawx.blawxtest
-  pk: 15
+  pk: 32
   fields:
-    ruledoc: 10
+    ruledoc: 9
     test_name: can_fly
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="U*RvlVr.!T)x:88LbXnM" x="90" y="249"><comment pinned="false" h="146" w="524">This
@@ -331,9 +275,9 @@
     view: '[''view_cat_test_result'', ''view_cat_person_att_may_board'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 16
+  pk: 33
   fields:
-    ruledoc: 10
+    ruledoc: 9
     test_name: good_test
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="~6[h`_zeg/KMr3bFg1H8" x="68" y="49"><statement name="statements"><block
@@ -370,24 +314,24 @@
       name="object_name">bobs_test</field></block></value><value name="second_element"><block
       type="object_selector" id="o]K#yDM_^/jv{cc0t%IZ"><mutation xmlns="http://www.w3.org/1999/xhtml"
       objectname="negative"></mutation><field name="object_name">negative</field></block></value><next><block
-      type="attribute_selector" id="ZN6[gBzN=+!K:3]lR]`p"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="administered_at" attributetype="Calendar Clock Date / Time" attributeorder="ov"></mutation><field
+      type="attribute_selector" id="5hslHbwIx5.?WL3;~YE^"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="administered_at" attributetype="datetime" attributeorder="ov"></mutation><field
       name="prefix"></field><field name="infix">was administered at</field><field
       name="postfix"></field><value name="first_element"><block type="object_selector"
       id=")JzNp{[$9lZNeXNT#Z3x"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="bobs_test"></mutation><field
       name="object_name">bobs_test</field></block></value><value name="second_element"><block
-      type="datetime_value" id="{7yxTg-hzX(PgN#_s_)$"><field name="year">2023</field><field
-      name="month">1</field><field name="day">4</field><field name="hours">12</field><field
+      type="datetime_value" id="#e.(uU-boH$pwVt|Wfuy"><field name="year">2000</field><field
+      name="month">1</field><field name="day">1</field><field name="hours">0</field><field
       name="minutes">0</field><field name="seconds">0</field></block></value><next><block
-      type="attribute_selector" id="^Vc$M^JUJs,$:RlD6378"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="scheduled_departure" attributetype="Calendar Clock Date / Time"
-      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">is
-      scheduled to depart at</field><field name="postfix"></field><value name="first_element"><block
-      type="object_selector" id="nS()Bx#6DK1F86q8CV5$"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      objectname="flight_to_hawaii"></mutation><field name="object_name">flight_to_hawaii</field></block></value><value
-      name="second_element"><block type="datetime_value" id="4bg9zh|bYcx$8Mf0ay_-"><field
-      name="year">2023</field><field name="month">1</field><field name="day">6</field><field
-      name="hours">12</field><field name="minutes">0</field><field name="seconds">0</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="attribute_selector" id="W|J;gvLpy)#bVme0QUvr"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="scheduled_departure" attributetype="datetime" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">is scheduled to depart at</field><field
+      name="postfix"></field><value name="first_element"><block type="object_selector"
+      id="nS()Bx#6DK1F86q8CV5$"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="flight_to_hawaii"></mutation><field
+      name="object_name">flight_to_hawaii</field></block></value><value name="second_element"><block
+      type="datetime_value" id="/O7+{ZyVTTjdY8GNDMVu"><field name="year">2000</field><field
+      name="month">1</field><field name="day">2</field><field name="hours">0</field><field
+      name="minutes">0</field><field name="seconds">0</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
       type="query" id="_N%$$DI[nxH|ntOnut*F" x="96" y="405"><statement name="query"><block
       type="attribute_selector" id="@S3vmqN0IdN|:8j08)?s"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="may_board" attributetype="flight" attributeorder="ov"></mutation><field
@@ -409,9 +353,9 @@
 
       result(bobs_test,negative).
 
-      administered_at(bobs_test,datetime(2023,1,4,12,0,0)).
+      administered_at(bobs_test,datetime(2000,1,1,0,0,0)).
 
-      scheduled_departure(flight_to_hawaii,datetime(2023,1,6,12,0,0)).
+      scheduled_departure(flight_to_hawaii,datetime(2000,1,2,0,0,0)).
 
 
       ?- may_board(bob,flight_to_hawaii).'
@@ -419,9 +363,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 17
+  pk: 34
   fields:
-    ruledoc: 10
+    ruledoc: 9
     test_name: old_test
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="zC:]x}y1*:_,v-w1e;sv" x="111" y="89"><statement name="statements"><block
@@ -458,25 +402,25 @@
       name="object_name">bobs_test</field></block></value><value name="second_element"><block
       type="object_selector" id="A/wz*PcqP0bZ9%=bT|6l"><mutation xmlns="http://www.w3.org/1999/xhtml"
       objectname="negative"></mutation><field name="object_name">negative</field></block></value><next><block
-      type="attribute_selector" id="o@FXjfEq+VNoAIEP.{QJ"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="scheduled_departure" attributetype="Calendar Clock Date / Time"
-      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">is
-      scheduled to depart at</field><field name="postfix"></field><value name="first_element"><block
-      type="object_selector" id="b4{~zylG?.JzE1/c)-j$"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      objectname="flight_to_hawaii"></mutation><field name="object_name">flight_to_hawaii</field></block></value><value
-      name="second_element"><block type="datetime_value" id="2s03~stdCLhmW|wknB7p"><field
-      name="year">2023</field><field name="month">1</field><field name="day">6</field><field
-      name="hours">12</field><field name="minutes">0</field><field name="seconds">0</field></block></value><next><block
-      type="attribute_selector" id="2({O35Qa)a^45`3fm+3H"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="administered_at" attributetype="Calendar Clock Date / Time" attributeorder="ov"></mutation><field
+      type="attribute_selector" id="`gte;qU[]iVt*24|e+Ft"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="scheduled_departure" attributetype="datetime" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">is scheduled to depart at</field><field
+      name="postfix"></field><value name="first_element"><block type="object_selector"
+      id="b4{~zylG?.JzE1/c)-j$"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="flight_to_hawaii"></mutation><field
+      name="object_name">flight_to_hawaii</field></block></value><value name="second_element"><block
+      type="datetime_value" id="%GmByT!lc~*7$-tl]hXU"><field name="year">2000</field><field
+      name="month">1</field><field name="day">5</field><field name="hours">0</field><field
+      name="minutes">0</field><field name="seconds">0</field></block></value><next><block
+      type="attribute_selector" id="d,wqKi#^Q93Evd`Nn]N9"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="administered_at" attributetype="datetime" attributeorder="ov"></mutation><field
       name="prefix"></field><field name="infix">was administered at</field><field
       name="postfix"></field><value name="first_element"><block type="object_selector"
       id="KB-;pTG,yQ|//T,D_d@P"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="bobs_test"></mutation><field
       name="object_name">bobs_test</field></block></value><value name="second_element"><block
-      type="datetime_value" id="K~xk$Bc|(VRCBcJ!#j.3"><field name="year">2023</field><field
-      name="month">1</field><field name="day">1</field><field name="hours">12</field><field
+      type="datetime_value" id="8]9QI;@yW6uolhWgH`Fm"><field name="year">2000</field><field
+      name="month">1</field><field name="day">1</field><field name="hours">0</field><field
       name="minutes">0</field><field name="seconds">0</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
-      type="query" id="Cgq5r_N3uX*yD/L/2UrJ" x="106" y="482"><statement name="query"><block
+      type="query" id="Cgq5r_N3uX*yD/L/2UrJ" x="108" y="427"><statement name="query"><block
       type="attribute_selector" id="6^UcXc?i1F{0jQG0r#`t"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="may_board" attributetype="flight" attributeorder="ov"></mutation><field
       name="prefix"></field><field name="infix">is permitted to board</field><field
@@ -497,9 +441,9 @@
 
       result(bobs_test,negative).
 
-      scheduled_departure(flight_to_hawaii,datetime(2023,1,6,12,0,0)).
+      scheduled_departure(flight_to_hawaii,datetime(2000,1,5,0,0,0)).
 
-      administered_at(bobs_test,datetime(2023,1,1,12,0,0)).
+      administered_at(bobs_test,datetime(2000,1,1,0,0,0)).
 
 
       ?- may_board(bob,flight_to_hawaii).'

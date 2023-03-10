@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 11
+  pk: 10
   fields:
     ruledoc_name: Lists
     rule_text: "Lists Demonstration\r\n\r\n1. Lists Demonstration"
@@ -8,16 +8,16 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 53
+  pk: 54
   fields:
-    ruledoc: 11
+    ruledoc: 10
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 54
+  pk: 55
   fields:
-    ruledoc: 11
+    ruledoc: 10
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="LvE@V:2)~CiVq1R_Jl^%" x="117" y="73"><statement name="statements"><block
@@ -35,11 +35,9 @@
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">'s average score adding a 10 is</field><field name="second_element">value</field><field
       name="postfix"></field></block></next></block></next></block></statement></block><block
-      type="unattributed_rule" id="Fa1i{bpaMei?1%EswHxR" x="105" y="390"><comment
-      pinned="false" h="130" w="571">If the person has any scores, their average score
-      plus ten is the average of that list of scores, plus a 10.</comment><statement
-      name="conditions"><block type="new_object_category" id="=Fw_SYnmoY{]5#S8x!6("><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      type="attributed_rule" id="5WKfn*yGeYHRI/9V|Ao=" x="106" y="374"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="=Fw_SYnmoY{]5#S8x!6("><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
       name="category_name">person</field><value name="object"><block type="variable"
       id="(i)zJ^AXGkiUo,Jfb*:6"><field name="variable_name">Person</field></block></value><next><block
       type="collect_list" id="EDhNLlrrI0iI^)}cUaWh"><value name="list_name"><block
@@ -66,82 +64,62 @@
       name="tail"><block type="variable" id="S65`lVth9G.#8jm6QuB4"><field name="variable_name">ListOfScores</field></block></value></block></value><next><block
       type="list_aggregation" id="|,H*~4Y7Hp,Zpg7?|d#}"><field name="aggregation">ave</field><value
       name="output"><block type="variable" id="]pj#jk9HDv4ustc@;TnJ"><field name="variable_name">AverageScore</field></block></value><value
-      name="list"><block type="variable" id="EHh6`A9Hw)tQMQI#73Xz"><field name="variable_name">NewScores</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement><statement
-      name="conclusion"><block type="attribute_selector" id="t%p*q[+:+NQI_3lWpb^f"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="average_score" attributetype="#
-      Number" attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">'s
-      average score adding a 10 is</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="k`v.fUEccF7iZR+EB?!H"><field name="variable_name">Person</field></block></value><value
-      name="second_element"><block type="variable" id="R#:_xawfsBla0ys2z|Iy"><field
-      name="variable_name">AverageScore</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(person).
-
-      blawx_category_nlg(person,"","is a person").
-
-      #pred person(X) :: ''@(X) is a person''.
-
-      #pred according_to(R,person(X)) :: ''according to @(R), @(X) is a person''.
-
-      #pred legally_holds(_,person(X)) :: ''it legally holds that @(X) is a person''.
-
-      opposes(person(X,Y),-person(X,Y)).
-
-      opposes(-person(X,Y),person(X,Y)).
-
-      blawx_attribute(person,score,number).
-
-      blawx_attribute_nlg(score,ov,"","''s score is","").
-
-      #pred score(X,Y) :: ''@(X) \''s score is @(Y)''.
-
-      #pred according_to(R,score(X,Y)) :: ''according to @(R), @(X) \''s score is
-      @(Y)''.
-
-      #pred legally_holds(_,score(X,Y)) :: ''it legally holds that @(X) \''s score
-      is @(Y)''.
-
-      opposes(score(X,Y),-score(X,Y)).
-
-      opposes(-score(X,Y),score(X,Y)).
-
-      blawx_attribute(person,average_score,number).
-
-      blawx_attribute_nlg(average_score,ov,"","''s average score adding a 10 is","").
-
-      #pred average_score(X,Y) :: ''@(X) \''s average score adding a 10 is @(Y)''.
-
-      #pred according_to(R,average_score(X,Y)) :: ''according to @(R), @(X) \''s average
-      score adding a 10 is @(Y)''.
-
-      #pred legally_holds(_,average_score(X,Y)) :: ''it legally holds that @(X) \''s
-      average score adding a 10 is @(Y)''.
-
-      opposes(average_score(X,Y),-average_score(X,Y)).
-
-      opposes(-average_score(X,Y),average_score(X,Y)).
-
-
-      % If the person has any scores, their average score plus
-
-      % ten is the average of that list of scores, plus a 10.
-
-      average_score(Person,AverageScore) :-
-
-      person(Person),
-
-      findall(Score ,   score(Person,Score) , ListOfScores),
-
-      count_blawx_list(ListOfScores , Count),
-
-      Count > 0,
-
-      NewScores = [10 | ListOfScores],
-
-      average_blawx_list(NewScores , AverageScore).'
+      name="list"><block type="variable" id="EHh6`A9Hw)tQMQI#73Xz"><field name="variable_name">NewScores</field></block></value></block></next></block></next></block></next></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="2%)mly%`R|^B1R)F%j{H"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1_section"></mutation><field
+      name="doc_part_name">LD 1</field></block></value><statement name="conclusion"><block
+      type="attribute_selector" id="t%p*q[+:+NQI_3lWpb^f"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="average_score" attributetype="# Number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">'s average score adding a 10 is</field><field
+      name="postfix"></field><value name="first_element"><block type="variable" id="k`v.fUEccF7iZR+EB?!H"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="R#:_xawfsBla0ys2z|Iy"><field name="variable_name">AverageScore</field></block></value></block></statement></block></xml>
+    scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
+      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
+      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
+      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
+      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
+      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
+      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
+      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\nblawx_attribute(person,score,number).\nblawx_attribute_nlg(score,ov,\"\",\"'s
+      score is\",\"\").\n#pred score(X,Y) :: '@(X) \\'s score is @(Y)'.\n#pred holds(user,score,X,Y)
+      :: 'it is provided as a fact that @(X) \\'s score is @(Y)'.\n#pred holds(user,-score,X,Y)
+      :: 'it is provided as a fact that it is not the case that @(X) \\'s score is
+      @(Y)'.\n#pred holds(Z,score,X,Y) :: 'the conclusion in @(Z) that @(X) \\'s score
+      is @(Y) holds'.\n#pred holds(Z,-score,X,Y) :: 'the conclusion in @(Z) that it
+      is not the case that @(X) \\'s score is @(Y) holds'.\n#pred according_to(Z,score,X,Y)
+      :: 'according to @(Z), @(X) \\'s score is @(Y)'.\n#pred according_to(Z,-score,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) \\'s score is @(Y)'.\n#pred
+      blawx_defeated(Z,score,X,Y) :: 'the conclusion in @(Z) that @(X) \\'s score
+      is @(Y) is defeated'.\n#pred blawx_defeated(Z,-score,X,Y) :: 'the conclusion
+      in @(Z) that @(X) \\'s score is @(Y) is defeated'.\nblawx_attribute(person,average_score,number).\nblawx_attribute_nlg(average_score,ov,\"\",\"'s
+      average score adding a 10 is\",\"\").\n#pred average_score(X,Y) :: '@(X) \\'s
+      average score adding a 10 is @(Y)'.\n#pred holds(user,average_score,X,Y) ::
+      'it is provided as a fact that @(X) \\'s average score adding a 10 is @(Y)'.\n#pred
+      holds(user,-average_score,X,Y) :: 'it is provided as a fact that it is not the
+      case that @(X) \\'s average score adding a 10 is @(Y)'.\n#pred holds(Z,average_score,X,Y)
+      :: 'the conclusion in @(Z) that @(X) \\'s average score adding a 10 is @(Y)
+      holds'.\n#pred holds(Z,-average_score,X,Y) :: 'the conclusion in @(Z) that it
+      is not the case that @(X) \\'s average score adding a 10 is @(Y) holds'.\n#pred
+      according_to(Z,average_score,X,Y) :: 'according to @(Z), @(X) \\'s average score
+      adding a 10 is @(Y)'.\n#pred according_to(Z,-average_score,X,Y) :: 'according
+      to @(Z), it is not the case that @(X) \\'s average score adding a 10 is @(Y)'.\n#pred
+      blawx_defeated(Z,average_score,X,Y) :: 'the conclusion in @(Z) that @(X) \\'s
+      average score adding a 10 is @(Y) is defeated'.\n#pred blawx_defeated(Z,-average_score,X,Y)
+      :: 'the conclusion in @(Z) that @(X) \\'s average score adding a 10 is @(Y)
+      is defeated'.\n\naccording_to(sec_1_section,average_score,Person,AverageScore)
+      :- person(Person),\nfindall(Score ,   score(Person,Score) , ListOfScores),\ncount_blawx_list(ListOfScores
+      , Count),\nCount > 0,\nNewScores = [10 | ListOfScores],\naverage_blawx_list(NewScores
+      , AverageScore).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1_section,average_score,Person,AverageScore)
+      :- according_to(sec_1_section,average_score,Person,AverageScore).\n\n% BLAWX
+      CHECK DUPLICATES\n  average_score(Person,AverageScore) :- holds(sec_1_section,average_score,Person,AverageScore)."
 - model: blawx.blawxtest
-  pk: 18
+  pk: 35
   fields:
-    ruledoc: 11
+    ruledoc: 10
     test_name: test
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="^+{8:,2DA*9hulCAyA8s" x="62" y="311"><statement name="query"><block type="attribute_selector"

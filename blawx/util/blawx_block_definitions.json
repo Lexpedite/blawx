@@ -108,8 +108,11 @@
 },
 {
   "type": "logical_negation",
-  "message0": "known false %1",
+  "message0": "it is false that %1 %2",
   "args0": [
+    {
+      "type": "input_dummy"
+    },
     {
       "type": "input_statement",
       "name": "negated_statement",
@@ -127,8 +130,11 @@
 },
 {
   "type": "default_negation",
-  "message0": "not %1",
+  "message0": "there is no evidence that %1 %2",
   "args0": [
+    {
+      "type": "input_dummy"
+    },
     {
       "type": "input_statement",
       "name": "default_negated_statement",
@@ -227,8 +233,11 @@
 },
 {
   "type": "query",
-  "message0": "Is it true that: %1",
+  "message0": "Is it true that: %1 %2",
   "args0": [
+    {
+      "type": "input_dummy"
+    },
     {
       "type": "input_statement",
       "name": "query",
@@ -266,12 +275,18 @@
 },
 {
   "type": "unattributed_rule",
-  "message0": "When we know: %1 We also know: %2",
+  "message0": "When we know: %1 %2 We also know: %3 %4",
   "args0": [
+    {
+      "type": "input_dummy"
+    },
     {
       "type": "input_statement",
       "name": "conditions",
       "check": "OUTER"
+    },
+    {
+      "type": "input_dummy"
     },
     {
       "type": "input_statement",
@@ -369,7 +384,7 @@
 },
 {
   "type": "overrules",
-  "message0": "%1 overrules %2",
+  "message0": "the conclusion in  %1 that %2 overrules the conclusion in %3 that %4",
   "args0": [
     {
       "type": "input_value",
@@ -380,12 +395,22 @@
       ]
     },
     {
+      "type": "input_statement",
+      "name": "defeating_statement",
+      "check": "OUTER"
+    },
+    {
       "type": "input_value",
       "name": "defeated_rule",
       "check": [
         "RULE",
         "VARIABLE"
       ]
+    },
+    {
+      "type": "input_statement",
+      "name": "defeated_statement",
+      "check": "OUTER"
     }
   ],
   "inputsInline": true,
@@ -504,8 +529,11 @@
 },
 {
   "type": "unattributed_fact",
-  "message0": "We know %1",
+  "message0": "We know %1 %2",
   "args0": [
+    {
+      "type": "input_dummy"
+    },
     {
       "type": "input_statement",
       "name": "statements",
@@ -539,8 +567,11 @@
 },
 {
   "type": "unattributed_constraint",
-  "message0": "It is never the case that: %1",
+  "message0": "It is never the case that: %1 %2",
   "args0": [
+    {
+      "type": "input_dummy"
+    },
     {
       "type": "input_statement",
       "name": "conditions",
@@ -1880,8 +1911,11 @@
 },
 {
   "type": "assume",
-  "message0": "Assume: %1",
+  "message0": "Assume: %1 %2",
   "args0": [
+    {
+      "type": "input_dummy"
+    },
     {
       "type": "input_statement",
       "name": "statements",
@@ -1980,10 +2014,15 @@
 },
 {
   "type": "holds",
-  "message0": "Holds that %1 %2",
+  "message0": "The conclusion in %1 that %2 holds",
   "args0": [
     {
-      "type": "input_dummy"
+      "type": "input_value",
+      "name": "section",
+      "check": [
+        "RULE",
+        "VARIABLE"
+      ]
     },
     {
       "type": "input_statement",
@@ -3065,4 +3104,104 @@
   "colour": 225,
   "tooltip": "Use to add a category to an object, or check for category membership.",
   "helpUrl": "/docs/blocks/object_category/"
+},
+{
+  "type": "attributed_rule",
+  "message0": "When we know: %1 %2 We also know that according to %3 %4 %5 subject to exceptions %6 %7 subect to applicability",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "conditions",
+      "check": "OUTER"
+    },
+    {
+      "type": "input_value",
+      "name": "source",
+      "check": "RULE"
+    },
+    {
+      "type": "input_statement",
+      "name": "conclusion",
+      "check": "OUTER"
+    },
+    {
+      "type": "field_checkbox",
+      "name": "defeasible",
+      "checked": true
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_checkbox",
+      "name": "inapplicable",
+      "checked": true
+    }
+  ],
+  "inputsInline": true,
+  "colour": 270,
+  "tooltip": "Use to set out the conclusions that can be drawn from a rule.",
+  "helpUrl": "/docs/blocks/attributed_rule/"
+},
+{
+  "type": "defeated",
+  "message0": "the conclusion in  %1 that %2 is defeated",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "defeating_rule",
+      "check": [
+        "RULE",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_statement",
+      "name": "defeating_statement",
+      "check": "OUTER"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 165,
+  "tooltip": "Use to specify or test that a conclusion in a section is defeated",
+  "helpUrl": "/docs/blocks/defeated/"
+},
+{
+  "type": "applies",
+  "message0": "%1 applies to %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "applicable_rule",
+      "check": [
+        "RULE",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "object",
+      "check": [
+        "OBJECT",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 165,
+  "tooltip": "Use to specify or test if a section applies to an object",
+  "helpUrl": "/docs/blocks/applies/"
 }]

@@ -14,16 +14,15 @@
       ## What Does It Do?
 
       The Holds block is used to query whether a conclusion was reached according to
-      any section of the rules, and that conclusion was not overruled.
+      a given section of the rules, and that conclusion was not overruled.
 
       ## Technical Details
 
       The Holds block is a statement block which can be stacked with other statements. It accepts
-      an internal statement stack, which should be a single statement block, which is the conclusion
-      that is being sought.
+      an input value that can be a section selector block or a variable, and an internal statement stack, which should be a single statement block, which is the conclusion.
 
       ## Tips
 
-      Even if you are not using exceptions, the combination of "According To" and Holds blocks
-      can be used to insert information about the source of your rules into your natural
-      language explanations.
+      It is not usually necessary for you to use the "holds" block explicitly. If you use attributed rules, "holds" statements are made
+      automatically for you. And if you as a question about an attribute, the section that held that statement will be included in the explanation.
+      The only time you will usually need to use the holds block is if you are troubleshooting problems with your defaults and exceptions.

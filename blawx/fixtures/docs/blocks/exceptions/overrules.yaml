@@ -13,18 +13,33 @@
 
       ## What Does It Do?
 
-      The Overrules block is used to specify that conclusions reached by one section of law
-      overrule the conclusions reached by another section of law, when those conclusions
-      are opposed.
+      The Overrules block is used to specify that a specific conclusions reached by one section of law
+      overrules a conclusion reached by another section of law.
 
       ## Technical Details
 
       The Overrules block is a statement block, and can be stacked with other statement blocks.
-      It accepts two internal inputs, both of which are expecting a statement selector. The order of the statement selectors is
-      significant. The first section named is superior, the second section named is inferior.
+      It accepts two internal inputs, both of which are expecting a statement selector or variable representing
+      the defeating or defeated section.
+      It also accepts two internal statement stacks, both of which should have a single statement block, indicating
+      the defeating or defeated conclusion, as applicable.
+
+      Overrules blocks are "semantic sugar" for a rule that if the the conclusion in the defeating section "holds",
+      the the conclusion in the defeated section is "defeated". For this reason, an overrules block cannot be used
+      in the conclusion of a rule, and should only be used in a Fact block.
 
       ## Tips
 
-      For complicated exception relationships, it can be helpful to make an overrules statement
-      conditional on certain other things being true. This can be accomplished by using the
-      overrules statement as the conclusion of a rule.
+      The overrules block should be placed at the location in your code that corresponds to the location in your law
+      where the defeating/defeated relationship was set out in the text (if any). For example, if you have the rules:
+      ```
+      1. By default, blue.
+      2. Despite 1, red.
+      ```
+      ... then the overrules block would go in section 2, to encode the words "despite 1", which indicate that the
+      conclusion in section 2 defeats the conclusion in section 1.
+
+      If the section and conclusion of the defeating or defeated rule do not match correctly, the overrules block
+      will not work. Note also that overrules blocks create rules that conclude that something is defeated. Defeats
+      are only checked by attributed rule blocks that have "subject to exceptions" selected, or rules that explicitly
+      check for defeats using the "defeated" block.

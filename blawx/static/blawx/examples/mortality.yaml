@@ -8,14 +8,14 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 16
+  pk: 29
   fields:
     ruledoc: 3
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 17
+  pk: 30
   fields:
     ruledoc: 3
     workspace_name: sec_1_section
@@ -26,49 +26,42 @@
       a human</field><next><block type="new_category_declaration" id="ENBSrs7l$o%?#R%MK-.M"><field
       name="category_name">mortal</field><field name="prefix"></field><field name="first_element">object</field><field
       name="postfix">is a mortal</field></block></next></block></statement></block><block
-      type="unattributed_rule" id="q2i5}Ux~w-D-/:JOEwFN" x="30" y="216"><statement
-      name="conditions"><block type="new_object_category" id="h/oy(7,LSvtkRb34l||0"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="human"></mutation><field
+      type="attributed_rule" id="*9pS+%NyIAsXQK5Q+Uh9" x="28" y="225"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="h/oy(7,LSvtkRb34l||0"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="human"></mutation><field
       name="category_name">human</field><value name="object"><block type="variable"
-      id="=d*rnnm~`SDfXzNcC-FJ"><field name="variable_name">A</field></block></value></block></statement><statement
-      name="conclusion"><block type="new_object_category" id="9Z;zlYqV80Hl,]r:_lYv"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="mortal"></mutation><field
-      name="category_name">mortal</field><value name="object"><block type="variable"
-      id="5nP(jMWSc(9_Nx9dPU4d"><field name="variable_name">A</field></block></value></block></statement></block></xml>
-    scasp_encoding: 'blawx_category(human).
-
-      blawx_category_nlg(human,"","is a human").
-
-      #pred human(X) :: ''@(X) is a human''.
-
-      #pred according_to(R,human(X)) :: ''according to @(R), @(X) is a human''.
-
-      #pred legally_holds(_,human(X)) :: ''it legally holds that @(X) is a human''.
-
-      opposes(human(X,Y),-human(X,Y)).
-
-      opposes(-human(X,Y),human(X,Y)).
-
-      blawx_category(mortal).
-
-      blawx_category_nlg(mortal,"","is a mortal").
-
-      #pred mortal(X) :: ''@(X) is a mortal''.
-
-      #pred according_to(R,mortal(X)) :: ''according to @(R), @(X) is a mortal''.
-
-      #pred legally_holds(_,mortal(X)) :: ''it legally holds that @(X) is a mortal''.
-
-      opposes(mortal(X,Y),-mortal(X,Y)).
-
-      opposes(-mortal(X,Y),mortal(X,Y)).
-
-
-      mortal(A) :-
-
-      human(A).'
+      id="=d*rnnm~`SDfXzNcC-FJ"><field name="variable_name">A</field></block></value></block></statement><value
+      name="source"><block type="doc_selector" id="5us_Jcb-?,4mHTY!f+.g"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1_section"></mutation><field
+      name="doc_part_name">MA 1</field></block></value><statement name="conclusion"><block
+      type="new_object_category" id="9Z;zlYqV80Hl,]r:_lYv"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="mortal"></mutation><field name="category_name">mortal</field><value
+      name="object"><block type="variable" id="5nP(jMWSc(9_Nx9dPU4d"><field name="variable_name">A</field></block></value></block></statement></block></xml>
+    scasp_encoding: "blawx_category(human).\nblawx_category_nlg(human,\"\",\"is a
+      human\").\n#pred human(X) :: '@(X) is a human'.\n#pred holds(user,human,X) ::
+      'it is provided as a fact that @(X) is a human'.\n#pred holds(user,-human,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a human'.\n#pred
+      holds(Z,human,X) :: 'the conclusion in @(Z) that @(X) is a human holds'.\n#pred
+      holds(Z,-human,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a human holds'.\n#pred according_to(Z,human,X) :: 'according to @(Z), @(X)
+      is a human'.\n#pred according_to(Z,-human,X) :: 'according to @(Z), it is not
+      the case that @(X) is a human'.\n#pred blawx_defeated(Z,human,X) :: 'the conclusion
+      in @(Z) that @(X) is a human is defeated'.\n#pred blawx_defeated(Z,-human,X)
+      :: 'the conclusion in @(Z) that @(X) is a human is defeated'.\nblawx_category(mortal).\nblawx_category_nlg(mortal,\"\",\"is
+      a mortal\").\n#pred mortal(X) :: '@(X) is a mortal'.\n#pred holds(user,mortal,X)
+      :: 'it is provided as a fact that @(X) is a mortal'.\n#pred holds(user,-mortal,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a mortal'.\n#pred
+      holds(Z,mortal,X) :: 'the conclusion in @(Z) that @(X) is a mortal holds'.\n#pred
+      holds(Z,-mortal,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a mortal holds'.\n#pred according_to(Z,mortal,X) :: 'according to @(Z), @(X)
+      is a mortal'.\n#pred according_to(Z,-mortal,X) :: 'according to @(Z), it is
+      not the case that @(X) is a mortal'.\n#pred blawx_defeated(Z,mortal,X) :: 'the
+      conclusion in @(Z) that @(X) is a mortal is defeated'.\n#pred blawx_defeated(Z,-mortal,X)
+      :: 'the conclusion in @(Z) that @(X) is a mortal is defeated'.\n\naccording_to(sec_1_section,mortal,A)
+      :- human(A).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1_section,mortal,A) :- according_to(sec_1_section,mortal,A).\n\n%
+      BLAWX CHECK DUPLICATES\n  mortal(A) :- holds(sec_1_section,mortal,A)."
 - model: blawx.blawxtest
-  pk: 5
+  pk: 20
   fields:
     ruledoc: 3
     test_name: Socrates
