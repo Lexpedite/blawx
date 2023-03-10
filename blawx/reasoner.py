@@ -467,7 +467,7 @@ def run_test(request,ruledoc,test_name):
         workspace_lines = ws.scasp_encoding.splitlines()
         register_duplicate = False
         for line in workspace_lines:
-          if line == "% BLAWX CHECK DUPLICATE\n":
+          if line == "% BLAWX CHECK DUPLICATES":
             register_duplicate = True
             continue
           elif register_duplicate == True:
@@ -475,7 +475,7 @@ def run_test(request,ruledoc,test_name):
             register_duplicate = False
             simplified_line = simplify_rule(line)
             if simplified_line not in unique_rules:
-              register_duplicate += simplified_line
+              unique_rules.append(simplified_line)
             continue
           else:
             # Otherwise, add it to the code.
@@ -487,14 +487,14 @@ def run_test(request,ruledoc,test_name):
       test_lines = test.scasp_encoding.splitlines()
       register_duplicate = False
       for line in test_lines:
-        if line == "% BLAWX CHECK DUPLICATE\n":
+        if line == "% BLAWX CHECK DUPLICATES":
           register_duplicate = True
           continue
         elif register_duplicate == True:
           register_duplicate = False
           simplified_line = simplify_rule(line)
           if simplified_line not in unique_rules:
-            register_duplicate += simplified_line
+            unique_rules.append(simplified_line)
           continue
         else:
           ruleset += line + "\n"
@@ -935,7 +935,7 @@ def interview(request,ruledoc,test_name):
         workspace_lines = ws.scasp_encoding.splitlines()
         register_duplicate = False
         for line in workspace_lines:
-          if line == "% BLAWX CHECK DUPLICATE\n":
+          if line == "% BLAWX CHECK DUPLICATES":
             register_duplicate = True
             continue
           elif register_duplicate == True:
@@ -943,7 +943,7 @@ def interview(request,ruledoc,test_name):
             register_duplicate = False
             simplified_line = simplify_rule(line)
             if simplified_line not in unique_rules:
-              register_duplicate += simplified_line
+              unique_rules.append(simplified_line)
             continue
           else:
             # Otherwise, add it to the code.
@@ -955,14 +955,14 @@ def interview(request,ruledoc,test_name):
       test_lines = test.scasp_encoding.splitlines()
       register_duplicate = False
       for line in test_lines:
-        if line == "% BLAWX CHECK DUPLICATE\n":
+        if line == "% BLAWX CHECK DUPLICATES":
           register_duplicate = True
           continue
         elif register_duplicate == True:
           register_duplicate = False
           simplified_line = simplify_rule(line)
           if simplified_line not in unique_rules:
-            register_duplicate += simplified_line
+            unique_rules.append(simplified_line)
           continue
         else:
           ruleset += line + "\n"
@@ -1172,9 +1172,10 @@ def generate_answers(answers):
           # If this explanation is not identical to another one
           duplicate = False
           for m in a['Models']:
-            if json.dumps(m['Raw']['args'][1][0]) == json.dumps(new_model['Raw']['args'][1][0]):
-              duplicate = True
-              break
+            if 'args' in m['Raw']:
+              if json.dumps(m['Raw']['args'][1][0]) == json.dumps(new_model['Raw']['args'][1][0]):
+                duplicate = True
+                break
           if not duplicate:
             a['Models'].append({'Tree': new_model['Tree'], 'Terms': new_model['Terms'], 'Raw': new_model['Raw'], 'Residuals': new_model['Residuals']})
   return result
