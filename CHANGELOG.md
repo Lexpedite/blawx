@@ -7,19 +7,21 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## [v1.5.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.0-alpha) 2023-03-07
+## [v1.5.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.0-alpha) 2023-03-10
 
 **This release is NOT backward compatible.**
 
 This release revises the way defaults and exceptions are dealt with, dramatically speeds up code using defaults and exceptions,
 simplifies getting access to legislative text in explanations without using defaults and exceptions,
 and makes it possible to specify objects to which a rule does not "apply." All examples have been updated to the new
-block language, and the documentation relevant to defaults, exceptions, and applicability has been updated.
+block language, the Bird Act example has been modified to show the new features,
+and the relevant documentation has been updated.
 
 ### Upgrade Notes
 
 To bring code from pre v1.5.0-alpha up to date, you will primarily need to update overrules blocks, update "holds" blocks,
-replace "according to" blocks with "holds" blocks where appropriate, and switch to attributed rules where the conclusions are
+replace "according to" blocks with "holds" blocks where appropriate (only where you are concerned about the source of
+the conclusion), and switch to attributed rules where the conclusions are
 subject to exceptions. Most questions which previously used the "holds" block can now have the holds block left out, and will
 work properly. Note that conclusions in attributed rule blocks also no longer need to be wrapped in "according to" blocks in
 order to be defeasible. Checking the "subject to exceptions" checkbox has that same effect.
@@ -50,9 +52,6 @@ order to be defeasible. Checking the "subject to exceptions" checkbox has that s
 * Error in OASA example that made people eligible by default
 * New categories not available in the code editor
 * Reasoner endpoints were returning duplicate explanations
-
-### To Do
-* R34 test fails with stack error
 
 ## [v1.4.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.4.1-alpha) 2023-03-02
 
