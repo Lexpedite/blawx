@@ -11,6 +11,8 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### Changes
 * The default in v1.5.0-alpha that sections are applicable to object by default is removed.
+  Default applicability should be specified by presumption, as indicated in the defaults, exceptions, and applicability
+  section of the documentation.
 * Documentation and examples have been updated to reflect that change.
 
 ### Fixes
