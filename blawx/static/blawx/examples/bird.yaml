@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 5
+  pk: 1
   fields:
     ruledoc_name: New Bird Act
     rule_text: "New Bird Act\r\n\r\n1. Penguins are birds.\r\n2. Birds fly.\r\n3.
@@ -10,16 +10,16 @@
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 35
+  pk: 1
   fields:
-    ruledoc: 5
+    ruledoc: 1
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 36
+  pk: 2
   fields:
-    ruledoc: 5
+    ruledoc: 1
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="MvMtMeJ0mqn*i{:E;Zn$" x="34" y="36"><statement name="statements"><block
@@ -63,9 +63,9 @@
       :- penguin(A).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1_section,bird,A) :- according_to(sec_1_section,bird,A).\n\n%
       BLAWX CHECK DUPLICATES\n  bird(A) :- holds(sec_1_section,bird,A)."
 - model: blawx.workspace
-  pk: 37
+  pk: 3
   fields:
-    ruledoc: 5
+    ruledoc: 1
     workspace_name: sec_2_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="ItYET)m_mf?H}SyD;cbj" x="26" y="33"><statement name="statements"><block
@@ -78,7 +78,7 @@
       name="first_element">object</field><field name="infix">'s attribute name is</field><field
       name="second_element">value</field><field name="postfix">can fly</field></block></next></block></statement></block><block
       type="attributed_rule" id="RC1Ru_^~iY;[ml0WDxK2" x="74" y="246"><field name="defeasible">TRUE</field><field
-      name="inapplicable">TRUE</field><statement name="conditions"><block type="new_object_category"
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
       id="8}tx{lQEg+guu[DG(cWZ"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="bird"></mutation><field
       name="category_name">bird</field><value name="object"><block type="variable"
       id="fjBMjMmV/5PWMMCQn:1M"><field name="variable_name">A</field></block></value></block></statement><value
@@ -109,13 +109,13 @@
       :: 'according to @(Z), it is not the case that @(X) can fly'.\n#pred blawx_defeated(Z,flies,X)
       :: 'the conclusion in @(Z) that @(X) can fly is defeated'.\n#pred blawx_defeated(Z,-flies,X)
       :: 'the conclusion in @(Z) that @(X) can fly is defeated'.\n\naccording_to(sec_2_section,flies,A)
-      :- blawx_applies(sec_2_section,A),\nbird(A).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_2_section,flies,A)
-      :- according_to(sec_2_section,flies,A), not blawx_defeated(sec_2_section,flies,A).\n\n%
-      BLAWX CHECK DUPLICATES\n  flies(A) :- holds(sec_2_section,flies,A)."
+      :- bird(A).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_2_section,flies,A) :- according_to(sec_2_section,flies,A),
+      not blawx_defeated(sec_2_section,flies,A).\n\n% BLAWX CHECK DUPLICATES\n  flies(A)
+      :- holds(sec_2_section,flies,A)."
 - model: blawx.workspace
-  pk: 38
+  pk: 4
   fields:
-    ruledoc: 5
+    ruledoc: 1
     workspace_name: sec_3_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="@4MDfrxCbw[9swv2l=%d" x="186" y="8"><statement name="statements"><block
@@ -160,7 +160,7 @@
       name="first_element">object</field><field name="infix">'s attribute name is</field><field
       name="second_element">value</field><field name="postfix">is on a plane</field></block></statement></block><block
       type="attributed_rule" id="G9-aAp)QdiNP``7Qi3!w" x="183" y="405"><field name="defeasible">TRUE</field><field
-      name="inapplicable">TRUE</field><statement name="conditions"><block type="new_object_category"
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
       id="yQReq*ffm)NOM#0zbxw`"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
       name="category_name">penguin</field><value name="object"><block type="variable"
       id="Z8S%MLX+[q/2wBG%^xTP"><field name="variable_name">A</field></block></value></block></statement><value
@@ -184,17 +184,17 @@
       to @(Z), it is not the case that @(X) is on a plane'.\n#pred blawx_defeated(Z,on_plane,X)
       :: 'the conclusion in @(Z) that @(X) is on a plane is defeated'.\n#pred blawx_defeated(Z,-on_plane,X)
       :: 'the conclusion in @(Z) that @(X) is on a plane is defeated'.\n\naccording_to(sec_3_section,-flies,A)
-      :- blawx_applies(sec_3_section,A),\npenguin(A).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_3_section,-flies,A)
-      :- according_to(sec_3_section,-flies,A), not blawx_defeated(sec_3_section,-flies,A).\n\n%
+      :- penguin(A).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_3_section,-flies,A) :-
+      according_to(sec_3_section,-flies,A), not blawx_defeated(sec_3_section,-flies,A).\n\n%
       BLAWX CHECK DUPLICATES\n  -flies(A) :- holds(sec_3_section,-flies,A)."
 - model: blawx.workspace
-  pk: 39
+  pk: 5
   fields:
-    ruledoc: 5
+    ruledoc: 1
     workspace_name: sec_4_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
       id=")~:=Pi`eXz2D,;o/xUcQ" x="124" y="167"><field name="defeasible">TRUE</field><field
-      name="inapplicable">TRUE</field><statement name="conditions"><block type="new_object_category"
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
       id="]G?ghzNvy*PRTFP$I)ZF"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
       name="category_name">penguin</field><value name="object"><block type="variable"
       id="uP,;^UpNX,!uTTPG/Cfl"><field name="variable_name">A</field></block></value><next><block
@@ -209,14 +209,14 @@
       attributename="flies" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">can fly</field><value name="first_element"><block type="variable"
       id="a7nx/G9)+yz/j*aglTls"><field name="variable_name">A</field></block></value></block></statement></block></xml>
-    scasp_encoding: "according_to(sec_4_section,flies,A) :- blawx_applies(sec_4_section,A),\npenguin(A),\non_plane(A).\n\n%
+    scasp_encoding: "according_to(sec_4_section,flies,A) :- penguin(A),\non_plane(A).\n\n%
       BLAWX CHECK DUPLICATES\nholds(sec_4_section,flies,A) :- according_to(sec_4_section,flies,A),
       not blawx_defeated(sec_4_section,flies,A).\n\n% BLAWX CHECK DUPLICATES\n  flies(A)
       :- holds(sec_4_section,flies,A)."
 - model: blawx.workspace
-  pk: 40
+  pk: 6
   fields:
-    ruledoc: 5
+    ruledoc: 1
     workspace_name: sec_5_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="QK_uJ1D.sW7{#Zd91B,_" x="37" y="10"><statement name="statements"><block
@@ -243,7 +243,20 @@
       attributetype="boolean"></mutation><field name="prefix"></field><field name="postfix">can
       fly</field><value name="first_element"><block type="variable" id="O6T_m*}IiPXA=]@,NdN#"><field
       name="variable_name">A</field></block></value></block></statement></block></statement></block></statement></block><block
-      type="attributed_rule" id=";Q_HRbjjwum6k4[=WY4*" x="35" y="421"><field name="defeasible">TRUE</field><field
+      type="unattributed_rule" id="`V#=8K=2gWL$7bXC49L9" x="513" y="325"><statement
+      name="conditions"><block type="default_negation" id="tZ7E~,DIY~nY5qv03N@)"><statement
+      name="default_negated_statement"><block type="logical_negation" id="@QgvnKj=V4W3(S0|+oIr"><statement
+      name="negated_statement"><block type="applies" id=".ZL)i?J~v]7c:)tTa`TT"><value
+      name="applicable_rule"><block type="doc_selector" id="Jm`!rn3PC@U@lvj7n[!V"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_5_section"></mutation><field
+      name="doc_part_name">NBA 5</field></block></value><value name="object"><block
+      type="variable" id="4=Z,B;%D,,9*n;tX%+9{"><field name="variable_name">A</field></block></value></block></statement></block></statement></block></statement><statement
+      name="conclusion"><block type="applies" id="Ud9aZ=w@{uVU~ght`5W7"><value name="applicable_rule"><block
+      type="doc_selector" id="f1%XTlPp+cf$R;zsQ?O#"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      section_reference="sec_5_section"></mutation><field name="doc_part_name">NBA
+      5</field></block></value><value name="object"><block type="variable" id="L-I$W$63qB`kZ6MONA)/"><field
+      name="variable_name">A</field></block></value></block></statement></block><block
+      type="attributed_rule" id=";Q_HRbjjwum6k4[=WY4*" x="35" y="421"><field name="defeasible">FALSE</field><field
       name="inapplicable">TRUE</field><statement name="conditions"><block type="new_object_category"
       id="(GQq6#Q3BnMYPi|G{x!."><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="penguin"></mutation><field
       name="category_name">penguin</field><value name="object"><block type="variable"
@@ -273,21 +286,21 @@
       blawx_defeated(Z,cartoon_jetpack,X) :: 'the conclusion in @(Z) that @(X) is
       a cartoon with a jetpack is defeated'.\n#pred blawx_defeated(Z,-cartoon_jetpack,X)
       :: 'the conclusion in @(Z) that @(X) is a cartoon with a jetpack is defeated'.\n\nblawx_defeated(sec_3_section,-flies,A)
-      :- holds(sec_5_section,flies,A).\n\naccording_to(sec_5_section,flies,A) :- blawx_applies(sec_5_section,A),\npenguin(A),\ncartoon_jetpack(A).\n\n%
-      BLAWX CHECK DUPLICATES\nholds(sec_5_section,flies,A) :- according_to(sec_5_section,flies,A),
-      not blawx_defeated(sec_5_section,flies,A).\n\n% BLAWX CHECK DUPLICATES\n  flies(A)
-      :- holds(sec_5_section,flies,A)."
+      :- holds(sec_5_section,flies,A).\n\nblawx_applies(sec_5_section,A) :-\nnot -blawx_applies(sec_5_section,A).\n\naccording_to(sec_5_section,flies,A)
+      :- blawx_applies(sec_5_section,A),\npenguin(A),\ncartoon_jetpack(A).\n\n% BLAWX
+      CHECK DUPLICATES\nholds(sec_5_section,flies,A) :- according_to(sec_5_section,flies,A).\n\n%
+      BLAWX CHECK DUPLICATES\n  flies(A) :- holds(sec_5_section,flies,A)."
 - model: blawx.workspace
-  pk: 41
+  pk: 7
   fields:
-    ruledoc: 5
+    ruledoc: 1
     workspace_name: sec_6_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"></xml>
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 42
+  pk: 8
   fields:
-    ruledoc: 5
+    ruledoc: 1
     workspace_name: sec_5__span_pingu_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="~5Jjg+_O-eBwgLF1T9n;" x="135" y="131"><statement name="statements"><block
@@ -308,9 +321,9 @@
 
       holds(sec_5__span_pingu_section,-blawx_applies,sec_5_section,pingu).'
 - model: blawx.blawxtest
-  pk: 22
+  pk: 1
   fields:
-    ruledoc: 5
+    ruledoc: 1
     test_name: is_pingu_a_bird
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="{XGO7Y5OaO`rd@~?+`}L" x="215" y="157"><comment pinned="false" h="113" w="395">The
@@ -325,9 +338,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 23
+  pk: 2
   fields:
-    ruledoc: 5
+    ruledoc: 1
     test_name: pingu_cant_fly
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="*j;b+NcSPilRk(])y9a6" x="148" y="192"><comment pinned="false" h="124" w="352">Section
@@ -350,9 +363,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 24
+  pk: 3
   fields:
-    ruledoc: 5
+    ruledoc: 1
     test_name: pingu_on_plane_can_fly
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="YfJ(d2a:@DHoQ~fcVLJq" x="99" y="89"><statement name="statements"><block
@@ -383,9 +396,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 25
+  pk: 4
   fields:
-    ruledoc: 5
+    ruledoc: 1
     test_name: pingu_with_jetpack_cant_fly
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="%wSHjBKYDWa=ZSd^~A^t" x="66" y="21"><statement name="statements"><block

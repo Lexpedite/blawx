@@ -114,7 +114,7 @@
       Blawx allows you to encode this sort of inapplicability using the attributed rule block and the "applies" block.  The process is this:
 
       * Indicate which rules can be made inapplicable by selecting "subject to applicability" on the attributed rule block.
-      * Use the applies block and the logical negation ("it is false that") block to indicate what rules do not apply to what objects.
+      * Use the applies block (optionally with a logical negation block) to indicate what rules apply to what objects.
 
       ![Does Not Apply](/static/blawx/docs/images/does_not_apply.png)
 
@@ -123,11 +123,16 @@
 
       ![Birds Can't Talk Rule](/static/blawx/docs/images/birds_cant_talk.png)
 
-      In Blawx, every rule applies to every object by default. So the only useful thing to say about applicability is when it is not true.
-      (Note: This may change in future versions.)  So to change the applicability,
-      you need to say that something does not apply. You do that by wrapping the "applies" block in a logical negation, and saying what rule
-      does not apply to what object. This statement can also be the conclusion of a rule.
+      If you make a rule subject to applicability, you need a way to derive applicability for all the objects to which the rule should apply.
+      One of the ways to do this is to create what is called a "presumption." In this case, we will say
+      that if there is no evidence that the section does not apply to something, and that something is a bird, then the section applies to
+      that bird. This will cause Blawx to presume that the section applies to birds unless it has explicit information that it doesn't.
 
+      When making applicability presumptions, you can presume either applicability, or inapplicability, and then make the other explicit. The
+      choice will usually have to do with which formulation best matches the text of the rule you are encoding.
+      
+      ![Applicability Assumption](/static/blawx/docs/images/applicability_presumption.png)
+      
       In this case, section 2 of our rule would be encoded like this:
 
       ![Big Bird Inapplicability](/static/blawx/docs/images/big_bird.png)
