@@ -7,6 +7,16 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.5.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.1-alpha) 2023-03-13
+
+### Changes
+* The default in v1.5.0-alpha that sections are applicable to object by default is removed.
+* Documentation and examples have been updated to reflect that change.
+
+### Fixes
+* The "login" link on the registration screen now has a working target. (Thanks @ASmith26 !)
+* Spelling error in attributed rule block
+
 ## [v1.5.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.0-alpha) 2023-03-10
 
 **This release is NOT backward compatible.**
