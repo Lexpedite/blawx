@@ -24,13 +24,9 @@
 
       ## Tips
 
-      In the current version of Blawx, the applies statement is presumed to be true about all sections
-      and objects until you make a statement to the contrary. Therefore, you will generally only need
-      to use this block when it is wrapped with the "it is false that" negation block, to indicate
-      which sections do not apply to which objects.
-
       Rules can use the Applies block to check explicitly whether or not an object applies to a given rule.
       Rules generated using the attributed rule block will automatically check the applicability of any
       objects which are named in a object category block in the conditions of the rule, only if
       "subject to applicability" has been selected on the attributed rule block. If rules are not made
-      explicitly subject to applicability, statements made with the applies block will have no effect.
+      explicitly subject to applicability, and applicability is not explicitly checked in the conditions
+      of a rule, statements made with the applies block will have no effect.

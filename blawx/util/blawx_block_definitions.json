@@ -414,11 +414,7 @@
     }
   ],
   "inputsInline": true,
-  "previousStatement": [
-    "OUTER",
-    "STATEMENT"
-  ],
-  "nextStatement": "STATEMENT",
+  "previousStatement": "OUTER",
   "colour": 165,
   "tooltip": "Use to indicate that one rule overrides another rule.",
   "helpUrl": "/docs/blocks/overrules/"
@@ -3107,7 +3103,7 @@
 },
 {
   "type": "attributed_rule",
-  "message0": "When we know: %1 %2 We also know that according to %3 %4 %5 subject to exceptions %6 %7 subect to applicability",
+  "message0": "When we know: %1 %2 We also know that according to %3 %4 %5 subject to exceptions %6 %7 subject to applicability",
   "args0": [
     {
       "type": "input_dummy"
@@ -3130,7 +3126,7 @@
     {
       "type": "field_checkbox",
       "name": "defeasible",
-      "checked": true
+      "checked": false
     },
     {
       "type": "input_dummy"
@@ -3138,7 +3134,7 @@
     {
       "type": "field_checkbox",
       "name": "inapplicable",
-      "checked": true
+      "checked": false
     }
   ],
   "inputsInline": true,
@@ -3204,4 +3200,314 @@
   "colour": 165,
   "tooltip": "Use to specify or test if a section applies to an object",
   "helpUrl": "/docs/blocks/applies/"
+},
+{
+  "type": "happens",
+  "message0": "At time %1 the event %2 happened",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "time",
+      "check": [
+        "TIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "event",
+      "check": [
+        "EVENT",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "initiates",
+  "message0": "At time %1 the event %2 initiates %3 %4",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "time",
+      "check": [
+        "TIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "event",
+      "check": [
+        "EVENT",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "NAME",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "terminates",
+  "message0": "At time %1 the event %2 terminates %3 %4",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "time",
+      "check": [
+        "TIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "event",
+      "check": [
+        "EVENT",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "holds_at",
+  "message0": "At time %1 we know %2 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "time",
+      "check": [
+        "TIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "initially",
+  "message0": "Initially we know %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "trajectory",
+  "message0": "If at time %1 we know %2 %3 then at time %4 we know %5 %6",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "initial_time",
+      "check": [
+        "TIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "initial_fluent",
+      "check": "STATEMENT"
+    },
+    {
+      "type": "input_value",
+      "name": "subsequent_time",
+      "check": [
+        "TIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "subsequent_fluent",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "started_in",
+  "message0": "Between %1 and %2 %3 was initiated",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "start_time",
+      "check": [
+        "TIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "end_time",
+      "check": [
+        "TIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "stopped_in",
+  "message0": "Between %1 and %2 %3 was terminated",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "start_time",
+      "check": [
+        "TIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "end_time",
+      "check": [
+        "TIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "attributed_fact",
+  "message0": "We know that according to %1 %2 %3 subject to exceptions",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "source",
+      "check": [
+        "RULE",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "OUTER"
+    },
+    {
+      "type": "field_checkbox",
+      "name": "exceptions",
+      "checked": true
+    }
+  ],
+  "inputsInline": true,
+  "colour": 270,
+  "tooltip": "Use to make a statements that is tentatively true, and/or has a legislative source.",
+  "helpUrl": "/docs/blocks/attributed_fact/"
 }]

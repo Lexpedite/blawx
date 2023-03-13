@@ -11,7 +11,4 @@ ldap_code = """
 #pred defeated(X,-blawx_applies,Y,Z) :: 'the conclusion in @(X) that it is not the case that @(Y) applies to @(Z) is defeated'.
 -blawx_applies(X,Y) :- holds(_,-blawx_applies,X,Y).
 blawx_applies(X,Y) :- holds(_,blawx_applies,X,Y).
-
-% We presume that sections apply to things unless we have evidence they don't.
-blawx_applies(X,Y) :- not -blawx_applies(X,Y).
 """
