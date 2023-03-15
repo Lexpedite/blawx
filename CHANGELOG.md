@@ -7,6 +7,18 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.5.2-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.2-alpha) 2023-03-15
+
+This release front-loads the process of generating Akoma Ntoso and Code Editor navigation trees
+to immediately after the rule text is saved, for a dramatic improvement in speed whenever legal text is displayed, including when you open the code editor, and when answers are displayed.
+
+### Changed
+* Load time for the code editor is dramatically improved
+* Answers are displayed more quickly in test editor and scenario editor
+* Saving rule text, importing projects, and opening example projects is slightly slower
+* Additional project fields have been added to the admin interface
+
+
 ## [v1.5.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.1-alpha) 2023-03-13
 
 ### Changes
