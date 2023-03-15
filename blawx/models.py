@@ -1,3 +1,5 @@
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.db import models
 from django.contrib.auth.models import User
 from .parse_an import generate_tree
@@ -9,7 +11,8 @@ from preferences.models import Preferences
 class RuleDoc(models.Model):
     ruledoc_name = models.CharField(max_length=200)
     rule_text = models.TextField(default="Default Act")
-    # akoma_ntoso = models.TextField(default="",blank=True)
+    akoma_ntoso = models.TextField(default="",blank=True)
+    navtree = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
     tutorial = models.TextField(default="",blank=True)
     owner = models.ForeignKey(User,on_delete=models.CASCADE,)
@@ -18,21 +21,17 @@ class RuleDoc(models.Model):
     def __str__(self):
         return self.ruledoc_name
 
-    @property
-    def akoma_ntoso(self):
-        return generate_akn(self.rule_text)
-
-    @property
-    def navtree(self):
-        an_act = Act(self.akoma_ntoso)
-        return generate_tree(an_act.act)
-
     class Meta:
         permissions = [
             ('add_blawxtest_to_ruledoc', 'Can add Test to RuleDoc'),
             ('add_workspace_to_ruledoc', 'Can add Workspace to RuleDoc'),
         ]
-    
+
+@receiver(pre_save, sender=RuleDoc)
+def update_an_nav(sender, instance, **kwargs):
+    instance.akoma_ntoso = generate_akn(instance.rule_text)
+    instance.navtree = generate_tree(Act(instance.akoma_ntoso).act)
+
 class Workspace(models.Model):
     ruledoc = models.ForeignKey(RuleDoc, related_name='workspaces', on_delete=models.CASCADE)
     workspace_name = models.CharField(max_length=200)
