@@ -1179,12 +1179,11 @@
                         models = answers[i].Models;
                         output_content += '<div class="accordian accordian-flush">'
                         output_content += '<ul>'
-                        var attributes_output = "";
                         for (var key in variables) {
                             output_content += '<li>' + key + ': ' + displayValue(variables[key]) + '</li>';
                         }
-                        output_content += attributes_output;
                         output_content += '</ul>'
+                        var attributes_output = [];
 
                         for (let j = 0; j < models.length; j++) {
                             var model_count = j + 1;
@@ -1196,23 +1195,42 @@
                             output_content += '</button></h2>';
                             output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
                             for (var attribute in models[j]['Residuals']) {
-                                attributes_output += describe_constraint(models[j]['Residuals'][attribute]);
+                                attributes_output.push(describe_constraint(models[j]['Residuals'][attribute]));
                             }
-                            if (attributes_output != "") {
-                                output_content += "Where:<ul>" + attributes_output + "</ul>"
-                            }
+                            
                                 
                             //output_content += convertModelToTree(models[j].Tree, count, model_count);
                             getExplanationNodeIndex(models[j].Raw,i,j)
                             var explanations = getNodesFromModel(models[j].Raw,false,i,j);
                             var displayed_nodes = [];
+                            var explanation_content = "";
+                            var referenced_variables = [];
                             for (var k = 0; k < explanations.length; k++) {
                                 
                                 if (!displayed_nodes.includes(explanations[k].name)) { // To eliminate duplicates caused by "proved" method.
-                                    output_content += explanations[k].content;
+                                    explanation_content += explanations[k].content;
+                                    referenced_variables = referenced_variables.concat(get_variables(explanation_content));
                                     displayed_nodes.push(explanations[k].name);
                                 }
                             }
+                            // We could de-duplicate the lists, but I feel like at this point it would not help much.
+                            var constraint_output = "";
+                            if (attributes_output.length) {
+                                for (var ao=0; ao < attributes_output.length; ao++) {
+                                    var variables_in_constraint = get_variables(attributes_output[ao]);
+                                    var any_matches = referenced_variables.filter(x => variables_in_constraint.includes(x));
+                                    if (any_matches.length) {
+                                        constraint_output += attributes_output[ao];
+                                    }
+                                }
+                                if (constraint_output != "") {
+                                    output_content += "Where:<ul>";
+                                    output_content += constraint_output;
+                                    output_content += "</ul>"
+                                }
+                            }
+                            
+                            output_content += explanation_content;
                             //output_content += getNodesFromModel(models[j].Raw);
                             // output_content += convertModelToParagraphs(models[j].Raw);
                             output_content += '</div></div>';
@@ -1512,6 +1530,14 @@
                 default:
                     console.warn("Unrecognized constraint type applied to variable: " + constraint.toString())
             }
+        }
+        function get_variables(string) {
+            const pattern = /[^\w]([A-Z_]\w*)/gm;
+            var output = [];
+            for(let match of string.matchAll(pattern)) {
+                output.push(match[1]);
+            }
+            return output;
         }
     </script>
 </body>
