@@ -571,7 +571,7 @@ blawxrun(Query, Human) :-
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
                     # print("blawxrun(" + query + ",Human).")
-                    query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
+                    query_answer = swipl_thread.query("blawxrun((" + query + "),Human).")
                     
                 transcript.write(str(query_answer) + '\n')
 
@@ -1040,7 +1040,7 @@ blawxrun(Query, Human, Tree, Model) :-
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
                     # print("blawxrun(" + query + ",Human,Model).")
-                    relevance_query_answer = swipl_thread.query("blawxrun(" + query + ",Human, Tree, Model).")
+                    relevance_query_answer = swipl_thread.query("blawxrun((" + query + "),Human, Tree, Model).")
                 #print("Running Relevance Query:")
                 #print(str(relevance_query_answer) + "\n")
                 transcript.write(str(relevance_query_answer) + '\n')
