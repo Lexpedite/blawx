@@ -1,0 +1,27 @@
+- model: blawx.docpage
+  pk: examples/logical_constraints
+  fields:
+    title: Logical Constraints Example
+    content: |
+      # Logical Constraints Example
+
+      All the example projects are available under the New Project button.
+
+      The Logical Constraints example demonstrates the use of the constraint block in blawx.
+
+      It encodes the following clauses:
+
+      ```
+      1. Bob is a person.
+      2. Bob is 40 years of age.
+      3. A person cannot have more than one age.
+      4. Bob is 50 years of age.
+      ```
+
+      Section 3 is encoded using the constraint block, which prevents the code from returning
+      any models in which the constraint is violated. In this case, the constraint is violated
+      because bob has been given two ages. So the query "how old is bob" returns no answers.
+
+      If you disable or delete the code in section 2, the query will answer that bob is 50.
+      If you disable or delete the code in section 4, the query will answer that bob is 40.
+      If you disable or delete the code in section 3, the query will answer that bob is both 50 and 40.

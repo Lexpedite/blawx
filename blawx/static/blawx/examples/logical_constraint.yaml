@@ -1,0 +1,212 @@
+- model: blawx.ruledoc
+  pk: 2
+  fields:
+    ruledoc_name: Logical Constraints
+    rule_text: "Logical Constraints\r\n\r\n1. Bob is a person.\r\n2. Bob is 40 years
+      of age.\r\n3. A person cannot have more than one age.\r\n4. Bob is 50 years
+      of age."
+    akoma_ntoso: <?xml version="1.0" encoding="UTF-8"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><act><preface><p
+      class="title"><shortTitle>Logical Constraints</shortTitle></p></preface><body><section
+      eId="sec_1"><num>1</num><content><p>Bob is a person.</p></content></section><section
+      eId="sec_2"><num>2</num><content><p>Bob is 40 years of age.</p></content></section><section
+      eId="sec_3"><num>3</num><content><p>A person cannot have more than one age.</p></content></section><section
+      eId="sec_4"><num>4</num><content><p>Bob is 50 years of age.</p></content></section></body></act></akomaNtoso>
+    navtree: '<nav class="column">
+
+      <div class="lawpart act"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="root_section" checked><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#root"></i>Logical
+      Constraints</div></div></div><div class="subparts collapse" id="root"><div class="lawpart
+      section"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_1_section"><div class="lawtext"><num>1</num> <content
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Bob is a person.</p></content></div></div></div><div
+      class="lawpart section"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_2_section"><div class="lawtext"><num>2</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Bob is
+      40 years of age.</p></content></div></div></div><div class="lawpart section"><div
+      class="form-check"><input class="form-check-input" type="radio" name="section"
+      id="sec_3_section"><div class="lawtext"><num>3</num> <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>A
+      person cannot have more than one age.</p></content></div></div></div><div class="lawpart
+      section"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_4_section"><div class="lawtext"><num>4</num> <content
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Bob is 50 years
+      of age.</p></content></div></div></div></div></nav>'
+    scasp_encoding: ''
+    tutorial: ''
+    owner: 3
+    published: false
+- model: blawx.workspace
+  pk: 5
+  fields:
+    ruledoc: 2
+    workspace_name: root_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 6
+  fields:
+    ruledoc: 2
+    workspace_name: sec_1_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="r%EI0s*XO1XZmoe0UiXr" x="46" y="54"><statement name="statements"><block
+      type="new_category_declaration" id="$K+8j,=ax`vyP$=W{IKd"><field name="category_name">person</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="postfix">is
+      a person</field><next><block type="object_declaration" id="u1?Y@lN(G_)lCu4b]Yqz"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person" prefix="null" postfix="null"></mutation><field
+      name="prefix"></field><field name="object_name">bob</field><field name="postfix">is
+      a person</field></block></next></block></statement></block></xml>
+    scasp_encoding: 'blawx_category(person).
+
+      blawx_category_nlg(person,"","is a person").
+
+      #pred person(X) :: ''@(X) is a person''.
+
+      #pred holds(user,person,X) :: ''it is provided as a fact that @(X) is a person''.
+
+      #pred holds(user,-person,X) :: ''it is provided as a fact that it is not the
+      case that @(X) is a person''.
+
+      #pred holds(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a person holds''.
+
+      #pred holds(Z,-person,X) :: ''the conclusion in @(Z) that it is not the case
+      that @(X) is a person holds''.
+
+      #pred according_to(Z,person,X) :: ''according to @(Z), @(X) is a person''.
+
+      #pred according_to(Z,-person,X) :: ''according to @(Z), it is not the case that
+      @(X) is a person''.
+
+      #pred blawx_defeated(Z,person,X) :: ''the conclusion in @(Z) that @(X) is a
+      person is defeated''.
+
+      #pred blawx_defeated(Z,-person,X) :: ''the conclusion in @(Z) that @(X) is a
+      person is defeated''.
+
+      person(bob).'
+- model: blawx.workspace
+  pk: 7
+  fields:
+    ruledoc: 2
+    workspace_name: sec_2_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="xY]%Upv`{Wf47qr8WMOV" x="58" y="56"><statement name="statements"><block
+      type="new_attribute_declaration" id="5[]OfzsZkL)+9GygMwq."><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" attribute_type="number"></mutation><field name="category_name">person</field><field
+      name="attribute_name">age</field><field name="attribute_type">number</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">is</field><field name="second_element">value</field><field name="postfix">years
+      of age</field><next><block type="attribute_selector" id="ZUH`fTm95TFN3=6+ZjH."><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="age" attributetype="number"
+      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">is</field><field
+      name="postfix">years of age</field><value name="first_element"><block type="object_selector"
+      id="QnFvNqEE~oLeIUtaiG)S"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field
+      name="object_name">bob</field></block></value><value name="second_element"><block
+      type="number_value" id="tcSw?ao*z9}*rbUXVvkF"><field name="value">40</field></block></value></block></next></block></statement></block></xml>
+    scasp_encoding: 'blawx_attribute(person,age,number).
+
+      blawx_attribute_nlg(age,ov,"","is","years of age").
+
+      #pred age(X,Y) :: ''@(X) is @(Y) years of age''.
+
+      #pred holds(user,age,X,Y) :: ''it is provided as a fact that @(X) is @(Y) years
+      of age''.
+
+      #pred holds(user,-age,X,Y) :: ''it is provided as a fact that it is not the
+      case that @(X) is @(Y) years of age''.
+
+      #pred holds(Z,age,X,Y) :: ''the conclusion in @(Z) that @(X) is @(Y) years of
+      age holds''.
+
+      #pred holds(Z,-age,X,Y) :: ''the conclusion in @(Z) that it is not the case
+      that @(X) is @(Y) years of age holds''.
+
+      #pred according_to(Z,age,X,Y) :: ''according to @(Z), @(X) is @(Y) years of
+      age''.
+
+      #pred according_to(Z,-age,X,Y) :: ''according to @(Z), it is not the case that
+      @(X) is @(Y) years of age''.
+
+      #pred blawx_defeated(Z,age,X,Y) :: ''the conclusion in @(Z) that @(X) is @(Y)
+      years of age is defeated''.
+
+      #pred blawx_defeated(Z,-age,X,Y) :: ''the conclusion in @(Z) that @(X) is @(Y)
+      years of age is defeated''.
+
+      age(bob,40).'
+- model: blawx.workspace
+  pk: 8
+  fields:
+    ruledoc: 2
+    workspace_name: sec_3_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_constraint"
+      id="]1+OH,^rCLXIebZa;Grg" x="43" y="171"><statement name="conditions"><block
+      type="new_object_category" id="KX8dMe**0xy8.uC8qq6r"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field><value
+      name="object"><block type="variable" id="C$azRVriG^6oNZ-tEczB"><field name="variable_name">Person</field></block></value><next><block
+      type="attribute_selector" id="Ih0*T,aK0Zk-*_ql0.l^"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="age" attributetype="number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">is</field><field name="postfix">years
+      of age</field><value name="first_element"><block type="variable" id="t/!Tn:t+/Qv!#2;-pKD8"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="gZvjXnD$HrmH+E_K#%?@"><field name="variable_name">Age1</field></block></value><next><block
+      type="attribute_selector" id="fjGhwf#zwE0*|2o|:G3$"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="age" attributetype="number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">is</field><field name="postfix">years
+      of age</field><value name="first_element"><block type="variable" id=",l?J!Z-MqB-D37gl.(Qp"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="I^dvG=7k3-oM(T(o/wf3"><field name="variable_name">Age2</field></block></value><next><block
+      type="comparison" id="]r}{g3{OdvQkLj96p[u1"><field name="operator">neq</field><value
+      name="first_comparator"><block type="variable" id="Y@7GmGW4exBrinPE$LX@"><field
+      name="variable_name">Age1</field></block></value><value name="second_comparator"><block
+      type="variable" id="HIam|2NyzQ+g[PW^31Ur"><field name="variable_name">Age2</field></block></value></block></next></block></next></block></next></block></statement></block></xml>
+    scasp_encoding: 'false :- person(Person),
+
+      age(Person,Age1),
+
+      age(Person,Age2),
+
+      Age1 \= Age2.'
+- model: blawx.workspace
+  pk: 9
+  fields:
+    ruledoc: 2
+    workspace_name: sec_4_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id=")P)/X~3IKA}I=#r56d29" x="76" y="87"><statement name="statements"><block
+      type="attribute_selector" id="0[4zcV}~+r#j$`)In@^u"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="age" attributetype="number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">is</field><field name="postfix">years
+      of age</field><value name="first_element"><block type="object_selector" id=":bf!kfdE9i:SB0Ek9Q:z"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
+      name="second_element"><block type="number_value" id="SLEW.oj6_{RXI!u_{OSQ"><field
+      name="value">50</field></block></value></block></statement></block></xml>
+    scasp_encoding: age(bob,50).
+- model: blawx.blawxtest
+  pk: 3
+  fields:
+    ruledoc: 2
+    test_name: how_old_bob
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
+      id="f}^_!W8V_K{b{~z|H[_L" x="114" y="240"><comment pinned="false" h="123" w="444">This
+      query returns no models, because the constraint in section 3 has been violated,
+      which renders the entire model inconsistent. If you disable section 4, this
+      query will answer "40". If you disabled section 3, it will answer "40 and 50".</comment><statement
+      name="query"><block type="attribute_selector" id="LPm0XjQv{;[(FZ3^^Z@j"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="age" attributetype="number"
+      attributeorder="ov"></mutation><field name="prefix"></field><field name="infix">is</field><field
+      name="postfix">years of age</field><value name="first_element"><block type="object_selector"
+      id="#DYa3Et{rpKUdqUhSTK2"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field
+      name="object_name">bob</field></block></value><value name="second_element"><block
+      type="variable" id="ryO*DjW`gWueg9Z3efV5"><field name="variable_name">Age</field></block></value></block></statement></block></xml>
+    scasp_encoding: '% This query returns no models, because the constraint in section
+
+      % 3 has been violated, which renders the entire model inconsistent.
+
+      % If you disable section 4, this query will answer "40".
+
+      % If you disabled section 3, it will answer "40 and 50".
+
+      ?- age(bob,Age).'
+    tutorial: ''
+    view: ''
+    fact_scenario: ''
