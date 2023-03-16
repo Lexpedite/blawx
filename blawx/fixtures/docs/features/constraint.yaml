@@ -42,5 +42,22 @@
       reduced to 8.
       
       ![House Answers 8](/static/blawx/docs/images/house_answers_8.png)
+
+      ## Logical Constraints Are Hard to Debug, and Slow
+
+      Note that a logical constraint has the effect of making the code "inconsistent" when all of
+      its conditions are true. If you have a number of constraints, and your code is unexpectedly
+      returning "no models", one of those constraints is probably being violated, but it might be
+      difficult to tell which.
+
+      It may be easier to create an object with a property that is set to true if the conditions
+      are met, and a single constraint that this value cannot be true. Then, when you believe a
+      constraint is being violated, you can disable the only constraint block, and ask whether
+      that value is true, and get an explanation for why. This will make it a lot easier to
+      debug problems with constraints.
+      
+      Note also that constraints can incur a considerable speed
+      penalty depending on your code. If it is possible to do what you want to do without using
+      constraint blocks, that may improve the speed of your code.
       
 
