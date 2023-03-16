@@ -296,8 +296,8 @@ def format_statement_value(value,attribute_type):
       seconds = "0S"
     duration_format = f"duration({sign_value},{int(years[:-1])},{int(months[:-1])},{int(days[:-1])},{int(hours[:-1])},{int(minutes[:-1])},{int(seconds[:-1])})"
     return duration_format
-  # If you get to this point, the raw representation is fine.
-  return value
+  # If you get to this point, just return a string version.
+  return str(value)
 
 def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
   output = ""
