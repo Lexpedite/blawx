@@ -120,6 +120,50 @@ updateTooltips = function() {
     })
 }
 
+function describe_constraint(constraint) {
+    // A constraint is a functor and a list of arguments.
+    // Some functions can have other functions inside them.
+    // Functors can be "{}", ",", "put_attr", ">", ">=", "=<", or "<".
+    var functor = constraint['functor'];
+    var args = constraint['args'];
+    var output = ""
+    switch(functor) {
+        case "put_attr": // We don't need to display these.
+            return ""
+        case "{}": // This is a set of one or more numerical constraints
+            for (var a=0; a< args.length; a++) {
+                output += "<li>" + describe_constraint(args[a]) + "</li>";
+            }
+            return output;
+        case ",": // This is a set of two conjoined constraints
+            output += describe_constraint(args[0]);
+            output += " and ";
+            output += describe_constraint(args[1]);
+            return output;
+        case "<":
+            output += args[0] + " is less than " + args[1];
+            return output;
+        case ">":
+            output += args[0] + " is greater than " + args[1];
+            return output;
+        case "=<":
+            output += args[0] + " is less than or equal to " + args[1];
+            return output;
+        case ">=":
+            output += args[0] + " is greater than or equal to " + args[1];
+            return output;
+        case "∉":
+            output += "<li>" + args[0] + " is not "
+            if (args[1].length > 1) {
+                output += "one of ";
+            }
+            output += args[1].toString() + "</li>";
+            return output;
+        default:
+            console.warn("Unrecognized constraint type applied to variable: " + constraint.toString())
+    }
+}
+
 var runCode
 runCode = function(button) {
     var run_xhttp = new XMLHttpRequest();
@@ -149,33 +193,11 @@ runCode = function(button) {
                 models = answers[i].Models;
                 output_content += '<div class="accordian accordian-flush">'
                 output_content += '<ul>'
-                var attributes_output = "";
-                for (var key in variables) {
-                    if (key == "$residuals") {
-                        for (var attribute in variables['$residuals']) {
-                            if (variables['$residuals'][attribute]['functor'] == "put_attr" && variables['$residuals'][attribute]['args'][1] == 'scasp_output' && variables['$residuals'][attribute]['args'][2]['functor'] == 'name') {
-                                // This is designed to prevent re-printing information about the Attributes that is already displayed.
-                                // If the only thing present int he attributes is the name, just skip it.
-                                continue;
-                            } else if (variables['$residuals'][attribute]['functor'] == "∉") {
-                                // This is an inequality constraint
-                                attributes_output += "<li>where " + variables['$residuals'][attribute]['args'][0] + " is not ";
-                                if (variables['$residuals'][attribute]['args'][1].length > 1) {
-                                    attributes_output += "one of ";
-                                }
-                                attributes_output += variables['$residuals'][attribute]['args'][1].toString() + "</li>"
-                            } else if (variables['$residuals'][attribute]['functor'] == "{}") {
-                                attributes_output += "<li>where" + variables['$residuals'][attribute]['args'][0]['args'][0] + " " + variables['$residuals'][attribute]['args'][0]['functor'] + " " + variables['$residuals'][attribute]['args'][0]['args'][1] + "</li>";
-                            } else {
-                                // It should throw a console warning if there was something else in there.
-                                console.warn("Unrecognized attribute in output: " + attribute['functor'] + ".");
-                            }
-                        }
-                    } else {
-                        output_content += '<li>' + key + ': ' + variables[key] + '</li>';
-                    }
-                }
-                output_content += attributes_output;
+                /// Replaceing from here
+                var attributes_output = [];
+                
+                // output_content += attributes_output;
+                /// To Here.
                 output_content += '</ul>'
                 
                 for (let j = 0; j < models.length; j++) {
@@ -187,6 +209,44 @@ runCode = function(button) {
                     output_content += 'Explanation #' + model_count;
                     output_content += '</button></h2>';
                     output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
+                    for (var attribute in models[j]['Residuals']) {
+                        var description = describe_constraint(models[j]['Residuals'][attribute]);
+                        if (description != "") {
+                            attributes_output.push(description);
+                        }
+                    }
+                    // for (var key in variables) {
+                    //     if (key == "$residuals") {
+                    //         for (var attribute in variables['$residuals']) {
+                    //             if (variables['$residuals'][attribute]['functor'] == "put_attr" && variables['$residuals'][attribute]['args'][1] == 'scasp_output' && variables['$residuals'][attribute]['args'][2]['functor'] == 'name') {
+                    //                 // This is designed to prevent re-printing information about the Attributes that is already displayed.
+                    //                 // If the only thing present int he attributes is the name, just skip it.
+                    //                 continue;
+                    //             } else if (variables['$residuals'][attribute]['functor'] == "∉") {
+                    //                 // This is an inequality constraint
+                    //                 attributes_output += "<li>where " + variables['$residuals'][attribute]['args'][0] + " is not ";
+                    //                 if (variables['$residuals'][attribute]['args'][1].length > 1) {
+                    //                     attributes_output += "one of ";
+                    //                 }
+                    //                 attributes_output += variables['$residuals'][attribute]['args'][1].toString() + "</li>"
+                    //             } else if (variables['$residuals'][attribute]['functor'] == "{}") {
+                    //                 attributes_output += "<li>where" + variables['$residuals'][attribute]['args'][0]['args'][0] + " " + variables['$residuals'][attribute]['args'][0]['functor'] + " " + variables['$residuals'][attribute]['args'][0]['args'][1] + "</li>";
+                    //             } else {
+                    //                 // It should throw a console warning if there was something else in there.
+                    //                 console.warn("Unrecognized attribute in output: " + attribute['functor'] + ".");
+                    //             }
+                    //         }
+                    //     } else {
+                    //         output_content += '<li>' + key + ': ' + variables[key] + '</li>';
+                    //     }
+                    // }
+                    if(attributes_output.length) {
+                        output_content += "Where:<ul>";
+                        for (var ao=0; ao < attributes_output.length; ao++) {
+                            output_content += attributes_output[ao];
+                        }
+                        output_content += "</ul>";
+                    }
                     output_content += convertModelToTree(models[j].Tree,count,model_count);
                     output_content += '</div></div>';
                     

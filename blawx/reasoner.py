@@ -296,8 +296,8 @@ def format_statement_value(value,attribute_type):
       seconds = "0S"
     duration_format = f"duration({sign_value},{int(years[:-1])},{int(months[:-1])},{int(days[:-1])},{int(hours[:-1])},{int(minutes[:-1])},{int(seconds[:-1])})"
     return duration_format
-  # If you get to this point, the raw representation is fine.
-  return value
+  # If you get to this point, just return a string version.
+  return str(value)
 
 def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
   output = ""
@@ -521,14 +521,24 @@ def run_test(request,ruledoc,test_name):
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-blawxrun(Query, Human) :-
-    scasp(Query,[tree(Tree),source(false)]),
+blawxrun(Query, Human, Tree, Model) :-
+    scasp(Query,[tree(Tree),model(Model),source(false)]),
     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
     with_output_to(string(Human),
               human_justification_tree(Tree,[])).
-    term_attvars(Query, AttVars),
-    maplist(del_attrs, AttVars).
+    %term_attvars(Query, AttVars),
+    %maplist(del_attrs, AttVars).
 """)
+
+#       rulefile.write("""
+# blawxrun(Query, Human) :-
+#     scasp(Query,[tree(Tree),source(false)]),
+#     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+#     with_output_to(string(Human),
+#               human_justification_tree(Tree,[])).
+#     term_attvars(Query, AttVars),
+#     maplist(del_attrs, AttVars).
+# """)
   
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
@@ -571,7 +581,7 @@ blawxrun(Query, Human) :-
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
                     # print("blawxrun(" + query + ",Human).")
-                    query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
+                    query_answer = swipl_thread.query("blawxrun((" + query + "),Human,Tree,Model).")
                     
                 transcript.write(str(query_answer) + '\n')
 
@@ -993,8 +1003,8 @@ blawxrun(Query, Human, Tree, Model) :-
     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
     with_output_to(string(Human),
               human_justification_tree(Tree,[])).
-    term_attvars(Query, AttVars),
-    maplist(del_attrs, AttVars).
+    %term_attvars(Query, AttVars),
+    %maplist(del_attrs, AttVars).
 """)
 
       rulefile.write(ldap_code + '\n\n')
@@ -1040,7 +1050,7 @@ blawxrun(Query, Human, Tree, Model) :-
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
                     # print("blawxrun(" + query + ",Human,Model).")
-                    relevance_query_answer = swipl_thread.query("blawxrun(" + query + ",Human, Tree, Model).")
+                    relevance_query_answer = swipl_thread.query("blawxrun((" + query + "),Human, Tree, Model).")
                 #print("Running Relevance Query:")
                 #print(str(relevance_query_answer) + "\n")
                 transcript.write(str(relevance_query_answer) + '\n')

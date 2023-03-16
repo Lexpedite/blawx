@@ -1,0 +1,265 @@
+- model: blawx.ruledoc
+  pk: 2
+  fields:
+    ruledoc_name: Numerical Constraints
+    rule_text: "Sucker Act\r\n\r\n1. A person may vote if they are 18 years of age
+      or older.\r\n2. A person must pay taxes if they are 16 years of age or older.\r\n3.
+      A person who must pay taxes and may not vote is a sucker."
+    akoma_ntoso: <?xml version="1.0" encoding="UTF-8"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><act><preface><p
+      class="title"><shortTitle>Sucker Act</shortTitle></p></preface><body><section
+      eId="sec_1"><num>1</num><content><p>A person may vote if they are 18 years of
+      age or older.</p></content></section><section eId="sec_2"><num>2</num><content><p>A
+      person must pay taxes if they are 16 years of age or older.</p></content></section><section
+      eId="sec_3"><num>3</num><content><p>A person who must pay taxes and may not
+      vote is a sucker.</p></content></section></body></act></akomaNtoso>
+    navtree: '<nav class="column">
+
+      <div class="lawpart act"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="root_section" checked><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#root"></i>Sucker
+      Act</div></div></div><div class="subparts collapse" id="root"><div class="lawpart
+      section"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_1_section"><div class="lawtext"><num>1</num> <content
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>A person may vote
+      if they are 18 years of age or older.</p></content></div></div></div><div class="lawpart
+      section"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_2_section"><div class="lawtext"><num>2</num> <content
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>A person must pay
+      taxes if they are 16 years of age or older.</p></content></div></div></div><div
+      class="lawpart section"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_3_section"><div class="lawtext"><num>3</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>A person
+      who must pay taxes and may not vote is a sucker.</p></content></div></div></div></div></nav>'
+    scasp_encoding: ''
+    tutorial: ''
+    owner: 3
+    published: false
+- model: blawx.workspace
+  pk: 5
+  fields:
+    ruledoc: 2
+    workspace_name: root_section
+    xml_content: ''
+    scasp_encoding: ''
+- model: blawx.workspace
+  pk: 6
+  fields:
+    ruledoc: 2
+    workspace_name: sec_1_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="va3)+@_j)D_Q%$wYHM}H" x="45" y="61"><statement name="statements"><block
+      type="new_category_declaration" id="DtjB-P0xPDlLnyxkD$2{"><field name="category_name">person</field><field
+      name="prefix"></field><field name="first_element">object</field><field name="postfix">is
+      a person</field><next><block type="new_attribute_declaration" id="e3e]U!5p_EvGmr5L+5R7"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person" attribute_type="number"></mutation><field
+      name="category_name">person</field><field name="attribute_name">age</field><field
+      name="attribute_type">number</field><field name="order">ov</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="infix">is</field><field name="second_element">value</field><field
+      name="postfix">years of age</field><next><block type="new_attribute_declaration"
+      id="-d$`!g;;]/lKJjG=)!YD"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"
+      attribute_type="number"></mutation><field name="category_name">person</field><field
+      name="attribute_name">may_vote</field><field name="attribute_type">number</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">may vote at</field><field name="second_element">value</field><field
+      name="postfix">years of age</field></block></next></block></next></block></statement></block><block
+      type="attributed_rule" id="0_;fnY]o4~M-K/bWn*kV" x="55" y="379"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="u(e%eT+F$q*AV+|,2A_b"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field><value name="object"><block type="variable"
+      id="#bJu$WsZ5Wd[+J4vIb4="><field name="variable_name">Person</field></block></value><next><block
+      type="attribute_selector" id="OJCK|8K(iKCc+{{t4=??"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="age" attributetype="number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">is</field><field name="postfix">years
+      of age</field><value name="first_element"><block type="variable" id="-i!:Tp{.IwO!6Hek=$u%"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="d(TXR1HpaKB:C]~l)fO0"><field name="variable_name">Age</field></block></value><next><block
+      type="numerical_constraint" id="Pp*+./hMuF@oTp00[+x6"><field name="operator">gte</field><value
+      name="first_comparator"><block type="variable" id="{U1D03^x6ZmMlD.rLWX!"><field
+      name="variable_name">Age</field></block></value><value name="second_comparator"><block
+      type="number_value" id="S[yB@vu|H%}EeAYIjHc:"><field name="value">18</field></block></value></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="vJl%O^Zou=$5hn/D7xnJ"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1_section"></mutation><field
+      name="doc_part_name">SA 1</field></block></value><statement name="conclusion"><block
+      type="attribute_selector" id="/8AKsB#eFyt{=!e2$,O^"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="may_vote" attributetype="number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">may vote at</field><field name="postfix">years
+      of age</field><value name="first_element"><block type="variable" id="4^`[2|s-;6Tqz[w1T55E"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="ZY@Hdro.NPrW.njpOj55"><field name="variable_name">Age</field></block></value></block></statement></block></xml>
+    scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
+      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
+      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
+      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
+      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
+      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
+      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
+      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
+      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\nblawx_attribute(person,age,number).\nblawx_attribute_nlg(age,ov,\"\",\"is\",\"years
+      of age\").\n#pred age(X,Y) :: '@(X) is @(Y) years of age'.\n#pred holds(user,age,X,Y)
+      :: 'it is provided as a fact that @(X) is @(Y) years of age'.\n#pred holds(user,-age,X,Y)
+      :: 'it is provided as a fact that it is not the case that @(X) is @(Y) years
+      of age'.\n#pred holds(Z,age,X,Y) :: 'the conclusion in @(Z) that @(X) is @(Y)
+      years of age holds'.\n#pred holds(Z,-age,X,Y) :: 'the conclusion in @(Z) that
+      it is not the case that @(X) is @(Y) years of age holds'.\n#pred according_to(Z,age,X,Y)
+      :: 'according to @(Z), @(X) is @(Y) years of age'.\n#pred according_to(Z,-age,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) is @(Y) years of age'.\n#pred
+      blawx_defeated(Z,age,X,Y) :: 'the conclusion in @(Z) that @(X) is @(Y) years
+      of age is defeated'.\n#pred blawx_defeated(Z,-age,X,Y) :: 'the conclusion in
+      @(Z) that @(X) is @(Y) years of age is defeated'.\nblawx_attribute(person,may_vote,number).\nblawx_attribute_nlg(may_vote,ov,\"\",\"may
+      vote at\",\"years of age\").\n#pred may_vote(X,Y) :: '@(X) may vote at @(Y)
+      years of age'.\n#pred holds(user,may_vote,X,Y) :: 'it is provided as a fact
+      that @(X) may vote at @(Y) years of age'.\n#pred holds(user,-may_vote,X,Y) ::
+      'it is provided as a fact that it is not the case that @(X) may vote at @(Y)
+      years of age'.\n#pred holds(Z,may_vote,X,Y) :: 'the conclusion in @(Z) that
+      @(X) may vote at @(Y) years of age holds'.\n#pred holds(Z,-may_vote,X,Y) ::
+      'the conclusion in @(Z) that it is not the case that @(X) may vote at @(Y) years
+      of age holds'.\n#pred according_to(Z,may_vote,X,Y) :: 'according to @(Z), @(X)
+      may vote at @(Y) years of age'.\n#pred according_to(Z,-may_vote,X,Y) :: 'according
+      to @(Z), it is not the case that @(X) may vote at @(Y) years of age'.\n#pred
+      blawx_defeated(Z,may_vote,X,Y) :: 'the conclusion in @(Z) that @(X) may vote
+      at @(Y) years of age is defeated'.\n#pred blawx_defeated(Z,-may_vote,X,Y) ::
+      'the conclusion in @(Z) that @(X) may vote at @(Y) years of age is defeated'.\n\naccording_to(sec_1_section,may_vote,Person,Age)
+      :- person(Person),\nage(Person,Age),\nAge #>= 18.\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1_section,may_vote,Person,Age)
+      :- according_to(sec_1_section,may_vote,Person,Age).\n\n% BLAWX CHECK DUPLICATES\n
+      \ may_vote(Person,Age) :- holds(sec_1_section,may_vote,Person,Age)."
+- model: blawx.workspace
+  pk: 7
+  fields:
+    ruledoc: 2
+    workspace_name: sec_2_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="MrM~X]rTsFH^Y0oW1P8^" x="69" y="87"><statement name="statements"><block
+      type="new_attribute_declaration" id="M%aPS75=e|J28%R.ZUvB"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" attribute_type="number"></mutation><field name="category_name">person</field><field
+      name="attribute_name">must_pay_taxes</field><field name="attribute_type">number</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">must pay taxes at</field><field name="second_element">value</field><field
+      name="postfix">years of age</field></block></statement></block><block type="attributed_rule"
+      id="WHB7/Ug|f%E1E=MaEt1C" x="61" y="297"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="cA8,v@vQ`RBKboL2m*9:"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field><value name="object"><block type="variable"
+      id="z{1QNabgLzd{JOzk(TH|"><field name="variable_name">Person</field></block></value><next><block
+      type="attribute_selector" id="n87(De610]jYxSH]o~[:"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="age" attributetype="number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">is</field><field name="postfix">years
+      of age</field><value name="first_element"><block type="variable" id="Ft^tgIPc]BhW.)441D3["><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="K8LZhUEYWa=}5nEO:Uwc"><field name="variable_name">Age</field></block></value><next><block
+      type="numerical_constraint" id="Bs2hm[;].AJR(@#)iJi6"><field name="operator">gte</field><value
+      name="first_comparator"><block type="variable" id="K|.]rHqPXzNK;VZk:D.w"><field
+      name="variable_name">Age</field></block></value><value name="second_comparator"><block
+      type="number_value" id="1QWgcb;z/eH99PprOSy^"><field name="value">16</field></block></value></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="3*5t`[W{#(yt|b]d0:gK"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_2_section"></mutation><field
+      name="doc_part_name">SA 2</field></block></value><statement name="conclusion"><block
+      type="attribute_selector" id="s0wLJ^|o-UX!L.SXz2eM"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="must_pay_taxes" attributetype="number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">must pay taxes at</field><field name="postfix">years
+      of age</field><value name="first_element"><block type="variable" id="/W=QY_]Cy{}PcEBf:,_P"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="C![eyDd*D~r[qD`N!n6]"><field name="variable_name">Age</field></block></value></block></statement></block></xml>
+    scasp_encoding: "blawx_attribute(person,must_pay_taxes,number).\nblawx_attribute_nlg(must_pay_taxes,ov,\"\",\"must
+      pay taxes at\",\"years of age\").\n#pred must_pay_taxes(X,Y) :: '@(X) must pay
+      taxes at @(Y) years of age'.\n#pred holds(user,must_pay_taxes,X,Y) :: 'it is
+      provided as a fact that @(X) must pay taxes at @(Y) years of age'.\n#pred holds(user,-must_pay_taxes,X,Y)
+      :: 'it is provided as a fact that it is not the case that @(X) must pay taxes
+      at @(Y) years of age'.\n#pred holds(Z,must_pay_taxes,X,Y) :: 'the conclusion
+      in @(Z) that @(X) must pay taxes at @(Y) years of age holds'.\n#pred holds(Z,-must_pay_taxes,X,Y)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) must pay taxes
+      at @(Y) years of age holds'.\n#pred according_to(Z,must_pay_taxes,X,Y) :: 'according
+      to @(Z), @(X) must pay taxes at @(Y) years of age'.\n#pred according_to(Z,-must_pay_taxes,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) must pay taxes at @(Y) years
+      of age'.\n#pred blawx_defeated(Z,must_pay_taxes,X,Y) :: 'the conclusion in @(Z)
+      that @(X) must pay taxes at @(Y) years of age is defeated'.\n#pred blawx_defeated(Z,-must_pay_taxes,X,Y)
+      :: 'the conclusion in @(Z) that @(X) must pay taxes at @(Y) years of age is
+      defeated'.\n\naccording_to(sec_2_section,must_pay_taxes,Person,Age) :- person(Person),\nage(Person,Age),\nAge
+      #>= 16.\n\n% BLAWX CHECK DUPLICATES\nholds(sec_2_section,must_pay_taxes,Person,Age)
+      :- according_to(sec_2_section,must_pay_taxes,Person,Age).\n\n% BLAWX CHECK DUPLICATES\n
+      \ must_pay_taxes(Person,Age) :- holds(sec_2_section,must_pay_taxes,Person,Age)."
+- model: blawx.workspace
+  pk: 8
+  fields:
+    ruledoc: 2
+    workspace_name: sec_3_section
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="P?Tzk9|nc;]E!Rx;sXE3" x="53" y="46"><statement name="statements"><block
+      type="new_attribute_declaration" id="FZ#l.pb00]F0?RAiB.Y$"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" attribute_type="boolean"></mutation><field name="category_name">person</field><field
+      name="attribute_name">is_sucker</field><field name="attribute_type">boolean</field><field
+      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
+      name="infix">'s attribute name is</field><field name="second_element">value</field><field
+      name="postfix">is a sucker</field></block></statement></block><block type="attributed_rule"
+      id="ti`*fPrf/Pv;;RJ{ypFK" x="48" y="233"><field name="defeasible">FALSE</field><field
+      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
+      id="mY$Qe9|H}1H/x8k!*eH{"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      name="category_name">person</field><value name="object"><block type="variable"
+      id="rM!:/!q~3YUG9c)U`;n0"><field name="variable_name">Person</field></block></value><next><block
+      type="attribute_selector" id="tt/=;Xgw4^Y@8:P0/h@d"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="must_pay_taxes" attributetype="number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">must pay taxes at</field><field name="postfix">years
+      of age</field><value name="first_element"><block type="variable" id="Ij/i{oS_Sd{SKc?r5j.t"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="A^G6AVJ0ZnPFgk3=?qA:"><field name="variable_name">Age</field></block></value><next><block
+      type="default_negation" id="zJ{1:G-LAjf.U-zt{@=."><statement name="default_negated_statement"><block
+      type="attribute_selector" id="mlp1KK[,,*y=B_-kQWec"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="may_vote" attributetype="number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">may vote at</field><field name="postfix">years
+      of age</field><value name="first_element"><block type="variable" id="hRg;sr6Q4[TEg9^B@idQ"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="0#!BOT]a[EtDJp#i|6;("><field name="variable_name">Age</field></block></value></block></statement></block></next></block></next></block></statement><value
+      name="source"><block type="doc_selector" id="A[_JiL]m@:=CSAN7xE/5"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3_section"></mutation><field
+      name="doc_part_name">SA 3</field></block></value><statement name="conclusion"><block
+      type="unary_attribute_selector" id="32K9N^g-aL}#}/WR.]yM"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="is_sucker" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">is a sucker</field><value name="first_element"><block type="variable"
+      id="tB-ZR$]fk$:CN;X;sWi|"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
+    scasp_encoding: "blawx_attribute(person,is_sucker,boolean).\nblawx_attribute_nlg(is_sucker,not_applicable,\"\",not_applicable,\"is
+      a sucker\").\n#pred is_sucker(X) :: '@(X) is a sucker'.\n#pred holds(user,is_sucker,X)
+      :: 'it is provided as a fact that @(X) is a sucker'.\n#pred holds(user,-is_sucker,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a sucker'.\n#pred
+      holds(Z,is_sucker,X) :: 'the conclusion in @(Z) that @(X) is a sucker holds'.\n#pred
+      holds(Z,-is_sucker,X) :: 'the conclusion in @(Z) that it is not the case that
+      @(X) is a sucker holds'.\n#pred according_to(Z,is_sucker,X) :: 'according to
+      @(Z), @(X) is a sucker'.\n#pred according_to(Z,-is_sucker,X) :: 'according to
+      @(Z), it is not the case that @(X) is a sucker'.\n#pred blawx_defeated(Z,is_sucker,X)
+      :: 'the conclusion in @(Z) that @(X) is a sucker is defeated'.\n#pred blawx_defeated(Z,-is_sucker,X)
+      :: 'the conclusion in @(Z) that @(X) is a sucker is defeated'.\n\naccording_to(sec_3_section,is_sucker,Person)
+      :- person(Person),\nmust_pay_taxes(Person,Age),\nnot may_vote(Person,Age).\n\n%
+      BLAWX CHECK DUPLICATES\nholds(sec_3_section,is_sucker,Person) :- according_to(sec_3_section,is_sucker,Person).\n\n%
+      BLAWX CHECK DUPLICATES\n  is_sucker(Person) :- holds(sec_3_section,is_sucker,Person)."
+- model: blawx.blawxtest
+  pk: 4
+  fields:
+    ruledoc: 2
+    test_name: sucker
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="assume"
+      id="7@|+hZ)Y(UY#0c3X55lM" x="84" y="125"><statement name="statements"><block
+      type="new_object_category" id="PjoI}5UfX}Yqv2I]xWyn"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person"></mutation><field name="category_name">person</field><value
+      name="object"><block type="variable" id="C0n[}y4c`yF0]Nh*qY7e"><field name="variable_name">Person</field></block></value></block></statement></block><block
+      type="assume" id="Tnl5q6W.SzI*+LI3s;^x" x="87" y="240"><statement name="statements"><block
+      type="attribute_selector" id=")9RO9$3_-j4d%VCU#8QY"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="age" attributetype="number" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">is</field><field name="postfix">years
+      of age</field><value name="first_element"><block type="variable" id="|py(+#}k]@Km_|coLJ!`"><field
+      name="variable_name">Person</field></block></value><value name="second_element"><block
+      type="variable" id="Xdb`,c04OcKQ]jA0|5UW"><field name="variable_name">Age</field></block></value></block></statement></block><block
+      type="query" id=":TS4W_t|KFx7X;t5X8@E" x="94" y="373"><statement name="query"><block
+      type="unary_attribute_selector" id="2_7E4yHU@6]s^v06sZds"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="is_sucker" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">is a sucker</field><value name="first_element"><block type="variable"
+      id="TNNF/hH];|Z*;r4m2/=K"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
+    scasp_encoding: '#abducible person(Person).
+
+
+      #abducible age(Person,Age).
+
+
+      ?- is_sucker(Person).'
+    tutorial: ''
+    view: ''
+    fact_scenario: ''

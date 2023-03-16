@@ -14,7 +14,10 @@
 
       ![Question Block](/static/blawx/docs/images/blocks/question.png)
 
-      The question block must be provided with a single statement that is your query.
+      The question block must be provided with one or more statements that are your query.
+      Like most places in Blawx, if statements are stacked in a question block, they are
+      treated as though the word "and" appears between them. So all statements must be
+      true at the same time for the reasoner to find an answer to the question.
 
       There are two kinds of questions... yes/no questions, and search questions.
 
@@ -46,14 +49,9 @@
 
       ![who is mortal](/static/blawx/docs/images/who_is_mortal.png)
 
-      ### Multiple Statements in One Question
-
-      If you want to ask whether several things are true at the same time, that can be done
-      by creating a new rule to make a new conclusion when those things are all true.
-
       ### Multiple Questions in One Test
 
-      If you create a test with more than one question, only one question will be used,
+      If you create a test with more than one question block, only one question will be used,
       and it can be difficult to predict which. It is best practice to have only one
       active question block in your tests.
 

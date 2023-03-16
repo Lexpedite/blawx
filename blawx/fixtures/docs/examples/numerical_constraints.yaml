@@ -1,0 +1,29 @@
+- model: blawx.docpage
+  pk: examples/numerical_constraints
+  fields:
+    title: Numerical Constraints Example
+    content: |
+      # Numerical Constraints Example
+
+      All the example projects are available under the New Project button.
+
+      The Numerical Constraints example demonstrates the use of numerical constraints in blawx.
+
+      It sets out three rules:
+
+      * People over 18 may vote
+      * People over 16 must pay taxes
+      * People who must pay taxes but may not vote are suckers.
+
+      These are encoded using the numerical constraint blocks, which allows Blawx to reason about
+      more than one numerical constraint at the same time.
+
+      The "sucker" test asks Blawx to hypothesize about people and their ages, and then asks
+      whether there are any suckers. The answer returned is that a hypothetical person is a sucker
+      if they have an age 16 or higher (the rule from section 2), and less than 18 (the opposite of
+      the rule from section 1).
+
+      Note that in order to ensure that the two constraints are applied to the same age, the attributes
+      "can vote" and "must pay taxes" were implemented as number attributes, so that the same number could
+      be referred to in the sucker rule. If this is not done, then Blawx will consider the possibility that
+      the person has two different ages.
