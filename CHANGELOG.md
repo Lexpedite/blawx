@@ -7,6 +7,26 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.5.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.3-alpha) 2023-03-16??
+
+### Fixed
+* Logical Constraints now work as expected
+* Numerical Constraints now work as expected
+* Numerical and disunity constraints on variables appear in explanations
+* Question blocks can now accept more than one statement block.
+
+### Changed
+* Updated documentation
+
+### Added
+* Logical Constraints example & documentation
+* Numerical Constraints example & documentation
+
+### TODO
+* Improve the display of constraint information in scenario editor, limiting it to variables actually displayed to the user
+* Make similar changes to how constraints are displayed inside the test editor
+* Make numerical constraints show up in the details of explanations properly
+
 ## [v1.5.2-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.2-alpha) 2023-03-15
 
 This release front-loads the process of generating Akoma Ntoso and Code Editor navigation trees
