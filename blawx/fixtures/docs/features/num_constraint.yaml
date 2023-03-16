@@ -7,10 +7,6 @@
 
       **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
 
-      **Note: This documentation describes a feature of Blawx that is not yet working
-      as intended. This documentation will be updated when that problem is resolved.
-      In the meantime, please do not rely on the numerical constraint blocks.**
-
       In Blawx, the value of a number in an answer can be a specific value, or it can be
       a range of values. These ranges of values can be logically combined to generate
       new ranges of values. The method used for doing this is called numerical constraints.

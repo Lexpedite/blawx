@@ -7,10 +7,6 @@
 
       **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
 
-      **Note: The logical constraints feature is not currently working properly. This
-      documentation describes how it is anticipated to work, but using logical constraints is
-      not currently recommended.**
-
       Whereas a fact allows you to say what is always true, and a rule allows you to say what
       is sometimes true, a logical constraint allows you to say what is never true.
 
