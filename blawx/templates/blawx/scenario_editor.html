@@ -517,7 +517,7 @@
                 } else {
                     return "according to " + addSectionReferences(section,human) + ', it is not true that ' + answerNLG(statement,human);
                 }
-            } else if (model.functor == "defeated") {
+            } else if (model.functor == "blawx_defeated") {
                 var section = model.args[0];
                 var statement = convertToNode(model.args.slice(1));
                 if (statement.functor != "-") {
@@ -525,6 +525,10 @@
                 } else {
                     return "the conclusion in " + addSectionReferences(model.args[0],human) + " that it is not true that " + answerNLG(statement,human) + " is defeated"
                 }
+            } else if (model.functor == "blawx_applies") {
+                var section = model.args[0];
+                var object = model.args[1];
+                return addSectionReferences(section,human) + " applies to " + displayValue(object,human)
             } else if (model.functor == "abduced" && model.args[0].functor != "-") {
                 return "it is hypothesized that " + answerNLG(model.args[0],human);
             } else if (model.functor == "abduced" && model.args[0].functor == "-") {
