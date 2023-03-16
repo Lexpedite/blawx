@@ -1192,24 +1192,10 @@
                             output_content += '</button></h2>';
                             output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
                             for (var attribute in models[j]['Residuals']) {
-                                if ((models[j]['Residuals'][attribute]['functor'] == "put_attr" && models[j]['Residuals'][attribute]['args'][1] == 'scasp_output' && models[j]['Residuals'][attribute]['args'][2] == 'singleton')||
-                                models[j]['Residuals'][attribute]['functor'] == "put_attr" && models[j]['Residuals'][attribute]['args'][1] == 'scasp_output' && models[j]['Residuals'][attribute]['args'][2]['functor'] == 'name') {
-                                    // This is designed to prevent re-printing information about the Attributes that is already displayed.
-                                    // If the only thing present int he attributes is the name, just skip it.
-                                    continue;
-                                } else if (models[j]['Residuals'][attribute]['functor'] == "∉") {
-                                    // This is an inequality constraint
-                                    attributes_output += "<li>where " + models[j]['Residuals'][attribute]['args'][0] + " is not ";
-                                    if (models[j]['Residuals'][attribute]['args'][1].length > 1) {
-                                        attributes_output += "one of ";
-                                    }
-                                    attributes_output += models[j]['Residuals'][attribute]['args'][1].toString() + "</li>"
-                                } else if (models[j]['Residuals'][attribute]['functor'] == "{}") {
-                                    attributes_output += "<li>where" + models[j]['Residuals'][attribute]['args'][0]['args'][0] + " " + models[j]['Residuals'][attribute]['args'][0]['functor'] + " " + models[j]['Residuals'][attribute]['args'][0]['args'][1] + "</li>";
-                                } else {
-                                    // It should throw a console warning if there was something else in there.
-                                    console.warn("Unrecognized attribute in output: " + attribute['functor'] + ".");
-                                }
+                                attributes_output += describe_constraint(models[j]['Residuals'][attribute]);
+                            }
+                            if (attributes_output != "") {
+                                output_content += "Where:<ul>" + attributes_output + "</ul>"
                             }
                                 
                             //output_content += convertModelToTree(models[j].Tree, count, model_count);
@@ -1217,6 +1203,7 @@
                             var explanations = getNodesFromModel(models[j].Raw,false,i,j);
                             var displayed_nodes = [];
                             for (var k = 0; k < explanations.length; k++) {
+                                
                                 if (!displayed_nodes.includes(explanations[k].name)) { // To eliminate duplicates caused by "proved" method.
                                     output_content += explanations[k].content;
                                     displayed_nodes.push(explanations[k].name);
@@ -1478,6 +1465,49 @@
                 new_fact_data['facts'].splice(target_index,1);
             }
             draw_facts();
+        }
+        function describe_constraint(constraint) {
+            // A constraint is a functor and a list of arguments.
+            // Some functions can have other functions inside them.
+            // Functors can be "{}", ",", "put_attr", ">", ">=", "=<", or "<".
+            var functor = constraint['functor'];
+            var args = constraint['args'];
+            var output = ""
+            switch(functor) {
+                case "put_attr": // We don't need to display these.
+                    return ""
+                case "{}": // This is a set of one or more numerical constraints
+                    for (var a=0; a< args.length; a++) {
+                        output += "<li>" + describe_constraint(args[a]) + "</li>";
+                    }
+                    return output;
+                case ",": // This is a set of two conjoined constraints
+                    output += describe_constraint(args[0]);
+                    output += " and ";
+                    output += describe_constraint(args[1]);
+                    return output;
+                case "<":
+                    output += args[0] + " is less than " + args[1];
+                    return output;
+                case ">":
+                    output += args[0] + " is greater than " + args[1];
+                    return output;
+                case "=<":
+                    output += args[0] + " is less than or equal to " + args[1];
+                    return output;
+                case ">=":
+                    output += args[0] + " is greater than or equal to " + args[1];
+                    return output;
+                case "∉":
+                    output += "<li>" + args[0] + " is not "
+                    if (args[1].length > 1) {
+                        output += "one of ";
+                    }
+                    output += args[1].toString() + "</li>";
+                    return output;
+                default:
+                    console.warn("Unrecognized constraint type applied to variable: " + constraint.toString())
+            }
         }
     </script>
 </body>
