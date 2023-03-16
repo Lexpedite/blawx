@@ -521,14 +521,24 @@ def run_test(request,ruledoc,test_name):
               query = line[3:-1] # remove query prompt and period.
 
       rulefile.write("""
-blawxrun(Query, Human) :-
-    scasp(Query,[tree(Tree),source(false)]),
+blawxrun(Query, Human, Tree, Model) :-
+    scasp(Query,[tree(Tree),model(Model),source(false)]),
     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
     with_output_to(string(Human),
               human_justification_tree(Tree,[])).
-    term_attvars(Query, AttVars),
-    maplist(del_attrs, AttVars).
+    %term_attvars(Query, AttVars),
+    %maplist(del_attrs, AttVars).
 """)
+
+#       rulefile.write("""
+# blawxrun(Query, Human) :-
+#     scasp(Query,[tree(Tree),source(false)]),
+#     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
+#     with_output_to(string(Human),
+#               human_justification_tree(Tree,[])).
+#     term_attvars(Query, AttVars),
+#     maplist(del_attrs, AttVars).
+# """)
   
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
@@ -571,7 +581,7 @@ blawxrun(Query, Human) :-
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
                     # print("blawxrun(" + query + ",Human).")
-                    query_answer = swipl_thread.query("blawxrun((" + query + "),Human).")
+                    query_answer = swipl_thread.query("blawxrun((" + query + "),Human,Tree,Model).")
                     
                 transcript.write(str(query_answer) + '\n')
 
@@ -993,8 +1003,8 @@ blawxrun(Query, Human, Tree, Model) :-
     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
     with_output_to(string(Human),
               human_justification_tree(Tree,[])).
-    term_attvars(Query, AttVars),
-    maplist(del_attrs, AttVars).
+    %term_attvars(Query, AttVars),
+    %maplist(del_attrs, AttVars).
 """)
 
       rulefile.write(ldap_code + '\n\n')
