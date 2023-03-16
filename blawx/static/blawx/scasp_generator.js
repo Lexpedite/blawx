@@ -345,7 +345,7 @@ sCASP['constraint'] = function (block) {
 
 sCASP['unattributed_constraint'] = function (block) {
     var statements_conditions = sCASP.statementToCode(block, 'conditions');
-    var code = ":- ";
+    var code = "false :- ";
     var currentBlock = this.getInputTargetBlock('conditions');
     while (currentBlock) {
         var codeForBlock = getCodeForSingleBlock(currentBlock);
