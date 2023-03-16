@@ -26,22 +26,25 @@
 
       ## Technical Details
 
-      The question block is an outer block, and accepts a single stack of statements, which is valid if
-      it is a stack of exactly one statement. 
+      The question block is an outer block, and accepts a single stack of statements. Multiple
+      statements together are treated as though they were seperated with "and", and all of the
+      statements must be true at the same time for the reasoner to find an answer. 
 
       Running your code in the Test Editor with a question block in the code will make
       Blawx attempt to find any values that can be placed into any variables in your question,
-      so as to make the statement in the question true.
+      so as to make the statement or statements in the question true.
 
-      If there are no values which can be used to make the statement true, the server will return
+      If there are no values which can be used to make the statement or statements true, the server will return
       the text "No Models" in the Test Editor Output Pane.
 
-      If the statement is true for any number of values, each combination of values will be
+      If the statement or statements is true for any number of values, each combination of values will be
       returned as an answer. Each reason those values make the statement true will be returned
-      as an explanation for that answer. One answer may have more than one explanation.
+      as an explanation for that answer. One answer may have more than one explanation. Each explanation
+      will include reasons that each statement in the question was true in that model.
 
       Note that a question with no variables can only have either one answer which indicates the
-      statement is true, or "no models" which indicates that it is not.
+      statement is true, or "no models" which indicates that it is not. But if it is true, it still
+      may have multiple explanations.
       
       If you have more than one question block in your Test Editor when you run your test, Blawx
       will use only one of them, and it can be difficult to predict which. If you want to have
@@ -61,3 +64,7 @@
          code changes the result.
       4. If your query is a single statement, try surrounding it with a not block, to
          see if Blawx can explain why no answer was found.
+      5. If the query and the opposite both return no models, check to see if disabling
+         relevant logical constraint blocks prevents that from happening.
+      6. If you are using defaults and exceptions, try to query whether your conclusions
+         hold, or are defeasibly concluded by using the "holds" and "according to" blocks.
