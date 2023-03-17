@@ -1116,6 +1116,57 @@ sCASP['applies'] = function(block) {
     return code;
 };
 
+sCASP['initiates'] = function(block) {
+    var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
+    var statements_statement = sCASP.statementToCode(block, 'statement');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
+sCASP['terminates'] = function(block) {
+    var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
+    var statements_statement = sCASP.statementToCode(block, 'statement');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
+sCASP['holds_at'] = function(block) {
+    var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
+    var statements_statement = sCASP.statementToCode(block, 'statement');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
+sCASP['started_in'] = function(block) {
+    var value_start_time = sCASP.valueToCode(block, 'start_time', sCASP.ORDER_ATOMIC);
+    var value_end_time = sCASP.valueToCode(block, 'end_time', sCASP.ORDER_ATOMIC);
+    var statements_statement = sCASP.statementToCode(block, 'statement');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
+sCASP['stopped_in'] = function(block) {
+    var value_start_time = sCASP.valueToCode(block, 'start_time', sCASP.ORDER_ATOMIC);
+    var value_end_time = sCASP.valueToCode(block, 'end_time', sCASP.ORDER_ATOMIC);
+    var statements_statement = sCASP.statementToCode(block, 'statement');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
+sCASP['holds_during'] = function(block) {
+    var value_start_time = sCASP.valueToCode(block, 'start_time', sCASP.ORDER_ATOMIC);
+    var value_end_time = sCASP.valueToCode(block, 'end_time', sCASP.ORDER_ATOMIC);
+    var statements_statement = sCASP.statementToCode(block, 'statement');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
 function deconstruct_term(term) {
     var elements = [];
     const term_pattern = /(?<functor>[^\(\)]*)\((?<parameters>.*)\)/gm

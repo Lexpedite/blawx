@@ -3234,65 +3234,15 @@ scasp_blockset = [{
 },
 {
   "type": "initiates",
-  "message0": "At time %1 the event %2 initiates %3 %4",
+  "message0": "At time %1 %2 begins to hold",
   "args0": [
     {
       "type": "input_value",
       "name": "time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
-    },
-    {
-      "type": "input_value",
-      "name": "event",
-      "check": [
-        "EVENT",
-        "VARIABLE"
-      ]
-    },
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "NAME",
-      "check": "STATEMENT"
-    }
-  ],
-  "inputsInline": true,
-  "previousStatement": [
-    "STATEMENT",
-    "OUTER"
-  ],
-  "nextStatement": "STATEMENT",
-  "colour": 90,
-  "tooltip": "",
-  "helpUrl": ""
-},
-{
-  "type": "terminates",
-  "message0": "At time %1 the event %2 terminates %3 %4",
-  "args0": [
-    {
-      "type": "input_value",
-      "name": "time",
-      "check": [
-        "TIME",
-        "VARIABLE"
-      ]
-    },
-    {
-      "type": "input_value",
-      "name": "event",
-      "check": [
-        "EVENT",
-        "VARIABLE"
-      ]
-    },
-    {
-      "type": "input_dummy"
     },
     {
       "type": "input_statement",
@@ -3307,23 +3257,48 @@ scasp_blockset = [{
   ],
   "nextStatement": "STATEMENT",
   "colour": 90,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to indicate that a statement becomes true at a time.",
+  "helpUrl": "/docs/blocks/initiates/"
 },
 {
-  "type": "holds_at",
-  "message0": "At time %1 we know %2 %3",
+  "type": "terminates",
+  "message0": "At time %1 %2 no longer holds",
   "args0": [
     {
       "type": "input_value",
       "name": "time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
     },
     {
-      "type": "input_dummy"
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "Use to indicate that a statement is false at and after a time.",
+  "helpUrl": "/docs/blocks/terminates/"
+},
+{
+  "type": "holds_at",
+  "message0": "At time %1 %2 holds",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "time",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
     },
     {
       "type": "input_statement",
@@ -3413,13 +3388,13 @@ scasp_blockset = [{
 },
 {
   "type": "started_in",
-  "message0": "Between %1 and %2 %3 was initiated",
+  "message0": "Between %1 and %2 %3 started holding",
   "args0": [
     {
       "type": "input_value",
       "name": "start_time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
     },
@@ -3427,7 +3402,7 @@ scasp_blockset = [{
       "type": "input_value",
       "name": "end_time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
     },
@@ -3444,18 +3419,18 @@ scasp_blockset = [{
   ],
   "nextStatement": "STATEMENT",
   "colour": 90,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to check whether a statement became true between two times.",
+  "helpUrl": "/docs/blocks/started_in/"
 },
 {
   "type": "stopped_in",
-  "message0": "Between %1 and %2 %3 was terminated",
+  "message0": "Between %1 and %2 %3 stopped holding",
   "args0": [
     {
       "type": "input_value",
       "name": "start_time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
     },
@@ -3463,7 +3438,7 @@ scasp_blockset = [{
       "type": "input_value",
       "name": "end_time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
     },
@@ -3480,8 +3455,8 @@ scasp_blockset = [{
   ],
   "nextStatement": "STATEMENT",
   "colour": 90,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to check whether a statement became false between two times.",
+  "helpUrl": "/docs/blocks/stopped_in/"
 },
 {
   "type": "attributed_fact",
@@ -3510,6 +3485,42 @@ scasp_blockset = [{
   "colour": 270,
   "tooltip": "Use to make a statements that is tentatively true, and/or has a legislative source.",
   "helpUrl": "/docs/blocks/attributed_fact/"
+},
+{
+  "type": "holds_during",
+  "message0": "Between %1 and %2 %3 holds uninterupted",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "start_time",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "end_time",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "Use to check whether a statement remains true between two times.",
+  "helpUrl": "/docs/blocks/holds_during/"
 }]
 
 // TODO: A bunch of these things below are redundant as the blocks are being removed.
