@@ -5,8 +5,6 @@
     content: |
       # Questions
 
-      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
-
       Once you have encoded rules and described relevant facts in a test,
       you will want to ask a question. That is what the question block is for.
 

@@ -5,8 +5,6 @@
     content: |
       # Categories, Objects, and Attributes
 
-      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
-
       Categories, Objects, and
       Attributes are how Blawx organizes what it knows about the world.
 
@@ -66,83 +64,46 @@
 
       ![Person is Category](/static/blawx/docs/images/person_is_category.png)
 
-      When
-      you drag a category declaration block onto the workspace and click "Save", a corresponding category
-      block is added under the “known categories” drawer of the toolbox. This block
-      is used in blanks that require or allow a Category as a value.
-
-      ![known category person](/static/blawx/docs/images/known_category_person.png)
-
-      Note
-      that if you have two category declarations with the same name defined, Blawx
-      will create two different known category blocks with the same text, using either
-      of them has the same effect. So it is best practice not to have duplicates in
-      category names in order to avoid confusion.
+      You also describe how the category should be displayed to user in new object blocks
+      and in explanations. In this case, the phrase will be "_____ is a person".
 
       Category names should not
       have spaces in them, and must start with a lowercase letter. Blawx will not stop you from creating
       a category with a space in its name, but they will not work properly.
 
       ### Adding Attributes to a Category
-      Once you have declared a Category, you can use an
-      category attribute block to give it one or more attributes. The category attribute
+      Once you have declared a Category, you can use an attribute declaration block to give it an attribute.
+      The attribute declaration 
       block can be found in the “Categories” drawer of the toolbox, and looks like
       this:
 
-      ![category attribute block](/static/blawx/docs/images/blocks/category_attributes.png)
+      ![category attribute block](/static/blawx/docs/images/blocks/attribute_declaration.png)
 
-      To
-      complete a category attribute block, you must provide the category that you
-      are defining attributes for, and add new attribute blocks.
+      To complete an attribute declaration, you say what category it applies to, give it a name, give it
+      a data type, and then describe how it should be phrased in attribute selector blocks and explanations.
 
       For
-      example, to say that “a person has an age and a best friend” you might set out
-      an attribute declaration block like this:
+      example, to say that “a person has an age and a best friend” you might create
+       attribute declaration blocks like these:
 
       ![person ontology](/static/blawx/docs/images/person_ontology.png)
-
-      Remember, all new category, category attribute, and new attribute blocks need to
-      appear inside a Fact block to work properly.
 
       The name of an attribute must start with a lowercase letter, must not have spaces,
       and must be unique across all categories.
 
       ### Attribute Customization
 
-      When you create an attribute using the above
-      blocks, attribute
-      selector blocks will be created that looks like this:
-
-      ![default
-      attribute selector](/static/blawx/docs/images/default_attribute_selector.png)
-
-      In explanations, by default, the assignment of "38" as the value of "age" for the
-      object "bob" will be displayed as "age holds for bob and 38".
-
-      To customize how the attribute is described in the attribute selector and explanations
-      you can use the attribute customization block. The only place an attribute customization
-      block can be used is directly under an attribute declaration block, and it applies only to the attribute
-      declared directly above it.
-
-      The attribute customization block looks like this:
-
-      ![attribute
-      customization block](/static/blawx/docs/images/blocks/attribute_display.png)
-
-      The
-      block allows you to choose the order in which the object and the value are
-      included,
-      and the text that should appear before, between, and after them. By default
+      The attribute declaration block allows you to customize how the attribute is described in the attribute selector and explanations.
+      To do that, you first indicate whether the object or the value should appear first in the phrase. Then, you indicate the text
+      that should appear, if any, before, between, and after the object and the value.
+      By default
       the
       order is "object, then value". And the words "object" and "value" appear
       in that
       order below. If you change the order to "value, then object" in
-      the dropdown, the
-      illustration below the dropdown field will be updated,
-      like this:
-
-      ![reverse order customization](/static/blawx/docs/images/reversed_order_attribute_customization.png)
-
+      the dropdown, the text on the bottom line of the attribute declaration block will be modified to match.
+      Note how the order has been changed to "value, then object" in the declaration of "best_friend" above.
+      
       Once
       you have selected the order that you want the object and the value to appear,
       you
@@ -171,8 +132,8 @@
       If you leave all three fields blank, Blawx will still know
       what attribute the
       block is for, but your users will have no clue. Make sure
-      to customize attribute
-      blocks in ways that sound natural to your users, but
+      to customize attribute displays
+      in ways that sound natural to your users, but
       are also very clear about which
       attribute is being modified.
 
@@ -180,30 +141,6 @@
       to appear in the text, which
       can allow you to use
       more concise attribute names, or attribute names that are easier to keep unique.
-
-      ### Category Equivalence
-      An
-      object can have more than one category. One of the ways you can give an object
-      more than one category is by stating that all objects of one category are also
-      included in another category. For example, “all cats are mammals”.
-
-      In
-      Blawx you can do this using the category equivalence block, which looks like
-      this:
-
-      ![category equivalence](/static/blawx/docs/images/blocks/category_equivalence.png)
-
-      The
-      category equivalence block requires two category blocks from the “Known Categories”
-      drawer of the Toolbox. A complete category equivalence block would look like
-      this:
-
-      ![cat is mammal](/static/blawx/docs/images/cat_is_mammal.png)
-
-      Category
-      equivalence works in one direction only. In this example, if you create an object the category “Cat”, and then ask whether that object is
-      in the category “Mammal”, the answer will be yes. If you create an object in the category of “Mammal”, and then ask whether it is in the category
-      “Cat”, the answer will be no.
 
       ## Objects
 
@@ -256,8 +193,7 @@
       ![bob and robert](/static/blawx/docs/images/bob_and_robert_identical.png)
 
       Note
-      that unlike with the Category Equivalence, which goes in one direction only,
-      object equivalence goes in both directions. If Bob is the same object as Robert,
+      that object equivalence goes in both directions. If Bob is the same object as Robert,
       Robert is the same object as Bob. So if you set out Bob’s age, and then
       say that Bob and Robert are the same object, asking for Bob’s age and
       asking for Robert’s age will both work.
@@ -294,10 +230,16 @@
 
       ### Object Attributes Hold Multiple Values
 
-      Note that in Blawx all Attributes can hold multiple values, but only multiple unique
-      values. So if you create an attribute that holds values that are of the true/false type,
-      that value can hold up to two values. If you create an attribute that holds numbers,
-      like "age", it can hold any number of values, but it cannot hold the same value twice.
+      Note that in Blawx all Attributes (except true/false attributes) can hold multiple values, but only multiple unique
+      values. If you create an attribute that holds numbers,
+      like "age", it can hold any number of values, but it cannot hold the same value twice,
+      even if you state it twice.
 
-      Features for dealing with cardinality in attributes, and for dealing with lists of
-      potentially identical values, will be added at a later date.
+      ### True / False Attributes are Special
+
+      Unlike most attribute types, if you choose "True / False" as the attribute type for an attribute,
+      there is only an object, and no value. That is because the way you say something is true in Blawx is by just stating it,
+      and the way that you say it is false is by surrounding it with a "it is false that" negation block.
+
+      So when you create a "True / False" attribute, it has only an "object" field, and you only need to customize the text
+      that appears before and after the name of the object.

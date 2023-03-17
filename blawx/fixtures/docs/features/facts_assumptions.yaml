@@ -5,8 +5,6 @@
     content: |
       # Facts and Assumptions
 
-      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
-
       ## Facts
       A “Fact” in
       Blawx represents a thing that is known with certainty. If you have a fact, you
@@ -40,3 +38,15 @@
 
       If you ask Blawx whether or not something is true
       that you have stated as a Fact, the answer is always yes, without further explanation.
+
+      ## Assumptions
+
+      In addition to allowing you to say that something is definitely true, Blawx allows you to say
+      that a statement is either true, or false, but you are uncertain as to which. When you do this,
+      Blawx will try to find answers using both options, and will tell you which answers it found,
+      and on the basis of which assumptions.
+
+      An assumption is created by putting a single statement inside an assumption block. The following
+      code suggests that it is either true or false (we don't know which) that bob is a dog.
+
+      ![Assume Bob Is Dog](/static/blawx/docs/images/assume_bob_is_dog.png)
