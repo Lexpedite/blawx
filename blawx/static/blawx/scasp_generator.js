@@ -961,6 +961,12 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred according_to(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
         code += '#pred blawx_defeated(Z,' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
         code += '#pred blawx_defeated(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+        code += '#pred blawx_initiates(' + text_attribute_name + "(" + variable_order + "),T) :: 'that " + add_code.trim() + " began to hold at @(T)'.\n";
+        code += '#pred blawx_terminates(' + text_attribute_name + "(" + variable_order + "),T) :: 'that " + add_code.trim() + " stopped holding at @(T)'.\n";
+        code += '#pred blawx_holds_at(' + text_attribute_name + "(" + variable_order + "),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
+        code += '#pred blawx_started_in(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
+        code += '#pred blawx_stopped_in(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
+        code += '#pred blawx_holds_during(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
     } else {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
@@ -974,6 +980,12 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred according_to(Z,-' + text_attribute_name + ",X) :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
         code += '#pred blawx_defeated(Z,' + text_attribute_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
         code += '#pred blawx_defeated(Z,-' + text_attribute_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+        code += '#pred blawx_initiates(' + text_attribute_name + "(X),T) :: 'that " + add_code.trim() + " began to hold at @(T)'.\n";
+        code += '#pred blawx_terminates(' + text_attribute_name + "(X),T) :: 'that " + add_code.trim() + " stopped holding at @(T)'.\n";
+        code += '#pred blawx_holds_at(' + text_attribute_name + "(X),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
+        code += '#pred blawx_started_in(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
+        code += '#pred blawx_stopped_in(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
+        code += '#pred blawx_holds_during(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
     }
     return code;
 };
@@ -995,6 +1007,12 @@ sCASP['new_category_declaration'] = function(block) {
     code += '#pred according_to(Z,-' + text_category_name + ",X) :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
     code += '#pred blawx_defeated(Z,' + text_category_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
     code += '#pred blawx_defeated(Z,-' + text_category_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+    code += '#pred blawx_initiates(' + text_category_name + "(X),T) :: 'that " + add_code.trim() + " began to hold at @(T)'.\n";
+    code += '#pred blawx_terminates(' + text_category_name + "(X),T) :: 'that " + add_code.trim() + " stopped holding at @(T)'.\n";
+    code += '#pred blawx_holds_at(' + text_category_name + "(X),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
+    code += '#pred blawx_started_in(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
+    code += '#pred blawx_stopped_in(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
+    code += '#pred blawx_holds_during(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
     return code;
 };
 
