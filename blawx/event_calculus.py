@@ -1,16 +1,16 @@
 ec_code="""
-stoppedIn(T1, Fluent, T2) :-
+blawx_stopped_in(T1, Fluent, T2) :-
     T1 #< T, T #< T2,
-    terminates(Fluent, T).
+    blawx_terminates(Fluent, T).
 
 %stoppedIn(T1, Fluent, T2) :-
 %    T1 #< T, T #< T2,
 %    releases(Fluent, T).
 
 %% BEC2 - StartedIn(t1,f,t2)
-startedIn(T1, Fluent, T2) :-
+blawx_started_in(T1, Fluent, T2) :-
     T1 #< T, T #< T2,
-    initiates(Fluent, T).
+    blawx_initiates(Fluent, T).
 
 %startedIn(T1, Fluent, T2) :-
 %    T1 #< T, T #< T2,
@@ -35,26 +35,26 @@ startedIn(T1, Fluent, T2) :-
 %    not startedIn(0, Fluent, T).
 
 %% BEC6 - HoldsAt(f,t)
-holdsAt(Fluent, T) :-
+blawx_holds_at(Fluent, T) :-
     T1 #< T,
-    initiates(Fluent, T1),
-    not stoppedIn(T1, Fluent, T).
+    blawx_initiates(Fluent, T1),
+    not blawx_stopped_in(T1, Fluent, T).
 
 %% BEC7 - not HoldsAt(f,t)
--holdsAt(Fluent, T) :-
+-blawx_holds_at(Fluent, T) :-
     T1 #< T,
-    terminates(Fluent, T1),
-    not startedIn(T1, Fluent, T).
+    blawx_terminates(Fluent, T1),
+    not blawx_started_in(T1, Fluent, T).
 
 % My Special Sauce
-holdsDuring(T1, Fluent, T2) :-
-    initiates(Fluent,T1),
-    not stoppedIn(T1,Fluent,T2),
+blawx_holds_during(T1, Fluent, T2) :-
+    blawx_initiates(Fluent,T1),
+    not blawx_stopped_in(T1,Fluent,T2),
     T2 #> T1. % Putting this at the bottom helps a lot!
 
--holdsDuring(T1,Fluent,T2) :-
+-blawx_holds_during(T1,Fluent,T2) :-
     T1 #< T2, % Putting this at the bottom breaks it.
-    -holdsAt(Fluent,T1),
-    -holdsAt(Fluent,T2),
-    not startedIn(T1,Fluent,T2).
+    -blawx_holds_at(Fluent,T1),
+    -blawx_holds_at(Fluent,T2),
+    not blawx_started_in(T1,Fluent,T2).
 """
