@@ -17,6 +17,7 @@ from swiplserver import PrologMQI, PrologError, PrologLaunchError
 from .models import Workspace, RuleDoc, BlawxTest
 from .ldap import ldap_code
 from .dates import scasp_dates, scasp_now
+from .event_calculus import ec_code
 from .aggregates import scasp_aggregates
 
 from rest_framework import permissions
@@ -544,6 +545,7 @@ blawxrun(Query, Human, Tree, Model) :-
       rulefile.write(scasp_dates + '\n\n')
       rulefile.write(scasp_now + '\n\n')
       rulefile.write(scasp_aggregates + '\n\n')
+      rulefile.write(ec_code + '\n\n')
 
 
       rulefile.write(ruleset + '\n')
@@ -637,6 +639,7 @@ blawxrun(Query, Human) :-
     rulefile.write(scasp_dates + '\n\n')
     rulefile.write(scasp_now + '\n\n')
     rulefile.write(scasp_aggregates + '\n\n')
+    rulefile.write(ec_code + '\n\n')
 
 
     rulefile.write(ruleset)
@@ -1011,6 +1014,7 @@ blawxrun(Query, Human, Tree, Model) :-
       rulefile.write(scasp_dates + '\n\n')
       rulefile.write(scasp_now + '\n\n')
       rulefile.write(scasp_aggregates + '\n\n')
+      rulefile.write(ec_code + '\n\n')
 
 
       rulefile.write(ruleset + '\n')

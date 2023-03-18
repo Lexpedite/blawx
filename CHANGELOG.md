@@ -12,6 +12,7 @@ and breaking changes will not necessarily result in changes to the main version 
 ### Added
 * Event Drawer
 * Initiates, Terminates, Started In, Stopped In, Holds At, Holds During blocks
+* Event calculus library code in the reasoner endpoints
 
 ### To Do
 * Figure out terminology issue, because we are using "holds" in both temporal and defeasibility logic.
@@ -23,7 +24,6 @@ and breaking changes will not necessarily result in changes to the main version 
   * Stopped In
   * Holds At
   * Holds During
-* Add EC Library Code to Reasoner
 * Make it possible to use datetimes instead of numbers.
 * Add Example Project
 * Add Documentation
