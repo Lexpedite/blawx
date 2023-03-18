@@ -1119,21 +1119,21 @@ sCASP['applies'] = function(block) {
 sCASP['initiates'] = function(block) {
     var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_initiates(' + statements_statement + ',' + value_time + ')';
+    var code = 'blawx_initiates(' + statements_statement.trim() + ',' + value_time + ')';
     return code;
 };
 
 sCASP['terminates'] = function(block) {
     var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_terminates(' + statements_statement + ',' + value_time + ')';
+    var code = 'blawx_terminates(' + statements_statement.trim() + ',' + value_time + ')';
     return code;
 };
 
 sCASP['holds_at'] = function(block) {
     var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_holds_at(' + statements_statement + ',' + value_time + ')';
+    var code = 'blawx_holds_at(' + statements_statement.trim() + ',' + value_time + ')';
     return code;
 };
 
@@ -1141,7 +1141,7 @@ sCASP['started_in'] = function(block) {
     var value_start_time = sCASP.valueToCode(block, 'start_time', sCASP.ORDER_ATOMIC);
     var value_end_time = sCASP.valueToCode(block, 'end_time', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_started_in(' + value_start_time + ',' + statements_statement + ',' + value_end_time + ')';
+    var code = 'blawx_started_in(' + value_start_time + ',' + statements_statement.trim() + ',' + value_end_time + ')';
     return code;
 };
 
@@ -1149,7 +1149,7 @@ sCASP['stopped_in'] = function(block) {
     var value_start_time = sCASP.valueToCode(block, 'start_time', sCASP.ORDER_ATOMIC);
     var value_end_time = sCASP.valueToCode(block, 'end_time', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_stopped_in(' + value_start_time + ',' + statements_statement + ',' + value_end_time + ')';
+    var code = 'blawx_stopped_in(' + value_start_time + ',' + statements_statement.trim() + ',' + value_end_time + ')';
     return code;
 };
 
@@ -1157,7 +1157,7 @@ sCASP['holds_during'] = function(block) {
     var value_start_time = sCASP.valueToCode(block, 'start_time', sCASP.ORDER_ATOMIC);
     var value_end_time = sCASP.valueToCode(block, 'end_time', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_holds_during(' + value_start_time + ',' + statements_statement + ',' + value_end_time + ')';
+    var code = 'blawx_holds_during(' + value_start_time + ',' + statements_statement.trim() + ',' + value_end_time + ')';
     return code;
 };
 
