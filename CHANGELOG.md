@@ -13,21 +13,20 @@ and breaking changes will not necessarily result in changes to the main version 
 * Event Drawer
 * Initiates, Terminates, Started In, Stopped In, Holds At, Holds During blocks
 * Event calculus library code in the reasoner endpoints
+* New Life Act example demonstrating use of event blocks
+* Added posix timestamp capabilities to date library
+* Added timestamp blocks to language
+
+
 
 ### To Do
 * Figure out terminology issue, because we are using "holds" in both temporal and defeasibility logic.
 * Figure out what this is called, because "events" might be the wrong thing. Fluents, maybe?
-* Code Generation for
-  * Initiates
-  * Terminates
-  * Started In
-  * Stopped In
-  * Holds At
-  * Holds During
+
 * Make it possible to use datetimes instead of numbers.
-* Add Example Project
-* Add Documentation
-  * Event Example
+  * Taking the life act and re-writing it using the timestamp blocks causes an infinite loop freeze,
+  it looks like. Need to grab the code and play with it in swish to see if I can figure out what's causing that.
+* Add Documentation (maybe after the block naming is settled)
   * Events (Features)
   * Initiates
   * Terminates

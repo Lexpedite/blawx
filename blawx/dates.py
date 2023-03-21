@@ -15,7 +15,6 @@ scasp_dates = """
 % The next line must be commented out for testing to work.
 :- set_test_options([load(never)]).
 
-
 #pred month(Y,1) :: 'January of @(Y)'.
 #pred month(Y,2) :: 'February of @(Y)'.
 #pred month(Y,3) :: 'March of @(Y)'.
@@ -328,15 +327,6 @@ days_between_datetimes(datetime(Y1,Mo1,D1,H1,Mi1,S1),datetime(Y2,Mo2,D2,H2,Mi2,S
 	End is ED + ET,
 	Days is Start - End.
 
-days_between_datetimes(date(Y1,Mo1,D1),datetime(Y2,Mo2,D2,H2,Mi2,S2),Days) :-
-	days_between_datetimes(datetime(Y1,Mo1,D1,0,0,0),datetime(Y2,Mo2,D2,H2,Mi2,S2),Days).
-
-days_between_datetimes(date(Y1,Mo1,D1),date(Y2,Mo2,D2),Days) :-
-	days_between_datetimes(datetime(Y1,Mo1,D1,0,0,0),datetime(Y2,Mo2,D2,0,0,0),Days).
-	
-days_between_datetimes(datetime(Y1,Mo1,D1,H1,Mi1,S1),date(Y2,Mo2,D2),Days) :-
-	days_between_datetimes(datetime(Y1,Mo1,D1,H1,Mi1,S1),datetime(Y2,Mo2,D2,0,0,0),Days).
-
 % This is not attempting to create accurate Julian Dates
 % Julian dates count up from January 1, 4713 BCE.
 % We are counting up from January 1, 1 CE.
@@ -377,7 +367,8 @@ count_epoch_years(JD,0) :-
 
 count_epoch_years(JD,Y) :-
 	JD >= 365,
-    Years is JD // 365,
+	JD2 is floor(JD),
+    Years is JD2 // 365,
     % Years is the number of full years that would have passed IF all the years were 365 days
     % long. In reality, many of them are longer, so the total number of years should be lower.
     Leap4 is Years // 4,
@@ -477,26 +468,39 @@ datetime_add_days(datetime(Y,Mo,D,H,Mi,S),Days,datetime(Y2,Mo2,D2,H2,Mi2,S2)) :-
 	EDT2 is EDT + Days,
 	epochdt_to_datetime(EDT2,datetime(Y2,Mo2,D2,H2,Mi2,S2)).
 
-datetime_add_days(date(Y,Mo,D),Days,datetime(Y2,Mo2,D2,H2,Mi2,S2)) :-
-	datetime_add_days(datetime(Y,Mo,D,0,0,0),Days,datetime(Y2,Mo2,D2,H2,Mi2,S2)).
-
 epoch_time(time(H,Mi,S),ET) :-
 	valid_time(time(H,Mi,S)),
 	ET is (H*3600 + Mi*60 + S)/86400.
 
 epochdt_to_datetime(JD,datetime(Y,Mo,D,H,Mi,S)) :-
-	count_epoch_years(JD,Y1),
-	reduce_epoch_years(JD,Y1,R),
+	JD2 is floor(JD),
+	count_epoch_years(JD2,Y1),
+	reduce_epoch_years(JD2,Y1,R),
 	epoch_month_and_day(Y1,R,Y2,M2,D),
 	greg_date(Y2,M2,Y,Mo),
 	time_from_epoch(JD,time(H,Mi,S)).
 
+datetime_to_epochdt(datetime(Y,Mo,D,H,Mi,S),JD) :-
+	epoch_time(time(H,Mi,S),TimePart),
+	epoch_date(date(Y,Mo,D),DatePart),
+	JD is DatePart + TimePart.
+
+datetime_to_posix_timestamp(datetime(Y,Mo,D,H,Mi,S),PT) :-
+	datetime_to_epochdt(datetime(Y,Mo,D,H,Mi,S),JD),
+	PT is rational(JD - 719469).
+
+posix_timestamp_to_datetime(PT,datetime(Y,Mo,D,H,Mi,S)) :-
+	ET is PT + 719469,
+	epochdt_to_datetime(ET,datetime(Y,Mo,D,H,Mi,S)).
+
 time_from_epoch(EDT,time(H,Mi,S)) :-
 	TimeOnly is EDT - floor(EDT),
 	TimeInSeconds is TimeOnly*86400,
-	H is TimeInSeconds//3600,
+	TimeInSecondsFloor is floor(TimeInSeconds),
+	H is TimeInSecondsFloor//3600,
 	TimeInSecondsLessHours is TimeInSeconds - H*3600,
-	Mi is TimeInSecondsLessHours//60,
+	TimeInSecondsLessHoursFloor is floor(TimeInSecondsLessHours),
+	Mi is TimeInSecondsLessHoursFloor//60,
 	S is TimeInSecondsLessHours - Mi*60.
 
 
@@ -1188,17 +1192,6 @@ datetime_diff_duration(datetime(Y1,Mo1,D1,H1,Mi1,S1),datetime(Y2,Mo2,D2,H2,Mi2,S
 	NewH2 is H2,
 	datetime_diff_duration_second(datetime(NewY2,NewMo2,NewD2,NewH2,NewMi,S1),datetime(Y2,Mo2,D2,H2,Mi2,S2),S3).
 
-datetime_diff_duration(datetime(Y1,Mo1,D1,H1,Mi1,S1),date(Y2,Mo2,D2),Duration) :-
-	datetime_diff_duration(datetime(Y1,Mo1,D1,H1,Mi1,S1),datetime(Y2,Mo2,D2,0,0,0),Duration).
-
-datetime_diff_duration(date(Y1,Mo1,D1),datetime(Y2,Mo2,D2,H2,Mi2,S2),Duration) :-
-	datetime_diff_duration(datetime(Y1,Mo1,D1,0,0,0),datetime(Y2,Mo2,D2,H2,Mi2,S2),Duration).
-
-datetime_diff_duration(date(Y1,Mo1,D1),date(Y2,Mo2,D2),Duration) :-
-	datetime_diff_duration(datetime(Y1,Mo1,D1,0,0,0),datetime(Y2,Mo2,D2,0,0,0),Duration).
-
-
-
 :- begin_tests(datetime_diff_duration).
 
 test("Invalid date in first term fails",[fail]) :-
@@ -1859,4 +1852,39 @@ test("Duration from previous year to subsequent year is negative 366 days in lea
 	
 
 :- end_tests(days_between_datetimes).
+
+:- begin_tests(datetime_to_epochdt).
+
+test("January 1 1970 is 719469.",[true(X=719469),nondet]) :-
+	scasp(datetime_to_epochdt(datetime(1970,1,1,0,0,0),X),[]).
+
+test("January 1 1970 at noon is 719469.5",[true(X=719469.5),nondet]) :-
+	scasp(datetime_to_epochdt(datetime(1970,1,1,12,0,0),X),[]).
+
+:- end_tests(datetime_to_epochdt).
+
+:- begin_tests(epochdt_to_datetime).
+
+test("719469 is January 1 1970",[true(X=datetime(1970,1,1,0,0,0)),nondet]) :-
+	scasp(epochdt_to_datetime(719469,X),[]).
+
+test("719469.5 is noon January 1 1970",[true(X=datetime(1970,1,1,12,0,0.0)),nondet]) :-
+	scasp(epochdt_to_datetime(719469.5,X),[]).
+
+:- end_tests(epochdt_to_datetime).
+
+:- begin_tests(datetime_to_posix).
+
+test("January 1, 1970 is zero",[true(X=0),nondet]) :-
+	scasp(datetime_to_posix_timestamp(datetime(1970,1,1,0,0,0),X),[]).
+
+:- end_tests(datetime_to_posix).
+
+:- begin_tests(posix_timestamp_to_datetime).
+
+test("0 is January 1, 1970",[true(X=datetime(1970,1,1,0,0,0)),nondet]) :-
+	scasp(posix_timestamp_to_datetime(0,X),[]).
+
+:- end_tests(posix_timestamp_to_datetime).
+
 """

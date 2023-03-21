@@ -1179,6 +1179,21 @@ sCASP['holds_during'] = function(block) {
     return code;
 };
 
+sCASP['datetime_to_ts'] = function(block) {
+    var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
+    var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
+    var code = 'datetime_to_posix_timestamp(' + value_datetime + ',' + value_timestamp + ')';
+    return code;
+};
+
+sCASP['ts_to_datetime'] = function(block) {
+    var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
+    var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'posix_timestamp_to_datetime(' + value_timestamp + ',' + value_datetime +')';
+    return code;
+};
+
 function deconstruct_term(term) {
     var elements = [];
     const term_pattern = /(?<functor>[^\(\)]*)\((?<parameters>.*)\)/gm
