@@ -967,11 +967,11 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred blawx_started_in(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
         code += '#pred blawx_stopped_in(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
         code += '#pred blawx_holds_during(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
-        code += 'as_of(' + text_attribute_name + '(X,Y),Time) :- becomes(' + text_attribute_name + '(X,Y),BeforeT), not becomes(-' + text_attribute_name + '(X,Y), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.';
-        code += 'as_of(' + text_attribute_name + '(X,Y),Time) :- initially(' + text_attribute_name + '(X,Y)), not becomes(-' + text_attribute_name + '(X,Y), BetweenT), BetweenT #< Time.';
-        code += 'during(Start,' + text_attribute_name + '(X,Y),End) :- becomes(' + text_attribute_name + '(X,Y),Start), not becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End, Start #< End.';
-        code += 'during(bot,' + text_attribute_name + '(X,Y),End) :- initially(' + text_attribute_name + '(X,Y)), not becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End.';
-        code += 'during(Start,' + text_attribute_name + '(X,Y),eot) :- becomes(' + text_attribute_name + '(X,Y),Start), not becomes(-' + text_attribute_name + '(X,Y),AfterStart), ultimately(' + text_attribute_name + '(X,Y)), AfterStart #> Start.';
+        code += 'as_of(' + text_attribute_name + '(X,Y),Time) :- becomes(' + text_attribute_name + '(X,Y),BeforeT), not becomes(-' + text_attribute_name + '(X,Y), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+        code += 'as_of(' + text_attribute_name + '(X,Y),Time) :- initially(' + text_attribute_name + '(X,Y)), not becomes(-' + text_attribute_name + '(X,Y), BetweenT), BetweenT #< Time.\n';
+        code += 'during(Start,' + text_attribute_name + '(X,Y),End) :- becomes(' + text_attribute_name + '(X,Y),Start), not becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End, Start #< End.\n';
+        code += 'during(bot,' + text_attribute_name + '(X,Y),End) :- initially(' + text_attribute_name + '(X,Y)), not becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End.\n';
+        code += 'during(Start,' + text_attribute_name + '(X,Y),eot) :- becomes(' + text_attribute_name + '(X,Y),Start), not becomes(-' + text_attribute_name + '(X,Y),AfterStart), ultimately(' + text_attribute_name + '(X,Y)), AfterStart #> Start.\n';
     } else {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
@@ -991,11 +991,11 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred blawx_started_in(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
         code += '#pred blawx_stopped_in(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
         code += '#pred blawx_holds_during(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
-        code += 'as_of(' + text_attribute_name + '(X),Time) :- becomes(' + text_attribute_name + '(X),BeforeT), not becomes(-' + text_attribute_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.';
-        code += 'as_of(' + text_attribute_name + '(X),Time) :- initially(' + text_attribute_name + '(X)), not becomes(-' + text_attribute_name + '(X), BetweenT), BetweenT #< Time.';
-        code += 'during(Start,' + text_attribute_name + '(X),End) :- becomes(' + text_attribute_name + '(X),Start), not becomes(-' + text_attribute_name + '(X),BeforeEnd), becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End, Start #< End.';
-        code += 'during(bot,' + text_attribute_name + '(X),End) :- initially(' + text_attribute_name + '(X)), not becomes(-' + text_attribute_name + '(X),BeforeEnd), becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End.';
-        code += 'during(Start,' + text_attribute_name + '(X),eot) :- becomes(' + text_attribute_name + '(X),Start), not becomes(-' + text_attribute_name + '(X),AfterStart), ultimately(' + text_attribute_name + '(X)), AfterStart #> Start.';
+        code += 'as_of(' + text_attribute_name + '(X),Time) :- becomes(' + text_attribute_name + '(X),BeforeT), not becomes(-' + text_attribute_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+        code += 'as_of(' + text_attribute_name + '(X),Time) :- initially(' + text_attribute_name + '(X)), not becomes(-' + text_attribute_name + '(X), BetweenT), BetweenT #< Time.\n';
+        code += 'during(Start,' + text_attribute_name + '(X),End) :- becomes(' + text_attribute_name + '(X),Start), not becomes(-' + text_attribute_name + '(X),BeforeEnd), becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End, Start #< End.\n';
+        code += 'during(bot,' + text_attribute_name + '(X),End) :- initially(' + text_attribute_name + '(X)), not becomes(-' + text_attribute_name + '(X),BeforeEnd), becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End.\n';
+        code += 'during(Start,' + text_attribute_name + '(X),eot) :- becomes(' + text_attribute_name + '(X),Start), not becomes(-' + text_attribute_name + '(X),AfterStart), ultimately(' + text_attribute_name + '(X)), AfterStart #> Start.\n';
     }
     return code;
 };
@@ -1023,11 +1023,12 @@ sCASP['new_category_declaration'] = function(block) {
     code += '#pred blawx_started_in(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
     code += '#pred blawx_stopped_in(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
     code += '#pred blawx_holds_during(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
-    code += 'as_of(' + text_category_name + '(X),Time) :- becomes(' + text_category_name + '(X),BeforeT), not becomes(-' + text_category_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.';
-    code += 'as_of(' + text_category_name + '(X),Time) :- initially(' + text_category_name + '(X)), not becomes(-' + text_category_name + '(X), BetweenT), BetweenT #< Time.';
-    code += 'during(Start,' + text_category_name + '(X),End) :- becomes(' + text_category_name + '(X),Start), not becomes(-' + text_category_name + '(X),BeforeEnd), becomes(-' + text_category_name + '(X),End), BeforeEnd #< End, Start #< End.';
-    code += 'during(bot,' + text_category_name + '(X),End) :- initially(' + text_category_name + '(X)), not becomes(-' + text_category_name + '(X),BeforeEnd), becomes(-' + text_category_name + '(X),End), BeforeEnd #< End.';
-    code += 'during(Start,' + text_category_name + '(X),eot) :- becomes(' + text_category_name + '(X),Start), not becomes(-' + text_category_name + '(X),AfterStart), ultimately(' + text_category_name + '(X)), AfterStart #> Start.';    return code;
+    code += 'as_of(' + text_category_name + '(X),Time) :- becomes(' + text_category_name + '(X),BeforeT), not becomes(-' + text_category_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+    code += 'as_of(' + text_category_name + '(X),Time) :- initially(' + text_category_name + '(X)), not becomes(-' + text_category_name + '(X), BetweenT), BetweenT #< Time.\n';
+    code += 'during(Start,' + text_category_name + '(X),End) :- becomes(' + text_category_name + '(X),Start), not becomes(-' + text_category_name + '(X),BeforeEnd), becomes(-' + text_category_name + '(X),End), BeforeEnd #< End, Start #< End.\n';
+    code += 'during(bot,' + text_category_name + '(X),End) :- initially(' + text_category_name + '(X)), not becomes(-' + text_category_name + '(X),BeforeEnd), becomes(-' + text_category_name + '(X),End), BeforeEnd #< End.\n';
+    code += 'during(Start,' + text_category_name + '(X),eot) :- becomes(' + text_category_name + '(X),Start), not becomes(-' + text_category_name + '(X),AfterStart), ultimately(' + text_category_name + '(X)), AfterStart #> Start.\n';
+    return code;
 };
 
 sCASP['new_object_category'] = function(block) {
