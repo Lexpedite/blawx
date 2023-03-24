@@ -961,17 +961,21 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred according_to(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
         code += '#pred blawx_defeated(Z,' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
         code += '#pred blawx_defeated(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
-        code += '#pred blawx_initiates(' + text_attribute_name + "(" + variable_order + "),T) :: 'that " + add_code.trim() + " began to hold at @(T)'.\n";
-        code += '#pred blawx_terminates(' + text_attribute_name + "(" + variable_order + "),T) :: 'that " + add_code.trim() + " stopped holding at @(T)'.\n";
-        code += '#pred blawx_holds_at(' + text_attribute_name + "(" + variable_order + "),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
-        code += '#pred blawx_started_in(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
-        code += '#pred blawx_stopped_in(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
-        code += '#pred blawx_holds_during(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
-        code += 'as_of(' + text_attribute_name + '(X,Y),Time) :- becomes(' + text_attribute_name + '(X,Y),BeforeT), not becomes(-' + text_attribute_name + '(X,Y), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-        code += 'as_of(' + text_attribute_name + '(X,Y),Time) :- initially(' + text_attribute_name + '(X,Y)), not becomes(-' + text_attribute_name + '(X,Y), BetweenT), BetweenT #< Time.\n';
-        code += 'during(Start,' + text_attribute_name + '(X,Y),End) :- becomes(' + text_attribute_name + '(X,Y),Start), not becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End, Start #< End.\n';
-        code += 'during(bot,' + text_attribute_name + '(X,Y),End) :- initially(' + text_attribute_name + '(X,Y)), not becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End.\n';
-        code += 'during(Start,' + text_attribute_name + '(X,Y),eot) :- becomes(' + text_attribute_name + '(X,Y),Start), not becomes(-' + text_attribute_name + '(X,Y),AfterStart), ultimately(' + text_attribute_name + '(X,Y)), AfterStart #> Start.\n';
+        code += '#pred blawx_initially(' + text_attribute_name + ',(' + variable_order + ")) :: 'that " + add_code.trim() + " holds initially'.\n";
+        code += '#pred blawx_initially(-' + text_attribute_name + ',(' + variable_order + ")) :: 'that it is not the case that " + add_code.trim() + " holds initially'.\n";
+        code += '#pred blawx_ultimately(' + text_attribute_name + ',(' + variable_order + ")) :: 'that " + add_code.trim() + " holds ultimately'.\n";
+        code += '#pred blawx_ultimately(-' + text_attribute_name + ',(' + variable_order + ")) :: 'that it is not the case that " + add_code.trim() + " holds ultimately'.\n";
+        code += '#pred blawx_as_of(' + text_attribute_name + ',(' + variable_order + "),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
+        code += '#pred blawx_as_of(-' + text_attribute_name + ',(' + variable_order + "),T) :: 'that it is not the case that " + add_code.trim() + " holds at @(T)'.\n";
+        code += '#pred blawx_during(T1,' + text_attribute_name + ',(' + variable_order + "),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+        code += '#pred blawx_during(T1,-' + text_attribute_name + ',(' + variable_order + "),T2) :: 'that it is not the case that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+        code += '#pred blawx_becomes(' + text_attribute_name + ',(' + variable_order + "),T) :: 'that " + add_code.trim() + " became true at @(T)'.\n";
+        code += '#pred blawx_becomes(-' + text_attribute_name + ',(' + variable_order + "),T) :: 'that it is not the case that " + add_code.trim() + " became true at @(T)'.\n";
+        code += 'blawx_as_of(' + text_attribute_name + '(X,Y),Time) :- blawx_becomes(' + text_attribute_name + '(X,Y),BeforeT), not blawx_becomes(-' + text_attribute_name + '(X,Y), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+        code += 'blawx_as_of(' + text_attribute_name + '(X,Y),Time) :- blawx_initially(' + text_attribute_name + '(X,Y)), not blawx_becomes(-' + text_attribute_name + '(X,Y), BetweenT), BetweenT #< Time.\n';
+        code += 'blawx_during(Start,' + text_attribute_name + '(X,Y),End) :- blawx_becomes(' + text_attribute_name + '(X,Y),Start), not blawx_becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), blawx_becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End, Start #< End.\n';
+        code += 'blawx_during(bot,' + text_attribute_name + '(X,Y),End) :- blawx_initially(' + text_attribute_name + '(X,Y)), not blawx_becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), blawx_becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End.\n';
+        code += 'blawx_during(Start,' + text_attribute_name + '(X,Y),eot) :- blawx_becomes(' + text_attribute_name + '(X,Y),Start), not blawx_becomes(-' + text_attribute_name + '(X,Y),AfterStart), blawx_ultimately(' + text_attribute_name + '(X,Y)), AfterStart #> Start.\n';
     } else {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
@@ -985,17 +989,21 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred according_to(Z,-' + text_attribute_name + ",X) :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
         code += '#pred blawx_defeated(Z,' + text_attribute_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
         code += '#pred blawx_defeated(Z,-' + text_attribute_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
-        code += '#pred blawx_initiates(' + text_attribute_name + "(X),T) :: 'that " + add_code.trim() + " began to hold at @(T)'.\n";
-        code += '#pred blawx_terminates(' + text_attribute_name + "(X),T) :: 'that " + add_code.trim() + " stopped holding at @(T)'.\n";
-        code += '#pred blawx_holds_at(' + text_attribute_name + "(X),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
-        code += '#pred blawx_started_in(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
-        code += '#pred blawx_stopped_in(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
-        code += '#pred blawx_holds_during(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
-        code += 'as_of(' + text_attribute_name + '(X),Time) :- becomes(' + text_attribute_name + '(X),BeforeT), not becomes(-' + text_attribute_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-        code += 'as_of(' + text_attribute_name + '(X),Time) :- initially(' + text_attribute_name + '(X)), not becomes(-' + text_attribute_name + '(X), BetweenT), BetweenT #< Time.\n';
-        code += 'during(Start,' + text_attribute_name + '(X),End) :- becomes(' + text_attribute_name + '(X),Start), not becomes(-' + text_attribute_name + '(X),BeforeEnd), becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End, Start #< End.\n';
-        code += 'during(bot,' + text_attribute_name + '(X),End) :- initially(' + text_attribute_name + '(X)), not becomes(-' + text_attribute_name + '(X),BeforeEnd), becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End.\n';
-        code += 'during(Start,' + text_attribute_name + '(X),eot) :- becomes(' + text_attribute_name + '(X),Start), not becomes(-' + text_attribute_name + '(X),AfterStart), ultimately(' + text_attribute_name + '(X)), AfterStart #> Start.\n';
+        code += '#pred blawx_initially(' + text_attribute_name + "(X)) :: 'that " + add_code.trim() + " holds initially'.\n";
+        code += '#pred blawx_initially(-' + text_attribute_name + "(X)) :: 'that it is not the case that " + add_code.trim() + " holds initially'.\n";
+        code += '#pred blawx_ultimately(' + text_attribute_name + "(X)) :: 'that " + add_code.trim() + " holds ultimately'.\n";
+        code += '#pred blawx_ultimately(-' + text_attribute_name + "(X)) :: 'that it is not the case that " + add_code.trim() + " holds ultimately'.\n";
+        code += '#pred blawx_as_of(' + text_attribute_name + "(X),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
+        code += '#pred blawx_as_of(-' + text_attribute_name + "(X),T) :: 'that it is not the case that " + add_code.trim() + " holds at @(T)'.\n";
+        code += '#pred blawx_during(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+        code += '#pred blawx_during(T1,-' + text_attribute_name + "(X),T2) :: 'that it is not the case that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+        code += '#pred blawx_becomes(' + text_attribute_name + "(X),T) :: 'that " + add_code.trim() + " became true at @(T)'.\n";
+        code += '#pred blawx_becomes(-' + text_attribute_name + "(X),T) :: 'that it is not the case that " + add_code.trim() + " became true at @(T)'.\n";
+        code += 'blawx_as_of(' + text_attribute_name + '(X),Time) :- blawx_becomes(' + text_attribute_name + '(X),BeforeT), not blawx_becomes(-' + text_attribute_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+        code += 'blawx_as_of(' + text_attribute_name + '(X),Time) :- blawx_initially(' + text_attribute_name + '(X)), not blawx_becomes(-' + text_attribute_name + '(X), BetweenT), BetweenT #< Time.\n';
+        code += 'blawx_during(Start,' + text_attribute_name + '(X),End) :- blawx_becomes(' + text_attribute_name + '(X),Start), not blawx_becomes(-' + text_attribute_name + '(X),BeforeEnd), blawx_becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End, Start #< End.\n';
+        code += 'blawx_during(bot,' + text_attribute_name + '(X),End) :- blawx_initially(' + text_attribute_name + '(X)), not blawx_becomes(-' + text_attribute_name + '(X),BeforeEnd), blawx_becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End.\n';
+        code += 'blawx_during(Start,' + text_attribute_name + '(X),eot) :- blawx_becomes(' + text_attribute_name + '(X),Start), not blawx_becomes(-' + text_attribute_name + '(X),AfterStart), blawx_ultimately(' + text_attribute_name + '(X)), AfterStart #> Start.\n';
     }
     return code;
 };
@@ -1016,18 +1024,22 @@ sCASP['new_category_declaration'] = function(block) {
     code += '#pred according_to(Z,' + text_category_name + ",X) :: 'according to @(Z), " + add_code.trim() + "'.\n";
     code += '#pred according_to(Z,-' + text_category_name + ",X) :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
     code += '#pred blawx_defeated(Z,' + text_category_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
-    code += '#pred blawx_defeated(Z,-' + text_category_name + ",X) :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
-    code += '#pred blawx_initiates(' + text_category_name + "(X),T) :: 'that " + add_code.trim() + " began to hold at @(T)'.\n";
-    code += '#pred blawx_terminates(' + text_category_name + "(X),T) :: 'that " + add_code.trim() + " stopped holding at @(T)'.\n";
-    code += '#pred blawx_holds_at(' + text_category_name + "(X),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
-    code += '#pred blawx_started_in(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
-    code += '#pred blawx_stopped_in(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
-    code += '#pred blawx_holds_during(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
-    code += 'as_of(' + text_category_name + '(X),Time) :- becomes(' + text_category_name + '(X),BeforeT), not becomes(-' + text_category_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-    code += 'as_of(' + text_category_name + '(X),Time) :- initially(' + text_category_name + '(X)), not becomes(-' + text_category_name + '(X), BetweenT), BetweenT #< Time.\n';
-    code += 'during(Start,' + text_category_name + '(X),End) :- becomes(' + text_category_name + '(X),Start), not becomes(-' + text_category_name + '(X),BeforeEnd), becomes(-' + text_category_name + '(X),End), BeforeEnd #< End, Start #< End.\n';
-    code += 'during(bot,' + text_category_name + '(X),End) :- initially(' + text_category_name + '(X)), not becomes(-' + text_category_name + '(X),BeforeEnd), becomes(-' + text_category_name + '(X),End), BeforeEnd #< End.\n';
-    code += 'during(Start,' + text_category_name + '(X),eot) :- becomes(' + text_category_name + '(X),Start), not becomes(-' + text_category_name + '(X),AfterStart), ultimately(' + text_category_name + '(X)), AfterStart #> Start.\n';
+    code += '#pred blawx_defeated(Z,-' + text_category_name + ",X) :: 'the conclusion in @(Z) that it is not the case that " + add_code.trim() + " is defeated'.\n";
+    code += '#pred blawx_initially(' + text_category_name + "(X)) :: 'that " + add_code.trim() + " holds initially'.\n";
+    code += '#pred blawx_initially(-' + text_category_name + "(X)) :: 'that it is not the case that " + add_code.trim() + " holds initially'.\n";
+    code += '#pred blawx_ultimately(' + text_category_name + "(X)) :: 'that " + add_code.trim() + " holds ultimately'.\n";
+    code += '#pred blawx_ultimately(-' + text_category_name + "(X)) :: 'that it is not the case that " + add_code.trim() + " holds ultimately'.\n";
+    code += '#pred blawx_as_of(' + text_category_name + "(X),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
+    code += '#pred blawx_as_of(-' + text_category_name + "(X),T) :: 'that it is not the case that " + add_code.trim() + " holds at @(T)'.\n";
+    code += '#pred blawx_during(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+    code += '#pred blawx_during(T1,-' + text_category_name + "(X),T2) :: 'that it is not the case that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+    code += '#pred blawx_becomes(' + text_category_name + "(X),T) :: 'that " + add_code.trim() + " became true at @(T)'.\n";
+    code += '#pred blawx_becomes(-' + text_category_name + "(X),T) :: 'that it is not the case that " + add_code.trim() + " became true at @(T)'.\n";
+    code += 'blawx_as_of(' + text_category_name + '(X),Time) :- blawx_becomes(' + text_category_name + '(X),BeforeT), not blawx_becomes(-' + text_category_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+    code += 'blawx_as_of(' + text_category_name + '(X),Time) :- blawx_initially(' + text_category_name + '(X)), not blawx_becomes(-' + text_category_name + '(X), BetweenT), BetweenT #< Time.\n';
+    code += 'blawx_during(Start,' + text_category_name + '(X),End) :- blawx_becomes(' + text_category_name + '(X),Start), not blawx_becomes(-' + text_category_name + '(X),BeforeEnd), blawx_becomes(-' + text_category_name + '(X),End), BeforeEnd #< End, Start #< End.\n';
+    code += 'blawx_during(bot,' + text_category_name + '(X),End) :- blawx_initially(' + text_category_name + '(X)), not blawx_becomes(-' + text_category_name + '(X),BeforeEnd), blawx_becomes(-' + text_category_name + '(X),End), BeforeEnd #< End.\n';
+    code += 'blawx_during(Start,' + text_category_name + '(X),eot) :- blawx_becomes(' + text_category_name + '(X),Start), not blawx_becomes(-' + text_category_name + '(X),AfterStart), blawx_ultimately(' + text_category_name + '(X)), AfterStart #> Start.\n';
     return code;
 };
 
@@ -1151,7 +1163,7 @@ sCASP['applies'] = function(block) {
 
 sCASP['initially'] = function(block) {
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'initially(' + statements_statement + ')';
+    var code = 'blawx_initially(' + statements_statement + ')';
     return code;
 };
 
@@ -1159,7 +1171,7 @@ sCASP['holds_during'] = function (block) {
     var value_start_time = sCASP.valueToCode(block, 'start_time', sCASP.ORDER_ATOMIC);
     var value_end_time = sCASP.valueToCode(block, 'end_time', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'during(' + value_start_time + ',' + statements_statement + ',' + value_end_time + ')';
+    var code = 'blawx_during(' + value_start_time + ',' + statements_statement + ',' + value_end_time + ')';
     return code;
 };
 
@@ -1167,20 +1179,20 @@ sCASP['as_of'] = function (block) {
     var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
     // TODO: Assemble JavaScript into code variable.
-    var code = 'as_of(' + statements_statement + ',' + value_datetime + ')';
+    var code = 'blawx_as_of(' + statements_statement + ',' + value_datetime + ')';
     return code;
 };
 
 sCASP['ultimately'] = function (block) {
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'ultimately(' + statements_statement + ')';
+    var code = 'blawx_ultimately(' + statements_statement + ')';
     return code;
 };
 
 sCASP['from'] = function (block) {
     var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'becomes(' + statements_statement + ',' + value_datetime + ')';
+    var code = 'blawx_becomes(' + statements_statement + ',' + value_datetime + ')';
     return code;
 };
 
