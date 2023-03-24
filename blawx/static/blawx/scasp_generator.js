@@ -967,6 +967,11 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred blawx_started_in(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
         code += '#pred blawx_stopped_in(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
         code += '#pred blawx_holds_during(T1,' + text_attribute_name + "(" + variable_order + "),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+        code += 'as_of(' + text_attribute_name + '(X,Y),Time) :- becomes(' + text_attribute_name + '(X,Y),BeforeT), not becomes(-' + text_attribute_name + '(X,Y), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.';
+        code += 'as_of(' + text_attribute_name + '(X,Y),Time) :- initially(' + text_attribute_name + '(X,Y)), not becomes(-' + text_attribute_name + '(X,Y), BetweenT), BetweenT #< Time.';
+        code += 'during(Start,' + text_attribute_name + '(X,Y),End) :- becomes(' + text_attribute_name + '(X,Y),Start), not becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End, Start #< End.';
+        code += 'during(bot,' + text_attribute_name + '(X,Y),End) :- initially(' + text_attribute_name + '(X,Y)), not becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End.';
+        code += 'during(Start,' + text_attribute_name + '(X,Y),eot) :- becomes(' + text_attribute_name + '(X,Y),Start), not becomes(-' + text_attribute_name + '(X,Y),AfterStart), ultimately(' + text_attribute_name + '(X,Y)), AfterStart #> Start.';
     } else {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
@@ -986,6 +991,11 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred blawx_started_in(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
         code += '#pred blawx_stopped_in(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
         code += '#pred blawx_holds_during(T1,' + text_attribute_name + "(X),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+        code += 'as_of(' + text_attribute_name + '(X),Time) :- becomes(' + text_attribute_name + '(X),BeforeT), not becomes(-' + text_attribute_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.';
+        code += 'as_of(' + text_attribute_name + '(X),Time) :- initially(' + text_attribute_name + '(X)), not becomes(-' + text_attribute_name + '(X), BetweenT), BetweenT #< Time.';
+        code += 'during(Start,' + text_attribute_name + '(X),End) :- becomes(' + text_attribute_name + '(X),Start), not becomes(-' + text_attribute_name + '(X),BeforeEnd), becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End, Start #< End.';
+        code += 'during(bot,' + text_attribute_name + '(X),End) :- initially(' + text_attribute_name + '(X)), not becomes(-' + text_attribute_name + '(X),BeforeEnd), becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End.';
+        code += 'during(Start,' + text_attribute_name + '(X),eot) :- becomes(' + text_attribute_name + '(X),Start), not becomes(-' + text_attribute_name + '(X),AfterStart), ultimately(' + text_attribute_name + '(X)), AfterStart #> Start.';
     }
     return code;
 };
@@ -1013,7 +1023,11 @@ sCASP['new_category_declaration'] = function(block) {
     code += '#pred blawx_started_in(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " started holding between @(T1) and @(T2)'.\n";
     code += '#pred blawx_stopped_in(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " stopped holding between @(T1) and @(T2)'.\n";
     code += '#pred blawx_holds_during(T1,' + text_category_name + "(X),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
-    return code;
+    code += 'as_of(' + text_category_name + '(X),Time) :- becomes(' + text_category_name + '(X),BeforeT), not becomes(-' + text_category_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.';
+    code += 'as_of(' + text_category_name + '(X),Time) :- initially(' + text_category_name + '(X)), not becomes(-' + text_category_name + '(X), BetweenT), BetweenT #< Time.';
+    code += 'during(Start,' + text_category_name + '(X),End) :- becomes(' + text_category_name + '(X),Start), not becomes(-' + text_category_name + '(X),BeforeEnd), becomes(-' + text_category_name + '(X),End), BeforeEnd #< End, Start #< End.';
+    code += 'during(bot,' + text_category_name + '(X),End) :- initially(' + text_category_name + '(X)), not becomes(-' + text_category_name + '(X),BeforeEnd), becomes(-' + text_category_name + '(X),End), BeforeEnd #< End.';
+    code += 'during(Start,' + text_category_name + '(X),eot) :- becomes(' + text_category_name + '(X),Start), not becomes(-' + text_category_name + '(X),AfterStart), ultimately(' + text_category_name + '(X)), AfterStart #> Start.';    return code;
 };
 
 sCASP['new_object_category'] = function(block) {
@@ -1134,63 +1148,52 @@ sCASP['applies'] = function(block) {
     return code;
 };
 
-sCASP['initiates'] = function(block) {
-    var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
+sCASP['initially'] = function(block) {
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_initiates(' + statements_statement.trim() + ',' + value_time + ')';
+    var code = 'initially(' + statements_statement + ')';
     return code;
 };
 
-sCASP['terminates'] = function(block) {
-    var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
-    var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_terminates(' + statements_statement.trim() + ',' + value_time + ')';
-    return code;
-};
-
-sCASP['holds_at'] = function(block) {
-    var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
-    var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_holds_at(' + statements_statement.trim() + ',' + value_time + ')';
-    return code;
-};
-
-sCASP['started_in'] = function(block) {
+sCASP['holds_during'] = function (block) {
     var value_start_time = sCASP.valueToCode(block, 'start_time', sCASP.ORDER_ATOMIC);
     var value_end_time = sCASP.valueToCode(block, 'end_time', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_started_in(' + value_start_time + ',' + statements_statement.trim() + ',' + value_end_time + ')';
+    var code = 'during(' + value_start_time + ',' + statements_statement + ',' + value_end_time + ')';
     return code;
 };
 
-sCASP['stopped_in'] = function(block) {
-    var value_start_time = sCASP.valueToCode(block, 'start_time', sCASP.ORDER_ATOMIC);
-    var value_end_time = sCASP.valueToCode(block, 'end_time', sCASP.ORDER_ATOMIC);
+sCASP['as_of'] = function (block) {
+    var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_stopped_in(' + value_start_time + ',' + statements_statement.trim() + ',' + value_end_time + ')';
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'as_of(' + statements_statement + ',' + value_datetime + ')';
     return code;
 };
 
-sCASP['holds_during'] = function(block) {
-    var value_start_time = sCASP.valueToCode(block, 'start_time', sCASP.ORDER_ATOMIC);
-    var value_end_time = sCASP.valueToCode(block, 'end_time', sCASP.ORDER_ATOMIC);
+sCASP['ultimately'] = function (block) {
     var statements_statement = sCASP.statementToCode(block, 'statement');
-    var code = 'blawx_holds_during(' + value_start_time + ',' + statements_statement.trim() + ',' + value_end_time + ')';
+    var code = 'ultimately(' + statements_statement + ')';
     return code;
 };
 
-sCASP['datetime_to_ts'] = function(block) {
+sCASP['from'] = function (block) {
+    var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
+    var statements_statement = sCASP.statementToCode(block, 'statement');
+    var code = 'becomes(' + statements_statement + ',' + value_datetime + ')';
+    return code;
+};
+
+sCASP['datetime_to_ts'] = function (block) {
     var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
     var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
     var code = 'datetime_to_posix_timestamp(' + value_datetime + ',' + value_timestamp + ')';
     return code;
 };
 
-sCASP['ts_to_datetime'] = function(block) {
+sCASP['ts_to_datetime'] = function (block) {
     var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
     var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = 'posix_timestamp_to_datetime(' + value_timestamp + ',' + value_datetime +')';
+    var code = 'posix_timestamp_to_datetime(' + value_datetime + ',' + value_timestamp + ')';
     return code;
 };
 

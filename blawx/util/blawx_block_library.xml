@@ -7909,7 +7909,25 @@
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="cvhQv+Xj0x?0UV5r(ntO">
-            <field name="TEXT">At time</field>
+            <field name="TEXT">From</field>
+            <next>
+              <block type="field_image" id="#=ifm5e9z48%Pm9BnXN!">
+                <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=</field>
+                <field name="WIDTH">15</field>
+                <field name="HEIGHT">15</field>
+                <field name="ALT">Calendar</field>
+                <field name="FLIP_RTL">FALSE</field>
+                <next>
+                  <block type="field_image" id="ND1dUhTr4@QhW;,H=$Kz">
+                    <field name="SRC">data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==</field>
+                    <field name="WIDTH">15</field>
+                    <field name="HEIGHT">15</field>
+                    <field name="ALT">*</field>
+                    <field name="FLIP_RTL">FALSE</field>
+                  </block>
+                </next>
+              </block>
+            </next>
           </block>
         </statement>
         <value name="TYPE">
@@ -7936,28 +7954,18 @@
                 <field name="TYPE">STATEMENT</field>
               </block>
             </value>
-            <next>
-              <block type="input_dummy" id="yg2~Us=o6{%sqY/wyN@m">
-                <field name="ALIGN">LEFT</field>
-                <statement name="FIELDS">
-                  <block type="field_static" id="`06?0XN;,-]qGv??q@_g">
-                    <field name="TEXT">holds</field>
-                  </block>
-                </statement>
-              </block>
-            </next>
           </block>
         </next>
       </block>
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="d3jr!5R$iQA#:~Eh6y|I" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">Use to indicate that a statement is true from a particular datetime forward.</field>
       </block>
     </value>
     <value name="HELPURL">
       <block type="text" id="B8@YTTra9`nVBs6PyTmL" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/holds_at/</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -7998,7 +8006,7 @@
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="`06?0XN;,-]qGv??q@_g">
-            <field name="TEXT">Initially we know</field>
+            <field name="TEXT">Initially</field>
           </block>
         </statement>
         <next>
@@ -8017,12 +8025,12 @@
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="d3jr!5R$iQA#:~Eh6y|I" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">Use to indicate that the statement is temporally valid until it is contradictred.</field>
       </block>
     </value>
     <value name="HELPURL">
       <block type="text" id="B8@YTTra9`nVBs6PyTmL" deletable="false" movable="false">
-        <field name="TEXT"></field>
+        <field name="TEXT">/docs/blocks/initially/</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -8511,7 +8519,16 @@
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="cvhQv+Xj0x?0UV5r(ntO">
-            <field name="TEXT">Between</field>
+            <field name="TEXT">From</field>
+            <next>
+              <block type="field_image" id="V}2w?fEsz|nN;WHR9{A7">
+                <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=</field>
+                <field name="WIDTH">15</field>
+                <field name="HEIGHT">15</field>
+                <field name="ALT">#</field>
+                <field name="FLIP_RTL">FALSE</field>
+              </block>
+            </next>
           </block>
         </statement>
         <value name="TYPE">
@@ -8519,7 +8536,7 @@
           <block type="type_group" id=".tg:75rzog@t)F-9GwrK">
             <mutation types="2"></mutation>
             <value name="TYPE0">
-              <block type="type_number" id="mCp07}SfhL6*6TFlvv8X"></block>
+              <block type="type_number" id="m6XtM[q~G%$(}qv#=.(o"></block>
             </value>
             <value name="TYPE1">
               <block type="type_other" id="(}had,Q44n{GH?ps:J%t">
@@ -8534,7 +8551,16 @@
             <field name="ALIGN">LEFT</field>
             <statement name="FIELDS">
               <block type="field_static" id="ZUo(YoII1w~T_:}6)x/*">
-                <field name="TEXT">and</field>
+                <field name="TEXT">to</field>
+                <next>
+                  <block type="field_image" id="7rdWnLdB*W~H7]522YuF">
+                    <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=</field>
+                    <field name="WIDTH">15</field>
+                    <field name="HEIGHT">15</field>
+                    <field name="ALT">#</field>
+                    <field name="FLIP_RTL">FALSE</field>
+                  </block>
+                </next>
               </block>
             </statement>
             <value name="TYPE">
@@ -8542,7 +8568,7 @@
               <block type="type_group" id="_(Z;aFH+3%93;^LmgKZ#">
                 <mutation types="2"></mutation>
                 <value name="TYPE0">
-                  <block type="type_number" id="%Sza;.9t[4Jq`zA:m-Ii"></block>
+                  <block type="type_number" id="(s1WSm6Ec2854$GGE(1T"></block>
                 </value>
                 <value name="TYPE1">
                   <block type="type_other" id="D=0yMpUX%D$X1ybe[qpR">
@@ -8561,16 +8587,6 @@
                     <field name="TYPE">STATEMENT</field>
                   </block>
                 </value>
-                <next>
-                  <block type="input_dummy" id="yg2~Us=o6{%sqY/wyN@m">
-                    <field name="ALIGN">LEFT</field>
-                    <statement name="FIELDS">
-                      <block type="field_static" id="`06?0XN;,-]qGv??q@_g">
-                        <field name="TEXT">holds uninterupted</field>
-                      </block>
-                    </statement>
-                  </block>
-                </next>
               </block>
             </next>
           </block>
@@ -8579,7 +8595,7 @@
     </statement>
     <value name="TOOLTIP">
       <block type="text" id="d3jr!5R$iQA#:~Eh6y|I" deletable="false" movable="false">
-        <field name="TEXT">Use to check whether a statement remains true between two times.</field>
+        <field name="TEXT">Use to find the longest periods of time (using timestamps) during which the statement was valid</field>
       </block>
     </value>
     <value name="HELPURL">
@@ -8847,6 +8863,271 @@
       <block type="colour_hue" id="r5Z)If8L2f!I8zs1kXsL">
         <mutation colour="#a55b80"></mutation>
         <field name="HUE">330</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="1K[$|-NY(JUI6eo7TOp]" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">as_of</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="*-!{e#?Rl77{Q:Hrh7O$">
+        <field name="INPUTNAME">datetime</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="cvhQv+Xj0x?0UV5r(ntO">
+            <field name="TEXT">As of</field>
+            <next>
+              <block type="field_image" id="#=ifm5e9z48%Pm9BnXN!">
+                <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=</field>
+                <field name="WIDTH">15</field>
+                <field name="HEIGHT">15</field>
+                <field name="ALT">Calendar</field>
+                <field name="FLIP_RTL">FALSE</field>
+                <next>
+                  <block type="field_image" id="ND1dUhTr4@QhW;,H=$Kz">
+                    <field name="SRC">data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==</field>
+                    <field name="WIDTH">15</field>
+                    <field name="HEIGHT">15</field>
+                    <field name="ALT">*</field>
+                    <field name="FLIP_RTL">FALSE</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="~`xfY[=1dEW.=!vlvITa"></shadow>
+          <block type="type_group" id=".tg:75rzog@t)F-9GwrK">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="qFpIDL{]O0KcoKd)hY:y">
+                <field name="TYPE">DATETIME</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="(}had,Q44n{GH?ps:J%t">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_statement" id="_P,ynFg6u[z*sa!oF{[`">
+            <field name="INPUTNAME">statement</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="T{/^qFqozm*veEXSjzg0"></shadow>
+              <block type="type_other" id="PbV#1$T)KxSLJ3E]r/]5">
+                <field name="TYPE">STATEMENT</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="d3jr!5R$iQA#:~Eh6y|I" deletable="false" movable="false">
+        <field name="TEXT">Use to state that or check if a statement is true at a particular point in time.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="B8@YTTra9`nVBs6PyTmL" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/as_of/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="W`f8R,kA=4xJH`E32~6$"></shadow>
+      <block type="type_group" id="e`Uixot[I0L~%)pO5n@N">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="1bp/.^z,qhZ!5^u}-BhM">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="DE-I|VW8|We-oy5;E5G3">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="UKBo|L6=vx4l8{uzFR8#"></shadow>
+      <block type="type_other" id="Ag+Nxvdz~aGi6+on72/!">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="A}8i,x;YLA,,6|~9FvJ;">
+        <mutation colour="#80a55b"></mutation>
+        <field name="HUE">90</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="1K[$|-NY(JUI6eo7TOp]" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">ultimately</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="yg2~Us=o6{%sqY/wyN@m">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="`06?0XN;,-]qGv??q@_g">
+            <field name="TEXT">Ultimately</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="_P,ynFg6u[z*sa!oF{[`">
+            <field name="INPUTNAME">statement</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="T{/^qFqozm*veEXSjzg0"></shadow>
+              <block type="type_other" id="PbV#1$T)KxSLJ3E]r/]5">
+                <field name="TYPE">STATEMENT</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="d3jr!5R$iQA#:~Eh6y|I" deletable="false" movable="false">
+        <field name="TEXT">Use to indicate or check that the statement is temporally valid after all events.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="B8@YTTra9`nVBs6PyTmL" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/ultimately/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="W`f8R,kA=4xJH`E32~6$"></shadow>
+      <block type="type_group" id="e`Uixot[I0L~%)pO5n@N">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="1bp/.^z,qhZ!5^u}-BhM">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="DE-I|VW8|We-oy5;E5G3">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="UKBo|L6=vx4l8{uzFR8#"></shadow>
+      <block type="type_other" id="Ag+Nxvdz~aGi6+on72/!">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="A}8i,x;YLA,,6|~9FvJ;">
+        <mutation colour="#80a55b"></mutation>
+        <field name="HUE">90</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="1K[$|-NY(JUI6eo7TOp]" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">from</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="*-!{e#?Rl77{Q:Hrh7O$">
+        <field name="INPUTNAME">datetime</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="cvhQv+Xj0x?0UV5r(ntO">
+            <field name="TEXT">From</field>
+            <next>
+              <block type="field_image" id="#=ifm5e9z48%Pm9BnXN!">
+                <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=</field>
+                <field name="WIDTH">15</field>
+                <field name="HEIGHT">15</field>
+                <field name="ALT">Calendar</field>
+                <field name="FLIP_RTL">FALSE</field>
+                <next>
+                  <block type="field_image" id="ND1dUhTr4@QhW;,H=$Kz">
+                    <field name="SRC">data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==</field>
+                    <field name="WIDTH">15</field>
+                    <field name="HEIGHT">15</field>
+                    <field name="ALT">*</field>
+                    <field name="FLIP_RTL">FALSE</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="~`xfY[=1dEW.=!vlvITa"></shadow>
+          <block type="type_group" id=".tg:75rzog@t)F-9GwrK">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="*K)9*{T|weIfz-ACxwVZ">
+                <field name="TYPE">DATETIME</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="(}had,Q44n{GH?ps:J%t">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_statement" id="_P,ynFg6u[z*sa!oF{[`">
+            <field name="INPUTNAME">statement</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="T{/^qFqozm*veEXSjzg0"></shadow>
+              <block type="type_other" id="PbV#1$T)KxSLJ3E]r/]5">
+                <field name="TYPE">STATEMENT</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="d3jr!5R$iQA#:~Eh6y|I" deletable="false" movable="false">
+        <field name="TEXT">Use to indicate that or ask if a statement becomes valid from a given datetime..</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="B8@YTTra9`nVBs6PyTmL" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/from/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="W`f8R,kA=4xJH`E32~6$"></shadow>
+      <block type="type_group" id="e`Uixot[I0L~%)pO5n@N">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="1bp/.^z,qhZ!5^u}-BhM">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="DE-I|VW8|We-oy5;E5G3">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="UKBo|L6=vx4l8{uzFR8#"></shadow>
+      <block type="type_other" id="Ag+Nxvdz~aGi6+on72/!">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="A}8i,x;YLA,,6|~9FvJ;">
+        <mutation colour="#80a55b"></mutation>
+        <field name="HUE">90</field>
       </block>
     </value>
   </block></xml>
