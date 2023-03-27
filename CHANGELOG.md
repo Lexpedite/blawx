@@ -11,29 +11,35 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### Added
 * Event Drawer
-* Initiates, Terminates, Started In, Stopped In, Holds At, Holds During blocks
-* Event calculus library code in the reasoner endpoints
+* Initially, Ultimately, From, As of, and During blocks
+* Event calculus library code in the code generation
 * New Life Act example demonstrating use of event blocks
 * Added posix timestamp capabilities to date library
 * Added timestamp blocks to language
 
-
-
 ### To Do
 * Figure out terminology issue, because we are using "holds" in both temporal and defeasibility logic.
 * Figure out what this is called, because "events" might be the wrong thing. Fluents, maybe?
-
 * Make it possible to use datetimes instead of numbers.
   * Taking the life act and re-writing it using the timestamp blocks causes an infinite loop freeze,
   it looks like. Need to grab the code and play with it in swish to see if I can figure out what's causing that.
+  * Getting this working, without using cuts in the event calculus code, requires a pre-processing step in the reasoner.
+    The reasoner needs to run a query for `? becomes(X,Y), Y = datetime(_,_,_,_,_,_).`, and for each conclusion find the
+    condition that is providing the datetime. It then needs to create a rule of the form `born(X,Timestamp) :- born(X,Datetime).`
+    except that Datetime and Timestamp are ground values calculated by the reasoner. It needs to do this for all of the
+    conclusions that are available, then re-run the query and see if any more become available. It repeats this until there
+    are no more rules to add. Then it continues as normal.
+  * Note that if this doesn't work, there may be another alternative, but it would require the s(CASP) library for SWI-Prolog
+    being modified to make the cut operator available, because I think it currently isn't.
 * Add Documentation (maybe after the block naming is settled)
   * Events (Features)
-  * Initiates
-  * Terminates
-  * Started In
-  * Stopped In
-  * Holds At
-  * Holds During
+  * As Of
+  * From
+  * Initially
+  * Ultimately
+  * During
+  * Datetime to Posix
+  * Posix to Datetime
 
 ### Issues to create
 * Add trajectory logic to events
