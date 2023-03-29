@@ -1203,31 +1203,31 @@ def find_assumptions(Tree): # Pulls the assumptions out of a Prolog-formatted ex
 # This accepts a SWI-Prolog thread, runs queries and asserts additional rules
 # until it is capable of answering event calculus questions based on datetimes.
 def ec_preprocess_step(thread):
-  print("Starting EC Pre-Process Step")
+  #print("Starting EC Pre-Process Step")
   previous = []
   current = []
   first_attempt = True
   found_new = False
   while first_attempt or found_new:
-    print("Starting Attempt")
+    #print("Starting Attempt")
     first_attempt = False
     found_new = False
     current = []
     result = thread.query('blawxrun((blawx_becomes(X,Y), Y = datetime(_,_,_,_,_,_)),Human, Tree, Model).')
     answers = generate_answers(result)
-    print("Received " + str(len(answers)) + " responses.")
+    #print("Received " + str(len(answers)) + " responses.")
     for answer in answers:
       new_rule = generate_ec_rule_from_answer(answer)
       if new_rule not in previous:
         found_new = True
-        print("Adding " +new_rule)
+        #print("Adding " +new_rule)
         current.append(new_rule)
-    print("New Rules Found This Attempt: " + str(current))
+    #print("New Rules Found This Attempt: " + str(current))
     previous = previous + current
-    print("All Rules Found So Far: " + str(previous))
-  print("Done searching.")
+    #print("All Rules Found So Far: " + str(previous))
+  #print("Done searching.")
   for rule in previous:
-    print("Asserting: " + rule)
+    #print("Asserting: " + rule)
     thread.query('assertz(' + rule + ').')
 
 def generate_ec_rule_from_answer(answer):

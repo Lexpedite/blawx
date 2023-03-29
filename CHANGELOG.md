@@ -21,7 +21,6 @@ and breaking changes will not necessarily result in changes to the main version 
 * Figure out terminology issue, because we are using "holds" in both temporal and defeasibility logic.
 * Figure out what this is called, because "events" might be the wrong thing. Fluents, maybe?
 * Make it possible to use datetimes instead of numbers.
-  * Currently, it is using posix timestamps which use seconds. The rest of the library uses days, ala Excel. Should be consistent with the rest of the date library.
   * We need to see if we can create terms that will allow us to display the timestamps correctly in the scenario editor. Use timestamp() in the predicates.
   * There seems to be a lot of work to do to get scenario editor to understand the new EC predicates for generating explanations.
 * Add Documentation (maybe after the block naming is settled)

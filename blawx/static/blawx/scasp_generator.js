@@ -978,6 +978,11 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += 'blawx_during(Start,' + text_attribute_name + '(X,Y),End) :- blawx_becomes(' + text_attribute_name + '(X,Y),Start), not blawx_becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), blawx_becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End, Start #< End.\n';
         code += 'blawx_during(bot,' + text_attribute_name + '(X,Y),End) :- blawx_initially(' + text_attribute_name + '(X,Y)), not blawx_becomes(-' + text_attribute_name + '(X,Y),BeforeEnd), blawx_becomes(-' + text_attribute_name + '(X,Y),End), BeforeEnd #< End.\n';
         code += 'blawx_during(Start,' + text_attribute_name + '(X,Y),eot) :- blawx_becomes(' + text_attribute_name + '(X,Y),Start), not blawx_becomes(-' + text_attribute_name + '(X,Y),AfterStart), blawx_ultimately(' + text_attribute_name + '(X,Y)), AfterStart #> Start.\n';
+        code += 'blawx_as_of(-' + text_attribute_name + '(X,Y),Time) :- blawx_becomes(-' + text_attribute_name + '(X,Y),BeforeT), not blawx_becomes(' + text_attribute_name + '(X,Y), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+        code += 'blawx_as_of(-' + text_attribute_name + '(X,Y),Time) :- blawx_initially(-' + text_attribute_name + '(X,Y)), not blawx_becomes(' + text_attribute_name + '(X,Y), BetweenT), BetweenT #< Time.\n';
+        code += 'blawx_during(Start,-' + text_attribute_name + '(X,Y),End) :- blawx_becomes(-' + text_attribute_name + '(X,Y),Start), not blawx_becomes(' + text_attribute_name + '(X,Y),BeforeEnd), blawx_becomes(' + text_attribute_name + '(X,Y),End), BeforeEnd #< End, Start #< End.\n';
+        code += 'blawx_during(bot,-' + text_attribute_name + '(X,Y),End) :- blawx_initially(-' + text_attribute_name + '(X,Y)), not blawx_becomes(' + text_attribute_name + '(X,Y),BeforeEnd), blawx_becomes(' + text_attribute_name + '(X,Y),End), BeforeEnd #< End.\n';
+        code += 'blawx_during(Start,-' + text_attribute_name + '(X,Y),eot) :- blawx_becomes(-' + text_attribute_name + '(X,Y),Start), not blawx_becomes(' + text_attribute_name + '(X,Y),AfterStart), blawx_ultimately(-' + text_attribute_name + '(X,Y)), AfterStart #> Start.\n';
     } else {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
@@ -1007,6 +1012,11 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += 'blawx_during(Start,' + text_attribute_name + '(X),End) :- blawx_becomes(' + text_attribute_name + '(X),Start), not blawx_becomes(-' + text_attribute_name + '(X),BeforeEnd), blawx_becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End, Start #< End.\n';
         code += 'blawx_during(bot,' + text_attribute_name + '(X),End) :- blawx_initially(' + text_attribute_name + '(X)), not blawx_becomes(-' + text_attribute_name + '(X),BeforeEnd), blawx_becomes(-' + text_attribute_name + '(X),End), BeforeEnd #< End.\n';
         code += 'blawx_during(Start,' + text_attribute_name + '(X),eot) :- blawx_becomes(' + text_attribute_name + '(X),Start), not blawx_becomes(-' + text_attribute_name + '(X),AfterStart), blawx_ultimately(' + text_attribute_name + '(X)), AfterStart #> Start.\n';
+        code += 'blawx_as_of(-' + text_attribute_name + '(X),Time) :- blawx_becomes(-' + text_attribute_name + '(X),BeforeT), not blawx_becomes(' + text_attribute_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+        code += 'blawx_as_of(-' + text_attribute_name + '(X),Time) :- blawx_initially(-' + text_attribute_name + '(X)), not blawx_becomes(' + text_attribute_name + '(X), BetweenT), BetweenT #< Time.\n';
+        code += 'blawx_during(Start,-' + text_attribute_name + '(X),End) :- blawx_becomes(-' + text_attribute_name + '(X),Start), not blawx_becomes(' + text_attribute_name + '(X),BeforeEnd), blawx_becomes(' + text_attribute_name + '(X),End), BeforeEnd #< End, Start #< End.\n';
+        code += 'blawx_during(bot,-' + text_attribute_name + '(X),End) :- blawx_initially(-' + text_attribute_name + '(X)), not blawx_becomes(' + text_attribute_name + '(X),BeforeEnd), blawx_becomes(' + text_attribute_name + '(X),End), BeforeEnd #< End.\n';
+        code += 'blawx_during(Start,-' + text_attribute_name + '(X),eot) :- blawx_becomes(-' + text_attribute_name + '(X),Start), not blawx_becomes(' + text_attribute_name + '(X),AfterStart), blawx_ultimately(-' + text_attribute_name + '(X)), AfterStart #> Start.\n';
     }
     return code;
 };
@@ -1044,6 +1054,11 @@ sCASP['new_category_declaration'] = function(block) {
     code += 'blawx_during(Start,' + text_category_name + '(X),End) :- blawx_becomes(' + text_category_name + '(X),Start), not blawx_becomes(-' + text_category_name + '(X),BeforeEnd), blawx_becomes(-' + text_category_name + '(X),End), BeforeEnd #< End, Start #< End.\n';
     code += 'blawx_during(bot,' + text_category_name + '(X),End) :- blawx_initially(' + text_category_name + '(X)), not blawx_becomes(-' + text_category_name + '(X),BeforeEnd), blawx_becomes(-' + text_category_name + '(X),End), BeforeEnd #< End.\n';
     code += 'blawx_during(Start,' + text_category_name + '(X),eot) :- blawx_becomes(' + text_category_name + '(X),Start), not blawx_becomes(-' + text_category_name + '(X),AfterStart), blawx_ultimately(' + text_category_name + '(X)), AfterStart #> Start.\n';
+    code += 'blawx_as_of(-' + text_category_name + '(X),Time) :- blawx_becomes(-' + text_category_name + '(X),BeforeT), not blawx_becomes(' + text_category_name + '(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+    code += 'blawx_as_of(-' + text_category_name + '(X),Time) :- blawx_initially(-' + text_category_name + '(X)), not blawx_becomes(' + text_category_name + '(X), BetweenT), BetweenT #< Time.\n';
+    code += 'blawx_during(Start,-' + text_category_name + '(X),End) :- blawx_becomes(-' + text_category_name + '(X),Start), not blawx_becomes(' + text_category_name + '(X),BeforeEnd), blawx_becomes(' + text_category_name + '(X),End), BeforeEnd #< End, Start #< End.\n';
+    code += 'blawx_during(bot,-' + text_category_name + '(X),End) :- blawx_initially(-' + text_category_name + '(X)), not blawx_becomes(' + text_category_name + '(X),BeforeEnd), blawx_becomes(' + text_category_name + '(X),End), BeforeEnd #< End.\n';
+    code += 'blawx_during(Start,-' + text_category_name + '(X),eot) :- blawx_becomes(-' + text_category_name + '(X),Start), not blawx_becomes(' + text_category_name + '(X),AfterStart), blawx_ultimately(-' + text_category_name + '(X)), AfterStart #> Start.\n';
     return code;
 };
 
@@ -1203,14 +1218,14 @@ sCASP['from'] = function (block) {
 sCASP['datetime_to_ts'] = function (block) {
     var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
     var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
-    var code = 'datetime_to_posix_timestamp(' + value_datetime + ',' + value_timestamp + ')';
+    var code = 'datetime_to_posix_timestamp(' + value_datetime + ',timestamp(' + value_timestamp + '))';
     return code;
 };
 
 sCASP['ts_to_datetime'] = function (block) {
     var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
     var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
-    var code = 'posix_timestamp_to_datetime(' + value_datetime + ',' + value_timestamp + ')';
+    var code = 'posix_timestamp_to_datetime(' + value_datetime + ',timestamp(' + value_timestamp + '))';
     return code;
 };
 
