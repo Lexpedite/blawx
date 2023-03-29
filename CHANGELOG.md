@@ -21,14 +21,9 @@ and breaking changes will not necessarily result in changes to the main version 
 * Figure out terminology issue, because we are using "holds" in both temporal and defeasibility logic.
 * Figure out what this is called, because "events" might be the wrong thing. Fluents, maybe?
 * Make it possible to use datetimes instead of numbers.
-  * This is almost working. We have fixed up the blocks, and the reasoner will now search for dates and
-    convert them to timestamps.
-  * The way the reasoner is choosing which term to use to generate the EC rules is a bit... stupid, probably?
-  * Currently, it is using posix timestamps which use seconds. The rest of the library uses days, ala Excel. Need to pick one.
-  * We need to see if we can create terms that will allow us to display the timestamps correctly in the scenario editor.
+  * Currently, it is using posix timestamps which use seconds. The rest of the library uses days, ala Excel. Should be consistent with the rest of the date library.
+  * We need to see if we can create terms that will allow us to display the timestamps correctly in the scenario editor. Use timestamp() in the predicates.
   * There seems to be a lot of work to do to get scenario editor to understand the new EC predicates for generating explanations.
-  * Note that if this doesn't work, there may be another alternative, but it would require the s(CASP) library for SWI-Prolog
-    being modified to make the cut operator available, because I think it currently isn't.
 * Add Documentation (maybe after the block naming is settled)
   * Events (Features)
   * As Of
