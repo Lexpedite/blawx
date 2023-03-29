@@ -21,14 +21,12 @@ and breaking changes will not necessarily result in changes to the main version 
 * Figure out terminology issue, because we are using "holds" in both temporal and defeasibility logic.
 * Figure out what this is called, because "events" might be the wrong thing. Fluents, maybe?
 * Make it possible to use datetimes instead of numbers.
-  * Taking the life act and re-writing it using the timestamp blocks causes an infinite loop freeze,
-  it looks like. Need to grab the code and play with it in swish to see if I can figure out what's causing that.
-  * Getting this working, without using cuts in the event calculus code, requires a pre-processing step in the reasoner.
-    The reasoner needs to run a query for `? becomes(X,Y), Y = datetime(_,_,_,_,_,_).`, and for each conclusion find the
-    condition that is providing the datetime. It then needs to create a rule of the form `born(X,Timestamp) :- born(X,Datetime).`
-    except that Datetime and Timestamp are ground values calculated by the reasoner. It needs to do this for all of the
-    conclusions that are available, then re-run the query and see if any more become available. It repeats this until there
-    are no more rules to add. Then it continues as normal.
+  * This is almost working. We have fixed up the blocks, and the reasoner will now search for dates and
+    convert them to timestamps.
+  * The way the reasoner is choosing which term to use to generate the EC rules is a bit... stupid, probably?
+  * Currently, it is using posix timestamps which use seconds. The rest of the library uses days, ala Excel. Need to pick one.
+  * We need to see if we can create terms that will allow us to display the timestamps correctly in the scenario editor.
+  * There seems to be a lot of work to do to get scenario editor to understand the new EC predicates for generating explanations.
   * Note that if this doesn't work, there may be another alternative, but it would require the s(CASP) library for SWI-Prolog
     being modified to make the cut operator available, because I think it currently isn't.
 * Add Documentation (maybe after the block naming is settled)

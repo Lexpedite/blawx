@@ -11,6 +11,7 @@ import json
 import re
 from contextlib import redirect_stderr
 import pyparsing as pp
+import datetime
 
 from swiplserver import PrologMQI, PrologError, PrologLaunchError
 
@@ -222,39 +223,6 @@ def newer_json_2_scasp(payload,ruledoc,testname):
   # print(output)
   return output
 
-# Proposed format for JSON submissions.
-# {
-#   person: {
-#     members_known: false,
-#     attributes_known: {
-#       name: false,
-#     },
-#     members: {
-#       jason: {
-#         nerd: {
-#           values_known: true,
-#           values: [ true ],
-#         },
-#       },
-#     }
-#   }
-# }
-
-# Example input for Rock Paper Scissors Interview Ontology Endpoint
-# { "game": {
-#     "members_known": false,
-#     "attributes_known": {
-#       "player": false
-#     }
-#   },
-#   "player": {
-#     "members_known": false,
-#     "attributes_known": {
-#      "throw": false
-#     }
-#   }
-# }
-
 def format_statement_value(value,attribute_type):
   iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
   time_re = r"^(\d{2}):(\d{2})$"
@@ -426,27 +394,11 @@ def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
             output += attribute_name + "(" + object_name + "," + str(value) + ").\n"
   return output
 
-# def json_2_scasp(element,higher_order=False):
-#   output = ""
-#   if type(element) is dict:
-#     # the keys of this dictionary are predicates
-#     for (k,v) in element.items():
-#       for occurrance in v:
-#         output += k + "("
-#         for parameter in occurrance:
-#           output += json_2_scasp(parameter,True)
-#           output += ","
-#         output = output[:-1] + ")" #Trim trailing comma
-#         if not higher_order:
-#           output += ".\n"
-#     return output
-#   else:
-#     return str(element)
-
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([AllowAny])
 def run_test(request,ruledoc,test_name):
+    # Get the data (test, facts, and workspaces)
     # ruledoctest = RuleDoc.objects.filter(pk=ruledoc,owner=request.user)
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     if request.user.has_perm('blawx.run',test):
@@ -557,7 +509,7 @@ blawxrun(Query, Human, Tree, Model) :-
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      print(temprulefile.read())
+      #print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -578,6 +530,9 @@ blawxrun(Query, Human, Tree, Model) :-
                     rules.close()
                     os.remove(rulefilename)
 
+                ec_preprocess_step(swipl_thread)
+
+                
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
                     # print("blawxrun(" + query + ",Human).")
@@ -833,19 +788,7 @@ def interview(request,ruledoc,test_name):
     #print("Dealing with interview request.\n")
     test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
     if request.user.has_perm('blawx.run',test):
-      #print("User has permissions.\n")
-#       translated_facts = ""
-#       if request.data:
-#         translated_facts = new_json_2_scasp(request.data, ruledoc,test_name,True) #Generate answers ignoring assumptions in the submitted data
-#       print("The raw data submitted is:")
-#       print(str(request.data) + "\n")
-#       print("Facts submittied are:")
-#       print(str(translated_facts))
-#       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
-#       ruleset = ""
-#       for ws in wss:
-#         ruleset += "\n\n" + ws.scasp_encoding
-#       ruleset += "\n\n" + test.scasp_encoding
+      
       
 #       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
 #       rulefile.write("""
@@ -853,29 +796,65 @@ def interview(request,ruledoc,test_name):
 # :- use_module(library(scasp/human)).
 # :- use_module(library(scasp/output)).
 
-# :- meta_predicate
-#     blawxrun2(0,-).
-# """)
-
-#       query = "No Query Specified"
-#       for line in test.scasp_encoding.splitlines():
-#           if line.startswith("?- "):
-#               query = line[3:-1] # remove query prompt and period.
-
+#       rulefile = tempfile.NamedTemporaryFile('w',delete=False)
 #       rulefile.write("""
-# blawxrun(Query, Human) :-
-#     scasp(Query,[tree(Tree)]),
-#     ovar_analyze_term(t(Query, Tree),[name_constraints(true)]),
-#     with_output_to(string(Human),
-#               human_justification_tree(Tree,[])).
-#     term_attvars(Query, AttVars),
-#     maplist(del_attrs, AttVars).
-# """)
-  
-#       rulefile.write(ldap_code + '\n\n')
-#       rulefile.write(scasp_dates + '\n\n')
+# :- use_module(library(scasp)).
+# :- use_module(library(scasp/human)).
+# :- use_module(library(scasp/output)).
 
 
+#       rulefile.write(ruleset + '\n')
+
+      # ruleset_lines = [line.replace(' ','') for line in ruleset.splitlines()]
+      # test_lines = [line.replace(' ','') for line in test.scasp_encoding.splitlines()]
+      # for fact in translated_facts.splitlines():
+      #   if fact.replace(' ','') not in ruleset_lines and fact.replace(' ','') not in test_lines:
+      #     rulefile.write(fact + '\n')
+      # # rulefile.write(translated_facts)
+      # rulefile.close()
+      # rulefilename = rulefile.name
+      # temprulefile = open(rulefilename,'r')
+      # # print(temprulefile.read())
+      # temprulefile.close()
+
+      # Start the Prolog "thread"
+      # try: 
+      #   with PrologMQI() as swipl:
+      #       with swipl.create_thread() as swipl_thread:
+
+      #           transcript = tempfile.NamedTemporaryFile('w',delete=False,prefix="transcript_")
+      #           transcript_name = transcript.name
+
+      #           with redirect_stderr(transcript):
+      #               load_file_answer = swipl_thread.query("['" + rulefilename + "'].")
+      #           print("Loading generated Prolog code: " + str(load_file_answer))
+      #           transcript.write(str(load_file_answer) + '\n')
+      #           if os.path.exists(rulefilename):
+      #               rules = open(rulefilename)
+      #               rulestext = rules.read()
+      #               transcript.write(rulestext + '\n')
+      #               rules.close()
+      #               os.remove(rulefilename)
+
+      #           with redirect_stderr(transcript):
+      #               # print("blawxrun(" + query + ",Human).")
+      #               query_answer = swipl_thread.query("blawxrun(" + query + ",Human).")
+      #           print("Running query " + query + ":")
+      #           print(str(query_answer))
+      #           transcript.write(str(query_answer) + '\n')
+
+      #           transcript.close()
+      #           transcript = open(transcript_name,'r')
+      #           transcript_output = transcript.read()
+      #           transcript.close()
+      #           os.remove(transcript_name)
+      # except PrologError as err:
+      #   return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
+      # except PrologLaunchError as err:
+      #   query_answer = "Blawx could not load the reasoner."
+      #   return Response({ "error": "Blawx could not load the reasoner." })
+      
+      
 #       rulefile.write(ruleset + '\n')
 
       # ruleset_lines = [line.replace(' ','') for line in ruleset.splitlines()]
@@ -932,9 +911,7 @@ def interview(request,ruledoc,test_name):
       translated_facts = ""
       if request.data:
         translated_facts = newer_json_2_scasp(request.data, ruledoc, test_name) #Generate answers INCLUDING assumptions in the submitted data
-      #print("Generated facts with assumptions:")
-      #print(str(translated_facts) + "\n")
-
+      
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
       ruleset = ""
@@ -1025,7 +1002,7 @@ blawxrun(Query, Human, Tree, Model) :-
       rulefile.close()
       rulefilename = rulefile.name
       temprulefile = open(rulefilename,'r')
-      print(temprulefile.read())
+      #print(temprulefile.read())
       temprulefile.close()
 
       # Start the Prolog "thread"
@@ -1046,6 +1023,9 @@ blawxrun(Query, Human, Tree, Model) :-
                     transcript.write(rulestext + '\n')
                     rules.close()
                     os.remove(rulefilename)
+
+                
+                ec_preprocess_step(swipl_thread)
 
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
@@ -1219,3 +1199,71 @@ def find_assumptions(Tree): # Pulls the assumptions out of a Prolog-formatted ex
   else:
     return []
 
+
+# This accepts a SWI-Prolog thread, runs queries and asserts additional rules
+# until it is capable of answering event calculus questions based on datetimes.
+def ec_preprocess_step(thread):
+  print("Starting EC Pre-Process Step")
+  previous = []
+  current = []
+  first_attempt = True
+  found_new = False
+  while first_attempt or found_new:
+    print("Starting Attempt")
+    first_attempt = False
+    found_new = False
+    current = []
+    result = thread.query('blawxrun((blawx_becomes(X,Y), Y = datetime(_,_,_,_,_,_)),Human, Tree, Model).')
+    answers = generate_answers(result)
+    print("Received " + str(len(answers)) + " responses.")
+    for answer in answers:
+      new_rule = generate_ec_rule_from_answer(answer)
+      if new_rule not in previous:
+        found_new = True
+        print("Adding " +new_rule)
+        current.append(new_rule)
+    print("New Rules Found This Attempt: " + str(current))
+    previous = previous + current
+    print("All Rules Found So Far: " + str(previous))
+  print("Done searching.")
+  for rule in previous:
+    print("Asserting: " + rule)
+    thread.query('assertz(' + rule + ').')
+
+def generate_ec_rule_from_answer(answer):
+  target_predicate=get_target_predicate(answer)
+  datetime=get_target_datetime(answer)
+  timestamp=convert_target_datetime(answer)
+  code = target_predicate + "(X," + str(timestamp) + ") :- " + target_predicate + "(X," + datetime + ")"
+  return code
+
+def get_target_predicate(answer):
+  #print("Finding Predicate in: ")
+  #print(json.dumps(answer,indent=2))
+  # Get the target date
+  details = answer['Variables']['Y']['args'] # This will be an array like [2000,1,1,0,0,0]
+  # Find the first term that is not the conclusion that uses the date as the second parameter.
+  # I have no idea if we should trust "first", here. But it's a start.
+  for model in answer['Models']:
+    for term in model['Terms']:
+      if term['functor'] != "blawx_becomes" and len(term['args']) ==2 and term['args'][1]['functor'] == "datetime" and term['args'][1]['args'] == details:
+          return term['functor']
+
+def get_target_datetime(answer):
+  year = answer['Variables']['Y']['args'][0]
+  month = answer['Variables']['Y']['args'][1]
+  day = answer['Variables']['Y']['args'][2]
+  hour = answer['Variables']['Y']['args'][3]
+  minute = answer['Variables']['Y']['args'][4]
+  second = answer['Variables']['Y']['args'][5]
+  return "datetime(" + str(year) + "," + str(month) + "," + str(day) + "," + str(hour) + "," + str(minute) + "," + str(second) + ")"
+
+def convert_target_datetime(answer):
+  year = answer['Variables']['Y']['args'][0]
+  month = answer['Variables']['Y']['args'][1]
+  day = answer['Variables']['Y']['args'][2]
+  hour = answer['Variables']['Y']['args'][3]
+  minute = answer['Variables']['Y']['args'][4]
+  second = answer['Variables']['Y']['args'][5]
+  date = datetime.datetime(year,month,day,hour,minute,second)
+  return date.timestamp()

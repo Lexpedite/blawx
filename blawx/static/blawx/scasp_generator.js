@@ -943,6 +943,8 @@ sCASP['new_attribute_declaration'] = function(block) {
     var code = 'blawx_attribute(' + dropdown_category + ',' + text_attribute_name + ',' + dropdown_attribute_type + ').\n';
     if (dropdown_attribute_type != "boolean") {
         code += "blawx_attribute_nlg(" + text_attribute_name + "," + dropdown_order + ",\"" + text_prefix + "\",\"" + text_infix + "\",\"" + text_postfix + "\").\n"
+        
+        code += ":- dynamic " + text_attribute_name + "/2.\n"
         code += "#pred " + text_attribute_name + "(";
         var variable_order;
         if (dropdown_order == "ov") {
@@ -979,6 +981,7 @@ sCASP['new_attribute_declaration'] = function(block) {
     } else {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
+        code += ":- dynamic " + text_attribute_name + "/1.\n"
         add_code = text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')
         code += "#pred " + text_attribute_name + "(X) :: '" + add_code.trim() + "'.\n"
         code += '#pred holds(user,' + text_attribute_name + ",X) :: 'it is provided as a fact that " + add_code.trim() + "'.\n";
@@ -1014,6 +1017,7 @@ sCASP['new_category_declaration'] = function(block) {
     var text_postfix = block.getFieldValue('postfix');
     var code = "blawx_category(" + text_category_name + ").\n";
     code += "blawx_category_nlg(" + text_category_name + ",\"" + text_prefix + "\",\"" + text_postfix + "\").\n"
+    code += ":- dynamic " + text_category_name + "/1.\n"
     code += "#pred " + text_category_name + "(X) :: '";
     add_code = (text_prefix.replace(/'/g, '\\\'') + " @(X) " + text_postfix.replace(/'/g, '\\\'')).trim()
     code += add_code + "'.\n";
