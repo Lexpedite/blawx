@@ -13,6 +13,15 @@
 
       ## What Does It Do?
 
+      The As Of block is used for stating and querying whether a statement holds as of a particular time.
+      It accepts a datetime input, and a statement.
+
       ## Technical Details
 
+      The As Of block is a statement block and can be stacked with other statement blocks.
+
       ## Tips
+
+      It is generally more effective to use the "From" block for setting out events - the points in time at which
+      the truth of certain statements changes. The As Of block is best used to check whether one of those statements
+      is true at a given time.

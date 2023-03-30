@@ -20,15 +20,8 @@ you can now indicate when it was true, and when it ceased to be true.
 * Associated documentation
 
 ### To Do
-* Required Documentation
-  * Event Reasoning (Features)
-  * As Of
-  * From
-  * Initially
-  * Ultimately
-  * During
-  * Datetime to Timestamp
-  * Timestamp to Datetime
+* The As Of block doesn't work
+* It's not clear whether From or As Of would work in a query.
 
 ## [v1.5.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.3-alpha) 2023-03-16
 

@@ -13,6 +13,17 @@
 
       ## What Does It Do?
 
+      The Datetime to Timestamp block has two inputs that are expecting a datetime, and a number
+      represeting a POSIX timestamp. The first input must be bound to a datetime value for
+      the block to operate. If the second input is bound to a specific number value, the block
+      will evaluate as true if the timestamp and datetime match. If the second input is a variable,
+      it will be bound to the POSIX timestamp number value that corresponds to the datetime in the first input.
+
       ## Technical Details
 
+      The Datetime to Timestamp block is a statement and can be stacked with other statement blocks.
+
       ## Tips
+
+      The Datetime to Timestamp block cannot be used to generate a datetime from a timestamp. To do
+      that, use the Timestamp to Datetime block.
