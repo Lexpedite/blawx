@@ -54,8 +54,8 @@
       name="first_element">object</field><field name="infix">'s attribute name is</field><field
       name="second_element">value</field><field name="postfix">is alive</field><next><block
       type="new_attribute_declaration" id="kWrJHyiaCmq}};;W[5z$"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person" attribute_type="number"></mutation><field name="category_name">person</field><field
-      name="attribute_name">dob</field><field name="attribute_type">number</field><field
+      category_name="person" attribute_type="datetime"></mutation><field name="category_name">person</field><field
+      name="attribute_name">dob</field><field name="attribute_type">datetime</field><field
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">was born on</field><field name="second_element">value</field><field
       name="postfix"></field></block></next></block></next></block></statement></block><block
@@ -73,100 +73,151 @@
       name="source"><block type="doc_selector" id="Z5sv~^vx10Bm.9t_(br3"><mutation
       xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1_section"></mutation><field
       name="doc_part_name">LA 1</field></block></value><statement name="conclusion"><block
-      type="initiates" id="2/94!Y36WE]lO;@m@^Bo"><value name="time"><block type="variable"
+      type="from" id="Lat,mK|ZX{/v[}9VZZnr"><value name="datetime"><block type="variable"
       id="8g^_-|6lag6jh9|5dKHH"><field name="variable_name">DOB</field></block></value><statement
       name="statement"><block type="unary_attribute_selector" id="[J1-vtU{8KAYg`61GyCA"><mutation
       xmlns="http://www.w3.org/1999/xhtml" attributename="alive" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">is alive</field><value name="first_element"><block
       type="variable" id="Ly$eh`0gJT!/%#1pINna"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
-      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
-      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
-      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
-      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
-      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
-      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
-      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
-      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
-      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
-      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_initiates(person(X),T)
-      :: 'that @(X) is a person began to hold at @(T)'.\n#pred blawx_terminates(person(X),T)
-      :: 'that @(X) is a person stopped holding at @(T)'.\n#pred blawx_holds_at(person(X),T)
-      :: 'that @(X) is a person holds at @(T)'.\n#pred blawx_started_in(T1,person(X),T2)
-      :: 'that @(X) is a person started holding between @(T1) and @(T2)'.\n#pred blawx_stopped_in(T1,person(X),T2)
-      :: 'that @(X) is a person stopped holding between @(T1) and @(T2)'.\n#pred blawx_holds_during(T1,person(X),T2)
-      :: 'that @(X) is a person held between @(T1) and @(T2)'.\nblawx_attribute(person,alive,boolean).\nblawx_attribute_nlg(alive,not_applicable,\"\",not_applicable,\"is
-      alive\").\n#pred alive(X) :: '@(X) is alive'.\n#pred holds(user,alive,X) ::
-      'it is provided as a fact that @(X) is alive'.\n#pred holds(user,-alive,X) ::
-      'it is provided as a fact that it is not the case that @(X) is alive'.\n#pred
+      a person\").\n:- dynamic person/1.\n#pred person(X) :: '@(X) is a person'.\n#pred
+      holds(user,person,X) :: 'it is provided as a fact that @(X) is a person'.\n#pred
+      holds(user,-person,X) :: 'it is provided as a fact that it is not the case that
+      @(X) is a person'.\n#pred holds(Z,person,X) :: 'the conclusion in @(Z) that
+      @(X) is a person holds'.\n#pred holds(Z,-person,X) :: 'the conclusion in @(Z)
+      that it is not the case that @(X) is a person holds'.\n#pred according_to(Z,person,X)
+      :: 'according to @(Z), @(X) is a person'.\n#pred according_to(Z,-person,X) ::
+      'according to @(Z), it is not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) is a person is
+      defeated'.\n#pred blawx_initially(person(X)) :: 'that @(X) is a person holds
+      initially'.\n#pred blawx_initially(-person(X)) :: 'that it is not the case that
+      @(X) is a person holds initially'.\n#pred blawx_ultimately(person(X)) :: 'that
+      @(X) is a person holds ultimately'.\n#pred blawx_ultimately(-person(X)) :: 'that
+      it is not the case that @(X) is a person holds ultimately'.\n#pred blawx_as_of(person(X),T)
+      :: 'that @(X) is a person holds at @(T)'.\n#pred blawx_as_of(-person(X),T) ::
+      'that it is not the case that @(X) is a person holds at @(T)'.\n#pred blawx_during(T1,person(X),T2)
+      :: 'that @(X) is a person held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-person(X),T2)
+      :: 'that it is not the case that @(X) is a person held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(person(X),T) :: 'that @(X) is a person became true at @(T)'.\n#pred
+      blawx_becomes(-person(X),T) :: 'that it is not the case that @(X) is a person
+      became true at @(T)'.\nblawx_as_of(person(X),Time) :- blawx_becomes(person(X),BeforeT),
+      not blawx_becomes(-person(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT,
+      BetweenT #< Time.\nblawx_as_of(person(X),Time) :- blawx_initially(person(X)),
+      not blawx_becomes(-person(X), BetweenT), BetweenT #< Time.\nblawx_during(Start,person(X),End)
+      :- blawx_becomes(person(X),Start), not blawx_becomes(-person(X),BeforeEnd),
+      blawx_becomes(-person(X),End), BeforeEnd #< End, Start #< End.\nblawx_during(bot,person(X),End)
+      :- blawx_initially(person(X)), not blawx_becomes(-person(X),BeforeEnd), blawx_becomes(-person(X),End),
+      BeforeEnd #< End.\nblawx_during(Start,person(X),eot) :- blawx_becomes(person(X),Start),
+      not blawx_becomes(-person(X),AfterStart), blawx_ultimately(person(X)), AfterStart
+      #> Start.\nblawx_as_of(-person(X),Time) :- blawx_becomes(-person(X),BeforeT),
+      not blawx_becomes(person(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT,
+      BetweenT #< Time.\nblawx_as_of(-person(X),Time) :- blawx_initially(-person(X)),
+      not blawx_becomes(person(X), BetweenT), BetweenT #< Time.\nblawx_during(Start,-person(X),End)
+      :- blawx_becomes(-person(X),Start), not blawx_becomes(person(X),BeforeEnd),
+      blawx_becomes(person(X),End), BeforeEnd #< End, Start #< End.\nblawx_during(bot,-person(X),End)
+      :- blawx_initially(-person(X)), not blawx_becomes(person(X),BeforeEnd), blawx_becomes(person(X),End),
+      BeforeEnd #< End.\nblawx_during(Start,-person(X),eot) :- blawx_becomes(-person(X),Start),
+      not blawx_becomes(person(X),AfterStart), blawx_ultimately(-person(X)), AfterStart
+      #> Start.\nblawx_attribute(person,alive,boolean).\nblawx_attribute_nlg(alive,not_applicable,\"\",not_applicable,\"is
+      alive\").\n:- dynamic alive/1.\n#pred alive(X) :: '@(X) is alive'.\n#pred holds(user,alive,X)
+      :: 'it is provided as a fact that @(X) is alive'.\n#pred holds(user,-alive,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is alive'.\n#pred
       holds(Z,alive,X) :: 'the conclusion in @(Z) that @(X) is alive holds'.\n#pred
       holds(Z,-alive,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
       is alive holds'.\n#pred according_to(Z,alive,X) :: 'according to @(Z), @(X)
       is alive'.\n#pred according_to(Z,-alive,X) :: 'according to @(Z), it is not
       the case that @(X) is alive'.\n#pred blawx_defeated(Z,alive,X) :: 'the conclusion
       in @(Z) that @(X) is alive is defeated'.\n#pred blawx_defeated(Z,-alive,X) ::
-      'the conclusion in @(Z) that @(X) is alive is defeated'.\n#pred blawx_initiates(alive(X),T)
-      :: 'that @(X) is alive began to hold at @(T)'.\n#pred blawx_terminates(alive(X),T)
-      :: 'that @(X) is alive stopped holding at @(T)'.\n#pred blawx_holds_at(alive(X),T)
-      :: 'that @(X) is alive holds at @(T)'.\n#pred blawx_started_in(T1,alive(X),T2)
-      :: 'that @(X) is alive started holding between @(T1) and @(T2)'.\n#pred blawx_stopped_in(T1,alive(X),T2)
-      :: 'that @(X) is alive stopped holding between @(T1) and @(T2)'.\n#pred blawx_holds_during(T1,alive(X),T2)
-      :: 'that @(X) is alive held between @(T1) and @(T2)'.\nblawx_attribute(person,dob,number).\nblawx_attribute_nlg(dob,ov,\"\",\"was
-      born on\",\"\").\n#pred dob(X,Y) :: '@(X) was born on @(Y)'.\n#pred holds(user,dob,X,Y)
-      :: 'it is provided as a fact that @(X) was born on @(Y)'.\n#pred holds(user,-dob,X,Y)
-      :: 'it is provided as a fact that it is not the case that @(X) was born on @(Y)'.\n#pred
-      holds(Z,dob,X,Y) :: 'the conclusion in @(Z) that @(X) was born on @(Y) holds'.\n#pred
-      holds(Z,-dob,X,Y) :: 'the conclusion in @(Z) that it is not the case that @(X)
-      was born on @(Y) holds'.\n#pred according_to(Z,dob,X,Y) :: 'according to @(Z),
-      @(X) was born on @(Y)'.\n#pred according_to(Z,-dob,X,Y) :: 'according to @(Z),
-      it is not the case that @(X) was born on @(Y)'.\n#pred blawx_defeated(Z,dob,X,Y)
-      :: 'the conclusion in @(Z) that @(X) was born on @(Y) is defeated'.\n#pred blawx_defeated(Z,-dob,X,Y)
-      :: 'the conclusion in @(Z) that @(X) was born on @(Y) is defeated'.\n#pred blawx_initiates(dob(X,Y),T)
-      :: 'that @(X) was born on @(Y) began to hold at @(T)'.\n#pred blawx_terminates(dob(X,Y),T)
-      :: 'that @(X) was born on @(Y) stopped holding at @(T)'.\n#pred blawx_holds_at(dob(X,Y),T)
-      :: 'that @(X) was born on @(Y) holds at @(T)'.\n#pred blawx_started_in(T1,dob(X,Y),T2)
-      :: 'that @(X) was born on @(Y) started holding between @(T1) and @(T2)'.\n#pred
-      blawx_stopped_in(T1,dob(X,Y),T2) :: 'that @(X) was born on @(Y) stopped holding
-      between @(T1) and @(T2)'.\n#pred blawx_holds_during(T1,dob(X,Y),T2) :: 'that
-      @(X) was born on @(Y) held between @(T1) and @(T2)'.\n\naccording_to(sec_1_section,blawx_initiates,alive(Person),DOB)
-      :- person(Person),\ndob(Person,DOB).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1_section,blawx_initiates,alive(Person),DOB)
-      :- according_to(sec_1_section,blawx_initiates,alive(Person),DOB).\n\n% BLAWX
-      CHECK DUPLICATES\n  blawx_initiates(alive(Person),DOB) :- holds(sec_1_section,blawx_initiates,alive(Person),DOB)."
+      'the conclusion in @(Z) that @(X) is alive is defeated'.\n#pred blawx_initially(alive(X))
+      :: 'that @(X) is alive holds initially'.\n#pred blawx_initially(-alive(X)) ::
+      'that it is not the case that @(X) is alive holds initially'.\n#pred blawx_ultimately(alive(X))
+      :: 'that @(X) is alive holds ultimately'.\n#pred blawx_ultimately(-alive(X))
+      :: 'that it is not the case that @(X) is alive holds ultimately'.\n#pred blawx_as_of(alive(X),T)
+      :: 'that @(X) is alive holds at @(T)'.\n#pred blawx_as_of(-alive(X),T) :: 'that
+      it is not the case that @(X) is alive holds at @(T)'.\n#pred blawx_during(T1,alive(X),T2)
+      :: 'that @(X) is alive held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-alive(X),T2)
+      :: 'that it is not the case that @(X) is alive held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(alive(X),T) :: 'that @(X) is alive became true at @(T)'.\n#pred
+      blawx_becomes(-alive(X),T) :: 'that it is not the case that @(X) is alive became
+      true at @(T)'.\nblawx_as_of(alive(X),Time) :- blawx_becomes(alive(X),BeforeT),
+      not blawx_becomes(-alive(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT,
+      BetweenT #< Time.\nblawx_as_of(alive(X),Time) :- blawx_initially(alive(X)),
+      not blawx_becomes(-alive(X), BetweenT), BetweenT #< Time.\nblawx_during(Start,alive(X),End)
+      :- blawx_becomes(alive(X),Start), not blawx_becomes(-alive(X),BeforeEnd), blawx_becomes(-alive(X),End),
+      BeforeEnd #< End, Start #< End.\nblawx_during(bot,alive(X),End) :- blawx_initially(alive(X)),
+      not blawx_becomes(-alive(X),BeforeEnd), blawx_becomes(-alive(X),End), BeforeEnd
+      #< End.\nblawx_during(Start,alive(X),eot) :- blawx_becomes(alive(X),Start),
+      not blawx_becomes(-alive(X),AfterStart), blawx_ultimately(alive(X)), AfterStart
+      #> Start.\nblawx_as_of(-alive(X),Time) :- blawx_becomes(-alive(X),BeforeT),
+      not blawx_becomes(alive(X), BetweenT), BeforeT #< Time,BeforeT #< BetweenT,
+      BetweenT #< Time.\nblawx_as_of(-alive(X),Time) :- blawx_initially(-alive(X)),
+      not blawx_becomes(alive(X), BetweenT), BetweenT #< Time.\nblawx_during(Start,-alive(X),End)
+      :- blawx_becomes(-alive(X),Start), not blawx_becomes(alive(X),BeforeEnd), blawx_becomes(alive(X),End),
+      BeforeEnd #< End, Start #< End.\nblawx_during(bot,-alive(X),End) :- blawx_initially(-alive(X)),
+      not blawx_becomes(alive(X),BeforeEnd), blawx_becomes(alive(X),End), BeforeEnd
+      #< End.\nblawx_during(Start,-alive(X),eot) :- blawx_becomes(-alive(X),Start),
+      not blawx_becomes(alive(X),AfterStart), blawx_ultimately(-alive(X)), AfterStart
+      #> Start.\nblawx_attribute(person,dob,datetime).\nblawx_attribute_nlg(dob,ov,\"\",\"was
+      born on\",\"\").\n:- dynamic dob/2.\n#pred dob(X,Y) :: '@(X) was born on @(Y)'.\n#pred
+      holds(user,dob,X,Y) :: 'it is provided as a fact that @(X) was born on @(Y)'.\n#pred
+      holds(user,-dob,X,Y) :: 'it is provided as a fact that it is not the case that
+      @(X) was born on @(Y)'.\n#pred holds(Z,dob,X,Y) :: 'the conclusion in @(Z) that
+      @(X) was born on @(Y) holds'.\n#pred holds(Z,-dob,X,Y) :: 'the conclusion in
+      @(Z) that it is not the case that @(X) was born on @(Y) holds'.\n#pred according_to(Z,dob,X,Y)
+      :: 'according to @(Z), @(X) was born on @(Y)'.\n#pred according_to(Z,-dob,X,Y)
+      :: 'according to @(Z), it is not the case that @(X) was born on @(Y)'.\n#pred
+      blawx_defeated(Z,dob,X,Y) :: 'the conclusion in @(Z) that @(X) was born on @(Y)
+      is defeated'.\n#pred blawx_defeated(Z,-dob,X,Y) :: 'the conclusion in @(Z) that
+      @(X) was born on @(Y) is defeated'.\n#pred blawx_initially(dob,(X,Y)) :: 'that
+      @(X) was born on @(Y) holds initially'.\n#pred blawx_initially(-dob,(X,Y)) ::
+      'that it is not the case that @(X) was born on @(Y) holds initially'.\n#pred
+      blawx_ultimately(dob,(X,Y)) :: 'that @(X) was born on @(Y) holds ultimately'.\n#pred
+      blawx_ultimately(-dob,(X,Y)) :: 'that it is not the case that @(X) was born
+      on @(Y) holds ultimately'.\n#pred blawx_as_of(dob,(X,Y),T) :: 'that @(X) was
+      born on @(Y) holds at @(T)'.\n#pred blawx_as_of(-dob,(X,Y),T) :: 'that it is
+      not the case that @(X) was born on @(Y) holds at @(T)'.\n#pred blawx_during(T1,dob,(X,Y),T2)
+      :: 'that @(X) was born on @(Y) held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-dob,(X,Y),T2)
+      :: 'that it is not the case that @(X) was born on @(Y) held between @(T1) and
+      @(T2)'.\n#pred blawx_becomes(dob,(X,Y),T) :: 'that @(X) was born on @(Y) became
+      true at @(T)'.\n#pred blawx_becomes(-dob,(X,Y),T) :: 'that it is not the case
+      that @(X) was born on @(Y) became true at @(T)'.\nblawx_as_of(dob(X,Y),Time)
+      :- blawx_becomes(dob(X,Y),BeforeT), not blawx_becomes(-dob(X,Y), BetweenT),
+      BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(dob(X,Y),Time)
+      :- blawx_initially(dob(X,Y)), not blawx_becomes(-dob(X,Y), BetweenT), BetweenT
+      #< Time.\nblawx_during(Start,dob(X,Y),End) :- blawx_becomes(dob(X,Y),Start),
+      not blawx_becomes(-dob(X,Y),BeforeEnd), blawx_becomes(-dob(X,Y),End), BeforeEnd
+      #< End, Start #< End.\nblawx_during(bot,dob(X,Y),End) :- blawx_initially(dob(X,Y)),
+      not blawx_becomes(-dob(X,Y),BeforeEnd), blawx_becomes(-dob(X,Y),End), BeforeEnd
+      #< End.\nblawx_during(Start,dob(X,Y),eot) :- blawx_becomes(dob(X,Y),Start),
+      not blawx_becomes(-dob(X,Y),AfterStart), blawx_ultimately(dob(X,Y)), AfterStart
+      #> Start.\nblawx_as_of(-dob(X,Y),Time) :- blawx_becomes(-dob(X,Y),BeforeT),
+      not blawx_becomes(dob(X,Y), BetweenT), BeforeT #< Time,BeforeT #< BetweenT,
+      BetweenT #< Time.\nblawx_as_of(-dob(X,Y),Time) :- blawx_initially(-dob(X,Y)),
+      not blawx_becomes(dob(X,Y), BetweenT), BetweenT #< Time.\nblawx_during(Start,-dob(X,Y),End)
+      :- blawx_becomes(-dob(X,Y),Start), not blawx_becomes(dob(X,Y),BeforeEnd), blawx_becomes(dob(X,Y),End),
+      BeforeEnd #< End, Start #< End.\nblawx_during(bot,-dob(X,Y),End) :- blawx_initially(-dob(X,Y)),
+      not blawx_becomes(dob(X,Y),BeforeEnd), blawx_becomes(dob(X,Y),End), BeforeEnd
+      #< End.\nblawx_during(Start,-dob(X,Y),eot) :- blawx_becomes(-dob(X,Y),Start),
+      not blawx_becomes(dob(X,Y),AfterStart), blawx_ultimately(-dob(X,Y)), AfterStart
+      #> Start.\n\naccording_to(sec_1_section,blawx_becomes,alive(Person),DOB) :-
+      person(Person),\ndob(Person,DOB).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1_section,blawx_becomes,alive(Person),DOB)
+      :- according_to(sec_1_section,blawx_becomes,alive(Person),DOB).\n\n% BLAWX CHECK
+      DUPLICATES\n  blawx_becomes(  alive(Person),DOB) :- holds(sec_1_section,blawx_becomes,alive(Person),DOB)."
 - model: blawx.workspace
   pk: 3
   fields:
     ruledoc: 1
     workspace_name: sec_2_section
-    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
-      id="FX^kDH%I1.-zSSE7,4J;" x="46" y="198"><field name="defeasible">FALSE</field><field
-      name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
-      id="wRU`#P~It7[eVWepbrF-"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
-      name="category_name">person</field><value name="object"><block type="variable"
-      id="fKfLo7N]dX|V#pz-N-E7"><field name="variable_name">Person</field></block></value><next><block
-      type="attribute_selector" id="a_(k_T7Y~5EM4}Pc_x|i"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="dob" attributetype="number" attributeorder="ov"></mutation><field
-      name="prefix"></field><field name="infix">was born on</field><field name="postfix"></field><value
-      name="first_element"><block type="variable" id="_0|zbyi,K[_%X:5h@}0n"><field
-      name="variable_name">Person</field></block></value><value name="second_element"><block
-      type="variable" id="k,L%0?_0lr~EyyoFA_sD"><field name="variable_name">DOB</field></block></value><next><block
-      type="numerical_constraint" id="s;#on~-v3$N2=R;7g+8y"><field name="operator">lt</field><value
-      name="first_comparator"><block type="variable" id="I3Xs.!ILSjnfkA;#Vd$i"><field
-      name="variable_name">Time</field></block></value><value name="second_comparator"><block
-      type="variable" id="}-;~3Zmja3az+xoS.ESi"><field name="variable_name">DOB</field></block></value></block></next></block></next></block></statement><value
-      name="source"><block type="doc_selector" id="4]hbk#*Il|h`rgeX1=SF"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_2_section"></mutation><field
-      name="doc_part_name">LA 2</field></block></value><statement name="conclusion"><block
-      type="logical_negation" id="(vVYQWORP(U^Cy*@rW^!"><statement name="negated_statement"><block
-      type="holds_at" id="X~CpVRG*}p0+3B-7]*f?"><value name="time"><block type="variable"
-      id="xg]Go5OcFdl2@[Akw)rB"><field name="variable_name">Time</field></block></value><statement
-      name="statement"><block type="unary_attribute_selector" id="aCI|l!vfS%$|ciE`Izsi"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" attributename="alive" attributetype="boolean"></mutation><field
-      name="prefix"></field><field name="postfix">is alive</field><value name="first_element"><block
-      type="variable" id="3bFFKZGn7g!ggExqoF_B"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></statement></block></xml>
-    scasp_encoding: "according_to(sec_2_section,-blawx_holds_at,alive(Person),Time)
-      :- person(Person),\ndob(Person,DOB),\nTime #< DOB.\n\n% BLAWX CHECK DUPLICATES\nholds(sec_2_section,-blawx_holds_at,alive(Person),Time)
-      :- according_to(sec_2_section,-blawx_holds_at,alive(Person),Time).\n\n% BLAWX
-      CHECK DUPLICATES\n  -blawx_holds_at(alive(Person),Time) :- holds(sec_2_section,-blawx_holds_at,alive(Person),Time)."
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="`VU#lv5}=_btheV||W=*" x="50" y="101"><statement name="statements"><block
+      type="initially" id="2?qUD/d6,SAI:A-]4W!D"><statement name="statement"><block
+      type="logical_negation" id="6^Rq5,|-hJGx#w$S-t;M"><statement name="negated_statement"><block
+      type="unary_attribute_selector" id="a-q0RV:6ksgy^P/aH#K("><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="alive" attributetype="boolean"></mutation><field name="prefix"></field><field
+      name="postfix">is alive</field><value name="first_element"><block type="unnamed_variable"
+      id="S7w+uD.Q-zt{Ap=-wozl"></block></value></block></statement></block></statement></block></statement></block></xml>
+    scasp_encoding: blawx_initially(  -alive(_)).
 - model: blawx.workspace
   pk: 4
   fields:
@@ -175,18 +226,18 @@
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="RBZbwl-$+*goMbqU4OI^" x="62" y="99"><statement name="statements"><block
       type="new_attribute_declaration" id="CQMDIUV,~65wKzDk21.$"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person" attribute_type="number"></mutation><field name="category_name">person</field><field
-      name="attribute_name">dod</field><field name="attribute_type">number</field><field
+      category_name="person" attribute_type="datetime"></mutation><field name="category_name">person</field><field
+      name="attribute_name">dod</field><field name="attribute_type">datetime</field><field
       name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
       name="infix">died on</field><field name="second_element">value</field><field
       name="postfix"></field></block></statement></block><block type="attributed_rule"
-      id="C3/!c[j6tGM(m_b5v)zS" x="70" y="279"><field name="defeasible">FALSE</field><field
+      id="C3/!c[j6tGM(m_b5v)zS" x="63" y="249"><field name="defeasible">FALSE</field><field
       name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
       id="5K?BEGE9(fQ*mF5,==a+"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
       name="category_name">person</field><value name="object"><block type="variable"
       id="ElU5CnHwN]i6!0:]nJho"><field name="variable_name">Person</field></block></value><next><block
-      type="attribute_selector" id="36*9GfF/7K!l|E8yc)$l"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="dod" attributetype="number" attributeorder="ov"></mutation><field
+      type="attribute_selector" id="+c6q+pO{oI=RBd0z6kKT"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="dod" attributetype="datetime" attributeorder="ov"></mutation><field
       name="prefix"></field><field name="infix">died on</field><field name="postfix"></field><value
       name="first_element"><block type="variable" id="fnAI,ERn~Zk_}n4R5Eqo"><field
       name="variable_name">Person</field></block></value><value name="second_element"><block
@@ -194,33 +245,65 @@
       name="source"><block type="doc_selector" id="zMTXs_#=^l7L96DZKWu)"><mutation
       xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_3_section"></mutation><field
       name="doc_part_name">LA 3</field></block></value><statement name="conclusion"><block
-      type="terminates" id="e0|^n0I$H$yC@T_x!-`,"><value name="time"><block type="variable"
+      type="from" id="(qII{=sVV@/c*SX|L:%%"><value name="datetime"><block type="variable"
       id="F?=;FeA4?#iRvf4}]L5("><field name="variable_name">DOD</field></block></value><statement
-      name="statement"><block type="unary_attribute_selector" id="ukIpq?((?e/#MI6+Y`d-"><mutation
+      name="statement"><block type="logical_negation" id="B~qC]HF3T%XE/=(FC.47"><statement
+      name="negated_statement"><block type="unary_attribute_selector" id="ukIpq?((?e/#MI6+Y`d-"><mutation
       xmlns="http://www.w3.org/1999/xhtml" attributename="alive" attributetype="boolean"></mutation><field
       name="prefix"></field><field name="postfix">is alive</field><value name="first_element"><block
-      type="variable" id="Osuc02tbL$[Fp+C$4o,n"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></xml>
-    scasp_encoding: "blawx_attribute(person,dod,number).\nblawx_attribute_nlg(dod,ov,\"\",\"died
-      on\",\"\").\n#pred dod(X,Y) :: '@(X) died on @(Y)'.\n#pred holds(user,dod,X,Y)
-      :: 'it is provided as a fact that @(X) died on @(Y)'.\n#pred holds(user,-dod,X,Y)
-      :: 'it is provided as a fact that it is not the case that @(X) died on @(Y)'.\n#pred
-      holds(Z,dod,X,Y) :: 'the conclusion in @(Z) that @(X) died on @(Y) holds'.\n#pred
-      holds(Z,-dod,X,Y) :: 'the conclusion in @(Z) that it is not the case that @(X)
-      died on @(Y) holds'.\n#pred according_to(Z,dod,X,Y) :: 'according to @(Z), @(X)
-      died on @(Y)'.\n#pred according_to(Z,-dod,X,Y) :: 'according to @(Z), it is
-      not the case that @(X) died on @(Y)'.\n#pred blawx_defeated(Z,dod,X,Y) :: 'the
-      conclusion in @(Z) that @(X) died on @(Y) is defeated'.\n#pred blawx_defeated(Z,-dod,X,Y)
-      :: 'the conclusion in @(Z) that @(X) died on @(Y) is defeated'.\n#pred blawx_initiates(dod(X,Y),T)
-      :: 'that @(X) died on @(Y) began to hold at @(T)'.\n#pred blawx_terminates(dod(X,Y),T)
-      :: 'that @(X) died on @(Y) stopped holding at @(T)'.\n#pred blawx_holds_at(dod(X,Y),T)
-      :: 'that @(X) died on @(Y) holds at @(T)'.\n#pred blawx_started_in(T1,dod(X,Y),T2)
-      :: 'that @(X) died on @(Y) started holding between @(T1) and @(T2)'.\n#pred
-      blawx_stopped_in(T1,dod(X,Y),T2) :: 'that @(X) died on @(Y) stopped holding
-      between @(T1) and @(T2)'.\n#pred blawx_holds_during(T1,dod(X,Y),T2) :: 'that
-      @(X) died on @(Y) held between @(T1) and @(T2)'.\n\naccording_to(sec_3_section,blawx_terminates,alive(Person),DOD)
-      :- person(Person),\ndod(Person,DOD).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_3_section,blawx_terminates,alive(Person),DOD)
-      :- according_to(sec_3_section,blawx_terminates,alive(Person),DOD).\n\n% BLAWX
-      CHECK DUPLICATES\n  blawx_terminates(alive(Person),DOD) :- holds(sec_3_section,blawx_terminates,alive(Person),DOD)."
+      type="variable" id="Osuc02tbL$[Fp+C$4o,n"><field name="variable_name">Person</field></block></value></block></statement></block></statement></block></statement></block><block
+      type="unattributed_fact" id="{ZAX~A59u#WgX5J4%l):" x="68" y="586"><statement
+      name="statements"><block type="ultimately" id="i]MP(Z6943tfnU@|p!6V"><statement
+      name="statement"><block type="logical_negation" id="B+~|zj`AXp%i4l62zlfl"><statement
+      name="negated_statement"><block type="unary_attribute_selector" id="|.(y(QEb:NK}CNE03,/)"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="alive" attributetype="boolean"></mutation><field
+      name="prefix"></field><field name="postfix">is alive</field><value name="first_element"><block
+      type="unnamed_variable" id="^aN~zW,4)CggTq*^JITn"></block></value></block></statement></block></statement></block></statement></block></xml>
+    scasp_encoding: "blawx_attribute(person,dod,datetime).\nblawx_attribute_nlg(dod,ov,\"\",\"died
+      on\",\"\").\n:- dynamic dod/2.\n#pred dod(X,Y) :: '@(X) died on @(Y)'.\n#pred
+      holds(user,dod,X,Y) :: 'it is provided as a fact that @(X) died on @(Y)'.\n#pred
+      holds(user,-dod,X,Y) :: 'it is provided as a fact that it is not the case that
+      @(X) died on @(Y)'.\n#pred holds(Z,dod,X,Y) :: 'the conclusion in @(Z) that
+      @(X) died on @(Y) holds'.\n#pred holds(Z,-dod,X,Y) :: 'the conclusion in @(Z)
+      that it is not the case that @(X) died on @(Y) holds'.\n#pred according_to(Z,dod,X,Y)
+      :: 'according to @(Z), @(X) died on @(Y)'.\n#pred according_to(Z,-dod,X,Y) ::
+      'according to @(Z), it is not the case that @(X) died on @(Y)'.\n#pred blawx_defeated(Z,dod,X,Y)
+      :: 'the conclusion in @(Z) that @(X) died on @(Y) is defeated'.\n#pred blawx_defeated(Z,-dod,X,Y)
+      :: 'the conclusion in @(Z) that @(X) died on @(Y) is defeated'.\n#pred blawx_initially(dod,(X,Y))
+      :: 'that @(X) died on @(Y) holds initially'.\n#pred blawx_initially(-dod,(X,Y))
+      :: 'that it is not the case that @(X) died on @(Y) holds initially'.\n#pred
+      blawx_ultimately(dod,(X,Y)) :: 'that @(X) died on @(Y) holds ultimately'.\n#pred
+      blawx_ultimately(-dod,(X,Y)) :: 'that it is not the case that @(X) died on @(Y)
+      holds ultimately'.\n#pred blawx_as_of(dod,(X,Y),T) :: 'that @(X) died on @(Y)
+      holds at @(T)'.\n#pred blawx_as_of(-dod,(X,Y),T) :: 'that it is not the case
+      that @(X) died on @(Y) holds at @(T)'.\n#pred blawx_during(T1,dod,(X,Y),T2)
+      :: 'that @(X) died on @(Y) held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-dod,(X,Y),T2)
+      :: 'that it is not the case that @(X) died on @(Y) held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(dod,(X,Y),T) :: 'that @(X) died on @(Y) became true at @(T)'.\n#pred
+      blawx_becomes(-dod,(X,Y),T) :: 'that it is not the case that @(X) died on @(Y)
+      became true at @(T)'.\nblawx_as_of(dod(X,Y),Time) :- blawx_becomes(dod(X,Y),BeforeT),
+      not blawx_becomes(-dod(X,Y), BetweenT), BeforeT #< Time,BeforeT #< BetweenT,
+      BetweenT #< Time.\nblawx_as_of(dod(X,Y),Time) :- blawx_initially(dod(X,Y)),
+      not blawx_becomes(-dod(X,Y), BetweenT), BetweenT #< Time.\nblawx_during(Start,dod(X,Y),End)
+      :- blawx_becomes(dod(X,Y),Start), not blawx_becomes(-dod(X,Y),BeforeEnd), blawx_becomes(-dod(X,Y),End),
+      BeforeEnd #< End, Start #< End.\nblawx_during(bot,dod(X,Y),End) :- blawx_initially(dod(X,Y)),
+      not blawx_becomes(-dod(X,Y),BeforeEnd), blawx_becomes(-dod(X,Y),End), BeforeEnd
+      #< End.\nblawx_during(Start,dod(X,Y),eot) :- blawx_becomes(dod(X,Y),Start),
+      not blawx_becomes(-dod(X,Y),AfterStart), blawx_ultimately(dod(X,Y)), AfterStart
+      #> Start.\nblawx_as_of(-dod(X,Y),Time) :- blawx_becomes(-dod(X,Y),BeforeT),
+      not blawx_becomes(dod(X,Y), BetweenT), BeforeT #< Time,BeforeT #< BetweenT,
+      BetweenT #< Time.\nblawx_as_of(-dod(X,Y),Time) :- blawx_initially(-dod(X,Y)),
+      not blawx_becomes(dod(X,Y), BetweenT), BetweenT #< Time.\nblawx_during(Start,-dod(X,Y),End)
+      :- blawx_becomes(-dod(X,Y),Start), not blawx_becomes(dod(X,Y),BeforeEnd), blawx_becomes(dod(X,Y),End),
+      BeforeEnd #< End, Start #< End.\nblawx_during(bot,-dod(X,Y),End) :- blawx_initially(-dod(X,Y)),
+      not blawx_becomes(dod(X,Y),BeforeEnd), blawx_becomes(dod(X,Y),End), BeforeEnd
+      #< End.\nblawx_during(Start,-dod(X,Y),eot) :- blawx_becomes(-dod(X,Y),Start),
+      not blawx_becomes(dod(X,Y),AfterStart), blawx_ultimately(-dod(X,Y)), AfterStart
+      #> Start.\n\naccording_to(sec_3_section,blawx_becomes,-alive(Person),DOD) :-
+      person(Person),\ndod(Person,DOD).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_3_section,blawx_becomes,-alive(Person),DOD)
+      :- according_to(sec_3_section,blawx_becomes,-alive(Person),DOD).\n\n% BLAWX
+      CHECK DUPLICATES\n  blawx_becomes(  -alive(Person),DOD) :- holds(sec_3_section,blawx_becomes,-alive(Person),DOD).\n\nblawx_ultimately(
+      \ -alive(_))."
 - model: blawx.blawxtest
   pk: 1
   fields:
@@ -231,21 +314,23 @@
       type="object_declaration" id=".z-@%{5oDg0Sl(?QTx52"><mutation xmlns="http://www.w3.org/1999/xhtml"
       category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
       name="object_name">bob</field><field name="postfix">is a person</field><next><block
-      type="attribute_selector" id="P;hCi@qj^U75#5,/eVF4"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="dob" attributetype="number" attributeorder="ov"></mutation><field
+      type="attribute_selector" id="f=g#lhAV*$=gqJ!#8taK"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="dob" attributetype="datetime" attributeorder="ov"></mutation><field
       name="prefix"></field><field name="infix">was born on</field><field name="postfix"></field><value
       name="first_element"><block type="object_selector" id="pu^FNhsE)v~Mi9TFE]!#"><mutation
       xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
-      name="second_element"><block type="number_value" id=":@(mI!,.BnT{n,8yd?6@"><field
-      name="value">5</field></block></value><next><block type="attribute_selector"
-      id="ZMqcu+g?3;Y_h2LOK.r3"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="dod"
-      attributetype="number" attributeorder="ov"></mutation><field name="prefix"></field><field
-      name="infix">died on</field><field name="postfix"></field><value name="first_element"><block
-      type="object_selector" id="A/Id$,t|fM}z.Ks$;xCt"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
-      name="second_element"><block type="number_value" id="oF`N%{SA}5JA{xr{XL/M"><field
-      name="value">10</field></block></value></block></next></block></next></block></statement></block><block
-      type="query" id="PWq^lo+MQH!90o3@L-Kv" x="49" y="335"><statement name="query"><block
+      name="second_element"><block type="datetime_value" id="Qp)FJD~)6h6*-Yufv4w5"><field
+      name="year">2000</field><field name="month">1</field><field name="day">1</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value><next><block
+      type="attribute_selector" id="o:M(#OZHUlZ!=Qsuzu6:"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="dod" attributetype="datetime" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">died on</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="A/Id$,t|fM}z.Ks$;xCt"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
+      name="second_element"><block type="datetime_value" id="Rr+fB*dJ`R!!7_VTg?+B"><field
+      name="year">2020</field><field name="month">1</field><field name="day">1</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value></block></next></block></next></block></statement></block><block
+      type="query" id="PWq^lo+MQH!90o3@L-Kv" x="79" y="291"><statement name="query"><block
       type="holds_during" id="sxIELZV_D[eR]%.E^{?X"><value name="start_time"><block
       type="variable" id="VBYCfnBN5:!gMmko,SMZ"><field name="variable_name">Start</field></block></value><value
       name="end_time"><block type="variable" id="H]0Bosro9!CF4nido8KP"><field name="variable_name">End</field></block></value><statement
@@ -256,12 +341,59 @@
       objectname="bob"></mutation><field name="object_name">bob</field></block></value></block></statement></block></statement></block></xml>
     scasp_encoding: 'person(bob).
 
-      dob(bob,5).
+      dob(bob,datetime(2000,1,1,0,0,0)).
 
-      dod(bob,10).
+      dod(bob,datetime(2020,1,1,0,0,0)).
 
 
-      ?- blawx_holds_during(Start,alive(bob),End).'
+      ?- blawx_during(Start,  alive(bob),End).'
+    tutorial: ''
+    view: ''
+    fact_scenario: ''
+- model: blawx.blawxtest
+  pk: 2
+  fields:
+    ruledoc: 1
+    test_name: when_is_bob_not_alive
+    xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
+      id="chrfI=,lmI7;kkg;J}z+" x="82" y="107"><statement name="statements"><block
+      type="object_declaration" id=".z-@%{5oDg0Sl(?QTx52"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      category_name="person" prefix="null" postfix="null"></mutation><field name="prefix"></field><field
+      name="object_name">bob</field><field name="postfix">is a person</field><next><block
+      type="attribute_selector" id="f=g#lhAV*$=gqJ!#8taK"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="dob" attributetype="datetime" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">was born on</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="pu^FNhsE)v~Mi9TFE]!#"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
+      name="second_element"><block type="datetime_value" id="Qp)FJD~)6h6*-Yufv4w5"><field
+      name="year">2000</field><field name="month">1</field><field name="day">1</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value><next><block
+      type="attribute_selector" id="o:M(#OZHUlZ!=Qsuzu6:"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="dod" attributetype="datetime" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">died on</field><field name="postfix"></field><value
+      name="first_element"><block type="object_selector" id="A/Id$,t|fM}z.Ks$;xCt"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
+      name="second_element"><block type="datetime_value" id="Rr+fB*dJ`R!!7_VTg?+B"><field
+      name="year">2020</field><field name="month">1</field><field name="day">1</field><field
+      name="hours">0</field><field name="minutes">0</field><field name="seconds">0</field></block></value></block></next></block></next></block></statement></block><block
+      type="query" id="PWq^lo+MQH!90o3@L-Kv" x="79" y="291"><statement name="query"><block
+      type="holds_during" id="sxIELZV_D[eR]%.E^{?X"><value name="start_time"><block
+      type="variable" id="VBYCfnBN5:!gMmko,SMZ"><field name="variable_name">Start</field></block></value><value
+      name="end_time"><block type="variable" id="H]0Bosro9!CF4nido8KP"><field name="variable_name">End</field></block></value><statement
+      name="statement"><block type="logical_negation" id="+wp$.2t:lIz?vz8~MStF"><statement
+      name="negated_statement"><block type="unary_attribute_selector" id="w,~.#jxyzY=I!s9Aeil["><mutation
+      xmlns="http://www.w3.org/1999/xhtml" attributename="alive" attributetype="boolean"></mutation><field
+      name="prefix"></field><field name="postfix">is alive</field><value name="first_element"><block
+      type="object_selector" id="#`+TRyL@PCE3F+.K|us%"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="bob"></mutation><field name="object_name">bob</field></block></value></block></statement></block></statement></block></statement></block></xml>
+    scasp_encoding: 'person(bob).
+
+      dob(bob,datetime(2000,1,1,0,0,0)).
+
+      dod(bob,datetime(2020,1,1,0,0,0)).
+
+
+      ?- blawx_during(Start,  -alive(bob),End).'
     tutorial: ''
     view: ''
     fact_scenario: ''
