@@ -447,6 +447,21 @@
                     //    break;
                     //case 'adbuced':
                     //    output = answerNLG(term);
+                    case 'timestamp':
+                        if (term.args[0] == "bot") {
+                            output = "beginning of time"
+                            break;
+                        } else if (term.args[0] == "eot") {
+                            output = "end of time"
+                            break;
+                        } else if (typeof(term.args[0]) != "number") {
+                            output = "time " + term.args[0];
+                            break;
+                        } else {
+                            var date = new Date(term.args[0]*1000);
+                            output = date.getFullYear()+"/" + (date.getMonth()+1) +"/" + date.getDate() +" "+date.getHours()+":"+date.getMinutes().toString().padStart(2,"0")+":"+date.getSeconds().toString().padStart(2,"0");
+                            break;
+                        }
                     default:
                         output = answerNLG(term,human);
                         //output = 'Unknown predicate type'
@@ -529,6 +544,16 @@
                 var section = model.args[0];
                 var object = model.args[1];
                 return addSectionReferences(section,human) + " applies to " + displayValue(object,human)
+            } else if (model.functor == "blawx_as_of") {
+                return "as of " + displayValue(model.args[1],human) + " " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_becomes") {
+                return "from " + displayValue(model.args[1],human) + " " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_initially") {
+                return "initially, " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_ultimately") {
+                return "ultimately, " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_during") {
+                return "from " + displayValue(model.args[0],human) + " to " + displayValue(model.args[2],human) + " " + answerNLG(model.args[1],human);
             } else if (model.functor == "abduced" && model.args[0].functor != "-") {
                 return "it is hypothesized that " + answerNLG(model.args[0],human);
             } else if (model.functor == "abduced" && model.args[0].functor == "-") {
