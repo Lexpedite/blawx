@@ -1234,7 +1234,7 @@ def generate_ec_rule_from_answer(answer):
   target_predicate=get_target_predicate(answer)
   datetime=get_target_datetime(answer)
   timestamp=convert_target_datetime(answer)
-  code = target_predicate + "(X," + str(timestamp) + ") :- " + target_predicate + "(X," + datetime + ")"
+  code = target_predicate + "(X,timestamp(" + str(timestamp) + ")) :- " + target_predicate + "(X," + datetime + ")"
   return code
 
 def get_target_predicate(answer):
