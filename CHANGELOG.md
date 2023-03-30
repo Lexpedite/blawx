@@ -7,34 +7,28 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## Dev Notes
+## [v1.5.4-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.4-alpha) 2023-03-30
+
+This release adds event reasoning features to the Blawx language. In addition to saying what is true,
+you can now indicate when it was true, and when it ceased to be true.
 
 ### Added
 * Event Drawer
 * Initially, Ultimately, From, As of, and During blocks
-* Event calculus library code in the code generation
 * New Life Act example demonstrating use of event blocks
-* Added posix timestamp capabilities to date library
-* Added timestamp blocks to language
+* Added timestamp blocks
+* Associated documentation
 
 ### To Do
-* Figure out terminology issue, because we are using "holds" in both temporal and defeasibility logic.
-* Figure out what this is called, because "events" might be the wrong thing. Fluents, maybe?
-* Make it possible to use datetimes instead of numbers.
-  * Make EC stuff show up properly in explanations
-* Add Documentation (maybe after the block naming is settled)
-  * Events (Features)
+* Required Documentation
+  * Event Reasoning (Features)
   * As Of
   * From
   * Initially
   * Ultimately
   * During
-  * Datetime to Posix
-  * Posix to Datetime
-
-### Issues to create
-* Add trajectory logic to events
-* Add "release" blocks to events
+  * Datetime to Timestamp
+  * Timestamp to Datetime
 
 ## [v1.5.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.3-alpha) 2023-03-16
 
