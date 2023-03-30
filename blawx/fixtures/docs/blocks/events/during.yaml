@@ -1,0 +1,18 @@
+- model: blawx.docpage
+  pk: blocks/during
+  fields:
+    title: During Block
+    content: | 
+      # During Block
+
+      ![During Block](/static/blawx/docs/images/blocks/during.png)
+
+      ## Where Is It?
+
+      The During block is found in the Events drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      ## Technical Details
+
+      ## Tips

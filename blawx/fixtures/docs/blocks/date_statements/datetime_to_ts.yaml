@@ -1,0 +1,18 @@
+- model: blawx.docpage
+  pk: blocks/datetime_to_ts
+  fields:
+    title: Datetime to Timestamp Block
+    content: |
+      # Datetime to Timestamp Block
+
+      ![Datetime to Timestamp Block](/static/blawx/docs/images/blocks/datetime_to_ts.png)
+
+      ## Where Is It?
+
+      The Datetime to Timestamp Block is found in the Dates drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      ## Technical Details
+
+      ## Tips

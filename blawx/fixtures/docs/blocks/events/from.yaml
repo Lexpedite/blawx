@@ -1,0 +1,18 @@
+- model: blawx.docpage
+  pk: blocks/from
+  fields:
+    title: From Block
+    content: |
+      # From Block
+
+      ![From Block](/static/blawx/docs/images/blocks/from.png)
+
+      ## Where Is It?
+
+      The From block is found in the Events drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      ## Technical Details
+
+      ## Tips

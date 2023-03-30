@@ -1,0 +1,6 @@
+- model: blawx.docpage
+  pk: features/events
+  fields:
+    title: Events
+    content: |
+      # Events

@@ -1,0 +1,18 @@
+- model: blawx.docpage
+  pk: blocks/initially
+  fields:
+    title: Initially Block
+    content: |
+      # Initially Block
+
+      ![Initially Block](/static/blawx/docs/images/blocks/initially.png)
+
+      ## Where Is It?
+
+      The Initially block is found in the Events drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      ## Technical Details
+
+      ## Tips

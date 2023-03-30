@@ -1,0 +1,18 @@
+- model: blawx.docpage
+  pk: blocks/as_of
+  fields:
+    title: As Of Block
+    content: |
+      # As Of Block
+
+      ![As Of Block](/static/blawx/docs/images/blocks/as_of.png)
+
+      ## Where Is It?
+
+      The As Of block is found in the Events drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      ## Technical Details
+
+      ## Tips

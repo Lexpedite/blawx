@@ -8600,7 +8600,7 @@
     </value>
     <value name="HELPURL">
       <block type="text" id="B8@YTTra9`nVBs6PyTmL" deletable="false" movable="false">
-        <field name="TEXT">/docs/blocks/holds_during/</field>
+        <field name="TEXT">/docs/blocks/during/</field>
       </block>
     </value>
     <value name="TOPTYPE">
@@ -9126,6 +9126,123 @@
     </value>
     <value name="COLOUR">
       <block type="colour_hue" id="A}8i,x;YLA,,6|~9FvJ;">
+        <mutation colour="#80a55b"></mutation>
+        <field name="HUE">90</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="El[7X:DS|D`B4e@+e%wM" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">datetime_ts</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="ep,zzH(D*XVOwrinrIbr">
+        <field name="INPUTNAME">datetime</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_image" id="nUX=q4ijm2xqpWmPzU}{">
+            <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=</field>
+            <field name="WIDTH">15</field>
+            <field name="HEIGHT">15</field>
+            <field name="ALT">Calendar</field>
+            <field name="FLIP_RTL">FALSE</field>
+            <next>
+              <block type="field_image" id="#1.h):u=zWdd_kt?Bu,m">
+                <field name="SRC">data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==</field>
+                <field name="WIDTH">15</field>
+                <field name="HEIGHT">15</field>
+                <field name="ALT">*</field>
+                <field name="FLIP_RTL">FALSE</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="H}*;:?z$=z5G%Y%=2YJm"></shadow>
+          <block type="type_group" id="!,akw4xT`!s~dx3,MJhR">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="wECi+kv4J#ms2t-~t{qh">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="U9(+-tc+K=]97W;{.d{G">
+                <field name="TYPE">DATETIME</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="`oRZkoNdKPNDk+kNBrv^">
+            <field name="INPUTNAME">timestamp</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="=|,?}2K,@n1?knD7u$`y">
+                <field name="TEXT">is</field>
+                <next>
+                  <block type="field_image" id="XH`1j+0zO+-,qv@?]]te">
+                    <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=</field>
+                    <field name="WIDTH">15</field>
+                    <field name="HEIGHT">15</field>
+                    <field name="ALT">*</field>
+                    <field name="FLIP_RTL">FALSE</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="H}*;:?z$=z5G%Y%=2YJm"></shadow>
+              <block type="type_group" id="ejghMy;uw)k9SO:N3ID1">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="|A`cB}#i5dnWXHbU(B|Z">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_number" id="OxYo5+bAM[ff%6D{`.99"></block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="L(]X3/0OP+g}Lxs8{^1f" deletable="false" movable="false">
+        <field name="TEXT">Use to translate from datetimes to timestamps for use in events.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="xth!B9;S6lbCx5%AB!!N" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/datetime_ts</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="[M{MG5Yz-o51_V4+MClR"></shadow>
+      <block type="type_group" id="jx[mcew])B%O-E)g$l{T">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="n}S:qF}]E3WYm%nLR$@*">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="QzdvNVCO3o?8q6i6q(ru">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="-9,M:#GWm(oy+B~rQLA:"></shadow>
+      <block type="type_other" id="3Tac/0Dd[G@zqwEz%5Ur">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="r5Z)If8L2f!I8zs1kXsL">
         <mutation colour="#80a55b"></mutation>
         <field name="HUE">90</field>
       </block>
