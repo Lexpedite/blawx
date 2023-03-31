@@ -21,12 +21,12 @@ you can now indicate when it was true, and when it ceased to be true.
 
 ### To Do
 * Update documentation for date blocks
-* Change the way durations are displayed in explanations
-* Change the way durations and dates are created in the scenario editor.
+* Change the way durations and dates and times are displayed in explanations
+* Change the way durations and dates and times are created in the scenario editor or the API endpoints
 * Update documentation for dates generally
 * Update examples
+* Add examples for new datetime constraints
 * Re-implement event blocks using timestamp methods.
-* Get rid of pre-processing step.
 
 ## [v1.5.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.3-alpha) 2023-03-16
 

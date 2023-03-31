@@ -530,7 +530,7 @@ blawxrun(Query, Human, Tree, Model) :-
                     rules.close()
                     os.remove(rulefilename)
 
-                ec_preprocess_step(swipl_thread)
+                #ec_preprocess_step(swipl_thread)
 
                 
                 #transcript.write(full_query)
@@ -1025,7 +1025,7 @@ blawxrun(Query, Human, Tree, Model) :-
                     os.remove(rulefilename)
 
                 
-                ec_preprocess_step(swipl_thread)
+                #ec_preprocess_step(swipl_thread)
 
                 #transcript.write(full_query)
                 with redirect_stderr(transcript):
@@ -1202,68 +1202,68 @@ def find_assumptions(Tree): # Pulls the assumptions out of a Prolog-formatted ex
 
 # This accepts a SWI-Prolog thread, runs queries and asserts additional rules
 # until it is capable of answering event calculus questions based on datetimes.
-def ec_preprocess_step(thread):
-  #print("Starting EC Pre-Process Step")
-  previous = []
-  current = []
-  first_attempt = True
-  found_new = False
-  while first_attempt or found_new:
-    #print("Starting Attempt")
-    first_attempt = False
-    found_new = False
-    current = []
-    result = thread.query('blawxrun((blawx_becomes(X,Y), Y = datetime(_,_,_,_,_,_)),Human, Tree, Model).')
-    answers = generate_answers(result)
-    #print("Received " + str(len(answers)) + " responses.")
-    for answer in answers:
-      new_rule = generate_ec_rule_from_answer(answer)
-      if new_rule not in previous:
-        found_new = True
-        #print("Adding " +new_rule)
-        current.append(new_rule)
-    #print("New Rules Found This Attempt: " + str(current))
-    previous = previous + current
-    #print("All Rules Found So Far: " + str(previous))
-  #print("Done searching.")
-  for rule in previous:
-    #print("Asserting: " + rule)
-    thread.query('assertz(' + rule + ').')
+# def ec_preprocess_step(thread):
+#   #print("Starting EC Pre-Process Step")
+#   previous = []
+#   current = []
+#   first_attempt = True
+#   found_new = False
+#   while first_attempt or found_new:
+#     #print("Starting Attempt")
+#     first_attempt = False
+#     found_new = False
+#     current = []
+#     result = thread.query('blawxrun((blawx_becomes(X,Y), Y = datetime(_,_,_,_,_,_)),Human, Tree, Model).')
+#     answers = generate_answers(result)
+#     #print("Received " + str(len(answers)) + " responses.")
+#     for answer in answers:
+#       new_rule = generate_ec_rule_from_answer(answer)
+#       if new_rule not in previous:
+#         found_new = True
+#         #print("Adding " +new_rule)
+#         current.append(new_rule)
+#     #print("New Rules Found This Attempt: " + str(current))
+#     previous = previous + current
+#     #print("All Rules Found So Far: " + str(previous))
+#   #print("Done searching.")
+#   for rule in previous:
+#     #print("Asserting: " + rule)
+#     thread.query('assertz(' + rule + ').')
 
-def generate_ec_rule_from_answer(answer):
-  target_predicate=get_target_predicate(answer)
-  datetime=get_target_datetime(answer)
-  timestamp=convert_target_datetime(answer)
-  code = target_predicate + "(X,timestamp(" + str(timestamp) + ")) :- " + target_predicate + "(X," + datetime + ")"
-  return code
+# def generate_ec_rule_from_answer(answer):
+#   target_predicate=get_target_predicate(answer)
+#   datetime=get_target_datetime(answer)
+#   timestamp=convert_target_datetime(answer)
+#   code = target_predicate + "(X,timestamp(" + str(timestamp) + ")) :- " + target_predicate + "(X," + datetime + ")"
+#   return code
 
-def get_target_predicate(answer):
-  #print("Finding Predicate in: ")
-  #print(json.dumps(answer,indent=2))
-  # Get the target date
-  details = answer['Variables']['Y']['args'] # This will be an array like [2000,1,1,0,0,0]
-  # Find the first term that is not the conclusion that uses the date as the second parameter.
-  # I have no idea if we should trust "first", here. But it's a start.
-  for model in answer['Models']:
-    for term in model['Terms']:
-      if term['functor'] != "blawx_becomes" and len(term['args']) ==2 and term['args'][1]['functor'] == "datetime" and term['args'][1]['args'] == details:
-          return term['functor']
+# def get_target_predicate(answer):
+#   #print("Finding Predicate in: ")
+#   #print(json.dumps(answer,indent=2))
+#   # Get the target date
+#   details = answer['Variables']['Y']['args'] # This will be an array like [2000,1,1,0,0,0]
+#   # Find the first term that is not the conclusion that uses the date as the second parameter.
+#   # I have no idea if we should trust "first", here. But it's a start.
+#   for model in answer['Models']:
+#     for term in model['Terms']:
+#       if term['functor'] != "blawx_becomes" and len(term['args']) ==2 and term['args'][1]['functor'] == "datetime" and term['args'][1]['args'] == details:
+#           return term['functor']
 
-def get_target_datetime(answer):
-  year = answer['Variables']['Y']['args'][0]
-  month = answer['Variables']['Y']['args'][1]
-  day = answer['Variables']['Y']['args'][2]
-  hour = answer['Variables']['Y']['args'][3]
-  minute = answer['Variables']['Y']['args'][4]
-  second = answer['Variables']['Y']['args'][5]
-  return "datetime(" + str(year) + "," + str(month) + "," + str(day) + "," + str(hour) + "," + str(minute) + "," + str(second) + ")"
+# def get_target_datetime(answer):
+#   year = answer['Variables']['Y']['args'][0]
+#   month = answer['Variables']['Y']['args'][1]
+#   day = answer['Variables']['Y']['args'][2]
+#   hour = answer['Variables']['Y']['args'][3]
+#   minute = answer['Variables']['Y']['args'][4]
+#   second = answer['Variables']['Y']['args'][5]
+#   return "datetime(" + str(year) + "," + str(month) + "," + str(day) + "," + str(hour) + "," + str(minute) + "," + str(second) + ")"
 
-def convert_target_datetime(answer):
-  year = answer['Variables']['Y']['args'][0]
-  month = answer['Variables']['Y']['args'][1]
-  day = answer['Variables']['Y']['args'][2]
-  hour = answer['Variables']['Y']['args'][3]
-  minute = answer['Variables']['Y']['args'][4]
-  second = answer['Variables']['Y']['args'][5]
-  date = datetime.datetime(year,month,day,hour,minute,second)
-  return date.timestamp()
+# def convert_target_datetime(answer):
+#   year = answer['Variables']['Y']['args'][0]
+#   month = answer['Variables']['Y']['args'][1]
+#   day = answer['Variables']['Y']['args'][2]
+#   hour = answer['Variables']['Y']['args'][3]
+#   minute = answer['Variables']['Y']['args'][4]
+#   second = answer['Variables']['Y']['args'][5]
+#   date = datetime.datetime(year,month,day,hour,minute,second)
+#   return date.timestamp()
