@@ -417,27 +417,53 @@
             if(term.hasOwnProperty('functor')) {
                 switch(term.functor) {
                     case 'date':
-                        output = term.args[0] + "/" + term.args[1] + "/" + term.args[2]
+                        if (isNaN(term.args[0])) {
+                            if (term.args[0] == "bot") {
+                                output = "beginning of time"
+                            } else if(term.args[0] = "eot") {
+                                output = "end of time"
+                            }
+                        } else {
+                            var date = new Date(term.args[0]*1000)
+                            output = date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate()
+                        }
                         break;
                     case 'datetime':
-                        output = term.args[0] + "/" + term.args[1] + "/" + term.args[2] + " " + term.args[3] + ":" + term.args[4].toString().padStart(2,"0") + ":" + term.args[5].toString().padStart(2,"0")
+                        if (isNaN(term.args[0])) {
+                            if (term.args[0] == "bot") {
+                                output = "beginning of time"
+                            } else if(term.args[0] = "eot") {
+                                output = "end of time"
+                            }
+                        } else {
+                            var date = new Date(term.args[0]*1000)
+                            output = date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes().toString().padStart(2,"0") + ":" + date.getSeconds().toString().padStart(2,"0")
+                        }
                         break;
                     case 'duration':
-                        if (term.args[0] == 1) {
-                            var direction = "into the future"
+                        var timestamp = term.args[0];
+                        if (timestamp < 1) {
+                          var direction = "into the past"
+                          timestamp = timestamp * -1
                         } else {
-                            var direction = "into the past"
+                            var direction = "into the future"
                         }
-                        output = (term.args[1] != 0 ? term.args[1] + " years, " : "") + 
-                                (term.args[2] != 0 ? term.args[2] + " months, " : "") + 
-                                (term.args[3] != 0 ? term.args[3] + " days, " :"") + 
-                                (term.args[4] != 0 ? term.args[4] + " hours, " : "") + 
-                                (term.args[5] != 0 ? term.args[5] + " minutes, " : "") +
-                                (term.args[6] != 0 ? term.args[6] + " seconds " : "") + 
+                        var days = Math.floor(timestamp/86400);
+                        var hours = Math.floor((timestamp-days*86400)/3600);
+                        var minutes = Math.floor((timestamp-days*86400-hours*3600)/60);
+                        var seconds = timestamp - days*86400 - hours*3600 - minutes*60;
+                        output = (days != 0 ? days + " days, " :"") + 
+                                (hours != 0 ? hours + " hours, " : "") + 
+                                (minutes != 0 ? minutes + " minutes, " : "") +
+                                (seconds != 0 ? seconds + " seconds " : "") + 
                                 direction
                         break;
                     case 'time':
-                        output = term.args[0] + ":" + term.args[1].toString().padStart(2,"0") + ":" + term.args[2].toString().padStart(2,"0")
+                        var timestamp = term.args[0];
+                        var hours = Math.floor(timestamp/3600);
+                        var minutes = Math.floor((timestamp-(hours*3600))/60)
+                        var seconds = timestamp-(hours*3600)-(minutes*60)
+                        output = hours + ":" + minutes.toString().padStart(2,"0") + ":" + seconds.toString().padStart(2,"0")
                         break;
                     //case 'defeated':
                     //    output = answerNLG(term);
@@ -459,7 +485,7 @@
                             break;
                         } else {
                             var date = new Date(term.args[0]*1000);
-                            output = date.getFullYear()+"/" + (date.getMonth()+1) +"/" + date.getDate() +" "+date.getHours()+":"+date.getMinutes().toString().padStart(2,"0")+":"+date.getSeconds().toString().padStart(2,"0");
+                            output = date.getFullYear()+"/" + (parseInt(date.getMonth())+1) +"/" + date.getDate() +" "+date.getHours()+":"+date.getMinutes().toString().padStart(2,"0")+":"+date.getSeconds().toString().padStart(2,"0");
                             break;
                         }
                     default:
@@ -815,10 +841,10 @@
                             value_html += '<div class="input-group-text">';
                             value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="new_attribute_value_' + attribute_name + '_direction">';
                             value_html += '</div>';
-                            value_html += '<span class="input-group-text px-1">Y</span>';
-                            value_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="new_attribute_value_' + attribute_name + '_years">';
-                            value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                            value_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="new_attribute_value_' + attribute_name + '_months">';
+                            //value_html += '<span class="input-group-text px-1">Y</span>';
+                            //value_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="new_attribute_value_' + attribute_name + '_years">';
+                            //value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                            //value_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="new_attribute_value_' + attribute_name + '_months">';
                             value_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
                             value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="new_attribute_value_' + attribute_name + '_days">';
                             value_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
@@ -1107,8 +1133,8 @@
             if(attribute_type == "duration") {
                 // Get the new value
                 direction_target = document.getElementById('new_attribute_value_' + attribute + '_direction');
-                year_target = document.getElementById('new_attribute_value_' + attribute + '_years');
-                month_target = document.getElementById('new_attribute_value_' + attribute + '_months');
+                //year_target = document.getElementById('new_attribute_value_' + attribute + '_years');
+                //month_target = document.getElementById('new_attribute_value_' + attribute + '_months');
                 day_target = document.getElementById('new_attribute_value_' + attribute + '_days');
                 hour_target = document.getElementById('new_attribute_value_' + attribute + '_hours');
                 minute_target = document.getElementById('new_attribute_value_' + attribute + '_minutes');
@@ -1117,8 +1143,8 @@
                 } else {
                     new_direction = false;
                 }
-                new_year = year_target.value;
-                new_month = month_target.value;
+                //new_year = year_target.value;
+                //new_month = month_target.value;
                 new_day = day_target.value;
                 new_hour = hour_target.value;
                 new_minute = minute_target.value;
@@ -1128,12 +1154,12 @@
                     new_value = "-";
                 }
                 new_value += "P"
-                if (parseInt(new_year)) {
-                    new_value += new_year + "Y";
-                }
-                if (parseInt(new_month)) {
-                    new_value += new_month + "M";
-                }
+                //if (parseInt(new_year)) {
+                //    new_value += new_year + "Y";
+                //}
+                //if (parseInt(new_month)) {
+                //    new_value += new_month + "M";
+                //}
                 // The idea here is that if all three are zero, it should come out as P0D
                 if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
                     new_value += new_day + "D";

@@ -251,7 +251,7 @@ def format_statement_value(value,attribute_type):
   if attribute_type == "duration":
     matches = re.findall(iso8601_duration_re,value,re.MULTILINE)
     (sign,years,months,days,hours,minutes,seconds) = matches[0]
-    value = (int(days) * 86400) + (int(hours) * 3600) + (int(minutes) * 60)
+    value = (int(days[:-1]) * 86400) + (int(hours[:-1]) * 3600) + (int(minutes[:-1]) * 60)
     if sign == "-":
       value = value * -1
     duration_format = 'duration(' + str(value) + ')'

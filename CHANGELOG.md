@@ -33,8 +33,8 @@ you can now indicate when it was true, and when it ceased to be true.
 ### Fixed
 
 ### To Do
-* Change the user interface for generating durations in scenario editor
-* We are getting multiple explanations for some reason, might be the date-> datetime conversions.
+* Bugs:
+  * We are getting multiple explanations for some reason in the life act example
 * Extensive testing required
 * Add examples for new datetime constraints
 * Update examples
