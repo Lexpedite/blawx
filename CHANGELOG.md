@@ -20,8 +20,13 @@ you can now indicate when it was true, and when it ceased to be true.
 * Associated documentation
 
 ### To Do
-* The As Of block doesn't work
-* It's not clear whether From or As Of would work in a query.
+* Update documentation for date blocks
+* Change the way durations are displayed in explanations
+* Change the way durations and dates are created in the scenario editor.
+* Update documentation for dates generally
+* Update examples
+* Re-implement event blocks using timestamp methods.
+* Get rid of pre-processing step.
 
 ## [v1.5.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.3-alpha) 2023-03-16
 

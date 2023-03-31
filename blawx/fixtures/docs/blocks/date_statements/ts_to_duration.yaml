@@ -1,0 +1,22 @@
+- model: blawx.docpage
+  pk: blocks/duration_from_ts
+  fields:
+    title: Timestamp to Duration Block
+    content: |
+      # Timestamp to Duration Block
+
+      ![Timestamp to Duration Block](/static/blawx/docs/images/blocks/ts_to_duration.png)
+
+      ## Where Is It?
+
+      The Timestamp to Duration Block is found in the Dates drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The timestamp to Duration Block accepts a number which represents a number of seconds, and returns a duration value.
+
+      ## Technical Details
+
+      The Timestamp to Duration Block is a value block that accepts a number or a variable and outputs a Duration.
+
+      ## Tips

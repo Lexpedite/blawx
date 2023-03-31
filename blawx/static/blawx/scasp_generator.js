@@ -529,19 +529,21 @@ sCASP['date_value'] = function (block) {
     var number_year = block.getFieldValue('year');
     var number_month = block.getFieldValue('month');
     var number_day = block.getFieldValue('day');
-    var code = 'date(' + number_year + ',' + number_month + ',' + number_day + ')';
+    var date = new Date(number_year,number_month-1,number_day)
+    var code = 'date(' + date.valueOf()/1000 + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
 sCASP['duration_value'] = function (block) {
     var dropdown_sign = block.getFieldValue('sign');
-    var number_years = block.getFieldValue('years');
-    var number_months = block.getFieldValue('months');
+    //var number_years = block.getFieldValue('years');
+    //var number_months = block.getFieldValue('months');
     var number_days = block.getFieldValue('days');
     var number_hours = block.getFieldValue('hours');
     var number_minutes = block.getFieldValue('minutes');
     var number_seconds = block.getFieldValue('seconds');
-    var code = 'duration(' + dropdown_sign + ',' + number_years + ',' + number_months + ',' + number_days + ',' + number_hours + ',' + number_minutes + ',' + number_seconds + ')';
+    var value = parseInt(dropdown_sign) * ((number_days*86400) + (number_hours*3600) + (number_minutes*60) + number_seconds);
+    var code = 'duration(' + value + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
@@ -564,17 +566,7 @@ sCASP['date_comparison'] = function (block) {
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var dropdown_comparison = block.getFieldValue('comparison');
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
-    if (dropdown_comparison == "lt") {
-        var code = 'before(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison == "lte") {
-        var code = 'not_after(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison == "gt") {
-        var code = 'after(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison == "gte") {
-        var code = 'not_before(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison == "eq") {
-        var code = 'eq(' + value_first_date + ',' + value_second_date + ')';
-    }
+    var code = 'date_compare(' + value_first_date + ',' + dropdown_comparison + ',' + value_second_date + ')';
     return code;
 };
 
@@ -632,7 +624,7 @@ sCASP['date_add'] = function (block) {
     var value_duration = sCASP.valueToCode(block, 'duration', sCASP.ORDER_ATOMIC);
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
-    var code = 'datetime_add(' + value_first_date + ',' + value_duration + ',' + value_second_date + ')';
+    var code = 'date_add(' + value_first_date + ',' + value_duration + ',' + value_second_date + ')';
     return code;
 };
 
@@ -785,7 +777,8 @@ sCASP['time_value'] = function(block) {
     var number_hours = block.getFieldValue('hours');
     var number_minutes = block.getFieldValue('minutes');
     var number_seconds = block.getFieldValue('seconds');
-    var code = 'time(' + number_hours + ',' + number_minutes + ',' + number_seconds + ')';
+    var value = (number_hours*3600) + (number_minutes*60) + number_seconds;
+    var code = 'time(' + value + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
@@ -801,7 +794,8 @@ sCASP['datetime_value'] = function(block) {
     var number_hours = block.getFieldValue('hours');
     var number_minutes = block.getFieldValue('minutes');
     var number_seconds = block.getFieldValue('seconds');
-    var code = 'datetime(' + number_year + ',' + number_month + ',' + number_day + ',' + number_hours + ',' + number_minutes + ',' + number_seconds + ')';
+    var date = new Date(number_year,number_month-1,number_day,number_hours,number_minutes,number_seconds)
+    var code = 'datetime(' + date.valueOf()/1000 + ')';
     return [code, sCASP.ORDER_ATOMIC];
 };
 
@@ -836,17 +830,7 @@ sCASP['duration_comparison'] = function(block) {
     var value_first_date = sCASP.valueToCode(block, 'first_date', sCASP.ORDER_ATOMIC);
     var dropdown_comparison = block.getFieldValue('comparison');
     var value_second_date = sCASP.valueToCode(block, 'second_date', sCASP.ORDER_ATOMIC);
-    if (dropdown_comparison == "lt") {
-        var code = 'lt(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison == "lte") {
-        var code = 'lte(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison == "gt") {
-        var code = 'gt(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison == "gte") {
-        var code = 'gte(' + value_first_date + ',' + value_second_date + ')';
-    } else if (dropdown_comparison == "eq") {
-        var code = 'eq(' + value_first_date + ',' + value_second_date + ')';
-    }
+    var code = 'duration_compare(' + value_first_date + ',' + dropdown_comparison + ',' + value_second_date +')';
     return code;
 };
 
@@ -870,7 +854,7 @@ sCASP['datetime_construct'] = function(block) {
     var value_date = sCASP.valueToCode(block, 'date', sCASP.ORDER_ATOMIC);
     var value_time = sCASP.valueToCode(block, 'time', sCASP.ORDER_ATOMIC);
     var value_datetime = sCASP.valueToCode(block, 'datetime', sCASP.ORDER_ATOMIC);
-    var code = 'build_datetime(' + value_date + ',' + value_time + ',' + value_datetime + ')';
+    var code = 'date_add(' + value_date + ',' + value_time + ',' + value_datetime + ')';
     return code;
 };
 
@@ -1228,6 +1212,30 @@ sCASP['ts_to_datetime'] = function (block) {
     var code = 'posix_timestamp_to_datetime(' + value_datetime + ',timestamp(' + value_timestamp + '))';
     return code;
 };
+
+sCASP['time_from_ts'] = function(block) {
+    var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
+    var code = 'time(' + value_timestamp + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+  };
+  
+  sCASP['datetime_from_ts'] = function(block) {
+    var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
+    var code = 'datetime(' + value_timestamp + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+  };
+  
+  sCASP['date_from_ts'] = function(block) {
+    var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
+    var code = 'date(' + value_timestamp + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+  };
+
+  sCASP['duration_from_ts'] = function(block) {
+    var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
+    var code = 'duration(' + value_timestamp + ')';
+    return [code, sCASP.ORDER_ATOMIC];
+  };
 
 function deconstruct_term(term) {
     var elements = [];

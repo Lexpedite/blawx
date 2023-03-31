@@ -20,16 +20,15 @@
       The duration value block is a value block, and can be placed anywhere that is expecting
       a value of the duration type. This is typically in date statement blocks.
 
-      A duration is a combination of a sign, and six numbers representing the years, months,
+      A duration is a combination of a sign, and four numbers representing the 
       days, hours, minutes, and seconds of the duration.
       If the sign is positive ("+"), the duration is "into the future." If the sign
-      is negative ("-"), the duration is "into the past." The idea "two months hence"
-      could be expressed using the values `+ 0 2 0 0 0 0`. The idea "one year ago" could be expressed
-      using the values `- 1 0 0 0 0 0`.
+      is negative ("-"), the duration is "into the past." The idea "two days hence"
+      could be expressed using the values `+ 2 0 0 0`. The idea "one year ago" could be expressed
+      using the values `- 365 0 0 0`.
 
       Seconds can be specified with decimal places, all other values need to be non-negative integers.
 
       ## Tips
 
-      The use of durations including year and month values is not recommended, as they tend to behave
-      in unpredictable ways, given that months and years are not of a consistent length in days.
+      

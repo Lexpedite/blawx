@@ -994,7 +994,7 @@ scasp_blockset = [{
 },
 {
   "type": "duration_value",
-  "message0": "%1 %2 years, %3 months, %4 days, %5 hours, %6 minutes, %7 seconds",
+  "message0": "%1 %2 days, %3 hours, %4 minutes, %5 seconds",
   "args0": [
     {
       "type": "field_dropdown",
@@ -1009,20 +1009,6 @@ scasp_blockset = [{
           "-1"
         ]
       ]
-    },
-    {
-      "type": "field_number",
-      "name": "years",
-      "value": 0,
-      "min": 0,
-      "precision": 1
-    },
-    {
-      "type": "field_number",
-      "name": "months",
-      "value": 0,
-      "min": 0,
-      "precision": 1
     },
     {
       "type": "field_number",
@@ -1181,24 +1167,28 @@ scasp_blockset = [{
       "name": "comparison",
       "options": [
         [
-          "is before",
+          "<",
           "lt"
         ],
         [
-          "is before or the same date as",
+          "=<",
           "lte"
         ],
         [
-          "is the same date as",
+          "=",
           "eq"
         ],
         [
-          "is after or the same date as",
+          ">=",
           "gte"
         ],
         [
-          "is after",
+          ">",
           "gt"
+        ],
+        [
+          "≠",
+          "ne"
         ]
       ]
     },
@@ -1633,7 +1623,7 @@ scasp_blockset = [{
   ],
   "nextStatement": "STATEMENT",
   "colour": 330,
-  "tooltip": "Use to get the result of adding a duration to a date. To subtract, use a duration with a negative sign.",
+  "tooltip": "Use to calculate the relationship between two dates and a duration.",
   "helpUrl": "/docs/blocks/date_add/"
 },
 {
@@ -2535,24 +2525,28 @@ scasp_blockset = [{
       "name": "comparison",
       "options": [
         [
-          "is less than",
+          "<",
           "lt"
         ],
         [
-          "is less than or equal to",
+          "=<",
           "lte"
         ],
         [
-          "is equal to",
+          "=",
           "eq"
         ],
         [
-          "is greater than or equal to",
+          ">=",
           "gte"
         ],
         [
-          "is greater than",
+          ">",
           "gt"
+        ],
+        [
+          "≠",
+          "ne"
         ]
       ]
     },
@@ -3829,6 +3823,154 @@ scasp_blockset = [{
   "colour": 90,
   "tooltip": "Use to translate from datetimes to timestamps for use in events.",
   "helpUrl": "/docs/blocks/datetime_ts"
+},
+{
+  "type": "time_from_ts",
+  "message0": "%1 ← %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "clock",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "#",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "TIME",
+  "colour": 330,
+  "tooltip": "Generate a time from a numerical timestamp value",
+  "helpUrl": "/docs/blocks/time_from_ts"
+},
+{
+  "type": "datetime_from_ts",
+  "message0": "%1 %2 ← %3 %4",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "clock",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "#",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "DATETIME",
+  "colour": 330,
+  "tooltip": "Generate a datetime from a numerical timestamp value",
+  "helpUrl": "/docs/blocks/datetime_from_ts"
+},
+{
+  "type": "date_from_ts",
+  "message0": "%1 ← %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "#",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "DATE",
+  "colour": 330,
+  "tooltip": "Generate a date from a numerical timestamp value",
+  "helpUrl": "/docs/blocks/date_from_ts"
+},
+{
+  "type": "duration_from_ts",
+  "message0": "%1 ← %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "Stopwatch",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "#",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "DURATION",
+  "colour": 330,
+  "tooltip": "Generate a duration from a numerical timestamp value",
+  "helpUrl": "/docs/blocks/duration_from_ts"
 }]
 
 // TODO: A bunch of these things below are redundant as the blocks are being removed.
