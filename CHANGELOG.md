@@ -16,17 +16,30 @@ you can now indicate when it was true, and when it ceased to be true.
 * Event Drawer
 * Initially, Ultimately, From, As of, and During blocks
 * New Life Act example demonstrating use of event blocks
-* Added timestamp blocks
+* Date, datetime, and duration from timestamp blocks
 * Associated documentation
 
+### Changed
+* Duration value blocks no longer have Year and Month fields.
+* The date add block can now be used for addition or subtraction by leaving one of the three fields unbound.
+* Date and duration comparisons and calculations are now implemented as numerical constraints.
+* Associated documentation
+
+### Removed
+* Date Add Days, Date Diff, and Date Diff Days blocks, which were redundant.
+* Date, Duration, and Time Constructor blocks
+* Associated documentation
+
+### Fixed
+
 ### To Do
-* Update documentation for date blocks
-* Change the way durations and dates and times are displayed in explanations
-* Change the way durations and dates and times are created in the scenario editor or the API endpoints
-* Update documentation for dates generally
-* Update examples
+* Change the user interface for generating durations in scenario editor
+* We are getting multiple explanations for some reason, might be the date-> datetime conversions.
+* Extensive testing required
 * Add examples for new datetime constraints
-* Re-implement event blocks using timestamp methods.
+* Update examples
+* Update documentation for date blocks
+* Update documentation for dates generally
 
 ## [v1.5.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.3-alpha) 2023-03-16
 

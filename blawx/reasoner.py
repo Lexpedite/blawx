@@ -11,7 +11,7 @@ import json
 import re
 from contextlib import redirect_stderr
 import pyparsing as pp
-import datetime
+from datetime import datetime, time
 
 from swiplserver import PrologMQI, PrologError, PrologLaunchError
 
@@ -221,6 +221,7 @@ def newer_json_2_scasp(payload,ruledoc,testname):
           if object_display == "X":
             output += object_type + "(X), "
           output += "not " + basic_predicate + "(" + object_display + ").\n"
+  # print("Generated Facts")
   # print(output)
   return output
 
@@ -232,168 +233,159 @@ def format_statement_value(value,attribute_type):
   if attribute_type == "date":
     matches = re.findall(iso8601_date_re,value,re.MULTILINE)
     (year,month,day) = matches[0]
-    date_format = f"date({int(year)},{int(month)},{int(day)})"
+    date = datetime(int(year),int(month),int(day))
+    date_format = 'date(' + str(date.timestamp()) + ')'
     return date_format
   if attribute_type == "time":
     matches = re.findall(time_re,value,re.MULTILINE)
     (hour,minute) = matches[0]
-    time_format = f"time({int(hour)},{int(minute)},0)"
+    value = (int(hour)*3600) + (int(minute)*60)
+    time_format = 'time(' + str(value) + ')'
     return time_format
   if attribute_type == "datetime":
     matches = re.findall(iso8601_datetime_re,value,re.MULTILINE)
     (year,month,day,hour,minute) = matches[0]
-    datetime_format = f"datetime({int(year)},{int(month)},{int(day)},{int(hour)},{int(minute)},0)"
+    date = datetime(int(year),int(month),int(day),int(hour),int(minute))
+    datetime_format = 'datetime(' + str(date.timestamp()) + ')'
     return datetime_format
   if attribute_type == "duration":
     matches = re.findall(iso8601_duration_re,value,re.MULTILINE)
     (sign,years,months,days,hours,minutes,seconds) = matches[0]
+    value = (int(days) * 86400) + (int(hours) * 3600) + (int(minutes) * 60)
     if sign == "-":
-      sign_value = "-1"
-    else:
-      sign_value = "1"
-    if years == "":
-      years = "0Y"
-    if months == "":
-      months = "0M"
-    if days == "":
-      days = "0D"
-    if hours == "":
-      hours = "0H"
-    if minutes == "":
-      minutes = "0M"
-    if seconds == "":
-      seconds = "0S"
-    duration_format = f"duration({sign_value},{int(years[:-1])},{int(months[:-1])},{int(days[:-1])},{int(hours[:-1])},{int(minutes[:-1])},{int(seconds[:-1])})"
+      value = value * -1
+    duration_format = 'duration(' + str(value) + ')'
     return duration_format
   # If you get to this point, just return a string version.
   return str(value)
 
-def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
-  output = ""
+# def new_json_2_scasp(payload,ruledoc,testname,exclude_assumptions=False):
+#   output = ""
 
-  # I need to grab the ontology for the current test.
-  ontology = get_ontology_internal(ruledoc,testname)
+#   # I need to grab the ontology for the current test.
+#   ontology = get_ontology_internal(ruledoc,testname)
 
-  # For Each Category
-  for (category_name,category_contents) in payload.items():
-    # Make category membership abducible?
-    if not exclude_assumptions:
-      if 'members_known' in category_contents:
-        if category_contents['members_known'] == False:
-          known_objects = []
-          if 'members' in category_contents and len(category_contents['members']):
-            for (object_name,object_attributes) in category_contents['members'].items():
-              known_objects.append(object_name)
-          output += "-" + category_name + "(X) :- not " + category_name + "(X)"
-          for ko in known_objects:
-            output += ", X \= " + ko
-          output += ".\n"
-          output += category_name + "(X) :- not -" + category_name + "(X)"
-          for ko in known_objects:
-            output += ", X \= " + ko
-          output += ".\n"
-          for att in ontology['Attributes']:
-            if att['Category'] == category_name:
-              output += "-" + att['Attribute'] + "(X,Y) :- not " + att['Attribute'] + "(X,Y)"
-              for ko in known_objects:
-                output += ", X \= " + ko
-              output += ".\n"
-              output += att['Attribute'] + "(X,Y) :- not -" + att['Attribute'] + "(X,Y)"
-              for ko in known_objects:
-                output += ", X \= " + ko
-              output += ".\n"
+#   # For Each Category
+#   for (category_name,category_contents) in payload.items():
+#     # Make category membership abducible?
+#     if not exclude_assumptions:
+#       if 'members_known' in category_contents:
+#         if category_contents['members_known'] == False:
+#           known_objects = []
+#           if 'members' in category_contents and len(category_contents['members']):
+#             for (object_name,object_attributes) in category_contents['members'].items():
+#               known_objects.append(object_name)
+#           output += "-" + category_name + "(X) :- not " + category_name + "(X)"
+#           for ko in known_objects:
+#             output += ", X \= " + ko
+#           output += ".\n"
+#           output += category_name + "(X) :- not -" + category_name + "(X)"
+#           for ko in known_objects:
+#             output += ", X \= " + ko
+#           output += ".\n"
+#           for att in ontology['Attributes']:
+#             if att['Category'] == category_name:
+#               output += "-" + att['Attribute'] + "(X,Y) :- not " + att['Attribute'] + "(X,Y)"
+#               for ko in known_objects:
+#                 output += ", X \= " + ko
+#               output += ".\n"
+#               output += att['Attribute'] + "(X,Y) :- not -" + att['Attribute'] + "(X,Y)"
+#               for ko in known_objects:
+#                 output += ", X \= " + ko
+#               output += ".\n"
     
-      # For each attribute
-      if 'attributes_known' in category_contents:
-        for (cat_attrib_name,cat_attrib_known) in category_contents['attributes_known'].items():
-          # Make attribute abducible?
-          # If the attribute is not known
-          if cat_attrib_known == False:
-            # generate a list of objects for which the values of this attribute are known
-            known_value_objects = []
-            if 'members' in category_contents and len(category_contents['members']):
-              for (object_name,object_attributes) in category_contents['members'].items():
-                for (attribute_name,attribute_values) in object_attributes.items():
-                  if attribute_name == cat_attrib_name:
-                    if 'values_known' in attribute_values and attribute_values['values_known']:
-                      known_value_objects.append(object_name)
-            # Now generate the code to make the value abducible for objects other than the
-            # ones for which it is known.
-            output += "-" + cat_attrib_name + "(X,Y) :- not " + cat_attrib_name + "(X,Y)"
-            for kvo in known_value_objects:
-              output += ", X \= " + kvo
-            output += ".\n"
-            output += "" + cat_attrib_name + "(X,Y) :- not -" + cat_attrib_name + "(X,Y)"
-            for kvo in known_value_objects:
-              output += ", X \= " + kvo
-            output += ".\n"
+#       # For each attribute
+#       if 'attributes_known' in category_contents:
+#         for (cat_attrib_name,cat_attrib_known) in category_contents['attributes_known'].items():
+#           # Make attribute abducible?
+#           # If the attribute is not known
+#           if cat_attrib_known == False:
+#             # generate a list of objects for which the values of this attribute are known
+#             known_value_objects = []
+#             if 'members' in category_contents and len(category_contents['members']):
+#               for (object_name,object_attributes) in category_contents['members'].items():
+#                 for (attribute_name,attribute_values) in object_attributes.items():
+#                   if attribute_name == cat_attrib_name:
+#                     if 'values_known' in attribute_values and attribute_values['values_known']:
+#                       known_value_objects.append(object_name)
+#             # Now generate the code to make the value abducible for objects other than the
+#             # ones for which it is known.
+#             output += "-" + cat_attrib_name + "(X,Y) :- not " + cat_attrib_name + "(X,Y)"
+#             for kvo in known_value_objects:
+#               output += ", X \= " + kvo
+#             output += ".\n"
+#             output += "" + cat_attrib_name + "(X,Y) :- not -" + cat_attrib_name + "(X,Y)"
+#             for kvo in known_value_objects:
+#               output += ", X \= " + kvo
+#             output += ".\n"
             
-    # For each member
-    if 'members' in category_contents and len(category_contents['members']):
-      for (object_name,object_attributes) in category_contents['members'].items():
-        # Create the Member
-        output += category_name + "(" + object_name + ").\n"
-        # For each property
-        for (attribute_name, attribute_values) in object_attributes.items():
-          # Make the partially-ground property abducible?
-          # Depends on this value, AND the value for the attribute generally...
-          if not exclude_assumptions:
-            if 'values_known' in attribute_values:
-              if attribute_values['values_known'] == False:
-                output += "#abducible " + attribute_name + "(" + object_name + ",X).\n"
-          # For each value
-          for value in attribute_values['values']:
-            # Add the attribute value
-            # Here, we need to check the attribute type,
-            attribute_type = ""
-            for att in ontology['Attributes']:
-              if category_name == att['Category'] and attribute_name == att['Attribute']:
-                attribute_type = att['Type']
-                break
-            # and if the attribute type is date, or
-            # duration, adjust the value accordingly.
-            iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
-            time_re = r"^(\d{2}):(\d{2})$"
-            iso8601_datetime_re = r"^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$"
-            iso8601_duration_re = r"^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$"
-            if attribute_type == "date":
-              matches = re.findall(iso8601_date_re,value,re.MULTILINE)
-              (year,month,day) = matches[0]
-              date_format = f"date({int(year)},{int(month)},{int(day)})"
-              value = date_format
-            if attribute_type == "time":
-              matches = re.findall(time_re,value,re.MULTILINE)
-              (hour,minute) = matches[0]
-              time_format = f"time({int(hour)},{int(minute)},0)"
-              value = time_format
-            if attribute_type == "datetime":
-              matches = re.findall(iso8601_datetime_re,value,re.MULTILINE)
-              (year,month,day,hour,minute) = matches[0]
-              datetime_format = f"datetime({int(year)},{int(month)},{int(day)},{int(hour)},{int(minute)},0)"
-              value = datetime_format
-            if attribute_type == "duration":
-              matches = re.findall(iso8601_duration_re,value,re.MULTILINE)
-              (sign,years,months,days,hours,minutes,seconds) = matches[0]
-              if sign == "-":
-                sign_value = "-1"
-              else:
-                sign_value = "1"
-              if years == "":
-                years = "0Y"
-              if months == "":
-                months = "0M"
-              if days == "":
-                days = "0D"
-              if hours == "":
-                hours = "0H"
-              if minutes == "":
-                minutes = "0M"
-              if seconds == "":
-                seconds = "0S"
-              duration_format = f"duration({sign_value},{int(years[:-1])},{int(months[:-1])},{int(days[:-1])},{int(hours[:-1])},{int(minutes[:-1])},{int(seconds[:-1])})"
-              value = duration_format
-            output += attribute_name + "(" + object_name + "," + str(value) + ").\n"
-  return output
+#     # For each member
+#     if 'members' in category_contents and len(category_contents['members']):
+#       for (object_name,object_attributes) in category_contents['members'].items():
+#         # Create the Member
+#         output += category_name + "(" + object_name + ").\n"
+#         # For each property
+#         for (attribute_name, attribute_values) in object_attributes.items():
+#           # Make the partially-ground property abducible?
+#           # Depends on this value, AND the value for the attribute generally...
+#           if not exclude_assumptions:
+#             if 'values_known' in attribute_values:
+#               if attribute_values['values_known'] == False:
+#                 output += "#abducible " + attribute_name + "(" + object_name + ",X).\n"
+#           # For each value
+#           for value in attribute_values['values']:
+#             # Add the attribute value
+#             # Here, we need to check the attribute type,
+#             attribute_type = ""
+#             for att in ontology['Attributes']:
+#               if category_name == att['Category'] and attribute_name == att['Attribute']:
+#                 attribute_type = att['Type']
+#                 break
+#             # and if the attribute type is date, or
+#             # duration, adjust the value accordingly.
+#             iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
+#             time_re = r"^(\d{2}):(\d{2})$"
+#             iso8601_datetime_re = r"^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$"
+#             iso8601_duration_re = r"^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$"
+#             if attribute_type == "date":
+#               matches = re.findall(iso8601_date_re,value,re.MULTILINE)
+#               (year,month,day) = matches[0]
+#               date_format = f"date({int(year)},{int(month)},{int(day)})"
+#               value = date_format
+#             if attribute_type == "time":
+#               matches = re.findall(time_re,value,re.MULTILINE)
+#               (hour,minute) = matches[0]
+#               time_format = f"time({int(hour)},{int(minute)},0)"
+#               value = time_format
+#             if attribute_type == "datetime":
+#               matches = re.findall(iso8601_datetime_re,value,re.MULTILINE)
+#               (year,month,day,hour,minute) = matches[0]
+#               datetime_format = f"datetime({int(year)},{int(month)},{int(day)},{int(hour)},{int(minute)},0)"
+#               value = datetime_format
+#             if attribute_type == "duration":
+#               matches = re.findall(iso8601_duration_re,value,re.MULTILINE)
+#               (sign,years,months,days,hours,minutes,seconds) = matches[0]
+#               if sign == "-":
+#                 sign_value = "-1"
+#               else:
+#                 sign_value = "1"
+#               if years == "":
+#                 years = "0Y"
+#               if months == "":
+#                 months = "0M"
+#               if days == "":
+#                 days = "0D"
+#               if hours == "":
+#                 hours = "0H"
+#               if minutes == "":
+#                 minutes = "0M"
+#               if seconds == "":
+#                 seconds = "0S"
+#               duration_format = f"duration({sign_value},{int(years[:-1])},{int(months[:-1])},{int(days[:-1])},{int(hours[:-1])},{int(minutes[:-1])},{int(seconds[:-1])})"
+#               value = duration_format
+#             output += attribute_name + "(" + object_name + "," + str(value) + ").\n"
+
+#   return output
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
@@ -708,31 +700,38 @@ blawxrun(Query, Human) :-
                       # I need to check and see if the thing is a date, and if it is, convert it to JSON format.
                       if type(value) == dict and 'functor' in value:
                         if value['functor'] == 'date':
-                          value = f"{str(value['args'][0]):0>4}" + '-' + f"{str(value['args'][1]):0>2}" + '-' + f"{str(value['args'][2]):0>2}"
+                          date = datetime.fromtimestamp(value['args'][0])
+                          value = date.date().isoformat(timespec='minutes')
                         elif value['functor'] == 'time':
-                          value = f"{str(value['args'][0]):0>2}" + ':' + f"{str(value['args'][1]):0>2}"
+                          time = time(value['args'][0],value['args'][1])
+                          value = time.isoformat(timespec='minutes')
                         elif value['functor'] == 'datetime':
-                          value = f"{str(value['args'][0]):0>4}" + '-' + f"{str(value['args'][1]):0>2}" + '-' + f"{str(value['args'][2]):0>2}" + "T" + f"{str(value['args'][3]):0>2}" + ':' + f"{str(value['args'][4]):0>2}"
+                          date = datetime.fromtimestamp(value['args'][0])
+                          value = date.isoformat(timespec='minutes')
                         elif value['functor'] == 'duration':
-                          if value['args'][0] == -1:
+                          timestamp = value['args'][0]
+                          if timestamp < 0:
                             new_value = "-P"
+                            timestamp = timestamp * -1
                           else:
                             new_value = "P"
                             skip_value_variable_check = True #It starts with a capital P, but it is not a variable.
-                          if value['args'][1] != 0:
-                            new_value += str(value['args'][1]) + "Y"
-                          if value['args'][2] != 0:
-                            new_value += str(value['args'][2]) + "M"
-                          if value['args'][3] != 0 or (value['args'][1] == 0 and value['args'][2] == 0):
-                            new_value += str(value['args'][3]) + "D"
-                          if value['args'][4] != 0 or value['args'][5] != 0 or value['args'][6] != 0:
+                          days = timestamp // 86400
+                          timestamp_less_days = timestamp - days*86400
+                          if days:
+                            new_value += str(days) + "D"
+                          if timestamp_less_days:
                             new_value += "T"
-                          if value['args'][4] != 0:
-                            new_value += str(value['args'][4]) + "H"
-                          if value['args'][5] != 0:
-                            new_value += str(value['args'][5]) + "M"
-                          if value['args'][6] != 0:
-                            new_value += str(value['args'][6]) + "S"
+                            hours = timestamp_less_days // 3600
+                            timestamp_less_hours = timestamp_less_days - hours*3600
+                            if hours:
+                              new_value += str(hours) + "H"
+                            minutes = timestamp_less_hours // 60
+                            seconds = timestamp_less_hours - minutes*60
+                            if minutes:
+                              new_value += str(minutes) + "M"
+                            if seconds:
+                              new_value += str(seconds) + "S"
                           value = new_value
                       # matches = re.findall(r"^date\((\d{4}),(\d{2}),(\d{2})\)$", str(value), re.MULTILINE)
                       # if len(matches):
