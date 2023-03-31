@@ -33,8 +33,3 @@ to get the workspace generator to display the blocks correctly. Also, the worksp
 generator is not used to generate Blawx's workspace, or toolbox, because the workspace
 is always blank to start, and the toolbox includes nested and customized drawers, neither
 of which can be built inside BDT.
-
-## LDAP.pl
-
-LDAP.pl is a more complicated version of the defeasibility library that is provided for
-reference when we eventually upgrade ldap.py.
