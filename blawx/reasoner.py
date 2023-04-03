@@ -1166,7 +1166,7 @@ def generate_answers(answers):
           duplicate = False
           for m in a['Models']:
             if 'args' in m['Raw']:
-              if json.dumps(m['Raw']['args'][1][0]) == json.dumps(new_model['Raw']['args'][1][0]):
+              if json.dumps(m['Raw']['args'][1][0]) == json.dumps(new_model['Raw']['args'][1][0] and json.dumps(m['Residuals']) == json.dumps(new_model['Residuals'])):
                 duplicate = True
                 break
           if not duplicate:

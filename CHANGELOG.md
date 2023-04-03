@@ -35,6 +35,14 @@ you can now indicate when it was true, and when it ceased to be true.
 ### To Do
 * Bugs:
   * We are getting multiple explanations for some reason in the life act example
+  * We need to make constraints capable of displaying the various data types, or pull the constraint information into the main explanation.
+    * The residuals by themselves don't contain the information required to know what datatype it is. Also, the same variable can be used
+      in multiple contexts e.g. date(A) and datetime(A) inside the terms, often negated, so we can't use the residuals plus the terms. Only
+      the explanations have the context that explains how something should be displayed to the user, so we need to make it happen inside the
+      explanations, not elsewhere.
+    * If that's the case, when we need to generate a data value, we need to check if it is a variable, and if it is a variable generate the
+      constraints for that variable in the same way that we would if it was a value.
+  * If you ask it to find dates between 3 and 10 days into the future, the answers include "end of time".
 * Extensive testing required
 * Add examples for new datetime constraints
 * Update examples
