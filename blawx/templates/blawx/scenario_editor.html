@@ -1289,6 +1289,7 @@
                             //for (var attribute in models[j]['Residuals']) {
                             //    attributes_output.push(describe_constraint(models[j]['Residuals'][attribute]));
                             //}
+                            var constraints_output = describe_constraints_new(models[j].Residuals,models[j].Terms);
                             
                                 
                             //output_content += convertModelToTree(models[j].Tree, count, model_count);
@@ -1307,18 +1308,22 @@
                             }
                             // We could de-duplicate the lists, but I feel like at this point it would not help much.
                             // var constraint_output = "";
-                            //if (attributes_output.length) {
-                            //    for (var ao=0; ao < attributes_output.length; ao++) {
-                            //        var variables_in_constraint = get_variables(attributes_output[ao]);
-                            //        var any_matches = referenced_variables.filter(x => variables_in_constraint.includes(x));
-                            //        if (any_matches.length) {
-                            //            constraint_output += attributes_output[ao];
-                            //        }
-                            //    }
+                            var displayed_constraint_output = [];
+                            if (constraints_output.length) {
+                                for (var ao=0; ao < constraints_output.length; ao++) {
+                                    var variables_in_constraint = get_variables(constraints_output[ao]);
+                                    var any_matches = referenced_variables.filter(x => variables_in_constraint.includes(x));
+                                    if (any_matches.length) {
+                                        displayed_constraint_output.push(constraints_output[ao]);
+                                    }
+                                }
+                            }
                             //    if (constraint_output != "") {
-                            if (models[j].Residuals.length) {
+                            if (displayed_constraint_output.length) {
                                 output_content += "Where:<ul>";
-                                output_content += describe_constraints_new(models[j].Residuals,models[j].Terms);
+                                for (var dc=0; dc < displayed_constraint_output.length; dc++) {
+                                    output_content += "<li>" + displayed_constraint_output[dc] + "</li>";
+                                }
                                 //output_content += constraint_output;
                                 output_content += "</ul>"
                             }
@@ -1596,39 +1601,47 @@
             // Go through the constraints, and find the one that is for "{}"
             // Then, if there is an "and", go through each and add it to a list.
             for (var r=0; r < all_constraints.length; r++) {
-                if (all_constraints[r]['functor'] != "{}") {
+                if (all_constraints[r]['functor'] != "{}" && all_constraints[r]['functor'] != "∉") {
                     continue;
-                } else {
+                } else if (all_constraints[r]['functor'] == "{}") {
                     constraint_list = constraint_list.concat(remove_conjunctions(all_constraints[r]['args'][0]));
+                } else if (all_constraints[r]['functor'] == "∉") {
+                    constraint_list.push(all_constraints[r]);
                 }
             }
             return constraint_list;
         }
         const type_predicates = ['date','time','datetime','duration'];
-        function get_all_variable_usages(constraints,type_uses) {
+        function get_all_variable_and_value_usages(constraints,type_uses) {
             for (var c=0; c < constraints.length; c++) {
                 if (type_predicates.includes(constraints[c]['functor'])) {
-                    if (isNaN(constraints[c]['args'][0])) {
-                        if (constraints[c]['args'][0][0] === constraints[c]['args'][0][0].toUpperCase()) {
-                            if (!(constraints[c]['args'][0] in type_uses)) {
-                                type_uses[constraints[c]['args'][0]] = [];    
-                            }
-                            if (!type_uses[constraints[c]['args'][0]].includes(constraints[c]['functor'])) {
-                                type_uses[constraints[c]['args'][0]].push(constraints[c]['functor']);
-                            }
-                        }
-                    } 
+                    if (!(constraints[c]['args'][0] in type_uses)) {
+                        type_uses[constraints[c]['args'][0]] = [];
+                    }
+                    if (!type_uses[constraints[c]['args'][0]].includes(constraints[c]['functor'])) {
+                        type_uses[constraints[c]['args'][0]].push(constraints[c]['functor']);
+                    }
+                    //if (isNaN(constraints[c]['args'][0])) {
+                    //    if (constraints[c]['args'][0][0] === constraints[c]['args'][0][0].toUpperCase()) {
+                    //        if (!(constraints[c]['args'][0] in type_uses)) {
+                    //            type_uses[constraints[c]['args'][0]] = [];    
+                    //        }
+                    //        if (!type_uses[constraints[c]['args'][0]].includes(constraints[c]['functor'])) {
+                    //            type_uses[constraints[c]['args'][0]].push(constraints[c]['functor']);
+                    //        }
+                    //    }
+                    //} 
                 }
                 for (var a=0; a < constraints[c]['args'].length; a++) {
                     if (constraints[c]['args'][a].constructor == Object && 'functor' in constraints[c]['args'][a]) {
-                        type_uses = get_all_variable_usages([constraints[c]['args'][a]],type_uses)
+                        type_uses = get_all_variable_and_value_usages([constraints[c]['args'][a]],type_uses)
                     }
                 }
             }
             return type_uses;
         }
-        function get_variable_types(terms) {
-            var type_uses = get_all_variable_usages(terms,{});
+        function get_variable_and_value_types(terms) {
+            var type_uses = get_all_variable_and_value_usages(terms,{});
             var confirmed = {};
             for ([variable,types] of Object.entries(type_uses)) {
                 if (types.length ==1) {
@@ -1641,11 +1654,11 @@
             // Reduce the nested structure of contraints to a list
             var constraints_list = reduce_constraints_to_list(constraints);
             // Get the data types for variables in the terms
-            var variable_types = get_variable_types(terms);
+            var variable_types = get_variable_and_value_types(terms);
             // Go through each constraint, and generate text for it.
-            var output = "";
+            var output = [];
             for (var c = 0; c < constraints_list.length; c++) {
-                output += "<li>" + generate_text_for_constraint(constraints_list[c],variable_types) + "</li>";
+                output.push(generate_text_for_constraint(constraints_list[c],variable_types));
             }
             // Return the text generated
             return output;
@@ -1668,46 +1681,29 @@
             //    }
             //}
             // If the first argument has a type, and the second argument is a list of values, convert the values to that type.
+
+            // If the value or variable has a known type, assign it.
+            for (var a=0; a < args.length; a++) {
+                if (args[a] in variable_types) {
+                    args[a] = {"functor": variable_types[args[a]], "args": [args[a]]};
+                }
+            }
             switch (functor) {
                 case "<":
-                    // If the first argument is a variable with a type, give that type to both.
-                    if (isVariable(args[0])) {
-                        args[1] = {"functor": variable_types[args[0]], "args": [args[1]]};
-                        args[0] = {"functor": variable_types[args[0]], "args": [args[0]]};
-                    }
                     output += displayValue(args[0]) + " is less than " + displayValue(args[1]);
                     break;
                 case ">":
-                    // If the first argument is a variable with a type, give that type to both.
-                    if (isVariable(args[0])) {
-                        args[1] = {"functor": variable_types[args[0]], "args": [args[1]]};
-                        args[0] = {"functor": variable_types[args[0]], "args": [args[0]]};
-                    }
                     output += displayValue(args[0]) + " is greater than " + displayValue(args[1]);
                     break;
                 case "=<":
-                    // If the first argument is a variable with a type, give that type to both.
-                    if (isVariable(args[0])) {
-                        args[1] = {"functor": variable_types[args[0]], "args": [args[1]]};
-                        args[0] = {"functor": variable_types[args[0]], "args": [args[0]]};
-                    }
                     output += displayValue(args[0]) + " is less than or equal to " + displayValue(args[1]);
                     break;
                 case ">=":
-                    // If the first argument is a variable with a type, give that type to both.
-                    if (isVariable(args[0])) {
-                        args[1] = {"functor": variable_types[args[0]], "args": [args[1]]};
-                        args[0] = {"functor": variable_types[args[0]], "args": [args[0]]};
-                    }
                     output += displayValue(args[0]) + " is greater than or equal to " + displayValue(args[1]);
                     break;
                 case "∉":
-                    // If the first argument is a variable with a type, give that type to all of the members of the second argument
-                    if (isVariable(args[0])) {
-                        for (var l = 0; l < args[1].length; l++) {
-                            args[1][l] == {"functor": variable_types[args[0]], "args": args[1][l]};
-                        }
-                        args[0] = {"functor": variable_types[args[0]], "args": [args[0]]};
+                    for (var l = 0; l < args[1].length; l++) {
+                        args[1][l] == {"functor": variable_types[args[0]], "args": args[1][l]};
                     }
                     output += displayValue(args[0]) + " is not "
                     if (args[1].length > 1) {
@@ -1715,58 +1711,26 @@
                     }
                     for (var a=0; a < args[1].length; a++) {
                         output += displayValue(args[1][a]);
-                        if (a == args[1].length-1) {
+                        if (args[1].length > 1 && a == args[1].length-2) {
                             output += ", or ";
-                        } else if (a < args[1].length-1) {
+                        } else if (a < args[1].length-2) {
                             output += ", ";
                         }
                     }
                     break;
                 case "=":
-                    // If the first argument is a variable with a type, give that type to the first one.
-                    if (isVariable(args[0])) {
-                        args[0] = {"functor": variable_types[args[0]], "args": [args[0]]};
-                    }
                     output += displayValue(args[0]) + " is equal to " + generate_text_for_constraint(args[1],variable_types);
                     break;
                 case "+":
-                    // If either argument is a variable, give it its own type.
-                    if (isVariable(args[0])) {
-                        args[0] = {"functor": variable_types[args[0]], "args": [args[0]]};
-                    }
-                    if (isVariable(args[1])) {
-                        args[1] = {"functor": variable_types[args[1]], "args": [args[1]]};
-                    }
                     output += displayValue(args[0]) + " plus " + displayValue(args[1]);
                     break;
                 case "-":
-                    // If either argument is a variable, give it its own type.
-                    if (isVariable(args[0])) {
-                        args[0] = {"functor": variable_types[args[0]], "args": [args[0]]};
-                    }
-                    if (isVariable(args[1])) {
-                        args[1] = {"functor": variable_types[args[1]], "args": [args[1]]};
-                    }
                     output += displayValue(args[0]) + " minus " + displayValue(args[1]);
                     break;
                 case "*":
-                    // If either argument is a variable, give it its own type.
-                    if (isVariable(args[0])) {
-                        args[0] = {"functor": variable_types[args[0]], "args": [args[0]]};
-                    }
-                    if (isVariable(args[1])) {
-                        args[1] = {"functor": variable_types[args[1]], "args": [args[1]]};
-                    }
                     output += displayValue(args[0]) + " times " + displayValue(args[1]);
                     break;
                 case "/":
-                    // If either argument is a variable, give it its own type.
-                    if (isVariable(args[0])) {
-                        args[0] = {"functor": variable_types[args[0]], "args": [args[0]]};
-                    }
-                    if (isVariable(args[1])) {
-                        args[1] = {"functor": variable_types[args[1]], "args": [args[1]]};
-                    }
                     output += displayValue(args[0]) + " divided by " + displayValue(args[1]);
                     break;
                 default:

@@ -39,10 +39,8 @@ you can now indicate when it was true, and when it ceased to be true.
 
 ### To Do
 * Bugs:
-  * We need to make constraints capable of displaying the various data types, or pull the constraint information into the main explanation.
-    * I have it working inside the constraints for variables, now I need to apply the same technique to values.
-    * I need to re-implement code for ensuring that extraneous constraints are not displayed.
   * We are getting multiple explanations for some reason in the life act example
+    * This seems to have something to do with the dates getting duplicated as an integer and as a decimal
   * If you ask it to find dates between 3 and 10 days into the future, the answers include "end of time".
 * Extensive testing required
   * Check how all the constraints appear, with values and variables.

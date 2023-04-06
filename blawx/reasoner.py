@@ -701,7 +701,7 @@ blawxrun(Query, Human) :-
                       if type(value) == dict and 'functor' in value:
                         if value['functor'] == 'date':
                           date = datetime.fromtimestamp(value['args'][0])
-                          value = date.date().isoformat(timespec='minutes')
+                          value = date.date().isoformat()
                         elif value['functor'] == 'time':
                           time = time(value['args'][0],value['args'][1])
                           value = time.isoformat(timespec='minutes')
