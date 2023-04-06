@@ -23,6 +23,7 @@ you can now indicate when it was true, and when it ceased to be true.
 * Duration value blocks no longer have Year and Month fields.
 * The date add block can now be used for addition or subtraction by leaving one of the three fields unbound.
 * Date and duration comparisons and calculations are now implemented as numerical constraints.
+* When date constraints are displayed in the scenario editor, Blawx tries to determine the data type and formats the constraint appropriately
 * Associated documentation
 
 ### Removed
@@ -32,18 +33,20 @@ you can now indicate when it was true, and when it ceased to be true.
 
 ### Fixed
 
+### Known Issues
+* If the same value or variable is used in the code as multiple different data types, for example as both a date and a datetime,
+  Blawx may have some difficulty determining the type and displaying it properly inside constraints.
+
 ### To Do
 * Bugs:
-  * We are getting multiple explanations for some reason in the life act example
   * We need to make constraints capable of displaying the various data types, or pull the constraint information into the main explanation.
-    * The residuals by themselves don't contain the information required to know what datatype it is. Also, the same variable can be used
-      in multiple contexts e.g. date(A) and datetime(A) inside the terms, often negated, so we can't use the residuals plus the terms. Only
-      the explanations have the context that explains how something should be displayed to the user, so we need to make it happen inside the
-      explanations, not elsewhere.
-    * If that's the case, when we need to generate a data value, we need to check if it is a variable, and if it is a variable generate the
-      constraints for that variable in the same way that we would if it was a value.
+    * I have it working inside the constraints for variables, now I need to apply the same technique to values.
+    * I need to re-implement code for ensuring that extraneous constraints are not displayed.
+  * We are getting multiple explanations for some reason in the life act example
   * If you ask it to find dates between 3 and 10 days into the future, the answers include "end of time".
 * Extensive testing required
+  * Check how all the constraints appear, with values and variables.
+  * Deep testing of how the date add and date_compare functions work, particularly with respect to "bot" and "eot".
 * Add examples for new datetime constraints
 * Update examples
 * Update documentation for date blocks
