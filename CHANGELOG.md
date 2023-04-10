@@ -43,10 +43,6 @@ you can now indicate when it was true, and when it ceased to be true.
 ### To Do
 * Need to duplicate the new numerical constraint features inside the test editor.
 * Bugs:
-  * Running the Net30 example causes a server crash on an attempt to recognize the content of a date.
-  * We are getting multiple explanations for some reason in the life act example
-    * This seems to have something to do with the dates getting duplicated as an integer and as a decimal
-  * Running the Net30 example in scenario editor causes raw ISO format to show up for the datetime in the facts.
   * Running good_test in Covid example returns [Object object] messages in the constraints.
   * In Covid test, if you generate a scenario that passes can_fly, some things are reported as provided as facts when they are actually calculated.
   * For later, non-terminating decimals look super-ugly in the scenario editor.
@@ -60,6 +56,8 @@ you can now indicate when it was true, and when it ceased to be true.
 * Update examples
 * Update documentation for date blocks
 * Update documentation for dates generally
+* Need to add a block for deriving the date from a datetime?
+* Need a way to convert a time from positive to negative, maybe?
 
 ## [v1.5.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.3-alpha) 2023-03-16
 
