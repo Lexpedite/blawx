@@ -5,8 +5,8 @@
     content: |
       # Numbers and Math
 
-      To deal with numbers and math in Blawx code, you need to use the number datatype,
-      number values, calculations, and mathematical operations.
+      To deal with numbers and math in Blawx code, you need to use
+      number values, numerical constraints, and mathematical operations.
 
       ## Number Datatype
 
@@ -21,36 +21,37 @@
 
       ## Calculations
 
-      To perform calculations on numbers in Blawx you need to use a calculation block, and then
-      put math operator blocks inside the right side of the calculation block.
+      To perform calculations on numbers in Blawx you use a numerical constraint block with
+      the "equals" operator ("="), and then
+      put math operator blocks inside the right side of the numerical constraint block.
 
-      The calculation block looks like this:
+      The numerical constraint block with the equals operator selected looks like this:
       
-      ![Calculation Block](/static/blawx/docs/images/blocks/calculation.png)
+      ![Numerical Constraint Equals Block](/static/blawx/docs/images/blocks/calculation.png)
 
       The math operator block looks like this:
 
       ![Math Operator Block](/static/blawx/docs/images/blocks/math_operator.png)
 
-      The calculation block requires you to give it the name of a variable that should hold the value
-      that is obtained from the calculation.
-
-      If you had a rule that calculated the net amount of an invoice using a calculation block,
+      If you had a rule that calculated the net amount of an invoice using a numerical constraint block,
       you would draft that rule like this:
 
       ![Invoice Total Calculation](/static/blawx/docs/images/invoice_total.png)
 
-      Here, we have used the calculation block to set the variable Total to the result of
+      Here, we have used the numerical constraint block to constrain the variable Total to the result of
       applying the multiplication operator to the values of "amount" and "discount".
 
       If you are familiar with other kinds of programming, this might seem unfamiliar.
-      In Blawx, the conditions of the rule are things that must be true for the conclusion to hold.
-      A mathematical equation always holds. It is always true. If it is always true, it cannot be
-      a conclusion, because conclusions are only conditionally true. So we put the calculation in
-      the conditions, as a condition that will always be true, (so it will never have the effect of
-      including or excluding possible answers) but which gives us one additional variable
-      that can be used elsewhere in the rule, and that is bound to the result of the calculation.
-
+      In most programming languages, mathemtical operations are implemented imperatively, so the phrase
+      "total = amount X discount" would be interpreted by the computer to mean "take the amount, and multiply it
+      by the discount, and save the result in a variable called total".
+      In Blawx, mathematical operations are implemented as logical constraints on variables. So the phrase
+      "total = amount X discount" included in the conditions of a rule means "only return answers where the
+      formula total = amount X discount" holds. And the values that can be returned for any of the variables in
+      that statement can be numbers, or they can be constrained variables. For example, if the total is known
+      to be between 8 and 9, and the amount is known to be 10, then Blawx can answer that the discount is between
+      0.1 and 0.2.
+      
       A fact scenario and question based on the above rule might look like this:
 
       ![Math Test](/static/blawx/docs/images/math_test.png)
@@ -75,6 +76,6 @@
 
       ## Comparisons
 
-      You can compare two numerical values to one another using either logical comparison,
-      or using numerical constraints, both of which are described elsewhere in the documentation.
+      Note that the numerical constraint block is also used to impose disequality constraints, and comparisons,
+      which are described in the numerical constraints section of the documentation.
 
