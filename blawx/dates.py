@@ -28,11 +28,11 @@ scasp_dates = """
 
 date_add(date(X),duration(Y),datetime(Z)) :- X \= bot, Z \= eot, Z #= X + Y.
 date_add(datetime(X),duration(Y),datetime(Z)) :- X \= bot, Z \= eot, Z #= X + Y.
-date_add(time(X),date(Y),datetime(Z)) :- Z \= bot, Z \= eot, Z #= X + Y.
--date_add(_,_,datetime(eot)).
--date_add(_,_,date(eot)).
--date_add(date(bot),_,_).
--date_add(datetime(bot),_,_).
+date_add(date(X),time(Y),datetime(Z)) :- Z \= bot, Z \= eot, Z #= X + Y.
+%-date_add(_,_,datetime(eot)).
+%-date_add(_,_,date(eot)).
+%-date_add(date(bot),_,_).
+%-date_add(datetime(bot),_,_).
 
 date_compare(time(X),eq,time(X)).
 date_compare(time(X),lt,time(Y)) :- X #< Y.

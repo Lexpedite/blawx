@@ -469,7 +469,7 @@
                         break;
                     case 'time':
                         var timestamp = term.args[0];
-                        if (isNAN(timestamp)) {
+                        if (isNaN(timestamp)) {
                             output = "a time " + timestamp;
                         } else {
                             var hours = Math.floor(timestamp/3600);
