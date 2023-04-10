@@ -1651,20 +1651,28 @@ scasp_blockset = [{
       "name": "operator",
       "options": [
         [
-          "must be less than",
+          "<",
           "lt"
         ],
         [
-          "must be greater than",
+          ">",
           "gt"
         ],
         [
-          "must be less than or the same value as",
+          "=<",
           "lte"
         ],
         [
-          "must be greater than or the same value as",
+          ">=",
           "gte"
+        ],
+        [
+          "=",
+          "eq"
+        ],
+        [
+          "\\=",
+          "ne"
         ]
       ]
     },

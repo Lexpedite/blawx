@@ -3975,16 +3975,20 @@
             <field name="ALIGN">LEFT</field>
             <statement name="FIELDS">
               <block type="field_dropdown" id="fagLNQ-F6FJ{^Z5-@~_+">
-                <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
                 <field name="FIELDNAME">operator</field>
-                <field name="USER0">must be less than</field>
+                <field name="USER0">&lt;</field>
                 <field name="CPU0">lt</field>
-                <field name="USER1">must be greater than</field>
+                <field name="USER1">&gt;</field>
                 <field name="CPU1">gt</field>
-                <field name="USER2">must be less than or the same value as</field>
+                <field name="USER2">=&lt;</field>
                 <field name="CPU2">lte</field>
-                <field name="USER3">must be greater than or the same value as</field>
+                <field name="USER3">&gt;=</field>
                 <field name="CPU3">gte</field>
+                <field name="USER4">=</field>
+                <field name="CPU4">eq</field>
+                <field name="USER5">\=</field>
+                <field name="CPU5">ne</field>
                 <next>
                   <block type="field_image" id="1qHPo5{!cumg;Cbm24B[">
                     <field name="SRC">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=</field>
