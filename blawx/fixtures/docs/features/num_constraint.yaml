@@ -5,14 +5,14 @@
     content: |
       # Numerical Constraints
 
-            In Blawx, the value of a number in an answer can be a specific value, or it can be
+      In Blawx, the value of a number in an answer can be a specific value, or it can be
       a range of values. These ranges of values can be logically combined to generate
       new ranges of values. The method used for doing this is called numerical constraints.
 
       ## The Numerical Constraint Block
 
       The numerical constraint block allows you to impose, as a requirement,
-      that a variable is constrainted to be greater than, greater than or equal to, less than,
+      that a variable is constrained to be greater than, greater than or equal to, less than,
       or less than or equal to, equal to, or not equal to another numerical value.
 
       This block works on integers and real numbers.
