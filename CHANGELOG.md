@@ -25,27 +25,38 @@ you can now indicate when it was true, and when it ceased to be true.
 * Date and duration comparisons and calculations are now implemented as numerical constraints.
 * When date constraints are displayed in the scenario editor, Blawx tries to determine the data type and formats the constraint appropriately
 * Associated documentation
+* The numerical constraint block was reformatted, and has equality and disequality operators added to it
 
 ### Removed
 * Date Add Days, Date Diff, and Date Diff Days blocks, which were redundant.
 * Date, Duration, and Time Constructor blocks
 * Associated documentation
+* The calculation block is removed from the Numbers drawer
 
 ### Fixed
+* Remove the calculation block
 
 ### Known Issues
 * If the same value or variable is used in the code as multiple different data types, for example as both a date and a datetime,
   Blawx may have some difficulty determining the type and displaying it properly inside constraints.
 
 ### To Do
+* Need to duplicate the new numerical constraint features inside the test editor.
 * Bugs:
+  * Running the Net30 example causes a server crash on an attempt to recognize the content of a date.
   * We are getting multiple explanations for some reason in the life act example
     * This seems to have something to do with the dates getting duplicated as an integer and as a decimal
-  * If you ask it to find dates between 3 and 10 days into the future, the answers include "end of time".
+  * Running the Net30 example in scenario editor causes raw ISO format to show up for the datetime in the facts.
+  * Running good_test in Covid example returns [Object object] messages in the constraints.
+  * In Covid test, if you generate a scenario that passes can_fly, some things are reported as provided as facts when they are actually calculated.
+  * For later, non-terminating decimals look super-ugly in the scenario editor.
+  * In numerical constraints, "hypothesized ... provided as a fact"
 * Extensive testing required
   * Check how all the constraints appear, with values and variables.
   * Deep testing of how the date add and date_compare functions work, particularly with respect to "bot" and "eot".
 * Add examples for new datetime constraints
+* Update examples to work with the new numerical constraint instead of the math calculation block.
+* Update the math documentation page to use the numerical constraint block for calculations.
 * Update examples
 * Update documentation for date blocks
 * Update documentation for dates generally
