@@ -52,11 +52,9 @@ Upgrading code for v1.5.4-alpha to v1.6.0-alpha will require:
   * Check how all the constraints appear, with values and variables.
   * Deep testing of how the date add and date_compare functions work, particularly with respect to "bot" and "eot".
 * Add examples for new datetime constraints
-* Update examples to work with the new numerical constraint instead of the math calculation block.
-* Update the math documentation page to use the numerical constraint block for calculations.
 * Update examples
-* Update documentation for date blocks
-* Update documentation for dates generally
+  * New dates stuff
+  * New calculation stuff
 * Future Features:
   * If the same value or variable is used in the code as multiple different data types, for example as both a date and a datetime,
     Blawx may have some difficulty determining the type and displaying it properly inside constraints.
