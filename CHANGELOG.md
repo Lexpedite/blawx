@@ -7,10 +7,20 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## [v1.5.4-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.4-alpha) 2023-03-30
+## [v1.6.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.0-alpha) 2023-04-15
+
+**This release is NOT backward compatible.**
 
 This release adds event reasoning features to the Blawx language. In addition to saying what is true,
 you can now indicate when it was true, and when it ceased to be true.
+
+### Upgrade Notes
+Upgrading code for v1.5.4-alpha to v1.6.0-alpha will require:
+* Replacing all existing duration blocks, converting years and months into days as required.
+* Re-saving workspaces using any of the modified blocks (e.g. date, time, datetime value, date add, duration and date comparison blocks)
+* Replacing date add days, date diff, and date diff days blocks with the new date add block
+* Eliminating the use of date, time, datetime, and duration constructors
+* Replacing math calculation blocks with numerical constraints set to "equal"
 
 ### Added
 * Event Drawer
@@ -34,19 +44,10 @@ you can now indicate when it was true, and when it ceased to be true.
 * The calculation block is removed from the Numbers drawer
 
 ### Fixed
-* Remove the calculation block
 
-### Known Issues
-* If the same value or variable is used in the code as multiple different data types, for example as both a date and a datetime,
-  Blawx may have some difficulty determining the type and displaying it properly inside constraints.
 
 ### To Do
-* Need to duplicate the new numerical constraint features inside the test editor.
-* Bugs:
-  * Running good_test in Covid example returns [Object object] messages in the constraints.
-  * In Covid test, if you generate a scenario that passes can_fly, some things are reported as provided as facts when they are actually calculated.
-  * For later, non-terminating decimals look super-ugly in the scenario editor.
-  * In numerical constraints, "hypothesized ... provided as a fact"
+* Need to duplicate the new numerical constraint display features inside the test editor.
 * Extensive testing required
   * Check how all the constraints appear, with values and variables.
   * Deep testing of how the date add and date_compare functions work, particularly with respect to "bot" and "eot".
@@ -56,8 +57,15 @@ you can now indicate when it was true, and when it ceased to be true.
 * Update examples
 * Update documentation for date blocks
 * Update documentation for dates generally
-* Need to add a block for deriving the date from a datetime?
-* Need a way to convert a time from positive to negative, maybe?
+* Future Features:
+  * If the same value or variable is used in the code as multiple different data types, for example as both a date and a datetime,
+    Blawx may have some difficulty determining the type and displaying it properly inside constraints.
+  * Need to add a block for deriving the date from a datetime?
+  * Need a way to convert a time from positive to negative, maybe?
+* Minor Display Issues:
+  * In Covid test, if you generate a scenario that passes can_fly, some things are reported as provided as facts when they are actually calculated.
+  * For later, non-terminating decimals look super-ugly in the scenario editor.
+  * In numerical constraints, "hypothesized ... provided as a fact"
 
 ## [v1.5.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.3-alpha) 2023-03-16
 

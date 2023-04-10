@@ -9,13 +9,16 @@
 
       ## Where Is It?
 
-      The Date Add block is located in the data statments drawer of the Blawx toolbox,
-      in the Date sub-drawer.
+      The Date Add block is located in the dates drawer of the Blawx toolbox.
 
       ## What Does It Do?
 
-      The Date Add block is used to calculate a new date value by adding a duration to
-      an existing date value.
+      The Date Add block is used to require that a relationship hold between two dates and the duration between them.
+
+      It accepts a starting date, a duration, and a datetime that corresponds to adding that duration to the starting date.
+
+      If you provide two of these values, it will derive the third, which means that it can be used to add durations to dates,
+      or used to subtract dates from one another to get durations.
 
       ## Technical Details
 
@@ -23,13 +26,12 @@
 
       It accepts three inputs: a duration value, and two date or datetime values.
 
-      If the first variable is bound to a duration, and the second value is bound to a
-      date or datetime, the third variable will be bound to the datetime obtained by adding the duration
-      to the given date or datetime.  If all three are bound, it will check whether the relationship
+      If any two inputs are bound, the third will be derived.  If all three are bound, it will check whether the relationship
       holds.
+
+
+      ## Tips
 
       To subtract a duration from a date or datetime, use a negative sign in the duration.
 
       If you add a duration to a date, Blawx will add the duration to 12:00am on that date.
-
-      ## Tips
