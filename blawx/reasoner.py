@@ -522,7 +522,7 @@ blawxrun(Query, Human, Tree, Model) :-
                     rulestext = rules.read()
                     transcript.write(rulestext + '\n')
                     rules.close()
-                    os.remove(rulefilename)
+                    #os.remove(rulefilename)
 
                 #ec_preprocess_step(swipl_thread)
 
@@ -539,7 +539,7 @@ blawxrun(Query, Human, Tree, Model) :-
                 # transcript = open("transcript",'r')
                 transcript_output = transcript.read()
                 transcript.close()
-                os.remove(transcript_name)
+                #os.remove(transcript_name)
       except PrologError as err:
         return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
       except PrologLaunchError as err:
@@ -612,7 +612,7 @@ blawxrun(Query, Human) :-
                   rulestext = rules.read()
                   transcript.write(rulestext + '\n')
                   rules.close()
-                  os.remove(rulefilename)
+                  #os.remove(rulefilename)
 
               #transcript.write(full_query)
               with redirect_stderr(transcript):
@@ -745,7 +745,7 @@ blawxrun(Query, Human) :-
               # transcript = open("transcript",'r')
               transcript_output = transcript.read()
               transcript.close()
-              os.remove(transcript_name)
+              #os.remove(transcript_name)
     except PrologError as err:
       return { "error": "There was an error while running the code.", "transcript": err.prolog() }
     except PrologLaunchError as err:
@@ -1025,7 +1025,7 @@ blawxrun(Query, Human, Tree, Model) :-
                     rulestext = rules.read()
                     transcript.write(rulestext + '\n')
                     rules.close()
-                    os.remove(rulefilename)
+                    #os.remove(rulefilename)
 
                 
                 #ec_preprocess_step(swipl_thread)
@@ -1042,7 +1042,7 @@ blawxrun(Query, Human, Tree, Model) :-
                 transcript = open(transcript_name,'r')
                 transcript_output = transcript.read()
                 transcript.close()
-                os.remove(transcript_name)
+                #os.remove(transcript_name)
       except PrologError as err:
         return Response({ "error": "There was an error while running the code.", "transcript": err.prolog() })
       except PrologLaunchError as err:
