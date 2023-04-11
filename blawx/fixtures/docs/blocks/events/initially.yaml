@@ -1,0 +1,25 @@
+- model: blawx.docpage
+  pk: blocks/initially
+  fields:
+    title: Initially Block
+    content: |
+      # Initially Block
+
+      ![Initially Block](/static/blawx/docs/images/blocks/initially.png)
+
+      ## Where Is It?
+
+      The Initially block is found in the Events drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The initially block is used to indicate that a statement held as of the start of time.
+      This can be useful for queries using the during block, so that a period can be specified
+      from the beginning of time until the statement changed.
+
+      ## Technical Details
+
+      The initially block accepts a single statement block. It is a statement block and can be
+      stacked with other statements.
+
+      ## Tips

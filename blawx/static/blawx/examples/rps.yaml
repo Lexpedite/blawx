@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 2
+  pk: 1
   fields:
     ruledoc_name: Rock Paper Scissors Act
     rule_text: "Rock Paper Scissors Act\n\nPlayers\n1. A game of rock paper scissors
@@ -8,21 +8,78 @@
       following ways:\n  (a) Rock beats Scissors,\n  (b) Scissors beats Paper, and\n
       \ (c) Paper beats Rock.\n\nWinner\n4. The winner of a game is the player who
       throws\na sign that beats the sign of the other player.\n"
+    akoma_ntoso: <?xml version="1.0" encoding="UTF-8"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><act><preface><p
+      class="title"><shortTitle>Rock Paper Scissors Act</shortTitle></p></preface><body><section
+      eId="sec_1"><num>1</num><heading>Players</heading><content><p>A game of rock
+      paper scissors has two players.</p></content></section><section eId="sec_2"><num>2</num><intro><p>There
+      are three signs:</p></intro><paragraph eId="sec_2__para_a"><num>a</num><content><p>Rock,</p></content></paragraph><paragraph
+      eId="sec_2__para_b"><num>b</num><content><p>Paper, and</p></content></paragraph><paragraph
+      eId="sec_2__para_c"><num>c</num><content><p>Scissors.</p></content></paragraph></section><section
+      eId="sec_3"><num>3</num><heading>Defeating Relationships</heading><intro><p>The
+      signs are related in the following ways:</p></intro><paragraph eId="sec_3__para_a"><num>a</num><content><p>Rock
+      beats Scissors,</p></content></paragraph><paragraph eId="sec_3__para_b"><num>b</num><content><p>Scissors
+      beats Paper, and</p></content></paragraph><paragraph eId="sec_3__para_c"><num>c</num><content><p>Paper
+      beats Rock.</p></content></paragraph></section><section eId="sec_4"><num>4</num><heading>Winner</heading><content><p>The
+      winner of a game is the player who throws a sign that beats the sign of the
+      other player.</p></content></section></body></act></akomaNtoso>
+    navtree: '<nav class="column">
+
+      <div class="lawpart act"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="root_section" checked><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#root"></i>Rock
+      Paper Scissors Act</div></div></div><div class="subparts collapse" id="root"><div
+      class="lawpart section"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_1_section"><div class="lawtext"><num>1</num>Players
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>A game
+      of rock paper scissors has two players.</p></content></div></div></div><div
+      class="lawpart section"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_2_section"><div class="lawtext"><i class="bi
+      bi-caret-right" data-bs-toggle="collapse" data-bs-target="#sec_2"></i><num>2</num><intro
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>There are three
+      signs:</p></intro></div></div></div><div class="subparts collapse" id="sec_2"><div
+      class="lawpart paragraph"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_2__para_a_section"><div class="lawtext"><num>a</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Rock,</p></content></div></div></div><div
+      class="lawpart paragraph"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_2__para_b_section"><div class="lawtext"><num>b</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Paper,
+      and</p></content></div></div></div><div class="lawpart paragraph"><div class="form-check"><input
+      class="form-check-input" type="radio" name="section" id="sec_2__para_c_section"><div
+      class="lawtext"><num>c</num> <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Scissors.</p></content></div></div></div></div><div
+      class="lawpart section"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_3_section"><div class="lawtext"><i class="bi
+      bi-caret-right" data-bs-toggle="collapse" data-bs-target="#sec_3"></i><num>3</num>Defeating
+      Relationships<intro xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>The
+      signs are related in the following ways:</p></intro></div></div></div><div class="subparts
+      collapse" id="sec_3"><div class="lawpart paragraph"><div class="form-check"><input
+      class="form-check-input" type="radio" name="section" id="sec_3__para_a_section"><div
+      class="lawtext"><num>a</num> <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Rock
+      beats Scissors,</p></content></div></div></div><div class="lawpart paragraph"><div
+      class="form-check"><input class="form-check-input" type="radio" name="section"
+      id="sec_3__para_b_section"><div class="lawtext"><num>b</num> <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Scissors
+      beats Paper, and</p></content></div></div></div><div class="lawpart paragraph"><div
+      class="form-check"><input class="form-check-input" type="radio" name="section"
+      id="sec_3__para_c_section"><div class="lawtext"><num>c</num> <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Paper
+      beats Rock.</p></content></div></div></div></div><div class="lawpart section"><div
+      class="form-check"><input class="form-check-input" type="radio" name="section"
+      id="sec_4_section"><div class="lawtext"><num>4</num>Winner <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>The
+      winner of a game is the player who throws a sign that beats the sign of the
+      other player.</p></content></div></div></div></div></nav>'
     scasp_encoding: ''
     tutorial: ''
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 18
+  pk: 1
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 19
+  pk: 2
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="2sJ?lZ1.8;mu-;5-j@LZ" x="29" y="27"><statement name="statements"><block
@@ -120,9 +177,9 @@
       #pred blawx_defeated(Z,-player,Y,X) :: ''the conclusion in @(Z) that @(X) played
       in @(Y) is defeated''.'
 - model: blawx.workspace
-  pk: 20
+  pk: 3
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: sec_2_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="cE}Gdp4x}z`nuu[FE?*D" x="45" y="53"><statement name="statements"><block
@@ -156,9 +213,9 @@
       #pred blawx_defeated(Z,-sign,X) :: ''the conclusion in @(Z) that @(X) is a sign
       is defeated''.'
 - model: blawx.workspace
-  pk: 21
+  pk: 4
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: sec_2__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="kR6ntq@zT`R:z:aNK+f8" x="48" y="67"><statement name="statements"><block
@@ -167,9 +224,9 @@
       name="object_name">rock</field><field name="postfix">is a sign</field></block></statement></block></xml>
     scasp_encoding: sign(rock).
 - model: blawx.workspace
-  pk: 22
+  pk: 5
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: sec_2__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="kR6ntq@zT`R:z:aNK+f8" x="76" y="123"><statement name="statements"><block
@@ -178,9 +235,9 @@
       name="object_name">paper</field><field name="postfix">is a sign</field></block></statement></block></xml>
     scasp_encoding: sign(paper).
 - model: blawx.workspace
-  pk: 23
+  pk: 6
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: sec_2__para_c_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="kR6ntq@zT`R:z:aNK+f8" x="76" y="123"><statement name="statements"><block
@@ -189,9 +246,9 @@
       name="object_name">scissors</field><field name="postfix">is a sign</field></block></statement></block></xml>
     scasp_encoding: sign(scissors).
 - model: blawx.workspace
-  pk: 24
+  pk: 7
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: sec_3__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="3[uOLF:N)6)k]x/;NZvj" x="25" y="82"><statement name="statements"><block
@@ -205,9 +262,9 @@
       name="object_name">scissors</field></block></value></block></statement></block></xml>
     scasp_encoding: beats(rock,scissors).
 - model: blawx.workspace
-  pk: 25
+  pk: 8
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: sec_3_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="KzwckYwCfb;sxMxL8(0M" x="67" y="107"><statement name="statements"><block
@@ -243,9 +300,9 @@
       #pred blawx_defeated(Z,-beats,X,Y) :: ''the conclusion in @(Z) that @(X) beats
       @(Y) is defeated''.'
 - model: blawx.workspace
-  pk: 26
+  pk: 9
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: sec_3__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="f1x`uP`6Sd0}I{/2/*^{" x="43" y="78"><statement name="statements"><block
@@ -258,9 +315,9 @@
       xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field name="object_name">rock</field></block></value></block></statement></block></xml>
     scasp_encoding: beats(paper,rock).
 - model: blawx.workspace
-  pk: 27
+  pk: 10
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: sec_3__para_c_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="F@sk:Y46TJ_jv1qQNHhq" x="77" y="71"><statement name="statements"><block
@@ -274,9 +331,9 @@
       objectname="paper"></mutation><field name="object_name">paper</field></block></value></block></statement></block></xml>
     scasp_encoding: beats(scissors,paper).
 - model: blawx.workspace
-  pk: 28
+  pk: 11
   fields:
-    ruledoc: 2
+    ruledoc: 1
     workspace_name: sec_4_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="g.Id=VBrj/glOW.7M-k_" x="31" y="33"><statement name="statements"><block
@@ -370,9 +427,9 @@
       BLAWX CHECK DUPLICATES\nholds(sec_4_section,winner,Game,Player1) :- according_to(sec_4_section,winner,Game,Player1).\n\n%
       BLAWX CHECK DUPLICATES\n  winner(Game,Player1) :- holds(sec_4_section,winner,Game,Player1)."
 - model: blawx.blawxtest
-  pk: 17
+  pk: 1
   fields:
-    ruledoc: 2
+    ruledoc: 1
     test_name: bobjane
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="kK5*xh$(wL@8o2T+rpZa" x="50" y="45"><statement name="statements"><block
@@ -444,9 +501,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 18
+  pk: 2
   fields:
-    ruledoc: 2
+    ruledoc: 1
     test_name: hypothetical
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="assume"
       id="wam:)Jm+$_K%n6QBtW$B" x="96" y="38"><statement name="statements"><block
@@ -519,9 +576,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 19
+  pk: 3
   fields:
-    ruledoc: 2
+    ruledoc: 1
     test_name: who_wins
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="#`0/,K1M^tuc:WC7T/5_" x="59" y="258"><statement name="query"><block type="attribute_selector"
@@ -533,5 +590,5 @@
       type="variable" id="XZhm|F*MHLuzg!~;91x2"><field name="variable_name">Player</field></block></value></block></statement></block></xml>
     scasp_encoding: ?- winner(Game,Player).
     tutorial: ''
-    view: '[''view_cat_sign'', ''view_cat_game_att_winner'']'
+    view: '[''view_cat_sign'', ''view_cat_game_att_winner'', ''view_att_beats'', ''view_att_winner'']'
     fact_scenario: ''

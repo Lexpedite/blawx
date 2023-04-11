@@ -1,0 +1,34 @@
+- model: blawx.docpage
+  pk: blocks/from
+  fields:
+    title: From Block
+    content: |
+      # From Block
+
+      ![From Block](/static/blawx/docs/images/blocks/from.png)
+
+      ## Where Is It?
+
+      The From block is found in the Events drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The From block is used to indicate that a statement became true at a given point in time.
+      It accepts a datetime, and the statement, which can be logically negated.
+
+      The From block is the primary way by which you will specify how values changed over time.
+      The initially and ultimately blocks are also used to provide input to the event reasoning
+      system, but most useful information will be provided using the From block.
+
+      ## Technical Details
+
+      The from block is a statement block and can be stacked with other statements.
+
+      ## Tips
+
+      Because of the way the Blawx reasoner translates between datetimes and timestamps for use
+      in event reasoning, the reasoner will fail if From blocks use dates that are calculated
+      recursively on the basis of other dates. For example, if there is a rule that every
+      seventh day is a tuesday, and something becomes true on any tuesday, the reasoner will
+      crash. This is a limitation of the current implementation of event reasoning, and will
+      hopefully be resolved in future versions.

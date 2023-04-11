@@ -1,0 +1,37 @@
+- model: blawx.docpage
+  pk: blocks/during
+  fields:
+    title: During Block
+    content: | 
+      # During Block
+
+      ![During Block](/static/blawx/docs/images/blocks/during.png)
+
+      ## Where Is It?
+
+      The During block is found in the Events drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The During block is used to query what periods of time a statement was true.
+      It accepts two datetimes and a statement. If the times are variables, and the
+      statement is specified, it will find the times at which that statement
+      began to hold, and stopped holding. That is to say, it returns only the
+      start and end points that are the most extreme for the duration that the statement
+      was true.
+
+      Because of this it cannot be used to check whether or not something held for the
+      entirety of a duration. If something is true from date 1 to date 5, and you use
+      the during block to check if it was true from date 2 to date 4, the during block
+      will return false, because it returns only the widest possible durations.
+
+      ## Technical Details
+
+      The during block is a statement block and can be stacked with other statement blocks.
+
+      ## Tips
+
+      The during block is capable of reporting that a statement held from the beginning of time,
+      or until the end of time. But in order to take advantage of that capability, you must
+      have specified the initial and ultimate values of that statement using the initially
+      and ultimately blocks.

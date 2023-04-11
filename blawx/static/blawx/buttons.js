@@ -35,6 +35,57 @@ updateWorkspace = function() {
 
 }
 
+function formatDates(text) {
+    var date_format = /date\((\d+(?:\.\d+)?)\)/g
+    var datetime_format = /datetime\((\d+(?:\.\d+)?)\)/g
+    var duration_format = /duration\((\d+(?:\.\d+)?)\)/g
+    var time_format = /(?<!date)time\((\d+(?:\.\d+)?)\)/g
+    var output = text;
+    // Replace date(#) with date format.
+    var date_match = null;
+    while (date_match = date_format.exec(output)) {
+        var date = new Date(date_match[1]*1000)
+        var date_text = date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate();
+        output = output.replace(date_match[0]," "+date_text)
+    }
+    var datetime_match = null;
+    while (datetime_match = datetime_format.exec(output)) {
+        var date = new Date(datetime_match[1]*1000)
+        var datetime_text = date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes().toString().padStart(2,"0") + ":" + date.getSeconds().toString().padStart(2,"0")
+        output = output.replace(datetime_match[0]," "+datetime_text)
+    }
+    var duration_match = null;
+    while (duration_match = duration_format.exec(output)) {
+        var timestamp = duration_match[1];
+        if (timestamp < 1) {
+            var direction = "into the past";
+            timestamp = timestamp * -1;
+        } else {
+            var direction = "into the future";
+        }
+        var days = Math.floor(timestamp/86400);
+        var hours = Math.floor((timestamp-days*86400)/3600);
+        var minutes = Math.floor((timestamp-days*86400-hours*3600)/60);
+        var seconds = timestamp - days*86400 - hours*3600 - minutes*60;
+        var duration_text = (days != 0 ? days + " days, " :"") + 
+                (hours != 0 ? hours + " hours, " : "") + 
+                (minutes != 0 ? minutes + " minutes, " : "") +
+                (seconds != 0 ? seconds + " seconds " : "") + 
+                direction
+        output = output.replace(duration_match[0]," "+duration_text)
+    }
+    var time_match = null;
+    while (time_match = time_format.exec(output)) {
+        var timestamp = time_match[1];
+        var hours = Math.floor(timestamp/3600);
+        var minutes = Math.floor((timestamp-(hours*3600))/60)
+        var seconds = timestamp-(hours*3600)-(minutes*60)
+        var time_text = hours + ":" + minutes.toString().padStart(2,"0") + ":" + seconds.toString().padStart(2,"0")
+        output = output.replace(time_match[0]," "+time_text)
+    }
+    return output;
+}
+
 function addSectionReferences(text) {
     // Search the string for the list of section references
     var match = text.match(/according to (sec_.*)_section/);
@@ -86,7 +137,7 @@ function convertModelToTree(list,answer,explanation,prefix="",root=true) {
         if (has_reasons) {
             output_html += '<i class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#' + target + '"></i>'
         }
-        output_html += addSectionReferences(list[0])
+        output_html += formatDates(addSectionReferences(list[0]))
         output_html += '</div>'
         // Now we have displayed the text, we optionally display each of the
         // reasons, processing it using this formula if it, too, has reasons.
@@ -100,7 +151,7 @@ function convertModelToTree(list,answer,explanation,prefix="",root=true) {
                     output_html += convertModelToTree(list[1].slice(j),answer,explanation,target + '_' + j,false)
                     j++;
                 } else {
-                    output_html += list[1][j]
+                    output_html += formatDates(list[1][j])
                 }
                 output_html += "</li>"
             }

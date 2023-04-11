@@ -5,18 +5,15 @@
     content: |
       # Numerical Constraints
 
-      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
-
       In Blawx, the value of a number in an answer can be a specific value, or it can be
       a range of values. These ranges of values can be logically combined to generate
       new ranges of values. The method used for doing this is called numerical constraints.
 
       ## The Numerical Constraint Block
 
-      The numerical constraint block is very much like the comparison block, except that it
-      does not have a way to check for equality. It allows you to impose, as a requirement,
-      that a variable is constrainted to be greater than, greater than or equal to, less than,
-      or less than or equal to another numerical value.
+      The numerical constraint block allows you to impose, as a requirement,
+      that a variable is constrained to be greater than, greater than or equal to, less than,
+      or less than or equal to, equal to, or not equal to another numerical value.
 
       This block works on integers and real numbers.
 
@@ -40,17 +37,17 @@
 
       ![Voting Age Rule](/static/blawx/docs/images/voting_age_rule.png)
 
-      Next we will indicate that a person must pay tax if they are at least 18.
+      Next we will indicate that a person must pay tax if they are at least 16.
 
       ![Must Pay Tax Rule](/static/blawx/docs/images/must_pay_tax_rule.png)
 
-      Lastly, we will say that a persons taxation without representation age is the age
-      at which they must pay taxes, but are not entitled to vote.
+      Lastly, we will say that a persons is a sucker if they are required to pay taxes and not
+      able to vote.
 
-      ![TWR Rule](/static/blawx/docs/images/twr_rule.png)
+      ![TWR Rule](/static/blawx/docs/images/sucker_rule.png)
 
-      Now, we will tell Blawx to assume that people have ages, and ask Blawx what a person's
-      taxation without representation age is.
+      Now, we will tell Blawx to assume that there are people, that they have ages, and ask Blawx whether
+      anyone might be a sucker.
 
       ![TWR Query](/static/blawx/docs/images/twr_query.png)
 
@@ -59,7 +56,7 @@
       comes from the "must pay taxes". Blawx can combine those two ranges of values into a new range,
       "at least 16 and less than 18".
 
-      And that is the answer that Blawx provides, indicating that a person can have a
-      taxation without representation age that is at least 16 and less than 18.
+      And that is the answer that Blawx provides, indicating that a person is a sucker if their age
+      is at least 16 and less than 18.
 
       ![TWR Answer](/static/blawx/docs/images/twr_answer.png)

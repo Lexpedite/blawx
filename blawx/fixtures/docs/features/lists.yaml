@@ -5,8 +5,6 @@
     content: |
       # Lists and Aggregation
 
-      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
-
       Often, you will need to take aggregate values, such as a sum of a large number of values, or a count of how many
       values exist for a given attribute. Blawx provides basic support for dealing with lists of values, through a set
       of five blocks: the List Datatype Selector Block, the Empty List Block, the First / Rest List Block, the Collect List
@@ -14,13 +12,8 @@
 
       ## List Blocks
 
-      ### List Datatype Selector
-
-      The List Datatype Selector Block allows you to specify that an attribute of a category should hold a list. You do not need
-      to specify list-type attributes in order to use lists in your encoding, however.
-
-      ![List Datatype Selector Block](/static/blawx/docs/images/blocks/list.png)
-
+      List attributes are created by choosing "list" as the datatype in the new attribute block.
+      
       ### First / Rest List Block and Empty List Block
 
       The First / Rest List Block and Empty List Block are used to manually specify lists in your code. The First / Rest Block
@@ -93,6 +86,3 @@
       ## Known Issues
 
       * Currently, the Collect List block cannot be used in a question.
-      
-      This is a very minimal implementation of lists and aggregation intended as a proof of concept, and will be expanded in future
-      versions of Blawx.

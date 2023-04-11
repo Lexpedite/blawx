@@ -1,0 +1,94 @@
+- model: blawx.docpage
+  pk: features/events
+  fields:
+    title: Events
+    content: |
+      # Events
+
+      Laws will frequently set out facts that become true on certain events occurring,
+      or at certain times.
+
+      Blawx's event reasoning feature is designed to allow you to make statements that
+      reflect these truth values that change over time.
+
+      ## The Event Reasoning System
+
+      The Event drawer in the Toolbox has 5 blocks for events. Three are used primarily for
+      input, and two are used primarily for queries.
+
+      All of these blocks can be thought of as dealing with a timeline that starts at
+      "the beginning of time", and goes to "the end of time". You make statements that describe
+      what values became true, at what points on the timeline. Blawx's even reasoning derives that
+      a statement that became true at a given time will remain true after that time, until the opposite becomes true.
+
+      To say that something was true (or false) at the beginning of time, you use the "initially" block.
+      To say that something was true (or false) at the end of time, you use the "ultimately" block.
+      To say that something was true (or false) at a specific time on the timeline, you use the "From" block.
+
+      To query or test whether something was true (or false) at a given time you can use the "As Of" block.
+      To find the widest possible periods of time during which a statement was true (or false), you use the
+      "during" block.
+
+      Note that if you do not use the "initially" and "ultimately" blocks to specify the values at the start and end
+      of time, Blawx will not be able to determine whether statements held from the beginning or until the end of time.
+
+      Note also that asserting something as a fact does not make it true on the timeline. If you say "socrates is mortal",
+      and then ask whether socrates was mortal as of today, Blawx will not know. The timeline version of a statement is
+      different from the absolute version of the statement. Similarly, if you say that "initially socrates is mortal", and
+      then you ask whether "socrates is mortal", Blawx will not know. If you ask whether "socrates is mortal as of now", the
+      answer will be yes, because he was initially mortal and nothing has changed that fact.
+
+      ## Example Life Act
+
+      The Life Act example, available from the New Project button on the Blawx home page, provides an example of how the
+      event reasoning system can be used.
+
+      The Life Act example demonstrates how you can use the event blawx to relate the state of whether or not a person is alive
+      to the events of that person's birth and death.
+
+      First, you can specify that a person becomes alive from the time of their birth, using the following blocks:
+
+      ![Alive From Birth](/static/blawx/docs/images/alive_from_born.png)
+
+      This rule states that if there is a person with a birthdate, from that person's date of birth (and thereafter) the person is alive.
+
+      In order to be able to reason about what happens prior to a person's birth, we need to indicate that at the start of time, no one is
+      alive.  That can be done as follows:
+
+      ![Initially Not Alive](/static/blawx/docs/images/initially_not_alive.png)
+
+      This fact, using the "any" variable selector, states that everything is not alive at the beginning of time, and stays not alive until
+      something changes that fact.  Note that you can use the logical negation of the alive block, but it is not meaningful to use the "there is no evidence"
+      negation block in these statements. Note also that it is the statement *inside* the From block that is logically negated, not the From block itself.
+
+      Next we need to indicate that a person is no longer alive when they die. We create a rule very similar to the first, like this:
+
+      ![Not Alive From Death](/static/blawx/docs/images/not_alive_from_death.png)
+
+      This rule follows the same pattern as the rule above. If there is a person, and that person has a date of death, then it becomes false that the person is alive as of the date
+      of death.
+
+      We can then also say that no person lives forever by indicating that ultimately, no person is alive. That is done as follows:
+
+      ![Ultimately Not Alive](/static/blawx/docs/images/ultimately_not_alive.png)
+
+      Now we have set out all of the rules that are necessary to reason about the timeline for the "alive" attribute.
+
+      We can create a fact scenario where there is a person, bob, who has a date of birth and a date of death. Then, we can ask during what periods of time is bob not alive.
+      That code would use the "during" block, and looks like this:
+
+      ![Not Alive Query](/static/blawx/docs/images/not_alive_query.png)
+
+      When you run this query, you will get two answers:
+      
+      * Bob was not alive from the start of time until he was born.
+      * Bob was not alive from his death until the end of time.
+
+      If you modify the query to ask when bob was alive, Blawx can determine that he was alive from his birth date to his death date.
+
+      ## Known Issues
+
+      * The Blawx reasoner translates from datetimes used in the from blocks to timestamps for use in event reasoning.
+        Currently, the method by which the datetimes are translated to timestamps will fail if the code generates datetimes
+        from other datetimes, recursively. This will be resolved in future versions.
+

@@ -261,7 +261,10 @@
         'datetime_diff',
         'datetime_add_days',
         'days_between_datetimes',
-        'is'];
+        'is',
+        'date_add',
+        'date_compare',
+        'duration_compare'];
 
         function getNodeName(node,answer,explanation) {
             var node_name = "";
@@ -410,34 +413,73 @@
             output_html += "</div>"
             return output_html;
         }
-
         
         function displayValue(term,human=true) {
             var output = "";
             if(term.hasOwnProperty('functor')) {
                 switch(term.functor) {
                     case 'date':
-                        output = term.args[0] + "/" + term.args[1] + "/" + term.args[2]
+                        if (isNaN(term.args[0])) {
+                            if (term.args[0] == "bot") {
+                                output = "beginning of time";
+                            } else if(term.args[0] == "eot") {
+                                output = "end of time";
+                            } else if(term.args[0][0] === term.args[0][0].toUpperCase()) {
+                                output = "a date " + term.args[0];
+                            }
+                        } else {
+                            var date = new Date(term.args[0]*1000);
+                            output = date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate();
+                        }
                         break;
                     case 'datetime':
-                        output = term.args[0] + "/" + term.args[1] + "/" + term.args[2] + " " + term.args[3] + ":" + term.args[4].toString().padStart(2,"0") + ":" + term.args[5].toString().padStart(2,"0")
+                        if (isNaN(term.args[0])) {
+                            if (term.args[0] == "bot") {
+                                output = "beginning of time"
+                            } else if(term.args[0] == "eot") {
+                                output = "end of time"
+                            } else if(term.args[0][0] === term.args[0][0].toUpperCase()) {
+                                output = "a datetime " + term.args[0];
+                            }
+                        } else {
+                            var date = new Date(term.args[0]*1000)
+                            output = date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes().toString().padStart(2,"0") + ":" + date.getSeconds().toString().padStart(2,"0")
+                        }
                         break;
                     case 'duration':
-                        if (term.args[0] == 1) {
-                            var direction = "into the future"
+                        var timestamp = term.args[0];
+                        if (isNaN(term.args[0])) {
+                            if (term.args[0][0] === term.args[0][0].toUpperCase()) {
+                                output = "a duration " + term.args[0]
+                            }
                         } else {
-                            var direction = "into the past"
+                            if (timestamp < 1) {
+                              var direction = "into the past"
+                              timestamp = timestamp * -1
+                            } else {
+                                var direction = "into the future"
+                            }
+                            var days = Math.floor(timestamp/86400);
+                            var hours = Math.floor((timestamp-days*86400)/3600);
+                            var minutes = Math.floor((timestamp-days*86400-hours*3600)/60);
+                            var seconds = timestamp - days*86400 - hours*3600 - minutes*60;
+                            output = (days != 0 ? days + " days, " :"") + 
+                                    (hours != 0 ? hours + " hours, " : "") + 
+                                    (minutes != 0 ? minutes + " minutes, " : "") +
+                                    (seconds != 0 ? seconds + " seconds " : "") + 
+                                    direction
                         }
-                        output = (term.args[1] != 0 ? term.args[1] + " years, " : "") + 
-                                (term.args[2] != 0 ? term.args[2] + " months, " : "") + 
-                                (term.args[3] != 0 ? term.args[3] + " days, " :"") + 
-                                (term.args[4] != 0 ? term.args[4] + " hours, " : "") + 
-                                (term.args[5] != 0 ? term.args[5] + " minutes, " : "") +
-                                (term.args[6] != 0 ? term.args[6] + " seconds " : "") + 
-                                direction
                         break;
                     case 'time':
-                        output = term.args[0] + ":" + term.args[1].toString().padStart(2,"0") + ":" + term.args[2].toString().padStart(2,"0")
+                        var timestamp = term.args[0];
+                        if (isNaN(timestamp)) {
+                            output = "a time " + timestamp;
+                        } else {
+                            var hours = Math.floor(timestamp/3600);
+                            var minutes = Math.floor((timestamp-(hours*3600))/60)
+                            var seconds = timestamp-(hours*3600)-(minutes*60)
+                            output = hours + ":" + minutes.toString().padStart(2,"0") + ":" + seconds.toString().padStart(2,"0")
+                        }
                         break;
                     //case 'defeated':
                     //    output = answerNLG(term);
@@ -447,6 +489,21 @@
                     //    break;
                     //case 'adbuced':
                     //    output = answerNLG(term);
+                    case 'timestamp':
+                        if (term.args[0] == "bot") {
+                            output = "beginning of time"
+                            break;
+                        } else if (term.args[0] == "eot") {
+                            output = "end of time"
+                            break;
+                        } else if (typeof(term.args[0]) != "number") {
+                            output = "time " + term.args[0];
+                            break;
+                        } else {
+                            var date = new Date(term.args[0]*1000);
+                            output = date.getFullYear()+"/" + (parseInt(date.getMonth())+1) +"/" + date.getDate() +" "+date.getHours()+":"+date.getMinutes().toString().padStart(2,"0")+":"+date.getSeconds().toString().padStart(2,"0");
+                            break;
+                        }
                     default:
                         output = answerNLG(term,human);
                         //output = 'Unknown predicate type'
@@ -484,7 +541,7 @@
                 // This doesn't need a representation
                 return "root";
             } else if(typeof(model) == 'string') {
-                if (model.charAt(0) === model.charAt(0).toUpperCase()){
+                if (model.charAt(0) === model.charAt(0).toUpperCase()){ // This is where we are checking to see if the thing is a variable, which might be a good place to check for disunity constraints?
                     return "anything"
                 }
                 if (model == "o_nmr_check") {
@@ -529,6 +586,16 @@
                 var section = model.args[0];
                 var object = model.args[1];
                 return addSectionReferences(section,human) + " applies to " + displayValue(object,human)
+            } else if (model.functor == "blawx_as_of") {
+                return "as of " + displayValue(model.args[1],human) + " " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_becomes") {
+                return "from " + displayValue(model.args[1],human) + " " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_initially") {
+                return "initially, " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_ultimately") {
+                return "ultimately, " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_during") {
+                return "from " + displayValue(model.args[0],human) + " to " + displayValue(model.args[2],human) + " " + answerNLG(model.args[1],human);
             } else if (model.functor == "abduced" && model.args[0].functor != "-") {
                 return "it is hypothesized that " + answerNLG(model.args[0],human);
             } else if (model.functor == "abduced" && model.args[0].functor == "-") {
@@ -553,6 +620,34 @@
                 return "the maximum of " + answerNLG(model.args[0],human) + ' is ' + answerNLG(model.args[1],human)
             } else if (model.functor == "min_blawx_list") {
                 return "the minimum of " + answerNLG(model.args[0],human) + ' is ' + answerNLG(model.args[1],human)
+            } else if (model.functor == "duration_compare") {
+                if (model.args[1] == "gt") {
+                    return displayValue(model.args[0],human) + " is larger than " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "gte") {
+                    return displayValue(model.args[0],human) + " is larger than or equal to " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "lt") {
+                    return displayValue(model.args[0],human) + " is less than " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "lte") {
+                    return displayValue(model.args[0],human) + " is less than or equal to " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "eq") {
+                    return displayValue(model.args[0],human) + " is equal to " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "ne") {
+                    return displayValue(model.args[0],human) + " is not equal to " + displayValue(model.args[2],human);
+                }
+            } else if (model.functor == "date_compare") {
+                if (model.args[1] == "gt") {
+                    return displayValue(model.args[0],human) + " is after " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "gte") {
+                    return displayValue(model.args[0],human) + " is on or after " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "lt") {
+                    return displayValue(model.args[0],human) + " is before " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "lte") {
+                    return displayValue(model.args[0],human) + " is on or before " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "eq") {
+                    return displayValue(model.args[0],human) + " is equal to " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "ne") {
+                    return displayValue(model.args[0],human) + " is not equal to " + displayValue(model.args[2],human);
+                }
             } else if (model.functor == "before") {
                 return displayValue(model.args[0],human) + ' is before ' + displayValue(model.args[1],human);
             } else if (model.functor == "after") {
@@ -569,7 +664,7 @@
                 return "today is " + displayValue(model.args[0],human);
             } else if (model.functor == "build_datetime") {
                 return "the date " + displayValue(model.args[0],human) + " and the time " + displayValue(model.args[1],human) + " correspond to the datetime " + displayValue(model.args[2],human)
-            } else if (model.functor == "datetime_add") {
+            } else if (model.functor == "date_add") {
                 return displayValue(model.args[0],human) + " modified by " + displayValue(model.args[1],human) + " gives " + displayValue(model.args[2],human)
             } else if (model.functor == "datetime_diff") {
                 return "from " + displayValue(model.args[0],human) + " to " + displayValue(model.args[1],human) + " is " + displayValue(model.args[2],human)
@@ -790,10 +885,10 @@
                             value_html += '<div class="input-group-text">';
                             value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="new_attribute_value_' + attribute_name + '_direction">';
                             value_html += '</div>';
-                            value_html += '<span class="input-group-text px-1">Y</span>';
-                            value_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="new_attribute_value_' + attribute_name + '_years">';
-                            value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
-                            value_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="new_attribute_value_' + attribute_name + '_months">';
+                            //value_html += '<span class="input-group-text px-1">Y</span>';
+                            //value_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="new_attribute_value_' + attribute_name + '_years">';
+                            //value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                            //value_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="new_attribute_value_' + attribute_name + '_months">';
                             value_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
                             value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="new_attribute_value_' + attribute_name + '_days">';
                             value_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
@@ -1082,8 +1177,8 @@
             if(attribute_type == "duration") {
                 // Get the new value
                 direction_target = document.getElementById('new_attribute_value_' + attribute + '_direction');
-                year_target = document.getElementById('new_attribute_value_' + attribute + '_years');
-                month_target = document.getElementById('new_attribute_value_' + attribute + '_months');
+                //year_target = document.getElementById('new_attribute_value_' + attribute + '_years');
+                //month_target = document.getElementById('new_attribute_value_' + attribute + '_months');
                 day_target = document.getElementById('new_attribute_value_' + attribute + '_days');
                 hour_target = document.getElementById('new_attribute_value_' + attribute + '_hours');
                 minute_target = document.getElementById('new_attribute_value_' + attribute + '_minutes');
@@ -1092,8 +1187,8 @@
                 } else {
                     new_direction = false;
                 }
-                new_year = year_target.value;
-                new_month = month_target.value;
+                //new_year = year_target.value;
+                //new_month = month_target.value;
                 new_day = day_target.value;
                 new_hour = hour_target.value;
                 new_minute = minute_target.value;
@@ -1103,12 +1198,12 @@
                     new_value = "-";
                 }
                 new_value += "P"
-                if (parseInt(new_year)) {
-                    new_value += new_year + "Y";
-                }
-                if (parseInt(new_month)) {
-                    new_value += new_month + "M";
-                }
+                //if (parseInt(new_year)) {
+                //    new_value += new_year + "Y";
+                //}
+                //if (parseInt(new_month)) {
+                //    new_value += new_month + "M";
+                //}
                 // The idea here is that if all three are zero, it should come out as P0D
                 if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
                     new_value += new_day + "D";
@@ -1194,9 +1289,10 @@
                             output_content += 'Explanation #' + model_count;
                             output_content += '</button></h2>';
                             output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
-                            for (var attribute in models[j]['Residuals']) {
-                                attributes_output.push(describe_constraint(models[j]['Residuals'][attribute]));
-                            }
+                            //for (var attribute in models[j]['Residuals']) {
+                            //    attributes_output.push(describe_constraint(models[j]['Residuals'][attribute]));
+                            //}
+                            var constraints_output = describe_constraints_new(models[j].Residuals,models[j].Terms);
                             
                                 
                             //output_content += convertModelToTree(models[j].Tree, count, model_count);
@@ -1214,20 +1310,25 @@
                                 }
                             }
                             // We could de-duplicate the lists, but I feel like at this point it would not help much.
-                            var constraint_output = "";
-                            if (attributes_output.length) {
-                                for (var ao=0; ao < attributes_output.length; ao++) {
-                                    var variables_in_constraint = get_variables(attributes_output[ao]);
+                            // var constraint_output = "";
+                            var displayed_constraint_output = [];
+                            if (constraints_output.length) {
+                                for (var ao=0; ao < constraints_output.length; ao++) {
+                                    var variables_in_constraint = get_variables(constraints_output[ao]);
                                     var any_matches = referenced_variables.filter(x => variables_in_constraint.includes(x));
                                     if (any_matches.length) {
-                                        constraint_output += attributes_output[ao];
+                                        displayed_constraint_output.push(constraints_output[ao]);
                                     }
                                 }
-                                if (constraint_output != "") {
-                                    output_content += "Where:<ul>";
-                                    output_content += constraint_output;
-                                    output_content += "</ul>"
+                            }
+                            //    if (constraint_output != "") {
+                            if (displayed_constraint_output.length) {
+                                output_content += "Where:<ul>";
+                                for (var dc=0; dc < displayed_constraint_output.length; dc++) {
+                                    output_content += "<li>" + displayed_constraint_output[dc] + "</li>";
                                 }
+                                //output_content += constraint_output;
+                                output_content += "</ul>"
                             }
                             
                             output_content += explanation_content;
@@ -1488,6 +1589,262 @@
             }
             draw_facts();
         }
+        function remove_conjunctions(numerical_constraints) {
+            var output = [];
+            if (numerical_constraints['functor'] == ',') {
+                output = output.concat(remove_conjunctions(numerical_constraints['args'][0]));
+                output = output.concat(remove_conjunctions(numerical_constraints['args'][1]));
+            } else {
+                output = output.concat(numerical_constraints);
+            }
+            return output;
+        }
+        function reduce_constraints_to_list(all_constraints) {
+            var constraint_list = [];
+            // Go through the constraints, and find the one that is for "{}"
+            // Then, if there is an "and", go through each and add it to a list.
+            for (var r=0; r < all_constraints.length; r++) {
+                if (all_constraints[r]['functor'] != "{}" && all_constraints[r]['functor'] != "∉") {
+                    continue;
+                } else if (all_constraints[r]['functor'] == "{}") {
+                    constraint_list = constraint_list.concat(remove_conjunctions(all_constraints[r]['args'][0]));
+                } else if (all_constraints[r]['functor'] == "∉") {
+                    constraint_list.push(all_constraints[r]);
+                }
+            }
+            return constraint_list;
+        }
+        const type_predicates = ['date','time','datetime','duration'];
+        function get_all_variable_and_value_usages(constraints,type_uses) {
+            for (var c=0; c < constraints.length; c++) {
+                if (type_predicates.includes(constraints[c]['functor'])) {
+                    if (!(constraints[c]['args'][0] in type_uses)) {
+                        type_uses[constraints[c]['args'][0]] = [];
+                    }
+                    if (!type_uses[constraints[c]['args'][0]].includes(constraints[c]['functor'])) {
+                        type_uses[constraints[c]['args'][0]].push(constraints[c]['functor']);
+                    }
+                    //if (isNaN(constraints[c]['args'][0])) {
+                    //    if (constraints[c]['args'][0][0] === constraints[c]['args'][0][0].toUpperCase()) {
+                    //        if (!(constraints[c]['args'][0] in type_uses)) {
+                    //            type_uses[constraints[c]['args'][0]] = [];    
+                    //        }
+                    //        if (!type_uses[constraints[c]['args'][0]].includes(constraints[c]['functor'])) {
+                    //            type_uses[constraints[c]['args'][0]].push(constraints[c]['functor']);
+                    //        }
+                    //    }
+                    //} 
+                }
+                for (var a=0; a < constraints[c]['args'].length; a++) {
+                    if (constraints[c]['args'][a].constructor == Object && 'functor' in constraints[c]['args'][a]) {
+                        type_uses = get_all_variable_and_value_usages([constraints[c]['args'][a]],type_uses)
+                    }
+                }
+            }
+            return type_uses;
+        }
+        function get_variable_and_value_types(terms) {
+            var type_uses = get_all_variable_and_value_usages(terms,{});
+            var confirmed = {};
+            for ([variable,types] of Object.entries(type_uses)) {
+                if (types.length ==1) {
+                    confirmed[variable] = types[0];
+                }
+            }
+            return confirmed;
+        }
+        function describe_constraints_new(constraints,terms) {
+            // Reduce the nested structure of contraints to a list
+            var constraints_list = reduce_constraints_to_list(constraints);
+            // Get the data types for variables in the terms
+            var variable_types = get_variable_and_value_types(terms);
+            // Go through each constraint, and generate text for it.
+            var output = [];
+            for (var c = 0; c < constraints_list.length; c++) {
+                output.push(generate_text_for_constraint(constraints_list[c],variable_types));
+            }
+            // Return the text generated
+            return output;
+        }
+        function isVariable(node) {
+            is_variable = false;
+            if ((typeof(node) === "string" || node instanceof String) && node[0] === node[0].toUpperCase()) {
+                is_variable = true;
+            }
+            return is_variable;
+        }
+        function generate_text_for_constraint(constraint,variable_types) {
+            var output = "";
+            var functor = constraint['functor'];
+            var args = constraint['args'];
+            // If the argument is a variable, and that variable has a type, convert it to that type.
+            //for (var a=0; a< args.length; a++) {
+            //    if (isVariable(args[a]) && args[a] in variable_types) {
+            //        args[a] = {"functor": variable_types[args[a]], "args": [args[a]]};
+            //    }
+            //}
+            // If the first argument has a type, and the second argument is a list of values, convert the values to that type.
+
+            // If the value or variable has a known type, assign it.
+            for (var a=0; a < args.length; a++) {
+                if (args[a] in variable_types) {
+                    args[a] = {"functor": variable_types[args[a]], "args": [args[a]]};
+                }
+            }
+            switch (functor) {
+                case "<":
+                    output += displayValue(args[0]) + " is less than " + displayValue(args[1]);
+                    break;
+                case ">":
+                    output += displayValue(args[0]) + " is greater than " + displayValue(args[1]);
+                    break;
+                case "=<":
+                    output += displayValue(args[0]) + " is less than or equal to " + displayValue(args[1]);
+                    break;
+                case ">=":
+                    output += displayValue(args[0]) + " is greater than or equal to " + displayValue(args[1]);
+                    break;
+                case "∉":
+                    for (var l = 0; l < args[1].length; l++) {
+                        args[1][l] == {"functor": variable_types[args[0]], "args": args[1][l]};
+                    }
+                    output += displayValue(args[0]) + " is not "
+                    if (args[1].length > 1) {
+                        output += "one of ";
+                    }
+                    for (var a=0; a < args[1].length; a++) {
+                        output += displayValue(args[1][a]);
+                        if (args[1].length > 1 && a == args[1].length-2) {
+                            output += ", or ";
+                        } else if (a < args[1].length-2) {
+                            output += ", ";
+                        }
+                    }
+                    break;
+                case "=":
+                    output += displayValue(args[0]) + " is equal to " + generate_text_for_constraint(args[1],variable_types);
+                    break;
+                case "+":
+                    output += displayValue(args[0]) + " plus " + displayValue(args[1]);
+                    break;
+                case "-":
+                    output += displayValue(args[0]) + " minus " + displayValue(args[1]);
+                    break;
+                case "*":
+                    output += displayValue(args[0]) + " times " + displayValue(args[1]);
+                    break;
+                case "/":
+                    output += displayValue(args[0]) + " divided by " + displayValue(args[1]);
+                    break;
+                default:
+                    console.warn("Unrecognized constraint type applied to variable: " + constraint.toString())
+            }
+
+            return output;
+        }
+        function describe_constraints_for_typed_variable(variable,type,constraints) {
+            // So what I need to do here is go through the constraints as usual, but only output
+            // constraints that apply to the correct variable name.
+            // No. I need to pre-process all of the "ands", and reduce the conjunctions to a list.
+            // THEN I can go through each element in the list and display it if it is for the relevant
+            // variable.
+            // TODO: This is slow. Constraints should be processed once per model, not once per reference to a variable.
+            // TODO: It also won't notice if a variable is used inside a mathematical equation.
+            var constraints_list = reduce_constraints_to_list(constraints);
+            var output = ""
+            for (var c = 0; c < constraints_list.length; c++) {
+                var functor = constraints_list[c]['functor'];
+                var args = constraints_list[c]['args'];    
+                switch(functor) {
+                    case "<":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " is less than " + displayValue(new_arg1);
+                        }
+                        break;
+                    case ">":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " is greater than " + displayValue(new_arg1);
+                        }
+                        break;
+                    case "=<":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " is less than or equal to " + displayValue(new_arg1);
+                        }
+                        break;
+                    case ">=":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " is greater than or equal to " + displayValue(new_arg1);
+                        }
+                        break;
+                    case "∉":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = [];
+                        for (var a=0; a < args[1].length; a++) {
+                            new_arg1.push({"functor": type, "args": [args[1][a]]});
+                        }
+                        if (args[0] == variable) {
+                            output += displayValue(new_arg0) + " is not "
+                            if (args[1].length > 1) {
+                                output += "one of ";
+                            }
+                            for (var a=0; a < new_arg1.length; a++) {
+                                output += displayValue(new_arg1[a]);
+                                if (a == new_arg1.length-1) {
+                                    output += ", or ";
+                                } else if (a < new_arg1.length-1) {
+                                    output += ", ";
+                                }
+                            }
+                        }
+                        break;
+                    case "=":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        if (args[0] == variable) { // I really don't think this is going to work, because I don't know if the variable appears later in the constraint.
+                            output += displayValue(new_arg0) + " is equal to " + describe_constraints_for_typed_variable(variable,type,args[1]);
+                        }
+                        break;
+                    case "+":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " plus " + displayValue(new_arg1);
+                        }
+                        break;
+                    case "-":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " minus " + displayValue(new_arg1);
+                        }
+                        break;
+                    case "*":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " times " + displayValue(new_arg1);
+                        }
+                        break;
+                    case "/":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " divided by " + displayValue(new_arg1);
+                        }
+                        break;
+                    default:
+                        console.warn("Unrecognized constraint type applied to variable: " + constraint.toString())
+                }
+            }
+            return output;
+        }
         function describe_constraint(constraint) {
             // A constraint is a functor and a list of arguments.
             // Some functions can have other functions inside them.
@@ -1526,6 +1883,12 @@
                         output += "one of ";
                     }
                     output += args[1].toString() + "</li>";
+                    return output;
+                case "=":
+                    output += args[0] + " is equal to " + describe_constraint(args[1]);
+                    return output;
+                case "+":
+                    output += args[0] + " plus " + args[1];
                     return output;
                 default:
                     console.warn("Unrecognized constraint type applied to variable: " + constraint.toString())

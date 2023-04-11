@@ -1,0 +1,10 @@
+- model: blawx.docpage
+  pk: examples/life_act
+  fields:
+    title: Life Act
+    content: |
+      # Life Act
+
+      All the example projects are available under the New Project button.
+
+      The Life Act example is used to demonstrate temporal reasoning using Blawx's event blocks.

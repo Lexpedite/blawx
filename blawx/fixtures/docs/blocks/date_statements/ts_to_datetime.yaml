@@ -1,0 +1,25 @@
+- model: blawx.docpage
+  pk: blocks/datetime_from_ts
+  fields:
+    title: Timestamp to Datetime Block
+    content: |
+      # Timestamp to Datetime Block
+
+      ![Timestamp to Datetime Block](/static/blawx/docs/images/blocks/ts_to_datetime.png)
+
+      ## Where Is It?
+
+      The Timestamp to Datetime Block is found in the Dates drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The Timestamp to Datetime block accepts a number representing
+      a posix timestamp, and returns a datetime.
+
+      ## Technical Details
+
+      The Timestamp to Datetime block is a value block that accepts a number or a variable and returns a Datetime.
+
+      ## Tips
+
+      A posix timestamp is the number of seconds that have passed from the start of January 1 1970, UTC.

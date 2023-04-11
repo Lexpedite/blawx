@@ -1,25 +1,44 @@
 - model: blawx.ruledoc
-  pk: 7
+  pk: 3
   fields:
     ruledoc_name: Siblings Act
     rule_text: "Siblings Act\r\n\r\n1. A person's sibling is another person with whom
       the person shares a parent.\r\n2. With regard to wards of the state, parent
       includes the Office of the Public Guardian."
+    akoma_ntoso: <?xml version="1.0" encoding="UTF-8"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><act><preface><p
+      class="title"><shortTitle>Siblings Act</shortTitle></p></preface><body><section
+      eId="sec_1"><num>1</num><content><p>A person's sibling is another person with
+      whom the person shares a parent.</p></content></section><section eId="sec_2"><num>2</num><content><p>With
+      regard to wards of the state, parent includes the Office of the Public Guardian.</p></content></section></body></act></akomaNtoso>
+    navtree: '<nav class="column">
+
+      <div class="lawpart act"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="root_section" checked><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#root"></i>Siblings
+      Act</div></div></div><div class="subparts collapse" id="root"><div class="lawpart
+      section"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_1_section"><div class="lawtext"><num>1</num> <content
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>A person''s sibling
+      is another person with whom the person shares a parent.</p></content></div></div></div><div
+      class="lawpart section"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_2_section"><div class="lawtext"><num>2</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>With regard
+      to wards of the state, parent includes the Office of the Public Guardian.</p></content></div></div></div></div></nav>'
     scasp_encoding: ''
     tutorial: ''
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 45
+  pk: 7
   fields:
-    ruledoc: 7
+    ruledoc: 3
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 46
+  pk: 8
   fields:
-    ruledoc: 7
+    ruledoc: 3
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="[c~Rd-p+ESGuzAe6,Y1|" x="85" y="3"><statement name="statements"><block type="new_category_declaration"
@@ -106,16 +125,16 @@
       BLAWX CHECK DUPLICATES\nholds(sec_1_section,sibling,A,B) :- according_to(sec_1_section,sibling,A,B).\n\n%
       BLAWX CHECK DUPLICATES\n  sibling(A,B) :- holds(sec_1_section,sibling,A,B)."
 - model: blawx.workspace
-  pk: 47
+  pk: 9
   fields:
-    ruledoc: 7
+    ruledoc: 3
     workspace_name: sec_3_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"></xml>
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 48
+  pk: 10
   fields:
-    ruledoc: 7
+    ruledoc: 3
     workspace_name: sec_2_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="[c~Rd-p+ESGuzAe6,Y1|" x="209" y="26"><statement name="statements"><block
@@ -160,9 +179,9 @@
       :- according_to(sec_2_section,parent,Person,opg).\n\n% BLAWX CHECK DUPLICATES\n
       \ parent(Person,opg) :- holds(sec_2_section,parent,Person,opg)."
 - model: blawx.blawxtest
-  pk: 27
+  pk: 4
   fields:
-    ruledoc: 7
+    ruledoc: 3
     test_name: broken_test
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="{uq~dDoY2iMkP`)vDk(N" x="52" y="67"><statement name="statements"><block
@@ -216,9 +235,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 28
+  pk: 5
   fields:
-    ruledoc: 7
+    ruledoc: 3
     test_name: broken_code
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id=".-K|3Fqk+|D?g2x+%y1q" x="102" y="43"><statement name="statements"><block
@@ -271,9 +290,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 29
+  pk: 6
   fields:
-    ruledoc: 7
+    ruledoc: 3
     test_name: broken_rule
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="Q:{b=FC*B%+VR?ZyS+]y" x="93" y="81"><statement name="statements"><block
@@ -308,9 +327,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 30
+  pk: 7
   fields:
-    ruledoc: 7
+    ruledoc: 3
     test_name: automation
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="Uo/x(VqDHl^Bb1yFAZHz" x="111" y="141"><statement name="query"><block type="attribute_selector"
@@ -322,5 +341,5 @@
       name="variable_name">OtherPerson</field></block></value></block></statement></block></xml>
     scasp_encoding: ?- sibling(OtherPerson,Person).
     tutorial: ''
-    view: ''
+    view: '[''view_att_sibling'']'
     fact_scenario: ''

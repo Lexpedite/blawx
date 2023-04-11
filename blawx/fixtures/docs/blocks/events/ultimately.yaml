@@ -1,0 +1,26 @@
+- model: blawx.docpage
+  pk: blocks/ultimately
+  fields:
+    title: Ultimately Block
+    content: |
+      # Ultimately Block
+
+      ![Ultimately Block](/static/blawx/docs/images/blocks/ultimately.png)
+
+      ## Where Is It?
+
+      The Ultimately block is found in the Events drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The ultimately block is used to indicate that a statement holds as of the end of time.
+      This can be useful for queries using the during block, so that a period can be specified
+      from the time a statement became true, until the end of time.
+
+      ## Technical Details
+
+      The ultimately block accepts a single statement block. It is a statement block and can be
+      stacked with other statements.
+
+      ## Tips
+

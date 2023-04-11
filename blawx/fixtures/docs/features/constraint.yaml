@@ -5,59 +5,47 @@
     content: |
       # Logical Constraints
 
-      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
-
       Whereas a fact allows you to say what is always true, and a rule allows you to say what
       is sometimes true, a logical constraint allows you to say what is never true.
 
-      Imagine, as a small example, a situation where we are considering all possible combinations
-      of a person and a house. The people are albert, bernice, and charles, and the houes are red, blue, and green.
-      We might encode that ontology like this:
+      For a small example, imagine we have a situation where there are people, people have ages, there is
+      a person called bob, and bob has the age 40, and bob has the age 50.
 
-      ![House Ontology](/static/blawx/docs/images/house_ontology.png)
+      ![Logical Constraint Ontology](/static/blawx/docs/images/logical_constraint_ontology.png)
 
-      Now we might want to consider all possible combinations. So we create a rule that any
-      house and any person constitute a possible residence. The rule looks like this:
+      This naturally doesn't make a lot of sense, because we understand that ages are a thing that people do
+      not usually have more than one of.
 
-      ![Possible Residence Rule](/static/blawx/docs/images/possible_residence_rule.png)
+      Right now, if we asked what age Bob is, we would get two answers. If we preferred that Blawx should treat
+      any situation in which a person has two ages as a logically invalid scenario, which should never return an answer,
+      we can create a logical constraint.  If all of the elements of a logical constraint are true in a model, that model will
+      never be returned as an answer to a query.
 
-      If we now query the possible residences, we will get 9 answers. albert might
-      live in red, blue or green, bernice might live in red, blue or green, and charles might
-      live in red, blue or green.
+      Note that this is not the same as saying "we want people to only have one age".  What it means is that "if a person has two ages,
+      I don't want any answers at all."
 
-      ![House Answers 9](/static/blawx/docs/images/house_answers_9.png)
+      We could implement that by imposing a logical constraint that says a person can only have one age, like this:
 
-      Now imagine that there is a rule that albert cannot live in blue. We might implement that
-      rule by creating a default, which is that every combination is possible, and then imposing
-      an exception, which is that the combination of albert and blue is not possible. But that
-      would require using the defaults and exceptions method, which means that it would require
-      changing the rule and query above to use "according to" and "holds".
+      ![Logical Constraint Example](/static/blawx/docs/images/logical_constraint_example.png)
 
-      What we can do, instead, is to make a logical constraint, and simply say the thing that cannot
-      be true, like this:
+      Now, if you run the query "do any people have any age", you will get no models, because the only person with an age violates the constraint.
+      If you then disable the logical constraint, the same query will answer that bob has the age 40 and bob has the age 50. If you keep the
+      constraint, but get rid of the ages, the same query will answer whatever single age you have left in the code.
 
-      ![Albert Blue Constraint](/static/blawx/docs/images/albert_blue_constraint.png)
-      
-      If we run the code with that logical constraint added, the number of answers we receive is
-      reduced to 8.
-      
-      ![House Answers 8](/static/blawx/docs/images/house_answers_8.png)
-
-      ## Logical Constraints Are Hard to Debug, and Slow
+      ## Working with Logical Constraints
 
       Note that a logical constraint has the effect of making the code "inconsistent" when all of
       its conditions are true. If you have a number of constraints, and your code is unexpectedly
       returning "no models", one of those constraints is probably being violated, but it might be
-      difficult to tell which.
+      difficult to tell which. This means that working with logical constraints can make your code harder to debug.
 
       It may be easier to create an object with a property that is set to true if the conditions
       are met, and a single constraint that this value cannot be true. Then, when you believe a
-      constraint is being violated, you can disable the only constraint block, and ask whether
+      constraint is being violated, you can disable the only constraint block, and query whether
       that value is true, and get an explanation for why. This will make it a lot easier to
       debug problems with constraints.
       
       Note also that constraints can incur a considerable speed
       penalty depending on your code. If it is possible to do what you want to do without using
       constraint blocks, that may improve the speed of your code.
-      
 

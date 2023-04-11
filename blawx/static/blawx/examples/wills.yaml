@@ -1,24 +1,43 @@
 - model: blawx.ruledoc
-  pk: 8
+  pk: 4
   fields:
     ruledoc_name: Wills Act
     rule_text: "Wills Act\r\n\r\n1. A person over the age of 18 may make a will.\r\n2.
       An active military member over the age of 14 may make a will."
+    akoma_ntoso: <?xml version="1.0" encoding="UTF-8"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><act><preface><p
+      class="title"><shortTitle>Wills Act</shortTitle></p></preface><body><section
+      eId="sec_1"><num>1</num><content><p>A person over the age of 18 may make a will.</p></content></section><section
+      eId="sec_2"><num>2</num><content><p>An active military member over the age of
+      14 may make a will.</p></content></section></body></act></akomaNtoso>
+    navtree: '<nav class="column">
+
+      <div class="lawpart act"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="root_section" checked><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#root"></i>Wills
+      Act</div></div></div><div class="subparts collapse" id="root"><div class="lawpart
+      section"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_1_section"><div class="lawtext"><num>1</num> <content
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>A person over the
+      age of 18 may make a will.</p></content></div></div></div><div class="lawpart
+      section"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_2_section"><div class="lawtext"><num>2</num> <content
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>An active military
+      member over the age of 14 may make a will.</p></content></div></div></div></div></nav>'
     scasp_encoding: ''
     tutorial: ''
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 49
+  pk: 11
   fields:
-    ruledoc: 8
+    ruledoc: 4
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 50
+  pk: 12
   fields:
-    ruledoc: 8
+    ruledoc: 4
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="aECNt(H}#:DQpaQ]yKzK" x="38" y="32"><statement name="statements"><block
@@ -94,9 +113,9 @@
       :- according_to(sec_1_section,eligible,Person).\n\n% BLAWX CHECK DUPLICATES\n
       \ eligible(Person) :- holds(sec_1_section,eligible,Person)."
 - model: blawx.workspace
-  pk: 51
+  pk: 13
   fields:
-    ruledoc: 8
+    ruledoc: 4
     workspace_name: sec_2_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="aECNt(H}#:DQpaQ]yKzK" x="66" y="88"><statement name="statements"><block
@@ -149,9 +168,9 @@
       CHECK DUPLICATES\nholds(sec_2_section,eligible,Person) :- according_to(sec_2_section,eligible,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  eligible(Person) :- holds(sec_2_section,eligible,Person)."
 - model: blawx.blawxtest
-  pk: 31
+  pk: 8
   fields:
-    ruledoc: 8
+    ruledoc: 4
     test_name: valid_will
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="[H%F(8shmmOZ^!_dk%fF" x="49" y="271"><statement name="query"><block type="unary_attribute_selector"
@@ -161,5 +180,5 @@
       name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: ?- eligible(Person).
     tutorial: ''
-    view: ''
+    view: '[''view_att_eligible'']'
     fact_scenario: ''

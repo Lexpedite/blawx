@@ -5,8 +5,6 @@
     content: |
       # Variables
 
-      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
-
       Variables are a fundamental part of how Blawx works.
       You can't do anything interesting without them. But if you have experience
       with

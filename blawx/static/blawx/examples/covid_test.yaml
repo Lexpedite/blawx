@@ -1,25 +1,41 @@
 - model: blawx.ruledoc
-  pk: 9
+  pk: 5
   fields:
     ruledoc_name: Covid Test
     rule_text: "Covid Test Rule\r\n\r\n1. A person may board a flight if they have
       a ticket, and a negative covid test administered within 72 hours of the flight's
       scheduled departure."
+    akoma_ntoso: <?xml version="1.0" encoding="UTF-8"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><act><preface><p
+      class="title"><shortTitle>Covid Test Rule</shortTitle></p></preface><body><section
+      eId="sec_1"><num>1</num><content><p>A person may board a flight if they have
+      a ticket, and a negative covid test administered within 72 hours of the flight's
+      scheduled departure.</p></content></section></body></act></akomaNtoso>
+    navtree: '<nav class="column">
+
+      <div class="lawpart act"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="root_section" checked><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#root"></i>Covid
+      Test Rule</div></div></div><div class="subparts collapse" id="root"><div class="lawpart
+      section"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_1_section"><div class="lawtext"><num>1</num> <content
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>A person may board
+      a flight if they have a ticket, and a negative covid test administered within
+      72 hours of the flight''s scheduled departure.</p></content></div></div></div></div></nav>'
     scasp_encoding: ''
     tutorial: ''
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 52
+  pk: 14
   fields:
-    ruledoc: 9
+    ruledoc: 5
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 53
+  pk: 15
   fields:
-    ruledoc: 9
+    ruledoc: 5
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="/VkgyzyW3Xot[^le+r(Z" x="47" y="53"><statement name="statements"><block
@@ -115,16 +131,15 @@
       name="postfix"></field><value name="first_element"><block type="variable" id="[#avCNy_p+,^{N8P^LTS"><field
       name="variable_name">Test</field></block></value><value name="second_element"><block
       type="variable" id="/{=Ag/-4@aZR=3f/XN|v"><field name="variable_name">TestTime</field></block></value><next><block
-      type="date_difference" id="BM7Nwc;=nYK/m`BTFeO,"><value name="first_date"><block
-      type="variable" id="S@50mUR[Dxc}OWtpma=m"><field name="variable_name">ScheduledDeparture</field></block></value><value
-      name="second_date"><block type="variable" id=".cPj^#I60%q94zq#.`{n"><field name="variable_name">TestTime</field></block></value><value
-      name="duration"><block type="variable" id="^BKVBF}*RG]k#6ePCDTU"><field name="variable_name">DurationFromTestToDeparture</field></block></value><next><block
+      type="date_add" id="y^T%qe!Bba]-Mw5/k7$6"><value name="duration"><block type="variable"
+      id="^BKVBF}*RG]k#6ePCDTU"><field name="variable_name">DurationFromTestToDeparture</field></block></value><value
+      name="first_date"><block type="variable" id=".cPj^#I60%q94zq#.`{n"><field name="variable_name">TestTime</field></block></value><value
+      name="second_date"><block type="variable" id="S@50mUR[Dxc}OWtpma=m"><field name="variable_name">ScheduledDeparture</field></block></value><next><block
       type="duration_comparison" id="2JX+jV=xh`c5A?G7I|vl"><field name="comparison">lte</field><value
       name="first_date"><block type="variable" id="RoC%ix41E*W#`J[hT]LQ"><field name="variable_name">DurationFromTestToDeparture</field></block></value><value
-      name="second_date"><block type="duration_value" id=".[R|dFgHZ$sP`.n=v|eQ"><field
-      name="sign">1</field><field name="years">0</field><field name="months">0</field><field
-      name="days">0</field><field name="hours">72</field><field name="minutes">0</field><field
-      name="seconds">0</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><value
+      name="second_date"><block type="duration_value" id="vS5xw^t{Eyo%5z?2}9hh"><field
+      name="sign">1</field><field name="days">0</field><field name="hours">72</field><field
+      name="minutes">0</field><field name="seconds">0</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><value
       name="source"><block type="doc_selector" id="Vm6y$RqZ*E(zWL8xd+_I"><mutation
       xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1_section"></mutation><field
       name="doc_part_name">CTR 1</field></block></value><statement name="conclusion"><block
@@ -135,29 +150,92 @@
       name="variable_name">Person</field></block></value><value name="second_element"><block
       type="variable" id="^Su_hE%A/=dWzYkGu1Xv"><field name="variable_name">Flight</field></block></value></block></statement></block></xml>
     scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
-      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
-      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
-      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
-      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
-      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
-      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
-      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
-      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
-      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
-      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\nblawx_category(flight).\nblawx_category_nlg(flight,\"\",\"is
-      a flight\").\n#pred flight(X) :: '@(X) is a flight'.\n#pred holds(user,flight,X)
-      :: 'it is provided as a fact that @(X) is a flight'.\n#pred holds(user,-flight,X)
-      :: 'it is provided as a fact that it is not the case that @(X) is a flight'.\n#pred
-      holds(Z,flight,X) :: 'the conclusion in @(Z) that @(X) is a flight holds'.\n#pred
-      holds(Z,-flight,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
-      is a flight holds'.\n#pred according_to(Z,flight,X) :: 'according to @(Z), @(X)
-      is a flight'.\n#pred according_to(Z,-flight,X) :: 'according to @(Z), it is
-      not the case that @(X) is a flight'.\n#pred blawx_defeated(Z,flight,X) :: 'the
-      conclusion in @(Z) that @(X) is a flight is defeated'.\n#pred blawx_defeated(Z,-flight,X)
-      :: 'the conclusion in @(Z) that @(X) is a flight is defeated'.\nblawx_category(test_result).\nblawx_category_nlg(test_result,\"\",\"is
-      a test_result\").\n#pred test_result(X) :: '@(X) is a test_result'.\n#pred holds(user,test_result,X)
-      :: 'it is provided as a fact that @(X) is a test_result'.\n#pred holds(user,-test_result,X)
-      :: 'it is provided as a fact that it is not the case that @(X) is a test_result'.\n#pred
+      a person\").\n:- dynamic person/1.\n#pred person(X) :: '@(X) is a person'.\n#pred
+      holds(user,person,X) :: 'it is provided as a fact that @(X) is a person'.\n#pred
+      holds(user,-person,X) :: 'it is provided as a fact that it is not the case that
+      @(X) is a person'.\n#pred holds(Z,person,X) :: 'the conclusion in @(Z) that
+      @(X) is a person holds'.\n#pred holds(Z,-person,X) :: 'the conclusion in @(Z)
+      that it is not the case that @(X) is a person holds'.\n#pred according_to(Z,person,X)
+      :: 'according to @(Z), @(X) is a person'.\n#pred according_to(Z,-person,X) ::
+      'according to @(Z), it is not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) is a person is
+      defeated'.\n#pred blawx_initially(person(X)) :: 'that @(X) is a person holds
+      initially'.\n#pred blawx_initially(-person(X)) :: 'that it is not the case that
+      @(X) is a person holds initially'.\n#pred blawx_ultimately(person(X)) :: 'that
+      @(X) is a person holds ultimately'.\n#pred blawx_ultimately(-person(X)) :: 'that
+      it is not the case that @(X) is a person holds ultimately'.\n#pred blawx_as_of(person(X),T)
+      :: 'that @(X) is a person holds at @(T)'.\n#pred blawx_as_of(-person(X),T) ::
+      'that it is not the case that @(X) is a person holds at @(T)'.\n#pred blawx_during(T1,person(X),T2)
+      :: 'that @(X) is a person held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-person(X),T2)
+      :: 'that it is not the case that @(X) is a person held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(person(X),T) :: 'that @(X) is a person became true at @(T)'.\n#pred
+      blawx_becomes(-person(X),T) :: 'that it is not the case that @(X) is a person
+      became true at @(T)'.\nblawx_as_of(person(X),datetime(Time)) :- blawx_becomes(person(X),datetime(BeforeT)),
+      not blawx_becomes(-person(X), datetime(BetweenT)), BeforeT #< Time,BeforeT #<
+      BetweenT, BetweenT #< Time.\nblawx_as_of(person(X),datetime(Time)) :- blawx_initially(person(X)),
+      not blawx_becomes(-person(X), datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),person(X),datetime(End))
+      :- blawx_becomes(person(X),datetime(Start)), not blawx_becomes(-person(X),datetime(BeforeEnd)),
+      blawx_becomes(-person(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),person(X),datetime(End))
+      :- blawx_initially(person(X)), not blawx_becomes(-person(X),datetime(BeforeEnd)),
+      blawx_becomes(-person(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),person(X),datetime(eot))
+      :- blawx_becomes(person(X),datetime(Start)), not blawx_becomes(-person(X),datetime(AfterStart)),
+      blawx_ultimately(person(X)), AfterStart #> Start.\nblawx_as_of(-person(X),datetime(Time))
+      :- blawx_becomes(-person(X),datetime(BeforeT)), not blawx_becomes(person(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-person(X),datetime(Time))
+      :- blawx_initially(-person(X)), not blawx_becomes(person(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-person(X),datetime(End)) :-
+      blawx_becomes(-person(X),datetime(Start)), not blawx_becomes(person(X),datetime(BeforeEnd)),
+      blawx_becomes(person(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-person(X),datetime(End))
+      :- blawx_initially(-person(X)), not blawx_becomes(person(X),datetime(BeforeEnd)),
+      blawx_becomes(person(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-person(X),datetime(eot))
+      :- blawx_becomes(-person(X),datetime(Start)), not blawx_becomes(person(X),datetime(AfterStart)),
+      blawx_ultimately(-person(X)), AfterStart #> Start.\nblawx_category(flight).\nblawx_category_nlg(flight,\"\",\"is
+      a flight\").\n:- dynamic flight/1.\n#pred flight(X) :: '@(X) is a flight'.\n#pred
+      holds(user,flight,X) :: 'it is provided as a fact that @(X) is a flight'.\n#pred
+      holds(user,-flight,X) :: 'it is provided as a fact that it is not the case that
+      @(X) is a flight'.\n#pred holds(Z,flight,X) :: 'the conclusion in @(Z) that
+      @(X) is a flight holds'.\n#pred holds(Z,-flight,X) :: 'the conclusion in @(Z)
+      that it is not the case that @(X) is a flight holds'.\n#pred according_to(Z,flight,X)
+      :: 'according to @(Z), @(X) is a flight'.\n#pred according_to(Z,-flight,X) ::
+      'according to @(Z), it is not the case that @(X) is a flight'.\n#pred blawx_defeated(Z,flight,X)
+      :: 'the conclusion in @(Z) that @(X) is a flight is defeated'.\n#pred blawx_defeated(Z,-flight,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) is a flight is
+      defeated'.\n#pred blawx_initially(flight(X)) :: 'that @(X) is a flight holds
+      initially'.\n#pred blawx_initially(-flight(X)) :: 'that it is not the case that
+      @(X) is a flight holds initially'.\n#pred blawx_ultimately(flight(X)) :: 'that
+      @(X) is a flight holds ultimately'.\n#pred blawx_ultimately(-flight(X)) :: 'that
+      it is not the case that @(X) is a flight holds ultimately'.\n#pred blawx_as_of(flight(X),T)
+      :: 'that @(X) is a flight holds at @(T)'.\n#pred blawx_as_of(-flight(X),T) ::
+      'that it is not the case that @(X) is a flight holds at @(T)'.\n#pred blawx_during(T1,flight(X),T2)
+      :: 'that @(X) is a flight held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-flight(X),T2)
+      :: 'that it is not the case that @(X) is a flight held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(flight(X),T) :: 'that @(X) is a flight became true at @(T)'.\n#pred
+      blawx_becomes(-flight(X),T) :: 'that it is not the case that @(X) is a flight
+      became true at @(T)'.\nblawx_as_of(flight(X),datetime(Time)) :- blawx_becomes(flight(X),datetime(BeforeT)),
+      not blawx_becomes(-flight(X), datetime(BetweenT)), BeforeT #< Time,BeforeT #<
+      BetweenT, BetweenT #< Time.\nblawx_as_of(flight(X),datetime(Time)) :- blawx_initially(flight(X)),
+      not blawx_becomes(-flight(X), datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),flight(X),datetime(End))
+      :- blawx_becomes(flight(X),datetime(Start)), not blawx_becomes(-flight(X),datetime(BeforeEnd)),
+      blawx_becomes(-flight(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),flight(X),datetime(End))
+      :- blawx_initially(flight(X)), not blawx_becomes(-flight(X),datetime(BeforeEnd)),
+      blawx_becomes(-flight(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),flight(X),datetime(eot))
+      :- blawx_becomes(flight(X),datetime(Start)), not blawx_becomes(-flight(X),datetime(AfterStart)),
+      blawx_ultimately(flight(X)), AfterStart #> Start.\nblawx_as_of(-flight(X),datetime(Time))
+      :- blawx_becomes(-flight(X),datetime(BeforeT)), not blawx_becomes(flight(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-flight(X),datetime(Time))
+      :- blawx_initially(-flight(X)), not blawx_becomes(flight(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-flight(X),datetime(End)) :-
+      blawx_becomes(-flight(X),datetime(Start)), not blawx_becomes(flight(X),datetime(BeforeEnd)),
+      blawx_becomes(flight(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-flight(X),datetime(End))
+      :- blawx_initially(-flight(X)), not blawx_becomes(flight(X),datetime(BeforeEnd)),
+      blawx_becomes(flight(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-flight(X),datetime(eot))
+      :- blawx_becomes(-flight(X),datetime(Start)), not blawx_becomes(flight(X),datetime(AfterStart)),
+      blawx_ultimately(-flight(X)), AfterStart #> Start.\nblawx_category(test_result).\nblawx_category_nlg(test_result,\"\",\"is
+      a test_result\").\n:- dynamic test_result/1.\n#pred test_result(X) :: '@(X)
+      is a test_result'.\n#pred holds(user,test_result,X) :: 'it is provided as a
+      fact that @(X) is a test_result'.\n#pred holds(user,-test_result,X) :: 'it is
+      provided as a fact that it is not the case that @(X) is a test_result'.\n#pred
       holds(Z,test_result,X) :: 'the conclusion in @(Z) that @(X) is a test_result
       holds'.\n#pred holds(Z,-test_result,X) :: 'the conclusion in @(Z) that it is
       not the case that @(X) is a test_result holds'.\n#pred according_to(Z,test_result,X)
@@ -165,69 +243,267 @@
       :: 'according to @(Z), it is not the case that @(X) is a test_result'.\n#pred
       blawx_defeated(Z,test_result,X) :: 'the conclusion in @(Z) that @(X) is a test_result
       is defeated'.\n#pred blawx_defeated(Z,-test_result,X) :: 'the conclusion in
-      @(Z) that @(X) is a test_result is defeated'.\nblawx_category(test).\nblawx_category_nlg(test,\"\",\"is
-      a test\").\n#pred test(X) :: '@(X) is a test'.\n#pred holds(user,test,X) ::
-      'it is provided as a fact that @(X) is a test'.\n#pred holds(user,-test,X) ::
-      'it is provided as a fact that it is not the case that @(X) is a test'.\n#pred
+      @(Z) that it is not the case that @(X) is a test_result is defeated'.\n#pred
+      blawx_initially(test_result(X)) :: 'that @(X) is a test_result holds initially'.\n#pred
+      blawx_initially(-test_result(X)) :: 'that it is not the case that @(X) is a
+      test_result holds initially'.\n#pred blawx_ultimately(test_result(X)) :: 'that
+      @(X) is a test_result holds ultimately'.\n#pred blawx_ultimately(-test_result(X))
+      :: 'that it is not the case that @(X) is a test_result holds ultimately'.\n#pred
+      blawx_as_of(test_result(X),T) :: 'that @(X) is a test_result holds at @(T)'.\n#pred
+      blawx_as_of(-test_result(X),T) :: 'that it is not the case that @(X) is a test_result
+      holds at @(T)'.\n#pred blawx_during(T1,test_result(X),T2) :: 'that @(X) is a
+      test_result held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-test_result(X),T2)
+      :: 'that it is not the case that @(X) is a test_result held between @(T1) and
+      @(T2)'.\n#pred blawx_becomes(test_result(X),T) :: 'that @(X) is a test_result
+      became true at @(T)'.\n#pred blawx_becomes(-test_result(X),T) :: 'that it is
+      not the case that @(X) is a test_result became true at @(T)'.\nblawx_as_of(test_result(X),datetime(Time))
+      :- blawx_becomes(test_result(X),datetime(BeforeT)), not blawx_becomes(-test_result(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(test_result(X),datetime(Time))
+      :- blawx_initially(test_result(X)), not blawx_becomes(-test_result(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),test_result(X),datetime(End))
+      :- blawx_becomes(test_result(X),datetime(Start)), not blawx_becomes(-test_result(X),datetime(BeforeEnd)),
+      blawx_becomes(-test_result(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),test_result(X),datetime(End))
+      :- blawx_initially(test_result(X)), not blawx_becomes(-test_result(X),datetime(BeforeEnd)),
+      blawx_becomes(-test_result(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),test_result(X),datetime(eot))
+      :- blawx_becomes(test_result(X),datetime(Start)), not blawx_becomes(-test_result(X),datetime(AfterStart)),
+      blawx_ultimately(test_result(X)), AfterStart #> Start.\nblawx_as_of(-test_result(X),datetime(Time))
+      :- blawx_becomes(-test_result(X),datetime(BeforeT)), not blawx_becomes(test_result(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-test_result(X),datetime(Time))
+      :- blawx_initially(-test_result(X)), not blawx_becomes(test_result(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-test_result(X),datetime(End))
+      :- blawx_becomes(-test_result(X),datetime(Start)), not blawx_becomes(test_result(X),datetime(BeforeEnd)),
+      blawx_becomes(test_result(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-test_result(X),datetime(End))
+      :- blawx_initially(-test_result(X)), not blawx_becomes(test_result(X),datetime(BeforeEnd)),
+      blawx_becomes(test_result(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-test_result(X),datetime(eot))
+      :- blawx_becomes(-test_result(X),datetime(Start)), not blawx_becomes(test_result(X),datetime(AfterStart)),
+      blawx_ultimately(-test_result(X)), AfterStart #> Start.\nblawx_category(test).\nblawx_category_nlg(test,\"\",\"is
+      a test\").\n:- dynamic test/1.\n#pred test(X) :: '@(X) is a test'.\n#pred holds(user,test,X)
+      :: 'it is provided as a fact that @(X) is a test'.\n#pred holds(user,-test,X)
+      :: 'it is provided as a fact that it is not the case that @(X) is a test'.\n#pred
       holds(Z,test,X) :: 'the conclusion in @(Z) that @(X) is a test holds'.\n#pred
       holds(Z,-test,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
       is a test holds'.\n#pred according_to(Z,test,X) :: 'according to @(Z), @(X)
       is a test'.\n#pred according_to(Z,-test,X) :: 'according to @(Z), it is not
       the case that @(X) is a test'.\n#pred blawx_defeated(Z,test,X) :: 'the conclusion
       in @(Z) that @(X) is a test is defeated'.\n#pred blawx_defeated(Z,-test,X) ::
-      'the conclusion in @(Z) that @(X) is a test is defeated'.\nblawx_attribute(person,ticketed_for,flight).\nblawx_attribute_nlg(ticketed_for,ov,\"\",\"has
-      a ticket for\",\"\").\n#pred ticketed_for(X,Y) :: '@(X) has a ticket for @(Y)'.\n#pred
-      holds(user,ticketed_for,X,Y) :: 'it is provided as a fact that @(X) has a ticket
-      for @(Y)'.\n#pred holds(user,-ticketed_for,X,Y) :: 'it is provided as a fact
-      that it is not the case that @(X) has a ticket for @(Y)'.\n#pred holds(Z,ticketed_for,X,Y)
-      :: 'the conclusion in @(Z) that @(X) has a ticket for @(Y) holds'.\n#pred holds(Z,-ticketed_for,X,Y)
-      :: 'the conclusion in @(Z) that it is not the case that @(X) has a ticket for
-      @(Y) holds'.\n#pred according_to(Z,ticketed_for,X,Y) :: 'according to @(Z),
-      @(X) has a ticket for @(Y)'.\n#pred according_to(Z,-ticketed_for,X,Y) :: 'according
-      to @(Z), it is not the case that @(X) has a ticket for @(Y)'.\n#pred blawx_defeated(Z,ticketed_for,X,Y)
+      'the conclusion in @(Z) that it is not the case that @(X) is a test is defeated'.\n#pred
+      blawx_initially(test(X)) :: 'that @(X) is a test holds initially'.\n#pred blawx_initially(-test(X))
+      :: 'that it is not the case that @(X) is a test holds initially'.\n#pred blawx_ultimately(test(X))
+      :: 'that @(X) is a test holds ultimately'.\n#pred blawx_ultimately(-test(X))
+      :: 'that it is not the case that @(X) is a test holds ultimately'.\n#pred blawx_as_of(test(X),T)
+      :: 'that @(X) is a test holds at @(T)'.\n#pred blawx_as_of(-test(X),T) :: 'that
+      it is not the case that @(X) is a test holds at @(T)'.\n#pred blawx_during(T1,test(X),T2)
+      :: 'that @(X) is a test held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-test(X),T2)
+      :: 'that it is not the case that @(X) is a test held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(test(X),T) :: 'that @(X) is a test became true at @(T)'.\n#pred
+      blawx_becomes(-test(X),T) :: 'that it is not the case that @(X) is a test became
+      true at @(T)'.\nblawx_as_of(test(X),datetime(Time)) :- blawx_becomes(test(X),datetime(BeforeT)),
+      not blawx_becomes(-test(X), datetime(BetweenT)), BeforeT #< Time,BeforeT #<
+      BetweenT, BetweenT #< Time.\nblawx_as_of(test(X),datetime(Time)) :- blawx_initially(test(X)),
+      not blawx_becomes(-test(X), datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),test(X),datetime(End))
+      :- blawx_becomes(test(X),datetime(Start)), not blawx_becomes(-test(X),datetime(BeforeEnd)),
+      blawx_becomes(-test(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),test(X),datetime(End))
+      :- blawx_initially(test(X)), not blawx_becomes(-test(X),datetime(BeforeEnd)),
+      blawx_becomes(-test(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),test(X),datetime(eot))
+      :- blawx_becomes(test(X),datetime(Start)), not blawx_becomes(-test(X),datetime(AfterStart)),
+      blawx_ultimately(test(X)), AfterStart #> Start.\nblawx_as_of(-test(X),datetime(Time))
+      :- blawx_becomes(-test(X),datetime(BeforeT)), not blawx_becomes(test(X), datetime(BetweenT)),
+      BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-test(X),datetime(Time))
+      :- blawx_initially(-test(X)), not blawx_becomes(test(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-test(X),datetime(End)) :- blawx_becomes(-test(X),datetime(Start)),
+      not blawx_becomes(test(X),datetime(BeforeEnd)), blawx_becomes(test(X),datetime(End)),
+      BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-test(X),datetime(End))
+      :- blawx_initially(-test(X)), not blawx_becomes(test(X),datetime(BeforeEnd)),
+      blawx_becomes(test(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-test(X),datetime(eot))
+      :- blawx_becomes(-test(X),datetime(Start)), not blawx_becomes(test(X),datetime(AfterStart)),
+      blawx_ultimately(-test(X)), AfterStart #> Start.\nblawx_attribute(person,ticketed_for,flight).\nblawx_attribute_nlg(ticketed_for,ov,\"\",\"has
+      a ticket for\",\"\").\n:- dynamic ticketed_for/2.\n#pred ticketed_for(X,Y) ::
+      '@(X) has a ticket for @(Y)'.\n#pred holds(user,ticketed_for,X,Y) :: 'it is
+      provided as a fact that @(X) has a ticket for @(Y)'.\n#pred holds(user,-ticketed_for,X,Y)
+      :: 'it is provided as a fact that it is not the case that @(X) has a ticket
+      for @(Y)'.\n#pred holds(Z,ticketed_for,X,Y) :: 'the conclusion in @(Z) that
+      @(X) has a ticket for @(Y) holds'.\n#pred holds(Z,-ticketed_for,X,Y) :: 'the
+      conclusion in @(Z) that it is not the case that @(X) has a ticket for @(Y) holds'.\n#pred
+      according_to(Z,ticketed_for,X,Y) :: 'according to @(Z), @(X) has a ticket for
+      @(Y)'.\n#pred according_to(Z,-ticketed_for,X,Y) :: 'according to @(Z), it is
+      not the case that @(X) has a ticket for @(Y)'.\n#pred blawx_defeated(Z,ticketed_for,X,Y)
       :: 'the conclusion in @(Z) that @(X) has a ticket for @(Y) is defeated'.\n#pred
       blawx_defeated(Z,-ticketed_for,X,Y) :: 'the conclusion in @(Z) that @(X) has
-      a ticket for @(Y) is defeated'.\nblawx_attribute(person,may_board,flight).\nblawx_attribute_nlg(may_board,ov,\"\",\"is
-      permitted to board\",\"\").\n#pred may_board(X,Y) :: '@(X) is permitted to board
-      @(Y)'.\n#pred holds(user,may_board,X,Y) :: 'it is provided as a fact that @(X)
-      is permitted to board @(Y)'.\n#pred holds(user,-may_board,X,Y) :: 'it is provided
-      as a fact that it is not the case that @(X) is permitted to board @(Y)'.\n#pred
-      holds(Z,may_board,X,Y) :: 'the conclusion in @(Z) that @(X) is permitted to
-      board @(Y) holds'.\n#pred holds(Z,-may_board,X,Y) :: 'the conclusion in @(Z)
-      that it is not the case that @(X) is permitted to board @(Y) holds'.\n#pred
-      according_to(Z,may_board,X,Y) :: 'according to @(Z), @(X) is permitted to board
-      @(Y)'.\n#pred according_to(Z,-may_board,X,Y) :: 'according to @(Z), it is not
-      the case that @(X) is permitted to board @(Y)'.\n#pred blawx_defeated(Z,may_board,X,Y)
+      a ticket for @(Y) is defeated'.\n#pred blawx_initially(ticketed_for,(X,Y)) ::
+      'that @(X) has a ticket for @(Y) holds initially'.\n#pred blawx_initially(-ticketed_for,(X,Y))
+      :: 'that it is not the case that @(X) has a ticket for @(Y) holds initially'.\n#pred
+      blawx_ultimately(ticketed_for,(X,Y)) :: 'that @(X) has a ticket for @(Y) holds
+      ultimately'.\n#pred blawx_ultimately(-ticketed_for,(X,Y)) :: 'that it is not
+      the case that @(X) has a ticket for @(Y) holds ultimately'.\n#pred blawx_as_of(ticketed_for,(X,Y),T)
+      :: 'that @(X) has a ticket for @(Y) holds at @(T)'.\n#pred blawx_as_of(-ticketed_for,(X,Y),T)
+      :: 'that it is not the case that @(X) has a ticket for @(Y) holds at @(T)'.\n#pred
+      blawx_during(T1,ticketed_for,(X,Y),T2) :: 'that @(X) has a ticket for @(Y) held
+      between @(T1) and @(T2)'.\n#pred blawx_during(T1,-ticketed_for,(X,Y),T2) ::
+      'that it is not the case that @(X) has a ticket for @(Y) held between @(T1)
+      and @(T2)'.\n#pred blawx_becomes(ticketed_for,(X,Y),T) :: 'that @(X) has a ticket
+      for @(Y) became true at @(T)'.\n#pred blawx_becomes(-ticketed_for,(X,Y),T) ::
+      'that it is not the case that @(X) has a ticket for @(Y) became true at @(T)'.\nblawx_as_of(ticketed_for(X,Y),datetime(Time))
+      :- blawx_becomes(ticketed_for(X,Y),datetime(BeforeT)), not blawx_becomes(-ticketed_for(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(ticketed_for(X,Y),datetime(Time))
+      :- blawx_initially(ticketed_for(X,Y)), not blawx_becomes(-ticketed_for(X,Y),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),ticketed_for(X,Y),datetime(End))
+      :- blawx_becomes(ticketed_for(X,Y),datetime(Start)), not blawx_becomes(-ticketed_for(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-ticketed_for(X,Y),datetime(End)), BeforeEnd #< End, Start #<
+      End.\nblawx_during(datetime(bot),ticketed_for(X,Y),datetime(End)) :- blawx_initially(ticketed_for(X,Y)),
+      not blawx_becomes(-ticketed_for(X,Y),datetime(BeforeEnd)), blawx_becomes(-ticketed_for(X,Y),datetime(End)),
+      BeforeEnd #< End.\nblawx_during(datetime(Start),ticketed_for(X,Y),datetime(eot))
+      :- blawx_becomes(ticketed_for(X,Y),datetime(Start)), not blawx_becomes(-ticketed_for(X,Y),datetime(AfterStart)),
+      blawx_ultimately(ticketed_for(X,Y)), AfterStart #> Start.\nblawx_as_of(-ticketed_for(X,Y),datetime(Time))
+      :- blawx_becomes(-ticketed_for(X,Y),datetime(BeforeT)), not blawx_becomes(ticketed_for(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-ticketed_for(X,Y),datetime(Time))
+      :- blawx_initially(-ticketed_for(X,Y)), not blawx_becomes(ticketed_for(X,Y),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),-ticketed_for(X,Y),datetime(End))
+      :- blawx_becomes(-ticketed_for(X,Y),datetime(Start)), not blawx_becomes(ticketed_for(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(ticketed_for(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-ticketed_for(X,Y),datetime(End))
+      :- blawx_initially(-ticketed_for(X,Y)), not blawx_becomes(ticketed_for(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(ticketed_for(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-ticketed_for(X,Y),datetime(eot))
+      :- blawx_becomes(-ticketed_for(X,Y),datetime(Start)), not blawx_becomes(ticketed_for(X,Y),datetime(AfterStart)),
+      blawx_ultimately(-ticketed_for(X,Y)), AfterStart #> Start.\nblawx_attribute(person,may_board,flight).\nblawx_attribute_nlg(may_board,ov,\"\",\"is
+      permitted to board\",\"\").\n:- dynamic may_board/2.\n#pred may_board(X,Y) ::
+      '@(X) is permitted to board @(Y)'.\n#pred holds(user,may_board,X,Y) :: 'it is
+      provided as a fact that @(X) is permitted to board @(Y)'.\n#pred holds(user,-may_board,X,Y)
+      :: 'it is provided as a fact that it is not the case that @(X) is permitted
+      to board @(Y)'.\n#pred holds(Z,may_board,X,Y) :: 'the conclusion in @(Z) that
+      @(X) is permitted to board @(Y) holds'.\n#pred holds(Z,-may_board,X,Y) :: 'the
+      conclusion in @(Z) that it is not the case that @(X) is permitted to board @(Y)
+      holds'.\n#pred according_to(Z,may_board,X,Y) :: 'according to @(Z), @(X) is
+      permitted to board @(Y)'.\n#pred according_to(Z,-may_board,X,Y) :: 'according
+      to @(Z), it is not the case that @(X) is permitted to board @(Y)'.\n#pred blawx_defeated(Z,may_board,X,Y)
       :: 'the conclusion in @(Z) that @(X) is permitted to board @(Y) is defeated'.\n#pred
       blawx_defeated(Z,-may_board,X,Y) :: 'the conclusion in @(Z) that @(X) is permitted
-      to board @(Y) is defeated'.\nblawx_attribute(test,subject,person).\nblawx_attribute_nlg(subject,vo,\"\",\"took
-      a covid test\",\"\").\n#pred subject(Y,X) :: '@(X) took a covid test @(Y)'.\n#pred
-      holds(user,subject,Y,X) :: 'it is provided as a fact that @(X) took a covid
-      test @(Y)'.\n#pred holds(user,-subject,Y,X) :: 'it is provided as a fact that
-      it is not the case that @(X) took a covid test @(Y)'.\n#pred holds(Z,subject,Y,X)
-      :: 'the conclusion in @(Z) that @(X) took a covid test @(Y) holds'.\n#pred holds(Z,-subject,Y,X)
-      :: 'the conclusion in @(Z) that it is not the case that @(X) took a covid test
-      @(Y) holds'.\n#pred according_to(Z,subject,Y,X) :: 'according to @(Z), @(X)
-      took a covid test @(Y)'.\n#pred according_to(Z,-subject,Y,X) :: 'according to
-      @(Z), it is not the case that @(X) took a covid test @(Y)'.\n#pred blawx_defeated(Z,subject,Y,X)
-      :: 'the conclusion in @(Z) that @(X) took a covid test @(Y) is defeated'.\n#pred
-      blawx_defeated(Z,-subject,Y,X) :: 'the conclusion in @(Z) that @(X) took a covid
-      test @(Y) is defeated'.\nblawx_attribute(test,result,test_result).\nblawx_attribute_nlg(result,ov,\"the
-      result of\",\"was\",\"\").\n#pred result(X,Y) :: 'the result of @(X) was @(Y)'.\n#pred
-      holds(user,result,X,Y) :: 'it is provided as a fact that the result of @(X)
-      was @(Y)'.\n#pred holds(user,-result,X,Y) :: 'it is provided as a fact that
-      it is not the case that the result of @(X) was @(Y)'.\n#pred holds(Z,result,X,Y)
-      :: 'the conclusion in @(Z) that the result of @(X) was @(Y) holds'.\n#pred holds(Z,-result,X,Y)
-      :: 'the conclusion in @(Z) that it is not the case that the result of @(X) was
-      @(Y) holds'.\n#pred according_to(Z,result,X,Y) :: 'according to @(Z), the result
-      of @(X) was @(Y)'.\n#pred according_to(Z,-result,X,Y) :: 'according to @(Z),
-      it is not the case that the result of @(X) was @(Y)'.\n#pred blawx_defeated(Z,result,X,Y)
-      :: 'the conclusion in @(Z) that the result of @(X) was @(Y) is defeated'.\n#pred
-      blawx_defeated(Z,-result,X,Y) :: 'the conclusion in @(Z) that the result of
-      @(X) was @(Y) is defeated'.\nblawx_attribute(test,administered_at,datetime).\nblawx_attribute_nlg(administered_at,ov,\"\",\"was
-      administered at\",\"\").\n#pred administered_at(X,Y) :: '@(X) was administered
-      at @(Y)'.\n#pred holds(user,administered_at,X,Y) :: 'it is provided as a fact
-      that @(X) was administered at @(Y)'.\n#pred holds(user,-administered_at,X,Y)
+      to board @(Y) is defeated'.\n#pred blawx_initially(may_board,(X,Y)) :: 'that
+      @(X) is permitted to board @(Y) holds initially'.\n#pred blawx_initially(-may_board,(X,Y))
+      :: 'that it is not the case that @(X) is permitted to board @(Y) holds initially'.\n#pred
+      blawx_ultimately(may_board,(X,Y)) :: 'that @(X) is permitted to board @(Y) holds
+      ultimately'.\n#pred blawx_ultimately(-may_board,(X,Y)) :: 'that it is not the
+      case that @(X) is permitted to board @(Y) holds ultimately'.\n#pred blawx_as_of(may_board,(X,Y),T)
+      :: 'that @(X) is permitted to board @(Y) holds at @(T)'.\n#pred blawx_as_of(-may_board,(X,Y),T)
+      :: 'that it is not the case that @(X) is permitted to board @(Y) holds at @(T)'.\n#pred
+      blawx_during(T1,may_board,(X,Y),T2) :: 'that @(X) is permitted to board @(Y)
+      held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-may_board,(X,Y),T2) ::
+      'that it is not the case that @(X) is permitted to board @(Y) held between @(T1)
+      and @(T2)'.\n#pred blawx_becomes(may_board,(X,Y),T) :: 'that @(X) is permitted
+      to board @(Y) became true at @(T)'.\n#pred blawx_becomes(-may_board,(X,Y),T)
+      :: 'that it is not the case that @(X) is permitted to board @(Y) became true
+      at @(T)'.\nblawx_as_of(may_board(X,Y),datetime(Time)) :- blawx_becomes(may_board(X,Y),datetime(BeforeT)),
+      not blawx_becomes(-may_board(X,Y), datetime(BetweenT)), BeforeT #< Time,BeforeT
+      #< BetweenT, BetweenT #< Time.\nblawx_as_of(may_board(X,Y),datetime(Time)) :-
+      blawx_initially(may_board(X,Y)), not blawx_becomes(-may_board(X,Y), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),may_board(X,Y),datetime(End))
+      :- blawx_becomes(may_board(X,Y),datetime(Start)), not blawx_becomes(-may_board(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-may_board(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),may_board(X,Y),datetime(End))
+      :- blawx_initially(may_board(X,Y)), not blawx_becomes(-may_board(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-may_board(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),may_board(X,Y),datetime(eot))
+      :- blawx_becomes(may_board(X,Y),datetime(Start)), not blawx_becomes(-may_board(X,Y),datetime(AfterStart)),
+      blawx_ultimately(may_board(X,Y)), AfterStart #> Start.\nblawx_as_of(-may_board(X,Y),datetime(Time))
+      :- blawx_becomes(-may_board(X,Y),datetime(BeforeT)), not blawx_becomes(may_board(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-may_board(X,Y),datetime(Time))
+      :- blawx_initially(-may_board(X,Y)), not blawx_becomes(may_board(X,Y), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-may_board(X,Y),datetime(End))
+      :- blawx_becomes(-may_board(X,Y),datetime(Start)), not blawx_becomes(may_board(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(may_board(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-may_board(X,Y),datetime(End))
+      :- blawx_initially(-may_board(X,Y)), not blawx_becomes(may_board(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(may_board(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-may_board(X,Y),datetime(eot))
+      :- blawx_becomes(-may_board(X,Y),datetime(Start)), not blawx_becomes(may_board(X,Y),datetime(AfterStart)),
+      blawx_ultimately(-may_board(X,Y)), AfterStart #> Start.\nblawx_attribute(test,subject,person).\nblawx_attribute_nlg(subject,vo,\"\",\"took
+      a covid test\",\"\").\n:- dynamic subject/2.\n#pred subject(Y,X) :: '@(X) took
+      a covid test @(Y)'.\n#pred holds(user,subject,Y,X) :: 'it is provided as a fact
+      that @(X) took a covid test @(Y)'.\n#pred holds(user,-subject,Y,X) :: 'it is
+      provided as a fact that it is not the case that @(X) took a covid test @(Y)'.\n#pred
+      holds(Z,subject,Y,X) :: 'the conclusion in @(Z) that @(X) took a covid test
+      @(Y) holds'.\n#pred holds(Z,-subject,Y,X) :: 'the conclusion in @(Z) that it
+      is not the case that @(X) took a covid test @(Y) holds'.\n#pred according_to(Z,subject,Y,X)
+      :: 'according to @(Z), @(X) took a covid test @(Y)'.\n#pred according_to(Z,-subject,Y,X)
+      :: 'according to @(Z), it is not the case that @(X) took a covid test @(Y)'.\n#pred
+      blawx_defeated(Z,subject,Y,X) :: 'the conclusion in @(Z) that @(X) took a covid
+      test @(Y) is defeated'.\n#pred blawx_defeated(Z,-subject,Y,X) :: 'the conclusion
+      in @(Z) that @(X) took a covid test @(Y) is defeated'.\n#pred blawx_initially(subject,(Y,X))
+      :: 'that @(X) took a covid test @(Y) holds initially'.\n#pred blawx_initially(-subject,(Y,X))
+      :: 'that it is not the case that @(X) took a covid test @(Y) holds initially'.\n#pred
+      blawx_ultimately(subject,(Y,X)) :: 'that @(X) took a covid test @(Y) holds ultimately'.\n#pred
+      blawx_ultimately(-subject,(Y,X)) :: 'that it is not the case that @(X) took
+      a covid test @(Y) holds ultimately'.\n#pred blawx_as_of(subject,(Y,X),T) ::
+      'that @(X) took a covid test @(Y) holds at @(T)'.\n#pred blawx_as_of(-subject,(Y,X),T)
+      :: 'that it is not the case that @(X) took a covid test @(Y) holds at @(T)'.\n#pred
+      blawx_during(T1,subject,(Y,X),T2) :: 'that @(X) took a covid test @(Y) held
+      between @(T1) and @(T2)'.\n#pred blawx_during(T1,-subject,(Y,X),T2) :: 'that
+      it is not the case that @(X) took a covid test @(Y) held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(subject,(Y,X),T) :: 'that @(X) took a covid test @(Y) became true
+      at @(T)'.\n#pred blawx_becomes(-subject,(Y,X),T) :: 'that it is not the case
+      that @(X) took a covid test @(Y) became true at @(T)'.\nblawx_as_of(subject(X,Y),datetime(Time))
+      :- blawx_becomes(subject(X,Y),datetime(BeforeT)), not blawx_becomes(-subject(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(subject(X,Y),datetime(Time))
+      :- blawx_initially(subject(X,Y)), not blawx_becomes(-subject(X,Y), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),subject(X,Y),datetime(End))
+      :- blawx_becomes(subject(X,Y),datetime(Start)), not blawx_becomes(-subject(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-subject(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),subject(X,Y),datetime(End))
+      :- blawx_initially(subject(X,Y)), not blawx_becomes(-subject(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-subject(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),subject(X,Y),datetime(eot))
+      :- blawx_becomes(subject(X,Y),datetime(Start)), not blawx_becomes(-subject(X,Y),datetime(AfterStart)),
+      blawx_ultimately(subject(X,Y)), AfterStart #> Start.\nblawx_as_of(-subject(X,Y),datetime(Time))
+      :- blawx_becomes(-subject(X,Y),datetime(BeforeT)), not blawx_becomes(subject(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-subject(X,Y),datetime(Time))
+      :- blawx_initially(-subject(X,Y)), not blawx_becomes(subject(X,Y), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-subject(X,Y),datetime(End))
+      :- blawx_becomes(-subject(X,Y),datetime(Start)), not blawx_becomes(subject(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(subject(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-subject(X,Y),datetime(End))
+      :- blawx_initially(-subject(X,Y)), not blawx_becomes(subject(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(subject(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-subject(X,Y),datetime(eot))
+      :- blawx_becomes(-subject(X,Y),datetime(Start)), not blawx_becomes(subject(X,Y),datetime(AfterStart)),
+      blawx_ultimately(-subject(X,Y)), AfterStart #> Start.\nblawx_attribute(test,result,test_result).\nblawx_attribute_nlg(result,ov,\"the
+      result of\",\"was\",\"\").\n:- dynamic result/2.\n#pred result(X,Y) :: 'the
+      result of @(X) was @(Y)'.\n#pred holds(user,result,X,Y) :: 'it is provided as
+      a fact that the result of @(X) was @(Y)'.\n#pred holds(user,-result,X,Y) ::
+      'it is provided as a fact that it is not the case that the result of @(X) was
+      @(Y)'.\n#pred holds(Z,result,X,Y) :: 'the conclusion in @(Z) that the result
+      of @(X) was @(Y) holds'.\n#pred holds(Z,-result,X,Y) :: 'the conclusion in @(Z)
+      that it is not the case that the result of @(X) was @(Y) holds'.\n#pred according_to(Z,result,X,Y)
+      :: 'according to @(Z), the result of @(X) was @(Y)'.\n#pred according_to(Z,-result,X,Y)
+      :: 'according to @(Z), it is not the case that the result of @(X) was @(Y)'.\n#pred
+      blawx_defeated(Z,result,X,Y) :: 'the conclusion in @(Z) that the result of @(X)
+      was @(Y) is defeated'.\n#pred blawx_defeated(Z,-result,X,Y) :: 'the conclusion
+      in @(Z) that the result of @(X) was @(Y) is defeated'.\n#pred blawx_initially(result,(X,Y))
+      :: 'that the result of @(X) was @(Y) holds initially'.\n#pred blawx_initially(-result,(X,Y))
+      :: 'that it is not the case that the result of @(X) was @(Y) holds initially'.\n#pred
+      blawx_ultimately(result,(X,Y)) :: 'that the result of @(X) was @(Y) holds ultimately'.\n#pred
+      blawx_ultimately(-result,(X,Y)) :: 'that it is not the case that the result
+      of @(X) was @(Y) holds ultimately'.\n#pred blawx_as_of(result,(X,Y),T) :: 'that
+      the result of @(X) was @(Y) holds at @(T)'.\n#pred blawx_as_of(-result,(X,Y),T)
+      :: 'that it is not the case that the result of @(X) was @(Y) holds at @(T)'.\n#pred
+      blawx_during(T1,result,(X,Y),T2) :: 'that the result of @(X) was @(Y) held between
+      @(T1) and @(T2)'.\n#pred blawx_during(T1,-result,(X,Y),T2) :: 'that it is not
+      the case that the result of @(X) was @(Y) held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(result,(X,Y),T) :: 'that the result of @(X) was @(Y) became true
+      at @(T)'.\n#pred blawx_becomes(-result,(X,Y),T) :: 'that it is not the case
+      that the result of @(X) was @(Y) became true at @(T)'.\nblawx_as_of(result(X,Y),datetime(Time))
+      :- blawx_becomes(result(X,Y),datetime(BeforeT)), not blawx_becomes(-result(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(result(X,Y),datetime(Time))
+      :- blawx_initially(result(X,Y)), not blawx_becomes(-result(X,Y), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),result(X,Y),datetime(End)) :-
+      blawx_becomes(result(X,Y),datetime(Start)), not blawx_becomes(-result(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-result(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),result(X,Y),datetime(End))
+      :- blawx_initially(result(X,Y)), not blawx_becomes(-result(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-result(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),result(X,Y),datetime(eot))
+      :- blawx_becomes(result(X,Y),datetime(Start)), not blawx_becomes(-result(X,Y),datetime(AfterStart)),
+      blawx_ultimately(result(X,Y)), AfterStart #> Start.\nblawx_as_of(-result(X,Y),datetime(Time))
+      :- blawx_becomes(-result(X,Y),datetime(BeforeT)), not blawx_becomes(result(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-result(X,Y),datetime(Time))
+      :- blawx_initially(-result(X,Y)), not blawx_becomes(result(X,Y), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-result(X,Y),datetime(End))
+      :- blawx_becomes(-result(X,Y),datetime(Start)), not blawx_becomes(result(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(result(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-result(X,Y),datetime(End))
+      :- blawx_initially(-result(X,Y)), not blawx_becomes(result(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(result(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-result(X,Y),datetime(eot))
+      :- blawx_becomes(-result(X,Y),datetime(Start)), not blawx_becomes(result(X,Y),datetime(AfterStart)),
+      blawx_ultimately(-result(X,Y)), AfterStart #> Start.\nblawx_attribute(test,administered_at,datetime).\nblawx_attribute_nlg(administered_at,ov,\"\",\"was
+      administered at\",\"\").\n:- dynamic administered_at/2.\n#pred administered_at(X,Y)
+      :: '@(X) was administered at @(Y)'.\n#pred holds(user,administered_at,X,Y) ::
+      'it is provided as a fact that @(X) was administered at @(Y)'.\n#pred holds(user,-administered_at,X,Y)
       :: 'it is provided as a fact that it is not the case that @(X) was administered
       at @(Y)'.\n#pred holds(Z,administered_at,X,Y) :: 'the conclusion in @(Z) that
       @(X) was administered at @(Y) holds'.\n#pred holds(Z,-administered_at,X,Y) ::
@@ -237,10 +513,47 @@
       :: 'according to @(Z), it is not the case that @(X) was administered at @(Y)'.\n#pred
       blawx_defeated(Z,administered_at,X,Y) :: 'the conclusion in @(Z) that @(X) was
       administered at @(Y) is defeated'.\n#pred blawx_defeated(Z,-administered_at,X,Y)
-      :: 'the conclusion in @(Z) that @(X) was administered at @(Y) is defeated'.\nblawx_attribute(flight,scheduled_departure,datetime).\nblawx_attribute_nlg(scheduled_departure,ov,\"\",\"is
-      scheduled to depart at\",\"\").\n#pred scheduled_departure(X,Y) :: '@(X) is
-      scheduled to depart at @(Y)'.\n#pred holds(user,scheduled_departure,X,Y) ::
-      'it is provided as a fact that @(X) is scheduled to depart at @(Y)'.\n#pred
+      :: 'the conclusion in @(Z) that @(X) was administered at @(Y) is defeated'.\n#pred
+      blawx_initially(administered_at,(X,Y)) :: 'that @(X) was administered at @(Y)
+      holds initially'.\n#pred blawx_initially(-administered_at,(X,Y)) :: 'that it
+      is not the case that @(X) was administered at @(Y) holds initially'.\n#pred
+      blawx_ultimately(administered_at,(X,Y)) :: 'that @(X) was administered at @(Y)
+      holds ultimately'.\n#pred blawx_ultimately(-administered_at,(X,Y)) :: 'that
+      it is not the case that @(X) was administered at @(Y) holds ultimately'.\n#pred
+      blawx_as_of(administered_at,(X,Y),T) :: 'that @(X) was administered at @(Y)
+      holds at @(T)'.\n#pred blawx_as_of(-administered_at,(X,Y),T) :: 'that it is
+      not the case that @(X) was administered at @(Y) holds at @(T)'.\n#pred blawx_during(T1,administered_at,(X,Y),T2)
+      :: 'that @(X) was administered at @(Y) held between @(T1) and @(T2)'.\n#pred
+      blawx_during(T1,-administered_at,(X,Y),T2) :: 'that it is not the case that
+      @(X) was administered at @(Y) held between @(T1) and @(T2)'.\n#pred blawx_becomes(administered_at,(X,Y),T)
+      :: 'that @(X) was administered at @(Y) became true at @(T)'.\n#pred blawx_becomes(-administered_at,(X,Y),T)
+      :: 'that it is not the case that @(X) was administered at @(Y) became true at
+      @(T)'.\nblawx_as_of(administered_at(X,Y),datetime(Time)) :- blawx_becomes(administered_at(X,Y),datetime(BeforeT)),
+      not blawx_becomes(-administered_at(X,Y), datetime(BetweenT)), BeforeT #< Time,BeforeT
+      #< BetweenT, BetweenT #< Time.\nblawx_as_of(administered_at(X,Y),datetime(Time))
+      :- blawx_initially(administered_at(X,Y)), not blawx_becomes(-administered_at(X,Y),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),administered_at(X,Y),datetime(End))
+      :- blawx_becomes(administered_at(X,Y),datetime(Start)), not blawx_becomes(-administered_at(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-administered_at(X,Y),datetime(End)), BeforeEnd #< End, Start
+      #< End.\nblawx_during(datetime(bot),administered_at(X,Y),datetime(End)) :- blawx_initially(administered_at(X,Y)),
+      not blawx_becomes(-administered_at(X,Y),datetime(BeforeEnd)), blawx_becomes(-administered_at(X,Y),datetime(End)),
+      BeforeEnd #< End.\nblawx_during(datetime(Start),administered_at(X,Y),datetime(eot))
+      :- blawx_becomes(administered_at(X,Y),datetime(Start)), not blawx_becomes(-administered_at(X,Y),datetime(AfterStart)),
+      blawx_ultimately(administered_at(X,Y)), AfterStart #> Start.\nblawx_as_of(-administered_at(X,Y),datetime(Time))
+      :- blawx_becomes(-administered_at(X,Y),datetime(BeforeT)), not blawx_becomes(administered_at(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-administered_at(X,Y),datetime(Time))
+      :- blawx_initially(-administered_at(X,Y)), not blawx_becomes(administered_at(X,Y),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),-administered_at(X,Y),datetime(End))
+      :- blawx_becomes(-administered_at(X,Y),datetime(Start)), not blawx_becomes(administered_at(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(administered_at(X,Y),datetime(End)), BeforeEnd #< End, Start #<
+      End.\nblawx_during(datetime(bot),-administered_at(X,Y),datetime(End)) :- blawx_initially(-administered_at(X,Y)),
+      not blawx_becomes(administered_at(X,Y),datetime(BeforeEnd)), blawx_becomes(administered_at(X,Y),datetime(End)),
+      BeforeEnd #< End.\nblawx_during(datetime(Start),-administered_at(X,Y),datetime(eot))
+      :- blawx_becomes(-administered_at(X,Y),datetime(Start)), not blawx_becomes(administered_at(X,Y),datetime(AfterStart)),
+      blawx_ultimately(-administered_at(X,Y)), AfterStart #> Start.\nblawx_attribute(flight,scheduled_departure,datetime).\nblawx_attribute_nlg(scheduled_departure,ov,\"\",\"is
+      scheduled to depart at\",\"\").\n:- dynamic scheduled_departure/2.\n#pred scheduled_departure(X,Y)
+      :: '@(X) is scheduled to depart at @(Y)'.\n#pred holds(user,scheduled_departure,X,Y)
+      :: 'it is provided as a fact that @(X) is scheduled to depart at @(Y)'.\n#pred
       holds(user,-scheduled_departure,X,Y) :: 'it is provided as a fact that it is
       not the case that @(X) is scheduled to depart at @(Y)'.\n#pred holds(Z,scheduled_departure,X,Y)
       :: 'the conclusion in @(Z) that @(X) is scheduled to depart at @(Y) holds'.\n#pred
@@ -250,14 +563,52 @@
       :: 'according to @(Z), it is not the case that @(X) is scheduled to depart at
       @(Y)'.\n#pred blawx_defeated(Z,scheduled_departure,X,Y) :: 'the conclusion in
       @(Z) that @(X) is scheduled to depart at @(Y) is defeated'.\n#pred blawx_defeated(Z,-scheduled_departure,X,Y)
-      :: 'the conclusion in @(Z) that @(X) is scheduled to depart at @(Y) is defeated'.\ntest_result(positive).\ntest_result(negative).\n\naccording_to(sec_1_section,may_board,Person,Flight)
-      :- person(Person),\nflight(Flight),\ntest(Test),\nticketed_for(Person,Flight),\nsubject(Test,Person),\nscheduled_departure(Flight,ScheduledDeparture),\nresult(Test,negative),\nadministered_at(Test,TestTime),\ndatetime_diff_duration(ScheduledDeparture,TestTime,DurationFromTestToDeparture),\nlte(DurationFromTestToDeparture,duration(1,0,0,0,72,0,0)).\n\n%
+      :: 'the conclusion in @(Z) that @(X) is scheduled to depart at @(Y) is defeated'.\n#pred
+      blawx_initially(scheduled_departure,(X,Y)) :: 'that @(X) is scheduled to depart
+      at @(Y) holds initially'.\n#pred blawx_initially(-scheduled_departure,(X,Y))
+      :: 'that it is not the case that @(X) is scheduled to depart at @(Y) holds initially'.\n#pred
+      blawx_ultimately(scheduled_departure,(X,Y)) :: 'that @(X) is scheduled to depart
+      at @(Y) holds ultimately'.\n#pred blawx_ultimately(-scheduled_departure,(X,Y))
+      :: 'that it is not the case that @(X) is scheduled to depart at @(Y) holds ultimately'.\n#pred
+      blawx_as_of(scheduled_departure,(X,Y),T) :: 'that @(X) is scheduled to depart
+      at @(Y) holds at @(T)'.\n#pred blawx_as_of(-scheduled_departure,(X,Y),T) ::
+      'that it is not the case that @(X) is scheduled to depart at @(Y) holds at @(T)'.\n#pred
+      blawx_during(T1,scheduled_departure,(X,Y),T2) :: 'that @(X) is scheduled to
+      depart at @(Y) held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-scheduled_departure,(X,Y),T2)
+      :: 'that it is not the case that @(X) is scheduled to depart at @(Y) held between
+      @(T1) and @(T2)'.\n#pred blawx_becomes(scheduled_departure,(X,Y),T) :: 'that
+      @(X) is scheduled to depart at @(Y) became true at @(T)'.\n#pred blawx_becomes(-scheduled_departure,(X,Y),T)
+      :: 'that it is not the case that @(X) is scheduled to depart at @(Y) became
+      true at @(T)'.\nblawx_as_of(scheduled_departure(X,Y),datetime(Time)) :- blawx_becomes(scheduled_departure(X,Y),datetime(BeforeT)),
+      not blawx_becomes(-scheduled_departure(X,Y), datetime(BetweenT)), BeforeT #<
+      Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(scheduled_departure(X,Y),datetime(Time))
+      :- blawx_initially(scheduled_departure(X,Y)), not blawx_becomes(-scheduled_departure(X,Y),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),scheduled_departure(X,Y),datetime(End))
+      :- blawx_becomes(scheduled_departure(X,Y),datetime(Start)), not blawx_becomes(-scheduled_departure(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-scheduled_departure(X,Y),datetime(End)), BeforeEnd #< End, Start
+      #< End.\nblawx_during(datetime(bot),scheduled_departure(X,Y),datetime(End))
+      :- blawx_initially(scheduled_departure(X,Y)), not blawx_becomes(-scheduled_departure(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-scheduled_departure(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),scheduled_departure(X,Y),datetime(eot))
+      :- blawx_becomes(scheduled_departure(X,Y),datetime(Start)), not blawx_becomes(-scheduled_departure(X,Y),datetime(AfterStart)),
+      blawx_ultimately(scheduled_departure(X,Y)), AfterStart #> Start.\nblawx_as_of(-scheduled_departure(X,Y),datetime(Time))
+      :- blawx_becomes(-scheduled_departure(X,Y),datetime(BeforeT)), not blawx_becomes(scheduled_departure(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-scheduled_departure(X,Y),datetime(Time))
+      :- blawx_initially(-scheduled_departure(X,Y)), not blawx_becomes(scheduled_departure(X,Y),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),-scheduled_departure(X,Y),datetime(End))
+      :- blawx_becomes(-scheduled_departure(X,Y),datetime(Start)), not blawx_becomes(scheduled_departure(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(scheduled_departure(X,Y),datetime(End)), BeforeEnd #< End, Start
+      #< End.\nblawx_during(datetime(bot),-scheduled_departure(X,Y),datetime(End))
+      :- blawx_initially(-scheduled_departure(X,Y)), not blawx_becomes(scheduled_departure(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(scheduled_departure(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-scheduled_departure(X,Y),datetime(eot))
+      :- blawx_becomes(-scheduled_departure(X,Y),datetime(Start)), not blawx_becomes(scheduled_departure(X,Y),datetime(AfterStart)),
+      blawx_ultimately(-scheduled_departure(X,Y)), AfterStart #> Start.\ntest_result(positive).\ntest_result(negative).\n\naccording_to(sec_1_section,may_board,Person,Flight)
+      :- person(Person),\nflight(Flight),\ntest(Test),\nticketed_for(Person,Flight),\nsubject(Test,Person),\nscheduled_departure(Flight,ScheduledDeparture),\nresult(Test,negative),\nadministered_at(Test,TestTime),\ndate_add(TestTime,DurationFromTestToDeparture,ScheduledDeparture),\nduration_compare(DurationFromTestToDeparture,lte,duration(259200)).\n\n%
       BLAWX CHECK DUPLICATES\nholds(sec_1_section,may_board,Person,Flight) :- according_to(sec_1_section,may_board,Person,Flight).\n\n%
       BLAWX CHECK DUPLICATES\n  may_board(Person,Flight) :- holds(sec_1_section,may_board,Person,Flight)."
 - model: blawx.blawxtest
-  pk: 32
+  pk: 9
   fields:
-    ruledoc: 9
+    ruledoc: 5
     test_name: can_fly
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="U*RvlVr.!T)x:88LbXnM" x="90" y="249"><comment pinned="false" h="146" w="524">This
@@ -272,12 +623,12 @@
 
       ?- may_board(Person,Flight).'
     tutorial: ''
-    view: '[''view_cat_test_result'', ''view_cat_person_att_may_board'']'
+    view: '[''view_cat_test_result'', ''view_cat_person_att_may_board'', ''view_att_may_board'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 33
+  pk: 10
   fields:
-    ruledoc: 9
+    ruledoc: 5
     test_name: good_test
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="~6[h`_zeg/KMr3bFg1H8" x="68" y="49"><statement name="statements"><block
@@ -353,9 +704,9 @@
 
       result(bobs_test,negative).
 
-      administered_at(bobs_test,datetime(2000,1,1,0,0,0)).
+      administered_at(bobs_test,datetime(946710000)).
 
-      scheduled_departure(flight_to_hawaii,datetime(2000,1,2,0,0,0)).
+      scheduled_departure(flight_to_hawaii,datetime(946796400)).
 
 
       ?- may_board(bob,flight_to_hawaii).'
@@ -363,9 +714,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 34
+  pk: 11
   fields:
-    ruledoc: 9
+    ruledoc: 5
     test_name: old_test
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="zC:]x}y1*:_,v-w1e;sv" x="111" y="89"><statement name="statements"><block

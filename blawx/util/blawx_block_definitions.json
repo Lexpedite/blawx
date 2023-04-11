@@ -994,7 +994,7 @@
 },
 {
   "type": "duration_value",
-  "message0": "%1 %2 years, %3 months, %4 days, %5 hours, %6 minutes, %7 seconds",
+  "message0": "%1 %2 days, %3 hours, %4 minutes, %5 seconds",
   "args0": [
     {
       "type": "field_dropdown",
@@ -1009,20 +1009,6 @@
           "-1"
         ]
       ]
-    },
-    {
-      "type": "field_number",
-      "name": "years",
-      "value": 0,
-      "min": 0,
-      "precision": 1
-    },
-    {
-      "type": "field_number",
-      "name": "months",
-      "value": 0,
-      "min": 0,
-      "precision": 1
     },
     {
       "type": "field_number",
@@ -1181,24 +1167,28 @@
       "name": "comparison",
       "options": [
         [
-          "is before",
+          "<",
           "lt"
         ],
         [
-          "is before or the same date as",
+          "=<",
           "lte"
         ],
         [
-          "is the same date as",
+          "=",
           "eq"
         ],
         [
-          "is after or the same date as",
+          ">=",
           "gte"
         ],
         [
-          "is after",
+          ">",
           "gt"
+        ],
+        [
+          "≠",
+          "ne"
         ]
       ]
     },
@@ -1633,7 +1623,7 @@
   ],
   "nextStatement": "STATEMENT",
   "colour": 330,
-  "tooltip": "Use to get the result of adding a duration to a date. To subtract, use a duration with a negative sign.",
+  "tooltip": "Use to calculate the relationship between two dates and a duration.",
   "helpUrl": "/docs/blocks/date_add/"
 },
 {
@@ -1661,20 +1651,28 @@
       "name": "operator",
       "options": [
         [
-          "must be less than",
+          "<",
           "lt"
         ],
         [
-          "must be greater than",
+          ">",
           "gt"
         ],
         [
-          "must be less than or the same value as",
+          "=<",
           "lte"
         ],
         [
-          "must be greater than or the same value as",
+          ">=",
           "gte"
+        ],
+        [
+          "=",
+          "eq"
+        ],
+        [
+          "\\=",
+          "ne"
         ]
       ]
     },
@@ -2535,24 +2533,28 @@
       "name": "comparison",
       "options": [
         [
-          "is less than",
+          "<",
           "lt"
         ],
         [
-          "is less than or equal to",
+          "=<",
           "lte"
         ],
         [
-          "is equal to",
+          "=",
           "eq"
         ],
         [
-          "is greater than or equal to",
+          ">=",
           "gte"
         ],
         [
-          "is greater than",
+          ">",
           "gt"
+        ],
+        [
+          "≠",
+          "ne"
         ]
       ]
     },
@@ -3234,30 +3236,19 @@
 },
 {
   "type": "initiates",
-  "message0": "At time %1 the event %2 initiates %3 %4",
+  "message0": "At time %1 %2 begins to hold",
   "args0": [
     {
       "type": "input_value",
       "name": "time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
-    },
-    {
-      "type": "input_value",
-      "name": "event",
-      "check": [
-        "EVENT",
-        "VARIABLE"
-      ]
-    },
-    {
-      "type": "input_dummy"
     },
     {
       "type": "input_statement",
-      "name": "NAME",
+      "name": "statement",
       "check": "STATEMENT"
     }
   ],
@@ -3268,31 +3259,20 @@
   ],
   "nextStatement": "STATEMENT",
   "colour": 90,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to indicate that a statement becomes true at a time.",
+  "helpUrl": "/docs/blocks/initiates/"
 },
 {
   "type": "terminates",
-  "message0": "At time %1 the event %2 terminates %3 %4",
+  "message0": "At time %1 %2 no longer holds",
   "args0": [
     {
       "type": "input_value",
       "name": "time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
-    },
-    {
-      "type": "input_value",
-      "name": "event",
-      "check": [
-        "EVENT",
-        "VARIABLE"
-      ]
-    },
-    {
-      "type": "input_dummy"
     },
     {
       "type": "input_statement",
@@ -3307,23 +3287,36 @@
   ],
   "nextStatement": "STATEMENT",
   "colour": 90,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to indicate that a statement is false at and after a time.",
+  "helpUrl": "/docs/blocks/terminates/"
 },
 {
   "type": "holds_at",
-  "message0": "At time %1 we know %2 %3",
+  "message0": "From %1 %2 %3 %4",
   "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
     {
       "type": "input_value",
       "name": "time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
-    },
-    {
-      "type": "input_dummy"
     },
     {
       "type": "input_statement",
@@ -3338,12 +3331,12 @@
   ],
   "nextStatement": "STATEMENT",
   "colour": 90,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to indicate that a statement is true from a particular datetime forward.",
+  "helpUrl": "/docs/blocks/holds_at/"
 },
 {
   "type": "initially",
-  "message0": "Initially we know %1 %2",
+  "message0": "Initially %1 %2",
   "args0": [
     {
       "type": "input_dummy"
@@ -3361,8 +3354,8 @@
   ],
   "nextStatement": "STATEMENT",
   "colour": 90,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to indicate that the statement is temporally valid until it is contradictred.",
+  "helpUrl": "/docs/blocks/initially/"
 },
 {
   "type": "trajectory",
@@ -3413,13 +3406,13 @@
 },
 {
   "type": "started_in",
-  "message0": "Between %1 and %2 %3 was initiated",
+  "message0": "Between %1 and %2 %3 started holding",
   "args0": [
     {
       "type": "input_value",
       "name": "start_time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
     },
@@ -3427,7 +3420,7 @@
       "type": "input_value",
       "name": "end_time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
     },
@@ -3444,18 +3437,18 @@
   ],
   "nextStatement": "STATEMENT",
   "colour": 90,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to check whether a statement became true between two times.",
+  "helpUrl": "/docs/blocks/started_in/"
 },
 {
   "type": "stopped_in",
-  "message0": "Between %1 and %2 %3 was terminated",
+  "message0": "Between %1 and %2 %3 stopped holding",
   "args0": [
     {
       "type": "input_value",
       "name": "start_time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
     },
@@ -3463,7 +3456,7 @@
       "type": "input_value",
       "name": "end_time",
       "check": [
-        "TIME",
+        "Number",
         "VARIABLE"
       ]
     },
@@ -3480,8 +3473,8 @@
   ],
   "nextStatement": "STATEMENT",
   "colour": 90,
-  "tooltip": "",
-  "helpUrl": ""
+  "tooltip": "Use to check whether a statement became false between two times.",
+  "helpUrl": "/docs/blocks/stopped_in/"
 },
 {
   "type": "attributed_fact",
@@ -3510,4 +3503,468 @@
   "colour": 270,
   "tooltip": "Use to make a statements that is tentatively true, and/or has a legislative source.",
   "helpUrl": "/docs/blocks/attributed_fact/"
+},
+{
+  "type": "holds_during",
+  "message0": "From %1 %2 to %3 %4 %5",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "start_time",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "end_time",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "Use to find the longest periods of time (using timestamps) during which the statement was valid",
+  "helpUrl": "/docs/blocks/during/"
+},
+{
+  "type": "datetime_to_ts",
+  "message0": "%1 %2 %3 as a timestamp is %4 %5",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "datetime",
+      "check": [
+        "VARIABLE",
+        "DATETIME"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 330,
+  "tooltip": "Use to generate a posix timestamp from a datetime.",
+  "helpUrl": "/docs/blocks/datetime_to_ts"
+},
+{
+  "type": "ts_to_datetime",
+  "message0": "%1 %2 as a datetime is %3 %4 %5",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "datetime",
+      "check": [
+        "VARIABLE",
+        "DATETIME"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 330,
+  "tooltip": "Use to generate a posix timestamp from a datetime.",
+  "helpUrl": "/docs/blocks/datetime_to_ts"
+},
+{
+  "type": "as_of",
+  "message0": "As of %1 %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "datetime",
+      "check": [
+        "DATE",
+        "DATETIME",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "Use to state that or check if a statement is true at a particular point in time.",
+  "helpUrl": "/docs/blocks/as_of/"
+},
+{
+  "type": "ultimately",
+  "message0": "Ultimately %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "Use to indicate or check that the statement is temporally valid after all events.",
+  "helpUrl": "/docs/blocks/ultimately/"
+},
+{
+  "type": "from",
+  "message0": "From %1 %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "datetime",
+      "check": [
+        "DATETIME",
+        "DATE",
+        "VARIABLE"
+      ]
+    },
+    {
+      "type": "input_statement",
+      "name": "statement",
+      "check": "STATEMENT"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "STATEMENT",
+    "OUTER"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "Use to indicate that or ask if a statement becomes valid from a given datetime..",
+  "helpUrl": "/docs/blocks/from/"
+},
+{
+  "type": "datetime_ts",
+  "message0": "%1 %2 %3 is %4 %5",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "datetime",
+      "check": [
+        "VARIABLE",
+        "DATETIME"
+      ]
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "VARIABLE",
+        "Number"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 90,
+  "tooltip": "Use to translate from datetimes to timestamps for use in events.",
+  "helpUrl": "/docs/blocks/datetime_ts"
+},
+{
+  "type": "time_from_ts",
+  "message0": "%1 ← %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "clock",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "#",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "TIME",
+  "colour": 330,
+  "tooltip": "Generate a time from a numerical timestamp value",
+  "helpUrl": "/docs/blocks/time_from_ts"
+},
+{
+  "type": "datetime_from_ts",
+  "message0": "%1 %2 ← %3 %4",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTMxLjM1IDMzLjY1IDIuMjUtMi4yNS03Ljk1LThWMTMuMzVoLTNWMjQuNlpNMjQgNDRxLTQuMSAwLTcuNzUtMS41NzUtMy42NS0xLjU3NS02LjM3NS00LjMtMi43MjUtMi43MjUtNC4zLTYuMzc1UTQgMjguMSA0IDI0dDEuNTc1LTcuNzVxMS41NzUtMy42NSA0LjMtNi4zNzUgMi43MjUtMi43MjUgNi4zNzUtNC4zUTE5LjkgNCAyNCA0dDcuNzUgMS41NzVxMy42NSAxLjU3NSA2LjM3NSA0LjMgMi43MjUgMi43MjUgNC4zIDYuMzc1UTQ0IDE5LjkgNDQgMjR0LTEuNTc1IDcuNzVxLTEuNTc1IDMuNjUtNC4zIDYuMzc1LTIuNzI1IDIuNzI1LTYuMzc1IDQuM1EyOC4xIDQ0IDI0IDQ0Wm0wLTIwWm0wIDE3cTcgMCAxMi01dDUtMTJxMC03LTUtMTJUMjQgN3EtNyAwLTEyIDVUNyAyNHEwIDcgNSAxMnQxMiA1WiIvPjwvc3ZnPg==",
+      "width": 15,
+      "height": 15,
+      "alt": "clock",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "#",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "DATETIME",
+  "colour": 330,
+  "tooltip": "Generate a datetime from a numerical timestamp value",
+  "helpUrl": "/docs/blocks/datetime_from_ts"
+},
+{
+  "type": "date_from_ts",
+  "message0": "%1 ← %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAdElEQVR4Ae3PgQXDYBBH8UMBRQAFFNAxjg7QMTpAAcU3WkboQMWvEBwEFwKVx3Pw97ioYEJiikpzE0hAbtrgjIEPLHdesW5eONXQEzA3hUcNDYgmgLFfqM96aHTc4bU/CB0hZFN419DdNr64RQVXZNNLLPwAidY8ploh57UAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "Calendar",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "#",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "DATE",
+  "colour": 330,
+  "tooltip": "Generate a date from a numerical timestamp value",
+  "helpUrl": "/docs/blocks/date_from_ts"
+},
+{
+  "type": "duration_from_ts",
+  "message0": "%1 ← %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABBUlEQVR4AbXTAaTCUBTG8eFiCA9heAgPEAAeQoQwAIQwhBAghBACBAgQQghDgABDAAhhCGGAEEIY1v8Ac52tFn38sLPru/eaOUXJssxFw+I6FSNFbdhpf1LkIbB4VUtcjBDhghghBjACrVcl/0ggOSPEGkdIYuzxgFdU0sAdCXzlvZ/bZFJ2mghXeLnZVuSef3FDDKOVdCHp2eXCmgWQ+FrRFDeYN4pqkCy1oh0O6nWhzI/YFxUlynwilPkJK61oDqJ/UmttHSmG2sumcm81sgYp/ooWbCDpl5QEkMzKdqohgmSNZm7eQgjJAebVsQ3GeECSghBmWMCt8uP+oIMxZghQd76dJxd5zAMEIzMrAAAAAElFTkSuQmCC",
+      "width": 15,
+      "height": 15,
+      "alt": "Stopwatch",
+      "flipRtl": false
+    },
+    {
+      "type": "field_image",
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVDhPYxh0gBFKM/z//18FSBUDsQZYgDC4AMSdjIyML0AcJhABBc1AHAFhEgUSgLgcwkQCQBftB2EolyBAV4/sIhQAVRgP5WLwcQKoQrANUDYugKyGoIsWQOkDQNwAxSAA4sPksAN0G4BsEKiHcrHxiXIRyQCrQUg2NYCcAQJIfLgrkAFdwgjExxn9UD6m63BK4ADo6pHz2nog5QDEoDxEDDAA4jXAvJYK4iCHUSsQg8KAWLADiDshzMEHGBgAFnW9mZqHm3AAAAAASUVORK5CYII=",
+      "width": 15,
+      "height": 15,
+      "alt": "#",
+      "flipRtl": false
+    },
+    {
+      "type": "input_value",
+      "name": "timestamp",
+      "check": [
+        "Number",
+        "VARIABLE"
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "DURATION",
+  "colour": 330,
+  "tooltip": "Generate a duration from a numerical timestamp value",
+  "helpUrl": "/docs/blocks/duration_from_ts"
 }]

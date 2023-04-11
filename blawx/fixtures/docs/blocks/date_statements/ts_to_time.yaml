@@ -1,0 +1,26 @@
+- model: blawx.docpage
+  pk: blocks/time_from_ts
+  fields:
+    title: Timestamp to Time Block
+    content: |
+      # Timestamp to Time Block
+
+      ![Timestamp to Time Block](/static/blawx/docs/images/blocks/ts_to_time.png)
+
+      ## Where Is It?
+
+      The Timestamp to Time Block is found in the Dates drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The timestamp to time block accepts a number which represents a time represented as seconds
+      from midnight, and returns a time value.
+
+      ## Technical Details
+
+      The Timestamp to date block is a value block that accepts a number or a variable and outputs a Time.
+
+      ## Tips
+
+      The timestamp to date block does not validate the number provided. For consistent results, the
+      number should be less than 86400. To specify times longer than one day, use the timestamp to duration block.

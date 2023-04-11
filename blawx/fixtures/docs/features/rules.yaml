@@ -5,8 +5,6 @@
     content: |
       # Rules
 
-      **NB: This page is out of date as of v1.4.0-alpha. It will be updated as soon as possible.**
-
       Rules are the most important part of encoding in Blawx. They are where
       you describe the inferences Blawx can make to generate legal conclusions.
 
@@ -14,10 +12,12 @@
       must be met for before the inference is valid.
       The second  part is a statement that can be inferred to be true, in those conditions, called the “conclusion.”
 
+      Blawx offers two different kinds of rules: basic rules, and attributed rules. A basic rule looks like this:
+
       ![rule](/static/blawx/docs/images/blocks/rule.png)
 
-      A rule block has one connector for the conditions, and another connector
-      for the conclusion. A rule block needs both connections filled to work properly.
+      A basic rule block has one connector for the conditions, and another connector
+      for the conclusion. A rule block needs both connections filled to work properly. A rule can only have one conclusion.
 
       ### A Note on If/Then
 
@@ -27,10 +27,10 @@
       conditions are true, and if so, do these conclusions".
 
       Blawx intentionally does not use the words "if/then" to describe rules, because that's
-      not what a rule means. What a rule means is "whenever the conditions are true inside a model,
-      the conclusion is also true inside that model."
+      not what a rule says. What a rule says is "whenever the conditions are true in a situation,
+      the conclusion is also true inside that situation."
 
-      The biggest difference is that a rule in Blawx works in two directions. If
+      The biggest difference between the two meanings is that a rule in Blawx works in two directions. If
       a conclusion is not true inside a model (perhaps because you provided that information as a fact),
       Blawx can infer that the conditions are not all true, also.
 
@@ -41,7 +41,7 @@
 
       ### Writing Reversible Rules
 
-      Blawx will take the rules that you provide, and generate a new set of rules for proving
+      Blawx will take the rules that you provide, and in the background generate a new set of rules for proving
       the opposite conclusion, so that your encoding will be capable of answering additional
       questions (like "why not?") without you needing to write more rules.
 
@@ -106,5 +106,16 @@
       the conditions for each must be reversible alone, without the conditions in the other
       alternatives, for negations to work properly.
 
+      ## Attributed Rules
 
+      As an easy way to include information about where your rule arises from in the legal text, Blawx
+      offers you the ability to create "attributed" rules, which look like this:
+      
+      ![Attributed Rule](/static/blawx/docs/images/blocks/attributed_rule.png)
+
+      The attributed rule is pre-loaded with the reference to the current section of the legal text you are
+      encoding, which makes the text of that section available in your explanations. It also allows you to quickly
+      set out that the rule is subject to being overridden by other sections, or that the rule may not apply
+      to particular objects. For more information on these features, see the defaults, exceptions and applicability
+      section of the documentation.
 

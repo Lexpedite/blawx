@@ -9,13 +9,12 @@
 
       ## Where Is It?
 
-      The Duration Comparison block is located in the data statements drawer of the Blawx toolbox,
-      in the date sub-drawer.
+      The Duration Comparison block is located in the dates drawer of the Blawx toolbox.
 
       ## What Does It Do?
 
-      The Duration Comparison block is used to find out if one duration is larger, smaller, or the
-      same size as another duration.
+      The Duration Comparison block is used to find out if one duration is larger, smaller, the
+      same size as or different from another duration.
 
       ## Technical Details
 
@@ -24,14 +23,7 @@
       It accepts two inputs, both of which are expected to be durations, or variables, and has a dropdown
       field that indicates the type of comparison you want to do.
 
-      Durations are compared starting from the largest unit (years), and moving to the smallest (second).
-
-      A duration comparison block may fail, regardless of the comparitor selected, if it is not possible
-      to determine which duration is longer. For example, it is not possible to determine whether 1 month
-      is longer than 29 days because of the inconsistent number of days in months. The duration comparison
-      will succeed, however, if it can be certain that the comparison holds, taking into account leap days
-      for the first 100 years.
-
-      Duration signs are currently ignored.
 
       ## Tips
+
+      Negative durations are "smaller" than positive durations.

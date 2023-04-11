@@ -1,26 +1,53 @@
 - model: blawx.ruledoc
-  pk: 4
+  pk: 3
   fields:
     ruledoc_name: Beard Tax Act
     rule_text: "Beard Tax Act\r\n\r\n1. In this Act, beard means any facial hair no
       shorter than 5 millimetres in\r\nlength that:\r\n  (a) occurs on or below the
       chin, or\r\n  (b) exists in an uninterrupted line from the front of one ear
       to the front of the other ear below the nose."
+    akoma_ntoso: <?xml version="1.0" encoding="UTF-8"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><act><preface><p
+      class="title"><shortTitle>Beard Tax Act</shortTitle></p></preface><body><section
+      eId="sec_1"><num>1</num><intro><p>In this Act, beard means any facial hair no
+      shorter than 5 millimetres in length that:</p></intro><paragraph eId="sec_1__para_a"><num>a</num><content><p>occurs
+      on or below the chin, or</p></content></paragraph><paragraph eId="sec_1__para_b"><num>b</num><content><p>exists
+      in an uninterrupted line from the front of one ear to the front of the other
+      ear below the nose.</p></content></paragraph></section></body></act></akomaNtoso>
+    navtree: '<nav class="column">
+
+      <div class="lawpart act"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="root_section" checked><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#root"></i>Beard
+      Tax Act</div></div></div><div class="subparts collapse" id="root"><div class="lawpart
+      section"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_1_section"><div class="lawtext"><i class="bi bi-caret-right"
+      data-bs-toggle="collapse" data-bs-target="#sec_1"></i><num>1</num><intro xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>In
+      this Act, beard means any facial hair no shorter than 5 millimetres in length
+      that:</p></intro></div></div></div><div class="subparts collapse" id="sec_1"><div
+      class="lawpart paragraph"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_1__para_a_section"><div class="lawtext"><num>a</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>occurs
+      on or below the chin, or</p></content></div></div></div><div class="lawpart
+      paragraph"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_1__para_b_section"><div class="lawtext"><num>b</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>exists
+      in an uninterrupted line from the front of one ear to the front of the other
+      ear below the nose.</p></content></div></div></div></div></div></nav>'
     scasp_encoding: ''
     tutorial: ''
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 31
+  pk: 14
   fields:
-    ruledoc: 4
+    ruledoc: 3
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 32
+  pk: 15
   fields:
-    ruledoc: 4
+    ruledoc: 3
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="(^5.:,lX5N1?~UIArJEP" x="29" y="38"><statement name="statements"><block
@@ -54,13 +81,10 @@
       in length</field><value name="first_element"><block type="variable" id="9Es;L_1yx,Oj~lN#}Qn#"><field
       name="variable_name">Person</field></block></value><value name="second_element"><block
       type="variable" id="UT49/[{%Fh7(=7Sd}bTH"><field name="variable_name">Length</field></block></value><next><block
-      type="according_to" id="44Yw/xCH|sszoe$ygNFJ"><value name="rule"><block type="doc_selector"
-      id="Ocmqu*3QN`0gXC:B=E}h"><mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1__para_a_section"></mutation><field
-      name="doc_part_name">BTA 1.a</field></block></value><statement name="statement"><block
       type="unary_attribute_selector" id="}.f?BliB/2f~kra)TAe%"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="qualifies_s1a" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">qualifies under section 1 a</field><value name="first_element"><block
-      type="variable" id="jaO5leIv(9J!nFG/D%T:"><field name="variable_name">Person</field></block></value></block></statement></block></next></block></next></block></next></block></statement><value
+      type="variable" id="jaO5leIv(9J!nFG/D%T:"><field name="variable_name">Person</field></block></value></block></next></block></next></block></next></block></statement><value
       name="source"><block type="doc_selector" id="!HC!]P/pt-,4rW-.gmSm"><mutation
       xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_1_section"></mutation><field
       name="doc_part_name">BTA 1</field></block></value><statement name="conclusion"><block
@@ -68,7 +92,7 @@
       attributename="bearded" attributetype="boolean"></mutation><field name="prefix"></field><field
       name="postfix">is bearded</field><value name="first_element"><block type="variable"
       id="}+SnwvMF(|PJAhu0N|9#"><field name="variable_name">Person</field></block></value></block></statement></block><block
-      type="attributed_rule" id="-h#^sG2PVYaoyyd[FXgH" x="76" y="710"><field name="defeasible">FALSE</field><field
+      type="attributed_rule" id="-h#^sG2PVYaoyyd[FXgH" x="91" y="650"><field name="defeasible">FALSE</field><field
       name="inapplicable">FALSE</field><statement name="conditions"><block type="object_category"
       id=")U2ah:Fv{A0~*S3x~KVo"><value name="object"><block type="variable" id="zQpi:]w.sHQx$he#jT7X"><field
       name="variable_name">Person</field></block></value><value name="category"><block
@@ -96,50 +120,150 @@
       name="postfix">is bearded</field><value name="first_element"><block type="variable"
       id="PmZksLyP)}6DV3/SS~Ti"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: "blawx_category(person).\nblawx_category_nlg(person,\"\",\"is
-      a person\").\n#pred person(X) :: '@(X) is a person'.\n#pred holds(user,person,X)
-      :: 'it is provided as a fact that @(X) is a person'.\n#pred holds(user,-person,X)
-      :: 'it is provided as a fact that it is not the case that @(X) is a person'.\n#pred
-      holds(Z,person,X) :: 'the conclusion in @(Z) that @(X) is a person holds'.\n#pred
-      holds(Z,-person,X) :: 'the conclusion in @(Z) that it is not the case that @(X)
-      is a person holds'.\n#pred according_to(Z,person,X) :: 'according to @(Z), @(X)
-      is a person'.\n#pred according_to(Z,-person,X) :: 'according to @(Z), it is
-      not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X) :: 'the
-      conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
-      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\nblawx_attribute(person,bearded,boolean).\nblawx_attribute_nlg(bearded,not_applicable,\"\",not_applicable,\"is
-      bearded\").\n#pred bearded(X) :: '@(X) is bearded'.\n#pred holds(user,bearded,X)
-      :: 'it is provided as a fact that @(X) is bearded'.\n#pred holds(user,-bearded,X)
-      :: 'it is provided as a fact that it is not the case that @(X) is bearded'.\n#pred
-      holds(Z,bearded,X) :: 'the conclusion in @(Z) that @(X) is bearded holds'.\n#pred
-      holds(Z,-bearded,X) :: 'the conclusion in @(Z) that it is not the case that
-      @(X) is bearded holds'.\n#pred according_to(Z,bearded,X) :: 'according to @(Z),
-      @(X) is bearded'.\n#pred according_to(Z,-bearded,X) :: 'according to @(Z), it
-      is not the case that @(X) is bearded'.\n#pred blawx_defeated(Z,bearded,X) ::
-      'the conclusion in @(Z) that @(X) is bearded is defeated'.\n#pred blawx_defeated(Z,-bearded,X)
-      :: 'the conclusion in @(Z) that @(X) is bearded is defeated'.\nblawx_attribute(person,facial_hair_length_mm,number).\nblawx_attribute_nlg(facial_hair_length_mm,ov,\"\",\"'s
-      facial hair is\",\"mm in length\").\n#pred facial_hair_length_mm(X,Y) :: '@(X)
-      \\'s facial hair is @(Y) mm in length'.\n#pred holds(user,facial_hair_length_mm,X,Y)
-      :: 'it is provided as a fact that @(X) \\'s facial hair is @(Y) mm in length'.\n#pred
-      holds(user,-facial_hair_length_mm,X,Y) :: 'it is provided as a fact that it
-      is not the case that @(X) \\'s facial hair is @(Y) mm in length'.\n#pred holds(Z,facial_hair_length_mm,X,Y)
-      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is @(Y) mm in length holds'.\n#pred
-      holds(Z,-facial_hair_length_mm,X,Y) :: 'the conclusion in @(Z) that it is not
-      the case that @(X) \\'s facial hair is @(Y) mm in length holds'.\n#pred according_to(Z,facial_hair_length_mm,X,Y)
+      a person\").\n:- dynamic person/1.\n#pred person(X) :: '@(X) is a person'.\n#pred
+      holds(user,person,X) :: 'it is provided as a fact that @(X) is a person'.\n#pred
+      holds(user,-person,X) :: 'it is provided as a fact that it is not the case that
+      @(X) is a person'.\n#pred holds(Z,person,X) :: 'the conclusion in @(Z) that
+      @(X) is a person holds'.\n#pred holds(Z,-person,X) :: 'the conclusion in @(Z)
+      that it is not the case that @(X) is a person holds'.\n#pred according_to(Z,person,X)
+      :: 'according to @(Z), @(X) is a person'.\n#pred according_to(Z,-person,X) ::
+      'according to @(Z), it is not the case that @(X) is a person'.\n#pred blawx_defeated(Z,person,X)
+      :: 'the conclusion in @(Z) that @(X) is a person is defeated'.\n#pred blawx_defeated(Z,-person,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) is a person is
+      defeated'.\n#pred blawx_initially(person(X)) :: 'that @(X) is a person holds
+      initially'.\n#pred blawx_initially(-person(X)) :: 'that it is not the case that
+      @(X) is a person holds initially'.\n#pred blawx_ultimately(person(X)) :: 'that
+      @(X) is a person holds ultimately'.\n#pred blawx_ultimately(-person(X)) :: 'that
+      it is not the case that @(X) is a person holds ultimately'.\n#pred blawx_as_of(person(X),T)
+      :: 'that @(X) is a person holds at @(T)'.\n#pred blawx_as_of(-person(X),T) ::
+      'that it is not the case that @(X) is a person holds at @(T)'.\n#pred blawx_during(T1,person(X),T2)
+      :: 'that @(X) is a person held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-person(X),T2)
+      :: 'that it is not the case that @(X) is a person held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(person(X),T) :: 'that @(X) is a person became true at @(T)'.\n#pred
+      blawx_becomes(-person(X),T) :: 'that it is not the case that @(X) is a person
+      became true at @(T)'.\nblawx_as_of(person(X),datetime(Time)) :- blawx_becomes(person(X),datetime(BeforeT)),
+      not blawx_becomes(-person(X), datetime(BetweenT)), BeforeT #< Time,BeforeT #<
+      BetweenT, BetweenT #< Time.\nblawx_as_of(person(X),datetime(Time)) :- blawx_initially(person(X)),
+      not blawx_becomes(-person(X), datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),person(X),datetime(End))
+      :- blawx_becomes(person(X),datetime(Start)), not blawx_becomes(-person(X),datetime(BeforeEnd)),
+      blawx_becomes(-person(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),person(X),datetime(End))
+      :- blawx_initially(person(X)), not blawx_becomes(-person(X),datetime(BeforeEnd)),
+      blawx_becomes(-person(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),person(X),datetime(eot))
+      :- blawx_becomes(person(X),datetime(Start)), not blawx_becomes(-person(X),datetime(AfterStart)),
+      blawx_ultimately(person(X)), AfterStart #> Start.\nblawx_as_of(-person(X),datetime(Time))
+      :- blawx_becomes(-person(X),datetime(BeforeT)), not blawx_becomes(person(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-person(X),datetime(Time))
+      :- blawx_initially(-person(X)), not blawx_becomes(person(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-person(X),datetime(End)) :-
+      blawx_becomes(-person(X),datetime(Start)), not blawx_becomes(person(X),datetime(BeforeEnd)),
+      blawx_becomes(person(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-person(X),datetime(End))
+      :- blawx_initially(-person(X)), not blawx_becomes(person(X),datetime(BeforeEnd)),
+      blawx_becomes(person(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-person(X),datetime(eot))
+      :- blawx_becomes(-person(X),datetime(Start)), not blawx_becomes(person(X),datetime(AfterStart)),
+      blawx_ultimately(-person(X)), AfterStart #> Start.\nblawx_attribute(person,bearded,boolean).\nblawx_attribute_nlg(bearded,not_applicable,\"\",not_applicable,\"is
+      bearded\").\n:- dynamic bearded/1.\n#pred bearded(X) :: '@(X) is bearded'.\n#pred
+      holds(user,bearded,X) :: 'it is provided as a fact that @(X) is bearded'.\n#pred
+      holds(user,-bearded,X) :: 'it is provided as a fact that it is not the case
+      that @(X) is bearded'.\n#pred holds(Z,bearded,X) :: 'the conclusion in @(Z)
+      that @(X) is bearded holds'.\n#pred holds(Z,-bearded,X) :: 'the conclusion in
+      @(Z) that it is not the case that @(X) is bearded holds'.\n#pred according_to(Z,bearded,X)
+      :: 'according to @(Z), @(X) is bearded'.\n#pred according_to(Z,-bearded,X) ::
+      'according to @(Z), it is not the case that @(X) is bearded'.\n#pred blawx_defeated(Z,bearded,X)
+      :: 'the conclusion in @(Z) that @(X) is bearded is defeated'.\n#pred blawx_defeated(Z,-bearded,X)
+      :: 'the conclusion in @(Z) that @(X) is bearded is defeated'.\n#pred blawx_initially(bearded(X))
+      :: 'that @(X) is bearded holds initially'.\n#pred blawx_initially(-bearded(X))
+      :: 'that it is not the case that @(X) is bearded holds initially'.\n#pred blawx_ultimately(bearded(X))
+      :: 'that @(X) is bearded holds ultimately'.\n#pred blawx_ultimately(-bearded(X))
+      :: 'that it is not the case that @(X) is bearded holds ultimately'.\n#pred blawx_as_of(bearded(X),T)
+      :: 'that @(X) is bearded holds at @(T)'.\n#pred blawx_as_of(-bearded(X),T) ::
+      'that it is not the case that @(X) is bearded holds at @(T)'.\n#pred blawx_during(T1,bearded(X),T2)
+      :: 'that @(X) is bearded held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-bearded(X),T2)
+      :: 'that it is not the case that @(X) is bearded held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(bearded(X),T) :: 'that @(X) is bearded became true at @(T)'.\n#pred
+      blawx_becomes(-bearded(X),T) :: 'that it is not the case that @(X) is bearded
+      became true at @(T)'.\nblawx_as_of(bearded(X),datetime(Time)) :- blawx_becomes(bearded(X),datetime(BeforeT)),
+      not blawx_becomes(-bearded(X), datetime(BetweenT)), BeforeT #< Time,BeforeT
+      #< BetweenT, BetweenT #< Time.\nblawx_as_of(bearded(X),datetime(Time)) :- blawx_initially(bearded(X)),
+      not blawx_becomes(-bearded(X), datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),bearded(X),datetime(End))
+      :- blawx_becomes(bearded(X),datetime(Start)), not blawx_becomes(-bearded(X),datetime(BeforeEnd)),
+      blawx_becomes(-bearded(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),bearded(X),datetime(End))
+      :- blawx_initially(bearded(X)), not blawx_becomes(-bearded(X),datetime(BeforeEnd)),
+      blawx_becomes(-bearded(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),bearded(X),datetime(eot))
+      :- blawx_becomes(bearded(X),datetime(Start)), not blawx_becomes(-bearded(X),datetime(AfterStart)),
+      blawx_ultimately(bearded(X)), AfterStart #> Start.\nblawx_as_of(-bearded(X),datetime(Time))
+      :- blawx_becomes(-bearded(X),datetime(BeforeT)), not blawx_becomes(bearded(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-bearded(X),datetime(Time))
+      :- blawx_initially(-bearded(X)), not blawx_becomes(bearded(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-bearded(X),datetime(End)) :-
+      blawx_becomes(-bearded(X),datetime(Start)), not blawx_becomes(bearded(X),datetime(BeforeEnd)),
+      blawx_becomes(bearded(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-bearded(X),datetime(End))
+      :- blawx_initially(-bearded(X)), not blawx_becomes(bearded(X),datetime(BeforeEnd)),
+      blawx_becomes(bearded(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-bearded(X),datetime(eot))
+      :- blawx_becomes(-bearded(X),datetime(Start)), not blawx_becomes(bearded(X),datetime(AfterStart)),
+      blawx_ultimately(-bearded(X)), AfterStart #> Start.\nblawx_attribute(person,facial_hair_length_mm,number).\nblawx_attribute_nlg(facial_hair_length_mm,ov,\"\",\"'s
+      facial hair is\",\"mm in length\").\n:- dynamic facial_hair_length_mm/2.\n#pred
+      facial_hair_length_mm(X,Y) :: '@(X) \\'s facial hair is @(Y) mm in length'.\n#pred
+      holds(user,facial_hair_length_mm,X,Y) :: 'it is provided as a fact that @(X)
+      \\'s facial hair is @(Y) mm in length'.\n#pred holds(user,-facial_hair_length_mm,X,Y)
+      :: 'it is provided as a fact that it is not the case that @(X) \\'s facial hair
+      is @(Y) mm in length'.\n#pred holds(Z,facial_hair_length_mm,X,Y) :: 'the conclusion
+      in @(Z) that @(X) \\'s facial hair is @(Y) mm in length holds'.\n#pred holds(Z,-facial_hair_length_mm,X,Y)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) \\'s facial hair
+      is @(Y) mm in length holds'.\n#pred according_to(Z,facial_hair_length_mm,X,Y)
       :: 'according to @(Z), @(X) \\'s facial hair is @(Y) mm in length'.\n#pred according_to(Z,-facial_hair_length_mm,X,Y)
       :: 'according to @(Z), it is not the case that @(X) \\'s facial hair is @(Y)
       mm in length'.\n#pred blawx_defeated(Z,facial_hair_length_mm,X,Y) :: 'the conclusion
       in @(Z) that @(X) \\'s facial hair is @(Y) mm in length is defeated'.\n#pred
       blawx_defeated(Z,-facial_hair_length_mm,X,Y) :: 'the conclusion in @(Z) that
-      @(X) \\'s facial hair is @(Y) mm in length is defeated'.\n\naccording_to(sec_1_section,bearded,Person)
-      :- person(Person),\nLength #>= 5,\nfacial_hair_length_mm(Person,Length),\naccording_to(sec_1__para_a_section,qualifies_s1a,Person).\n\n%
+      @(X) \\'s facial hair is @(Y) mm in length is defeated'.\n#pred blawx_initially(facial_hair_length_mm,(X,Y))
+      :: 'that @(X) \\'s facial hair is @(Y) mm in length holds initially'.\n#pred
+      blawx_initially(-facial_hair_length_mm,(X,Y)) :: 'that it is not the case that
+      @(X) \\'s facial hair is @(Y) mm in length holds initially'.\n#pred blawx_ultimately(facial_hair_length_mm,(X,Y))
+      :: 'that @(X) \\'s facial hair is @(Y) mm in length holds ultimately'.\n#pred
+      blawx_ultimately(-facial_hair_length_mm,(X,Y)) :: 'that it is not the case that
+      @(X) \\'s facial hair is @(Y) mm in length holds ultimately'.\n#pred blawx_as_of(facial_hair_length_mm,(X,Y),T)
+      :: 'that @(X) \\'s facial hair is @(Y) mm in length holds at @(T)'.\n#pred blawx_as_of(-facial_hair_length_mm,(X,Y),T)
+      :: 'that it is not the case that @(X) \\'s facial hair is @(Y) mm in length
+      holds at @(T)'.\n#pred blawx_during(T1,facial_hair_length_mm,(X,Y),T2) :: 'that
+      @(X) \\'s facial hair is @(Y) mm in length held between @(T1) and @(T2)'.\n#pred
+      blawx_during(T1,-facial_hair_length_mm,(X,Y),T2) :: 'that it is not the case
+      that @(X) \\'s facial hair is @(Y) mm in length held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(facial_hair_length_mm,(X,Y),T) :: 'that @(X) \\'s facial hair
+      is @(Y) mm in length became true at @(T)'.\n#pred blawx_becomes(-facial_hair_length_mm,(X,Y),T)
+      :: 'that it is not the case that @(X) \\'s facial hair is @(Y) mm in length
+      became true at @(T)'.\nblawx_as_of(facial_hair_length_mm(X,Y),datetime(Time))
+      :- blawx_becomes(facial_hair_length_mm(X,Y),datetime(BeforeT)), not blawx_becomes(-facial_hair_length_mm(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(facial_hair_length_mm(X,Y),datetime(Time))
+      :- blawx_initially(facial_hair_length_mm(X,Y)), not blawx_becomes(-facial_hair_length_mm(X,Y),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),facial_hair_length_mm(X,Y),datetime(End))
+      :- blawx_becomes(facial_hair_length_mm(X,Y),datetime(Start)), not blawx_becomes(-facial_hair_length_mm(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-facial_hair_length_mm(X,Y),datetime(End)), BeforeEnd #< End,
+      Start #< End.\nblawx_during(datetime(bot),facial_hair_length_mm(X,Y),datetime(End))
+      :- blawx_initially(facial_hair_length_mm(X,Y)), not blawx_becomes(-facial_hair_length_mm(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-facial_hair_length_mm(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),facial_hair_length_mm(X,Y),datetime(eot))
+      :- blawx_becomes(facial_hair_length_mm(X,Y),datetime(Start)), not blawx_becomes(-facial_hair_length_mm(X,Y),datetime(AfterStart)),
+      blawx_ultimately(facial_hair_length_mm(X,Y)), AfterStart #> Start.\nblawx_as_of(-facial_hair_length_mm(X,Y),datetime(Time))
+      :- blawx_becomes(-facial_hair_length_mm(X,Y),datetime(BeforeT)), not blawx_becomes(facial_hair_length_mm(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-facial_hair_length_mm(X,Y),datetime(Time))
+      :- blawx_initially(-facial_hair_length_mm(X,Y)), not blawx_becomes(facial_hair_length_mm(X,Y),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),-facial_hair_length_mm(X,Y),datetime(End))
+      :- blawx_becomes(-facial_hair_length_mm(X,Y),datetime(Start)), not blawx_becomes(facial_hair_length_mm(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(facial_hair_length_mm(X,Y),datetime(End)), BeforeEnd #< End, Start
+      #< End.\nblawx_during(datetime(bot),-facial_hair_length_mm(X,Y),datetime(End))
+      :- blawx_initially(-facial_hair_length_mm(X,Y)), not blawx_becomes(facial_hair_length_mm(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(facial_hair_length_mm(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-facial_hair_length_mm(X,Y),datetime(eot))
+      :- blawx_becomes(-facial_hair_length_mm(X,Y),datetime(Start)), not blawx_becomes(facial_hair_length_mm(X,Y),datetime(AfterStart)),
+      blawx_ultimately(-facial_hair_length_mm(X,Y)), AfterStart #> Start.\n\naccording_to(sec_1_section,bearded,Person)
+      :- person(Person),\nLength #>= 5,\nfacial_hair_length_mm(Person,Length),\nqualifies_s1a(Person).\n\n%
       BLAWX CHECK DUPLICATES\nholds(sec_1_section,bearded,Person) :- according_to(sec_1_section,bearded,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  bearded(Person) :- holds(sec_1_section,bearded,Person).\n\naccording_to(sec_1_section,bearded,Person)
       :- person(Person),\nLength #>= 5,\nfacial_hair_length_mm(Person,Length),\nqualifies_s1b(Person).\n\n%
       BLAWX CHECK DUPLICATES\nholds(sec_1_section,bearded,Person) :- according_to(sec_1_section,bearded,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  bearded(Person) :- holds(sec_1_section,bearded,Person)."
 - model: blawx.workspace
-  pk: 33
+  pk: 16
   fields:
-    ruledoc: 4
+    ruledoc: 3
     workspace_name: sec_1__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="(^5.:,lX5N1?~UIArJEP" x="55" y="110"><statement name="statements"><block
@@ -188,45 +312,156 @@
       name="postfix">qualifies under section 1 a</field><value name="first_element"><block
       type="variable" id="v[)}mLA`/`9M8(]p/q6("><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: "blawx_attribute(person,facial_hair_on_chin,boolean).\nblawx_attribute_nlg(facial_hair_on_chin,not_applicable,\"\",not_applicable,\"'s
-      facial hair is on the chin\").\n#pred facial_hair_on_chin(X) :: '@(X) \\'s facial
-      hair is on the chin'.\n#pred holds(user,facial_hair_on_chin,X) :: 'it is provided
-      as a fact that @(X) \\'s facial hair is on the chin'.\n#pred holds(user,-facial_hair_on_chin,X)
-      :: 'it is provided as a fact that it is not the case that @(X) \\'s facial hair
-      is on the chin'.\n#pred holds(Z,facial_hair_on_chin,X) :: 'the conclusion in
-      @(Z) that @(X) \\'s facial hair is on the chin holds'.\n#pred holds(Z,-facial_hair_on_chin,X)
-      :: 'the conclusion in @(Z) that it is not the case that @(X) \\'s facial hair
-      is on the chin holds'.\n#pred according_to(Z,facial_hair_on_chin,X) :: 'according
-      to @(Z), @(X) \\'s facial hair is on the chin'.\n#pred according_to(Z,-facial_hair_on_chin,X)
+      facial hair is on the chin\").\n:- dynamic facial_hair_on_chin/1.\n#pred facial_hair_on_chin(X)
+      :: '@(X) \\'s facial hair is on the chin'.\n#pred holds(user,facial_hair_on_chin,X)
+      :: 'it is provided as a fact that @(X) \\'s facial hair is on the chin'.\n#pred
+      holds(user,-facial_hair_on_chin,X) :: 'it is provided as a fact that it is not
+      the case that @(X) \\'s facial hair is on the chin'.\n#pred holds(Z,facial_hair_on_chin,X)
+      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is on the chin holds'.\n#pred
+      holds(Z,-facial_hair_on_chin,X) :: 'the conclusion in @(Z) that it is not the
+      case that @(X) \\'s facial hair is on the chin holds'.\n#pred according_to(Z,facial_hair_on_chin,X)
+      :: 'according to @(Z), @(X) \\'s facial hair is on the chin'.\n#pred according_to(Z,-facial_hair_on_chin,X)
       :: 'according to @(Z), it is not the case that @(X) \\'s facial hair is on the
       chin'.\n#pred blawx_defeated(Z,facial_hair_on_chin,X) :: 'the conclusion in
       @(Z) that @(X) \\'s facial hair is on the chin is defeated'.\n#pred blawx_defeated(Z,-facial_hair_on_chin,X)
-      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is on the chin is defeated'.\nblawx_attribute(person,facial_hair_below_chin,boolean).\nblawx_attribute_nlg(facial_hair_below_chin,not_applicable,\"\",not_applicable,\"'s
-      facial hair is below the chin\").\n#pred facial_hair_below_chin(X) :: '@(X)
-      \\'s facial hair is below the chin'.\n#pred holds(user,facial_hair_below_chin,X)
-      :: 'it is provided as a fact that @(X) \\'s facial hair is below the chin'.\n#pred
-      holds(user,-facial_hair_below_chin,X) :: 'it is provided as a fact that it is
-      not the case that @(X) \\'s facial hair is below the chin'.\n#pred holds(Z,facial_hair_below_chin,X)
-      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is below the chin holds'.\n#pred
-      holds(Z,-facial_hair_below_chin,X) :: 'the conclusion in @(Z) that it is not
-      the case that @(X) \\'s facial hair is below the chin holds'.\n#pred according_to(Z,facial_hair_below_chin,X)
-      :: 'according to @(Z), @(X) \\'s facial hair is below the chin'.\n#pred according_to(Z,-facial_hair_below_chin,X)
+      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is on the chin is defeated'.\n#pred
+      blawx_initially(facial_hair_on_chin(X)) :: 'that @(X) \\'s facial hair is on
+      the chin holds initially'.\n#pred blawx_initially(-facial_hair_on_chin(X)) ::
+      'that it is not the case that @(X) \\'s facial hair is on the chin holds initially'.\n#pred
+      blawx_ultimately(facial_hair_on_chin(X)) :: 'that @(X) \\'s facial hair is on
+      the chin holds ultimately'.\n#pred blawx_ultimately(-facial_hair_on_chin(X))
+      :: 'that it is not the case that @(X) \\'s facial hair is on the chin holds
+      ultimately'.\n#pred blawx_as_of(facial_hair_on_chin(X),T) :: 'that @(X) \\'s
+      facial hair is on the chin holds at @(T)'.\n#pred blawx_as_of(-facial_hair_on_chin(X),T)
+      :: 'that it is not the case that @(X) \\'s facial hair is on the chin holds
+      at @(T)'.\n#pred blawx_during(T1,facial_hair_on_chin(X),T2) :: 'that @(X) \\'s
+      facial hair is on the chin held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-facial_hair_on_chin(X),T2)
+      :: 'that it is not the case that @(X) \\'s facial hair is on the chin held between
+      @(T1) and @(T2)'.\n#pred blawx_becomes(facial_hair_on_chin(X),T) :: 'that @(X)
+      \\'s facial hair is on the chin became true at @(T)'.\n#pred blawx_becomes(-facial_hair_on_chin(X),T)
+      :: 'that it is not the case that @(X) \\'s facial hair is on the chin became
+      true at @(T)'.\nblawx_as_of(facial_hair_on_chin(X),datetime(Time)) :- blawx_becomes(facial_hair_on_chin(X),datetime(BeforeT)),
+      not blawx_becomes(-facial_hair_on_chin(X), datetime(BetweenT)), BeforeT #< Time,BeforeT
+      #< BetweenT, BetweenT #< Time.\nblawx_as_of(facial_hair_on_chin(X),datetime(Time))
+      :- blawx_initially(facial_hair_on_chin(X)), not blawx_becomes(-facial_hair_on_chin(X),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),facial_hair_on_chin(X),datetime(End))
+      :- blawx_becomes(facial_hair_on_chin(X),datetime(Start)), not blawx_becomes(-facial_hair_on_chin(X),datetime(BeforeEnd)),
+      blawx_becomes(-facial_hair_on_chin(X),datetime(End)), BeforeEnd #< End, Start
+      #< End.\nblawx_during(datetime(bot),facial_hair_on_chin(X),datetime(End)) :-
+      blawx_initially(facial_hair_on_chin(X)), not blawx_becomes(-facial_hair_on_chin(X),datetime(BeforeEnd)),
+      blawx_becomes(-facial_hair_on_chin(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),facial_hair_on_chin(X),datetime(eot))
+      :- blawx_becomes(facial_hair_on_chin(X),datetime(Start)), not blawx_becomes(-facial_hair_on_chin(X),datetime(AfterStart)),
+      blawx_ultimately(facial_hair_on_chin(X)), AfterStart #> Start.\nblawx_as_of(-facial_hair_on_chin(X),datetime(Time))
+      :- blawx_becomes(-facial_hair_on_chin(X),datetime(BeforeT)), not blawx_becomes(facial_hair_on_chin(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-facial_hair_on_chin(X),datetime(Time))
+      :- blawx_initially(-facial_hair_on_chin(X)), not blawx_becomes(facial_hair_on_chin(X),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),-facial_hair_on_chin(X),datetime(End))
+      :- blawx_becomes(-facial_hair_on_chin(X),datetime(Start)), not blawx_becomes(facial_hair_on_chin(X),datetime(BeforeEnd)),
+      blawx_becomes(facial_hair_on_chin(X),datetime(End)), BeforeEnd #< End, Start
+      #< End.\nblawx_during(datetime(bot),-facial_hair_on_chin(X),datetime(End)) :-
+      blawx_initially(-facial_hair_on_chin(X)), not blawx_becomes(facial_hair_on_chin(X),datetime(BeforeEnd)),
+      blawx_becomes(facial_hair_on_chin(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-facial_hair_on_chin(X),datetime(eot))
+      :- blawx_becomes(-facial_hair_on_chin(X),datetime(Start)), not blawx_becomes(facial_hair_on_chin(X),datetime(AfterStart)),
+      blawx_ultimately(-facial_hair_on_chin(X)), AfterStart #> Start.\nblawx_attribute(person,facial_hair_below_chin,boolean).\nblawx_attribute_nlg(facial_hair_below_chin,not_applicable,\"\",not_applicable,\"'s
+      facial hair is below the chin\").\n:- dynamic facial_hair_below_chin/1.\n#pred
+      facial_hair_below_chin(X) :: '@(X) \\'s facial hair is below the chin'.\n#pred
+      holds(user,facial_hair_below_chin,X) :: 'it is provided as a fact that @(X)
+      \\'s facial hair is below the chin'.\n#pred holds(user,-facial_hair_below_chin,X)
+      :: 'it is provided as a fact that it is not the case that @(X) \\'s facial hair
+      is below the chin'.\n#pred holds(Z,facial_hair_below_chin,X) :: 'the conclusion
+      in @(Z) that @(X) \\'s facial hair is below the chin holds'.\n#pred holds(Z,-facial_hair_below_chin,X)
+      :: 'the conclusion in @(Z) that it is not the case that @(X) \\'s facial hair
+      is below the chin holds'.\n#pred according_to(Z,facial_hair_below_chin,X) ::
+      'according to @(Z), @(X) \\'s facial hair is below the chin'.\n#pred according_to(Z,-facial_hair_below_chin,X)
       :: 'according to @(Z), it is not the case that @(X) \\'s facial hair is below
       the chin'.\n#pred blawx_defeated(Z,facial_hair_below_chin,X) :: 'the conclusion
       in @(Z) that @(X) \\'s facial hair is below the chin is defeated'.\n#pred blawx_defeated(Z,-facial_hair_below_chin,X)
-      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is below the chin is defeated'.\nblawx_attribute(person,qualifies_s1a,boolean).\nblawx_attribute_nlg(qualifies_s1a,not_applicable,\"\",not_applicable,\"qualifies
-      under section 1 a\").\n#pred qualifies_s1a(X) :: '@(X) qualifies under section
-      1 a'.\n#pred holds(user,qualifies_s1a,X) :: 'it is provided as a fact that @(X)
-      qualifies under section 1 a'.\n#pred holds(user,-qualifies_s1a,X) :: 'it is
-      provided as a fact that it is not the case that @(X) qualifies under section
-      1 a'.\n#pred holds(Z,qualifies_s1a,X) :: 'the conclusion in @(Z) that @(X) qualifies
-      under section 1 a holds'.\n#pred holds(Z,-qualifies_s1a,X) :: 'the conclusion
-      in @(Z) that it is not the case that @(X) qualifies under section 1 a holds'.\n#pred
-      according_to(Z,qualifies_s1a,X) :: 'according to @(Z), @(X) qualifies under
-      section 1 a'.\n#pred according_to(Z,-qualifies_s1a,X) :: 'according to @(Z),
-      it is not the case that @(X) qualifies under section 1 a'.\n#pred blawx_defeated(Z,qualifies_s1a,X)
+      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is below the chin is defeated'.\n#pred
+      blawx_initially(facial_hair_below_chin(X)) :: 'that @(X) \\'s facial hair is
+      below the chin holds initially'.\n#pred blawx_initially(-facial_hair_below_chin(X))
+      :: 'that it is not the case that @(X) \\'s facial hair is below the chin holds
+      initially'.\n#pred blawx_ultimately(facial_hair_below_chin(X)) :: 'that @(X)
+      \\'s facial hair is below the chin holds ultimately'.\n#pred blawx_ultimately(-facial_hair_below_chin(X))
+      :: 'that it is not the case that @(X) \\'s facial hair is below the chin holds
+      ultimately'.\n#pred blawx_as_of(facial_hair_below_chin(X),T) :: 'that @(X) \\'s
+      facial hair is below the chin holds at @(T)'.\n#pred blawx_as_of(-facial_hair_below_chin(X),T)
+      :: 'that it is not the case that @(X) \\'s facial hair is below the chin holds
+      at @(T)'.\n#pred blawx_during(T1,facial_hair_below_chin(X),T2) :: 'that @(X)
+      \\'s facial hair is below the chin held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-facial_hair_below_chin(X),T2)
+      :: 'that it is not the case that @(X) \\'s facial hair is below the chin held
+      between @(T1) and @(T2)'.\n#pred blawx_becomes(facial_hair_below_chin(X),T)
+      :: 'that @(X) \\'s facial hair is below the chin became true at @(T)'.\n#pred
+      blawx_becomes(-facial_hair_below_chin(X),T) :: 'that it is not the case that
+      @(X) \\'s facial hair is below the chin became true at @(T)'.\nblawx_as_of(facial_hair_below_chin(X),datetime(Time))
+      :- blawx_becomes(facial_hair_below_chin(X),datetime(BeforeT)), not blawx_becomes(-facial_hair_below_chin(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(facial_hair_below_chin(X),datetime(Time))
+      :- blawx_initially(facial_hair_below_chin(X)), not blawx_becomes(-facial_hair_below_chin(X),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),facial_hair_below_chin(X),datetime(End))
+      :- blawx_becomes(facial_hair_below_chin(X),datetime(Start)), not blawx_becomes(-facial_hair_below_chin(X),datetime(BeforeEnd)),
+      blawx_becomes(-facial_hair_below_chin(X),datetime(End)), BeforeEnd #< End, Start
+      #< End.\nblawx_during(datetime(bot),facial_hair_below_chin(X),datetime(End))
+      :- blawx_initially(facial_hair_below_chin(X)), not blawx_becomes(-facial_hair_below_chin(X),datetime(BeforeEnd)),
+      blawx_becomes(-facial_hair_below_chin(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),facial_hair_below_chin(X),datetime(eot))
+      :- blawx_becomes(facial_hair_below_chin(X),datetime(Start)), not blawx_becomes(-facial_hair_below_chin(X),datetime(AfterStart)),
+      blawx_ultimately(facial_hair_below_chin(X)), AfterStart #> Start.\nblawx_as_of(-facial_hair_below_chin(X),datetime(Time))
+      :- blawx_becomes(-facial_hair_below_chin(X),datetime(BeforeT)), not blawx_becomes(facial_hair_below_chin(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-facial_hair_below_chin(X),datetime(Time))
+      :- blawx_initially(-facial_hair_below_chin(X)), not blawx_becomes(facial_hair_below_chin(X),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),-facial_hair_below_chin(X),datetime(End))
+      :- blawx_becomes(-facial_hair_below_chin(X),datetime(Start)), not blawx_becomes(facial_hair_below_chin(X),datetime(BeforeEnd)),
+      blawx_becomes(facial_hair_below_chin(X),datetime(End)), BeforeEnd #< End, Start
+      #< End.\nblawx_during(datetime(bot),-facial_hair_below_chin(X),datetime(End))
+      :- blawx_initially(-facial_hair_below_chin(X)), not blawx_becomes(facial_hair_below_chin(X),datetime(BeforeEnd)),
+      blawx_becomes(facial_hair_below_chin(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-facial_hair_below_chin(X),datetime(eot))
+      :- blawx_becomes(-facial_hair_below_chin(X),datetime(Start)), not blawx_becomes(facial_hair_below_chin(X),datetime(AfterStart)),
+      blawx_ultimately(-facial_hair_below_chin(X)), AfterStart #> Start.\nblawx_attribute(person,qualifies_s1a,boolean).\nblawx_attribute_nlg(qualifies_s1a,not_applicable,\"\",not_applicable,\"qualifies
+      under section 1 a\").\n:- dynamic qualifies_s1a/1.\n#pred qualifies_s1a(X) ::
+      '@(X) qualifies under section 1 a'.\n#pred holds(user,qualifies_s1a,X) :: 'it
+      is provided as a fact that @(X) qualifies under section 1 a'.\n#pred holds(user,-qualifies_s1a,X)
+      :: 'it is provided as a fact that it is not the case that @(X) qualifies under
+      section 1 a'.\n#pred holds(Z,qualifies_s1a,X) :: 'the conclusion in @(Z) that
+      @(X) qualifies under section 1 a holds'.\n#pred holds(Z,-qualifies_s1a,X) ::
+      'the conclusion in @(Z) that it is not the case that @(X) qualifies under section
+      1 a holds'.\n#pred according_to(Z,qualifies_s1a,X) :: 'according to @(Z), @(X)
+      qualifies under section 1 a'.\n#pred according_to(Z,-qualifies_s1a,X) :: 'according
+      to @(Z), it is not the case that @(X) qualifies under section 1 a'.\n#pred blawx_defeated(Z,qualifies_s1a,X)
       :: 'the conclusion in @(Z) that @(X) qualifies under section 1 a is defeated'.\n#pred
       blawx_defeated(Z,-qualifies_s1a,X) :: 'the conclusion in @(Z) that @(X) qualifies
-      under section 1 a is defeated'.\n\naccording_to(sec_1__para_a_section,qualifies_s1a,Person)
+      under section 1 a is defeated'.\n#pred blawx_initially(qualifies_s1a(X)) ::
+      'that @(X) qualifies under section 1 a holds initially'.\n#pred blawx_initially(-qualifies_s1a(X))
+      :: 'that it is not the case that @(X) qualifies under section 1 a holds initially'.\n#pred
+      blawx_ultimately(qualifies_s1a(X)) :: 'that @(X) qualifies under section 1 a
+      holds ultimately'.\n#pred blawx_ultimately(-qualifies_s1a(X)) :: 'that it is
+      not the case that @(X) qualifies under section 1 a holds ultimately'.\n#pred
+      blawx_as_of(qualifies_s1a(X),T) :: 'that @(X) qualifies under section 1 a holds
+      at @(T)'.\n#pred blawx_as_of(-qualifies_s1a(X),T) :: 'that it is not the case
+      that @(X) qualifies under section 1 a holds at @(T)'.\n#pred blawx_during(T1,qualifies_s1a(X),T2)
+      :: 'that @(X) qualifies under section 1 a held between @(T1) and @(T2)'.\n#pred
+      blawx_during(T1,-qualifies_s1a(X),T2) :: 'that it is not the case that @(X)
+      qualifies under section 1 a held between @(T1) and @(T2)'.\n#pred blawx_becomes(qualifies_s1a(X),T)
+      :: 'that @(X) qualifies under section 1 a became true at @(T)'.\n#pred blawx_becomes(-qualifies_s1a(X),T)
+      :: 'that it is not the case that @(X) qualifies under section 1 a became true
+      at @(T)'.\nblawx_as_of(qualifies_s1a(X),datetime(Time)) :- blawx_becomes(qualifies_s1a(X),datetime(BeforeT)),
+      not blawx_becomes(-qualifies_s1a(X), datetime(BetweenT)), BeforeT #< Time,BeforeT
+      #< BetweenT, BetweenT #< Time.\nblawx_as_of(qualifies_s1a(X),datetime(Time))
+      :- blawx_initially(qualifies_s1a(X)), not blawx_becomes(-qualifies_s1a(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),qualifies_s1a(X),datetime(End))
+      :- blawx_becomes(qualifies_s1a(X),datetime(Start)), not blawx_becomes(-qualifies_s1a(X),datetime(BeforeEnd)),
+      blawx_becomes(-qualifies_s1a(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),qualifies_s1a(X),datetime(End))
+      :- blawx_initially(qualifies_s1a(X)), not blawx_becomes(-qualifies_s1a(X),datetime(BeforeEnd)),
+      blawx_becomes(-qualifies_s1a(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),qualifies_s1a(X),datetime(eot))
+      :- blawx_becomes(qualifies_s1a(X),datetime(Start)), not blawx_becomes(-qualifies_s1a(X),datetime(AfterStart)),
+      blawx_ultimately(qualifies_s1a(X)), AfterStart #> Start.\nblawx_as_of(-qualifies_s1a(X),datetime(Time))
+      :- blawx_becomes(-qualifies_s1a(X),datetime(BeforeT)), not blawx_becomes(qualifies_s1a(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-qualifies_s1a(X),datetime(Time))
+      :- blawx_initially(-qualifies_s1a(X)), not blawx_becomes(qualifies_s1a(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-qualifies_s1a(X),datetime(End))
+      :- blawx_becomes(-qualifies_s1a(X),datetime(Start)), not blawx_becomes(qualifies_s1a(X),datetime(BeforeEnd)),
+      blawx_becomes(qualifies_s1a(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-qualifies_s1a(X),datetime(End))
+      :- blawx_initially(-qualifies_s1a(X)), not blawx_becomes(qualifies_s1a(X),datetime(BeforeEnd)),
+      blawx_becomes(qualifies_s1a(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-qualifies_s1a(X),datetime(eot))
+      :- blawx_becomes(-qualifies_s1a(X),datetime(Start)), not blawx_becomes(qualifies_s1a(X),datetime(AfterStart)),
+      blawx_ultimately(-qualifies_s1a(X)), AfterStart #> Start.\n\naccording_to(sec_1__para_a_section,qualifies_s1a,Person)
       :- facial_hair_on_chin(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1__para_a_section,qualifies_s1a,Person)
       :- according_to(sec_1__para_a_section,qualifies_s1a,Person).\n\n% BLAWX CHECK
       DUPLICATES\n  qualifies_s1a(Person) :- holds(sec_1__para_a_section,qualifies_s1a,Person).\n\naccording_to(sec_1__para_a_section,qualifies_s1a,Person)
@@ -234,9 +469,9 @@
       :- according_to(sec_1__para_a_section,qualifies_s1a,Person).\n\n% BLAWX CHECK
       DUPLICATES\n  qualifies_s1a(Person) :- holds(sec_1__para_a_section,qualifies_s1a,Person)."
 - model: blawx.workspace
-  pk: 34
+  pk: 17
   fields:
-    ruledoc: 4
+    ruledoc: 3
     workspace_name: sec_1__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="(^5.:,lX5N1?~UIArJEP" x="59" y="112"><statement name="statements"><block
@@ -266,42 +501,116 @@
       name="postfix">qualifies under section 1 b</field><value name="first_element"><block
       type="variable" id="oMOx1nXegE|@{tC78ChY"><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: "blawx_attribute(person,facial_hair_continuous,boolean).\nblawx_attribute_nlg(facial_hair_continuous,not_applicable,\"\",not_applicable,\"'s
-      facial hair is ear to ear below the nose\").\n#pred facial_hair_continuous(X)
-      :: '@(X) \\'s facial hair is ear to ear below the nose'.\n#pred holds(user,facial_hair_continuous,X)
-      :: 'it is provided as a fact that @(X) \\'s facial hair is ear to ear below
-      the nose'.\n#pred holds(user,-facial_hair_continuous,X) :: 'it is provided as
-      a fact that it is not the case that @(X) \\'s facial hair is ear to ear below
-      the nose'.\n#pred holds(Z,facial_hair_continuous,X) :: 'the conclusion in @(Z)
-      that @(X) \\'s facial hair is ear to ear below the nose holds'.\n#pred holds(Z,-facial_hair_continuous,X)
-      :: 'the conclusion in @(Z) that it is not the case that @(X) \\'s facial hair
-      is ear to ear below the nose holds'.\n#pred according_to(Z,facial_hair_continuous,X)
-      :: 'according to @(Z), @(X) \\'s facial hair is ear to ear below the nose'.\n#pred
-      according_to(Z,-facial_hair_continuous,X) :: 'according to @(Z), it is not the
-      case that @(X) \\'s facial hair is ear to ear below the nose'.\n#pred blawx_defeated(Z,facial_hair_continuous,X)
-      :: 'the conclusion in @(Z) that @(X) \\'s facial hair is ear to ear below the
-      nose is defeated'.\n#pred blawx_defeated(Z,-facial_hair_continuous,X) :: 'the
-      conclusion in @(Z) that @(X) \\'s facial hair is ear to ear below the nose is
-      defeated'.\nblawx_attribute(person,qualifies_s1b,boolean).\nblawx_attribute_nlg(qualifies_s1b,not_applicable,\"\",not_applicable,\"qualifies
-      under section 1 b\").\n#pred qualifies_s1b(X) :: '@(X) qualifies under section
-      1 b'.\n#pred holds(user,qualifies_s1b,X) :: 'it is provided as a fact that @(X)
-      qualifies under section 1 b'.\n#pred holds(user,-qualifies_s1b,X) :: 'it is
-      provided as a fact that it is not the case that @(X) qualifies under section
-      1 b'.\n#pred holds(Z,qualifies_s1b,X) :: 'the conclusion in @(Z) that @(X) qualifies
-      under section 1 b holds'.\n#pred holds(Z,-qualifies_s1b,X) :: 'the conclusion
-      in @(Z) that it is not the case that @(X) qualifies under section 1 b holds'.\n#pred
-      according_to(Z,qualifies_s1b,X) :: 'according to @(Z), @(X) qualifies under
-      section 1 b'.\n#pred according_to(Z,-qualifies_s1b,X) :: 'according to @(Z),
-      it is not the case that @(X) qualifies under section 1 b'.\n#pred blawx_defeated(Z,qualifies_s1b,X)
+      facial hair is ear to ear below the nose\").\n:- dynamic facial_hair_continuous/1.\n#pred
+      facial_hair_continuous(X) :: '@(X) \\'s facial hair is ear to ear below the
+      nose'.\n#pred holds(user,facial_hair_continuous,X) :: 'it is provided as a fact
+      that @(X) \\'s facial hair is ear to ear below the nose'.\n#pred holds(user,-facial_hair_continuous,X)
+      :: 'it is provided as a fact that it is not the case that @(X) \\'s facial hair
+      is ear to ear below the nose'.\n#pred holds(Z,facial_hair_continuous,X) :: 'the
+      conclusion in @(Z) that @(X) \\'s facial hair is ear to ear below the nose holds'.\n#pred
+      holds(Z,-facial_hair_continuous,X) :: 'the conclusion in @(Z) that it is not
+      the case that @(X) \\'s facial hair is ear to ear below the nose holds'.\n#pred
+      according_to(Z,facial_hair_continuous,X) :: 'according to @(Z), @(X) \\'s facial
+      hair is ear to ear below the nose'.\n#pred according_to(Z,-facial_hair_continuous,X)
+      :: 'according to @(Z), it is not the case that @(X) \\'s facial hair is ear
+      to ear below the nose'.\n#pred blawx_defeated(Z,facial_hair_continuous,X) ::
+      'the conclusion in @(Z) that @(X) \\'s facial hair is ear to ear below the nose
+      is defeated'.\n#pred blawx_defeated(Z,-facial_hair_continuous,X) :: 'the conclusion
+      in @(Z) that @(X) \\'s facial hair is ear to ear below the nose is defeated'.\n#pred
+      blawx_initially(facial_hair_continuous(X)) :: 'that @(X) \\'s facial hair is
+      ear to ear below the nose holds initially'.\n#pred blawx_initially(-facial_hair_continuous(X))
+      :: 'that it is not the case that @(X) \\'s facial hair is ear to ear below the
+      nose holds initially'.\n#pred blawx_ultimately(facial_hair_continuous(X)) ::
+      'that @(X) \\'s facial hair is ear to ear below the nose holds ultimately'.\n#pred
+      blawx_ultimately(-facial_hair_continuous(X)) :: 'that it is not the case that
+      @(X) \\'s facial hair is ear to ear below the nose holds ultimately'.\n#pred
+      blawx_as_of(facial_hair_continuous(X),T) :: 'that @(X) \\'s facial hair is ear
+      to ear below the nose holds at @(T)'.\n#pred blawx_as_of(-facial_hair_continuous(X),T)
+      :: 'that it is not the case that @(X) \\'s facial hair is ear to ear below the
+      nose holds at @(T)'.\n#pred blawx_during(T1,facial_hair_continuous(X),T2) ::
+      'that @(X) \\'s facial hair is ear to ear below the nose held between @(T1)
+      and @(T2)'.\n#pred blawx_during(T1,-facial_hair_continuous(X),T2) :: 'that it
+      is not the case that @(X) \\'s facial hair is ear to ear below the nose held
+      between @(T1) and @(T2)'.\n#pred blawx_becomes(facial_hair_continuous(X),T)
+      :: 'that @(X) \\'s facial hair is ear to ear below the nose became true at @(T)'.\n#pred
+      blawx_becomes(-facial_hair_continuous(X),T) :: 'that it is not the case that
+      @(X) \\'s facial hair is ear to ear below the nose became true at @(T)'.\nblawx_as_of(facial_hair_continuous(X),datetime(Time))
+      :- blawx_becomes(facial_hair_continuous(X),datetime(BeforeT)), not blawx_becomes(-facial_hair_continuous(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(facial_hair_continuous(X),datetime(Time))
+      :- blawx_initially(facial_hair_continuous(X)), not blawx_becomes(-facial_hair_continuous(X),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),facial_hair_continuous(X),datetime(End))
+      :- blawx_becomes(facial_hair_continuous(X),datetime(Start)), not blawx_becomes(-facial_hair_continuous(X),datetime(BeforeEnd)),
+      blawx_becomes(-facial_hair_continuous(X),datetime(End)), BeforeEnd #< End, Start
+      #< End.\nblawx_during(datetime(bot),facial_hair_continuous(X),datetime(End))
+      :- blawx_initially(facial_hair_continuous(X)), not blawx_becomes(-facial_hair_continuous(X),datetime(BeforeEnd)),
+      blawx_becomes(-facial_hair_continuous(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),facial_hair_continuous(X),datetime(eot))
+      :- blawx_becomes(facial_hair_continuous(X),datetime(Start)), not blawx_becomes(-facial_hair_continuous(X),datetime(AfterStart)),
+      blawx_ultimately(facial_hair_continuous(X)), AfterStart #> Start.\nblawx_as_of(-facial_hair_continuous(X),datetime(Time))
+      :- blawx_becomes(-facial_hair_continuous(X),datetime(BeforeT)), not blawx_becomes(facial_hair_continuous(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-facial_hair_continuous(X),datetime(Time))
+      :- blawx_initially(-facial_hair_continuous(X)), not blawx_becomes(facial_hair_continuous(X),
+      datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),-facial_hair_continuous(X),datetime(End))
+      :- blawx_becomes(-facial_hair_continuous(X),datetime(Start)), not blawx_becomes(facial_hair_continuous(X),datetime(BeforeEnd)),
+      blawx_becomes(facial_hair_continuous(X),datetime(End)), BeforeEnd #< End, Start
+      #< End.\nblawx_during(datetime(bot),-facial_hair_continuous(X),datetime(End))
+      :- blawx_initially(-facial_hair_continuous(X)), not blawx_becomes(facial_hair_continuous(X),datetime(BeforeEnd)),
+      blawx_becomes(facial_hair_continuous(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-facial_hair_continuous(X),datetime(eot))
+      :- blawx_becomes(-facial_hair_continuous(X),datetime(Start)), not blawx_becomes(facial_hair_continuous(X),datetime(AfterStart)),
+      blawx_ultimately(-facial_hair_continuous(X)), AfterStart #> Start.\nblawx_attribute(person,qualifies_s1b,boolean).\nblawx_attribute_nlg(qualifies_s1b,not_applicable,\"\",not_applicable,\"qualifies
+      under section 1 b\").\n:- dynamic qualifies_s1b/1.\n#pred qualifies_s1b(X) ::
+      '@(X) qualifies under section 1 b'.\n#pred holds(user,qualifies_s1b,X) :: 'it
+      is provided as a fact that @(X) qualifies under section 1 b'.\n#pred holds(user,-qualifies_s1b,X)
+      :: 'it is provided as a fact that it is not the case that @(X) qualifies under
+      section 1 b'.\n#pred holds(Z,qualifies_s1b,X) :: 'the conclusion in @(Z) that
+      @(X) qualifies under section 1 b holds'.\n#pred holds(Z,-qualifies_s1b,X) ::
+      'the conclusion in @(Z) that it is not the case that @(X) qualifies under section
+      1 b holds'.\n#pred according_to(Z,qualifies_s1b,X) :: 'according to @(Z), @(X)
+      qualifies under section 1 b'.\n#pred according_to(Z,-qualifies_s1b,X) :: 'according
+      to @(Z), it is not the case that @(X) qualifies under section 1 b'.\n#pred blawx_defeated(Z,qualifies_s1b,X)
       :: 'the conclusion in @(Z) that @(X) qualifies under section 1 b is defeated'.\n#pred
       blawx_defeated(Z,-qualifies_s1b,X) :: 'the conclusion in @(Z) that @(X) qualifies
-      under section 1 b is defeated'.\n\naccording_to(sec_1__para_b_section,qualifies_s1b,Person)
+      under section 1 b is defeated'.\n#pred blawx_initially(qualifies_s1b(X)) ::
+      'that @(X) qualifies under section 1 b holds initially'.\n#pred blawx_initially(-qualifies_s1b(X))
+      :: 'that it is not the case that @(X) qualifies under section 1 b holds initially'.\n#pred
+      blawx_ultimately(qualifies_s1b(X)) :: 'that @(X) qualifies under section 1 b
+      holds ultimately'.\n#pred blawx_ultimately(-qualifies_s1b(X)) :: 'that it is
+      not the case that @(X) qualifies under section 1 b holds ultimately'.\n#pred
+      blawx_as_of(qualifies_s1b(X),T) :: 'that @(X) qualifies under section 1 b holds
+      at @(T)'.\n#pred blawx_as_of(-qualifies_s1b(X),T) :: 'that it is not the case
+      that @(X) qualifies under section 1 b holds at @(T)'.\n#pred blawx_during(T1,qualifies_s1b(X),T2)
+      :: 'that @(X) qualifies under section 1 b held between @(T1) and @(T2)'.\n#pred
+      blawx_during(T1,-qualifies_s1b(X),T2) :: 'that it is not the case that @(X)
+      qualifies under section 1 b held between @(T1) and @(T2)'.\n#pred blawx_becomes(qualifies_s1b(X),T)
+      :: 'that @(X) qualifies under section 1 b became true at @(T)'.\n#pred blawx_becomes(-qualifies_s1b(X),T)
+      :: 'that it is not the case that @(X) qualifies under section 1 b became true
+      at @(T)'.\nblawx_as_of(qualifies_s1b(X),datetime(Time)) :- blawx_becomes(qualifies_s1b(X),datetime(BeforeT)),
+      not blawx_becomes(-qualifies_s1b(X), datetime(BetweenT)), BeforeT #< Time,BeforeT
+      #< BetweenT, BetweenT #< Time.\nblawx_as_of(qualifies_s1b(X),datetime(Time))
+      :- blawx_initially(qualifies_s1b(X)), not blawx_becomes(-qualifies_s1b(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),qualifies_s1b(X),datetime(End))
+      :- blawx_becomes(qualifies_s1b(X),datetime(Start)), not blawx_becomes(-qualifies_s1b(X),datetime(BeforeEnd)),
+      blawx_becomes(-qualifies_s1b(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),qualifies_s1b(X),datetime(End))
+      :- blawx_initially(qualifies_s1b(X)), not blawx_becomes(-qualifies_s1b(X),datetime(BeforeEnd)),
+      blawx_becomes(-qualifies_s1b(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),qualifies_s1b(X),datetime(eot))
+      :- blawx_becomes(qualifies_s1b(X),datetime(Start)), not blawx_becomes(-qualifies_s1b(X),datetime(AfterStart)),
+      blawx_ultimately(qualifies_s1b(X)), AfterStart #> Start.\nblawx_as_of(-qualifies_s1b(X),datetime(Time))
+      :- blawx_becomes(-qualifies_s1b(X),datetime(BeforeT)), not blawx_becomes(qualifies_s1b(X),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-qualifies_s1b(X),datetime(Time))
+      :- blawx_initially(-qualifies_s1b(X)), not blawx_becomes(qualifies_s1b(X), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-qualifies_s1b(X),datetime(End))
+      :- blawx_becomes(-qualifies_s1b(X),datetime(Start)), not blawx_becomes(qualifies_s1b(X),datetime(BeforeEnd)),
+      blawx_becomes(qualifies_s1b(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-qualifies_s1b(X),datetime(End))
+      :- blawx_initially(-qualifies_s1b(X)), not blawx_becomes(qualifies_s1b(X),datetime(BeforeEnd)),
+      blawx_becomes(qualifies_s1b(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-qualifies_s1b(X),datetime(eot))
+      :- blawx_becomes(-qualifies_s1b(X),datetime(Start)), not blawx_becomes(qualifies_s1b(X),datetime(AfterStart)),
+      blawx_ultimately(-qualifies_s1b(X)), AfterStart #> Start.\n\naccording_to(sec_1__para_b_section,qualifies_s1b,Person)
       :- facial_hair_continuous(Person).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1__para_b_section,qualifies_s1b,Person)
       :- according_to(sec_1__para_b_section,qualifies_s1b,Person).\n\n% BLAWX CHECK
       DUPLICATES\n  qualifies_s1b(Person) :- holds(sec_1__para_b_section,qualifies_s1b,Person)."
 - model: blawx.blawxtest
-  pk: 21
+  pk: 5
   fields:
-    ruledoc: 4
+    ruledoc: 3
     test_name: are_they_bearded
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="oKTTPr8cFQ4jJLk|pBs]" x="95" y="187"><statement name="query"><block type="unary_attribute_selector"
@@ -311,5 +620,5 @@
       name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: ?- bearded(Person).
     tutorial: ''
-    view: ''
+    view: '[''view_att_bearded'', ''view_att_qualifies_s1a'', ''view_att_qualifies_s1b'']'
     fact_scenario: ''
