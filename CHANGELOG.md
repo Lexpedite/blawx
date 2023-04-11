@@ -12,58 +12,45 @@ and breaking changes will not necessarily result in changes to the main version 
 **This release is NOT backward compatible.**
 
 This release adds event reasoning features to the Blawx language. In addition to saying what is true,
-you can now indicate when it was true, and when it ceased to be true.
+you can now indicate when it was true, and when it ceased to be true. It also re-implements date math
+using s(CASP)'s numerical constraints, which makes event reasoning possible, increases the speed of date calculations,
+and allows comparison constraints over dates.
 
 ### Upgrade Notes
 Upgrading code for v1.5.4-alpha to v1.6.0-alpha will require:
+
 * Replacing all existing duration blocks, converting years and months into days as required.
 * Re-saving workspaces using any of the modified blocks (e.g. date, time, datetime value, date add, duration and date comparison blocks)
 * Replacing date add days, date diff, and date diff days blocks with the new date add block
 * Eliminating the use of date, time, datetime, and duration constructors
 * Replacing math calculation blocks with numerical constraints set to "equal"
 
+Blocks that have been removed from the drawers will still display, in v1.6.0-alpha, so that they can be replaced. But they will not
+function as intended, and are deprecated, and may be removed from any future version of Blawx.
+
 ### Added
 * Event Drawer
 * Initially, Ultimately, From, As of, and During blocks
 * New Life Act example demonstrating use of event blocks
 * Date, datetime, and duration from timestamp blocks
-* Associated documentation
+* Associated documentation on event reasoning and new event and date blocks
 
 ### Changed
-* Duration value blocks no longer have Year and Month fields.
-* The date add block can now be used for addition or subtraction by leaving one of the three fields unbound.
-* Date and duration comparisons and calculations are now implemented as numerical constraints.
+* Duration value blocks no longer have Year and Month fields
+* The date add block can now be used for addition or subtraction by leaving one of the three fields unbound
+* Date and duration comparisons and calculations are now implemented as numerical constraints
 * When date constraints are displayed in the scenario editor, Blawx tries to determine the data type and formats the constraint appropriately
-* Associated documentation
+* Updated documentation for changed blocks, features
 * The numerical constraint block was reformatted, and has equality and disequality operators added to it
+* All of the feature and block documentation has been brought up to date
+* The way that dates, times, datetimes, and durations are displayed in the test editor explanations has been improved to make them more readable
+* Examples have been updated to use the new block language
 
 ### Removed
-* Date Add Days, Date Diff, and Date Diff Days blocks, which were redundant.
+* Date Add Days, Date Diff, and Date Diff Days blocks
 * Date, Duration, and Time Constructor blocks
-* Associated documentation
-* The calculation block is removed from the Numbers drawer
-
-### Fixed
-
-
-### To Do
-* Need to duplicate the new numerical constraint display features inside the test editor.
-* Extensive testing required
-  * Check how all the constraints appear, with values and variables.
-  * Deep testing of how the date add and date_compare functions work, particularly with respect to "bot" and "eot".
-* Add examples for new datetime constraints
-* Update examples
-  * New dates stuff
-  * New calculation stuff
-* Future Features:
-  * If the same value or variable is used in the code as multiple different data types, for example as both a date and a datetime,
-    Blawx may have some difficulty determining the type and displaying it properly inside constraints.
-  * Need to add a block for deriving the date from a datetime?
-  * Need a way to convert a time from positive to negative, maybe?
-* Minor Display Issues:
-  * In Covid test, if you generate a scenario that passes can_fly, some things are reported as provided as facts when they are actually calculated.
-  * For later, non-terminating decimals look super-ugly in the scenario editor.
-  * In numerical constraints, "hypothesized ... provided as a fact"
+* Calculation block
+* Documentation for removed blocks
 
 ## [v1.5.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.5.3-alpha) 2023-03-16
 
