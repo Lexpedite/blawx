@@ -1,5 +1,5 @@
 - model: blawx.ruledoc
-  pk: 9
+  pk: 1
   fields:
     ruledoc_name: Old Age Security Act
     rule_text: "Old Age Security Act\r\n\r\nPayment of full pension\r\n3.\r\n  (1)
@@ -26,21 +26,143 @@
       that person is a Canadian citizen or, if not, is legally resident in Canada;
       or\r\n    (b) on the day preceding the day that person ceased to reside in Canada
       that person was a Canadian citizen or, if not, was legally resident in Canada."
+    akoma_ntoso: <?xml version="1.0" encoding="UTF-8"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><act><preface><p
+      class="title"><shortTitle>Old Age Security Act</shortTitle></p></preface><body><section
+      eId="sec_3"><num>3</num><heading>Payment of full pension</heading><subSection
+      eId="sec_3__subsec_1"><num>1</num><intro><p>Subject to this Act and the regulations,
+      a full monthly pension may be paid to</p></intro><paragraph eId="sec_3__subsec_1__para_a"><num>a</num><content><p>every
+      person who was a pensioner on July 1, 1977;</p></content></paragraph><paragraph
+      eId="sec_3__subsec_1__para_b"><num>b</num><intro><p>every person who</p></intro><subParagraph
+      eId="sec_3__subsec_1__para_b__subpara_i"><num>i</num><content><p>on July 1,
+      1977 was not a pensioner but had attained twenty-five years of age and resided
+      in Canada or, if that person did not reside in Canada, had resided in Canada
+      for any period after attaining eighteen years of age or possessed a valid immigration
+      visa,</p></content></subParagraph><subParagraph eId="sec_3__subsec_1__para_b__subpara_ii"><num>ii</num><content><p>has
+      attained sixty-five years of age, and</p></content></subParagraph><subParagraph
+      eId="sec_3__subsec_1__para_b__subpara_iii"><num>iii</num><content><p>has resided
+      in Canada for the ten years immediately preceding the day on which that person's
+      application is approved or, if that person has not so resided, has, after attaining
+      eighteen years of age, been present in Canada prior to those ten years for an
+      aggregate period at least equal to three times the aggregate periods of absence
+      from Canada during those ten years, and has resided in Canada for at least one
+      year immediately preceding the day on which that person's application is approved;
+      and</p></content></subParagraph></paragraph><paragraph eId="sec_3__subsec_1__para_c"><num>c</num><intro><p>every
+      person who</p></intro><subParagraph eId="sec_3__subsec_1__para_c__subpara_i"><num>i</num><content><p>was
+      not a pensioner on July 1, 1977,</p></content></subParagraph><subParagraph eId="sec_3__subsec_1__para_c__subpara_ii"><num>ii</num><content><p>has
+      attained sixty-five years of age, and</p></content></subParagraph><subParagraph
+      eId="sec_3__subsec_1__para_c__subpara_iii"><num>iii</num><content><p>has resided
+      in Canada after attaining eighteen years of age and prior to the day on which
+      that person's application is approved for an aggregate period of at least forty
+      years.</p></content></subParagraph></paragraph></subSection></section><section
+      eId="sec_4"><num>4</num><heading>Residence in Canada must be or have been legal</heading><subSection
+      eId="sec_4__subsec_1"><num>1</num><intro><p>A person who was not a pensioner
+      on July 1, 1977 is eligible for a pension under this Part only if</p></intro><paragraph
+      eId="sec_4__subsec_1__para_a"><num>a</num><content><p>on the day preceding the
+      day on which that person's application is approved that person is a Canadian
+      citizen or, if not, is legally resident in Canada; or</p></content></paragraph><paragraph
+      eId="sec_4__subsec_1__para_b"><num>b</num><content><p>on the day preceding the
+      day that person ceased to reside in Canada that person was a Canadian citizen
+      or, if not, was legally resident in Canada.</p></content></paragraph></subSection></section></body></act></akomaNtoso>
+    navtree: '<nav class="column">
+
+      <div class="lawpart act"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="root_section" checked><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#root"></i>Old
+      Age Security Act</div></div></div><div class="subparts collapse" id="root"><div
+      class="lawpart section"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_3_section"><div class="lawtext"><i class="bi
+      bi-caret-right" data-bs-toggle="collapse" data-bs-target="#sec_3"></i><num>3</num>Payment
+      of full pension</div></div></div><div class="subparts collapse" id="sec_3"><div
+      class="lawpart subSection"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_3__subsec_1_section"><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#sec_3__subsec_1"></i><num>1</num><intro
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Subject to this
+      Act and the regulations, a full monthly pension may be paid to</p></intro></div></div></div><div
+      class="subparts collapse" id="sec_3__subsec_1"><div class="lawpart paragraph"><div
+      class="form-check"><input class="form-check-input" type="radio" name="section"
+      id="sec_3__subsec_1__para_a_section"><div class="lawtext"><num>a</num> <content
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>every person who
+      was a pensioner on July 1, 1977;</p></content></div></div></div><div class="lawpart
+      paragraph"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_3__subsec_1__para_b_section"><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#sec_3__subsec_1__para_b"></i><num>b</num><intro
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>every person who</p></intro></div></div></div><div
+      class="subparts collapse" id="sec_3__subsec_1__para_b"><div class="lawpart subParagraph"><div
+      class="form-check"><input class="form-check-input" type="radio" name="section"
+      id="sec_3__subsec_1__para_b__subpara_i_section"><div class="lawtext"><num>i</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>on July
+      1, 1977 was not a pensioner but had attained twenty-five years of age and resided
+      in Canada or, if that person did not reside in Canada, had resided in Canada
+      for any period after attaining eighteen years of age or possessed a valid immigration
+      visa,</p></content></div></div></div><div class="lawpart subParagraph"><div
+      class="form-check"><input class="form-check-input" type="radio" name="section"
+      id="sec_3__subsec_1__para_b__subpara_ii_section"><div class="lawtext"><num>ii</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>has attained
+      sixty-five years of age, and</p></content></div></div></div><div class="lawpart
+      subParagraph"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_3__subsec_1__para_b__subpara_iii_section"><div class="lawtext"><num>iii</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>has resided
+      in Canada for the ten years immediately preceding the day on which that person''s
+      application is approved or, if that person has not so resided, has, after attaining
+      eighteen years of age, been present in Canada prior to those ten years for an
+      aggregate period at least equal to three times the aggregate periods of absence
+      from Canada during those ten years, and has resided in Canada for at least one
+      year immediately preceding the day on which that person''s application is approved;
+      and</p></content></div></div></div></div><div class="lawpart paragraph"><div
+      class="form-check"><input class="form-check-input" type="radio" name="section"
+      id="sec_3__subsec_1__para_c_section"><div class="lawtext"><i class="bi bi-caret-right"
+      data-bs-toggle="collapse" data-bs-target="#sec_3__subsec_1__para_c"></i><num>c</num><intro
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>every person who</p></intro></div></div></div><div
+      class="subparts collapse" id="sec_3__subsec_1__para_c"><div class="lawpart subParagraph"><div
+      class="form-check"><input class="form-check-input" type="radio" name="section"
+      id="sec_3__subsec_1__para_c__subpara_i_section"><div class="lawtext"><num>i</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>was not
+      a pensioner on July 1, 1977,</p></content></div></div></div><div class="lawpart
+      subParagraph"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_3__subsec_1__para_c__subpara_ii_section"><div class="lawtext"><num>ii</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>has attained
+      sixty-five years of age, and</p></content></div></div></div><div class="lawpart
+      subParagraph"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_3__subsec_1__para_c__subpara_iii_section"><div class="lawtext"><num>iii</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>has resided
+      in Canada after attaining eighteen years of age and prior to the day on which
+      that person''s application is approved for an aggregate period of at least forty
+      years.</p></content></div></div></div></div></div></div><div class="lawpart
+      section"><div class="form-check"><input class="form-check-input" type="radio"
+      name="section" id="sec_4_section"><div class="lawtext"><i class="bi bi-caret-right"
+      data-bs-toggle="collapse" data-bs-target="#sec_4"></i><num>4</num>Residence
+      in Canada must be or have been legal</div></div></div><div class="subparts collapse"
+      id="sec_4"><div class="lawpart subSection"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_4__subsec_1_section"><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#sec_4__subsec_1"></i><num>1</num><intro
+      xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>A person who was
+      not a pensioner on July 1, 1977 is eligible for a pension under this Part only
+      if</p></intro></div></div></div><div class="subparts collapse" id="sec_4__subsec_1"><div
+      class="lawpart paragraph"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_4__subsec_1__para_a_section"><div class="lawtext"><num>a</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>on the
+      day preceding the day on which that person''s application is approved that person
+      is a Canadian citizen or, if not, is legally resident in Canada; or</p></content></div></div></div><div
+      class="lawpart paragraph"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_4__subsec_1__para_b_section"><div class="lawtext"><num>b</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>on the
+      day preceding the day that person ceased to reside in Canada that person was
+      a Canadian citizen or, if not, was legally resident in Canada.</p></content></div></div></div></div></div></div></nav>'
     scasp_encoding: ''
     tutorial: ''
     owner: 3
     published: true
 - model: blawx.workspace
-  pk: 37
+  pk: 1
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 38
+  pk: 2
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="c5vOdJSO[]Pdd}X[HUj}" x="58" y="52"><statement name="statements"><block
@@ -97,9 +219,9 @@
       :- according_to(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  qualifies_s3_1_a(Person) :- holds(sec_3__subsec_1__para_a_section,qualifies_s3_1_a,Person)."
 - model: blawx.workspace
-  pk: 39
+  pk: 3
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_b__subpara_i_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="SVKEzrr:KnIMpu8XNQYa" x="31" y="55"><statement name="statements"><block
@@ -322,9 +444,9 @@
       :- according_to(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  meets_residence_requirement_s3_1_b_i(Person) :- holds(sec_3__subsec_1__para_b__subpara_i_section,meets_residence_requirement_s3_1_b_i,Person)."
 - model: blawx.workspace
-  pk: 40
+  pk: 4
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_b__subpara_ii_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
       id="2v/}04+7rW2-;ucg6fRV" x="319" y="100"><field name="defeasible">FALSE</field><field
@@ -368,9 +490,9 @@
       :- according_to(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  meets_age_requirement_s3_1_b_ii(Person) :- holds(sec_3__subsec_1__para_b__subpara_ii_section,meets_age_requirement_s3_1_b_ii,Person)."
 - model: blawx.workspace
-  pk: 41
+  pk: 5
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="L5r^S.Hc=ufydzQsKujx" x="48" y="16"><statement name="statements"><block
@@ -489,9 +611,9 @@
       :- according_to(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  qualifies_s3_1_b(Person) :- holds(sec_3__subsec_1__para_b_section,qualifies_s3_1_b,Person)."
 - model: blawx.workspace
-  pk: 42
+  pk: 6
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_c_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="109#+%mTdaC7F)O;Gf8W" x="80" y="32"><statement name="statements"><block
@@ -602,9 +724,9 @@
       :- according_to(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  qualifies_s3_1_c(Person) :- holds(sec_3__subsec_1__para_c_section,qualifies_s3_1_c,Person)."
 - model: blawx.workspace
-  pk: 43
+  pk: 7
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="+wiRc,{vWYCb,a0_j9)u" x="0" y="0"><statement name="statements"><block type="new_attribute_declaration"
@@ -780,9 +902,9 @@
       to the defeasibility declaration in the law.\nblawx_defeated(sec_3__subsec_1_section,may_be_paid_full_monthly_pension,Person)
       :- holds(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person)."
 - model: blawx.workspace
-  pk: 44
+  pk: 8
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_b__subpara_iii_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="Sp@/sc_CHiBc[}/t!syw" x="54" y="39"><statement name="statements"><block
@@ -911,9 +1033,9 @@
       BLAWX CHECK DUPLICATES\n  meets_residence_duration_requirement_s3_1_b_iii(Person)
       :- holds(sec_3__subsec_1__para_b__subpara_iii_section,meets_residence_duration_requirement_s3_1_b_iii,Person)."
 - model: blawx.workspace
-  pk: 45
+  pk: 9
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_c__subpara_ii_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
       id="k){=+o!P$q~v5U0F#_P=" x="94" y="131"><field name="defeasible">FALSE</field><field
@@ -948,9 +1070,9 @@
       :- according_to(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  meets_s3_1_c_ii(Person) :- holds(sec_3__subsec_1__para_c__subpara_ii_section,meets_s3_1_c_ii,Person)."
 - model: blawx.workspace
-  pk: 46
+  pk: 10
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_c__subpara_i_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="attributed_rule"
       id="}t$U;#Mab.m{k?t`oQ``" x="178" y="154"><field name="defeasible">FALSE</field><field
@@ -973,9 +1095,9 @@
       :- according_to(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  meets_s3_1_c_i(Person) :- holds(sec_3__subsec_1__para_c__subpara_i_section,meets_s3_1_c_i,Person)."
 - model: blawx.workspace
-  pk: 47
+  pk: 11
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_c__subpara_iii_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="0qpz9A@(U,C=Anc!8#mt" x="40" y="59"><statement name="statements"><block
@@ -1022,16 +1144,16 @@
       :- according_to(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  meets_s3_1_c_iii(Person) :- holds(sec_3__subsec_1__para_c__subpara_iii_section,meets_s3_1_c_iii,Person)."
 - model: blawx.workspace
-  pk: 48
+  pk: 12
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 49
+  pk: 13
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_4__subsec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="fZ?RE;oHlZN6#(t[0dYe" x="-11" y="-131"><statement name="statements"><block
@@ -1120,9 +1242,9 @@
       :- according_to(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  -may_be_paid_full_monthly_pension(Person) :- holds(sec_4__subsec_1_section,-may_be_paid_full_monthly_pension,Person)."
 - model: blawx.workspace
-  pk: 50
+  pk: 14
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_4__subsec_1__para_a_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="C@IOG)1*g8eiX~s=aF|Y" x="-23" y="-98"><statement name="statements"><block
@@ -1168,9 +1290,9 @@
       :- according_to(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  satisfies_4_1_a(Person) :- holds(sec_4__subsec_1__para_a_section,satisfies_4_1_a,Person)."
 - model: blawx.workspace
-  pk: 51
+  pk: 15
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_4__subsec_1__para_b_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="C@IOG)1*g8eiX~s=aF|Y" x="10" y="101"><statement name="statements"><block
@@ -1216,23 +1338,23 @@
       :- according_to(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person).\n\n%
       BLAWX CHECK DUPLICATES\n  satisfies_4_1_b(Person) :- holds(sec_4__subsec_1__para_b_section,satisfies_4_1_b,Person)."
 - model: blawx.workspace
-  pk: 52
+  pk: 16
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_4_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 53
+  pk: 17
   fields:
-    ruledoc: 9
+    ruledoc: 1
     workspace_name: sec_3__subsec_1__para_b__subpara_i__span_immigration_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.blawxtest
-  pk: 19
+  pk: 1
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_3_1
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="Q8InM;qw!CZCjX$$bb8n" x="89" y="250"><statement name="query"><block type="unary_attribute_selector"
@@ -1249,9 +1371,9 @@
       ''view_cat_person_att_satisfies_4_1_a'', ''view_cat_person_att_satisfies_4_1_b'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 20
+  pk: 2
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_3_1_a
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="$N$4N9Yt@P%fIh1qo$z(" x="85" y="207"><statement name="query"><block type="according_to"
@@ -1277,9 +1399,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 21
+  pk: 3
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_3_1_b
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="b45P79[j~H@U#Tpe[Q0?" x="161" y="289"><statement name="query"><block type="according_to"
@@ -1302,9 +1424,9 @@
       ''view_cat_person_att_resided_40_years_after_18_yoa'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 22
+  pk: 4
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_3_1_c
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="{,Ih5k/U:U$Dn0tc{D.=" x="126" y="314"><statement name="query"><block type="according_to"
@@ -1329,9 +1451,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 23
+  pk: 5
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_3_1_b_i
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="3GnJl-qbNhs(}SHR)q.y" x="66" y="255"><statement name="query"><block type="according_to"
@@ -1356,9 +1478,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 24
+  pk: 6
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_3_1_b_ii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="CLUc$RA|lkd/oQ$y#06*" x="75" y="289"><statement name="query"><block type="according_to"
@@ -1385,9 +1507,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 25
+  pk: 7
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_3_1_c_i
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="B5rp;*txE]JpuW{.}pCz" x="92" y="321"><statement name="query"><block type="according_to"
@@ -1413,9 +1535,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 26
+  pk: 8
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_3_1_c_ii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="_0LNmTPcoH;=}PVUisM!" x="70" y="263"><statement name="query"><block type="according_to"
@@ -1440,9 +1562,9 @@
       ''view_cat_person_att_citizen_or_resident_before_approval'', ''view_cat_person_att_citizen_or_resident_before_departure'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 27
+  pk: 9
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_3_1_b_iii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id=":Uu[*vSt,LW8=1//bfpd" x="93" y="213"><statement name="query"><block type="according_to"
@@ -1468,9 +1590,9 @@
       ''view_cat_person_att_pensioner_july'', ''view_cat_person_att_birthdate'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 28
+  pk: 10
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_3_1_c_iii
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="CCbA=7g95-6zwLTJ1wnD" x="119" y="323"><statement name="query"><block type="according_to"
@@ -1496,9 +1618,9 @@
       ''view_cat_person_att_citizen_or_resident_before_departure'', ''view_cat_person_att_resided_in_canada_after_18_as_of_july'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 29
+  pk: 11
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_4_1
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="Kri=g;hPM1VB.r#pLRqV" x="59" y="324"><statement name="query"><block type="according_to"
@@ -1525,9 +1647,9 @@
       ''view_cat_person_att_satisfies_4_1_a'', ''view_cat_person_att_satisfies_4_1_b'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 30
+  pk: 12
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_4_1_a
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="#(Tg!n]s7a-UBCVm0LG`" x="96" y="267"><statement name="query"><block type="according_to"
@@ -1553,9 +1675,9 @@
       ''view_cat_person_att_satisfies_4_1_b'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 31
+  pk: 13
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_4_1_b
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="(9ydD85Yn#_BVeS!)N;l" x="134" y="276"><statement name="query"><block type="according_to"
@@ -1581,9 +1703,9 @@
       ''view_cat_person_att_resided_in_canada_july'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 32
+  pk: 14
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: generic_eligible
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="t2fN+~va](ApjzsD`Bay" x="80" y="316"><statement name="query"><block type="unary_attribute_selector"
@@ -1593,12 +1715,17 @@
       type="variable" id="@*.yaV{mq4o0[tUO6r=("><field name="variable_name">Person</field></block></value></block></statement></block></xml>
     scasp_encoding: ?- may_be_paid_full_monthly_pension(Person).
     tutorial: ''
-    view: ''
+    view: '[''view_att_meets_residence_requirement_s3_1_b_i'', ''view_att_meets_age_requirement_s3_1_b_ii'',
+      ''view_att_meets_residence_duration_requirement_s3_1_b_iii'', ''view_att_meets_s3_1_c_i'',
+      ''view_att_meets_s3_1_c_ii'', ''view_att_meets_s3_1_c_iii'', ''view_att_may_be_paid_full_monthly_pension'',
+      ''view_att_qualifies_s3_1_a'', ''view_att_qualifies_s3_1_b'', ''view_att_qualifies_s3_1_c'',
+      ''view_att_meets_aggregate_residence_requirement_s3_1_b_iii'', ''view_att_satisfies_4_1_a'',
+      ''view_att_satisfies_4_1_b'']'
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 33
+  pk: 15
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: true_or_false
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="r?$kLlAR1KCd=TwIk;gB" x="50" y="128"><statement name="statements"><block
@@ -1619,9 +1746,9 @@
     view: ''
     fact_scenario: ''
 - model: blawx.blawxtest
-  pk: 34
+  pk: 16
   fields:
-    ruledoc: 9
+    ruledoc: 1
     test_name: search
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="jS[=lqTA3BIxhGNpe%`m" x="62" y="185"><statement name="query"><block type="unary_attribute_selector"

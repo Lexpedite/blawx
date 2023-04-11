@@ -1,23 +1,35 @@
 - model: blawx.ruledoc
-  pk: 10
+  pk: 2
   fields:
     ruledoc_name: Lists
     rule_text: "Lists Demonstration\r\n\r\n1. Lists Demonstration"
+    akoma_ntoso: <?xml version="1.0" encoding="UTF-8"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><act><preface><p
+      class="title"><shortTitle>Lists Demonstration</shortTitle></p></preface><body><section
+      eId="sec_1"><num>1</num><content><p>Lists Demonstration</p></content></section></body></act></akomaNtoso>
+    navtree: '<nav class="column">
+
+      <div class="lawpart act"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="root_section" checked><div class="lawtext"><i
+      class="bi bi-caret-right" data-bs-toggle="collapse" data-bs-target="#root"></i>Lists
+      Demonstration</div></div></div><div class="subparts collapse" id="root"><div
+      class="lawpart section"><div class="form-check"><input class="form-check-input"
+      type="radio" name="section" id="sec_1_section"><div class="lawtext"><num>1</num>
+      <content xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><p>Lists Demonstration</p></content></div></div></div></div></nav>'
     scasp_encoding: ''
     tutorial: ''
     owner: 3
     published: false
 - model: blawx.workspace
-  pk: 54
+  pk: 18
   fields:
-    ruledoc: 10
+    ruledoc: 2
     workspace_name: root_section
     xml_content: ''
     scasp_encoding: ''
 - model: blawx.workspace
-  pk: 55
+  pk: 19
   fields:
-    ruledoc: 10
+    ruledoc: 2
     workspace_name: sec_1_section
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="LvE@V:2)~CiVq1R_Jl^%" x="117" y="73"><statement name="statements"><block
@@ -117,9 +129,9 @@
       :- according_to(sec_1_section,average_score,Person,AverageScore).\n\n% BLAWX
       CHECK DUPLICATES\n  average_score(Person,AverageScore) :- holds(sec_1_section,average_score,Person,AverageScore)."
 - model: blawx.blawxtest
-  pk: 35
+  pk: 17
   fields:
-    ruledoc: 10
+    ruledoc: 2
     test_name: test
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="query"
       id="^+{8:,2DA*9hulCAyA8s" x="62" y="311"><statement name="query"><block type="attribute_selector"
@@ -131,5 +143,5 @@
       type="variable" id="0U4`$K0qVhOsh-{37vrz"><field name="variable_name">AverageScore</field></block></value></block></statement></block></xml>
     scasp_encoding: ?- average_score(Person,AverageScore).
     tutorial: ''
-    view: ''
+    view: '[''view_att_average_score'']'
     fact_scenario: ''
