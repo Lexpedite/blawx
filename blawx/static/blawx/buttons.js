@@ -36,10 +36,10 @@ updateWorkspace = function() {
 }
 
 function formatDates(text) {
-    var date_format = / date\(([^_]\d*(?:.\d*))\)/g
-    var datetime_format = / datetime\(([^_]\d*(?:.\d*))\)/g
-    var duration_format = / duration\(([^_]\d*(?:.\d*))\)/g
-    var time_format = / time\(([^_]\d*(?:.\d*))\)/g
+    var date_format = /date\((\d+(?:\.\d+)?)\)/g
+    var datetime_format = /datetime\((\d+(?:\.\d+)?)\)/g
+    var duration_format = /duration\((\d+(?:\.\d+)?)\)/g
+    var time_format = /(?<!date)time\((\d+(?:\.\d+)?)\)/g
     var output = text;
     // Replace date(#) with date format.
     var date_match = null;
