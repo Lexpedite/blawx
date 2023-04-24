@@ -1,5 +1,3 @@
-
-
 function setAttributeType(event) {
   if (event.type == Blockly.Events.BLOCK_CREATE) {
     // console.log("Block was created.");

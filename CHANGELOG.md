@@ -7,6 +7,27 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## ARITY_3PLUS
+
+### Added
+* Relationship Declaration Block
+* Relationship Selector Blocks
+* Known Relationship Drawer
+
+### Changed
+
+### Removed
+
+### Fixed
+
+### TODO
+* Code generation for relationship declaration block.
+* Code gen for relationship selector blocks
+* Scenario editor facts and explanations now use relationships
+* Ontology endpoint includes information on declared relationships and associated NLG
+
+
+
 ## [v1.6.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.0-alpha) 2023-04-11
 
 **This release is NOT backward compatible.**

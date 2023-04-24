@@ -1237,6 +1237,121 @@ sCASP['time_from_ts'] = function(block) {
     return [code, sCASP.ORDER_ATOMIC];
   };
 
+sCASP['relationship_declaration'] = function(block) {
+    var text_relationship_name = block.getFieldValue('relationship_name');
+    var number_arity = block.getFieldValue('arity');
+    var text_prefix1 = block.getFieldValue('prefix1');
+    var dropdown_type1 = block.getFieldValue('type1');
+    var text_prefix2 = block.getFieldValue('prefix2');
+    var dropdown_type2 = block.getFieldValue('type2');
+    var text_prefix3 = block.getFieldValue('prefix3');
+    var dropdown_type3 = block.getFieldValue('type3');
+    var text_postfix = block.getFieldValue('postfix');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+};
+
+sCASP['relationship_selector3'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  sCASP['relationship_selector4'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  sCASP['relationship_selector5'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  sCASP['relationship_selector6'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_param3ter5 = sCASP.valueToCode(block, 'param3ter5', sCASP.ORDER_ATOMIC);
+    var value_parameter6 = sCASP.valueToCode(block, 'parameter6', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  sCASP['relationship_selector7'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    var value_parameter6 = sCASP.valueToCode(block, 'parameter6', sCASP.ORDER_ATOMIC);
+    var value_parameter7 = sCASP.valueToCode(block, 'parameter7', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  sCASP['relationship_selector8'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    var value_parameter6 = sCASP.valueToCode(block, 'parameter6', sCASP.ORDER_ATOMIC);
+    var value_parameter7 = sCASP.valueToCode(block, 'parameter7', sCASP.ORDER_ATOMIC);
+    var value_parameter8 = sCASP.valueToCode(block, 'parameter8', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  sCASP['relationship_selector9'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    var value_parameter6 = sCASP.valueToCode(block, 'parameter6', sCASP.ORDER_ATOMIC);
+    var value_parameter7 = sCASP.valueToCode(block, 'parameter7', sCASP.ORDER_ATOMIC);
+    var value_parameter8 = sCASP.valueToCode(block, 'parameter8', sCASP.ORDER_ATOMIC);
+    var value_parameter9 = sCASP.valueToCode(block, 'parameter9', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  sCASP['relationship_selector10'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    var value_parameter6 = sCASP.valueToCode(block, 'parameter6', sCASP.ORDER_ATOMIC);
+    var value_parameter7 = sCASP.valueToCode(block, 'parameter7', sCASP.ORDER_ATOMIC);
+    var value_parameter8 = sCASP.valueToCode(block, 'parameter8', sCASP.ORDER_ATOMIC);
+    var value_parameter9 = sCASP.valueToCode(block, 'parameter9', sCASP.ORDER_ATOMIC);
+    var value_parameter10 = sCASP.valueToCode(block, 'parameter10', sCASP.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+
 function deconstruct_term(term) {
     var elements = [];
     const term_pattern = /(?<functor>[^\(\)]*)\((?<parameters>.*)\)/gm

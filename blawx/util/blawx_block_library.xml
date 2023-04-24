@@ -9522,4 +9522,2293 @@
         <field name="HUE">330</field>
       </block>
     </value>
+  </block><block type="factory_base" id="4oRzf(C|(X8~+{_o`(C?" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_declaration</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="kfaZIw$XjKKpNAw]K$e7">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_input" id="N5,%2Z.CFIF1ak2q.yfN">
+            <field name="TEXT">relationship_name</field>
+            <field name="FIELDNAME">relationship_name</field>
+            <next>
+              <block type="field_static" id="iO5rh1yZVwF8G3-`W13#">
+                <field name="TEXT">is a relationship between</field>
+                <next>
+                  <block type="field_dropdown" id="|HPmr-QuiOV[j4-ei^?X">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">arity</field>
+                    <field name="USER0">3</field>
+                    <field name="CPU0">3</field>
+                    <field name="USER1">4</field>
+                    <field name="CPU1">4</field>
+                    <field name="USER2">5</field>
+                    <field name="CPU2">5</field>
+                    <field name="USER3">6</field>
+                    <field name="CPU3">6</field>
+                    <field name="USER4">7</field>
+                    <field name="CPU4">7</field>
+                    <field name="USER5">8</field>
+                    <field name="CPU5">8</field>
+                    <field name="USER6">9</field>
+                    <field name="CPU6">9</field>
+                    <field name="USER7">10</field>
+                    <field name="CPU7">10</field>
+                    <next>
+                      <block type="field_static" id="ydXk[}bFP^Apk__lBs7_">
+                        <field name="TEXT">objects or values described as</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="mpCE4d~PX#GPe~b/TF7j">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_input" id="|zEoHD)/cr{2Z9@Z~0=M">
+                <field name="TEXT"></field>
+                <field name="FIELDNAME">prefix1</field>
+                <next>
+                  <block type="field_dropdown" id="t0u.C;%0C9!kC9WGxIi0">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">type1</field>
+                    <field name="USER0">option</field>
+                    <field name="CPU0">OPTIONNAME</field>
+                    <field name="USER1">option</field>
+                    <field name="CPU1">OPTIONNAME</field>
+                    <field name="USER2">option</field>
+                    <field name="CPU2">OPTIONNAME</field>
+                    <next>
+                      <block type="field_input" id="X6GY=;)KG`#EiIfac^w_">
+                        <field name="TEXT"></field>
+                        <field name="FIELDNAME">prefix2</field>
+                        <next>
+                          <block type="field_dropdown" id=".zhiC)vR}$/@d;0;^Lgc">
+                            <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                            <field name="FIELDNAME">type2</field>
+                            <field name="USER0">option</field>
+                            <field name="CPU0">OPTIONNAME</field>
+                            <field name="USER1">option</field>
+                            <field name="CPU1">OPTIONNAME</field>
+                            <field name="USER2">option</field>
+                            <field name="CPU2">OPTIONNAME</field>
+                            <next>
+                              <block type="field_input" id="b0NQ^hu$Dh:l!@yC%pO*">
+                                <field name="TEXT"></field>
+                                <field name="FIELDNAME">prefix3</field>
+                                <next>
+                                  <block type="field_dropdown" id="e94%P-rBE||FHWEK9;ox">
+                                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                                    <field name="FIELDNAME">type3</field>
+                                    <field name="USER0">option</field>
+                                    <field name="CPU0">OPTIONNAME</field>
+                                    <field name="USER1">option</field>
+                                    <field name="CPU1">OPTIONNAME</field>
+                                    <field name="USER2">option</field>
+                                    <field name="CPU2">OPTIONNAME</field>
+                                    <next>
+                                      <block type="field_input" id="sM^CC0^4Z9@fSUaZim[6">
+                                        <field name="TEXT"></field>
+                                        <field name="FIELDNAME">postfix</field>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="L67cE~=X,RTWV{bVVUfl" deletable="false" movable="false">
+        <field name="TEXT">Use to declare a relationship between 3 or more objects or values.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="K{.kJYeGSF^KSl$15Hz|" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/new_relationship/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="dY}m,pr[C$ezfQD9MKY)"></shadow>
+      <block type="type_group" id="`2%Ini/*[UT-W4moft;3">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="C9tM5?ozv-!d@PSuE`;H">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="6ZkjGf7t,~#~)eP,q`10">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="71VMhJN+L%3QNSt%|3?y"></shadow>
+      <block type="type_other" id="n45O;*)SzT1M^8#uH-Uk">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="h18%}I?P$A0IX*!-pe+v">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4[qp41mWp3q(j4t+BX#3" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_selector</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="9UgD/y?5t-~eZY0DDjBa">
+        <field name="INPUTNAME">first_element</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_label_serializable" id="Q-=eu6V!+SS=S+ql7ciR">
+            <field name="TEXT">prefix1</field>
+            <field name="FIELDNAME">prefix1</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="ord2F6IbG_]1{h;;6#iw"></shadow>
+        </value>
+        <next>
+          <block type="input_value" id="mC;vOp}wwzKlYoASgxqM">
+            <field name="INPUTNAME">second_element</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_label_serializable" id="x??_5[}q$Q{~-WhQGi0F">
+                <field name="TEXT">prefix2</field>
+                <field name="FIELDNAME">prefix2</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="w|?ThmFqf-Jf~8I-e+,^"></shadow>
+            </value>
+            <next>
+              <block type="input_value" id="0LgdhdI3RLS,w[a2}Vny">
+                <field name="INPUTNAME">third_element</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_label_serializable" id="oCKBsm#{dNJk;tc+6_z#">
+                    <field name="TEXT">prefix3</field>
+                    <field name="FIELDNAME">prefix3</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                </value>
+                <next>
+                  <block type="input_dummy" id="@[tmUKHdjE@hvJvO4HxU">
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_label_serializable" id="uMwz1Rivg5k@(QhW7|)J">
+                        <field name="TEXT">postfix</field>
+                        <field name="FIELDNAME">postfix</field>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="{eSN[+qyNeVq}U.n2)jQ" deletable="false" movable="false">
+        <field name="TEXT">Use to set or check the value of a relationship.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dvx@JRhOJ^=FPd%RM8zb" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/relationship_selector/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="2h@(kVX-RFb=ob=x$bK*"></shadow>
+      <block type="type_group" id="ZU^EI44z]RoP;(FOBvCQ">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="+B_w,2YSR;C1V+n899+.">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id=",`NDf!]O%$w[PWln{?}Z">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="TL9=ToehH-%xg7$VgOHY"></shadow>
+      <block type="type_other" id="y!hu59mc=onha.rCP|Pi">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
+        <mutation colour="#5ba580"></mutation>
+        <field name="HUE">150</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4oRzf(C|(X8~+{_o`(C?" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_ddeclaration</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="kfaZIw$XjKKpNAw]K$e7">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_input" id="N5,%2Z.CFIF1ak2q.yfN">
+            <field name="TEXT">relationship_name</field>
+            <field name="FIELDNAME">relationship_name</field>
+            <next>
+              <block type="field_static" id="iO5rh1yZVwF8G3-`W13#">
+                <field name="TEXT">is a relationship between</field>
+                <next>
+                  <block type="field_dropdown" id="|HPmr-QuiOV[j4-ei^?X">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">arity</field>
+                    <field name="USER0">3</field>
+                    <field name="CPU0">3</field>
+                    <field name="USER1">4</field>
+                    <field name="CPU1">4</field>
+                    <field name="USER2">5</field>
+                    <field name="CPU2">5</field>
+                    <field name="USER3">6</field>
+                    <field name="CPU3">6</field>
+                    <field name="USER4">7</field>
+                    <field name="CPU4">7</field>
+                    <field name="USER5">8</field>
+                    <field name="CPU5">8</field>
+                    <field name="USER6">9</field>
+                    <field name="CPU6">9</field>
+                    <field name="USER7">10</field>
+                    <field name="CPU7">10</field>
+                    <next>
+                      <block type="field_static" id="ydXk[}bFP^Apk__lBs7_">
+                        <field name="TEXT">objects or values described as</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="mpCE4d~PX#GPe~b/TF7j">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_input" id="|zEoHD)/cr{2Z9@Z~0=M">
+                <field name="TEXT"></field>
+                <field name="FIELDNAME">prefix1</field>
+                <next>
+                  <block type="field_dropdown" id="t0u.C;%0C9!kC9WGxIi0">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">type1</field>
+                    <field name="USER0">option</field>
+                    <field name="CPU0">OPTIONNAME</field>
+                    <field name="USER1">option</field>
+                    <field name="CPU1">OPTIONNAME</field>
+                    <field name="USER2">option</field>
+                    <field name="CPU2">OPTIONNAME</field>
+                    <next>
+                      <block type="field_input" id="X6GY=;)KG`#EiIfac^w_">
+                        <field name="TEXT"></field>
+                        <field name="FIELDNAME">prefix2</field>
+                        <next>
+                          <block type="field_dropdown" id=".zhiC)vR}$/@d;0;^Lgc">
+                            <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                            <field name="FIELDNAME">type2</field>
+                            <field name="USER0">option</field>
+                            <field name="CPU0">OPTIONNAME</field>
+                            <field name="USER1">option</field>
+                            <field name="CPU1">OPTIONNAME</field>
+                            <field name="USER2">option</field>
+                            <field name="CPU2">OPTIONNAME</field>
+                            <next>
+                              <block type="field_input" id="b0NQ^hu$Dh:l!@yC%pO*">
+                                <field name="TEXT"></field>
+                                <field name="FIELDNAME">prefix3</field>
+                                <next>
+                                  <block type="field_dropdown" id="e94%P-rBE||FHWEK9;ox">
+                                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                                    <field name="FIELDNAME">type3</field>
+                                    <field name="USER0">option</field>
+                                    <field name="CPU0">OPTIONNAME</field>
+                                    <field name="USER1">option</field>
+                                    <field name="CPU1">OPTIONNAME</field>
+                                    <field name="USER2">option</field>
+                                    <field name="CPU2">OPTIONNAME</field>
+                                    <next>
+                                      <block type="field_input" id="sM^CC0^4Z9@fSUaZim[6">
+                                        <field name="TEXT"></field>
+                                        <field name="FIELDNAME">postfix</field>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="L67cE~=X,RTWV{bVVUfl" deletable="false" movable="false">
+        <field name="TEXT">Use to declare a relationship between 3 or more objects or values.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="K{.kJYeGSF^KSl$15Hz|" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/new_relationship/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="dY}m,pr[C$ezfQD9MKY)"></shadow>
+      <block type="type_group" id="`2%Ini/*[UT-W4moft;3">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="C9tM5?ozv-!d@PSuE`;H">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="6ZkjGf7t,~#~)eP,q`10">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="71VMhJN+L%3QNSt%|3?y"></shadow>
+      <block type="type_other" id="n45O;*)SzT1M^8#uH-Uk">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="h18%}I?P$A0IX*!-pe+v">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4[qp41mWp3q(j4t+BX#3" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_selector3</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="9UgD/y?5t-~eZY0DDjBa">
+        <field name="INPUTNAME">parameter1</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_label_serializable" id="Q-=eu6V!+SS=S+ql7ciR">
+            <field name="TEXT">prefix1</field>
+            <field name="FIELDNAME">prefix1</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="ord2F6IbG_]1{h;;6#iw"></shadow>
+          <block type="type_group" id="Z2AdR#?1|cP[=l2;~{r8">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="w@SG7Z7[w1XO(x/xa9@%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="urn.mP[!)=Xr/Py0oWa=">
+                <field name="TYPE">SOMETHING</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="mC;vOp}wwzKlYoASgxqM">
+            <field name="INPUTNAME">parameter2</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_label_serializable" id="x??_5[}q$Q{~-WhQGi0F">
+                <field name="TEXT">prefix2</field>
+                <field name="FIELDNAME">prefix2</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="w|?ThmFqf-Jf~8I-e+,^"></shadow>
+              <block type="type_group" id="4JP]u@?[N~$:FNSe99C;">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="ZB-RXFuTno3FZ:r{Dn2G">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="TzS]0o7/!TBRC.^0`;uo">
+                    <field name="TYPE">SOMETHING</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="0LgdhdI3RLS,w[a2}Vny">
+                <field name="INPUTNAME">parameter3</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_label_serializable" id="oCKBsm#{dNJk;tc+6_z#">
+                    <field name="TEXT">prefix3</field>
+                    <field name="FIELDNAME">prefix3</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                  <block type="type_group" id="{5pV_^D}pjW??29xV7Pr">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id="A![MgwzXD1$x|A=|fE|k">
+                        <field name="TYPE">VARIABLE</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="*hQjnRjeSGRVj`KI~aY_">
+                        <field name="TYPE">SOMETHING</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_dummy" id="@[tmUKHdjE@hvJvO4HxU">
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_label_serializable" id="uMwz1Rivg5k@(QhW7|)J">
+                        <field name="TEXT">postfix</field>
+                        <field name="FIELDNAME">postfix</field>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="{eSN[+qyNeVq}U.n2)jQ" deletable="false" movable="false">
+        <field name="TEXT">Use to set or check the value of a relationship.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dvx@JRhOJ^=FPd%RM8zb" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/relationship_selector/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="2h@(kVX-RFb=ob=x$bK*"></shadow>
+      <block type="type_group" id="ZU^EI44z]RoP;(FOBvCQ">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="+B_w,2YSR;C1V+n899+.">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id=",`NDf!]O%$w[PWln{?}Z">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="TL9=ToehH-%xg7$VgOHY"></shadow>
+      <block type="type_other" id="y!hu59mc=onha.rCP|Pi">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4[qp41mWp3q(j4t+BX#3" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_selector4</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="9UgD/y?5t-~eZY0DDjBa">
+        <field name="INPUTNAME">parameter1</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_label_serializable" id="Q-=eu6V!+SS=S+ql7ciR">
+            <field name="TEXT">prefix1</field>
+            <field name="FIELDNAME">prefix1</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="ord2F6IbG_]1{h;;6#iw"></shadow>
+          <block type="type_group" id="Z2AdR#?1|cP[=l2;~{r8">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="w@SG7Z7[w1XO(x/xa9@%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="urn.mP[!)=Xr/Py0oWa=">
+                <field name="TYPE">SOMETHING</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="mC;vOp}wwzKlYoASgxqM">
+            <field name="INPUTNAME">parameter2</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_label_serializable" id="x??_5[}q$Q{~-WhQGi0F">
+                <field name="TEXT">prefix2</field>
+                <field name="FIELDNAME">prefix2</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="w|?ThmFqf-Jf~8I-e+,^"></shadow>
+              <block type="type_group" id="4JP]u@?[N~$:FNSe99C;">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="ZB-RXFuTno3FZ:r{Dn2G">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="TzS]0o7/!TBRC.^0`;uo">
+                    <field name="TYPE">SOMETHING</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="0LgdhdI3RLS,w[a2}Vny">
+                <field name="INPUTNAME">parameter3</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_label_serializable" id="oCKBsm#{dNJk;tc+6_z#">
+                    <field name="TEXT">prefix3</field>
+                    <field name="FIELDNAME">prefix3</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                  <block type="type_group" id="{5pV_^D}pjW??29xV7Pr">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id="A![MgwzXD1$x|A=|fE|k">
+                        <field name="TYPE">VARIABLE</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="*hQjnRjeSGRVj`KI~aY_">
+                        <field name="TYPE">SOMETHING</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_value" id="_}hf8pl*$X:VL(_)`_qs">
+                    <field name="INPUTNAME">parameter4</field>
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_label_serializable" id="ap!N*9HZ;uAGXKLKb/x*">
+                        <field name="TEXT">prefix4</field>
+                        <field name="FIELDNAME">prefix4</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                      <block type="type_group" id="1DQ-}mjzFHU_uX[h{9kZ">
+                        <mutation types="2"></mutation>
+                        <value name="TYPE0">
+                          <block type="type_other" id="h4}@{/j.aI{Cm[C:G1B0">
+                            <field name="TYPE">VARIABLE</field>
+                          </block>
+                        </value>
+                        <value name="TYPE1">
+                          <block type="type_other" id="FfLrd^TZ7rXeG=1a{j9u">
+                            <field name="TYPE">SOMETHING</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="input_dummy" id="@[tmUKHdjE@hvJvO4HxU">
+                        <field name="ALIGN">LEFT</field>
+                        <statement name="FIELDS">
+                          <block type="field_label_serializable" id="uMwz1Rivg5k@(QhW7|)J">
+                            <field name="TEXT">postfix</field>
+                            <field name="FIELDNAME">postfix</field>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="{eSN[+qyNeVq}U.n2)jQ" deletable="false" movable="false">
+        <field name="TEXT">Use to set or check the value of a relationship.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dvx@JRhOJ^=FPd%RM8zb" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/relationship_selector/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="2h@(kVX-RFb=ob=x$bK*"></shadow>
+      <block type="type_group" id="ZU^EI44z]RoP;(FOBvCQ">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="+B_w,2YSR;C1V+n899+.">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id=",`NDf!]O%$w[PWln{?}Z">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="TL9=ToehH-%xg7$VgOHY"></shadow>
+      <block type="type_other" id="y!hu59mc=onha.rCP|Pi">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4[qp41mWp3q(j4t+BX#3" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_selector5</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="9UgD/y?5t-~eZY0DDjBa">
+        <field name="INPUTNAME">parameter1</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_label_serializable" id="Q-=eu6V!+SS=S+ql7ciR">
+            <field name="TEXT">prefix1</field>
+            <field name="FIELDNAME">prefix1</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="ord2F6IbG_]1{h;;6#iw"></shadow>
+          <block type="type_group" id="Z2AdR#?1|cP[=l2;~{r8">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="w@SG7Z7[w1XO(x/xa9@%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="urn.mP[!)=Xr/Py0oWa=">
+                <field name="TYPE">SOMETHING</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="mC;vOp}wwzKlYoASgxqM">
+            <field name="INPUTNAME">parameter2</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_label_serializable" id="x??_5[}q$Q{~-WhQGi0F">
+                <field name="TEXT">prefix2</field>
+                <field name="FIELDNAME">prefix2</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="w|?ThmFqf-Jf~8I-e+,^"></shadow>
+              <block type="type_group" id="4JP]u@?[N~$:FNSe99C;">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="ZB-RXFuTno3FZ:r{Dn2G">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="TzS]0o7/!TBRC.^0`;uo">
+                    <field name="TYPE">SOMETHING</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="0LgdhdI3RLS,w[a2}Vny">
+                <field name="INPUTNAME">parameter3</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_label_serializable" id="oCKBsm#{dNJk;tc+6_z#">
+                    <field name="TEXT">prefix3</field>
+                    <field name="FIELDNAME">prefix3</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                  <block type="type_group" id="{5pV_^D}pjW??29xV7Pr">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id="A![MgwzXD1$x|A=|fE|k">
+                        <field name="TYPE">VARIABLE</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="*hQjnRjeSGRVj`KI~aY_">
+                        <field name="TYPE">SOMETHING</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_value" id="_}hf8pl*$X:VL(_)`_qs">
+                    <field name="INPUTNAME">parameter4</field>
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_label_serializable" id="ap!N*9HZ;uAGXKLKb/x*">
+                        <field name="TEXT">prefix4</field>
+                        <field name="FIELDNAME">prefix4</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                      <block type="type_group" id="1DQ-}mjzFHU_uX[h{9kZ">
+                        <mutation types="2"></mutation>
+                        <value name="TYPE0">
+                          <block type="type_other" id="h4}@{/j.aI{Cm[C:G1B0">
+                            <field name="TYPE">VARIABLE</field>
+                          </block>
+                        </value>
+                        <value name="TYPE1">
+                          <block type="type_other" id="FfLrd^TZ7rXeG=1a{j9u">
+                            <field name="TYPE">SOMETHING</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="input_value" id="T7Wb3]?ApV;*(@s@(Th=">
+                        <field name="INPUTNAME">parameter5</field>
+                        <field name="ALIGN">LEFT</field>
+                        <statement name="FIELDS">
+                          <block type="field_label_serializable" id="bPjG?wt~3pZs;yBVKp=q">
+                            <field name="TEXT">prefix5</field>
+                            <field name="FIELDNAME">prefix5</field>
+                          </block>
+                        </statement>
+                        <value name="TYPE">
+                          <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                          <block type="type_group" id="qr7h8/RY66b2MNLJs(P7">
+                            <mutation types="2"></mutation>
+                            <value name="TYPE0">
+                              <block type="type_other" id="!Pwq|mYj8qfJ`]~*Cxty">
+                                <field name="TYPE">VARIABLE</field>
+                              </block>
+                            </value>
+                            <value name="TYPE1">
+                              <block type="type_other" id="AWsg*J(^#$8~c-?IMn.!">
+                                <field name="TYPE">SOMETHING</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="input_dummy" id="@[tmUKHdjE@hvJvO4HxU">
+                            <field name="ALIGN">LEFT</field>
+                            <statement name="FIELDS">
+                              <block type="field_label_serializable" id="uMwz1Rivg5k@(QhW7|)J">
+                                <field name="TEXT">postfix</field>
+                                <field name="FIELDNAME">postfix</field>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="{eSN[+qyNeVq}U.n2)jQ" deletable="false" movable="false">
+        <field name="TEXT">Use to set or check the value of a relationship.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dvx@JRhOJ^=FPd%RM8zb" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/relationship_selector/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="2h@(kVX-RFb=ob=x$bK*"></shadow>
+      <block type="type_group" id="ZU^EI44z]RoP;(FOBvCQ">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="+B_w,2YSR;C1V+n899+.">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id=",`NDf!]O%$w[PWln{?}Z">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="TL9=ToehH-%xg7$VgOHY"></shadow>
+      <block type="type_other" id="y!hu59mc=onha.rCP|Pi">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4[qp41mWp3q(j4t+BX#3" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_selector6</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="9UgD/y?5t-~eZY0DDjBa">
+        <field name="INPUTNAME">parameter1</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_label_serializable" id="Q-=eu6V!+SS=S+ql7ciR">
+            <field name="TEXT">prefix1</field>
+            <field name="FIELDNAME">prefix1</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="ord2F6IbG_]1{h;;6#iw"></shadow>
+          <block type="type_group" id="Z2AdR#?1|cP[=l2;~{r8">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="w@SG7Z7[w1XO(x/xa9@%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="urn.mP[!)=Xr/Py0oWa=">
+                <field name="TYPE">SOMETHING</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="mC;vOp}wwzKlYoASgxqM">
+            <field name="INPUTNAME">parameter2</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_label_serializable" id="x??_5[}q$Q{~-WhQGi0F">
+                <field name="TEXT">prefix2</field>
+                <field name="FIELDNAME">prefix2</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="w|?ThmFqf-Jf~8I-e+,^"></shadow>
+              <block type="type_group" id="4JP]u@?[N~$:FNSe99C;">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="ZB-RXFuTno3FZ:r{Dn2G">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="TzS]0o7/!TBRC.^0`;uo">
+                    <field name="TYPE">SOMETHING</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="0LgdhdI3RLS,w[a2}Vny">
+                <field name="INPUTNAME">parameter3</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_label_serializable" id="oCKBsm#{dNJk;tc+6_z#">
+                    <field name="TEXT">prefix3</field>
+                    <field name="FIELDNAME">prefix3</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                  <block type="type_group" id="{5pV_^D}pjW??29xV7Pr">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id="A![MgwzXD1$x|A=|fE|k">
+                        <field name="TYPE">VARIABLE</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="*hQjnRjeSGRVj`KI~aY_">
+                        <field name="TYPE">SOMETHING</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_value" id="_}hf8pl*$X:VL(_)`_qs">
+                    <field name="INPUTNAME">parameter4</field>
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_label_serializable" id="ap!N*9HZ;uAGXKLKb/x*">
+                        <field name="TEXT">prefix4</field>
+                        <field name="FIELDNAME">prefix4</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                      <block type="type_group" id="1DQ-}mjzFHU_uX[h{9kZ">
+                        <mutation types="2"></mutation>
+                        <value name="TYPE0">
+                          <block type="type_other" id="h4}@{/j.aI{Cm[C:G1B0">
+                            <field name="TYPE">VARIABLE</field>
+                          </block>
+                        </value>
+                        <value name="TYPE1">
+                          <block type="type_other" id="FfLrd^TZ7rXeG=1a{j9u">
+                            <field name="TYPE">SOMETHING</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="input_value" id="T7Wb3]?ApV;*(@s@(Th=">
+                        <field name="INPUTNAME">param3ter5</field>
+                        <field name="ALIGN">LEFT</field>
+                        <statement name="FIELDS">
+                          <block type="field_label_serializable" id="bPjG?wt~3pZs;yBVKp=q">
+                            <field name="TEXT">prefix5</field>
+                            <field name="FIELDNAME">prefix5</field>
+                          </block>
+                        </statement>
+                        <value name="TYPE">
+                          <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                          <block type="type_group" id="qr7h8/RY66b2MNLJs(P7">
+                            <mutation types="2"></mutation>
+                            <value name="TYPE0">
+                              <block type="type_other" id="!Pwq|mYj8qfJ`]~*Cxty">
+                                <field name="TYPE">VARIABLE</field>
+                              </block>
+                            </value>
+                            <value name="TYPE1">
+                              <block type="type_other" id="AWsg*J(^#$8~c-?IMn.!">
+                                <field name="TYPE">SOMETHING</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="input_value" id="0kqbP,b2x^nR,%M8T%$0">
+                            <field name="INPUTNAME">parameter6</field>
+                            <field name="ALIGN">LEFT</field>
+                            <statement name="FIELDS">
+                              <block type="field_label_serializable" id="pl.JvYj9_09g7BRF,*jc">
+                                <field name="TEXT">prefix6</field>
+                                <field name="FIELDNAME">prefix6</field>
+                              </block>
+                            </statement>
+                            <value name="TYPE">
+                              <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                              <block type="type_group" id="PaK1/sqLXQ-1o*zdb]l5">
+                                <mutation types="2"></mutation>
+                                <value name="TYPE0">
+                                  <block type="type_other" id="J$85rnVAhYu3VUm?Bwp*">
+                                    <field name="TYPE">VARIABLE</field>
+                                  </block>
+                                </value>
+                                <value name="TYPE1">
+                                  <block type="type_other" id="e?4H)p,jmqzoziqon^1M">
+                                    <field name="TYPE">SOMETHING</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="input_dummy" id="@[tmUKHdjE@hvJvO4HxU">
+                                <field name="ALIGN">LEFT</field>
+                                <statement name="FIELDS">
+                                  <block type="field_label_serializable" id="uMwz1Rivg5k@(QhW7|)J">
+                                    <field name="TEXT">postfix</field>
+                                    <field name="FIELDNAME">postfix</field>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="{eSN[+qyNeVq}U.n2)jQ" deletable="false" movable="false">
+        <field name="TEXT">Use to set or check the value of a relationship.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dvx@JRhOJ^=FPd%RM8zb" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/relationship_selector/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="2h@(kVX-RFb=ob=x$bK*"></shadow>
+      <block type="type_group" id="ZU^EI44z]RoP;(FOBvCQ">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="+B_w,2YSR;C1V+n899+.">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id=",`NDf!]O%$w[PWln{?}Z">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="TL9=ToehH-%xg7$VgOHY"></shadow>
+      <block type="type_other" id="y!hu59mc=onha.rCP|Pi">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4[qp41mWp3q(j4t+BX#3" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_selector7</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="9UgD/y?5t-~eZY0DDjBa">
+        <field name="INPUTNAME">parameter1</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_label_serializable" id="Q-=eu6V!+SS=S+ql7ciR">
+            <field name="TEXT">prefix1</field>
+            <field name="FIELDNAME">prefix1</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="ord2F6IbG_]1{h;;6#iw"></shadow>
+          <block type="type_group" id="Z2AdR#?1|cP[=l2;~{r8">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="w@SG7Z7[w1XO(x/xa9@%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="urn.mP[!)=Xr/Py0oWa=">
+                <field name="TYPE">SOMETHING</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="mC;vOp}wwzKlYoASgxqM">
+            <field name="INPUTNAME">parameter2</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_label_serializable" id="x??_5[}q$Q{~-WhQGi0F">
+                <field name="TEXT">prefix2</field>
+                <field name="FIELDNAME">prefix2</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="w|?ThmFqf-Jf~8I-e+,^"></shadow>
+              <block type="type_group" id="4JP]u@?[N~$:FNSe99C;">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="ZB-RXFuTno3FZ:r{Dn2G">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="TzS]0o7/!TBRC.^0`;uo">
+                    <field name="TYPE">SOMETHING</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="0LgdhdI3RLS,w[a2}Vny">
+                <field name="INPUTNAME">parameter3</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_label_serializable" id="oCKBsm#{dNJk;tc+6_z#">
+                    <field name="TEXT">prefix3</field>
+                    <field name="FIELDNAME">prefix3</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                  <block type="type_group" id="{5pV_^D}pjW??29xV7Pr">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id="A![MgwzXD1$x|A=|fE|k">
+                        <field name="TYPE">VARIABLE</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="*hQjnRjeSGRVj`KI~aY_">
+                        <field name="TYPE">SOMETHING</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_value" id="_}hf8pl*$X:VL(_)`_qs">
+                    <field name="INPUTNAME">parameter4</field>
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_label_serializable" id="ap!N*9HZ;uAGXKLKb/x*">
+                        <field name="TEXT">prefix4</field>
+                        <field name="FIELDNAME">prefix4</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                      <block type="type_group" id="1DQ-}mjzFHU_uX[h{9kZ">
+                        <mutation types="2"></mutation>
+                        <value name="TYPE0">
+                          <block type="type_other" id="h4}@{/j.aI{Cm[C:G1B0">
+                            <field name="TYPE">VARIABLE</field>
+                          </block>
+                        </value>
+                        <value name="TYPE1">
+                          <block type="type_other" id="FfLrd^TZ7rXeG=1a{j9u">
+                            <field name="TYPE">SOMETHING</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="input_value" id="T7Wb3]?ApV;*(@s@(Th=">
+                        <field name="INPUTNAME">parameter5</field>
+                        <field name="ALIGN">LEFT</field>
+                        <statement name="FIELDS">
+                          <block type="field_label_serializable" id="bPjG?wt~3pZs;yBVKp=q">
+                            <field name="TEXT">prefix5</field>
+                            <field name="FIELDNAME">prefix5</field>
+                          </block>
+                        </statement>
+                        <value name="TYPE">
+                          <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                          <block type="type_group" id="qr7h8/RY66b2MNLJs(P7">
+                            <mutation types="2"></mutation>
+                            <value name="TYPE0">
+                              <block type="type_other" id="!Pwq|mYj8qfJ`]~*Cxty">
+                                <field name="TYPE">VARIABLE</field>
+                              </block>
+                            </value>
+                            <value name="TYPE1">
+                              <block type="type_other" id="AWsg*J(^#$8~c-?IMn.!">
+                                <field name="TYPE">SOMETHING</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="input_value" id="0kqbP,b2x^nR,%M8T%$0">
+                            <field name="INPUTNAME">parameter6</field>
+                            <field name="ALIGN">LEFT</field>
+                            <statement name="FIELDS">
+                              <block type="field_label_serializable" id="pl.JvYj9_09g7BRF,*jc">
+                                <field name="TEXT">prefix6</field>
+                                <field name="FIELDNAME">prefix6</field>
+                              </block>
+                            </statement>
+                            <value name="TYPE">
+                              <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                              <block type="type_group" id="PaK1/sqLXQ-1o*zdb]l5">
+                                <mutation types="2"></mutation>
+                                <value name="TYPE0">
+                                  <block type="type_other" id="J$85rnVAhYu3VUm?Bwp*">
+                                    <field name="TYPE">VARIABLE</field>
+                                  </block>
+                                </value>
+                                <value name="TYPE1">
+                                  <block type="type_other" id="e?4H)p,jmqzoziqon^1M">
+                                    <field name="TYPE">SOMETHING</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="input_value" id=",tY,2/aEwERKX%Scs+Y+">
+                                <field name="INPUTNAME">parameter7</field>
+                                <field name="ALIGN">LEFT</field>
+                                <statement name="FIELDS">
+                                  <block type="field_label_serializable" id="i+5}iIb3(~qTeivdlnzR">
+                                    <field name="TEXT">prefix7</field>
+                                    <field name="FIELDNAME">prefix7</field>
+                                  </block>
+                                </statement>
+                                <value name="TYPE">
+                                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                                  <block type="type_group" id="V*JW;(aCExA8*AJoKPoa">
+                                    <mutation types="2"></mutation>
+                                    <value name="TYPE0">
+                                      <block type="type_other" id="o8P.=i%JyFmI.0R=JDqA">
+                                        <field name="TYPE">VARIABLE</field>
+                                      </block>
+                                    </value>
+                                    <value name="TYPE1">
+                                      <block type="type_other" id="l%zPfqU=cS#:7!E4vP@!">
+                                        <field name="TYPE">SOMETHING</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="input_dummy" id="@[tmUKHdjE@hvJvO4HxU">
+                                    <field name="ALIGN">LEFT</field>
+                                    <statement name="FIELDS">
+                                      <block type="field_label_serializable" id="uMwz1Rivg5k@(QhW7|)J">
+                                        <field name="TEXT">postfix</field>
+                                        <field name="FIELDNAME">postfix</field>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="{eSN[+qyNeVq}U.n2)jQ" deletable="false" movable="false">
+        <field name="TEXT">Use to set or check the value of a relationship.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dvx@JRhOJ^=FPd%RM8zb" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/relationship_selector/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="2h@(kVX-RFb=ob=x$bK*"></shadow>
+      <block type="type_group" id="ZU^EI44z]RoP;(FOBvCQ">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="+B_w,2YSR;C1V+n899+.">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id=",`NDf!]O%$w[PWln{?}Z">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="TL9=ToehH-%xg7$VgOHY"></shadow>
+      <block type="type_other" id="y!hu59mc=onha.rCP|Pi">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4[qp41mWp3q(j4t+BX#3" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_selector8</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="9UgD/y?5t-~eZY0DDjBa">
+        <field name="INPUTNAME">parameter1</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_label_serializable" id="Q-=eu6V!+SS=S+ql7ciR">
+            <field name="TEXT">prefix1</field>
+            <field name="FIELDNAME">prefix1</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="ord2F6IbG_]1{h;;6#iw"></shadow>
+          <block type="type_group" id="Z2AdR#?1|cP[=l2;~{r8">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="w@SG7Z7[w1XO(x/xa9@%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="urn.mP[!)=Xr/Py0oWa=">
+                <field name="TYPE">SOMETHING</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="mC;vOp}wwzKlYoASgxqM">
+            <field name="INPUTNAME">parameter2</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_label_serializable" id="x??_5[}q$Q{~-WhQGi0F">
+                <field name="TEXT">prefix2</field>
+                <field name="FIELDNAME">prefix2</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="w|?ThmFqf-Jf~8I-e+,^"></shadow>
+              <block type="type_group" id="4JP]u@?[N~$:FNSe99C;">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="ZB-RXFuTno3FZ:r{Dn2G">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="TzS]0o7/!TBRC.^0`;uo">
+                    <field name="TYPE">SOMETHING</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="0LgdhdI3RLS,w[a2}Vny">
+                <field name="INPUTNAME">parameter3</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_label_serializable" id="oCKBsm#{dNJk;tc+6_z#">
+                    <field name="TEXT">prefix3</field>
+                    <field name="FIELDNAME">prefix3</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                  <block type="type_group" id="{5pV_^D}pjW??29xV7Pr">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id="A![MgwzXD1$x|A=|fE|k">
+                        <field name="TYPE">VARIABLE</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="*hQjnRjeSGRVj`KI~aY_">
+                        <field name="TYPE">SOMETHING</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_value" id="_}hf8pl*$X:VL(_)`_qs">
+                    <field name="INPUTNAME">parameter4</field>
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_label_serializable" id="ap!N*9HZ;uAGXKLKb/x*">
+                        <field name="TEXT">prefix4</field>
+                        <field name="FIELDNAME">prefix4</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                      <block type="type_group" id="1DQ-}mjzFHU_uX[h{9kZ">
+                        <mutation types="2"></mutation>
+                        <value name="TYPE0">
+                          <block type="type_other" id="h4}@{/j.aI{Cm[C:G1B0">
+                            <field name="TYPE">VARIABLE</field>
+                          </block>
+                        </value>
+                        <value name="TYPE1">
+                          <block type="type_other" id="FfLrd^TZ7rXeG=1a{j9u">
+                            <field name="TYPE">SOMETHING</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="input_value" id="T7Wb3]?ApV;*(@s@(Th=">
+                        <field name="INPUTNAME">parameter5</field>
+                        <field name="ALIGN">LEFT</field>
+                        <statement name="FIELDS">
+                          <block type="field_label_serializable" id="bPjG?wt~3pZs;yBVKp=q">
+                            <field name="TEXT">prefix5</field>
+                            <field name="FIELDNAME">prefix5</field>
+                          </block>
+                        </statement>
+                        <value name="TYPE">
+                          <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                          <block type="type_group" id="qr7h8/RY66b2MNLJs(P7">
+                            <mutation types="2"></mutation>
+                            <value name="TYPE0">
+                              <block type="type_other" id="!Pwq|mYj8qfJ`]~*Cxty">
+                                <field name="TYPE">VARIABLE</field>
+                              </block>
+                            </value>
+                            <value name="TYPE1">
+                              <block type="type_other" id="AWsg*J(^#$8~c-?IMn.!">
+                                <field name="TYPE">SOMETHING</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="input_value" id="0kqbP,b2x^nR,%M8T%$0">
+                            <field name="INPUTNAME">parameter6</field>
+                            <field name="ALIGN">LEFT</field>
+                            <statement name="FIELDS">
+                              <block type="field_label_serializable" id="pl.JvYj9_09g7BRF,*jc">
+                                <field name="TEXT">prefix6</field>
+                                <field name="FIELDNAME">prefix6</field>
+                              </block>
+                            </statement>
+                            <value name="TYPE">
+                              <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                              <block type="type_group" id="PaK1/sqLXQ-1o*zdb]l5">
+                                <mutation types="2"></mutation>
+                                <value name="TYPE0">
+                                  <block type="type_other" id="J$85rnVAhYu3VUm?Bwp*">
+                                    <field name="TYPE">VARIABLE</field>
+                                  </block>
+                                </value>
+                                <value name="TYPE1">
+                                  <block type="type_other" id="e?4H)p,jmqzoziqon^1M">
+                                    <field name="TYPE">SOMETHING</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="input_value" id=",tY,2/aEwERKX%Scs+Y+">
+                                <field name="INPUTNAME">parameter7</field>
+                                <field name="ALIGN">LEFT</field>
+                                <statement name="FIELDS">
+                                  <block type="field_label_serializable" id="i+5}iIb3(~qTeivdlnzR">
+                                    <field name="TEXT">prefix7</field>
+                                    <field name="FIELDNAME">prefix7</field>
+                                  </block>
+                                </statement>
+                                <value name="TYPE">
+                                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                                  <block type="type_group" id="V*JW;(aCExA8*AJoKPoa">
+                                    <mutation types="2"></mutation>
+                                    <value name="TYPE0">
+                                      <block type="type_other" id="o8P.=i%JyFmI.0R=JDqA">
+                                        <field name="TYPE">VARIABLE</field>
+                                      </block>
+                                    </value>
+                                    <value name="TYPE1">
+                                      <block type="type_other" id="l%zPfqU=cS#:7!E4vP@!">
+                                        <field name="TYPE">SOMETHING</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="input_value" id="(kdDK3C2^^3^j!s}Ab4J">
+                                    <field name="INPUTNAME">parameter8</field>
+                                    <field name="ALIGN">LEFT</field>
+                                    <statement name="FIELDS">
+                                      <block type="field_label_serializable" id="A1a7%eO8ivgPVlK`Vg-V">
+                                        <field name="TEXT">prefix8</field>
+                                        <field name="FIELDNAME">prefix8</field>
+                                      </block>
+                                    </statement>
+                                    <value name="TYPE">
+                                      <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                                      <block type="type_group" id="!|wA2/?(Z+R:L],qD}rI">
+                                        <mutation types="2"></mutation>
+                                        <value name="TYPE0">
+                                          <block type="type_other" id="3joHc|rFWZ}`)mqSG+i-">
+                                            <field name="TYPE">VARIABLE</field>
+                                          </block>
+                                        </value>
+                                        <value name="TYPE1">
+                                          <block type="type_other" id=";z*vo[A(3DAEM-m.OHL3">
+                                            <field name="TYPE">SOMETHING</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="input_dummy" id="@[tmUKHdjE@hvJvO4HxU">
+                                        <field name="ALIGN">LEFT</field>
+                                        <statement name="FIELDS">
+                                          <block type="field_label_serializable" id="uMwz1Rivg5k@(QhW7|)J">
+                                            <field name="TEXT">postfix</field>
+                                            <field name="FIELDNAME">postfix</field>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="{eSN[+qyNeVq}U.n2)jQ" deletable="false" movable="false">
+        <field name="TEXT">Use to set or check the value of a relationship.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dvx@JRhOJ^=FPd%RM8zb" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/relationship_selector/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="2h@(kVX-RFb=ob=x$bK*"></shadow>
+      <block type="type_group" id="ZU^EI44z]RoP;(FOBvCQ">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="+B_w,2YSR;C1V+n899+.">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id=",`NDf!]O%$w[PWln{?}Z">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="TL9=ToehH-%xg7$VgOHY"></shadow>
+      <block type="type_other" id="y!hu59mc=onha.rCP|Pi">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4[qp41mWp3q(j4t+BX#3" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_selector9</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="9UgD/y?5t-~eZY0DDjBa">
+        <field name="INPUTNAME">parameter1</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_label_serializable" id="Q-=eu6V!+SS=S+ql7ciR">
+            <field name="TEXT">prefix1</field>
+            <field name="FIELDNAME">prefix1</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="ord2F6IbG_]1{h;;6#iw"></shadow>
+          <block type="type_group" id="Z2AdR#?1|cP[=l2;~{r8">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="w@SG7Z7[w1XO(x/xa9@%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="urn.mP[!)=Xr/Py0oWa=">
+                <field name="TYPE">SOMETHING</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="mC;vOp}wwzKlYoASgxqM">
+            <field name="INPUTNAME">parameter2</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_label_serializable" id="x??_5[}q$Q{~-WhQGi0F">
+                <field name="TEXT">prefix2</field>
+                <field name="FIELDNAME">prefix2</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="w|?ThmFqf-Jf~8I-e+,^"></shadow>
+              <block type="type_group" id="4JP]u@?[N~$:FNSe99C;">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="ZB-RXFuTno3FZ:r{Dn2G">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="TzS]0o7/!TBRC.^0`;uo">
+                    <field name="TYPE">SOMETHING</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="0LgdhdI3RLS,w[a2}Vny">
+                <field name="INPUTNAME">parameter3</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_label_serializable" id="oCKBsm#{dNJk;tc+6_z#">
+                    <field name="TEXT">prefix3</field>
+                    <field name="FIELDNAME">prefix3</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                  <block type="type_group" id="{5pV_^D}pjW??29xV7Pr">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id="A![MgwzXD1$x|A=|fE|k">
+                        <field name="TYPE">VARIABLE</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="*hQjnRjeSGRVj`KI~aY_">
+                        <field name="TYPE">SOMETHING</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_value" id="_}hf8pl*$X:VL(_)`_qs">
+                    <field name="INPUTNAME">parameter4</field>
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_label_serializable" id="ap!N*9HZ;uAGXKLKb/x*">
+                        <field name="TEXT">prefix4</field>
+                        <field name="FIELDNAME">prefix4</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                      <block type="type_group" id="1DQ-}mjzFHU_uX[h{9kZ">
+                        <mutation types="2"></mutation>
+                        <value name="TYPE0">
+                          <block type="type_other" id="h4}@{/j.aI{Cm[C:G1B0">
+                            <field name="TYPE">VARIABLE</field>
+                          </block>
+                        </value>
+                        <value name="TYPE1">
+                          <block type="type_other" id="FfLrd^TZ7rXeG=1a{j9u">
+                            <field name="TYPE">SOMETHING</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="input_value" id="T7Wb3]?ApV;*(@s@(Th=">
+                        <field name="INPUTNAME">parameter5</field>
+                        <field name="ALIGN">LEFT</field>
+                        <statement name="FIELDS">
+                          <block type="field_label_serializable" id="bPjG?wt~3pZs;yBVKp=q">
+                            <field name="TEXT">prefix5</field>
+                            <field name="FIELDNAME">prefix5</field>
+                          </block>
+                        </statement>
+                        <value name="TYPE">
+                          <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                          <block type="type_group" id="qr7h8/RY66b2MNLJs(P7">
+                            <mutation types="2"></mutation>
+                            <value name="TYPE0">
+                              <block type="type_other" id="!Pwq|mYj8qfJ`]~*Cxty">
+                                <field name="TYPE">VARIABLE</field>
+                              </block>
+                            </value>
+                            <value name="TYPE1">
+                              <block type="type_other" id="AWsg*J(^#$8~c-?IMn.!">
+                                <field name="TYPE">SOMETHING</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="input_value" id="0kqbP,b2x^nR,%M8T%$0">
+                            <field name="INPUTNAME">parameter6</field>
+                            <field name="ALIGN">LEFT</field>
+                            <statement name="FIELDS">
+                              <block type="field_label_serializable" id="pl.JvYj9_09g7BRF,*jc">
+                                <field name="TEXT">prefix6</field>
+                                <field name="FIELDNAME">prefix6</field>
+                              </block>
+                            </statement>
+                            <value name="TYPE">
+                              <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                              <block type="type_group" id="PaK1/sqLXQ-1o*zdb]l5">
+                                <mutation types="2"></mutation>
+                                <value name="TYPE0">
+                                  <block type="type_other" id="J$85rnVAhYu3VUm?Bwp*">
+                                    <field name="TYPE">VARIABLE</field>
+                                  </block>
+                                </value>
+                                <value name="TYPE1">
+                                  <block type="type_other" id="e?4H)p,jmqzoziqon^1M">
+                                    <field name="TYPE">SOMETHING</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="input_value" id=",tY,2/aEwERKX%Scs+Y+">
+                                <field name="INPUTNAME">parameter7</field>
+                                <field name="ALIGN">LEFT</field>
+                                <statement name="FIELDS">
+                                  <block type="field_label_serializable" id="i+5}iIb3(~qTeivdlnzR">
+                                    <field name="TEXT">prefix7</field>
+                                    <field name="FIELDNAME">prefix7</field>
+                                  </block>
+                                </statement>
+                                <value name="TYPE">
+                                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                                  <block type="type_group" id="V*JW;(aCExA8*AJoKPoa">
+                                    <mutation types="2"></mutation>
+                                    <value name="TYPE0">
+                                      <block type="type_other" id="o8P.=i%JyFmI.0R=JDqA">
+                                        <field name="TYPE">VARIABLE</field>
+                                      </block>
+                                    </value>
+                                    <value name="TYPE1">
+                                      <block type="type_other" id="l%zPfqU=cS#:7!E4vP@!">
+                                        <field name="TYPE">SOMETHING</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="input_value" id="(kdDK3C2^^3^j!s}Ab4J">
+                                    <field name="INPUTNAME">parameter8</field>
+                                    <field name="ALIGN">LEFT</field>
+                                    <statement name="FIELDS">
+                                      <block type="field_label_serializable" id="A1a7%eO8ivgPVlK`Vg-V">
+                                        <field name="TEXT">prefix8</field>
+                                        <field name="FIELDNAME">prefix8</field>
+                                      </block>
+                                    </statement>
+                                    <value name="TYPE">
+                                      <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                                      <block type="type_group" id="!|wA2/?(Z+R:L],qD}rI">
+                                        <mutation types="2"></mutation>
+                                        <value name="TYPE0">
+                                          <block type="type_other" id="3joHc|rFWZ}`)mqSG+i-">
+                                            <field name="TYPE">VARIABLE</field>
+                                          </block>
+                                        </value>
+                                        <value name="TYPE1">
+                                          <block type="type_other" id=";z*vo[A(3DAEM-m.OHL3">
+                                            <field name="TYPE">SOMETHING</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="input_value" id="jt!Ix7`aF,K^et`y^K^x">
+                                        <field name="INPUTNAME">parameter9</field>
+                                        <field name="ALIGN">LEFT</field>
+                                        <statement name="FIELDS">
+                                          <block type="field_label_serializable" id="FLRf[I:!DyK#15M$e9ON">
+                                            <field name="TEXT">prefix9</field>
+                                            <field name="FIELDNAME">prefix9</field>
+                                          </block>
+                                        </statement>
+                                        <value name="TYPE">
+                                          <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                                          <block type="type_group" id="Yl4M$V?O9VA.|S.ZJ{8S">
+                                            <mutation types="2"></mutation>
+                                            <value name="TYPE0">
+                                              <block type="type_other" id="9.ZrBf;iU5*T(G1L21I.">
+                                                <field name="TYPE">VARIABLE</field>
+                                              </block>
+                                            </value>
+                                            <value name="TYPE1">
+                                              <block type="type_other" id="y[J~)5;5r2pnL,s)gRK/">
+                                                <field name="TYPE">SOMETHING</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="input_dummy" id="@[tmUKHdjE@hvJvO4HxU">
+                                            <field name="ALIGN">LEFT</field>
+                                            <statement name="FIELDS">
+                                              <block type="field_label_serializable" id="uMwz1Rivg5k@(QhW7|)J">
+                                                <field name="TEXT">postfix</field>
+                                                <field name="FIELDNAME">postfix</field>
+                                              </block>
+                                            </statement>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="{eSN[+qyNeVq}U.n2)jQ" deletable="false" movable="false">
+        <field name="TEXT">Use to set or check the value of a relationship.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dvx@JRhOJ^=FPd%RM8zb" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/relationship_selector/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="2h@(kVX-RFb=ob=x$bK*"></shadow>
+      <block type="type_group" id="ZU^EI44z]RoP;(FOBvCQ">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="+B_w,2YSR;C1V+n899+.">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id=",`NDf!]O%$w[PWln{?}Z">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="TL9=ToehH-%xg7$VgOHY"></shadow>
+      <block type="type_other" id="y!hu59mc=onha.rCP|Pi">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="4[qp41mWp3q(j4t+BX#3" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">relationship_selector10</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="9UgD/y?5t-~eZY0DDjBa">
+        <field name="INPUTNAME">parameter1</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_label_serializable" id="Q-=eu6V!+SS=S+ql7ciR">
+            <field name="TEXT">prefix1</field>
+            <field name="FIELDNAME">prefix1</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="ord2F6IbG_]1{h;;6#iw"></shadow>
+          <block type="type_group" id="Z2AdR#?1|cP[=l2;~{r8">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="w@SG7Z7[w1XO(x/xa9@%">
+                <field name="TYPE">VARIABLE</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="urn.mP[!)=Xr/Py0oWa=">
+                <field name="TYPE">SOMETHING</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="mC;vOp}wwzKlYoASgxqM">
+            <field name="INPUTNAME">parameter2</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_label_serializable" id="x??_5[}q$Q{~-WhQGi0F">
+                <field name="TEXT">prefix2</field>
+                <field name="FIELDNAME">prefix2</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="w|?ThmFqf-Jf~8I-e+,^"></shadow>
+              <block type="type_group" id="4JP]u@?[N~$:FNSe99C;">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="ZB-RXFuTno3FZ:r{Dn2G">
+                    <field name="TYPE">VARIABLE</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="TzS]0o7/!TBRC.^0`;uo">
+                    <field name="TYPE">SOMETHING</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="0LgdhdI3RLS,w[a2}Vny">
+                <field name="INPUTNAME">parameter3</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_label_serializable" id="oCKBsm#{dNJk;tc+6_z#">
+                    <field name="TEXT">prefix3</field>
+                    <field name="FIELDNAME">prefix3</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                  <block type="type_group" id="{5pV_^D}pjW??29xV7Pr">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id="A![MgwzXD1$x|A=|fE|k">
+                        <field name="TYPE">VARIABLE</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="*hQjnRjeSGRVj`KI~aY_">
+                        <field name="TYPE">SOMETHING</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_value" id="_}hf8pl*$X:VL(_)`_qs">
+                    <field name="INPUTNAME">parameter4</field>
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_label_serializable" id="ap!N*9HZ;uAGXKLKb/x*">
+                        <field name="TEXT">prefix4</field>
+                        <field name="FIELDNAME">prefix4</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                      <block type="type_group" id="1DQ-}mjzFHU_uX[h{9kZ">
+                        <mutation types="2"></mutation>
+                        <value name="TYPE0">
+                          <block type="type_other" id="h4}@{/j.aI{Cm[C:G1B0">
+                            <field name="TYPE">VARIABLE</field>
+                          </block>
+                        </value>
+                        <value name="TYPE1">
+                          <block type="type_other" id="FfLrd^TZ7rXeG=1a{j9u">
+                            <field name="TYPE">SOMETHING</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="input_value" id="T7Wb3]?ApV;*(@s@(Th=">
+                        <field name="INPUTNAME">parameter5</field>
+                        <field name="ALIGN">LEFT</field>
+                        <statement name="FIELDS">
+                          <block type="field_label_serializable" id="bPjG?wt~3pZs;yBVKp=q">
+                            <field name="TEXT">prefix5</field>
+                            <field name="FIELDNAME">prefix5</field>
+                          </block>
+                        </statement>
+                        <value name="TYPE">
+                          <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                          <block type="type_group" id="qr7h8/RY66b2MNLJs(P7">
+                            <mutation types="2"></mutation>
+                            <value name="TYPE0">
+                              <block type="type_other" id="!Pwq|mYj8qfJ`]~*Cxty">
+                                <field name="TYPE">VARIABLE</field>
+                              </block>
+                            </value>
+                            <value name="TYPE1">
+                              <block type="type_other" id="AWsg*J(^#$8~c-?IMn.!">
+                                <field name="TYPE">SOMETHING</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="input_value" id="0kqbP,b2x^nR,%M8T%$0">
+                            <field name="INPUTNAME">parameter6</field>
+                            <field name="ALIGN">LEFT</field>
+                            <statement name="FIELDS">
+                              <block type="field_label_serializable" id="pl.JvYj9_09g7BRF,*jc">
+                                <field name="TEXT">prefix6</field>
+                                <field name="FIELDNAME">prefix6</field>
+                              </block>
+                            </statement>
+                            <value name="TYPE">
+                              <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                              <block type="type_group" id="PaK1/sqLXQ-1o*zdb]l5">
+                                <mutation types="2"></mutation>
+                                <value name="TYPE0">
+                                  <block type="type_other" id="J$85rnVAhYu3VUm?Bwp*">
+                                    <field name="TYPE">VARIABLE</field>
+                                  </block>
+                                </value>
+                                <value name="TYPE1">
+                                  <block type="type_other" id="e?4H)p,jmqzoziqon^1M">
+                                    <field name="TYPE">SOMETHING</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="input_value" id=",tY,2/aEwERKX%Scs+Y+">
+                                <field name="INPUTNAME">parameter7</field>
+                                <field name="ALIGN">LEFT</field>
+                                <statement name="FIELDS">
+                                  <block type="field_label_serializable" id="i+5}iIb3(~qTeivdlnzR">
+                                    <field name="TEXT">prefix7</field>
+                                    <field name="FIELDNAME">prefix7</field>
+                                  </block>
+                                </statement>
+                                <value name="TYPE">
+                                  <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                                  <block type="type_group" id="V*JW;(aCExA8*AJoKPoa">
+                                    <mutation types="2"></mutation>
+                                    <value name="TYPE0">
+                                      <block type="type_other" id="o8P.=i%JyFmI.0R=JDqA">
+                                        <field name="TYPE">VARIABLE</field>
+                                      </block>
+                                    </value>
+                                    <value name="TYPE1">
+                                      <block type="type_other" id="l%zPfqU=cS#:7!E4vP@!">
+                                        <field name="TYPE">SOMETHING</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="input_value" id="(kdDK3C2^^3^j!s}Ab4J">
+                                    <field name="INPUTNAME">parameter8</field>
+                                    <field name="ALIGN">LEFT</field>
+                                    <statement name="FIELDS">
+                                      <block type="field_label_serializable" id="A1a7%eO8ivgPVlK`Vg-V">
+                                        <field name="TEXT">prefix8</field>
+                                        <field name="FIELDNAME">prefix8</field>
+                                      </block>
+                                    </statement>
+                                    <value name="TYPE">
+                                      <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                                      <block type="type_group" id="!|wA2/?(Z+R:L],qD}rI">
+                                        <mutation types="2"></mutation>
+                                        <value name="TYPE0">
+                                          <block type="type_other" id="3joHc|rFWZ}`)mqSG+i-">
+                                            <field name="TYPE">VARIABLE</field>
+                                          </block>
+                                        </value>
+                                        <value name="TYPE1">
+                                          <block type="type_other" id=";z*vo[A(3DAEM-m.OHL3">
+                                            <field name="TYPE">SOMETHING</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="input_value" id="jt!Ix7`aF,K^et`y^K^x">
+                                        <field name="INPUTNAME">parameter9</field>
+                                        <field name="ALIGN">LEFT</field>
+                                        <statement name="FIELDS">
+                                          <block type="field_label_serializable" id="FLRf[I:!DyK#15M$e9ON">
+                                            <field name="TEXT">prefix9</field>
+                                            <field name="FIELDNAME">prefix9</field>
+                                          </block>
+                                        </statement>
+                                        <value name="TYPE">
+                                          <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                                          <block type="type_group" id="Yl4M$V?O9VA.|S.ZJ{8S">
+                                            <mutation types="2"></mutation>
+                                            <value name="TYPE0">
+                                              <block type="type_other" id="9.ZrBf;iU5*T(G1L21I.">
+                                                <field name="TYPE">VARIABLE</field>
+                                              </block>
+                                            </value>
+                                            <value name="TYPE1">
+                                              <block type="type_other" id="y[J~)5;5r2pnL,s)gRK/">
+                                                <field name="TYPE">SOMETHING</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="input_value" id="u%d]RxB%x-_5^?F+5rc@">
+                                            <field name="INPUTNAME">parameter10</field>
+                                            <field name="ALIGN">LEFT</field>
+                                            <statement name="FIELDS">
+                                              <block type="field_label_serializable" id="}ssl+NemwIRUY%M.Mm2P">
+                                                <field name="TEXT">prefix10</field>
+                                                <field name="FIELDNAME">prefix10</field>
+                                              </block>
+                                            </statement>
+                                            <value name="TYPE">
+                                              <shadow type="type_null" id=",ja2,EuK)k(:wjU3EC*-"></shadow>
+                                              <block type="type_group" id="fkqlL`0}T#)7:fVQpi(8">
+                                                <mutation types="2"></mutation>
+                                                <value name="TYPE0">
+                                                  <block type="type_other" id="Qk@A8OnQPsTHH};@}7d*">
+                                                    <field name="TYPE">VARIABLE</field>
+                                                  </block>
+                                                </value>
+                                                <value name="TYPE1">
+                                                  <block type="type_other" id="y7Q#t@4J~A9DpBc^WN}_">
+                                                    <field name="TYPE">SOMETHING</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="input_dummy" id="@[tmUKHdjE@hvJvO4HxU">
+                                                <field name="ALIGN">LEFT</field>
+                                                <statement name="FIELDS">
+                                                  <block type="field_label_serializable" id="uMwz1Rivg5k@(QhW7|)J">
+                                                    <field name="TEXT">postfix</field>
+                                                    <field name="FIELDNAME">postfix</field>
+                                                  </block>
+                                                </statement>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="{eSN[+qyNeVq}U.n2)jQ" deletable="false" movable="false">
+        <field name="TEXT">Use to set or check the value of a relationship.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dvx@JRhOJ^=FPd%RM8zb" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/relationship_selector/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="2h@(kVX-RFb=ob=x$bK*"></shadow>
+      <block type="type_group" id="ZU^EI44z]RoP;(FOBvCQ">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="+B_w,2YSR;C1V+n899+.">
+            <field name="TYPE">OUTER</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id=",`NDf!]O%$w[PWln{?}Z">
+            <field name="TYPE">STATEMENT</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="TL9=ToehH-%xg7$VgOHY"></shadow>
+      <block type="type_other" id="y!hu59mc=onha.rCP|Pi">
+        <field name="TYPE">STATEMENT</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=".)g;#Wloe7?IDk([sVIu">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
   </block></xml>

@@ -115,6 +115,30 @@ Blockly.Extensions.register('changeAttributeDisplayText', function() {
     });
     });
 
+RELATIONSHIP_SELECTOR_MUTATOR_MIXIN = {
+  mutationToDom: function() {
+    var container = document.createElement('mutation');
+    var arity = parseInt(this.type.slice(-1));
+    container.setAttribute('arity',arity);
+    container.setAttribute('relationship_name',this.relationship_name);
+    for (var i=1; i<= arity; i++) {
+      container.setAttribute('type'+i, this['type'+i]);
+    }
+    return container;
+  },
+  domToMutation: function(xmlElement) {
+    var arity = parseInt(xmlElement.getAttribute('arity'));
+    this.relationship_name = xmlElement.getAttribute('relationship_name');
+    for (var i=1; i<=arity; i++) {
+      this['type'+i] = xmlElement.getAttribute('type'+i);
+      this.getInput("parameter"+i).connection.setCheck([blawxTypeToBlocklyType(this['type'+i]),'VARIABLE'])
+    }
+  }
+}
+
+Blockly.Extensions.registerMutator('relationship_selector_mutator', RELATIONSHIP_SELECTOR_MUTATOR_MIXIN);
+
+
 ATTRIBUTE_SELECTOR_MUTATOR_MIXIN = {
       mutationToDom: function() {
         //   console.log("Saving : " + this.blawxAttributeName + ", " + this.blawxAttributeType + ", " + this.blawxAttributeOrder)
