@@ -662,6 +662,132 @@ blawxrun(Query, Human) :-
                     for anlga in att_nlg_query_answers:
                       attribute_nlg.append({"Attribute": a['Attribute'], "Order": anlga['Variables']['Order'], "Prefix": anlga['Variables']['Prefix'], "Infix": anlga['Variables']['Infix'], "Postfix": anlga['Variables']['Postfix']})
 
+                  relationship_answers = []
+                  query3_answers = []
+                  try:
+                    query3_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3),Human).")
+                    query3_answers = generate_answers(query3_answer)
+                    for att in query3_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3']})
+                    transcript.write(str(query3_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+                  query4_answers = []
+                  try:
+                    query4_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4),Human).")
+                    query4_answers = generate_answers(query4_answer)
+                    for att in query4_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4']})
+                    transcript.write(str(query4_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+
+                  query5_answers = []
+                  try:
+                    query5_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5),Human).")
+                    query5_answers = generate_answers(query5_answer)
+                    for att in query5_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5']})
+                    transcript.write(str(query5_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+
+                  query6_answers = []
+                  try:
+                    query6_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5,Param6),Human).")
+                    query6_answers = generate_answers(query6_answer)
+                    for att in query6_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5'], "Parameter6": att['Variables']['Param6']})
+                    transcript.write(str(query6_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+
+                  query7_answers = []
+                  try:
+                    query7_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5,Param6,Param7),Human).")
+                    query7_answers = generate_answers(query7_answer)
+                    for att in query7_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5'], "Parameter6": att['Variables']['Param6'], "Parameter7": att['Variables']['Param7']})
+                    transcript.write(str(query7_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+
+                  query8_answers = []
+                  try:
+                    query8_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5,Param6,Param7,Param8),Human).")
+                    query8_answers = generate_answers(query8_answer)
+                    for att in query8_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5'], "Parameter6": att['Variables']['Param6'], "Parameter7": att['Variables']['Param7'], "Parameter8": att['Variables']['Param8']})
+                    transcript.write(str(query8_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+
+                  query9_answers = []
+                  try:
+                    query9_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5,Param6,Param7,Param8,Param9),Human).")
+                    query9_answers = generate_answers(query9_answer)
+                    for att in query9_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5'], "Parameter6": att['Variables']['Param6'], "Parameter7": att['Variables']['Param7'], "Parameter8": att['Variables']['Param8'], "Parameter9": att['Variables']['Param9']})
+                    transcript.write(str(query9_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+                  query10_answers = []
+                  try:
+                    query10_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5,Param6,Param7,Param8,Param9,Param10),Human).")
+                    query10_answers = generate_answers(query10_answer)
+                    for att in query10_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5'], "Parameter6": att['Variables']['Param6'], "Parameter7": att['Variables']['Param7'], "Parameter8": att['Variables']['Param8'], "Parameter9": att['Variables']['Param9'], "Parameter10": att['Variables']['Param10']})
+                    transcript.write(str(query10_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
                   transcript.write(str(query1_answer) + '\n')
                   object_query_answers = []
                   for cat in query1_answers:
@@ -753,7 +879,7 @@ blawxrun(Query, Human) :-
     except PrologLaunchError as err:
       return { "error": "Blawx could not load the reasoner." }
     # Return the results as JSON
-    return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output }
+    return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Relationships": relationship_answers, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output }
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
