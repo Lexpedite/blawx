@@ -788,6 +788,30 @@ blawxrun(Query, Human) :-
                       if err.prolog().startswith('existence_error'):
                         pass
 
+                  relationship_nlg = []
+                  for a in relationship_answers:
+                    try:
+                      query = "blawxrun(blawx_relationship_nlg(" + a['Relationship'] + ","
+                      parameters = len(a)-1
+                      param = 1
+                      while param <= parameters:
+                        query += 'Parameter'+str(param) + ","
+                        param += 1
+                      query += "Postfix),Human)."
+                      print("Query: " + query)
+                      rel_nlg_query_response = swipl_thread.query(query)
+                      rel_nlg_answers = generate_answers(rel_nlg_query_response)
+                      for relnlg in rel_nlg_answers:
+                        new_nlg = {"Relationship": a['Relationship'], "Postfix": relnlg['Variables']['Postfix']}
+                        param_count = 1
+                        while param_count <= parameters:
+                          new_nlg['Parameter'+str(param_count)] = relnlg['Variables']['Parameter'+str(param_count)]
+                          param_count += 1
+                        relationship_nlg.append(new_nlg)
+                    except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        continue
+
                   transcript.write(str(query1_answer) + '\n')
                   object_query_answers = []
                   for cat in query1_answers:
@@ -879,7 +903,7 @@ blawxrun(Query, Human) :-
     except PrologLaunchError as err:
       return { "error": "Blawx could not load the reasoner." }
     # Return the results as JSON
-    return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Relationships": relationship_answers, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output }
+    return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Relationships": relationship_answers, "RelationshipNLG": relationship_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output }
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
