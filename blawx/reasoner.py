@@ -71,161 +71,238 @@ class IgnorePermission(permissions.BasePermission):
 #   ]
 # }
 
-def newer_json_2_scasp(payload,ruledoc,testname):
+def isVariable(param):
+  if type(param) is dict and 'variable' in param:
+    return True
+  else:
+    return False
+  
+# Note that this makes the variables in the JSON input case-insensitive.
+def convertVariables(param):
+  if type(param) is dict and 'variable' in param:
+    return param['variable'].upper()
+  else:
+    return param
+
+# TODO This isn't dealing with variables properly, because they appear as dictionaries, now.
+# We need to grab the actual variable names used, because they can be significantly more than X and Y, now.
+# TODO This version also doesn't have even draft code for building abducibles, yet.
+def even_newer_json_2_scasp(payload,ruledoc,testname):
   output = ""
+  ontology = get_ontology_internal(ruledoc,testname)
+  # Basically, we need to know what the predicate is, what the parameters are, whether the parameters have category types, and if they are variables.
+  # So get the predicate, look up the typing, modify for negation if required, and generate the fact, testing for categories if required.
+
+  # Statement (:- Conditions) .
+  # Statement = [negation]predicate(params)
+  # The params are the object, the object and the value, or the params in order, depending.
+  # If any of them is typed to a category, and is a variable, that category and that variable are added to the conditions.
+
+  for fact in payload['facts']:
+    if 'from_ontology' in fact and not fact['from_ontology']:
+      negation = "-" if fact['type'] == "false" else ""
+      if 'category' in fact:
+        predicate = fact['category']
+        parameters = [fact['object']]
+        categories = [predicate]
+      elif 'attribute' in fact:
+        predicate = fact['attribute']    
+        if 'value' in fact:
+          parameters = [fact['object'],fact['value']]
+          for att in ontology['Attributes']:
+            if predicate == att['Attribute']:
+              object_category = att['Category']
+              if att['Type'] in ontology['Categories']:
+                value_category = att['Type']
+              else:
+                value_category = "none"
+              break
+          categories = [object_category,value_category]
+        else:
+          parameters = [fact['object']]
+          for att in ontology['Attributes']:
+            if predicate == att['Attribute']:
+              object_category = att['Category']
+              break
+          categories = [object_category]
+      elif 'relationship' in fact:
+        predicate = fact['relationship']
+        arity = len(fact)-3 # Subtract "from ontology" "type" and "relationship"
+        parameters = []
+        p = 1
+        while p <= arity:
+          parameters.append(fact['parameter'+str(p)])
+          p += 1
+        categories = []
+        for rel in ontology['Relationships']:
+          if predicate == rel['Relationship']:
+            p = 1
+            while p <= arity:
+              if rel['Parameter'+str(p)] in ontology['Categories']:
+                categories.append(rel['Parameter'+str(p)])
+              else:
+                categories.append('none')
+              p += 1
+            break
+      variables = list(map(isVariable, parameters))
+      parameters = list(map(convertVariables, parameters))
+      if fact['type'] != "unknown": # This is a true or false statement
+        conditions = []
+        for index, param in enumerate(parameters):
+          if variables[index] and categories[index] != "none":
+            conditions.append(categories[index] + "(" + param + ")")
+        statement = negation + predicate + "(" + ','.join(parameters) + ")"
+        output += statement + (" :- " if len(conditions) else "") + ','.join(conditions) + ".\n"
+      else: # This is an unknown statement
+        # Something should be added to the conditions if the parameter is a variable, and the type is a category. If so, the conditions should exclude all
+        # the known elements of that category.
+        conditions = []
+        for index, param in enumerate(parameters):
+          if variables[index] and categories[index] != "none":
+            for obj in ontology['Objects']:
+              if obj['Category'] == categories[index]:
+                conditions.append(param + " \= " + obj['Object'])
+        positive_statement = predicate + "(" + ",".join(parameters) + ") :- not -" + predicate + "(" + ",".join(parameters) + ")" + ("," if len(conditions) else "") + ",".join(conditions) + ".\n"
+        negative_statement = "-" + predicate + "(" + ",".join(parameters) + ") :- not " + predicate + "(" + ",".join(parameters) + ")" + ("," if len(conditions) else "") + ",".join(conditions) + ".\n"
+        output += positive_statement + negative_statement
+  return output
+
+
+# def newer_json_2_scasp(payload,ruledoc,testname):
+#   output = ""
 
  
-  # Grab the ontology for the current test.
-  ontology = get_ontology_internal(ruledoc,testname)
+#   # Grab the ontology for the current test.
+#   ontology = get_ontology_internal(ruledoc,testname)
 
-  # For doing abducibility, we need a list of all the known objects provided
-  # by the ontology and the user in each category.
-  # known_objects = {}
-  # for c in ontology['Categories']:
-  #   known_objects[c] = []
-  # for o in ontology['Objects']:
-  #   known_objects[o['Category']].append(o['Object'])
-  # for fact in payload['facts']:
-  #   if 'category' in fact and not fact['from_ontology'] and type(fact['object']) is not dict and fact['type'] == "true": # Last excludes variables, and false
-  #     known_objects[fact['category']].append(fact['object'])
 
-  # print("Known Objects Gathered:")
-  # print(known_objects)
-  # Go through the statements and convert them into s(CASP)
-  for fact in payload['facts']:
-    if 'from_ontology' in fact and not fact['from_ontology']:
-      if 'category' in fact:
-        basic_predicate = fact['category']
-        is_attribute = False
-      elif 'attribute' in fact:
-        is_attribute = True
-        basic_predicate = fact['attribute']
-        attribute_type = "object"
-        for att in ontology['Attributes']:
-            if basic_predicate == att['Attribute']:
-              attribute_type = att['Type']
-              object_type = att['Category']
-              break
-      truth_value = fact['type']
-      statement_object = fact['object']
-      if type(statement_object) is dict:
-        statement_object = "X"
-      if truth_value == "false":
-        predicate = "-" + basic_predicate
-      else:
-        predicate = basic_predicate
-      if truth_value != "unknown":
-        if 'value' in fact:
-          statement_value = fact['value']
-          if type(statement_value) is dict:
-            statement_value = "Y"
-          # attribute_type = "object"
-          # for att in ontology['Attributes']:
-          #   if basic_predicate == att['Attribute']:
-          #     attribute_type = att['Type']
-          #     object_type = att['Category']
-          #     break
-          output += predicate + "(" + statement_object + "," + format_statement_value(statement_value,attribute_type) + ")"
-          if statement_object == "X" or statement_value == "Y":
-            output += " :- "
-            if statement_object == "X":
-              output += object_type + "(X)"
-            if statement_object == "X" and statement_value == "Y":
-              output += ", "
-            if statement_value == "Y":
-              output += attribute_type + "(Y)"
-          output += ".\n"
-        else:
-          output += predicate + "(" + statement_object + ")"
-          if statement_object == "X" and is_attribute:
-            output += ":- " + object_type + "(X)"
-          output += ".\n"
-  for fact in payload['facts']:
-    if 'from_ontology' in fact and not fact['from_ontology']:
-      if 'category' in fact:
-        basic_predicate = fact['category']
-        is_attribute = False
-      elif 'attribute' in fact:
-        basic_predicate = fact['attribute']
-        attribute_type = "object"
-        for att in ontology['Attributes']:
-            if basic_predicate == att['Attribute']:
-              attribute_type = att['Type']
-              object_type = att['Category']
-              break
-        is_attribute = True
-      truth_value = fact['type']
-      if fact['type'] == "unknown":
-        # This statement is an abducibility:
-        if 'category' in fact:
-          # If it is a category, we need -category(X) :- not category(X), x \= list of known objects in the category, and the opposite.
-          # We need to check to see if the variable is unground, and include the exclusions only if it is unground.
-          if type(fact['object']) is dict:
-            object_display = "X"
-          else:
-            object_display = fact['object'] 
-          output += basic_predicate + "(" + object_display + ") :- not -" + basic_predicate + "(" + object_display + ")"
-          if object_display == "X":
-            output += object_type + "(X)"
-          output += ".\n"
-          output += "-" + basic_predicate + "(" + object_display + ") :- not " + basic_predicate + "(" + object_display + ")"
-          if object_display == "X":
-            output += object_type + "(X)"
-          output += ".\n"
-        if 'attribute' in fact:
-          # If it is an attribute, we need attribute(X,Y) :- not -attribute(X,Y), X \= list of known objects in the category, Y \= list of known objects in target category, and the opposite.
-          # Get the object type for the attribute, and get the value type if it exists.
-          # for att in ontology['Attributes']:
-          #   if att['Attribute'] == fact['attribute']:
-          #     object_type = att['Category']
-          #     value_type = att['Type']
-          # We also need to know if the value_type is a category
-          value_is_object = attribute_type in ontology['Categories']
-          if type(fact['object']) is dict:
-            object_display = "X"
-          else:
-            object_display = fact['object']
-          if 'value' in fact and type(fact['value']) is dict:
-            value_display = "Y"
-          elif 'value' in fact:
-            value_display = fact['value']
-            # This will cause it to use the same variable name twice if both the subject and object are unground and they use the same variable name.
-            if object_display == "X" and value_display == "Y":
-              if fact['object']['variable'] == fact['value']['variable']:
-                value_display == "X"
-          if 'value' in fact: # This is the binary predicate type
-            output += basic_predicate + "(" + object_display + "," + value_display + ") :- "
-            if object_display == "X":
-              output += object_type + "(X)"
-            if object_display == "X" and (value_display == "X" or value_display == "Y"):
-              output += ", "
-            if value_display == "X" or value_display == "Y":
-              output += attribute_type + "(" + value_display + ")"
-            if object_display == "X" or (value_display == "X" or value_display == "Y"):
-              output += ", "
-            output += " not -" + basic_predicate + "(" + object_display + "," + value_display + ").\n"
-            output += "-" + basic_predicate + "(" + object_display + "," + value_display + ") :- "
-            if object_display == "X":
-              output += object_type + "(X)"
-            if object_display == "X" and (value_display == "X" or value_display == "Y"):
-              output += ", "
-            if value_display == "X" or value_display == "Y":
-              output += attribute_type + "(" + value_display + ")"
-            if object_display == "X" or (value_display == "X" or value_display == "Y"):
-              output += ", "
-            output += " not " + basic_predicate + "(" + object_display + "," + value_display + ").\n"
-          else: # This is the unary predicate type.
-            output += basic_predicate + "(" + object_display + ") :- "
-            if object_display == "X":
-              output += object_type + "(X), "
-            output += "not -" + basic_predicate + "(" + object_display + ").\n"
-            output += "-" + basic_predicate + "(" + object_display + ") :- "
-            if object_display == "X":
-              output += object_type + "(X), "
-            output += "not " + basic_predicate + "(" + object_display + ").\n"
-  # print("Generated Facts")
-  # print(output)
-  return output
+#   # Go through the statements and convert them into s(CASP)
+#   for fact in payload['facts']:
+#     if 'from_ontology' in fact and not fact['from_ontology']:
+#       if 'category' in fact:
+#         basic_predicate = fact['category']
+#         is_attribute = False
+#       elif 'attribute' in fact:
+#         is_attribute = True
+#         basic_predicate = fact['attribute']
+#         attribute_type = "object"
+#         for att in ontology['Attributes']:
+#             if basic_predicate == att['Attribute']:
+#               attribute_type = att['Type']
+#               object_type = att['Category']
+#               break
+#       truth_value = fact['type']
+#       statement_object = fact['object']
+#       if type(statement_object) is dict:
+#         statement_object = "X"
+#       if truth_value == "false":
+#         predicate = "-" + basic_predicate
+#       else:
+#         predicate = basic_predicate
+#       if truth_value != "unknown":
+#         if 'value' in fact:
+#           statement_value = fact['value']
+#           if type(statement_value) is dict:
+#             statement_value = "Y"
+#           output += predicate + "(" + statement_object + "," + format_statement_value(statement_value,attribute_type) + ")"
+#           if statement_object == "X" or statement_value == "Y":
+#             output += " :- "
+#             if statement_object == "X":
+#               output += object_type + "(X)"
+#             if statement_object == "X" and statement_value == "Y":
+#               output += ", "
+#             if statement_value == "Y":
+#               output += attribute_type + "(Y)"
+#           output += ".\n"
+#         else:
+#           output += predicate + "(" + statement_object + ")"
+#           if statement_object == "X" and is_attribute:
+#             output += ":- " + object_type + "(X)"
+#           output += ".\n"
+#   for fact in payload['facts']:
+#     if 'from_ontology' in fact and not fact['from_ontology']:
+#       if 'category' in fact:
+#         basic_predicate = fact['category']
+#         is_attribute = False
+#       elif 'attribute' in fact:
+#         basic_predicate = fact['attribute']
+#         attribute_type = "object"
+#         for att in ontology['Attributes']:
+#             if basic_predicate == att['Attribute']:
+#               attribute_type = att['Type']
+#               object_type = att['Category']
+#               break
+#         is_attribute = True
+#       truth_value = fact['type']
+#       if fact['type'] == "unknown":
+#         # This statement is an abducibility:
+#         if 'category' in fact:
+#           # If it is a category, we need -category(X) :- not category(X), x \= list of known objects in the category, and the opposite.
+#           # We need to check to see if the variable is unground, and include the exclusions only if it is unground.
+#           if type(fact['object']) is dict:
+#             object_display = "X"
+#           else:
+#             object_display = fact['object'] 
+#           output += basic_predicate + "(" + object_display + ") :- not -" + basic_predicate + "(" + object_display + ")"
+#           if object_display == "X":
+#             output += object_type + "(X)"
+#           output += ".\n"
+#           output += "-" + basic_predicate + "(" + object_display + ") :- not " + basic_predicate + "(" + object_display + ")"
+#           if object_display == "X":
+#             output += object_type + "(X)"
+#           output += ".\n"
+#         if 'attribute' in fact:
+#           # If it is an attribute, we need attribute(X,Y) :- not -attribute(X,Y), X \= list of known objects in the category, Y \= list of known objects in target category, and the opposite.
+#           # Get the object type for the attribute, and get the value type if it exists.
+#           # for att in ontology['Attributes']:
+#           #   if att['Attribute'] == fact['attribute']:
+#           #     object_type = att['Category']
+#           #     value_type = att['Type']
+#           # We also need to know if the value_type is a category
+#           value_is_object = attribute_type in ontology['Categories']
+#           if type(fact['object']) is dict:
+#             object_display = "X"
+#           else:
+#             object_display = fact['object']
+#           if 'value' in fact and type(fact['value']) is dict:
+#             value_display = "Y"
+#           elif 'value' in fact:
+#             value_display = fact['value']
+#             # This will cause it to use the same variable name twice if both the subject and object are unground and they use the same variable name.
+#             if object_display == "X" and value_display == "Y":
+#               if fact['object']['variable'] == fact['value']['variable']:
+#                 value_display == "X"
+#           if 'value' in fact: # This is the binary predicate type
+#             output += basic_predicate + "(" + object_display + "," + value_display + ") :- "
+#             if object_display == "X":
+#               output += object_type + "(X)"
+#             if object_display == "X" and (value_display == "X" or value_display == "Y"):
+#               output += ", "
+#             if value_display == "X" or value_display == "Y":
+#               output += attribute_type + "(" + value_display + ")"
+#             if object_display == "X" or (value_display == "X" or value_display == "Y"):
+#               output += ", "
+#             output += " not -" + basic_predicate + "(" + object_display + "," + value_display + ").\n"
+#             output += "-" + basic_predicate + "(" + object_display + "," + value_display + ") :- "
+#             if object_display == "X":
+#               output += object_type + "(X)"
+#             if object_display == "X" and (value_display == "X" or value_display == "Y"):
+#               output += ", "
+#             if value_display == "X" or value_display == "Y":
+#               output += attribute_type + "(" + value_display + ")"
+#             if object_display == "X" or (value_display == "X" or value_display == "Y"):
+#               output += ", "
+#             output += " not " + basic_predicate + "(" + object_display + "," + value_display + ").\n"
+#           else: # This is the unary predicate type.
+#             output += basic_predicate + "(" + object_display + ") :- "
+#             if object_display == "X":
+#               output += object_type + "(X), "
+#             output += "not -" + basic_predicate + "(" + object_display + ").\n"
+#             output += "-" + basic_predicate + "(" + object_display + ") :- "
+#             if object_display == "X":
+#               output += object_type + "(X), "
+#             output += "not " + basic_predicate + "(" + object_display + ").\n"
+#   return output
 
 def format_statement_value(value,attribute_type):
   iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
@@ -399,7 +476,7 @@ def run_test(request,ruledoc,test_name):
     if request.user.has_perm('blawx.run',test):
       translated_facts = ""
       if request.data:
-        translated_facts = newer_json_2_scasp(request.data,ruledoc,test_name)
+        translated_facts = even_newer_json_2_scasp(request.data,ruledoc,test_name)
         # print("Facts Generated for Run Request:\n")
         # print(translated_facts)
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
@@ -823,7 +900,6 @@ blawxrun(Query, Human) :-
                           query += ","
                         param += 1
                       query += "),Human)."
-                      print("Query: " + query)
                       rel_fact_query_response = swipl_thread.query(query)
                       rel_fact_answers = generate_answers(rel_fact_query_response)
                       for relfact in rel_fact_answers:
@@ -1089,7 +1165,7 @@ def interview(request,ruledoc,test_name):
       # Effectively, we're going to start over.
       translated_facts = ""
       if request.data:
-        translated_facts = newer_json_2_scasp(request.data, ruledoc, test_name) #Generate answers INCLUDING assumptions in the submitted data
+        translated_facts = even_newer_json_2_scasp(request.data, ruledoc, test_name) #Generate answers INCLUDING assumptions in the submitted data
       
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
@@ -1279,7 +1355,7 @@ def simplify_term(term):
   simplified = {}
   simplified['functor'] = term['functor']
   simplified['args'] = []
-  replacements = ['X','Y'] # we don't use more than two-element terms
+  replacements = ['Q','R','S','T','U','V','W','X','Y','Z'] # We have up to 10-ary terms, now. 
   r = 0
   for a in term['args']:
     if type(a) == dict: # If the argument is a term, simplify it, too. Used to deal with negations, mostly.
