@@ -80,18 +80,14 @@ knownRelationshipsCallback = function(workspace) {
               if (blockList[i].type == "relationship_declaration") {
                 var arity = parseInt(blockList[i].getFieldValue('relationship_arity'));
                 var relationship_name = blockList[i].getFieldValue('relationship_name');
-                console.log("Creating known relationship for " + relationship_name + " of arity " + arity)
                 var blocktype = "relationship_selector" + arity;  
                 var blockText = "<xml><block type='" + blocktype + "'>"
                 // Add the mutator, which should include the name and the types
                 blockText += "<mutation xmlns='http://www.w3.org/1999/xhtml' ";
                 blockText += "relationship_name='" + relationship_name + "' ";
                 blockText += "arity='" + arity + "' ";
-                console.log("Type1: " + blockList[i].getFieldValue('type1'))
                 blockText += "type1='" + blockList[i].getFieldValue('type1') + "' ";
-                console.log("Type1: " + blockList[i].getFieldValue('type2'))
                 blockText += "type2='" + blockList[i].getFieldValue('type2') + "' ";
-                console.log("Type1: " + blockList[i].getFieldValue('type3'))
                 blockText += "type3='" + blockList[i].getFieldValue('type3') + "' ";
                 for (var param=4; param <= arity; param++) {
                     blockText += "type" + param + "='" + blockList[i].getFieldValue('type'+param) + "' ";

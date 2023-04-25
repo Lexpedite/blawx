@@ -4562,7 +4562,7 @@ scasp_blockset = [{
     },
     {
       "type": "input_value",
-      "name": "param3ter5",
+      "name": "parameter5",
       "check": [
         "VARIABLE",
         "SOMETHING"

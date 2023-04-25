@@ -19,10 +19,9 @@ and breaking changes will not necessarily result in changes to the main version 
 ### Removed
 
 ### Fixed
+* Problems with natural language generation for non-boolean attributes in test editor explanations
 
 ### TODO
-* Code generation for relationship declaration block.
-* Code gen for relationship selector blocks
 * Scenario editor facts and explanations now use relationships
 * Ontology endpoint includes information on declared relationships and associated NLG
 

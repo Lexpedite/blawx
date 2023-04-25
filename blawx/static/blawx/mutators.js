@@ -118,16 +118,16 @@ Blockly.Extensions.register('changeAttributeDisplayText', function() {
 RELATIONSHIP_SELECTOR_MUTATOR_MIXIN = {
   mutationToDom: function() {
     var container = document.createElement('mutation');
-    var arity = parseInt(this.type.slice(-1));
-    container.setAttribute('arity',arity);
+    container.setAttribute('arity',this.arity);
     container.setAttribute('relationship_name',this.relationship_name);
-    for (var i=1; i<= arity; i++) {
+    for (var i=1; i<= this.arity; i++) {
       container.setAttribute('type'+i, this['type'+i]);
     }
     return container;
   },
   domToMutation: function(xmlElement) {
     var arity = parseInt(xmlElement.getAttribute('arity'));
+    this.arity = arity;
     this.relationship_name = xmlElement.getAttribute('relationship_name');
     for (var i=1; i<=arity; i++) {
       this['type'+i] = xmlElement.getAttribute('type'+i);
