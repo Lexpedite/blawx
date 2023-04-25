@@ -798,7 +798,6 @@ blawxrun(Query, Human) :-
                         query += 'Parameter'+str(param) + ","
                         param += 1
                       query += "Postfix),Human)."
-                      print("Query: " + query)
                       rel_nlg_query_response = swipl_thread.query(query)
                       rel_nlg_answers = generate_answers(rel_nlg_query_response)
                       for relnlg in rel_nlg_answers:
@@ -808,6 +807,32 @@ blawxrun(Query, Human) :-
                           new_nlg['Parameter'+str(param_count)] = relnlg['Variables']['Parameter'+str(param_count)]
                           param_count += 1
                         relationship_nlg.append(new_nlg)
+                    except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        continue
+
+                  rel_facts = []
+                  for a in relationship_answers:
+                    try:
+                      query = "blawxrun(" + a['Relationship'] + "("
+                      parameters = len(a)-1
+                      param = 1
+                      while param <= parameters:
+                        query += 'Parameter'+str(param)
+                        if param < parameters:
+                          query += ","
+                        param += 1
+                      query += "),Human)."
+                      print("Query: " + query)
+                      rel_fact_query_response = swipl_thread.query(query)
+                      rel_fact_answers = generate_answers(rel_fact_query_response)
+                      for relfact in rel_fact_answers:
+                        new_fact = {"Relationship": a['Relationship']}
+                        param_count = 1
+                        while param_count <= parameters:
+                          new_fact['Parameter'+str(param_count)] = relfact['Variables']['Parameter'+str(param_count)]
+                          param_count += 1
+                        rel_facts.append(new_fact)
                     except PrologError as err:
                       if err.prolog().startswith('existence_error'):
                         continue
@@ -903,7 +928,7 @@ blawxrun(Query, Human) :-
     except PrologLaunchError as err:
       return { "error": "Blawx could not load the reasoner." }
     # Return the results as JSON
-    return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Relationships": relationship_answers, "RelationshipNLG": relationship_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output }
+    return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Relationships": relationship_answers, "RelationshipNLG": relationship_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Relations": rel_facts, "Transcript": transcript_output }
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
