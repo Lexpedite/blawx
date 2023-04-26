@@ -60,9 +60,19 @@
       "AttributeNLG" is a list of dictionaries, each of which has the keys "Attribute", "Order", "Prefix", "Infix" and "Postfix", describing the details provided in an attribute declaration block.
       Order will be either "vo" or "ov", indicating the order in which the object and the value appear in the natural language expression.
 
+      "Relationships" is a list of dictionaries, each of which has the key "Relationship", and between 3 and 10 keys "ParameterN" where N is replaced with the number of the parameter. The "Relationship"
+      is the name of the relationship. Inside each "ParameterN" key is the data type or category for that parameter in the relationship. The available types are the same as for attributes.
+
+      "RelationshipNLG" is a list of dictionaries, each of which has the keys "Relationship", "Postfix", and between 3 and 10 "PrefixN" keys where N is replaced with the number of the parameter. The
+      relationship key is the name of the relationship, the PrefixN keys hold text that should appear before each of the parameters in the relationship, and the Postfix key holds text that should appear
+      after all parameters.
+
       "Objects" is a list of dictionaries, each with the keys "Category" and "Object", describing the category and the name of the object in that category.
 
       "Values" is a list of dictionaries, each with the keys "Object", "Attribute", and "Value", describing a known value for that object and attribute.
+
+      "Relations" is a list of dictionaries, each with the keys "Relationship", and a set of 3 to 10 keys named "ParameterN" where N is replaced with the number of the parameter, describing a known
+      statement for that relationship.
 
       The ontology endpoint is intended to be used at the start of an interaction between Blawx and another application, to provide the other application with information about what data structure is
       used in the encoding, and to provide hints about how to collect items into that data structure.
@@ -82,9 +92,10 @@
       * A 'from_ontology' key, the value of which is a `true` or `false` value. This is used to note which facts were already present in the code and were not provided by the user. Data provided by a user application
         should always set the 'from_ontology' value to `false`.
       * A 'type' key, the values of which can be the strings 'true','false', or 'unknown'.
-      * Either a 'category' or 'attribute' key, where the value is the name of the category or attribute about which a statement is being made.
-      * An 'object' key, the value of which is either the name of an object as a string, or a variable definition (described below).
+      * Either a 'category', 'attribute', or 'relationship' key, where the value is the name of the category or attribute or relationship about which a statement is being made.
+      * For categories and attributes only, an 'object' key, the value of which is either the name of an object as a string, or a variable definition (described below).
       * In the case of non-boolean attributes, a 'value' key, the value of which is the particular value being provided, or a variable definition (described below).
+      * For relationships, a set of between 3 and 10 "parameterN" keys where N is replaced with the parameter number, setting out the value or variable definition for each.
 
       Dates, datetimes, times, and durations are provided as strings in ISO8601 format. Numbers and booleans are provided in the standard JSON format.
       ```
@@ -112,7 +123,13 @@
             'attribute': 'duration',
             'object': 'bob',
             'value': 'P1Y5MT5H30S'
-          }
+          },
+          { 'from_ontology': flase,
+            'type': 'true',
+            'relationship': 'trio',
+            'parameter1': 'bob',
+            'parameter2': 'jane',
+            'parameter3': 'terry'}
         ]
       }
       ```
@@ -146,10 +163,10 @@
         ]
       }
       ```
-      
+      Variable names are not case sensitive. The variable "one" and "One" will be treated as though they are identical.
+
       Additional examples can be obtained by using the Scenario Editor to run a test, and then looking at the "Devel" tab, which will show the JSON
       package that was delivered to the interview endpoint, and the response.
-
       
       The output from the interview endpoint is a JSON dictionary with keys "Answers", "Relevant Statements", and "Transcript".
 

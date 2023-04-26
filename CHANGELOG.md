@@ -16,10 +16,12 @@ a statement that is true (or not) about 3 or more objects or values.
 * Relationship Declaration Block
 * Relationship Selector Blocks
 * Known Relationship Drawer
+* Associated documentation
 
 ### Changed
 * `/onto` endpoint returns information about relationships in addition to categories and attributes
 * the JSON format accepted by the `test` and `interview` endpoints now accepts relationships in addition to categories and attributes
+* Associated documentation
 
 ### Removed
 
@@ -32,14 +34,9 @@ a statement that is true (or not) about 3 or more objects or values.
   * Scenario editor will correctly encode relationship statements
   * Scenario editor will correctly display relationship statements in explanations
 * Documentation
-  * Relationship Declaration Block Page
-  * Relationship Selector Page
-  * Categories & Attributes Page
   * Code Editor Page
-  * Web API Page
 * Examples
   * Update existing examples
-  * Probably doesn't need new examples.
 
 ## [v1.6.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.0-alpha) 2023-04-11
 
