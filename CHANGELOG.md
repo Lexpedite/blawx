@@ -21,9 +21,9 @@ a statement that is true (or not) about 3 or more objects or values.
 ### Changed
 * `/onto` endpoint returns information about relationships in addition to categories and attributes
 * the JSON format accepted by the `test` and `interview` endpoints now accepts relationships in addition to categories and attributes
+* The response from the ontology endpoint is now shown in the "devel" tab of the scenario editor.
+* Scenario Editor has been modified to support relationships.
 * Associated documentation
-
-### Removed
 
 ### Fixed
 * Problems with natural language generation for non-boolean attributes in test editor explanations
@@ -32,12 +32,6 @@ a statement that is true (or not) about 3 or more objects or values.
 * Scenario editor
   * Displays variables properly in fact display
   * Displays data types properly in fact display
-  * New Relationship Forms
-  * Saving
-  * Deleting
-  * Check facts work when sent to reasoner
-* Documentation
-  * Code Editor Page
 * Examples
   * Update existing examples
 

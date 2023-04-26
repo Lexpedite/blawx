@@ -141,8 +141,12 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Devel</h5>
-                            This tab shows the payload sent to the Blawx interview API, and the response
+                            This tab shows the ontology received from the ontology API, the payload sent to the Blawx interview API, and the response
                             received, to illustrate use of the Blawx interview API for developers.
+                            <h6>Ontology</h6>
+                            <div id="ontology">
+                                <!-- The ontology will go here. -->
+                            </div>
                             <h6>Payload</h6>
                             <div id="payload">
                                 <!-- The payload will go here. -->
@@ -868,7 +872,7 @@
                     object_type = ontology['Attributes'][a]['Category'];
                     value_type = ontology['Attributes'][a]['Type'];
                     var value_type_is_category;
-                    if (['date','time','datetime','duration','number'].includes(value_type)) {
+                    if (['date','time','datetime','duration','number','list'].includes(value_type)) {
                         value_type_is_category = false;
                     } else {
                         value_type_is_category = true;
@@ -1045,6 +1049,59 @@
                     output_html += '</svg></button></div></div>';    
                 }
             }
+            for(var r = 0; r < ontology['Relationships'].length; r++) {
+                if (!hidden_by_view.includes('view_rel_' + relationship_name)) {
+                    var relationship_name = ontology['Relationships'][r]['Relationship']
+                    var arity = Object.keys(ontology['Relationships'][r]).length-1;
+                    // Get type info
+                    var types = {};
+                    for (var t = 1; t <= arity; t++) {
+                        types[t] = ontology['Relationships'][r]['Parameter'+t];
+                    }
+                    // Get NLG info
+                    var postfix = "";
+                    var prefixes = [];
+                    for (var n = 0; n < ontology['RelationshipNLG'].length; n++) {
+                        if (relationship_name == ontology['RelationshipNLG'][n]['Relationship']) {
+                            postfix = ontology['RelationshipNLG'][n]['Postfix'];
+                            for (var p = 1; p <= arity; p++) {
+                                prefixes[p] = ontology['RelationshipNLG'][n]['Prefix'+p]
+                            }
+                        }
+                        break;
+                    }
+                    // Truth Type
+                    output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2" id="new_relationship_' + relationship_name + '">';
+                    output_html += '<div class="input-group">';
+                    output_html += '<span class="input-group-text">It is</span>';
+                        
+                    output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example" id="new_relationship_truth_type_' + relationship_name + '">';
+                    output_html += '<option selected value="true">true that</option>';
+                    output_html += '<option value="false">false that</option>';
+                    output_html += '<option value="unknown">uncertain whether</option>';
+                    output_html += '</select></div>';
+                    // Parameters
+                    for (var p = 1; p <= arity; p++) {
+                        if (prefixes[p] != "") {
+                            output_html += '<span class="input-group-text">' + prefixes[p] + '</span>';
+                        }
+                        output_html += generate_field_control(relationship_name,p,types[p]);
+                    }
+                    // Postfix
+                    if (postfix != "") {
+                        output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                    }
+                    // Save and Cancel Buttons
+                    output_html += '<button onclick="save_new_relationship(\'' + relationship_name + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
+                    output_html += '</svg></button>';
+                    output_html += '<button onclick="cancel_new_relationship(\'' + relationship_name + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+                    output_html += '</svg></button></div></div>'; 
+                }
+            }
             output_html += '<div id="new_objects">';
             output_html += '<div class="dropdown">';
             output_html += '<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">';
@@ -1132,6 +1189,66 @@
             target.outerHTML = output_html;
 
         };
+        function generate_field_control(relationship_name,parameter,value_type) {
+            var value_html = "";
+            switch(value_type) {
+                case 'number':
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input type="number" class="form-control" aria-label="New value" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                case 'date':
+                    value_html += '<div class="input-group-text">';
+                    //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                    value_html += '<input type="date" class="form-control" aria-label="Date" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                case 'duration':
+                    value_html += '<div class="input-group-text">';
+                    //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                    value_html += '<span class="input-group-text px-1">S</span>';
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_direction">';
+                    value_html += '</div>';
+                    value_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
+                    value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_days">';
+                    value_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
+                    value_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_hours">';
+                    value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                    value_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_minutes">';
+                    value_html += "</div>";
+                    break;
+                case 'boolean':
+                    break;
+                case 'time':
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input type="time" class="form-control" aria-label="Date" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                case 'datetime':
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                default:
+                    if (ontology['Categories'].includes(value_type)) {
+                        value_html += '<div class="input-group-text">';
+                        value_html += '<select class="form-select" aria-label="Default select example" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                        for (var n=0; n < new_fact_data['facts'].length; n++) {
+                            if ('category' in new_fact_data['facts'][n]) {
+                                if (new_fact_data['facts'][n]['category'] == value_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                    value_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                }
+                            }
+                        }
+                        value_html += '<option value="VAR">any ' + value_type + '</option>';
+                        value_html += '</select></div>';
+                    } else {
+                        value_html += "Can't Render Datatype";
+                    }
+            }
+            return value_html;
+        }
         function toggle_unground_new_object(category) {
             // Get the value of the checkbox
             var checkbox = document.getElementById('new_object_toggle_check_' + category);
@@ -1158,6 +1275,10 @@
         function show_new_attribute(attribute) {
             target = document.getElementById('new_attribute_' + attribute);
             target.classList.add('show');
+        };
+        function show_new_relationship(relationship) {
+            target = document.getElementById('new_relationship_' + relationship);
+            target.classList.add('show');
         }
         function save_new_object(category){
             // Add the object to the data
@@ -1175,6 +1296,31 @@
             // redraw
             draw_facts();
         };
+        function save_new_relationship(relationship) {
+            var target_truth_value = document.getElementById('new_relationship_truth_type_' + relationship);
+            var new_relationship_statement = {'from_ontology': false, 'relationship': relationship, 'type': target_truth_value.value}
+            // I Need to get the Arity of the relationship
+            var arity = 3;
+            for (var r = 0; r < ontology['Relationships'].length; r++) {
+                if (relationship == ontology['Relationships'][r]['Relationship']) {
+                    arity = Object.keys(ontology['Relationships'][r]).length-1;
+                    break;
+                }
+            }
+            // Now I need to get the values for all of the parameters
+            var variables = "ABCDEFGHIJK";
+            for (var p = 1; p <= arity; p++) {
+                target_param = document.getElementById('new_relationship_parameter_' + p + '_' + relationship);
+                target_value = target_param.value;
+                if (target_value.startsWith('any ')) {
+                    new_relationship_statement['parameter'+p] = {'variable': variables[p]};
+                } else {
+                    new_relationship_statement['parameter'+p] = target_value;
+                }
+            }
+            new_fact_data['facts'].push(new_relationship_statement);
+            draw_facts();
+        }
         function cancel_new_object(category){
             // Delete the value in the current new object
             //target_new_object = document.getElementById('category_' + category + '_new_object');
@@ -1189,6 +1335,10 @@
         function cancel_new_value(attribute){
             target_attribute = document.getElementById('new_attribute_' + attribute);
             target_attribute.classList.remove('show');
+        };
+        function cancel_new_relationship(relationship) {
+            target = document.getElementById('new_relationship_' + relationship);
+            target.classList.remove('show');
         }
         function show_new_value(category,object,attribute){
             // Close any other open new object or value
@@ -1303,6 +1453,7 @@
         var answer_element = document.getElementById('answers');
         var payload_element = document.getElementById('payload');
         var response_element = document.getElementById('response');
+        var ontology_element = document.getElementById('ontology');
         function run_test() {
             var testrun_request = new XMLHttpRequest();
             testrun_request.onload = function () {
@@ -1311,6 +1462,8 @@
                 payload_element.innerHTML = '<pre>' + JSON.stringify(new_fact_data,null,2) + '</pre>'
                 
                 response_element.innerHTML = '<pre>' + JSON.stringify(parsed_test_response,null,2) + '</pre>'
+
+                ontology_element.innerHTML = '<pre>' + JSON.stringify(ontology,null,2) + '</pre>'
                 // If the question is answered
                 if (parsed_test_response['Answers'].length) {
                     // Display the answer
