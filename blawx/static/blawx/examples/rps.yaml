@@ -342,12 +342,11 @@
       name="attribute_name">winner</field><field name="attribute_type">player</field><field
       name="order">ov</field><field name="prefix">the winner of</field><field name="first_element">object</field><field
       name="infix">is</field><field name="second_element">value</field><field name="postfix"></field><next><block
-      type="new_attribute_declaration" id="+I7vlUX@*IBw-D]|pcN*"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="player" attribute_type="sign"></mutation><field name="category_name">player</field><field
-      name="attribute_name">throw</field><field name="attribute_type">sign</field><field
-      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
-      name="infix">threw</field><field name="second_element">value</field><field name="postfix"></field></block></next></block></statement></block><block
-      type="attributed_rule" id="XE]D?M1sy$NYL.mY:t%/" x="35" y="271"><field name="defeasible">FALSE</field><field
+      type="relationship_declaration" id="-F:=Pq;YO!md(8l{/}I9"><field name="relationship_name">throw</field><field
+      name="relationship_arity">3</field><field name="prefix1"></field><field name="type1">player</field><field
+      name="prefix2">threw</field><field name="type2">sign</field><field name="prefix3">in</field><field
+      name="type3">game</field><field name="postfix"></field></block></next></block></statement></block><block
+      type="attributed_rule" id="XE]D?M1sy$NYL.mY:t%/" x="29" y="232"><field name="defeasible">FALSE</field><field
       name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
       id="vNZFpTeM~;IQhglF9f6R"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="game"></mutation><field
       name="category_name">game</field><value name="object"><block type="variable"
@@ -373,25 +372,27 @@
       name="infix">played in</field><field name="postfix"></field><value name="first_element"><block
       type="variable" id="^WvP_fO$L]x`T_BtV4ZH"><field name="variable_name">Player2</field></block></value><value
       name="second_element"><block type="variable" id="A)senUgOQr|hPNOaHOqk"><field
-      name="variable_name">Game</field></block></value><next><block type="attribute_selector"
-      id="v@lv6R_LL^^pgjSEIL_W"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="throw"
-      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
-      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="g)?_=aQDu:JivW,xfI=v"><field name="variable_name">Player1</field></block></value><value
-      name="second_element"><block type="variable" id="Lu$]-o*X*RjwXBhmMhuv"><field
-      name="variable_name">Throw1</field></block></value><next><block type="attribute_selector"
-      id="K8-#,!4#U_-{zVkit(18"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="throw"
-      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
-      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="fxS}`sB[IC#0Xx.vhvQ["><field name="variable_name">Player2</field></block></value><value
-      name="second_element"><block type="variable" id="t87!IS*$R6pv(5:b$_#S"><field
-      name="variable_name">Throw2</field></block></value><next><block type="attribute_selector"
-      id="H-@fu`8IREm4Ix|q+h?R"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="beats"
-      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
-      name="infix">beats</field><field name="postfix"></field><value name="first_element"><block
-      type="variable" id="}f6*mn3827#1NFp*y|5C"><field name="variable_name">Throw1</field></block></value><value
-      name="second_element"><block type="variable" id="s-}w@zN[~tg2n~@Q9vb%"><field
-      name="variable_name">Throw2</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><value
+      name="variable_name">Game</field></block></value><next><block type="relationship_selector3"
+      id="G!jXDW.O#eES6R.+qd1$"><mutation xmlns="http://www.w3.org/1999/xhtml" arity="3"
+      relationship_name="throw" type1="player" type2="sign" type3="game"></mutation><field
+      name="prefix1"></field><field name="prefix2">threw</field><field name="prefix3">in</field><field
+      name="postfix"></field><value name="parameter1"><block type="variable" id="g)?_=aQDu:JivW,xfI=v"><field
+      name="variable_name">Player1</field></block></value><value name="parameter2"><block
+      type="variable" id="Lu$]-o*X*RjwXBhmMhuv"><field name="variable_name">Throw1</field></block></value><value
+      name="parameter3"><block type="variable" id="~SpPO:Np^$G[XM2xQ|W`"><field name="variable_name">Game</field></block></value><next><block
+      type="relationship_selector3" id="p=8,;aGQ!-{oa3:hw);s"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      arity="3" relationship_name="throw" type1="player" type2="sign" type3="game"></mutation><field
+      name="prefix1"></field><field name="prefix2">threw</field><field name="prefix3">in</field><field
+      name="postfix"></field><value name="parameter1"><block type="variable" id="fxS}`sB[IC#0Xx.vhvQ["><field
+      name="variable_name">Player2</field></block></value><value name="parameter2"><block
+      type="variable" id="t87!IS*$R6pv(5:b$_#S"><field name="variable_name">Throw2</field></block></value><value
+      name="parameter3"><block type="variable" id="=X1yx?dv@LVOdLHZWe$J"><field name="variable_name">Game</field></block></value><next><block
+      type="attribute_selector" id="H-@fu`8IREm4Ix|q+h?R"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      attributename="beats" attributetype="sign" attributeorder="ov"></mutation><field
+      name="prefix"></field><field name="infix">beats</field><field name="postfix"></field><value
+      name="first_element"><block type="variable" id="}f6*mn3827#1NFp*y|5C"><field
+      name="variable_name">Throw1</field></block></value><value name="second_element"><block
+      type="variable" id="s-}w@zN[~tg2n~@Q9vb%"><field name="variable_name">Throw2</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><value
       name="source"><block type="doc_selector" id="oCg8#VUX-Tk6;l7]AQ.t"><mutation
       xmlns="http://www.w3.org/1999/xhtml" section_reference="sec_4_section"></mutation><field
       name="doc_part_name">RPSA 4</field></block></value><statement name="conclusion"><block
@@ -402,10 +403,10 @@
       name="variable_name">Game</field></block></value><value name="second_element"><block
       type="variable" id="ag,!^lQb:dB}bgV-;vE."><field name="variable_name">Player1</field></block></value></block></statement></block></xml>
     scasp_encoding: "blawx_attribute(game,winner,player).\nblawx_attribute_nlg(winner,ov,\"the
-      winner of\",\"is\",\"\").\n#pred winner(X,Y) :: 'the winner of @(X) is @(Y)'.\n#pred
-      holds(user,winner,X,Y) :: 'it is provided as a fact that the winner of @(X)
-      is @(Y)'.\n#pred holds(user,-winner,X,Y) :: 'it is provided as a fact that it
-      is not the case that the winner of @(X) is @(Y)'.\n#pred holds(Z,winner,X,Y)
+      winner of\",\"is\",\"\").\n:- dynamic winner/2.\n#pred winner(X,Y) :: 'the winner
+      of @(X) is @(Y)'.\n#pred holds(user,winner,X,Y) :: 'it is provided as a fact
+      that the winner of @(X) is @(Y)'.\n#pred holds(user,-winner,X,Y) :: 'it is provided
+      as a fact that it is not the case that the winner of @(X) is @(Y)'.\n#pred holds(Z,winner,X,Y)
       :: 'the conclusion in @(Z) that the winner of @(X) is @(Y) holds'.\n#pred holds(Z,-winner,X,Y)
       :: 'the conclusion in @(Z) that it is not the case that the winner of @(X) is
       @(Y) holds'.\n#pred according_to(Z,winner,X,Y) :: 'according to @(Z), the winner
@@ -413,17 +414,85 @@
       it is not the case that the winner of @(X) is @(Y)'.\n#pred blawx_defeated(Z,winner,X,Y)
       :: 'the conclusion in @(Z) that the winner of @(X) is @(Y) is defeated'.\n#pred
       blawx_defeated(Z,-winner,X,Y) :: 'the conclusion in @(Z) that the winner of
-      @(X) is @(Y) is defeated'.\nblawx_attribute(player,throw,sign).\nblawx_attribute_nlg(throw,ov,\"\",\"threw\",\"\").\n#pred
-      throw(X,Y) :: '@(X) threw @(Y)'.\n#pred holds(user,throw,X,Y) :: 'it is provided
-      as a fact that @(X) threw @(Y)'.\n#pred holds(user,-throw,X,Y) :: 'it is provided
-      as a fact that it is not the case that @(X) threw @(Y)'.\n#pred holds(Z,throw,X,Y)
-      :: 'the conclusion in @(Z) that @(X) threw @(Y) holds'.\n#pred holds(Z,-throw,X,Y)
-      :: 'the conclusion in @(Z) that it is not the case that @(X) threw @(Y) holds'.\n#pred
-      according_to(Z,throw,X,Y) :: 'according to @(Z), @(X) threw @(Y)'.\n#pred according_to(Z,-throw,X,Y)
-      :: 'according to @(Z), it is not the case that @(X) threw @(Y)'.\n#pred blawx_defeated(Z,throw,X,Y)
-      :: 'the conclusion in @(Z) that @(X) threw @(Y) is defeated'.\n#pred blawx_defeated(Z,-throw,X,Y)
-      :: 'the conclusion in @(Z) that @(X) threw @(Y) is defeated'.\n\naccording_to(sec_4_section,winner,Game,Player1)
-      :- game(Game),\nplayer(Player1),\nplayer(Player2),\nPlayer1 \\= Player2,\nplayer(Game,Player1),\nplayer(Game,Player2),\nthrow(Player1,Throw1),\nthrow(Player2,Throw2),\nbeats(Throw1,Throw2).\n\n%
+      @(X) is @(Y) is defeated'.\n#pred blawx_initially(winner(X,Y)) :: 'that the
+      winner of @(X) is @(Y) holds initially'.\n#pred blawx_initially(-winner(X,Y))
+      :: 'that it is not the case that the winner of @(X) is @(Y) holds initially'.\n#pred
+      blawx_ultimately(winner(X,Y)) :: 'that the winner of @(X) is @(Y) holds ultimately'.\n#pred
+      blawx_ultimately(-winner(X,Y)) :: 'that it is not the case that the winner of
+      @(X) is @(Y) holds ultimately'.\n#pred blawx_as_of(winner(X,Y),T) :: 'that the
+      winner of @(X) is @(Y) holds at @(T)'.\n#pred blawx_as_of(-winner(X,Y),T) ::
+      'that it is not the case that the winner of @(X) is @(Y) holds at @(T)'.\n#pred
+      blawx_during(T1,winner(X,Y),T2) :: 'that the winner of @(X) is @(Y) held between
+      @(T1) and @(T2)'.\n#pred blawx_during(T1,-winner(X,Y),T2) :: 'that it is not
+      the case that the winner of @(X) is @(Y) held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(winner(X,Y),T) :: 'that the winner of @(X) is @(Y) became true
+      at @(T)'.\n#pred blawx_becomes(-winner(X,Y),T) :: 'that it is not the case that
+      the winner of @(X) is @(Y) became true at @(T)'.\nblawx_as_of(winner(X,Y),datetime(Time))
+      :- blawx_becomes(winner(X,Y),datetime(BeforeT)), not blawx_becomes(-winner(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(winner(X,Y),datetime(Time))
+      :- blawx_initially(winner(X,Y)), not blawx_becomes(-winner(X,Y), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),winner(X,Y),datetime(End)) :-
+      blawx_becomes(winner(X,Y),datetime(Start)), not blawx_becomes(-winner(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-winner(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),winner(X,Y),datetime(End))
+      :- blawx_initially(winner(X,Y)), not blawx_becomes(-winner(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(-winner(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),winner(X,Y),datetime(eot))
+      :- blawx_becomes(winner(X,Y),datetime(Start)), not blawx_becomes(-winner(X,Y),datetime(AfterStart)),
+      blawx_ultimately(winner(X,Y)), AfterStart #> Start.\nblawx_as_of(-winner(X,Y),datetime(Time))
+      :- blawx_becomes(-winner(X,Y),datetime(BeforeT)), not blawx_becomes(winner(X,Y),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-winner(X,Y),datetime(Time))
+      :- blawx_initially(-winner(X,Y)), not blawx_becomes(winner(X,Y), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-winner(X,Y),datetime(End))
+      :- blawx_becomes(-winner(X,Y),datetime(Start)), not blawx_becomes(winner(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(winner(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-winner(X,Y),datetime(End))
+      :- blawx_initially(-winner(X,Y)), not blawx_becomes(winner(X,Y),datetime(BeforeEnd)),
+      blawx_becomes(winner(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-winner(X,Y),datetime(eot))
+      :- blawx_becomes(-winner(X,Y),datetime(Start)), not blawx_becomes(winner(X,Y),datetime(AfterStart)),
+      blawx_ultimately(-winner(X,Y)), AfterStart #> Start.\nblawx_relationship(throw,player,sign,game).\nblawx_relationship_nlg(throw,\"\",\"threw\",\"in\",\"\").\n:-
+      dynamic throw/3.\n#pred throw(A,B,C) :: '@(A) threw @(B) in @(C)'.\n#pred holds(user,throw,A,B,C)
+      :: 'it is provided as a fact that @(A) threw @(B) in @(C)'.\n#pred holds(user,-throw,A,B,C)
+      :: 'it is provided as a fact that it is not the case that @(A) threw @(B) in
+      @(C)'.\n#pred holds(Z,throw,A,B,C) :: 'the conclusion in @(Z) that @(A) threw
+      @(B) in @(C) holds'.\n#pred holds(Z,-throw,A,B,C) :: 'the conclusion in @(Z)
+      that it is not the case that @(A) threw @(B) in @(C) holds'.\n#pred according_to(Z,throw,A,B,C)
+      :: 'according to @(Z), @(A) threw @(B) in @(C)'.\n#pred according_to(Z,-throw,A,B,C)
+      :: 'according to @(Z), it is not the case that @(A) threw @(B) in @(C)'.\n#pred
+      blawx_defeated(Z,throw,A,B,C) :: 'the conclusion in @(Z) that @(A) threw @(B)
+      in @(C) is defeated'.\n#pred blawx_defeated(Z,-throw,A,B,C) :: 'the conclusion
+      in @(Z) that @(A) threw @(B) in @(C) is defeated'.\n#pred blawx_initially(throw(A,B,C))
+      :: 'that @(A) threw @(B) in @(C) holds initially'.\n#pred blawx_initially(-throw(A,B,C))
+      :: 'that it is not the case that @(A) threw @(B) in @(C) holds initially'.\n#pred
+      blawx_ultimately(throw(A,B,C)) :: 'that @(A) threw @(B) in @(C) holds ultimately'.\n#pred
+      blawx_ultimately(-throw(A,B,C)) :: 'that it is not the case that @(A) threw
+      @(B) in @(C) holds ultimately'.\n#pred blawx_as_of(throw(A,B,C),T) :: 'that
+      @(A) threw @(B) in @(C) holds at @(T)'.\n#pred blawx_as_of(-throw(A,B,C),T)
+      :: 'that it is not the case that @(A) threw @(B) in @(C) holds at @(T)'.\n#pred
+      blawx_during(T1,throw(A,B,C),T2) :: 'that @(A) threw @(B) in @(C) held between
+      @(T1) and @(T2)'.\n#pred blawx_during(T1,-throw(A,B,C),T2) :: 'that it is not
+      the case that @(A) threw @(B) in @(C) held between @(T1) and @(T2)'.\n#pred
+      blawx_becomes(throw(A,B,C),T) :: 'that @(A) threw @(B) in @(C) became true at
+      @(T)'.\n#pred blawx_becomes(-throw(A,B,C),T) :: 'that it is not the case that
+      @(A) threw @(B) in @(C) became true at @(T)'.\nblawx_as_of(throw(A,B,C),datetime(Time))
+      :- blawx_becomes(throw(A,B,C),datetime(BeforeT)), not blawx_becomes(-throw(A,B,C),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(throw(A,B,C),datetime(Time))
+      :- blawx_initially(throw(A,B,C)), not blawx_becomes(-throw(A,B,C), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),throw(A,B,C),datetime(End))
+      :- blawx_becomes(throw(A,B,C),datetime(Start)), not blawx_becomes(-throw(A,B,C),datetime(BeforeEnd)),
+      blawx_becomes(-throw(A,B,C),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),throw(A,B,C),datetime(End))
+      :- blawx_initially(throw(A,B,C)), not blawx_becomes(-throwA,B,C),datetime(BeforeEnd)),
+      blawx_becomes(-throw(A,B,C),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),throw(A,B,C),datetime(eot))
+      :- blawx_becomes(throw(A,B,C),datetime(Start)), not blawx_becomes(-throw(A,B,C),datetime(AfterStart)),
+      blawx_ultimately(throw(A,B,C)), AfterStart #> Start.\nblawx_as_of(-throw(A,B,C),datetime(Time))
+      :- blawx_becomes(-throw(A,B,C),datetime(BeforeT)), not blawx_becomes(throw(A,B,C),
+      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-throw(A,B,C),datetime(Time))
+      :- blawx_initially(-throw(A,B,C)), not blawx_becomes(throw(A,B,C), datetime(BetweenT)),
+      BetweenT #< Time.\nblawx_during(datetime(Start),-throw(A,B,C),datetime(End))
+      :- blawx_becomes(-throw(A,B,C),datetime(Start)), not blawx_becomes(throw(A,B,C),datetime(BeforeEnd)),
+      blawx_becomes(throw(A,B,C),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-throw(A,B,C),datetime(End))
+      :- blawx_initially(-throw(A,B,C)), not blawx_becomes(throw(A,B,C),datetime(BeforeEnd)),
+      blawx_becomes(throw(A,B,C),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-throw(A,B,C),datetime(eot))
+      :- blawx_becomes(-throw(A,B,C),datetime(Start)), not blawx_becomes(throw(A,B,C),datetime(AfterStart)),
+      blawx_ultimately(-throw(A,B,C)), AfterStart #> Start.\n\naccording_to(sec_4_section,winner,Game,Player1)
+      :- game(Game),\nplayer(Player1),\nplayer(Player2),\nPlayer1 \\= Player2,\nplayer(Game,Player1),\nplayer(Game,Player2),\nthrow(Player1,Throw1,Game),\nthrow(Player2,Throw2,Game),\nbeats(Throw1,Throw2).\n\n%
       BLAWX CHECK DUPLICATES\nholds(sec_4_section,winner,Game,Player1) :- according_to(sec_4_section,winner,Game,Player1).\n\n%
       BLAWX CHECK DUPLICATES\n  winner(Game,Player1) :- holds(sec_4_section,winner,Game,Player1)."
 - model: blawx.blawxtest
@@ -457,23 +526,30 @@
       objectname="jane"></mutation><field name="object_name">jane</field></block></value><value
       name="second_element"><block type="object_selector" id="S#:1}-2^J+BwSBluLPZA"><mutation
       xmlns="http://www.w3.org/1999/xhtml" objectname="testgame"></mutation><field
-      name="object_name">testgame</field></block></value><next><block type="attribute_selector"
-      id="kN$M_}tBn6-wfP26{Mm0"><mutation xmlns="http://www.w3.org/1999/xhtml" attributename="throw"
-      attributetype="sign" attributeorder="ov"></mutation><field name="prefix"></field><field
-      name="infix">threw</field><field name="postfix"></field><value name="first_element"><block
-      type="object_selector" id=":^KR*e_qTk)LaJNNg844"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      objectname="jane"></mutation><field name="object_name">jane</field></block></value><value
-      name="second_element"><block type="object_selector" id=";YbW#a3=T!rN(%ixl!g:"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" objectname="rock"></mutation><field name="object_name">rock</field></block></value><next><block
-      type="attribute_selector" id="HrTDKJ:obf9U;+hM09uk"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="throw" attributetype="sign" attributeorder="ov"></mutation><field
-      name="prefix"></field><field name="infix">threw</field><field name="postfix"></field><value
-      name="first_element"><block type="object_selector" id="9fAIQ)cO.|HiiY,=h|Ee"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field name="object_name">bob</field></block></value><value
-      name="second_element"><block type="object_selector" id="R7rAMI(Rb2@~!$IunHn`"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" objectname="scissors"></mutation><field
-      name="object_name">scissors</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
-      type="query" id="7Bvu;d7/sRZH4WYjc2r*" x="55" y="341"><statement name="query"><block
+      name="object_name">testgame</field></block></value><next><block type="relationship_selector3"
+      id="x4qDOCncPBAxR1gS6E~3"><mutation xmlns="http://www.w3.org/1999/xhtml" arity="3"
+      relationship_name="throw" type1="player" type2="sign" type3="game"></mutation><field
+      name="prefix1"></field><field name="prefix2">threw</field><field name="prefix3">in</field><field
+      name="postfix"></field><value name="parameter1"><block type="object_selector"
+      id=":^KR*e_qTk)LaJNNg844"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="jane"></mutation><field
+      name="object_name">jane</field></block></value><value name="parameter2"><block
+      type="object_selector" id=";YbW#a3=T!rN(%ixl!g:"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="rock"></mutation><field name="object_name">rock</field></block></value><value
+      name="parameter3"><block type="object_selector" id="a)LSTQxkMv2:|5e}|qni"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="testgame"></mutation><field
+      name="object_name">testgame</field></block></value><next><block type="relationship_selector3"
+      id="CwCT3f;2LT:p5J^nI$8T"><mutation xmlns="http://www.w3.org/1999/xhtml" arity="3"
+      relationship_name="throw" type1="player" type2="sign" type3="game"></mutation><field
+      name="prefix1"></field><field name="prefix2">threw</field><field name="prefix3">in</field><field
+      name="postfix"></field><value name="parameter1"><block type="object_selector"
+      id="9fAIQ)cO.|HiiY,=h|Ee"><mutation xmlns="http://www.w3.org/1999/xhtml" objectname="bob"></mutation><field
+      name="object_name">bob</field></block></value><value name="parameter2"><block
+      type="object_selector" id="R7rAMI(Rb2@~!$IunHn`"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      objectname="scissors"></mutation><field name="object_name">scissors</field></block></value><value
+      name="parameter3"><block type="object_selector" id="9n^kBBMdgC~weCwrtq{+"><mutation
+      xmlns="http://www.w3.org/1999/xhtml" objectname="testgame"></mutation><field
+      name="object_name">testgame</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block><block
+      type="query" id="7Bvu;d7/sRZH4WYjc2r*" x="85" y="344"><statement name="query"><block
       type="attribute_selector" id="$Z{Xa^4K^6WI,3_oGh]y"><mutation xmlns="http://www.w3.org/1999/xhtml"
       attributename="winner" attributetype="player" attributeorder="ov"></mutation><field
       name="prefix">the winner of</field><field name="infix">is</field><field name="postfix"></field><value
@@ -491,9 +567,9 @@
 
       player(testgame,jane).
 
-      throw(jane,rock).
+      throw(jane,rock,testgame).
 
-      throw(bob,scissors).
+      throw(bob,scissors,testgame).
 
 
       ?- winner(testgame,Winner).'
@@ -529,12 +605,13 @@
       name="variable_name">A</field></block></value><value name="second_element"><block
       type="variable" id="plORf)x!X:1pjMrhb%t,"><field name="variable_name">B</field></block></value></block></statement></block><block
       type="assume" id="H(},Uv!uNIC~@S*)4s6r" x="90" y="373"><statement name="statements"><block
-      type="attribute_selector" id="*b?/IeBFxdpoLt7a~quO"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      attributename="throw" attributetype="sign" attributeorder="ov"></mutation><field
-      name="prefix"></field><field name="infix">threw</field><field name="postfix"></field><value
-      name="first_element"><block type="variable" id="BEAS@GnF=3U$x4/5_`8n"><field
-      name="variable_name">A</field></block></value><value name="second_element"><block
-      type="variable" id="OD}H:m;/Zk1wrhZCM+Pi"><field name="variable_name">B</field></block></value></block></statement></block><block
+      type="relationship_selector3" id="+ZvL`3$XM7J?bTBh5Sc/"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      arity="3" relationship_name="throw" type1="player" type2="sign" type3="game"></mutation><field
+      name="prefix1"></field><field name="prefix2">threw</field><field name="prefix3">in</field><field
+      name="postfix"></field><value name="parameter1"><block type="variable" id="McI:~Lzo#IE?_k^:csa]"><field
+      name="variable_name">A</field></block></value><value name="parameter2"><block
+      type="variable" id="pS1h(-l(*`sz3`[xaz5m"><field name="variable_name">B</field></block></value><value
+      name="parameter3"><block type="variable" id="O26/^F%dQ3KjQC9w/]68"><field name="variable_name">C</field></block></value></block></statement></block><block
       type="query" id="~~#dH%nQ*}tcOz=aC_I8" x="85" y="483"><comment pinned="false"
       h="120" w="359">We ask specifically whether bob won any games so that we don't
       get the same three answers twice, once for each possible player.</comment><statement
@@ -564,7 +641,7 @@
       #abducible player(B,A).
 
 
-      #abducible throw(A,B).
+      #abducible throw(A,B,C).
 
 
       % We ask specifically whether bob won any games so that we don''t
