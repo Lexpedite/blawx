@@ -1,15 +1,13 @@
 - model: blawx.docpage
   pk: features/categories
   fields:
-    title: Categories, Objects, and Attributes
+    title: Categories, Attributes, Relationships
     content: |
-      # Categories, Objects, and Attributes
+      # Categories, Attributes, and Relationships
 
-      Categories, Objects, and
-      Attributes are how Blawx organizes what it knows about the world.
+      Categories, Attributes, and Relationships are how Blawx organizes what it knows about the world.
 
-      A Category
-      is a type of object. For example, "Car."
+      A Category is a type of object. For example, "Car."
 
       A Category has Attributes,
       which are names for things that you can know about things in that Category.
@@ -26,9 +24,9 @@
       The information that you put into
       an object's attribute has to be of
       the correct type. You can't put a number
-      if the attribute is supposed to hold a true or false value, and vice-versa.
+      if the attribute is supposed to hold a date value, and vice-versa.
 
-      An easy way
+            An easy way
       to think of a Category is as a description of a blank form. The form might have
       a name, like “Application for a Permit”. That is like the Category name. A form
       will also have fields that can be filled in, like “Applicant’s Name". Those are
@@ -40,11 +38,13 @@
       of an object. Some fields on the form are for checkmarks, others numbers,
       and others dates. Those are like the types of the category attributes.
 
-      An
-      attribute can hold either a basic data type, or objects in a category.
+      A Relationship is a thing that is true about a combination of 3 or more objects and values.
+      For example, you might want to record information about where cars placed in races, and you
+      could create a relationship between a car (a category), a race (another category), and a number indicating the finishing position.
 
-      The
-      basic data types are numbers, true or false values, dates, and durations.
+      An attribute or a relationship can hold either a basic data type, or objects in a category.
+
+      The basic data types are numbers, true or false values, dates, times, datetimes, durations, and lists.
 
       Not only can you use your Categories as a type, but you
       can use your category
@@ -243,3 +243,17 @@
 
       So when you create a "True / False" attribute, it has only an "object" field, and you only need to customize the text
       that appears before and after the name of the object.
+
+      ## Relationships
+
+      You can create a relationship by using the new relationship block. You need to give it a name, which
+      must be lower case and not have spaces. You also need to give it a number of objects or values that will
+      be related to one another. Note that if what you are looking for is a relationship between 2 objects,
+      you should use an Attribute instead.
+
+      ![New Relationship Block](/static/blawx/docs/blocks/new_relationship.png)
+
+      Once you have chosen the name and the number of objects or values, you will be able to choose a type for
+      each of the elements, choosing between the available data types and the known categories. You can also
+      provide the text that should appear before, between, and after all of the elements. This text will be used
+      to build the relationship selector block, and will be used in explanations.
