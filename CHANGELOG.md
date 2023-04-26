@@ -31,6 +31,15 @@ a statement that is true (or not) about 3 or more objects or values.
   * Scenario editor will let you add relationship statements to your facts
   * Scenario editor will correctly encode relationship statements
   * Scenario editor will correctly display relationship statements in explanations
+* Documentation
+  * Relationship Declaration Block Page
+  * Relationship Selector Page
+  * Categories & Attributes Page
+  * Code Editor Page
+  * Web API Page
+* Examples
+  * Update existing examples
+  * Probably doesn't need new examples.
 
 ## [v1.6.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.0-alpha) 2023-04-11
 
