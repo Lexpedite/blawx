@@ -872,7 +872,7 @@ blawxrun(Query, Human) :-
                       parameters = len(a)-1
                       param = 1
                       while param <= parameters:
-                        query += 'Parameter'+str(param) + ","
+                        query += 'Prefix'+str(param) + ","
                         param += 1
                       query += "Postfix),Human)."
                       rel_nlg_query_response = swipl_thread.query(query)
@@ -881,7 +881,7 @@ blawxrun(Query, Human) :-
                         new_nlg = {"Relationship": a['Relationship'], "Postfix": relnlg['Variables']['Postfix']}
                         param_count = 1
                         while param_count <= parameters:
-                          new_nlg['Parameter'+str(param_count)] = relnlg['Variables']['Parameter'+str(param_count)]
+                          new_nlg['Prefix'+str(param_count)] = relnlg['Variables']['Prefix'+str(param_count)]
                           param_count += 1
                         relationship_nlg.append(new_nlg)
                     except PrologError as err:

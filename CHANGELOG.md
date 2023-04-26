@@ -30,9 +30,12 @@ a statement that is true (or not) about 3 or more objects or values.
 
 ### TODO
 * Scenario editor
-  * Scenario editor will let you add relationship statements to your facts
-  * Scenario editor will correctly encode relationship statements
-  * Scenario editor will correctly display relationship statements in explanations
+  * Displays variables properly in fact display
+  * Displays data types properly in fact display
+  * New Relationship Forms
+  * Saving
+  * Deleting
+  * Check facts work when sent to reasoner
 * Documentation
   * Code Editor Page
 * Examples

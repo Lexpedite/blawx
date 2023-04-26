@@ -703,7 +703,7 @@
                 if (predicate_name == "gt") {
                     return displayValue(model.args[0],human) + " is greater than or equal to" + displayValue(model.args[1],human)
                 }
-                predicate_type = model.args.length; // 1 is category, 2 is attribute
+                predicate_type = model.args.length; // 1 is category, 2 is attribute (not any more), 3+ is relationship
                 var prefix = "";
                 var infix = "";
                 var postfix = "";
@@ -727,7 +727,7 @@
                         }
                     }
                     return displayValue(object,human) + " is a " + predicate_name;
-                } else { // it is an attribute
+                } else if (predicate_type == 2) { // it is a binary attribute
                     object = model.args[0];
                     value = model.args[1];
                         
@@ -746,6 +746,25 @@
                         }
                     }
                     return displayValue(object,human) + "'s " + predicate_name + " is " + displayValue(value,human);
+                } else { // It is a relationship
+                    var postfix = "";
+                    var prefixes = {};
+                    var arity = model.args.length;
+                    var output = ""
+                    for (var i=0; i < ontology.RelationshipNLG.length; i++) {
+                        if (ontology.RelationshipNLG[i].Relationship = predicate_name) {
+                            postfix = ontology.RelationshipNLG[i].Postfix;
+                            for (var p=1; p<=arity; p++) {
+                                prefixes[p] = ontology.RelationshipNLG[i]['Prefix'+p];
+                            }
+                            break;
+                        }
+                    }
+                    for (var p=1; p <= arity; p++) {
+                        output += prefixes[p] + " " + displayValue(model.args[p-1],human) + " ";
+                    }
+                    output += postfix;
+                    return output;
                 }
             }
         }
@@ -757,6 +776,7 @@
             objects = ontology['Objects'];
             attributes = ontology['Attributes'];
             values = ontology['Values'];
+            relations = ontology['Relations'];
             for (var i=0; i < objects.length; i++) {
                 var new_fact_statement = {'from_ontology': true, 'type': 'true','category': objects[i]['Category'], 'object': objects[i]['Object']}
                 new_fact_data['facts'].push(new_fact_statement);
@@ -777,6 +797,14 @@
                     new_fact_statement['value'] = values[l]['Value']
                 }
                 new_fact_data['facts'].push(new_fact_statement);
+            }
+            relationships = ontology['Relationships'];
+            for (var r=0; r < relations.length; r++) {
+                var new_relation = {'from_ontology': true, 'type': 'true', 'relationship': relations[r]['Relationship']}
+                for (var p=1; p <= Object.keys(relations[r]).length-1; p++) {
+                    new_relation['parameter'+p] = relations[r]['Parameter'+p]
+                }
+                new_fact_data['facts'].push(new_relation);
             }
 
         }
@@ -1018,57 +1046,84 @@
                 }
             }
             output_html += '<div id="new_objects">';
-                output_html += '<div class="dropdown">';
-                output_html += '<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">';
-                output_html += '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>';
-                output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
-                output_html += '</svg>Add Fact</button>';
-                output_html += '<ul class="dropdown-menu w-100">';
-                
-                var categories = Object.keys(fact_data);
-                
-                for(var c=0; c < ontology['Categories'].length; c++) {
-                    if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
-                        var prefix = "";
-                        var postfix = "is a " + ontology['Categories'][c];
-                        for (var i=0; i< ontology['CategoryNLG'].length; i++) {
-                            if (ontology['CategoryNLG'][i]['Category'] == ontology['Categories'][c]) {
-                                prefix = ontology['CategoryNLG'][i]['Prefix'];
-                                postfix = ontology['CategoryNLG'][i]['Postfix'];
-                                break;
-                            }
+            output_html += '<div class="dropdown">';
+            output_html += '<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">';
+            output_html += '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>';
+            output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
+            output_html += '</svg>Add Fact</button>';
+            output_html += '<ul class="dropdown-menu w-100">';
+            
+            var categories = Object.keys(fact_data);
+            
+            for(var c=0; c < ontology['Categories'].length; c++) {
+                if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
+                    var prefix = "";
+                    var postfix = "is a " + ontology['Categories'][c];
+                    for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                        if (ontology['CategoryNLG'][i]['Category'] == ontology['Categories'][c]) {
+                            prefix = ontology['CategoryNLG'][i]['Prefix'];
+                            postfix = ontology['CategoryNLG'][i]['Postfix'];
+                            break;
                         }
-                        output_html += '<li><a onclick="show_new_object(\'' + ontology['Categories'][c] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>object</i> ' + postfix + '</a></li>';
                     }
+                    output_html += '<li><a onclick="show_new_object(\'' + ontology['Categories'][c] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>object</i> ' + postfix + '</a></li>';
                 }
-                for(var a=0; a < ontology['Attributes'].length; a++) {
-                    if (!hidden_by_view.includes('view_att_' + ontology['Attributes'][a]['Attribute'])) {    
-                        var attribute_name = ontology['Attributes'][a]['Attribute'];
-                        var object_type = ontology['Attributes'][a]['Category'];
-                        var value_type = ontology['Attributes'][a]['Type'];
-                        for (var i=0; i< ontology['AttributeNLG'].length; i++) {
-                            if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
-                                prefix = ontology['AttributeNLG'][i]['Prefix'];
-                                infix = ontology['AttributeNLG'][i]['Infix'];
-                                postfix = ontology['AttributeNLG'][i]['Postfix'];
-                                order = ontology['AttributeNLG'][i]['Order'];
-                                break;
-                            }
+            }
+            for(var a=0; a < ontology['Attributes'].length; a++) {
+                if (!hidden_by_view.includes('view_att_' + ontology['Attributes'][a]['Attribute'])) {    
+                    var attribute_name = ontology['Attributes'][a]['Attribute'];
+                    var object_type = ontology['Attributes'][a]['Category'];
+                    var value_type = ontology['Attributes'][a]['Type'];
+                    for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                        if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
+                            prefix = ontology['AttributeNLG'][i]['Prefix'];
+                            infix = ontology['AttributeNLG'][i]['Infix'];
+                            postfix = ontology['AttributeNLG'][i]['Postfix'];
+                            order = ontology['AttributeNLG'][i]['Order'];
+                            break;
                         }
-                        if (value_type == "boolean") {
-                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                    }
+                    if (value_type == "boolean") {
+                        output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                    } else {
+                        if (order == "ov") {
+                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + infix + ' <i>' + value_type + '</i> ' + postfix + '</a></li>';
                         } else {
-                            if (order == "ov") {
-                                output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + infix + ' <i>' + value_type + '</i> ' + postfix + '</a></li>';
-                            } else {
-                                output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' + value_type + '</i> ' + infix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
-                            }
+                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' + value_type + '</i> ' + infix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
                         }
                     }
                 }
-                output_html += '</ul>';
-                output_html += '</div>';
-                output_html += '</div>';
+            }
+            for (var r=0; r < ontology['Relationships'].length; r++) {
+                if (!hidden_by_view.includes('view_rel_' + ontology['Relationships'][r]['Relationship'])) {
+                    var relationship_name = ontology['Relationships'][r]['Relationship'];
+                    var arity = Object.keys(ontology['Relationships'][r]).length-1;
+                    var types = {};
+                    var prefixes = {};
+                    var postfix = "";
+                    for (var p=1; p <= arity; p++) {
+                        types[p] = ontology['Relationships'][r]['Parameter'+p];
+                    }
+                    for (var nlg=0; nlg < ontology['RelationshipNLG'].length; nlg++) {
+                        if (ontology['Relationships'][r]['Relationship'] == ontology['RelationshipNLG'][nlg]['Relationship']) {
+                            postfix = ontology['RelationshipNLG'][nlg]['Postfix'];
+                            for (var np=1; np <= arity; np++) {
+                                prefixes[np] = ontology['RelationshipNLG'][nlg]['Prefix'+np];
+                            }
+                            break;
+                        }
+                    }
+                    output_html += '<li><a onclick="show_new_relationship(\'' + relationship_name + '\')" class="dropdown-item" href="#">'
+                    for (var p=1; p <= arity; p++) {
+                        output_html += prefixes[p] + ' ';
+                        output_html += '<i>' + types[p] + '</i> ';
+                    }
+                    output_html += postfix + '</a></li>'
+                }
+            }
+            output_html += '</ul>';
+            output_html += '</div>';
+            output_html += '</div>';
                 
 
             output_html += '</nav>';
@@ -1398,6 +1453,19 @@
                 output += '</div>';
                 output += '</li>';
             }
+            // For each relationship
+            for (var k=0; k < ontology['Relationships'].length; k++) {
+                output += '<li>'
+                output += '<div class="form-check form-switch">';
+                output += '<input onchange="toggle_view_hidden(\'' + 'view_rel_' + ontology['Relationships'][k]['Relationship'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_rel_' + ontology['Relationships'][k]['Relationship'] + '"';
+                if(hidden_by_view.includes('view_rel_' + ontology['Relationships'][k]['Relationship'])) {
+                    output += ' checked';
+                }
+                output += '>';
+                output += '<label class="form-check-label" for="view_rel_' + ontology['Relationships'][k]['Relationship'] + '">Hide Relationship ' + ontology['Relationships'][k]['Relationship'] + '</label>';
+                output += '</div>';
+                output += '</li>';
+            }
             output += '</ul>';
             view_form_element.innerHTML = output;
         }
@@ -1438,8 +1506,12 @@
                     if (hidden_by_view.includes('view_cat_' + new_fact_data['facts'][f]['category'])) {
                         hidden = true;
                     }
-                } else {
+                } else if ('attribute' in new_fact_data['facts'][f]) {
                     if (hidden_by_view.includes('view_att_' + new_fact_data['facts'][f]['attribute'])) {
+                        hidden = true;
+                    }
+                } else if ('relationship' in new_fact_data['facts'][f]) {
+                    if (hidden_by_view.includes('view_rel_' + new_fact_data['facts'][f]['relationship'])) {
                         hidden = true;
                     }
                 }
@@ -1471,7 +1543,7 @@
                             object_display = "any object"
                         }
                         output_html += prefix + ' ' + object_display + ' ' + postfix;
-                    } else {
+                    } else if ('attribute' in new_fact_data['facts'][f]) {
                         var attribute_name = new_fact_data['facts'][f]['attribute'];
                         for (var i=0; i< ontology['AttributeNLG'].length; i++) {
                             if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
@@ -1548,6 +1620,26 @@
                         } else {
                             output_html += prefix + ' ' +  object_display + ' ' + postfix ;
                         }
+                    } else if ('relationship' in new_fact_data['facts'][f]) {
+                        var arity = 3;
+                        var prefixes = {}
+                        var postfix = "";
+                        for (var i=0; i < ontology['RelationshipNLG'].length; i++) {
+
+                            if (ontology['RelationshipNLG'][i]['Relationship'] == new_fact_data['facts'][f]['relationship']) {
+                                postfix = ontology['RelationshipNLG'][i]['Postfix'];
+                                arity = Object.keys(ontology['RelationshipNLG'][i]).length-2;
+                                for (var p=1; p <= arity; p++) {
+                                    prefixes[p] = ontology['RelationshipNLG'][i]['Prefix'+p];
+                                }
+                                break;
+                            }
+                        }
+                        for (var i=1; i <= arity; i++) {
+                            output_html += " " + prefixes[i] + " " + new_fact_data['facts'][f]['parameter'+i];
+                        }
+                        output_html += postfix;
+                        // TODO: This doesn't deal with variables, and it doesn't format data properly.
                     }
                     if (!new_fact_data['facts'][f]['from_ontology']) {
                         var delete_target
