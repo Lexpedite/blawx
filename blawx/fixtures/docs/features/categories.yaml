@@ -251,7 +251,7 @@
       be related to one another. Note that if what you are looking for is a relationship between 2 objects,
       you should use an Attribute instead.
 
-      ![New Relationship Block](/static/blawx/docs/blocks/new_relationship.png)
+      ![New Relationship Block](/static/blawx/docs/images/blocks/new_relationship.png)
 
       Once you have chosen the name and the number of objects or values, you will be able to choose a type for
       each of the elements, choosing between the available data types and the known categories. You can also

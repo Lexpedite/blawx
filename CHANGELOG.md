@@ -23,17 +23,11 @@ a statement that is true (or not) about 3 or more objects or values.
 * the JSON format accepted by the `test` and `interview` endpoints now accepts relationships in addition to categories and attributes
 * The response from the ontology endpoint is now shown in the "devel" tab of the scenario editor.
 * Scenario Editor has been modified to support relationships.
+* Rock Paper Scissors example was updated to use relationships for throws instead of attributes.
 * Associated documentation
 
 ### Fixed
 * Problems with natural language generation for non-boolean attributes in test editor explanations
-
-### TODO
-* Scenario editor
-  * Displays variables properly in fact display
-  * Displays data types properly in fact display
-* Examples
-  * Update existing examples
 
 ## [v1.6.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.0-alpha) 2023-04-11
 

@@ -1067,8 +1067,8 @@
                             for (var p = 1; p <= arity; p++) {
                                 prefixes[p] = ontology['RelationshipNLG'][n]['Prefix'+p]
                             }
+                            break;
                         }
-                        break;
                     }
                     // Truth Type
                     output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2" id="new_relationship_' + relationship_name + '">';
@@ -1301,18 +1301,59 @@
             var new_relationship_statement = {'from_ontology': false, 'relationship': relationship, 'type': target_truth_value.value}
             // I Need to get the Arity of the relationship
             var arity = 3;
+            var types = {};
             for (var r = 0; r < ontology['Relationships'].length; r++) {
                 if (relationship == ontology['Relationships'][r]['Relationship']) {
                     arity = Object.keys(ontology['Relationships'][r]).length-1;
+                    for (var p=1; p<=arity; p++) {
+                        types[p] = ontology['Relationships'][r]['Parameter'+p];
+                    }
                     break;
                 }
             }
             // Now I need to get the values for all of the parameters
             var variables = "ABCDEFGHIJK";
             for (var p = 1; p <= arity; p++) {
-                target_param = document.getElementById('new_relationship_parameter_' + p + '_' + relationship);
-                target_value = target_param.value;
-                if (target_value.startsWith('any ')) {
+                if (types[p] == "duration") {
+                    // Get the new value
+                    var new_value = "";
+                    var direction_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_direction');
+                    var day_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_days');
+                    var hour_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_hours');
+                    var minute_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_minutes');
+                    if (direction_target.checked) {
+                        new_direction = true;
+                    } else {
+                        new_direction = false;
+                    }
+                    var new_day = day_target.value;
+                    var new_hour = hour_target.value;
+                    var new_minute = minute_target.value;
+                    if (new_direction) {
+                        new_value = "";
+                    } else {
+                        new_value = "-";
+                    }
+                    new_value += "P"
+                    // The idea here is that if all three are zero, it should come out as P0D
+                    if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
+                        new_value += new_day + "D";
+                    }
+                    if (parseInt(new_hour) || parseInt(new_minute)) {
+                        new_value += "T";
+                    }
+                    if (parseInt(new_hour)) {
+                        new_value += new_hour + "H";
+                    }
+                    if (parseInt(new_minute)) {
+                        new_value += new_minute + "M";
+                    }
+                    target_value = new_value;
+                } else {
+                    target_param = document.getElementById('new_relationship_parameter_' + p + '_' + relationship);
+                    target_value = target_param.value;
+                }
+                if (target_value == "VAR") {
                     new_relationship_statement['parameter'+p] = {'variable': variables[p]};
                 } else {
                     new_relationship_statement['parameter'+p] = target_value;
@@ -1788,10 +1829,63 @@
                                 break;
                             }
                         }
-                        for (var i=1; i <= arity; i++) {
-                            output_html += " " + prefixes[i] + " " + new_fact_data['facts'][f]['parameter'+i];
+                        var types = {}
+                        for (var i=0; i < ontology['Relationships'].length; i++) {
+                            if (ontology['Relationships'][i]['Relationship'] == new_fact_data['facts'][f]['relationship']) {
+                                for (var p=1; p <= arity; p++) {
+                                    types[p] = ontology['Relationships'][i]['Parameter'+p];
+                                }
+                                break;
+                            }
                         }
-                        output_html += postfix;
+                        for (var i=1; i <= arity; i++) {
+                            output_html += " " + prefixes[i];
+                            var value_display = new_fact_data['facts'][f]['parameter'+i];
+                            var value_type = types[i];
+                            if (typeof(value_display) == 'object') {   
+                                value_display = "any " + value_type;
+                            }
+                            if (value_type == "duration") {
+                                iso_duration = /^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$/
+                                matches = iso_duration.exec(value_display)
+                                var new_value_display = ""
+                                var future = true;
+                                if (matches[1] != undefined) {
+                                    future = false;
+                                }
+                                if (matches[2] != undefined) {
+                                    new_value_display += matches[2].slice(0,-1) + " years, ";
+                                }
+                                if (matches[3] != undefined) {
+                                    new_value_display += matches[3].slice(0,-1) + " months, ";
+                                }
+                                if (matches[4] != undefined) {
+                                    new_value_display += matches[4].slice(0,-1) + " days, ";
+                                }
+                                if (matches[5] != undefined) {
+                                    new_value_display += matches[5].slice(0,-1) + " hours, ";
+                                }
+                                if (matches[6] != undefined) {
+                                    new_value_display += matches[6].slice(0,-1) + " minutes, ";
+                                }
+                                if (matches[7] != undefined) {
+                                    new_value_display += matches[7].slice(0,-1) + " seconds, ";
+                                }
+                                if (future) {
+                                    new_value_display += " into the future";
+                                } else {
+                                    new_value_display += " into the past";
+                                }
+                                var last_comma = new_value_display.lastIndexOf(',');
+                                value_display = new_value_display.slice(0,last_comma) + new_value_display.slice(last_comma+1);
+
+                            }
+                            if (value_type == "datetime") {
+                                value_display = value_display.replace("T"," ")
+                            }
+                            output_html += " " + value_display;
+                        }
+                        output_html += " " + postfix;
                         // TODO: This doesn't deal with variables, and it doesn't format data properly.
                     }
                     if (!new_fact_data['facts'][f]['from_ontology']) {
