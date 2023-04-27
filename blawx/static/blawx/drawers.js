@@ -64,6 +64,55 @@ knownAttributesCallback = function(workspace) {
 
 demoWorkspace.registerToolboxCategoryCallback('KNOWN_ATTRIBUTES', knownAttributesCallback);
 
+var knownRelationshipsCallback;
+knownRelationshipsCallback = function(workspace) {
+    var xmlList = [];
+    var all_workspaces = getAllWorkspaces();
+    for (var w =  0; w < all_workspaces.length; w++) {
+        // Go through the blocks in the workspace.
+        // If the block is a relationship declaration, add the relevant block to the xml
+        if (all_workspaces[w].xml_content) {
+            var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
+            var tempWorkspace = new Blockly.Workspace();
+            Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
+            var blockList = tempWorkspace.getAllBlocks();
+            for (var i = 0; i< blockList.length; i++) {
+              if (blockList[i].type == "relationship_declaration") {
+                var arity = parseInt(blockList[i].getFieldValue('relationship_arity'));
+                var relationship_name = blockList[i].getFieldValue('relationship_name');
+                var blocktype = "relationship_selector" + arity;  
+                var blockText = "<xml><block type='" + blocktype + "'>"
+                // Add the mutator, which should include the name and the types
+                blockText += "<mutation xmlns='http://www.w3.org/1999/xhtml' ";
+                blockText += "relationship_name='" + relationship_name + "' ";
+                blockText += "arity='" + arity + "' ";
+                blockText += "type1='" + blockList[i].getFieldValue('type1') + "' ";
+                blockText += "type2='" + blockList[i].getFieldValue('type2') + "' ";
+                blockText += "type3='" + blockList[i].getFieldValue('type3') + "' ";
+                for (var param=4; param <= arity; param++) {
+                    blockText += "type" + param + "='" + blockList[i].getFieldValue('type'+param) + "' ";
+                }
+                blockText += "></mutation>";
+                // Add the text elements
+                blockText += "<field name='prefix1'>" + blockList[i].getFieldValue("prefix1") + "</field>";
+                blockText += "<field name='prefix2'>" + blockList[i].getFieldValue("prefix2") + "</field>";
+                blockText += "<field name='prefix3'>" + blockList[i].getFieldValue("prefix3") + "</field>";
+                for (var param=4; param <= arity; param++) {
+                    blockText += "<field name='prefix" + param + "'>" + blockList[i].getFieldValue("prefix" + param) + "</field>"
+                }
+                blockText += "<field name='postfix'>" + blockList[i].getFieldValue("postfix") + "</field>";
+                blockText += "</block></xml>";
+                var block = Blockly.Xml.textToDom(blockText).firstChild;
+                // need to check for repeatedly adding the same block.
+                xmlList.push(block);
+              }
+            }
+        }
+    }
+    return xmlList;
+}
+
+demoWorkspace.registerToolboxCategoryCallback('KNOWN_RELATIONSHIPS', knownRelationshipsCallback);
 
 var knownObjectsCallback;
 knownObjectsCallback = function(workspace) {

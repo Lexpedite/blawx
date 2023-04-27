@@ -7,6 +7,28 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.1-alpha) 2023-04-27
+
+This release adds to the representational power of Blawx by adding "relationships", which are
+a statement that is true (or not) about 3 or more objects or values.
+
+### Added
+* Relationship Declaration Block
+* Relationship Selector Blocks
+* Known Relationship Drawer
+* Associated documentation
+
+### Changed
+* `/onto` endpoint returns information about relationships in addition to categories and attributes
+* the JSON format accepted by the `test` and `interview` endpoints now accepts relationships in addition to categories and attributes
+* The response from the ontology endpoint is now shown in the "devel" tab of the scenario editor.
+* Scenario Editor has been modified to support relationships.
+* Rock Paper Scissors example was updated to use relationships for throws instead of attributes.
+* Associated documentation
+
+### Fixed
+* Problems with natural language generation for non-boolean attributes in test editor explanations
+
 ## [v1.6.0-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.0-alpha) 2023-04-11
 
 **This release is NOT backward compatible.**

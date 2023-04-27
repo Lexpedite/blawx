@@ -947,16 +947,16 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred according_to(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
         code += '#pred blawx_defeated(Z,' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
         code += '#pred blawx_defeated(Z,-' + text_attribute_name + ',' + variable_order + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
-        code += '#pred blawx_initially(' + text_attribute_name + ',(' + variable_order + ")) :: 'that " + add_code.trim() + " holds initially'.\n";
-        code += '#pred blawx_initially(-' + text_attribute_name + ',(' + variable_order + ")) :: 'that it is not the case that " + add_code.trim() + " holds initially'.\n";
-        code += '#pred blawx_ultimately(' + text_attribute_name + ',(' + variable_order + ")) :: 'that " + add_code.trim() + " holds ultimately'.\n";
-        code += '#pred blawx_ultimately(-' + text_attribute_name + ',(' + variable_order + ")) :: 'that it is not the case that " + add_code.trim() + " holds ultimately'.\n";
-        code += '#pred blawx_as_of(' + text_attribute_name + ',(' + variable_order + "),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
-        code += '#pred blawx_as_of(-' + text_attribute_name + ',(' + variable_order + "),T) :: 'that it is not the case that " + add_code.trim() + " holds at @(T)'.\n";
-        code += '#pred blawx_during(T1,' + text_attribute_name + ',(' + variable_order + "),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
-        code += '#pred blawx_during(T1,-' + text_attribute_name + ',(' + variable_order + "),T2) :: 'that it is not the case that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
-        code += '#pred blawx_becomes(' + text_attribute_name + ',(' + variable_order + "),T) :: 'that " + add_code.trim() + " became true at @(T)'.\n";
-        code += '#pred blawx_becomes(-' + text_attribute_name + ',(' + variable_order + "),T) :: 'that it is not the case that " + add_code.trim() + " became true at @(T)'.\n";
+        code += '#pred blawx_initially(' + text_attribute_name + '(' + variable_order + ")) :: 'that " + add_code.trim() + " holds initially'.\n";
+        code += '#pred blawx_initially(-' + text_attribute_name + '(' + variable_order + ")) :: 'that it is not the case that " + add_code.trim() + " holds initially'.\n";
+        code += '#pred blawx_ultimately(' + text_attribute_name + '(' + variable_order + ")) :: 'that " + add_code.trim() + " holds ultimately'.\n";
+        code += '#pred blawx_ultimately(-' + text_attribute_name + '(' + variable_order + ")) :: 'that it is not the case that " + add_code.trim() + " holds ultimately'.\n";
+        code += '#pred blawx_as_of(' + text_attribute_name + '(' + variable_order + "),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
+        code += '#pred blawx_as_of(-' + text_attribute_name + '(' + variable_order + "),T) :: 'that it is not the case that " + add_code.trim() + " holds at @(T)'.\n";
+        code += '#pred blawx_during(T1,' + text_attribute_name + '(' + variable_order + "),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+        code += '#pred blawx_during(T1,-' + text_attribute_name + '(' + variable_order + "),T2) :: 'that it is not the case that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+        code += '#pred blawx_becomes(' + text_attribute_name + '(' + variable_order + "),T) :: 'that " + add_code.trim() + " became true at @(T)'.\n";
+        code += '#pred blawx_becomes(-' + text_attribute_name + '(' + variable_order + "),T) :: 'that it is not the case that " + add_code.trim() + " became true at @(T)'.\n";
         code += 'blawx_as_of(' + text_attribute_name + '(X,Y),datetime(Time)) :- blawx_becomes(' + text_attribute_name + '(X,Y),datetime(BeforeT)), not blawx_becomes(-' + text_attribute_name + '(X,Y), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
         code += 'blawx_as_of(' + text_attribute_name + '(X,Y),datetime(Time)) :- blawx_initially(' + text_attribute_name + '(X,Y)), not blawx_becomes(-' + text_attribute_name + '(X,Y), datetime(BetweenT)), BetweenT #< Time.\n';
         code += 'blawx_during(datetime(Start),' + text_attribute_name + '(X,Y),datetime(End)) :- blawx_becomes(' + text_attribute_name + '(X,Y),datetime(Start)), not blawx_becomes(-' + text_attribute_name + '(X,Y),datetime(BeforeEnd)), blawx_becomes(-' + text_attribute_name + '(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\n';
@@ -1235,6 +1235,172 @@ sCASP['time_from_ts'] = function(block) {
     var value_timestamp = sCASP.valueToCode(block, 'timestamp', sCASP.ORDER_ATOMIC);
     var code = 'duration(' + value_timestamp + ')';
     return [code, sCASP.ORDER_ATOMIC];
+  };
+
+sCASP['relationship_declaration'] = function(block) {
+    var text_relationship_name = block.getFieldValue('relationship_name');
+    var number_arity = parseInt(block.getFieldValue('relationship_arity'));
+    var prefixes = {};
+    var types = {};
+    for (var i = 1; i <= number_arity; i++) {
+        prefixes[i] = block.getFieldValue('prefix'+i)
+        types[i] = block.getFieldValue('type'+i);
+    }
+    var text_postfix = block.getFieldValue('postfix');
+    // Generate relationship declaration for the ontology, which is the relationship name followed by the list of types
+    var code = 'blawx_relationship(' + text_relationship_name + ',';
+    for (var i = 1; i <= number_arity; i++) {
+        code += types[i];
+        if (i != number_arity) {
+            code += ","
+        }
+    }
+    code += ").\n";
+    // Generate the NLG statement, which is the attribute name, the prefixes, and the postfix.
+    code += "blawx_relationship_nlg(" + text_relationship_name + ',';
+    for (var i = 1; i <= number_arity; i++) {
+        code += '"' + prefixes[i] + '",';
+    }
+    code += '"' + text_postfix + '").\n';
+    // Make it dynamic, just in case we decide we want to keep this for some reason.
+    code += ":- dynamic " + text_relationship_name + "/" + number_arity + ".\n";
+    // Generate generic insert code for #pred statements
+    var add_code = ""
+    var parameters = ""
+    var variables = ["A","B","C","D","E","F","G","H","I","J"]
+    for (var i = 1; i <= number_arity; i++) {
+        add_code += prefixes[i].replace(/'/g, '\\\'') + " @(" + variables[i-1] + ") ";
+        parameters += variables[i-1];
+        if (i != number_arity) {
+            parameters += ","
+        }
+    }
+    add_code += text_postfix
+    // Now create the generic NLG
+    code += "#pred " + text_relationship_name + "(" + parameters + ") :: '" + add_code.trim() + "'.\n";
+    // Now create the NLG for the higher-order predicates
+    code += '#pred holds(user,' + text_relationship_name + ',' + parameters + ") :: 'it is provided as a fact that " + add_code.trim() + "'.\n";
+    code += '#pred holds(user,-' + text_relationship_name + ',' + parameters + ") :: 'it is provided as a fact that it is not the case that " + add_code.trim() + "'.\n";
+    code += '#pred holds(Z,' + text_relationship_name + ',' + parameters + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " holds'.\n";
+    code += '#pred holds(Z,-' + text_relationship_name + ',' + parameters + ") :: 'the conclusion in @(Z) that it is not the case that " + add_code.trim() + " holds'.\n";
+    code += '#pred according_to(Z,' + text_relationship_name + ',' + parameters + ") :: 'according to @(Z), " + add_code.trim() + "'.\n";
+    code += '#pred according_to(Z,-' + text_relationship_name + ',' + parameters + ") :: 'according to @(Z), it is not the case that " + add_code.trim() + "'.\n";
+    code += '#pred blawx_defeated(Z,' + text_relationship_name + ',' + parameters + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+    code += '#pred blawx_defeated(Z,-' + text_relationship_name + ',' + parameters + ") :: 'the conclusion in @(Z) that " + add_code.trim() + " is defeated'.\n";
+    code += '#pred blawx_initially(' + text_relationship_name + '(' + parameters + ")) :: 'that " + add_code.trim() + " holds initially'.\n";
+    code += '#pred blawx_initially(-' + text_relationship_name + '(' + parameters + ")) :: 'that it is not the case that " + add_code.trim() + " holds initially'.\n";
+    code += '#pred blawx_ultimately(' + text_relationship_name + '(' + parameters + ")) :: 'that " + add_code.trim() + " holds ultimately'.\n";
+    code += '#pred blawx_ultimately(-' + text_relationship_name + '(' + parameters + ")) :: 'that it is not the case that " + add_code.trim() + " holds ultimately'.\n";
+    code += '#pred blawx_as_of(' + text_relationship_name + '(' + parameters + "),T) :: 'that " + add_code.trim() + " holds at @(T)'.\n";
+    code += '#pred blawx_as_of(-' + text_relationship_name + '(' + parameters + "),T) :: 'that it is not the case that " + add_code.trim() + " holds at @(T)'.\n";
+    code += '#pred blawx_during(T1,' + text_relationship_name + '(' + parameters + "),T2) :: 'that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+    code += '#pred blawx_during(T1,-' + text_relationship_name + '(' + parameters + "),T2) :: 'that it is not the case that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
+    code += '#pred blawx_becomes(' + text_relationship_name + '(' + parameters + "),T) :: 'that " + add_code.trim() + " became true at @(T)'.\n";
+    code += '#pred blawx_becomes(-' + text_relationship_name + '(' + parameters + "),T) :: 'that it is not the case that " + add_code.trim() + " became true at @(T)'.\n";
+    // Generate event reasoning rules.
+    code += 'blawx_as_of(' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+    code += 'blawx_as_of(' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BetweenT #< Time.\n';
+    code += 'blawx_during(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End, Start #< End.\n';
+    code += 'blawx_during(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(-' + text_relationship_name + '' + parameters + '),datetime(BeforeEnd)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End.\n';
+    code += 'blawx_during(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(AfterStart)), blawx_ultimately(' + text_relationship_name + '(' + parameters + ')), AfterStart #> Start.\n';
+    code += 'blawx_as_of(-' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)), not blawx_becomes(' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
+    code += 'blawx_as_of(-' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_initially(-' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BetweenT #< Time.\n';
+    code += 'blawx_during(datetime(Start),-' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End, Start #< End.\n';
+    code += 'blawx_during(datetime(bot),-' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_initially(-' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End.\n';
+    code += 'blawx_during(datetime(Start),-' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(AfterStart)), blawx_ultimately(-' + text_relationship_name + '(' + parameters + ')), AfterStart #> Start.\n';
+    return code;
+};
+
+sCASP['relationship_selector3'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var code = this.relationship_name + "(" + value_parameter1 + "," + value_parameter2 + "," + value_parameter3 + ")";
+    return code;
+  };
+  
+  sCASP['relationship_selector4'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var code = this.relationship_name + "(" + value_parameter1 + "," + value_parameter2 + "," + value_parameter3 + "," + value_parameter4 + ")";
+    return code;
+  };
+  
+  sCASP['relationship_selector5'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    var code = this.relationship_name + "(" + value_parameter1 + "," + value_parameter2 + "," + value_parameter3 + "," + value_parameter4 + "," + value_parameter5 + ")";
+    return code;
+  };
+  
+  sCASP['relationship_selector6'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    var value_parameter6 = sCASP.valueToCode(block, 'parameter6', sCASP.ORDER_ATOMIC);
+    var code = this.relationship_name + "(" + value_parameter1 + "," + value_parameter2 + "," + value_parameter3 + "," + value_parameter4 + "," + value_parameter5 + "," + value_parameter6 + ")";
+    return code;
+  };
+  
+  sCASP['relationship_selector7'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    var value_parameter6 = sCASP.valueToCode(block, 'parameter6', sCASP.ORDER_ATOMIC);
+    var value_parameter7 = sCASP.valueToCode(block, 'parameter7', sCASP.ORDER_ATOMIC);
+    var code = this.relationship_name + "(" + value_parameter1 + "," + value_parameter2 + "," + value_parameter3 + "," + value_parameter4 + "," + value_parameter5 + "," + value_parameter6 + "," + value_parameter7 + ")";
+    return code;
+  };
+  
+  sCASP['relationship_selector8'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    var value_parameter6 = sCASP.valueToCode(block, 'parameter6', sCASP.ORDER_ATOMIC);
+    var value_parameter7 = sCASP.valueToCode(block, 'parameter7', sCASP.ORDER_ATOMIC);
+    var value_parameter8 = sCASP.valueToCode(block, 'parameter8', sCASP.ORDER_ATOMIC);
+    var code = this.relationship_name + "(" + value_parameter1 + "," + value_parameter2 + "," + value_parameter3 + "," + value_parameter4 + "," + value_parameter5 + "," + value_parameter6 + "," + value_parameter7 + "," + value_parameter8 + ")";
+    return code;
+  };
+  
+  sCASP['relationship_selector9'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    var value_parameter6 = sCASP.valueToCode(block, 'parameter6', sCASP.ORDER_ATOMIC);
+    var value_parameter7 = sCASP.valueToCode(block, 'parameter7', sCASP.ORDER_ATOMIC);
+    var value_parameter8 = sCASP.valueToCode(block, 'parameter8', sCASP.ORDER_ATOMIC);
+    var value_parameter9 = sCASP.valueToCode(block, 'parameter9', sCASP.ORDER_ATOMIC);
+    var code = this.relationship_name + "(" + value_parameter1 + "," + value_parameter2 + "," + value_parameter3 + "," + value_parameter4 + "," + value_parameter5 + "," + value_parameter6 + "," + value_parameter7 + "," + value_parameter8 + "," + value_parameter9 + ")";
+    return code;
+  };
+  
+  sCASP['relationship_selector10'] = function(block) {
+    var value_parameter1 = sCASP.valueToCode(block, 'parameter1', sCASP.ORDER_ATOMIC);
+    var value_parameter2 = sCASP.valueToCode(block, 'parameter2', sCASP.ORDER_ATOMIC);
+    var value_parameter3 = sCASP.valueToCode(block, 'parameter3', sCASP.ORDER_ATOMIC);
+    var value_parameter4 = sCASP.valueToCode(block, 'parameter4', sCASP.ORDER_ATOMIC);
+    var value_parameter5 = sCASP.valueToCode(block, 'parameter5', sCASP.ORDER_ATOMIC);
+    var value_parameter6 = sCASP.valueToCode(block, 'parameter6', sCASP.ORDER_ATOMIC);
+    var value_parameter7 = sCASP.valueToCode(block, 'parameter7', sCASP.ORDER_ATOMIC);
+    var value_parameter8 = sCASP.valueToCode(block, 'parameter8', sCASP.ORDER_ATOMIC);
+    var value_parameter9 = sCASP.valueToCode(block, 'parameter9', sCASP.ORDER_ATOMIC);
+    var value_parameter10 = sCASP.valueToCode(block, 'parameter10', sCASP.ORDER_ATOMIC);
+    var code = this.relationship_name + "(" + value_parameter1 + "," + value_parameter2 + "," + value_parameter3 + "," + value_parameter4 + "," + value_parameter5 + "," + value_parameter6 + "," + value_parameter7 + "," + value_parameter8 + "," + value_parameter9 + "," + value_parameter10 + ")";
+    return code;
   };
 
 function deconstruct_term(term) {

@@ -1,0 +1,35 @@
+- model: blawx.docpage
+  pk: blocks/new_relationship
+  fields:
+    title: New Relationship Block
+    content: |
+      # New Relationship Block
+
+      ![New Relationship Block](/static/blawx/docs/images/blocks/new_relationship.png)
+
+      ## Where Is It?
+
+      The new relationship block is found in the Categories drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The new relationship block is used to create a new relationship between 3 or more objects and values.
+
+      ## Technical Details
+
+      The new relationship block is a statement, and can be stacked with other statements.
+
+      The new relationship block accepts the name of the relationship. To be valid, the name of the relationship must begin with a lower-case letter and not
+      include any spaces.
+
+      It also accepts the number of objects and values that will be related to one another in this relationship, which
+      is a number between 3 and 10.
+
+      For each object or value, it accepts a type, which is selected from a dropdown that shows the available data types and the known categories.
+
+      Before, between, and after each object or value, it accepts the text that should be used to generate the relationship selector blocks, and used in
+      explanations.
+
+      ## Tips
+
+      Names of relationships should be unique, but can safely overlap with other relationship that have a different number of objects and values.

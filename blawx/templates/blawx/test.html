@@ -52,6 +52,7 @@
         <category name="Categories" colour="#a55b5b">
             <block type="new_category_declaration"></block>
             <block type="new_attribute_declaration"></block>
+            <block type="relationship_declaration"></block>
         </category>
         <sep></sep>
         <category name="Events" colour="#80A55B">
@@ -106,6 +107,8 @@
         </category>
         <sep></sep>
         <category name="Known Attributes" custom="KNOWN_ATTRIBUTES" colour="#5BA65B"></category>
+        <sep></sep>
+        <category name="Known Relationships" custom="KNOWN_RELATIONSHIPS" colour="#5b93a5"></category>
         <sep></sep>
         <category name="Logic" colour="#a55b93">
             <!-- <block type="conjunction"></block>
@@ -212,6 +215,7 @@
             }
             
             demoWorkspace.addChangeListener(onCategoryChange);
+            demoWorkspace.addChangeListener(updateRelationshipDeclaration);
             var knownCategories = [];
             var localCategories = [];
             window.onload = function() {

@@ -3967,4 +3967,1155 @@
   "colour": 330,
   "tooltip": "Generate a duration from a numerical timestamp value",
   "helpUrl": "/docs/blocks/duration_from_ts"
+},
+{
+  "type": "relationship_declaration",
+  "message0": "%1 is a relationship between %2 objects or values described as %3 %4 %5 %6 %7 %8 %9 %10",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "relationship_name",
+      "text": "relationship_name"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "arity",
+      "options": [
+        [
+          "3",
+          "3"
+        ],
+        [
+          "4",
+          "4"
+        ],
+        [
+          "5",
+          "5"
+        ],
+        [
+          "6",
+          "6"
+        ],
+        [
+          "7",
+          "7"
+        ],
+        [
+          "8",
+          "8"
+        ],
+        [
+          "9",
+          "9"
+        ],
+        [
+          "10",
+          "10"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "prefix1",
+      "text": ""
+    },
+    {
+      "type": "field_dropdown",
+      "name": "type1",
+      "options": [
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ]
+      ]
+    },
+    {
+      "type": "field_input",
+      "name": "prefix2",
+      "text": ""
+    },
+    {
+      "type": "field_dropdown",
+      "name": "type2",
+      "options": [
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ]
+      ]
+    },
+    {
+      "type": "field_input",
+      "name": "prefix3",
+      "text": ""
+    },
+    {
+      "type": "field_dropdown",
+      "name": "type3",
+      "options": [
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ]
+      ]
+    },
+    {
+      "type": "field_input",
+      "name": "postfix",
+      "text": ""
+    }
+  ],
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 30,
+  "tooltip": "Use to declare a relationship between 3 or more objects or values.",
+  "helpUrl": "/docs/blocks/new_relationship/"
+},
+{
+  "type": "relationship_selector",
+  "message0": "%1 %2 %3 %4 %5 %6 %7",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix1",
+      "text": "prefix1"
+    },
+    {
+      "type": "input_value",
+      "name": "first_element"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix2",
+      "text": "prefix2"
+    },
+    {
+      "type": "input_value",
+      "name": "second_element"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix3",
+      "text": "prefix3"
+    },
+    {
+      "type": "input_value",
+      "name": "third_element"
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "postfix"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 150,
+  "tooltip": "Use to set or check the value of a relationship.",
+  "helpUrl": "/docs/blocks/relationship_selector/"
+},
+{
+  "type": "relationship_ddeclaration",
+  "message0": "%1 is a relationship between %2 objects or values described as %3 %4 %5 %6 %7 %8 %9 %10",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "relationship_name",
+      "text": "relationship_name"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "arity",
+      "options": [
+        [
+          "3",
+          "3"
+        ],
+        [
+          "4",
+          "4"
+        ],
+        [
+          "5",
+          "5"
+        ],
+        [
+          "6",
+          "6"
+        ],
+        [
+          "7",
+          "7"
+        ],
+        [
+          "8",
+          "8"
+        ],
+        [
+          "9",
+          "9"
+        ],
+        [
+          "10",
+          "10"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_input",
+      "name": "prefix1",
+      "text": ""
+    },
+    {
+      "type": "field_dropdown",
+      "name": "type1",
+      "options": [
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ]
+      ]
+    },
+    {
+      "type": "field_input",
+      "name": "prefix2",
+      "text": ""
+    },
+    {
+      "type": "field_dropdown",
+      "name": "type2",
+      "options": [
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ]
+      ]
+    },
+    {
+      "type": "field_input",
+      "name": "prefix3",
+      "text": ""
+    },
+    {
+      "type": "field_dropdown",
+      "name": "type3",
+      "options": [
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ]
+      ]
+    },
+    {
+      "type": "field_input",
+      "name": "postfix",
+      "text": ""
+    }
+  ],
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 30,
+  "tooltip": "Use to declare a relationship between 3 or more objects or values.",
+  "helpUrl": "/docs/blocks/new_relationship/"
+},
+{
+  "type": "relationship_selector3",
+  "message0": "%1 %2 %3 %4 %5 %6 %7",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix1",
+      "text": "prefix1"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter1",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix2",
+      "text": "prefix2"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter2",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix3",
+      "text": "prefix3"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter3",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "postfix"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 195,
+  "tooltip": "Use to set or check the value of a relationship.",
+  "helpUrl": "/docs/blocks/relationship_selector/"
+},
+{
+  "type": "relationship_selector4",
+  "message0": "%1 %2 %3 %4 %5 %6 %7 %8 %9",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix1",
+      "text": "prefix1"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter1",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix2",
+      "text": "prefix2"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter2",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix3",
+      "text": "prefix3"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter3",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix4",
+      "text": "prefix4"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter4",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "postfix"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 195,
+  "tooltip": "Use to set or check the value of a relationship.",
+  "helpUrl": "/docs/blocks/relationship_selector/"
+},
+{
+  "type": "relationship_selector5",
+  "message0": "%1 %2 %3 %4 %5 %6 %7 %8 %9 %10 %11",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix1",
+      "text": "prefix1"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter1",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix2",
+      "text": "prefix2"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter2",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix3",
+      "text": "prefix3"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter3",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix4",
+      "text": "prefix4"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter4",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix5",
+      "text": "prefix5"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter5",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "postfix"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 195,
+  "tooltip": "Use to set or check the value of a relationship.",
+  "helpUrl": "/docs/blocks/relationship_selector/"
+},
+{
+  "type": "relationship_selector6",
+  "message0": "%1 %2 %3 %4 %5 %6 %7 %8 %9 %10 %11 %12 %13",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix1",
+      "text": "prefix1"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter1",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix2",
+      "text": "prefix2"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter2",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix3",
+      "text": "prefix3"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter3",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix4",
+      "text": "prefix4"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter4",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix5",
+      "text": "prefix5"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter5",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix6",
+      "text": "prefix6"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter6",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "postfix"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 195,
+  "tooltip": "Use to set or check the value of a relationship.",
+  "helpUrl": "/docs/blocks/relationship_selector/"
+},
+{
+  "type": "relationship_selector7",
+  "message0": "%1 %2 %3 %4 %5 %6 %7 %8 %9 %10 %11 %12 %13 %14 %15",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix1",
+      "text": "prefix1"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter1",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix2",
+      "text": "prefix2"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter2",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix3",
+      "text": "prefix3"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter3",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix4",
+      "text": "prefix4"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter4",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix5",
+      "text": "prefix5"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter5",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix6",
+      "text": "prefix6"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter6",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix7",
+      "text": "prefix7"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter7",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "postfix"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 195,
+  "tooltip": "Use to set or check the value of a relationship.",
+  "helpUrl": "/docs/blocks/relationship_selector/"
+},
+{
+  "type": "relationship_selector8",
+  "message0": "%1 %2 %3 %4 %5 %6 %7 %8 %9 %10 %11 %12 %13 %14 %15 %16 %17",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix1",
+      "text": "prefix1"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter1",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix2",
+      "text": "prefix2"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter2",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix3",
+      "text": "prefix3"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter3",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix4",
+      "text": "prefix4"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter4",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix5",
+      "text": "prefix5"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter5",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix6",
+      "text": "prefix6"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter6",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix7",
+      "text": "prefix7"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter7",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix8",
+      "text": "prefix8"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter8",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "postfix"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 195,
+  "tooltip": "Use to set or check the value of a relationship.",
+  "helpUrl": "/docs/blocks/relationship_selector/"
+},
+{
+  "type": "relationship_selector9",
+  "message0": "%1 %2 %3 %4 %5 %6 %7 %8 %9 %10 %11 %12 %13 %14 %15 %16 %17 %18 %19",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix1",
+      "text": "prefix1"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter1",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix2",
+      "text": "prefix2"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter2",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix3",
+      "text": "prefix3"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter3",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix4",
+      "text": "prefix4"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter4",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix5",
+      "text": "prefix5"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter5",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix6",
+      "text": "prefix6"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter6",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix7",
+      "text": "prefix7"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter7",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix8",
+      "text": "prefix8"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter8",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix9",
+      "text": "prefix9"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter9",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "postfix"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 195,
+  "tooltip": "Use to set or check the value of a relationship.",
+  "helpUrl": "/docs/blocks/relationship_selector/"
+},
+{
+  "type": "relationship_selector10",
+  "message0": "%1 %2 %3 %4 %5 %6 %7 %8 %9 %10 %11 %12 %13 %14 %15 %16 %17 %18 %19 %20 %21",
+  "args0": [
+    {
+      "type": "field_label_serializable",
+      "name": "prefix1",
+      "text": "prefix1"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter1",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix2",
+      "text": "prefix2"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter2",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix3",
+      "text": "prefix3"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter3",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix4",
+      "text": "prefix4"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter4",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix5",
+      "text": "prefix5"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter5",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix6",
+      "text": "prefix6"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter6",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix7",
+      "text": "prefix7"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter7",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix8",
+      "text": "prefix8"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter8",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix9",
+      "text": "prefix9"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter9",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "prefix10",
+      "text": "prefix10"
+    },
+    {
+      "type": "input_value",
+      "name": "parameter10",
+      "check": [
+        "VARIABLE",
+        "SOMETHING"
+      ]
+    },
+    {
+      "type": "field_label_serializable",
+      "name": "postfix",
+      "text": "postfix"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": [
+    "OUTER",
+    "STATEMENT"
+  ],
+  "nextStatement": "STATEMENT",
+  "colour": 195,
+  "tooltip": "Use to set or check the value of a relationship.",
+  "helpUrl": "/docs/blocks/relationship_selector/"
 }]

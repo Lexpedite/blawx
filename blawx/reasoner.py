@@ -71,161 +71,238 @@ class IgnorePermission(permissions.BasePermission):
 #   ]
 # }
 
-def newer_json_2_scasp(payload,ruledoc,testname):
+def isVariable(param):
+  if type(param) is dict and 'variable' in param:
+    return True
+  else:
+    return False
+  
+# Note that this makes the variables in the JSON input case-insensitive.
+def convertVariables(param):
+  if type(param) is dict and 'variable' in param:
+    return param['variable'].upper()
+  else:
+    return param
+
+# TODO This isn't dealing with variables properly, because they appear as dictionaries, now.
+# We need to grab the actual variable names used, because they can be significantly more than X and Y, now.
+# TODO This version also doesn't have even draft code for building abducibles, yet.
+def even_newer_json_2_scasp(payload,ruledoc,testname):
   output = ""
+  ontology = get_ontology_internal(ruledoc,testname)
+  # Basically, we need to know what the predicate is, what the parameters are, whether the parameters have category types, and if they are variables.
+  # So get the predicate, look up the typing, modify for negation if required, and generate the fact, testing for categories if required.
+
+  # Statement (:- Conditions) .
+  # Statement = [negation]predicate(params)
+  # The params are the object, the object and the value, or the params in order, depending.
+  # If any of them is typed to a category, and is a variable, that category and that variable are added to the conditions.
+
+  for fact in payload['facts']:
+    if 'from_ontology' in fact and not fact['from_ontology']:
+      negation = "-" if fact['type'] == "false" else ""
+      if 'category' in fact:
+        predicate = fact['category']
+        parameters = [fact['object']]
+        categories = [predicate]
+      elif 'attribute' in fact:
+        predicate = fact['attribute']    
+        if 'value' in fact:
+          parameters = [fact['object'],fact['value']]
+          for att in ontology['Attributes']:
+            if predicate == att['Attribute']:
+              object_category = att['Category']
+              if att['Type'] in ontology['Categories']:
+                value_category = att['Type']
+              else:
+                value_category = "none"
+              break
+          categories = [object_category,value_category]
+        else:
+          parameters = [fact['object']]
+          for att in ontology['Attributes']:
+            if predicate == att['Attribute']:
+              object_category = att['Category']
+              break
+          categories = [object_category]
+      elif 'relationship' in fact:
+        predicate = fact['relationship']
+        arity = len(fact)-3 # Subtract "from ontology" "type" and "relationship"
+        parameters = []
+        p = 1
+        while p <= arity:
+          parameters.append(fact['parameter'+str(p)])
+          p += 1
+        categories = []
+        for rel in ontology['Relationships']:
+          if predicate == rel['Relationship']:
+            p = 1
+            while p <= arity:
+              if rel['Parameter'+str(p)] in ontology['Categories']:
+                categories.append(rel['Parameter'+str(p)])
+              else:
+                categories.append('none')
+              p += 1
+            break
+      variables = list(map(isVariable, parameters))
+      parameters = list(map(convertVariables, parameters))
+      if fact['type'] != "unknown": # This is a true or false statement
+        conditions = []
+        for index, param in enumerate(parameters):
+          if variables[index] and categories[index] != "none":
+            conditions.append(categories[index] + "(" + param + ")")
+        statement = negation + predicate + "(" + ','.join(parameters) + ")"
+        output += statement + (" :- " if len(conditions) else "") + ','.join(conditions) + ".\n"
+      else: # This is an unknown statement
+        # Something should be added to the conditions if the parameter is a variable, and the type is a category. If so, the conditions should exclude all
+        # the known elements of that category.
+        conditions = []
+        for index, param in enumerate(parameters):
+          if variables[index] and categories[index] != "none":
+            for obj in ontology['Objects']:
+              if obj['Category'] == categories[index]:
+                conditions.append(param + " \= " + obj['Object'])
+        positive_statement = predicate + "(" + ",".join(parameters) + ") :- not -" + predicate + "(" + ",".join(parameters) + ")" + ("," if len(conditions) else "") + ",".join(conditions) + ".\n"
+        negative_statement = "-" + predicate + "(" + ",".join(parameters) + ") :- not " + predicate + "(" + ",".join(parameters) + ")" + ("," if len(conditions) else "") + ",".join(conditions) + ".\n"
+        output += positive_statement + negative_statement
+  return output
+
+
+# def newer_json_2_scasp(payload,ruledoc,testname):
+#   output = ""
 
  
-  # Grab the ontology for the current test.
-  ontology = get_ontology_internal(ruledoc,testname)
+#   # Grab the ontology for the current test.
+#   ontology = get_ontology_internal(ruledoc,testname)
 
-  # For doing abducibility, we need a list of all the known objects provided
-  # by the ontology and the user in each category.
-  # known_objects = {}
-  # for c in ontology['Categories']:
-  #   known_objects[c] = []
-  # for o in ontology['Objects']:
-  #   known_objects[o['Category']].append(o['Object'])
-  # for fact in payload['facts']:
-  #   if 'category' in fact and not fact['from_ontology'] and type(fact['object']) is not dict and fact['type'] == "true": # Last excludes variables, and false
-  #     known_objects[fact['category']].append(fact['object'])
 
-  # print("Known Objects Gathered:")
-  # print(known_objects)
-  # Go through the statements and convert them into s(CASP)
-  for fact in payload['facts']:
-    if 'from_ontology' in fact and not fact['from_ontology']:
-      if 'category' in fact:
-        basic_predicate = fact['category']
-        is_attribute = False
-      elif 'attribute' in fact:
-        is_attribute = True
-        basic_predicate = fact['attribute']
-        attribute_type = "object"
-        for att in ontology['Attributes']:
-            if basic_predicate == att['Attribute']:
-              attribute_type = att['Type']
-              object_type = att['Category']
-              break
-      truth_value = fact['type']
-      statement_object = fact['object']
-      if type(statement_object) is dict:
-        statement_object = "X"
-      if truth_value == "false":
-        predicate = "-" + basic_predicate
-      else:
-        predicate = basic_predicate
-      if truth_value != "unknown":
-        if 'value' in fact:
-          statement_value = fact['value']
-          if type(statement_value) is dict:
-            statement_value = "Y"
-          # attribute_type = "object"
-          # for att in ontology['Attributes']:
-          #   if basic_predicate == att['Attribute']:
-          #     attribute_type = att['Type']
-          #     object_type = att['Category']
-          #     break
-          output += predicate + "(" + statement_object + "," + format_statement_value(statement_value,attribute_type) + ")"
-          if statement_object == "X" or statement_value == "Y":
-            output += " :- "
-            if statement_object == "X":
-              output += object_type + "(X)"
-            if statement_object == "X" and statement_value == "Y":
-              output += ", "
-            if statement_value == "Y":
-              output += attribute_type + "(Y)"
-          output += ".\n"
-        else:
-          output += predicate + "(" + statement_object + ")"
-          if statement_object == "X" and is_attribute:
-            output += ":- " + object_type + "(X)"
-          output += ".\n"
-  for fact in payload['facts']:
-    if 'from_ontology' in fact and not fact['from_ontology']:
-      if 'category' in fact:
-        basic_predicate = fact['category']
-        is_attribute = False
-      elif 'attribute' in fact:
-        basic_predicate = fact['attribute']
-        attribute_type = "object"
-        for att in ontology['Attributes']:
-            if basic_predicate == att['Attribute']:
-              attribute_type = att['Type']
-              object_type = att['Category']
-              break
-        is_attribute = True
-      truth_value = fact['type']
-      if fact['type'] == "unknown":
-        # This statement is an abducibility:
-        if 'category' in fact:
-          # If it is a category, we need -category(X) :- not category(X), x \= list of known objects in the category, and the opposite.
-          # We need to check to see if the variable is unground, and include the exclusions only if it is unground.
-          if type(fact['object']) is dict:
-            object_display = "X"
-          else:
-            object_display = fact['object'] 
-          output += basic_predicate + "(" + object_display + ") :- not -" + basic_predicate + "(" + object_display + ")"
-          if object_display == "X":
-            output += object_type + "(X)"
-          output += ".\n"
-          output += "-" + basic_predicate + "(" + object_display + ") :- not " + basic_predicate + "(" + object_display + ")"
-          if object_display == "X":
-            output += object_type + "(X)"
-          output += ".\n"
-        if 'attribute' in fact:
-          # If it is an attribute, we need attribute(X,Y) :- not -attribute(X,Y), X \= list of known objects in the category, Y \= list of known objects in target category, and the opposite.
-          # Get the object type for the attribute, and get the value type if it exists.
-          # for att in ontology['Attributes']:
-          #   if att['Attribute'] == fact['attribute']:
-          #     object_type = att['Category']
-          #     value_type = att['Type']
-          # We also need to know if the value_type is a category
-          value_is_object = attribute_type in ontology['Categories']
-          if type(fact['object']) is dict:
-            object_display = "X"
-          else:
-            object_display = fact['object']
-          if 'value' in fact and type(fact['value']) is dict:
-            value_display = "Y"
-          elif 'value' in fact:
-            value_display = fact['value']
-            # This will cause it to use the same variable name twice if both the subject and object are unground and they use the same variable name.
-            if object_display == "X" and value_display == "Y":
-              if fact['object']['variable'] == fact['value']['variable']:
-                value_display == "X"
-          if 'value' in fact: # This is the binary predicate type
-            output += basic_predicate + "(" + object_display + "," + value_display + ") :- "
-            if object_display == "X":
-              output += object_type + "(X)"
-            if object_display == "X" and (value_display == "X" or value_display == "Y"):
-              output += ", "
-            if value_display == "X" or value_display == "Y":
-              output += attribute_type + "(" + value_display + ")"
-            if object_display == "X" or (value_display == "X" or value_display == "Y"):
-              output += ", "
-            output += " not -" + basic_predicate + "(" + object_display + "," + value_display + ").\n"
-            output += "-" + basic_predicate + "(" + object_display + "," + value_display + ") :- "
-            if object_display == "X":
-              output += object_type + "(X)"
-            if object_display == "X" and (value_display == "X" or value_display == "Y"):
-              output += ", "
-            if value_display == "X" or value_display == "Y":
-              output += attribute_type + "(" + value_display + ")"
-            if object_display == "X" or (value_display == "X" or value_display == "Y"):
-              output += ", "
-            output += " not " + basic_predicate + "(" + object_display + "," + value_display + ").\n"
-          else: # This is the unary predicate type.
-            output += basic_predicate + "(" + object_display + ") :- "
-            if object_display == "X":
-              output += object_type + "(X), "
-            output += "not -" + basic_predicate + "(" + object_display + ").\n"
-            output += "-" + basic_predicate + "(" + object_display + ") :- "
-            if object_display == "X":
-              output += object_type + "(X), "
-            output += "not " + basic_predicate + "(" + object_display + ").\n"
-  # print("Generated Facts")
-  # print(output)
-  return output
+#   # Go through the statements and convert them into s(CASP)
+#   for fact in payload['facts']:
+#     if 'from_ontology' in fact and not fact['from_ontology']:
+#       if 'category' in fact:
+#         basic_predicate = fact['category']
+#         is_attribute = False
+#       elif 'attribute' in fact:
+#         is_attribute = True
+#         basic_predicate = fact['attribute']
+#         attribute_type = "object"
+#         for att in ontology['Attributes']:
+#             if basic_predicate == att['Attribute']:
+#               attribute_type = att['Type']
+#               object_type = att['Category']
+#               break
+#       truth_value = fact['type']
+#       statement_object = fact['object']
+#       if type(statement_object) is dict:
+#         statement_object = "X"
+#       if truth_value == "false":
+#         predicate = "-" + basic_predicate
+#       else:
+#         predicate = basic_predicate
+#       if truth_value != "unknown":
+#         if 'value' in fact:
+#           statement_value = fact['value']
+#           if type(statement_value) is dict:
+#             statement_value = "Y"
+#           output += predicate + "(" + statement_object + "," + format_statement_value(statement_value,attribute_type) + ")"
+#           if statement_object == "X" or statement_value == "Y":
+#             output += " :- "
+#             if statement_object == "X":
+#               output += object_type + "(X)"
+#             if statement_object == "X" and statement_value == "Y":
+#               output += ", "
+#             if statement_value == "Y":
+#               output += attribute_type + "(Y)"
+#           output += ".\n"
+#         else:
+#           output += predicate + "(" + statement_object + ")"
+#           if statement_object == "X" and is_attribute:
+#             output += ":- " + object_type + "(X)"
+#           output += ".\n"
+#   for fact in payload['facts']:
+#     if 'from_ontology' in fact and not fact['from_ontology']:
+#       if 'category' in fact:
+#         basic_predicate = fact['category']
+#         is_attribute = False
+#       elif 'attribute' in fact:
+#         basic_predicate = fact['attribute']
+#         attribute_type = "object"
+#         for att in ontology['Attributes']:
+#             if basic_predicate == att['Attribute']:
+#               attribute_type = att['Type']
+#               object_type = att['Category']
+#               break
+#         is_attribute = True
+#       truth_value = fact['type']
+#       if fact['type'] == "unknown":
+#         # This statement is an abducibility:
+#         if 'category' in fact:
+#           # If it is a category, we need -category(X) :- not category(X), x \= list of known objects in the category, and the opposite.
+#           # We need to check to see if the variable is unground, and include the exclusions only if it is unground.
+#           if type(fact['object']) is dict:
+#             object_display = "X"
+#           else:
+#             object_display = fact['object'] 
+#           output += basic_predicate + "(" + object_display + ") :- not -" + basic_predicate + "(" + object_display + ")"
+#           if object_display == "X":
+#             output += object_type + "(X)"
+#           output += ".\n"
+#           output += "-" + basic_predicate + "(" + object_display + ") :- not " + basic_predicate + "(" + object_display + ")"
+#           if object_display == "X":
+#             output += object_type + "(X)"
+#           output += ".\n"
+#         if 'attribute' in fact:
+#           # If it is an attribute, we need attribute(X,Y) :- not -attribute(X,Y), X \= list of known objects in the category, Y \= list of known objects in target category, and the opposite.
+#           # Get the object type for the attribute, and get the value type if it exists.
+#           # for att in ontology['Attributes']:
+#           #   if att['Attribute'] == fact['attribute']:
+#           #     object_type = att['Category']
+#           #     value_type = att['Type']
+#           # We also need to know if the value_type is a category
+#           value_is_object = attribute_type in ontology['Categories']
+#           if type(fact['object']) is dict:
+#             object_display = "X"
+#           else:
+#             object_display = fact['object']
+#           if 'value' in fact and type(fact['value']) is dict:
+#             value_display = "Y"
+#           elif 'value' in fact:
+#             value_display = fact['value']
+#             # This will cause it to use the same variable name twice if both the subject and object are unground and they use the same variable name.
+#             if object_display == "X" and value_display == "Y":
+#               if fact['object']['variable'] == fact['value']['variable']:
+#                 value_display == "X"
+#           if 'value' in fact: # This is the binary predicate type
+#             output += basic_predicate + "(" + object_display + "," + value_display + ") :- "
+#             if object_display == "X":
+#               output += object_type + "(X)"
+#             if object_display == "X" and (value_display == "X" or value_display == "Y"):
+#               output += ", "
+#             if value_display == "X" or value_display == "Y":
+#               output += attribute_type + "(" + value_display + ")"
+#             if object_display == "X" or (value_display == "X" or value_display == "Y"):
+#               output += ", "
+#             output += " not -" + basic_predicate + "(" + object_display + "," + value_display + ").\n"
+#             output += "-" + basic_predicate + "(" + object_display + "," + value_display + ") :- "
+#             if object_display == "X":
+#               output += object_type + "(X)"
+#             if object_display == "X" and (value_display == "X" or value_display == "Y"):
+#               output += ", "
+#             if value_display == "X" or value_display == "Y":
+#               output += attribute_type + "(" + value_display + ")"
+#             if object_display == "X" or (value_display == "X" or value_display == "Y"):
+#               output += ", "
+#             output += " not " + basic_predicate + "(" + object_display + "," + value_display + ").\n"
+#           else: # This is the unary predicate type.
+#             output += basic_predicate + "(" + object_display + ") :- "
+#             if object_display == "X":
+#               output += object_type + "(X), "
+#             output += "not -" + basic_predicate + "(" + object_display + ").\n"
+#             output += "-" + basic_predicate + "(" + object_display + ") :- "
+#             if object_display == "X":
+#               output += object_type + "(X), "
+#             output += "not " + basic_predicate + "(" + object_display + ").\n"
+#   return output
 
 def format_statement_value(value,attribute_type):
   iso8601_date_re = r"^(\d{4})-(\d{2})-(\d{2})$"
@@ -399,7 +476,7 @@ def run_test(request,ruledoc,test_name):
     if request.user.has_perm('blawx.run',test):
       translated_facts = ""
       if request.data:
-        translated_facts = newer_json_2_scasp(request.data,ruledoc,test_name)
+        translated_facts = even_newer_json_2_scasp(request.data,ruledoc,test_name)
         # print("Facts Generated for Run Request:\n")
         # print(translated_facts)
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
@@ -662,6 +739,180 @@ blawxrun(Query, Human) :-
                     for anlga in att_nlg_query_answers:
                       attribute_nlg.append({"Attribute": a['Attribute'], "Order": anlga['Variables']['Order'], "Prefix": anlga['Variables']['Prefix'], "Infix": anlga['Variables']['Infix'], "Postfix": anlga['Variables']['Postfix']})
 
+                  relationship_answers = []
+                  query3_answers = []
+                  try:
+                    query3_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3),Human).")
+                    query3_answers = generate_answers(query3_answer)
+                    for att in query3_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3']})
+                    transcript.write(str(query3_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+                  query4_answers = []
+                  try:
+                    query4_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4),Human).")
+                    query4_answers = generate_answers(query4_answer)
+                    for att in query4_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4']})
+                    transcript.write(str(query4_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+
+                  query5_answers = []
+                  try:
+                    query5_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5),Human).")
+                    query5_answers = generate_answers(query5_answer)
+                    for att in query5_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5']})
+                    transcript.write(str(query5_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+
+                  query6_answers = []
+                  try:
+                    query6_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5,Param6),Human).")
+                    query6_answers = generate_answers(query6_answer)
+                    for att in query6_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5'], "Parameter6": att['Variables']['Param6']})
+                    transcript.write(str(query6_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+
+                  query7_answers = []
+                  try:
+                    query7_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5,Param6,Param7),Human).")
+                    query7_answers = generate_answers(query7_answer)
+                    for att in query7_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5'], "Parameter6": att['Variables']['Param6'], "Parameter7": att['Variables']['Param7']})
+                    transcript.write(str(query7_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+
+                  query8_answers = []
+                  try:
+                    query8_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5,Param6,Param7,Param8),Human).")
+                    query8_answers = generate_answers(query8_answer)
+                    for att in query8_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5'], "Parameter6": att['Variables']['Param6'], "Parameter7": att['Variables']['Param7'], "Parameter8": att['Variables']['Param8']})
+                    transcript.write(str(query8_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+
+                  query9_answers = []
+                  try:
+                    query9_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5,Param6,Param7,Param8,Param9),Human).")
+                    query9_answers = generate_answers(query9_answer)
+                    for att in query9_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5'], "Parameter6": att['Variables']['Param6'], "Parameter7": att['Variables']['Param7'], "Parameter8": att['Variables']['Param8'], "Parameter9": att['Variables']['Param9']})
+                    transcript.write(str(query9_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+                  query10_answers = []
+                  try:
+                    query10_answer = swipl_thread.query("blawxrun(blawx_relationship(Relationship,Param1,Param2,Param3,Param4,Param5,Param6,Param7,Param8,Param9,Param10),Human).")
+                    query10_answers = generate_answers(query10_answer)
+                    for att in query10_answers:
+                      # This excludes declarations that make variables into attribute types.
+                      # TODO: I don't know if this is useful, here. It's checking to see if there are any variables being returned as the value type, category, or attribute. But
+                      # I'm having difficulty figuring out why that was ever a concern. There is no way to generate a blawx_relationship statement with variables in it.
+                      #if not  re.search(r"^[A-Z_]\w*",att['Variables']['ValueType']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Category']) and not re.search(r"^[A-Z_]\w*",att['Variables']['Attribute']):
+                      relationship_answers.append({"Relationship": att['Variables']['Relationship'], "Parameter1": att['Variables']['Param1'], "Parameter2": att['Variables']['Param2'], "Parameter3": att['Variables']['Param3'], "Parameter4": att['Variables']['Param4'], "Parameter5": att['Variables']['Param5'], "Parameter6": att['Variables']['Param6'], "Parameter7": att['Variables']['Param7'], "Parameter8": att['Variables']['Param8'], "Parameter9": att['Variables']['Param9'], "Parameter10": att['Variables']['Param10']})
+                    transcript.write(str(query10_answer) + '\n')
+                  except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        pass
+
+                  relationship_nlg = []
+                  for a in relationship_answers:
+                    try:
+                      query = "blawxrun(blawx_relationship_nlg(" + a['Relationship'] + ","
+                      parameters = len(a)-1
+                      param = 1
+                      while param <= parameters:
+                        query += 'Prefix'+str(param) + ","
+                        param += 1
+                      query += "Postfix),Human)."
+                      rel_nlg_query_response = swipl_thread.query(query)
+                      rel_nlg_answers = generate_answers(rel_nlg_query_response)
+                      for relnlg in rel_nlg_answers:
+                        new_nlg = {"Relationship": a['Relationship'], "Postfix": relnlg['Variables']['Postfix']}
+                        param_count = 1
+                        while param_count <= parameters:
+                          new_nlg['Prefix'+str(param_count)] = relnlg['Variables']['Prefix'+str(param_count)]
+                          param_count += 1
+                        relationship_nlg.append(new_nlg)
+                    except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        continue
+
+                  rel_facts = []
+                  for a in relationship_answers:
+                    try:
+                      query = "blawxrun(" + a['Relationship'] + "("
+                      parameters = len(a)-1
+                      param = 1
+                      while param <= parameters:
+                        query += 'Parameter'+str(param)
+                        if param < parameters:
+                          query += ","
+                        param += 1
+                      query += "),Human)."
+                      rel_fact_query_response = swipl_thread.query(query)
+                      rel_fact_answers = generate_answers(rel_fact_query_response)
+                      for relfact in rel_fact_answers:
+                        new_fact = {"Relationship": a['Relationship']}
+                        param_count = 1
+                        while param_count <= parameters:
+                          new_fact['Parameter'+str(param_count)] = relfact['Variables']['Parameter'+str(param_count)]
+                          param_count += 1
+                        rel_facts.append(new_fact)
+                    except PrologError as err:
+                      if err.prolog().startswith('existence_error'):
+                        continue
+
                   transcript.write(str(query1_answer) + '\n')
                   object_query_answers = []
                   for cat in query1_answers:
@@ -753,7 +1004,7 @@ blawxrun(Query, Human) :-
     except PrologLaunchError as err:
       return { "error": "Blawx could not load the reasoner." }
     # Return the results as JSON
-    return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Transcript": transcript_output }
+    return { "Categories": category_answers, "CategoryNLG": category_nlg, "Attributes": attribute_answers, "AttributeNLG": attribute_nlg, "Relationships": relationship_answers, "RelationshipNLG": relationship_nlg, "Objects": object_query_answers, "Values": value_query_answers, "Relations": rel_facts, "Transcript": transcript_output }
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
@@ -914,7 +1165,7 @@ def interview(request,ruledoc,test_name):
       # Effectively, we're going to start over.
       translated_facts = ""
       if request.data:
-        translated_facts = newer_json_2_scasp(request.data, ruledoc, test_name) #Generate answers INCLUDING assumptions in the submitted data
+        translated_facts = even_newer_json_2_scasp(request.data, ruledoc, test_name) #Generate answers INCLUDING assumptions in the submitted data
       
       wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
       test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
@@ -1104,7 +1355,7 @@ def simplify_term(term):
   simplified = {}
   simplified['functor'] = term['functor']
   simplified['args'] = []
-  replacements = ['X','Y'] # we don't use more than two-element terms
+  replacements = ['Q','R','S','T','U','V','W','X','Y','Z'] # We have up to 10-ary terms, now. 
   r = 0
   for a in term['args']:
     if type(a) == dict: # If the argument is a term, simplify it, too. Used to deal with negations, mostly.

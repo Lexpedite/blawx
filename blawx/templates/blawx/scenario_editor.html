@@ -141,8 +141,12 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Devel</h5>
-                            This tab shows the payload sent to the Blawx interview API, and the response
+                            This tab shows the ontology received from the ontology API, the payload sent to the Blawx interview API, and the response
                             received, to illustrate use of the Blawx interview API for developers.
+                            <h6>Ontology</h6>
+                            <div id="ontology">
+                                <!-- The ontology will go here. -->
+                            </div>
                             <h6>Payload</h6>
                             <div id="payload">
                                 <!-- The payload will go here. -->
@@ -703,7 +707,7 @@
                 if (predicate_name == "gt") {
                     return displayValue(model.args[0],human) + " is greater than or equal to" + displayValue(model.args[1],human)
                 }
-                predicate_type = model.args.length; // 1 is category, 2 is attribute
+                predicate_type = model.args.length; // 1 is category, 2 is attribute (not any more), 3+ is relationship
                 var prefix = "";
                 var infix = "";
                 var postfix = "";
@@ -727,7 +731,7 @@
                         }
                     }
                     return displayValue(object,human) + " is a " + predicate_name;
-                } else { // it is an attribute
+                } else if (predicate_type == 2) { // it is a binary attribute
                     object = model.args[0];
                     value = model.args[1];
                         
@@ -746,6 +750,25 @@
                         }
                     }
                     return displayValue(object,human) + "'s " + predicate_name + " is " + displayValue(value,human);
+                } else { // It is a relationship
+                    var postfix = "";
+                    var prefixes = {};
+                    var arity = model.args.length;
+                    var output = ""
+                    for (var i=0; i < ontology.RelationshipNLG.length; i++) {
+                        if (ontology.RelationshipNLG[i].Relationship = predicate_name) {
+                            postfix = ontology.RelationshipNLG[i].Postfix;
+                            for (var p=1; p<=arity; p++) {
+                                prefixes[p] = ontology.RelationshipNLG[i]['Prefix'+p];
+                            }
+                            break;
+                        }
+                    }
+                    for (var p=1; p <= arity; p++) {
+                        output += prefixes[p] + " " + displayValue(model.args[p-1],human) + " ";
+                    }
+                    output += postfix;
+                    return output;
                 }
             }
         }
@@ -757,6 +780,7 @@
             objects = ontology['Objects'];
             attributes = ontology['Attributes'];
             values = ontology['Values'];
+            relations = ontology['Relations'];
             for (var i=0; i < objects.length; i++) {
                 var new_fact_statement = {'from_ontology': true, 'type': 'true','category': objects[i]['Category'], 'object': objects[i]['Object']}
                 new_fact_data['facts'].push(new_fact_statement);
@@ -777,6 +801,14 @@
                     new_fact_statement['value'] = values[l]['Value']
                 }
                 new_fact_data['facts'].push(new_fact_statement);
+            }
+            relationships = ontology['Relationships'];
+            for (var r=0; r < relations.length; r++) {
+                var new_relation = {'from_ontology': true, 'type': 'true', 'relationship': relations[r]['Relationship']}
+                for (var p=1; p <= Object.keys(relations[r]).length-1; p++) {
+                    new_relation['parameter'+p] = relations[r]['Parameter'+p]
+                }
+                new_fact_data['facts'].push(new_relation);
             }
 
         }
@@ -840,7 +872,7 @@
                     object_type = ontology['Attributes'][a]['Category'];
                     value_type = ontology['Attributes'][a]['Type'];
                     var value_type_is_category;
-                    if (['date','time','datetime','duration','number'].includes(value_type)) {
+                    if (['date','time','datetime','duration','number','list'].includes(value_type)) {
                         value_type_is_category = false;
                     } else {
                         value_type_is_category = true;
@@ -1017,58 +1049,138 @@
                     output_html += '</svg></button></div></div>';    
                 }
             }
+            for(var r = 0; r < ontology['Relationships'].length; r++) {
+                if (!hidden_by_view.includes('view_rel_' + relationship_name)) {
+                    var relationship_name = ontology['Relationships'][r]['Relationship']
+                    var arity = Object.keys(ontology['Relationships'][r]).length-1;
+                    // Get type info
+                    var types = {};
+                    for (var t = 1; t <= arity; t++) {
+                        types[t] = ontology['Relationships'][r]['Parameter'+t];
+                    }
+                    // Get NLG info
+                    var postfix = "";
+                    var prefixes = [];
+                    for (var n = 0; n < ontology['RelationshipNLG'].length; n++) {
+                        if (relationship_name == ontology['RelationshipNLG'][n]['Relationship']) {
+                            postfix = ontology['RelationshipNLG'][n]['Postfix'];
+                            for (var p = 1; p <= arity; p++) {
+                                prefixes[p] = ontology['RelationshipNLG'][n]['Prefix'+p]
+                            }
+                            break;
+                        }
+                    }
+                    // Truth Type
+                    output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2" id="new_relationship_' + relationship_name + '">';
+                    output_html += '<div class="input-group">';
+                    output_html += '<span class="input-group-text">It is</span>';
+                        
+                    output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example" id="new_relationship_truth_type_' + relationship_name + '">';
+                    output_html += '<option selected value="true">true that</option>';
+                    output_html += '<option value="false">false that</option>';
+                    output_html += '<option value="unknown">uncertain whether</option>';
+                    output_html += '</select></div>';
+                    // Parameters
+                    for (var p = 1; p <= arity; p++) {
+                        if (prefixes[p] != "") {
+                            output_html += '<span class="input-group-text">' + prefixes[p] + '</span>';
+                        }
+                        output_html += generate_field_control(relationship_name,p,types[p]);
+                    }
+                    // Postfix
+                    if (postfix != "") {
+                        output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                    }
+                    // Save and Cancel Buttons
+                    output_html += '<button onclick="save_new_relationship(\'' + relationship_name + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
+                    output_html += '</svg></button>';
+                    output_html += '<button onclick="cancel_new_relationship(\'' + relationship_name + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+                    output_html += '</svg></button></div></div>'; 
+                }
+            }
             output_html += '<div id="new_objects">';
-                output_html += '<div class="dropdown">';
-                output_html += '<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">';
-                output_html += '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>';
-                output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
-                output_html += '</svg>Add Fact</button>';
-                output_html += '<ul class="dropdown-menu w-100">';
-                
-                var categories = Object.keys(fact_data);
-                
-                for(var c=0; c < ontology['Categories'].length; c++) {
-                    if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
-                        var prefix = "";
-                        var postfix = "is a " + ontology['Categories'][c];
-                        for (var i=0; i< ontology['CategoryNLG'].length; i++) {
-                            if (ontology['CategoryNLG'][i]['Category'] == ontology['Categories'][c]) {
-                                prefix = ontology['CategoryNLG'][i]['Prefix'];
-                                postfix = ontology['CategoryNLG'][i]['Postfix'];
-                                break;
-                            }
+            output_html += '<div class="dropdown">';
+            output_html += '<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">';
+            output_html += '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>';
+            output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
+            output_html += '</svg>Add Fact</button>';
+            output_html += '<ul class="dropdown-menu w-100">';
+            
+            var categories = Object.keys(fact_data);
+            
+            for(var c=0; c < ontology['Categories'].length; c++) {
+                if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
+                    var prefix = "";
+                    var postfix = "is a " + ontology['Categories'][c];
+                    for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                        if (ontology['CategoryNLG'][i]['Category'] == ontology['Categories'][c]) {
+                            prefix = ontology['CategoryNLG'][i]['Prefix'];
+                            postfix = ontology['CategoryNLG'][i]['Postfix'];
+                            break;
                         }
-                        output_html += '<li><a onclick="show_new_object(\'' + ontology['Categories'][c] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>object</i> ' + postfix + '</a></li>';
                     }
+                    output_html += '<li><a onclick="show_new_object(\'' + ontology['Categories'][c] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>object</i> ' + postfix + '</a></li>';
                 }
-                for(var a=0; a < ontology['Attributes'].length; a++) {
-                    if (!hidden_by_view.includes('view_att_' + ontology['Attributes'][a]['Attribute'])) {    
-                        var attribute_name = ontology['Attributes'][a]['Attribute'];
-                        var object_type = ontology['Attributes'][a]['Category'];
-                        var value_type = ontology['Attributes'][a]['Type'];
-                        for (var i=0; i< ontology['AttributeNLG'].length; i++) {
-                            if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
-                                prefix = ontology['AttributeNLG'][i]['Prefix'];
-                                infix = ontology['AttributeNLG'][i]['Infix'];
-                                postfix = ontology['AttributeNLG'][i]['Postfix'];
-                                order = ontology['AttributeNLG'][i]['Order'];
-                                break;
-                            }
+            }
+            for(var a=0; a < ontology['Attributes'].length; a++) {
+                if (!hidden_by_view.includes('view_att_' + ontology['Attributes'][a]['Attribute'])) {    
+                    var attribute_name = ontology['Attributes'][a]['Attribute'];
+                    var object_type = ontology['Attributes'][a]['Category'];
+                    var value_type = ontology['Attributes'][a]['Type'];
+                    for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                        if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
+                            prefix = ontology['AttributeNLG'][i]['Prefix'];
+                            infix = ontology['AttributeNLG'][i]['Infix'];
+                            postfix = ontology['AttributeNLG'][i]['Postfix'];
+                            order = ontology['AttributeNLG'][i]['Order'];
+                            break;
                         }
-                        if (value_type == "boolean") {
-                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                    }
+                    if (value_type == "boolean") {
+                        output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                    } else {
+                        if (order == "ov") {
+                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + infix + ' <i>' + value_type + '</i> ' + postfix + '</a></li>';
                         } else {
-                            if (order == "ov") {
-                                output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + infix + ' <i>' + value_type + '</i> ' + postfix + '</a></li>';
-                            } else {
-                                output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' + value_type + '</i> ' + infix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
-                            }
+                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' + value_type + '</i> ' + infix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
                         }
                     }
                 }
-                output_html += '</ul>';
-                output_html += '</div>';
-                output_html += '</div>';
+            }
+            for (var r=0; r < ontology['Relationships'].length; r++) {
+                if (!hidden_by_view.includes('view_rel_' + ontology['Relationships'][r]['Relationship'])) {
+                    var relationship_name = ontology['Relationships'][r]['Relationship'];
+                    var arity = Object.keys(ontology['Relationships'][r]).length-1;
+                    var types = {};
+                    var prefixes = {};
+                    var postfix = "";
+                    for (var p=1; p <= arity; p++) {
+                        types[p] = ontology['Relationships'][r]['Parameter'+p];
+                    }
+                    for (var nlg=0; nlg < ontology['RelationshipNLG'].length; nlg++) {
+                        if (ontology['Relationships'][r]['Relationship'] == ontology['RelationshipNLG'][nlg]['Relationship']) {
+                            postfix = ontology['RelationshipNLG'][nlg]['Postfix'];
+                            for (var np=1; np <= arity; np++) {
+                                prefixes[np] = ontology['RelationshipNLG'][nlg]['Prefix'+np];
+                            }
+                            break;
+                        }
+                    }
+                    output_html += '<li><a onclick="show_new_relationship(\'' + relationship_name + '\')" class="dropdown-item" href="#">'
+                    for (var p=1; p <= arity; p++) {
+                        output_html += prefixes[p] + ' ';
+                        output_html += '<i>' + types[p] + '</i> ';
+                    }
+                    output_html += postfix + '</a></li>'
+                }
+            }
+            output_html += '</ul>';
+            output_html += '</div>';
+            output_html += '</div>';
                 
 
             output_html += '</nav>';
@@ -1077,6 +1189,66 @@
             target.outerHTML = output_html;
 
         };
+        function generate_field_control(relationship_name,parameter,value_type) {
+            var value_html = "";
+            switch(value_type) {
+                case 'number':
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input type="number" class="form-control" aria-label="New value" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                case 'date':
+                    value_html += '<div class="input-group-text">';
+                    //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                    value_html += '<input type="date" class="form-control" aria-label="Date" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                case 'duration':
+                    value_html += '<div class="input-group-text">';
+                    //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                    value_html += '<span class="input-group-text px-1">S</span>';
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_direction">';
+                    value_html += '</div>';
+                    value_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
+                    value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_days">';
+                    value_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
+                    value_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_hours">';
+                    value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                    value_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_minutes">';
+                    value_html += "</div>";
+                    break;
+                case 'boolean':
+                    break;
+                case 'time':
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input type="time" class="form-control" aria-label="Date" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                case 'datetime':
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                default:
+                    if (ontology['Categories'].includes(value_type)) {
+                        value_html += '<div class="input-group-text">';
+                        value_html += '<select class="form-select" aria-label="Default select example" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                        for (var n=0; n < new_fact_data['facts'].length; n++) {
+                            if ('category' in new_fact_data['facts'][n]) {
+                                if (new_fact_data['facts'][n]['category'] == value_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                    value_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                }
+                            }
+                        }
+                        value_html += '<option value="VAR">any ' + value_type + '</option>';
+                        value_html += '</select></div>';
+                    } else {
+                        value_html += "Can't Render Datatype";
+                    }
+            }
+            return value_html;
+        }
         function toggle_unground_new_object(category) {
             // Get the value of the checkbox
             var checkbox = document.getElementById('new_object_toggle_check_' + category);
@@ -1103,6 +1275,10 @@
         function show_new_attribute(attribute) {
             target = document.getElementById('new_attribute_' + attribute);
             target.classList.add('show');
+        };
+        function show_new_relationship(relationship) {
+            target = document.getElementById('new_relationship_' + relationship);
+            target.classList.add('show');
         }
         function save_new_object(category){
             // Add the object to the data
@@ -1120,6 +1296,72 @@
             // redraw
             draw_facts();
         };
+        function save_new_relationship(relationship) {
+            var target_truth_value = document.getElementById('new_relationship_truth_type_' + relationship);
+            var new_relationship_statement = {'from_ontology': false, 'relationship': relationship, 'type': target_truth_value.value}
+            // I Need to get the Arity of the relationship
+            var arity = 3;
+            var types = {};
+            for (var r = 0; r < ontology['Relationships'].length; r++) {
+                if (relationship == ontology['Relationships'][r]['Relationship']) {
+                    arity = Object.keys(ontology['Relationships'][r]).length-1;
+                    for (var p=1; p<=arity; p++) {
+                        types[p] = ontology['Relationships'][r]['Parameter'+p];
+                    }
+                    break;
+                }
+            }
+            // Now I need to get the values for all of the parameters
+            var variables = "ABCDEFGHIJK";
+            for (var p = 1; p <= arity; p++) {
+                if (types[p] == "duration") {
+                    // Get the new value
+                    var new_value = "";
+                    var direction_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_direction');
+                    var day_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_days');
+                    var hour_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_hours');
+                    var minute_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_minutes');
+                    if (direction_target.checked) {
+                        new_direction = true;
+                    } else {
+                        new_direction = false;
+                    }
+                    var new_day = day_target.value;
+                    var new_hour = hour_target.value;
+                    var new_minute = minute_target.value;
+                    if (new_direction) {
+                        new_value = "";
+                    } else {
+                        new_value = "-";
+                    }
+                    new_value += "P"
+                    // The idea here is that if all three are zero, it should come out as P0D
+                    if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
+                        new_value += new_day + "D";
+                    }
+                    if (parseInt(new_hour) || parseInt(new_minute)) {
+                        new_value += "T";
+                    }
+                    if (parseInt(new_hour)) {
+                        new_value += new_hour + "H";
+                    }
+                    if (parseInt(new_minute)) {
+                        new_value += new_minute + "M";
+                    }
+                    target_value = new_value;
+                } else {
+                    target_param = document.getElementById('new_relationship_parameter_' + p + '_' + relationship);
+                    target_value = target_param.value;
+                }
+                if (target_value == "VAR") {
+                    new_relationship_statement['parameter'+p] = {'variable': variables[p]};
+                } else {
+                    new_relationship_statement['parameter'+p] = target_value;
+                }
+            }
+            new_fact_data['facts'].push(new_relationship_statement);
+            draw_facts();
+        }
         function cancel_new_object(category){
             // Delete the value in the current new object
             //target_new_object = document.getElementById('category_' + category + '_new_object');
@@ -1134,6 +1376,10 @@
         function cancel_new_value(attribute){
             target_attribute = document.getElementById('new_attribute_' + attribute);
             target_attribute.classList.remove('show');
+        };
+        function cancel_new_relationship(relationship) {
+            target = document.getElementById('new_relationship_' + relationship);
+            target.classList.remove('show');
         }
         function show_new_value(category,object,attribute){
             // Close any other open new object or value
@@ -1248,6 +1494,7 @@
         var answer_element = document.getElementById('answers');
         var payload_element = document.getElementById('payload');
         var response_element = document.getElementById('response');
+        var ontology_element = document.getElementById('ontology');
         function run_test() {
             var testrun_request = new XMLHttpRequest();
             testrun_request.onload = function () {
@@ -1256,6 +1503,8 @@
                 payload_element.innerHTML = '<pre>' + JSON.stringify(new_fact_data,null,2) + '</pre>'
                 
                 response_element.innerHTML = '<pre>' + JSON.stringify(parsed_test_response,null,2) + '</pre>'
+
+                ontology_element.innerHTML = '<pre>' + JSON.stringify(ontology,null,2) + '</pre>'
                 // If the question is answered
                 if (parsed_test_response['Answers'].length) {
                     // Display the answer
@@ -1398,6 +1647,19 @@
                 output += '</div>';
                 output += '</li>';
             }
+            // For each relationship
+            for (var k=0; k < ontology['Relationships'].length; k++) {
+                output += '<li>'
+                output += '<div class="form-check form-switch">';
+                output += '<input onchange="toggle_view_hidden(\'' + 'view_rel_' + ontology['Relationships'][k]['Relationship'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_rel_' + ontology['Relationships'][k]['Relationship'] + '"';
+                if(hidden_by_view.includes('view_rel_' + ontology['Relationships'][k]['Relationship'])) {
+                    output += ' checked';
+                }
+                output += '>';
+                output += '<label class="form-check-label" for="view_rel_' + ontology['Relationships'][k]['Relationship'] + '">Hide Relationship ' + ontology['Relationships'][k]['Relationship'] + '</label>';
+                output += '</div>';
+                output += '</li>';
+            }
             output += '</ul>';
             view_form_element.innerHTML = output;
         }
@@ -1438,8 +1700,12 @@
                     if (hidden_by_view.includes('view_cat_' + new_fact_data['facts'][f]['category'])) {
                         hidden = true;
                     }
-                } else {
+                } else if ('attribute' in new_fact_data['facts'][f]) {
                     if (hidden_by_view.includes('view_att_' + new_fact_data['facts'][f]['attribute'])) {
+                        hidden = true;
+                    }
+                } else if ('relationship' in new_fact_data['facts'][f]) {
+                    if (hidden_by_view.includes('view_rel_' + new_fact_data['facts'][f]['relationship'])) {
                         hidden = true;
                     }
                 }
@@ -1471,7 +1737,7 @@
                             object_display = "any object"
                         }
                         output_html += prefix + ' ' + object_display + ' ' + postfix;
-                    } else {
+                    } else if ('attribute' in new_fact_data['facts'][f]) {
                         var attribute_name = new_fact_data['facts'][f]['attribute'];
                         for (var i=0; i< ontology['AttributeNLG'].length; i++) {
                             if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
@@ -1548,6 +1814,79 @@
                         } else {
                             output_html += prefix + ' ' +  object_display + ' ' + postfix ;
                         }
+                    } else if ('relationship' in new_fact_data['facts'][f]) {
+                        var arity = 3;
+                        var prefixes = {}
+                        var postfix = "";
+                        for (var i=0; i < ontology['RelationshipNLG'].length; i++) {
+
+                            if (ontology['RelationshipNLG'][i]['Relationship'] == new_fact_data['facts'][f]['relationship']) {
+                                postfix = ontology['RelationshipNLG'][i]['Postfix'];
+                                arity = Object.keys(ontology['RelationshipNLG'][i]).length-2;
+                                for (var p=1; p <= arity; p++) {
+                                    prefixes[p] = ontology['RelationshipNLG'][i]['Prefix'+p];
+                                }
+                                break;
+                            }
+                        }
+                        var types = {}
+                        for (var i=0; i < ontology['Relationships'].length; i++) {
+                            if (ontology['Relationships'][i]['Relationship'] == new_fact_data['facts'][f]['relationship']) {
+                                for (var p=1; p <= arity; p++) {
+                                    types[p] = ontology['Relationships'][i]['Parameter'+p];
+                                }
+                                break;
+                            }
+                        }
+                        for (var i=1; i <= arity; i++) {
+                            output_html += " " + prefixes[i];
+                            var value_display = new_fact_data['facts'][f]['parameter'+i];
+                            var value_type = types[i];
+                            if (typeof(value_display) == 'object') {   
+                                value_display = "any " + value_type;
+                            }
+                            if (value_type == "duration") {
+                                iso_duration = /^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$/
+                                matches = iso_duration.exec(value_display)
+                                var new_value_display = ""
+                                var future = true;
+                                if (matches[1] != undefined) {
+                                    future = false;
+                                }
+                                if (matches[2] != undefined) {
+                                    new_value_display += matches[2].slice(0,-1) + " years, ";
+                                }
+                                if (matches[3] != undefined) {
+                                    new_value_display += matches[3].slice(0,-1) + " months, ";
+                                }
+                                if (matches[4] != undefined) {
+                                    new_value_display += matches[4].slice(0,-1) + " days, ";
+                                }
+                                if (matches[5] != undefined) {
+                                    new_value_display += matches[5].slice(0,-1) + " hours, ";
+                                }
+                                if (matches[6] != undefined) {
+                                    new_value_display += matches[6].slice(0,-1) + " minutes, ";
+                                }
+                                if (matches[7] != undefined) {
+                                    new_value_display += matches[7].slice(0,-1) + " seconds, ";
+                                }
+                                if (future) {
+                                    new_value_display += " into the future";
+                                } else {
+                                    new_value_display += " into the past";
+                                }
+                                var last_comma = new_value_display.lastIndexOf(',');
+                                value_display = new_value_display.slice(0,last_comma) + new_value_display.slice(last_comma+1);
+
+                            }
+                            if (value_type == "datetime") {
+                                value_display = value_display.replace("T"," ")
+                            }
+                            output_html += " " + value_display;
+                        }
+                        output_html += " " + postfix;
+                        // TODO: This doesn't deal with variables, and it doesn't format data properly.
                     }
                     if (!new_fact_data['facts'][f]['from_ontology']) {
                         var delete_target

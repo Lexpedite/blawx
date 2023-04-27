@@ -1,0 +1,26 @@
+- model: blawx.docpage
+  pk: blocks/relationship_selector
+  fields:
+    title: Relationship Selector Block
+    content: |
+      # Relationship Selector Block
+
+      ![Relationship Selector Block](/static/blawx/docs/images/blocks/relationship_selector.png)
+
+      ## Where Is It?
+
+      The relationship selector block is located in the Known Relationships drawer of the Blawx toolbox.
+
+      ## What Does It Do?
+
+      The relationship selector block is used to set or test a value for a relationship between 3 or more objects and values.
+
+      ## Technical Details
+
+      The relationship selector block's appearance is determined by the new relationship block that defines it.
+
+      It has between 3 and 10 internal connectors for objects and values. If a connector is for a data type, it will only
+      accept values of that type and variables. If a connector is for a category, it will accept objects and variables.
+
+      ## Tips
+
