@@ -1,9 +1,32 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 {% load static %}
 {% load guardian_tags %}
 {% csrf_token %}
-{% block page_head %}
 
+{% block head_extras %}
+<link href="{% static 'blawx/navtree.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><i class="bi bi-house pe-2"></i><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' ruledoc.id %}">{{ ruledoc.ruledoc_name }}</a></li>
+        <li class="breadcrumb-item">
+            <a class="dropdown-toggle" data-bs-toggle="collapse" href="#ruleNav" role="button"
+                                                    aria-expanded="false" aria-controls="ruleNav">
+                                                    <i class="bi bi-file-code pe-2"></i></i>Section
+                                                    </a></li>
+    </ul>
+</nav>
+<div class="card collapse w-100 overflow-auto" style="max-height:25%;" id="ruleNav">
+        <div class="card-body akoma-ntoso" id="rules">
+            {{ ruledoc.navtree | safe }}
+      </div>
+</div>
+{% endblock %}
+
+{% block main_content_card %}
 <style type="text/css">
 .blocklyTreeLabel{
     color:black;
@@ -12,177 +35,44 @@
 .blocklyDropDownDiv{
     z-index: 2000;
 }
-
+.blawxlogo {
+    font-family: 'Mina', sans-serif;
+    }
 </style>
-
-<link href="{% static 'blawx/navtree.css' %}" rel="stylesheet">
-<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet"> -->
-<link href="{% static 'blawx/bootstrap-icons.css' %}" rel="stylesheet">
-    
-<script src="{% static 'blawx/jquery.min.js' %}"></script>
-{% endblock %}
-
-{% block page_content %}
-
 {% get_obj_perms request.user for ruledoc as 'ruledoc_perms' %}
     <script src="{% static 'blawx/blockly/blockly_compressed.js' %}"></script>
     <script src="{% static 'blawx/blockly/msg/en.js' %}"></script>
     <script src="{% static 'blawx/blockly/javascript_compressed.js' %}"></script>
     <script src="{% static 'blawx/blockly/blocks_compressed.js' %}"></script>
-    <!-- <script src="{% static 'blawx/blockly/msg/js/en.js' %}"></script>  -->
     <script src="{% static 'blawx/blockly/appengine/storage.js' %}"></script>
     <script src="{% static 'blawx/blawx-blocks.js' %}"></script>
 
-    <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
-        <!-- <category name="Include" colour="#666666">
-            <block type="include"></block>  
-        </category>
-        <sep></sep>-->
-        <category name="Primary" custom="PRIMARY" colour="#805ba5">
-        </category>
-        <sep></sep>
-        <category name="Exceptions" colour="#5ba593">
-            <block type="overrules"></block>
-            <block type="according_to"></block>
-            <block type="defeated"></block>
-            <block type="applies"></block>
-            <block type="holds"></block>
-        </category>
-        <category name="Known Sections" custom="KNOWN_RULES" colour="#5ba593">
-        </category>
-        <sep></sep>
-        <category name="Categories" colour="#a55b5b">
-        <block type="new_category_declaration"></block>
-        <block type="new_attribute_declaration"></block>
-        <block type="relationship_declaration"></block>
-        </category>
-        <sep></sep>
-        <category name="Events" colour="#80A55B">
-            <block type="from"></block>
-            <block type="as_of"></block>
-            <block type="initially"></block>
-            <block type="ultimately"></block>
-            <block type="holds_during"></block>
-        </category>
-        <sep></sep>
-        <category name="Numbers" colour="#5b5ba5">
-            <block type="number_value"></block>
-            <block type="math_operation"></block>
-            <block type="numerical_constraint"></block>
-        </category>
-        <category name="Dates" colour="#a55b80">
-            <block type="today"></block>
-            <block type="now"></block>
-            <block type="date_value"></block>
-            <block type="datetime_value"></block>
-            <block type="time_value"></block>
-            <block type="duration_value"></block>
-            <block type="date_comparison"></block>
-            <block type="duration_comparison"></block>
-            <!-- <block type="date_element"></block> -->
-            <!-- <block type="date_difference_days"></block>
-            <block type="date_difference"></block> -->
-            <block type="date_add"></block>
-            <!-- <block type="date_add_days"></block>
-            <block type="date_calculate"></block>
-            <block type="duration_calculate"></block>
-            <block type="datetime_calculate"></block>
-            <block type="time_calculate"></block>-->
-            <block type="datetime_construct"></block>
-            <!-- <block type="datetime_to_ts"></block>
-            <block type="ts_to_datetime"></block>-->
-            <!-- <block type="duration_element"></block> -->
-            <block type="time_from_ts"></block>
-            <block type="date_from_ts"></block>
-            <block type="datetime_from_ts"></block>
-            <block type="duration_from_ts"></block>
-        </category>
-        <category name="Lists" colour="#a55ba5">
-            <block type="empty_list"></block>
-            <block type="head_tail"></block>
-            <block type="list_aggregation"></block>
-            <block type="collect_list"></block>
-        </category>    
-        <sep></sep>
-        <category name="Objects" custom="NEW_OBJECTS" colour="#5b5ba5"></category>
-        <category name="Known Objects" custom='KNOWN_OBJECTS' colour="#5b5ba5">
-        </category>
-        <sep></sep>
-        <category name="Known Attributes" custom="KNOWN_ATTRIBUTES" colour="#5BA65B"></category>
-        <sep></sep>
-        <category name="Known Relationships" custom="KNOWN_RELATIONSHIPS" colour="#5b93a5"></category>
-        <sep></sep>
-        <category name="Logic" colour="#a55b93">
-            <!-- <block type="conjunction"></block>
-            <block type="disjunction"></block> -->
-            <block type="logical_negation"></block>
-            <block type="default_negation"></block>
-            <block type="comparison"></block>
-        </category>
-        <sep></sep>
-        <category name="Variables" colour="#a5a55b">
-        <block type="variable"></block>
-        <!-- <block type="silent_variable"></block> -->
-        <block type="unnamed_variable"></block>
-        <block type="variable_assignment"></block>
-        </category>
-        <sep></sep>
-        <!-- <category name="Input" colour="#A55B5B">
-        <block type="json_input"></block>
-        <block type="json_list"></block>
-        <block type="json_dictionary"></block>
-        <block type="json_value"></block>
-        </category>
-        <sep></sep> -->
-    </xml>
-
-    
-<main class="flex-grow-1">
-    <div class="row flex-row h-100">
-        <div class="collapse-horizontal flex-column card col-6 h-100 p-0 collapse" id="leftbar">
-                    
-            <div class="card-body akoma-ntoso" id="rules">
-                {{ ruledoc.navtree | safe }}
-              
-              
-              
-          </div>
-  </div>
-<div id="lefttoggle" class="col-auto p-1 vh-100 sticky-top">
-  <a href="#" class="btn d-flex align-items-center btn-secondary p-0 h-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#leftbar" aria-expanded="false" aria-controls="leftbar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-<path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"></path>
-</svg></a>
-</div>
-        <div id="interface" class="col-auto flex-grow-1 p-0 vh-100 sticky-top">
+    {% include "includes/toolbox.html" with test=False %}
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs" id="blawxTabs" role="tablist">
+            <button class="btn mb-1 me-2 btn-sm btn-primary {% if 'change_ruledoc' not in ruledoc_perms %}disabled{% endif %}" {% if 'change_ruledoc' not in ruledoc_perms %}aria-disabled="true" {% endif %}onclick="updateWorkspace()">
+                <i class="bi bi-save pe-2"></i>Save
+            </button>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="blawx-code-tab" data-bs-toggle="tab" data-bs-target="#blawx-code" type="button" role="tab" aria-controls="blawx-code" aria-selected="true">Blawx</button>
+            </li>
+            <li class="nav-item" role="presentation">
+            <button class="nav-link" id="scasp-tab" data-bs-toggle="tab" data-bs-target="#scasp" type="button" role="tab" aria-controls="scasp" aria-selected="false">s(CASP)</button>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body p-0">
+        <div class="tab-content h-100" id="blawxTabContent">
+            <div class="tab-pane h-100 fade show active" id="blawx-code" role="tabpanel" aria-labelledby="blawx-code-tab">
+                <div id="interface" class="h-100">
                     <div id="blocklyArea" class="p-0 h-100">
                         <div id="blocklyDiv" style="position: absolute;"></div>
                     </div>
-        </div>
-        <div id="righttoggle" class="col-auto p-1 vh-100 sticky-top">
-            <a href="#" class="btn d-flex align-items-center btn-secondary h-100 p-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rightbar" aria-expanded="false" aria-controls="rightbar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
-    </svg></a>
-        </div>
-        <div class="collapse-horizontal flex-column card col-5 vh-100 p-0 collapse sticky-top overflow-auto" id="rightbar">
-                <nav class="card-header">
-                    <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-code-tab" data-bs-toggle="tab" data-bs-target="#nav-code" type="button" role="tab" aria-controls="nav-code" aria-selected="false">Code</button>
-                      {% if ruledoc.tutorial %}
-                        <button class="nav-link" id="nav-tutorial-tab" data-bs-toggle="tab" data-bs-target="#nav-tutorial" type="button" role="tab" aria-controls="nav-tutorial" aria-selected="true">Tutorial</button>
-                        {% endif %}
-                    </div>
-                  </nav>
-                  <div class="tab-content card-body" id="nav-tabContent">
-                      <div class="tab-pane fade show active" id="nav-code" role="tabpanel" aria-labelledby="nav-code-tab"><pre id="code"></pre></div>
-                    {% if ruledoc.tutorial %}
-                    <div class="tab-pane fade h-100" id="nav-tutorial" role="tabpanel" aria-labelledby="nav-tutorial-tab">
-                       {{ ruledoc.tutorial | safe }}
-                    </div>
-                    {% endif %}
                 </div>
+            </div>
+            <div class="tab-pane p-3 fade" id="scasp" role="tabpanel" aria-labelledby="scasp-tab"><pre id="code"></pre></div>
         </div>
     </div>
-
     <script src="{% static 'blawx/mutators.js' %}"></script>
     <script src="{% static 'blawx/scasp_generator.js' %}"></script>
     <script src="{% static 'blawx/buttons.js' %}"></script>
@@ -286,85 +176,4 @@
       <input id="importfile" onchange="importBlocksFile(this)" type="file" accept=".blawx" hidden />
     </div>
 </main>
-{% endblock %}
-
-{% block header_elements %}
-
-{% get_obj_perms request.user for ruledoc as 'ruledoc_perms' %}
-    <!-- <div class="col-12"> -->
-        <div class="col-8">
-            <!-- <a href="javascript:void(0);" class="btn btn-secondary" onclick="getLoadFile()">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
-                    <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z"/>
-                </svg>
-                <span class="text">Import</span>
-            </a>
-            <a href="javascript:void(0);" class="btn btn-secondary" onclick="exportBlocks()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-down" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
-                    <path fill-rule="evenodd" d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"/>
-                  </svg>
-                <span class="text">Export</span>
-            </a> -->
-            <a href="javascript:void(0);" class="btn btn-secondary {% if 'change_ruledoc' not in ruledoc_perms %}disabled{% endif %}" {% if 'change_ruledoc' not in ruledoc_perms %}aria-disabled="true" {% endif %}onclick="clearBlocks()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M6.5 1a.5.5 0 0 0-.5.5v1h4v-1a.5.5 0 0 0-.5-.5h-3ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1H3.042l.846 10.58a1 1 0 0 0 .997.92h6.23a1 1 0 0 0 .997-.92l.846-10.58Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                  </svg>
-                <span class="text">Clear</span>
-            </a>
-            <!-- <a class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuExamples" data-bs-toggle="dropdown" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
-                        <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
-                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
-                      </svg>
-                      <span class="text">Examples</span>
-                    </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuExamples">
-                  {% for t in templates %}
-                  <li><a class="dropdown-item" href="javascript:void(0);" onclick="getExample({{t.pk}})">{{ t.template_name }}</a></li>
-                  {% endfor %}
-                </ul>
-            </a> -->
-            <!-- <a href="javascript:void(0);" class="btn btn-secondary" onclick="runCode()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square" viewBox="0 0 16 16">
-                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                    <path d="M5.795 12.456A.5.5 0 0 1 5.5 12V4a.5.5 0 0 1 .832-.374l4.5 4a.5.5 0 0 1 0 .748l-4.5 4a.5.5 0 0 1-.537.082z"/>
-                </svg>
-                <span class="text">Run</span>
-            </a> -->
-            <a href="/docs/home" target=_blank class="btn btn-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
-                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                </svg>
-                <span class="text">Help</span>
-            </a>
-            <a href="javascript:void(0);" class="btn btn-secondary {% if 'change_ruledoc' not in ruledoc_perms %}disabled{% endif %}" {% if 'change_ruledoc' not in ruledoc_perms %}aria-disabled="true" {% endif %}onclick="updateWorkspace()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
-                    <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
-                </svg>
-                <span class="text">Save</span>
-            </a>
-            <a href="{% url 'ruledoc' ruledoc.id %}" class="btn btn-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
-                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-                <span class="text">Exit</span>
-            </a>
-            {% if ruledoc.tutorial %}
-            <a href="javascript:void(0);" class="btn btn-secondary" onclick="show_tutorial()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16">
-                    <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913L8 8.46Z"/>
-                    <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z"/>
-                  </svg>
-                <span class="text">Tutorial</span>
-            </a>
-            
-            {% endif %}
-       </div>
-     <!-- </div> -->
 {% endblock %}

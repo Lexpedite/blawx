@@ -1,0 +1,66 @@
+
+{% load guardian_tags %}
+<style type="text/css">
+    #left_navbar a {color: #51005a; text-decoration: none;}
+    #left_navbar a:hover:not(.dropdown-item) {text-decoration: underline;}
+    #left_navbar {background-color:#ffffff; color: #5a005a;}
+</style>
+<div id="left_navbar" class="col collapse show collapse-horizontal col-md-2 bg-light shadow">
+    {% block leftbar %}
+    <ul class="nav flex-column mt-2" style="width:230px;">
+        {% include "includes/leftbar_nav.html" with link="/" image="bi-house" text="Home" %}
+        {% include "includes/leftbar_nav.html" with link="" image="bi-journal" text="Projects" %}
+        <ul>
+            {% if perms.blawx.add_ruledoc %}
+            <li class="dropdown">
+                <a class="nav-item dropdown-toggle py-0 mb-1" role="button" type="button" id="newProjectDropDownButton" data-bs-toggle="dropdown" aria-expanded="false">New Project</a>
+                <ul class="dropdown-menu" aria-labelledby="newProjectDropDownButton">
+                    <li><a class="dropdown-item" href="{% url 'ruledoc_create' %}">New Blank Project</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="getLoadFile()">Import Project</a></li>
+                    <li><hr class="dropdown-divider"/></li>
+                    <li><h6 class="dropdown-header">Load Example</h6></li>
+                    <li><a class="dropdown-item" href="/load_example/rps/">Rock Paper Scissors Act</a></li>
+                    <li><a class="dropdown-item" href="/load_example/mortality/">Mortality Act</a></li>
+                    <li><a class="dropdown-item" href="/load_example/beard_tax/">Beard Tax Act</a></li>
+                    <li><a class="dropdown-item" href="/load_example/bird/">Bird Act</a></li>
+                    <li><a class="dropdown-item" href="/load_example/net30/">Net 30</a></li>
+                    <li><a class="dropdown-item" href="/load_example/r34/">Rule 34 Legal Profession Rules</a></li>
+                    <li><a class="dropdown-item" href="/load_example/siblings/">Siblings Act</a></li>
+                    <li><a class="dropdown-item" href="/load_example/wills/">Wills Act</a></li>
+                    <li><a class="dropdown-item" href="/load_example/covid_test/">Covid Test</a></li>
+                    <li><a class="dropdown-item" href="/load_example/oasa/">Old Age Security Act</a></li>
+                    <li><a class="dropdown-item" href="/load_example/list_demo/">List Demonstration</a></li>
+                    <li><a class="dropdown-item" href="/load_example/numerical_constraints/">Numerical Constraints</a></li>
+                    <li><a class="dropdown-item" href="/load_example/logical_constraints/">Logical Constraints</a></li>
+                    <li><a class="dropdown-item" href="/load_example/life_act/">Life Act</a></li>
+                </ul>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <h6>Your Projects</h6>
+            </li>
+            <ul>
+                {% for ruledoc in ruledoc_list %}
+                {% if user == ruledoc.owner %}    
+                    <li><a href="{% url 'ruledoc' ruledoc.id %}">{{ ruledoc.ruledoc_name }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+            
+            <li class="nav-item">
+                <h6>Published Projects</h6>
+            </li>
+            <ul>
+            {% for ruledoc in ruledoc_list %}
+        {% get_obj_perms request.user for ruledoc as "ruledoc_perms" %}
+        {% if user != ruledoc.owner and ruledoc.published and 'view_ruledoc' in ruledoc_perms %}    
+            <li><a href="{% url 'ruledoc' ruledoc.id %}">{{ ruledoc.ruledoc_name }}</a></li>
+        {% endif %}
+    {% endfor %}
+            </ul>
+        </ul>
+        {% include "includes/leftbar_nav.html" with link="/docs/examples/wills_tutorial/" image="bi-youtube" text="Tutorial Video" %}
+        {% include "includes/help_menu.html" %}
+    </ul>
+    {% endblock leftbar %}
+</div>

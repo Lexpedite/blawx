@@ -1,0 +1,11 @@
+<li class="nav-item">
+    <h5>
+        {% if link != ""%}
+        <a href="{{ link }}">
+        {% endif %}
+        <i class="bi {{ image }} pe-2"></i>{{ text }}
+        {% if link != "" %}
+        </a>
+        {% endif %}
+    </h5>
+</li>

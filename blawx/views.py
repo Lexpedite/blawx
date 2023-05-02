@@ -55,7 +55,7 @@ def register_request(request):
         return HttpResponseForbidden()
 
 class RuleDocsView(generic.ListView):
-    template_name = 'blawx/index.html'
+    template_name = 'base2.html'
     context_object_name = 'ruledoc_list'
 
     def get_queryset(self):
@@ -72,6 +72,7 @@ class RuleDocView(PermissionRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(RuleDocView, self).get_context_data(**kwargs)
         context['tests'] = BlawxTest.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']))
+        context['ruledoc_list'] = RuleDoc.objects.all()
         return context
 
 @api_view(['GET'])
@@ -177,7 +178,8 @@ class BlawxView(PermissionRequiredMixin, generic.DetailView):
     
     def get_context_data(self, **kwargs):
         context = super(BlawxView, self).get_context_data(**kwargs)
-        context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk'])) 
+        context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']))
+        context['ruledoc_list'] = RuleDoc.objects.all()
         return context
 
 class TestView(PermissionRequiredMixin, generic.DetailView):
@@ -187,6 +189,11 @@ class TestView(PermissionRequiredMixin, generic.DetailView):
 
     def get_object(self):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']),test_name=self.kwargs['test_name'])
+    
+    def get_context_data(self, **kwargs):
+        context = super(TestView, self).get_context_data(**kwargs)
+        context['ruledoc_list'] = RuleDoc.objects.all()
+        return context
 
 class BlawxBot(PermissionRequiredMixin, generic.DetailView):
     permission_required = "blawx.view_blawxtest"
@@ -203,6 +210,11 @@ class ScenarioEditor(PermissionRequiredMixin, generic.DetailView):
 
     def get_object(self):
         return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
+    
+    def get_context_data(self, **kwargs):
+        context = super(ScenarioEditor, self).get_context_data(**kwargs)
+        context['ruledoc_list'] = RuleDoc.objects.all()
+        return context
 
 class TestCreateView(PermissionRequiredMixin, CreateView):
     permission_required = "blawx.add_blawxtest_to_ruledoc"
@@ -219,6 +231,12 @@ class TestCreateView(PermissionRequiredMixin, CreateView):
     # In this case we are not checking for permissions on the object being created, but it's container.
     def get_object(self):
         return RuleDoc.objects.get(pk=self.kwargs['pk'])
+    
+    def get_context_data(self, **kwargs):
+        context = super(TestCreateView, self).get_context_data(**kwargs)
+        context['ruledoc_list'] = RuleDoc.objects.all()
+        context['ruledoc'] = RuleDoc.objects.get(pk=self.kwargs['pk'])
+        return context
 
 class TestDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = "blawx.delete_blawxtest"
@@ -233,6 +251,11 @@ class TestDeleteView(PermissionRequiredMixin, DeleteView):
         if target.owner != self.request.user:
             return redirect(self.success_url) # This is sub-optimal.
         return super().post(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super(TestDeleteView, self).get_context_data(**kwargs)
+        context['ruledoc_list'] = RuleDoc.objects.all()
+        return context
 
 class RuleDocCreateView(PermissionRequiredMixin, CreateView):
     accept_global_perms = True
@@ -247,6 +270,11 @@ class RuleDocCreateView(PermissionRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super(RuleDocCreateView, self).get_context_data(**kwargs)
+        context['ruledoc_list'] = RuleDoc.objects.all()
+        return context
 
 class RuleDocDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = 'blawx.delete_ruledoc'
@@ -259,6 +287,11 @@ class RuleDocDeleteView(PermissionRequiredMixin, DeleteView):
         if self.object.owner != self.request.user:
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super(RuleDocDeleteView, self).get_context_data(**kwargs)
+        context['ruledoc_list'] = RuleDoc.objects.all()
+        return context
 
 class RuleDocEditView(PermissionRequiredMixin, UpdateView):
     permission_required = 'blawx.change_ruledoc'
@@ -267,13 +300,23 @@ class RuleDocEditView(PermissionRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('ruledoc', args=(self.kwargs['pk'],))
+    
+    def get_context_data(self, **kwargs):
+        context = super(RuleDocEditView, self).get_context_data(**kwargs)
+        context['ruledoc_list'] = RuleDoc.objects.all()
+        return context
 
 class DocumentView(generic.DetailView):
     model = DocPage
-    template_name = "blawx/docs.html"
+    template_name = "blawx/docs2.html"
 
     def get_queryset(self):
         return DocPage.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = super(DocumentView, self).get_context_data(**kwargs)
+        context['ruledoc_list'] = RuleDoc.objects.all()
+        return context
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])

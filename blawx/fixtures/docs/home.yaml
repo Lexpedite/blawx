@@ -1,15 +1,9 @@
 - model: blawx.docpage
   pk: home
   fields:
-    title: Blawx Documentation Home
+    title: Quick Start
     content: |
-      # Blawx Documentation Home
-
-      This documentation can be reached
-      at any time by choosing "Help" in the menu
-      of the Blawx interface.
-
-      ## Quick Start
+      # Quick Start
 
       If you are looking for a quick way to get started, check out:
 
