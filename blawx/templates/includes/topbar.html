@@ -1,0 +1,63 @@
+<style type="text/css">
+    #blawxlogo {
+        font-family: 'Mina', sans-serif;
+        font-size:xx-large;
+        color: #ffffff;
+        }
+    #blawxWordMark{
+        font-family: 'IBM Plex Sans', sans-serif;
+    }
+</style>
+<div id="topbar" class="row align-items-center shadow sticky-top"
+                    style="background-color:#5a005a; color:white;">
+    {% block topbar %}
+    <div id="wordmark" class="col-md-4">
+        {% block wordmark %}
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <button class="btn bg-transparent" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#left_navbar" aria-expanded="false" aria-controls="left_navbar">
+                    <i class="bi bi-list" style="color: white; font-size:200%"></i>
+                </button>
+            </div>
+            <div class="col-auto">
+                <a href="/" id="blawxlogo"
+                    style="font-size:200%; text-decoration: none; color: #ffffff;">§<span
+                        id="blawxWordMark">Blawx</span></a>
+            </div>
+        </div>
+        {% endblock wordmark %}
+    </div>
+    <!-- The navigation sectino of the top bar should be right-justified, so we will create a new row. -->
+    <div id="topnav_col" class="col-md-8">
+        <div id="topnav_row" class="row flex-grow-1 justify-content-end">
+            <div id="search" class="col-4 align-self-center">
+                {% block search %}
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input disabled type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+                {% endblock search %}
+            </div>
+            <div id="alerts" class="col-auto">
+                {% block notifications %}
+                <i class="bi bi-bell" style="color:white; font-size:200%"
+                    data-bs-toggle="dropdown" aria-expanded="false"></i>
+                <div class="dropdown text-end">
+                    <ul class="dropdown-menu text-small">
+                        <li>
+                            <h6 class="dropdown-header">No Notifications</h6>
+                        </li>
+                    </ul>
+                </div>
+                {% endblock notifications %}
+            </div>
+            {% include "includes/user_menu.html" %}
+        </div>
+    </div>
+    <div id="alertarea" style="z-index:1200;"
+        class="position-absolute col-md-6 top-0 start-50 translate-middle-x">
+        {% block alerts %}
+        {% endblock alerts%}
+    </div>
+    {% endblock topbar %}
+</div>

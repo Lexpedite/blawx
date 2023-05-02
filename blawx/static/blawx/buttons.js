@@ -313,8 +313,10 @@ runCode = function(button) {
         
         updateTooltips();
         // Open the drawer and select Output
-        $('#rightbar').collapse('show');
-        $('#nav-output').tab('show');
+        // $('#rightbar').collapse('show');
+        var someTabTriggerEl = document.querySelector('#answers-tab')
+        var tab = new bootstrap.Tab(someTabTriggerEl)
+        tab.show()
     };
     // If there is a json_input type block on the workspace, insert its contents into the post
     // request.
@@ -324,7 +326,7 @@ runCode = function(button) {
     } else {
         run_xhttp.send();
     }
-    $output = document.getElementById('nav-output');
+    $output = document.getElementById('answers');
     $output.textContent = "Thinking...\n";
     $problems = document.getElementById('problems');
     Blockly.hideChaff();

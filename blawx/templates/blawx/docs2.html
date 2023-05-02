@@ -1,0 +1,10 @@
+
+{% extends "base2.html" %}
+{% load markdown_extras %}
+
+{% block main_content_card_body %}
+<style type="text/css">
+    img { max-width:100%; }
+</style>
+{{ docpage.content | markdown | safe }}
+{% endblock %}

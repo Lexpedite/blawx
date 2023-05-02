@@ -1,5 +1,16 @@
-{% extends "base.html" %}
-{% block page_content %}
+{% extends "base2.html" %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><i class="bi bi-house pe-2"></i><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' ruledoc.id %}">{{ ruledoc.ruledoc_name }}</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-clipboard-check pe-2"></i>New Test</li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block main_content_card_body %}
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save">

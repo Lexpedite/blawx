@@ -1,0 +1,31 @@
+<div id="user" class="col-auto">
+    {% block user_menu %}
+    <i class="bi bi-person-circle" style="color:white; font-size:200%"
+        data-bs-toggle="dropdown" aria-expanded="false"></i>
+    <div class="dropdown text-end">
+        <ul class="dropdown-menu text-small">
+            {% if user.is_authenticated %}
+            <li>
+                <h6 class="dropdown-header">{{ user.username }}</h6>
+            </li>
+            {% else %}
+            <li>
+                <h6 class="dropdown-header">Anonymous User</h6>
+            </li>
+            {% endif %}
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            {% if user.is_authenticated %}
+            <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            {% if preferences.BlawxPreference.allow_registration %}
+            <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+            <li><a class="dropdown-item" href="{% url 'login' %}">Sign In</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endblock user_menu %}
+</div>

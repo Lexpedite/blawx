@@ -1,5 +1,19 @@
+{% extends "base2.html" %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><i class="bi bi-house pe-2"></i><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' ruledoc.id %}">{{ ruledoc.ruledoc_name }}</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-pencil-square pe-2"></i>Rule Delete Confirmation</li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block main_content_card_body %}
 <form method="post">{% csrf_token %}
     <p>Are you sure you want to delete "{{ object }}"?</p>
     {{ form }}
     <input type="submit" value="Confirm">
 </form>
+{% endblock %}

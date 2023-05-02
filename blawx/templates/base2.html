@@ -1,0 +1,76 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<!--
+    * The card body in the main section should fill the visible screen.
+    * There is a problem that the "new project" button is not positioned properly.
+    * When the screen is resised, the content of the left bar overlaps the main section.
+    * The "new project" button should appear only when the relevant left bar menu item is hovered over, but that isn't a standard bootstrap feature.
+    * When you hide the leftbar, the margins on the main content are wrong.
+-->
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blawx - Drag and Drop Legal AI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link href="{% static 'blawx/fonts.css' %}" rel="stylesheet">
+    <script src="{% static 'blawx/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'blawx/bootstrap.min.css' %}">
+    <script src="{% static 'blawx/bootstrap.bundle.min.js' %}"></script>
+    {% block head_extras %}
+    {% endblock head_extras %}
+    {% endblock head %}
+  </head>
+  <body>
+    {% block body %}
+    <!-- This means that the width will be 100% regardless of screen size, because we need to maximize available coding space.-->
+    <!-- I like a little more padding than usually comes with container-fluid, so we boost it.-->
+    <!-- We don't want padding underneath the footer.-->
+    <div class="container-fluid">
+        <!-- We want the header and the main display to take up the whole height of the screen. So we need a column
+            with vh-100, which requires a row, and then we need a second row below that for the footer.-->
+        <div id="header_and_main_row" class="row vh-100">
+            <!-- now we need a full-width column to set the vertical height. -->
+            <div id="header_and_main_col" class="col d-flex flex-column">
+                <!-- We want the interface to have a header that never goes away. This is the first row. -->
+                <!-- Semantically, this is where stuff that has to do with the app as a whole "belongs". Logging in, messages, etc. -->
+                {% include "includes/topbar.html" %}
+                <div id="main" class="d-flex flex-row flex-grow-1">
+                    {% block main %}
+                    <!-- col-md-2 means that at screen sizes of medium or larger, it will be 2/12 of the width, but full-width below that.-->
+                    {% include "includes/leftbar.html" %}
+                    <div id="main_display" class="col col-md-10 flex-grow-1">
+                        {% block main_content %}
+                        <div class="container-fluid h-100">
+                            <div class="row h-100"> <!-- eliminating margin might be required to fix overflow-->
+                                <div class="d-flex flex-column">
+                                    {% block breadcrumb %}
+                                    {% include "includes/breadcrumb.html" %}        
+                                    {% endblock breadcrumb%}
+                                    <div class="card h-100 px-0">
+                                        {% block main_content_card %}
+                                        {% block main_content_card_header %}
+                                        {% endblock main_content_card_header %}
+                                        <div class="card-body">
+                                            {% block main_content_card_body %}
+                                            <h2>Welcome to Blawx</h2>
+                                            {% endblock main_content_card_body %}
+                                        </div>
+                                        {% endblock main_content_card %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% include "includes/footer.html" %}
+                        {% endblock main_content%}
+                    </div>
+                    {% endblock main %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endblock body %}
+    </body>
+</html>

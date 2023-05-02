@@ -1,0 +1,22 @@
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><i class="bi bi-house pe-2"></i>Home</li>
+            {% block command_menu %}
+            <!-- <a class="btn btn-secondary-link py-0" disabled type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots pe-2"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><h6 class="dropdown-header">Commands</h6></li>
+                <li><hr class="dropdown-divider"/></li>
+                <li><a class="dropdown-item" href="#">Save</a></li>
+            </ul>-->
+            {% endblock command_menu %}
+            <div id="saving_indicator" class="float-end visually-hidden">
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                Saving...
+            </div>
+        </ol>
+    </nav>

@@ -7,6 +7,18 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.2-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.2-alpha) 2023-05-02
+
+This version makes significant changes to the visual appearance of Blawx.
+
+### Added
+* A collapsible navigation bar on the left side of the screen for all pages, including documentation.
+
+### Changed
+* The overall look and feel has been changed and standardized.
+* The right-bar in code editor and test editor has been replaced with a tabs interface.
+* The navigation tab has been moved to the top in code editor as part of the breadcrumb.
+
 ## [v1.6.1-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.1-alpha) 2023-04-27
 
 This release adds to the representational power of Blawx by adding "relationships", which are
