@@ -4,8 +4,12 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><i class="bi bi-house pe-2"></i><a href="/">Home</a></li>
+        {% if ruledoc.id %}
         <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' ruledoc.id %}">{{ ruledoc.ruledoc_name }}</a></li>
         <li class="breadcrumb-item"><i class="bi bi-pencil-square pe-2"></i>Rule Editor</li>
+        {% else %}
+        <li class="breadcrumb-item"><i class="bi bi-pencil-square pe-2"></i>New Project</li>
+        {% endif %}
     </ul>
 </nav>
 {% endblock %}
