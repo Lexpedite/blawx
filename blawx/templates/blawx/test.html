@@ -28,6 +28,8 @@
     
     </style>
 {% get_obj_perms request.user for blawxtest as 'blawxtest_perms' %}
+{% get_obj_perms request.user for blawxtest.ruledoc as 'ruledoc_perms' %}
+
     <script src="{% static 'blawx/blockly/blockly_compressed.js' %}"></script>
     <script src="{% static 'blawx/blockly/msg/en.js' %}"></script>
     <script src="{% static 'blawx/blockly/javascript_compressed.js' %}"></script>
@@ -41,7 +43,7 @@
         <button class="btn mb-1 me-2 btn-sm dropdown-toggle btn-primary" type="button" id="testContextMenuButton" data-bs-toggle="dropdown" aria-expanded="false"><span class="blawxlogo">§</span></button>
         <ul class="dropdown-menu" aria-labelledby="testContextMenuButton">
             <li><a href="javascript:void(0);" class="dropdown-item {% if 'change_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'change_blawxtest' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="updateBlawxTest()"><i class="bi bi-save pe-2"></i>Save</a></li>
-            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#saveAsModal" href="#"><i class="bi bi-save pe-2"></i>Save as...</a></li>
+            <li><a class="dropdown-item {% if 'add_blawxtest_to_ruledoc' not in ruledoc_perms %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#saveAsModal" {% if 'add_blawxtest_to_ruledoc' not in ruledoc_perms %}aria-disabled="true" {% endif %}href="javascript:void(0);"><i class="bi bi-save pe-2"></i>Save as...</a></li>
             <li><a href="javascript:void(0);" class="dropdown-item {% if 'run' not in blawxtest_perms %}disabled{% endif %}" {% if 'run' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="runCode()"><i class="bi bi-play pe-2"></i>Run</a></li>
             <li><a href="{% url 'scenario_editor' blawxtest.ruledoc.pk blawxtest %}" class="dropdown-item {% if 'run' not in blawxtest_perms %}disabled{% endif %}" {% if 'run' not in blawxtest_perms %}aria-disabled="true" {% endif %}><i class="bi bi-ui-checks pe-2"></i>Scenario Editor</a></li>
             <li><a href="delete/" class="dropdown-item {% if 'delete_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'delete_blawxtest' not in blawxtest_perms %}aria-disabled="true"{% endif %}><i class="bi bi-trash pe-2"></i>Delete</a></li>

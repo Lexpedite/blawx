@@ -1,12 +1,17 @@
 from django.contrib import admin
 from django.urls import include, path
 from . import views, reasoner
-
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeDoneView, PasswordChangeView
+from .models import RuleDoc
 
 app_name = 'blawx'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')), # The following 4 lines override four addresses with additional context data
+    path('accounts/login', LoginView.as_view(extra_context={'ruledoc_list': RuleDoc.objects.all()}),name="login"),
+    path('accounts/logout', LogoutView.as_view(extra_context={'ruledoc_list': RuleDoc.objects.all()}),name="logout"),
+    path('accounts/password_change', PasswordChangeView.as_view(extra_context={'ruledoc_list': RuleDoc.objects.all()}),name="password_change"),
+    path('accounts/password_change_done', PasswordChangeDoneView.as_view(extra_context={'ruledoc_list': RuleDoc.objects.all()}),name="password_change_done"),
     path('', views.RuleDocsView.as_view(), name='ruledocs'),
     path('import/', views.ruleDocImportView, name="import"),
     path('load_example/<slug:example_name>/',views.exampleLoadView, name="load"),
