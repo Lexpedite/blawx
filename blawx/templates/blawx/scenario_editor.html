@@ -1,6 +1,7 @@
 
 {% extends "base2.html" %}
 
+{% load guardian_tags %}
 {% block breadcrumb %}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -13,6 +14,8 @@
 {% endblock %}
 
 {% block main_content_card %}
+{% get_obj_perms request.user for blawxtest as 'blawxtest_perms' %}
+
 <div class="collapse-horizontal flex-column card col-12 collapse show p-0">
             
         <nav class="card-header">
