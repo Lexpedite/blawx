@@ -7,6 +7,11 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.8-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.8-alpha) 2023-05-04
+
+### Fixes
+* Problem where relationships were not formatted properly in scenario editor explanations.
+
 ## [v1.6.7-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.7-alpha) 2023-05-04
 
 ### Fixes
