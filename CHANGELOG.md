@@ -7,6 +7,17 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.4-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.4-alpha) 2023-05-02
+
+### Fixes
+* Problem with importing .blawx files
+* Problem with the display of durations that are returned from the reasoner as terms
+
+## [v1.6.3-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.3-alpha) 2023-05-02
+
+### Fixes
+* Fixes crash on new project screen
+
 ## [v1.6.2-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.2-alpha) 2023-05-02
 
 This version makes significant changes to the visual appearance of Blawx.
