@@ -26,9 +26,14 @@ scasp_dates = """
 #pred duration_compare(X,gte,Y) :: '@(X) is less than or the same as @(Y)'.
 #pred duration_compare(X,ne,Y) :: '@(X) is not the same as @(Y)'.
 
-date_add(date(X),duration(Y),datetime(Z)) :- X \= bot, Z \= eot, Z #= X + Y.
-date_add(datetime(X),duration(Y),datetime(Z)) :- X \= bot, Z \= eot, Z #= X + Y.
-date_add(date(X),time(Y),datetime(Z)) :- Z \= bot, Z \= eot, Z #= X + Y.
+%date_add(date(X),duration(Y),datetime(Z)) :- X \= bot, Z \= eot, Z #= X + Y.
+%date_add(datetime(X),duration(Y),datetime(Z)) :- X \= bot, Z \= eot, Z #= X + Y.
+%date_add(date(X),time(Y),datetime(Z)) :- Z \= bot, Z \= eot, Z #= X + Y.
+date_add(date(X),duration(Y),datetime(Z)) :- Z #= X + Y.
+date_add(datetime(X),duration(Y),datetime(Z)) :- Z #= X + Y.
+date_add(date(X),time(Y),datetime(Z)) :- Z #= X + Y.
+
+
 %-date_add(_,_,datetime(eot)).
 %-date_add(_,_,date(eot)).
 %-date_add(date(bot),_,_).
