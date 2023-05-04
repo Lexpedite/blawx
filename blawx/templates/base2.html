@@ -72,5 +72,25 @@
     </div>
     </div>
     {% endblock body %}
+    <div>
+        <form enctype="multipart/form-data" id="importform" action="/import/" method="post">
+            {% csrf_token %}
+            <input id="loadfile" name="loadfile" onchange="loadBlawxFile()" type="file" accept=".blawx" hidden/>
+        </form>
+      </div>
+      <script>
+        
+    var getLoadFile;
+    getLoadFile = function() {
+        element = document.getElementById('loadfile');
+        element.click();
+    }
+    var loadBlawxFile;
+    loadBlawxFile = function() {
+        element = document.getElementById('importform');
+        element.submit();
+        return;
+    }
+      </script>
     </body>
 </html>

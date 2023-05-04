@@ -391,7 +391,15 @@
                         break;
                     case 'duration':
                         var timestamp = term.args[0];
-                        if (isNaN(term.args[0])) {
+                        if (typeof timestamp === "object") {
+                            if ('functor' in timestamp) {
+                                if (!timestamp.args.legnth) {
+                                    // s(CASP) is putting the number into the functor, for some reason
+                                    timestamp = parseFloat(term.args[0].functor);
+                                }
+                            }
+                        }
+                        if (isNaN(timestamp) && (typeof timestamp === 'string' || timestamp instanceof String)) {
                             if (term.args[0][0] === term.args[0][0].toUpperCase()) {
                                 output = "a duration " + term.args[0]
                             }
