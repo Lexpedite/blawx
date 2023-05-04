@@ -706,7 +706,7 @@
                     var arity = model.args.length;
                     var output = ""
                     for (var i=0; i < ontology.RelationshipNLG.length; i++) {
-                        if (ontology.RelationshipNLG[i].Relationship = predicate_name) {
+                        if (ontology.RelationshipNLG[i].Relationship == predicate_name) {
                             postfix = ontology.RelationshipNLG[i].Postfix;
                             for (var p=1; p<=arity; p++) {
                                 prefixes[p] = ontology.RelationshipNLG[i]['Prefix'+p];
