@@ -7,6 +7,11 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.5-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.5-alpha) 2023-05-02
+
+### Fixes
+* Problem experienced when running negated queries over a date add block.
+
 ## [v1.6.4-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.4-alpha) 2023-05-02
 
 ### Fixes
