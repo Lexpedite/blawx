@@ -84,9 +84,6 @@ def convertVariables(param):
   else:
     return param
 
-# TODO This isn't dealing with variables properly, because they appear as dictionaries, now.
-# We need to grab the actual variable names used, because they can be significantly more than X and Y, now.
-# TODO This version also doesn't have even draft code for building abducibles, yet.
 def even_newer_json_2_scasp(payload,ruledoc,testname):
   output = ""
   ontology = get_ontology_internal(ruledoc,testname)
@@ -108,16 +105,13 @@ def even_newer_json_2_scasp(payload,ruledoc,testname):
       elif 'attribute' in fact:
         predicate = fact['attribute']    
         if 'value' in fact:
-          parameters = [fact['object'],fact['value']]
           for att in ontology['Attributes']:
             if predicate == att['Attribute']:
               object_category = att['Category']
-              if att['Type'] in ontology['Categories']:
-                value_category = att['Type']
-              else:
-                value_category = "none"
+              value_category = att['Type']
               break
           categories = [object_category,value_category]
+          parameters = [fact['object'],format_statement_value(fact['value'],value_category)]
         else:
           parameters = [fact['object']]
           for att in ontology['Attributes']:
@@ -138,14 +132,15 @@ def even_newer_json_2_scasp(payload,ruledoc,testname):
           if predicate == rel['Relationship']:
             p = 1
             while p <= arity:
-              if rel['Parameter'+str(p)] in ontology['Categories']:
-                categories.append(rel['Parameter'+str(p)])
-              else:
-                categories.append('none')
+              categories.append(rel['Parameter'+str(p)])
               p += 1
             break
       variables = list(map(isVariable, parameters))
       parameters = list(map(convertVariables, parameters))
+      count = 0
+      while count < len(parameters):
+        parameters[count] = format_statement_value(parameters[count],categories[count])
+        count += 1
       if fact['type'] != "unknown": # This is a true or false statement
         conditions = []
         for index, param in enumerate(parameters):
@@ -311,30 +306,34 @@ def format_statement_value(value,attribute_type):
   iso8601_duration_re = r"^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$"
   if attribute_type == "date":
     matches = re.findall(iso8601_date_re,value,re.MULTILINE)
-    (year,month,day) = matches[0]
-    date = datetime(int(year),int(month),int(day))
-    date_format = 'date(' + str(date.timestamp()) + ')'
-    return date_format
+    if len(matches):
+      (year,month,day) = matches[0]
+      date = datetime(int(year),int(month),int(day))
+      date_format = 'date(' + str(date.timestamp()) + ')'
+      return date_format
   if attribute_type == "time":
     matches = re.findall(time_re,value,re.MULTILINE)
-    (hour,minute) = matches[0]
-    value = (int(hour)*3600) + (int(minute)*60)
-    time_format = 'time(' + str(value) + ')'
-    return time_format
+    if len(matches):
+      (hour,minute) = matches[0]
+      value = (int(hour)*3600) + (int(minute)*60)
+      time_format = 'time(' + str(value) + ')'
+      return time_format
   if attribute_type == "datetime":
     matches = re.findall(iso8601_datetime_re,value,re.MULTILINE)
-    (year,month,day,hour,minute) = matches[0]
-    date = datetime(int(year),int(month),int(day),int(hour),int(minute))
-    datetime_format = 'datetime(' + str(date.timestamp()) + ')'
-    return datetime_format
+    if len(matches):
+      (year,month,day,hour,minute) = matches[0]
+      date = datetime(int(year),int(month),int(day),int(hour),int(minute))
+      datetime_format = 'datetime(' + str(date.timestamp()) + ')'
+      return datetime_format
   if attribute_type == "duration":
     matches = re.findall(iso8601_duration_re,value,re.MULTILINE)
-    (sign,years,months,days,hours,minutes,seconds) = matches[0]
-    value = (int(days[:-1]) * 86400) + (int(hours[:-1]) * 3600) + (int(minutes[:-1]) * 60)
-    if sign == "-":
-      value = value * -1
-    duration_format = 'duration(' + str(value) + ')'
-    return duration_format
+    if len(matches):
+      (sign,years,months,days,hours,minutes,seconds) = matches[0]
+      value = (int(days[:-1]) * 86400) + (int(hours[:-1]) * 3600) + (int(minutes[:-1]) * 60)
+      if sign == "-":
+        value = value * -1
+      duration_format = 'duration(' + str(value) + ')'
+      return duration_format
   # If you get to this point, just return a string version.
   return str(value)
 
