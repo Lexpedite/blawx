@@ -338,25 +338,32 @@
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="g.Id=VBrj/glOW.7M-k_" x="31" y="33"><statement name="statements"><block
       type="new_attribute_declaration" id="#cJKhPF=w-l;k{_p49$3"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="game" attribute_type="player"></mutation><field name="category_name">game</field><field
-      name="attribute_name">winner</field><field name="attribute_type">player</field><field
-      name="order">ov</field><field name="prefix">the winner of</field><field name="first_element">object</field><field
-      name="infix">is</field><field name="second_element">value</field><field name="postfix"></field><next><block
-      type="relationship_declaration" id="-F:=Pq;YO!md(8l{/}I9"><field name="relationship_name">throw</field><field
-      name="relationship_arity">3</field><field name="prefix1"></field><field name="type1">player</field><field
-      name="prefix2">threw</field><field name="type2">sign</field><field name="prefix3">in</field><field
-      name="type3">game</field><field name="postfix"></field></block></next></block></statement></block><block
-      type="attributed_rule" id="XE]D?M1sy$NYL.mY:t%/" x="29" y="232"><field name="defeasible">FALSE</field><field
+      category_name="game" category_list="[[&quot;game&quot;,&quot;game&quot;],[&quot;player&quot;,&quot;player&quot;],[&quot;sign&quot;,&quot;sign&quot;]]"
+      attribute_type="player" attribute_list="[[&quot;true / false&quot;,&quot;boolean&quot;],[&quot;number&quot;,&quot;number&quot;],[&quot;date&quot;,&quot;date&quot;],[&quot;time&quot;,&quot;time&quot;],[&quot;datetime&quot;,&quot;datetime&quot;],[&quot;duration&quot;,&quot;duration&quot;],[&quot;list&quot;,&quot;list&quot;],[&quot;game&quot;,&quot;game&quot;],[&quot;player&quot;,&quot;player&quot;],[&quot;sign&quot;,&quot;sign&quot;]]"></mutation><field
+      name="category_name">game</field><field name="attribute_name">winner</field><field
+      name="attribute_type">player</field><field name="order">ov</field><field name="prefix">the
+      winner of</field><field name="first_element">object</field><field name="infix">is</field><field
+      name="second_element">value</field><field name="postfix"></field><next><block
+      type="relationship_declaration" id="-F:=Pq;YO!md(8l{/}I9"><mutation xmlns="http://www.w3.org/1999/xhtml"
+      type_list="[[&quot;number&quot;,&quot;number&quot;],[&quot;date&quot;,&quot;date&quot;],[&quot;time&quot;,&quot;time&quot;],[&quot;datetime&quot;,&quot;datetime&quot;],[&quot;duration&quot;,&quot;duration&quot;],[&quot;list&quot;,&quot;list&quot;],[&quot;game&quot;,&quot;game&quot;],[&quot;player&quot;,&quot;player&quot;],[&quot;sign&quot;,&quot;sign&quot;]]"></mutation><field
+      name="relationship_name">throw</field><field name="relationship_arity">3</field><field
+      name="prefix1"></field><field name="type1">player</field><field name="prefix2">threw</field><field
+      name="type2">sign</field><field name="prefix3">in</field><field name="type3">game</field><field
+      name="postfix"></field></block></next></block></statement></block><block type="attributed_rule"
+      id="XE]D?M1sy$NYL.mY:t%/" x="29" y="232"><field name="defeasible">FALSE</field><field
       name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
-      id="vNZFpTeM~;IQhglF9f6R"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="game"></mutation><field
+      id="vNZFpTeM~;IQhglF9f6R"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="game"
+      category_list="[[&quot;game&quot;,&quot;game&quot;],[&quot;player&quot;,&quot;player&quot;],[&quot;sign&quot;,&quot;sign&quot;]]"></mutation><field
       name="category_name">game</field><value name="object"><block type="variable"
       id="f/=.V8T;{6*PT9EYtwsZ"><field name="variable_name">Game</field></block></value><next><block
       type="new_object_category" id="-2.=`..k[Fj.z]H!qyeN"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="player"></mutation><field name="category_name">player</field><value
-      name="object"><block type="variable" id="UOF1xQ4)=5E@!P+Qke3|"><field name="variable_name">Player1</field></block></value><next><block
+      category_name="player" category_list="[[&quot;game&quot;,&quot;game&quot;],[&quot;player&quot;,&quot;player&quot;],[&quot;sign&quot;,&quot;sign&quot;]]"></mutation><field
+      name="category_name">player</field><value name="object"><block type="variable"
+      id="UOF1xQ4)=5E@!P+Qke3|"><field name="variable_name">Player1</field></block></value><next><block
       type="new_object_category" id="y4]Ysl:y!q9r)~tkh|`|"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="player"></mutation><field name="category_name">player</field><value
-      name="object"><block type="variable" id="3}u?Tz:i.]p77oZ(PVP_"><field name="variable_name">Player2</field></block></value><next><block
+      category_name="player" category_list="[[&quot;game&quot;,&quot;game&quot;],[&quot;player&quot;,&quot;player&quot;],[&quot;sign&quot;,&quot;sign&quot;]]"></mutation><field
+      name="category_name">player</field><value name="object"><block type="variable"
+      id="3}u?Tz:i.]p77oZ(PVP_"><field name="variable_name">Player2</field></block></value><next><block
       type="object_disequality" id="YYM:DY/ZJGc}$_DEhD#?"><value name="first_object"><block
       type="variable" id="b5e^0=k-fq@x)~d8;u)a"><field name="variable_name">Player1</field></block></value><value
       name="second_object"><block type="variable" id="~;?_MkR+(l-o5H=^GB2q"><field

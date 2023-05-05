@@ -5211,7 +5211,7 @@ Blockly.Blocks['relationship_declaration'] = {
     var arity = parseInt(this.getFieldValue('arity'));
     for (var i=1; i<= arity; i) {
       container.setAttribute('prefix'+i,this.getFieldValue('prefix'+i));
-      container.setAttribute('type'+i,JSON.stringify(this.getField('type'+i).selectedOption_));
+      container.setAttribute('type'+i,this.getFieldValue('type'+i));
     }
     container.setAttribute('type_list',JSON.stringify(this.getField('type1').menuGenerator_));
     
@@ -5222,12 +5222,18 @@ Blockly.Blocks['relationship_declaration'] = {
         // The values of the three mandatory ones will still be there in the XML.
     // We need to add the fields and values for everything above that number.
     var input = this.getInput('description');
+    var type_list = JSON.parse(xmlElement.getAttribute('type_list'));
     for (var n = 1; n<4; n++) {
       var prefix_index = (n*2)-2;
       var type_index = (n*2)-1;
       this.getField('prefix'+n).value = xmlElement.getAttribute('prefix'+n);
-      this.getField('type'+n).menuGenerator_ = JSON.parse(xmlElement.getAttribute('type_list'));
-      this.getField('type'+n).selectedOption_ = JSON.parse(xmlElement.getAttribute('type'+n));
+      var current_type = xmlElement.getAttribute('type'+n);
+      if (type_list) {
+        this.getField('type'+n).menuGenerator_ = type_list;
+      } else {
+        this.getField('type'+n).menuGenerator_ = [[current_type,current_type]];
+      }
+      this.getField('type'+n).setValue(current_type);
     }
     for (var n = 4; n <= 10; n++) {
       if (xmlElement.hasAttribute('prefix'+n)) { // returns null if the attribute doesn't exist
@@ -5238,12 +5244,16 @@ Blockly.Blocks['relationship_declaration'] = {
         // So the numbers are n*2-2, and n*2-1
         var prefix_index = (n*2)-2;
         var type_index = (n*2)-1;
+        var current_type = xmlElement.getAttribute('type'+n);
         input.insertFieldAt(prefix_index,new Blockly.FieldTextInput(""), "prefix" + n );
         this.getField('prefix'+n).value = xmlElement.getAttribute('prefix'+n);
-        input.insertFieldAt(type_index,new Blockly.FieldDropdown(this.generateDataTypes), "type" + n);
-        this.getField('type'+n).menuGenerator_ = JSON.parse(xmlElement.getAttribute('type_list'));
-        var selected_option = JSON.parse(xmlElement.getAttribute('type'+n))
-        this.getField('type'+n).setValue(selected_option[1]);
+        input.insertFieldAt(type_index,new Blockly.FieldDropdown([["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']]), "type" + n);
+        if (type_list) { // FOr compatibility with earlier versions that didn't record the list.
+          this.getField('type'+n).menuGenerator_ = type_list;
+        } else {
+          this.getField('type'+n).menuGenerator_ = [[current_type,current_type]];
+        }
+        this.getField('type'+n).setValue(current_type);
       }
     }
   }
@@ -5350,9 +5360,9 @@ Blockly.Blocks['new_attribute_declaration'] = {
     let container = document.createElement('mutation');
 
     // Bind some values to container e.g. container.setAttribute('foo', 3.14);
-    container.setAttribute('category_name',JSON.stringify(this.getField('category_name').selectedOption_));
+    container.setAttribute('category_name',this.getFieldValue('category_name'));
     container.setAttribute('category_list',JSON.stringify(this.getField('category_name').getOptions()));
-    container.setAttribute('attribute_type',JSON.stringify(this.getField('attribute_type').selectedOption_));
+    container.setAttribute('attribute_type',this.getFieldValue('attribute_type'));
     container.setAttribute('attribute_list',JSON.stringify(this.getField('attribute_type').getOptions()));
 
     return container;
@@ -5361,15 +5371,25 @@ Blockly.Blocks['new_attribute_declaration'] = {
     // Retrieve all attributes from 'xmlElement' and reshape your block
     // e.g. let foo = xmlElement.getAttribute('foo');
     // this.reshape(foo);
-    var category_name = JSON.parse(xmlElement.getAttribute('category_name'));
-    var attribute_type = JSON.parse(xmlElement.getAttribute('attribute_type'));
+    var category_name = xmlElement.getAttribute('category_name');
+    var attribute_type = xmlElement.getAttribute('attribute_type');
     var category_list = JSON.parse(xmlElement.getAttribute('category_list'));
     var attribute_list = JSON.parse(xmlElement.getAttribute('attribute_list'));
     
-    this.getField('category_name').menuGenerator_ = category_list;
-    this.getField('attribute_type').menuGenerator_ = attribute_list;
-    this.getField('category_name').setValue(category_name[1]);
-    this.getField('attribute_type').setValue(attribute_type[1]);
+    if (category_list) { // For reverse compatibility with previous files that didn't save this attribute.
+      this.getField('category_name').menuGenerator_ = category_list;
+    } else {
+      // It may want to set the value to something that isn't in the list, yet, so we can add it.
+      // When the generator is updated, if the value appears in the list, it should work fine.
+      this.getField('category_name').menuGenerator_ = [[category_name,category_name]];
+    }
+    if (attribute_list) { // For reverse compatibility with previous files that didn't save this attribute.
+      this.getField('attribute_type').menuGenerator_ = attribute_list;
+    } else {
+      this.getField('attribute_type').menuGenerator_ = [[attribute_type,attribute_type]];
+    }
+    this.getField('category_name').setValue(category_name);
+    this.getField('attribute_type').setValue(attribute_type);
   }
 };
 
@@ -5416,9 +5436,13 @@ Blockly.Blocks['new_object_category'] = {
     // e.g. let foo = xmlElement.getAttribute('foo');
     // this.reshape(foo);
     var category_name = xmlElement.getAttribute('category_name');
-    var category_list = xmlElement.getAttribute('category_list');
+    var category_list = JSON.parse(xmlElement.getAttribute('category_list'));
     // This is just a god-awful kludge, that still sends warnings until the list catches up with the value.
-    this.getField('category_name').menuGenerator_ = JSON.parse(category_list);
+    if (category_list) { // For reverse compatibility, make selected value an option in the list if none saved.
+      this.getField('category_name').menuGenerator_ = category_list;
+    } else {
+      this.getField('category_name').menuGenerator_ = [[category_name,category_name]];
+    }
     this.getField('category_name').setValue(category_name);
   }
 };
@@ -5486,12 +5510,13 @@ function updateLocalCategories() {
     var allCategoryList = [['No Categories Defined','none']];
   }
   // Now we have an allcategories option list, we can add datatypes to create an allTypes option list
-  var datatypeOptions = [["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']];
+  var datatypeOptions = [["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']];
   if (allCategoryList.length) {
     var allTypes = datatypeOptions.concat(allCategoryList)
   } else {
     var allTypes = datatypeOptions;
   }
+  var attributeOptions = [["true / false","boolean"]].concat(allTypes);
   // Now we need to update all the relevant fields in all the relevant blocks.
   var noc_blocks = demoWorkspace.getBlocksByType('new_object_category')
   for (var i=0; i< noc_blocks.length; i++) {
@@ -5504,7 +5529,7 @@ function updateLocalCategories() {
     var category_field = att_blocks[i].getField('category_name');
     var type_field = att_blocks[i].getField('attribute_type');
     updateDropDownOptions(category_field,allCategoryList);
-    updateDropDownOptions(type_field,allTypes);
+    updateDropDownOptions(type_field,attributeOptions);
   }
   // Relationship Declarations
   var rel_blocks = demoWorkspace.getBlocksByType('relationship_declaration');
