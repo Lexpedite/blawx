@@ -228,7 +228,24 @@ RULE_SELECTOR_MUTATOR_MIXIN = {
 
 
 function onCategoryChange(event) {
-  if (event.type == Blockly.Events.BLOCK_CHANGE || event.type == Blockly.Events.BLOCK_DELETE || event.type == Blockly.Events.BLOCK_CREATE) {
-    updateLocalCategories();
+  if (event.type == Blockly.Events.BLOCK_CREATE) {
+    for (var i = 0; i < event.ids.length; i++) {
+      var block = demoWorkspace.getBlockById(event.ids[i]);
+      if (block.type == "new_category_declaration") {
+        updateLocalCategories();
+        break;
+      }
+    }
+  } else if (event.type == Blockly.Events.BLOCK_DELETE ) {
+    // On delete, you can't seelct the block from the workspace.
+    var deleted_stuff = JSON.stringify(event.oldJson)
+    if (deleted_stuff.includes('"type":"new_category_declaration"')) {
+      updateLocalCategories();
+    }
+  } else if (event.type == Blockly.Events.BLOCK_CHANGE) {
+    var block = demoWorkspace.getBlockById(event.blockId);
+    if (block.type == "new_category_declaration") {
+      updateLocalCategories();
+    }
   }
 }
