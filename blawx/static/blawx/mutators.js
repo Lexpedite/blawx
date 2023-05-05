@@ -231,7 +231,11 @@ function onCategoryChange(event) {
   if (event.type == Blockly.Events.BLOCK_CREATE) {
     for (var i = 0; i < event.ids.length; i++) {
       var block = demoWorkspace.getBlockById(event.ids[i]);
-      if (block.type == "new_category_declaration") {
+      // Running when new blocks are created that need their menus updated.
+      if (block.type == "new_category_declaration" ||
+          block.type == "new_object_category" ||
+          block.type == "new_attribute_declaration" ||
+          block.type == "relationship_declaration" ) {
         updateLocalCategories();
         break;
       }

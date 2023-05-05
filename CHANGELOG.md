@@ -7,6 +7,22 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+
+## [v1.6.10-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.10-alpha) 2023-05-05
+
+This release makes it easier to update files from v1.6.0-alpha forward, and makes the examples load properly.
+
+**To update existing .blawx files you need to load the file, 
+find all the relationship declaration blocks,
+and reset the type values for each parameter, and save.**
+
+### Fixes
+* Examples and previously saved files would not load.
+* Problem with importing files.
+
+### TODO
+* Somehow, I have managed to completely fuck up file imports.
+
 ## [v1.6.9-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.9-alpha) 2023-05-05
 
 This release resolves a problem with dynamic dropdown menus in three blocks that would sometimes forget their values
