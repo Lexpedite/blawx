@@ -7,6 +7,17 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.9-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.9-alpha) 2023-05-05
+
+### Fixes
+* Improves speed of the coding interface by reducing how frequently categories are updated.
+* Makes Category and DataType dropdowns remember their values, and update properly when available categories change.
+
+### TODO
+* Object_Category is working
+* Code is written for relationship_declaration, but it does not seem to even be running.
+* Code is written for attribute_declaration, but it is throwing errors.
+
 ## [v1.6.8-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.8-alpha) 2023-05-04
 
 ### Fixes
