@@ -10,18 +10,16 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## [v1.6.10-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.10-alpha) 2023-05-05
 
-This release makes it easier to update files from v1.6.0-alpha forward, and makes the examples load properly.
+This release fixes project imports, and makes the current version almost reverse compatible with v1.6.0-alpha forward.
 
-**To update existing .blawx files you need to load the file, 
+**To update existing .blawx files from v1.6.0-alpha forward, you need to load the file, 
 find all the relationship declaration blocks,
-and reset the type values for each parameter, and save.**
+and reset the type values for each parameter, and save each section of code.**
 
 ### Fixes
+* Upgrades examples.
 * Examples and previously saved files would not load.
-* Problem with importing files.
-
-### TODO
-* Somehow, I have managed to completely fuck up file imports.
+* Project Import did not work in code editor and test editor.
 
 ## [v1.6.9-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.9-alpha) 2023-05-05
 
