@@ -5195,7 +5195,7 @@ Blockly.Blocks['relationship_declaration'] = {
     var desc = this.appendDummyInput("description");
     for (var a=1; a< 3+1; a++) {
       desc.appendField(new Blockly.FieldTextInput(""), "prefix" +a );
-      desc.appendField(new Blockly.FieldDropdown([["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']]), "type" + a);
+      desc.appendField(new Blockly.FieldDropdown([["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']]), "type" + a);
     }
     desc.appendField(new Blockly.FieldTextInput(""), "postfix");
     this.setInputsInline(false);
@@ -5226,8 +5226,8 @@ Blockly.Blocks['relationship_declaration'] = {
       var prefix_index = (n*2)-2;
       var type_index = (n*2)-1;
       this.getField('prefix'+n).value = xmlElement.getAttribute('prefix'+n);
-      this.getField('type'+n).selectedOption_ = JSON.parse(xmlElement.getAttribute('type'+n));
       this.getField('type'+n).menuGenerator_ = JSON.parse(xmlElement.getAttribute('type_list'));
+      this.getField('type'+n).selectedOption_ = JSON.parse(xmlElement.getAttribute('type'+n));
     }
     for (var n = 4; n <= 10; n++) {
       if (xmlElement.hasAttribute('prefix'+n)) { // returns null if the attribute doesn't exist
@@ -5241,8 +5241,9 @@ Blockly.Blocks['relationship_declaration'] = {
         input.insertFieldAt(prefix_index,new Blockly.FieldTextInput(""), "prefix" + n );
         this.getField('prefix'+n).value = xmlElement.getAttribute('prefix'+n);
         input.insertFieldAt(type_index,new Blockly.FieldDropdown(this.generateDataTypes), "type" + n);
-        this.getField('type'+n).selectedOption_ = JSON.parse(xmlElement.getAttribute('type'+n));
         this.getField('type'+n).menuGenerator_ = JSON.parse(xmlElement.getAttribute('type_list'));
+        var selected_option = JSON.parse(xmlElement.getAttribute('type'+n))
+        this.getField('type'+n).setValue(selected_option[1]);
       }
     }
   }
@@ -5365,10 +5366,10 @@ Blockly.Blocks['new_attribute_declaration'] = {
     var category_list = JSON.parse(xmlElement.getAttribute('category_list'));
     var attribute_list = JSON.parse(xmlElement.getAttribute('attribute_list'));
     
-    this.getField('category_name').selectedOption_ = category_name;
-    this.getField('attribute_type').selectedOption_ = attribute_type;
     this.getField('category_name').menuGenerator_ = category_list;
     this.getField('attribute_type').menuGenerator_ = attribute_list;
+    this.getField('category_name').setValue(category_name[1]);
+    this.getField('attribute_type').setValue(attribute_type[1]);
   }
 };
 
@@ -5417,8 +5418,8 @@ Blockly.Blocks['new_object_category'] = {
     var category_name = xmlElement.getAttribute('category_name');
     var category_list = xmlElement.getAttribute('category_list');
     // This is just a god-awful kludge, that still sends warnings until the list catches up with the value.
-    this.getField('category_name').selectedOption_ = [category_name, category_name];
     this.getField('category_name').menuGenerator_ = JSON.parse(category_list);
+    this.getField('category_name').setValue(category_name);
   }
 };
 
@@ -5494,7 +5495,6 @@ function updateLocalCategories() {
   // Now we need to update all the relevant fields in all the relevant blocks.
   var noc_blocks = demoWorkspace.getBlocksByType('new_object_category')
   for (var i=0; i< noc_blocks.length; i++) {
-    noc_blocks[i].getField('category_name').menuGenerator_ = allCategoryList;
     // TODO I need to make it so that if the current option has been removed, the selected option changes.
     updateDropDownOptions(noc_blocks[i].getField('category_name'),allCategoryList);
   }
@@ -5509,15 +5509,16 @@ function updateLocalCategories() {
   // Relationship Declarations
   var rel_blocks = demoWorkspace.getBlocksByType('relationship_declaration');
   for (var i=0; i< rel_blocks.length; i++) {
-    var arity = rel_blocks[i].getFieldValue('arity');
+    var arity = parseInt(rel_blocks[i].getFieldValue('relationship_arity'));
     for (var j=1; j<=arity; j++) {
-      updateDropDownOptions(rel_blocks[i].getField('Type'+j),allTypes);
+      updateDropDownOptions(rel_blocks[i].getField('type'+j),allTypes);
     }
   }
 }
 
 function updateDropDownOptions(ddfield,options) {
   var selected = ddfield.selectedOption_
+  ddfield.menuGenerator_ = options;
   if (!optionInList(selected,options)) {
     ddfield.setValue(options[0][1]);
   }

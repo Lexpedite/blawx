@@ -9,14 +9,16 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## [v1.6.9-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.9-alpha) 2023-05-05
 
+This release resolves a problem with dynamic dropdown menus in three blocks that would sometimes forget their values
+without letting the user know.
+
+**NB**: If you rename or delete a category that has been selected in a dropdown, that dropdown will be reset to the first still-available
+option. In relationships, this will be "number", in attribute declaration type, "true / false", and everwhere else it
+will be the first listed category.
+
 ### Fixes
 * Improves speed of the coding interface by reducing how frequently categories are updated.
 * Makes Category and DataType dropdowns remember their values, and update properly when available categories change.
-
-### TODO
-* Object_Category is working
-* Code is written for relationship_declaration, but it does not seem to even be running.
-* Code is written for attribute_declaration, but it is throwing errors.
 
 ## [v1.6.8-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.8-alpha) 2023-05-04
 
