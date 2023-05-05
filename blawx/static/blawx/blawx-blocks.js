@@ -5195,7 +5195,7 @@ Blockly.Blocks['relationship_declaration'] = {
     var desc = this.appendDummyInput("description");
     for (var a=1; a< 3+1; a++) {
       desc.appendField(new Blockly.FieldTextInput(""), "prefix" +a );
-      desc.appendField(new Blockly.FieldDropdown(this.generateDataTypes), "type" + a);
+      desc.appendField(new Blockly.FieldDropdown([["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']]), "type" + a);
     }
     desc.appendField(new Blockly.FieldTextInput(""), "postfix");
     this.setInputsInline(false);
@@ -5205,39 +5205,15 @@ Blockly.Blocks['relationship_declaration'] = {
     this.setTooltip("Use to declare a relationship between 3 or more objects or values.");
     this.setHelpUrl("/docs/blocks/new_relationship/");
   },
-  generateCategories: function() {
-    var allCategories = getAllCategories();
-    if (allCategories.length) {
-      var optionList = [];
-      for (var i =0; i< allCategories.length; i++) {
-        optionList.push([allCategories[i],allCategories[i]])
-      }
-    } else {
-      var optionList = [['No Categories Defined','none']];
-    }
-
-    return optionList;
-  },
-  generateDataTypes: function() {
-    var options = [["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']];
-    var allCategories = getAllCategories();
-    for (var i =0; i< allCategories.length; i++) {
-      options.push([allCategories[i],allCategories[i]])
-    }
-  
-    return options;
-  },
   mutationToDom() {
     // Store information required to reconstruct the block
     let container = document.createElement('mutation');
-    // At least 3 things exist, but those should be dealt with already.
-    // Now add the rest, if they exist in the block.
-    for (var n = 4; n <= 10; n++) {
-      if (this.getField('prefix'+n)) {
-        container.setAttribute('prefix'+n,this.getFieldValue('prefix'+n));
-        container.setAttribute('type'+n,this.getFieldValue('type'+n));
-      }
+    var arity = parseInt(this.getFieldValue('arity'));
+    for (var i=1; i<= arity; i) {
+      container.setAttribute('prefix'+i,this.getFieldValue('prefix'+i));
+      container.setAttribute('type'+i,JSON.stringify(this.getField('type'+i).selectedOption_));
     }
+    container.setAttribute('type_list',JSON.stringify(this.getField('type1').menuGenerator_));
     
     return container;
   },
@@ -5246,6 +5222,13 @@ Blockly.Blocks['relationship_declaration'] = {
         // The values of the three mandatory ones will still be there in the XML.
     // We need to add the fields and values for everything above that number.
     var input = this.getInput('description');
+    for (var n = 1; n<4; n++) {
+      var prefix_index = (n*2)-2;
+      var type_index = (n*2)-1;
+      this.getField('prefix'+n).value = xmlElement.getAttribute('prefix'+n);
+      this.getField('type'+n).selectedOption_ = JSON.parse(xmlElement.getAttribute('type'+n));
+      this.getField('type'+n).menuGenerator_ = JSON.parse(xmlElement.getAttribute('type_list'));
+    }
     for (var n = 4; n <= 10; n++) {
       if (xmlElement.hasAttribute('prefix'+n)) { // returns null if the attribute doesn't exist
         // This one exists in the container.
@@ -5258,7 +5241,8 @@ Blockly.Blocks['relationship_declaration'] = {
         input.insertFieldAt(prefix_index,new Blockly.FieldTextInput(""), "prefix" + n );
         this.getField('prefix'+n).value = xmlElement.getAttribute('prefix'+n);
         input.insertFieldAt(type_index,new Blockly.FieldDropdown(this.generateDataTypes), "type" + n);
-        this.getField('type'+n).value = xmlElement.getAttribute('type'+n); // This is probably not going to work right away, because goddamned dropdowns suck.
+        this.getField('type'+n).selectedOption_ = JSON.parse(xmlElement.getAttribute('type'+n));
+        this.getField('type'+n).menuGenerator_ = JSON.parse(xmlElement.getAttribute('type_list'));
       }
     }
   }
@@ -5309,12 +5293,12 @@ Blockly.Blocks['new_attribute_declaration'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("The category")
-        .appendField(new Blockly.FieldDropdown(this.generateCategories),"category_name")
+        .appendField(new Blockly.FieldDropdown([['no categories defined','none']]),"category_name")
         .appendField("has an attribute")
         .appendField(new Blockly.FieldTextInput("attribute name"), "attribute_name");
     this.appendDummyInput()
         .appendField("which is of type")
-        .appendField(new Blockly.FieldDropdown(this.generateDataTypes),"attribute_type")
+        .appendField(new Blockly.FieldDropdown([["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']]),"attribute_type")
         .appendField(", appearing as")
         .appendField(new Blockly.FieldDropdown([["object, then value","ov"], ["value, then object","vo"]]), "order");
     this.appendDummyInput()
@@ -5361,34 +5345,14 @@ Blockly.Blocks['new_attribute_declaration'] = {
   }
 });
   },
-  generateCategories: function() {
-    var allCategories = getAllCategories();
-    if (allCategories.length) {
-      var optionList = [];
-      for (var i =0; i< allCategories.length; i++) {
-        optionList.push([allCategories[i],allCategories[i]])
-      }
-    } else {
-      var optionList = [['No Categories Defined','none']];
-    }
-
-    return optionList;
-  },
-  generateDataTypes: function() {
-    var options = [["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']];
-    var allCategories = getAllCategories();
-    for (var i =0; i< allCategories.length; i++) {
-      options.push([allCategories[i],allCategories[i]])
-    }
-  
-    return options;
-  },
   mutationToDom() {
     let container = document.createElement('mutation');
 
     // Bind some values to container e.g. container.setAttribute('foo', 3.14);
-    container.setAttribute('category_name',this.getFieldValue('category_name'));
-    container.setAttribute('attribute_type',this.getFieldValue('attribute_type'));
+    container.setAttribute('category_name',JSON.stringify(this.getField('category_name').selectedOption_));
+    container.setAttribute('category_list',JSON.stringify(this.getField('category_name').getOptions()));
+    container.setAttribute('attribute_type',JSON.stringify(this.getField('attribute_type').selectedOption_));
+    container.setAttribute('attribute_list',JSON.stringify(this.getField('attribute_type').getOptions()));
 
     return container;
   },
@@ -5396,11 +5360,15 @@ Blockly.Blocks['new_attribute_declaration'] = {
     // Retrieve all attributes from 'xmlElement' and reshape your block
     // e.g. let foo = xmlElement.getAttribute('foo');
     // this.reshape(foo);
-    var category_name = xmlElement.getAttribute('category_name');
-    var attribute_type = xmlElement.getAttribute('attribute_type');
-    // These are causing errors, and can probably be solved, but if it works I have better things to do.
-    this.getField('category_name').selectedOption_ = [category_name,category_name];
-    this.getField('attribute_type').selectedOption_ = [attribute_type,attribute_type];
+    var category_name = JSON.parse(xmlElement.getAttribute('category_name'));
+    var attribute_type = JSON.parse(xmlElement.getAttribute('attribute_type'));
+    var category_list = JSON.parse(xmlElement.getAttribute('category_list'));
+    var attribute_list = JSON.parse(xmlElement.getAttribute('attribute_list'));
+    
+    this.getField('category_name').selectedOption_ = category_name;
+    this.getField('attribute_type').selectedOption_ = attribute_type;
+    this.getField('category_name').menuGenerator_ = category_list;
+    this.getField('attribute_type').menuGenerator_ = attribute_list;
   }
 };
 
@@ -5410,7 +5378,7 @@ Blockly.Blocks['new_object_category'] = {
         .setCheck(["OBJECT", "VARIABLE"]);
     this.appendDummyInput()
         .appendField("is in the category")
-        .appendField(new Blockly.FieldDropdown(this.generateCategories), "category_name");
+        .appendField(new Blockly.FieldDropdown([['no categories defined','no categories defined']]), "category_name");
     this.setInputsInline(true);
     this.setPreviousStatement(true, ["OUTER", "STATEMENT"]);
     this.setNextStatement(true, "STATEMENT");
@@ -5438,6 +5406,7 @@ Blockly.Blocks['new_object_category'] = {
 
     // Bind some values to container e.g. container.setAttribute('foo', 3.14);
     container.setAttribute('category_name',this.getFieldValue('category_name'));
+    container.setAttribute('category_list',JSON.stringify(this.getField('category_name').getOptions()));
 
     return container;
   },
@@ -5446,8 +5415,10 @@ Blockly.Blocks['new_object_category'] = {
     // e.g. let foo = xmlElement.getAttribute('foo');
     // this.reshape(foo);
     var category_name = xmlElement.getAttribute('category_name');
+    var category_list = xmlElement.getAttribute('category_list');
     // This is just a god-awful kludge, that still sends warnings until the list catches up with the value.
     this.getField('category_name').selectedOption_ = [category_name, category_name];
+    this.getField('category_name').menuGenerator_ = JSON.parse(category_list);
   }
 };
 
@@ -5503,5 +5474,60 @@ function updateLocalCategories() {
         localCategories.push(category_name); 
     }
   }
+  // We can run this every time there is a reason to, and then immediately generate options and send them out.
+  var allCategories = [... new Set(knownCategories.concat(localCategories))];
+  if (allCategories.length) {
+    var allCategoryList = [];
+    for (var i =0; i< allCategories.length; i++) {
+      allCategoryList.push([allCategories[i],allCategories[i]])
+    }
+  } else {
+    var allCategoryList = [['No Categories Defined','none']];
+  }
+  // Now we have an allcategories option list, we can add datatypes to create an allTypes option list
+  var datatypeOptions = [["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']];
+  if (allCategoryList.length) {
+    var allTypes = datatypeOptions.concat(allCategoryList)
+  } else {
+    var allTypes = datatypeOptions;
+  }
+  // Now we need to update all the relevant fields in all the relevant blocks.
+  var noc_blocks = demoWorkspace.getBlocksByType('new_object_category')
+  for (var i=0; i< noc_blocks.length; i++) {
+    noc_blocks[i].getField('category_name').menuGenerator_ = allCategoryList;
+    // TODO I need to make it so that if the current option has been removed, the selected option changes.
+    updateDropDownOptions(noc_blocks[i].getField('category_name'),allCategoryList);
+  }
+  // Attribute Declarations
+  var att_blocks = demoWorkspace.getBlocksByType('new_attribute_declaration');
+  for (var i=0; i < att_blocks.length; i++) {
+    var category_field = att_blocks[i].getField('category_name');
+    var type_field = att_blocks[i].getField('attribute_type');
+    updateDropDownOptions(category_field,allCategoryList);
+    updateDropDownOptions(type_field,allTypes);
+  }
+  // Relationship Declarations
+  var rel_blocks = demoWorkspace.getBlocksByType('relationship_declaration');
+  for (var i=0; i< rel_blocks.length; i++) {
+    var arity = rel_blocks[i].getFieldValue('arity');
+    for (var j=1; j<=arity; j++) {
+      updateDropDownOptions(rel_blocks[i].getField('Type'+j),allTypes);
+    }
+  }
 }
 
+function updateDropDownOptions(ddfield,options) {
+  var selected = ddfield.selectedOption_
+  if (!optionInList(selected,options)) {
+    ddfield.setValue(options[0][1]);
+  }
+}
+
+function optionInList(option,list) {
+  for (var i = 0; i < list.length; i++) {
+    if (option[0] == list[i][0] && option[1] == list[i][1]) {
+      return true;
+    }
+  }
+  return false;
+}
