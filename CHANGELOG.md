@@ -7,6 +7,10 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.11-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.11-alpha) 2023-05-08
+
+### Fixes
+* Files saved in v1.6.10-alpha would lose information for parameters 4+ on load.
 
 ## [v1.6.10-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.10-alpha) 2023-05-05
 
