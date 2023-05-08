@@ -5208,8 +5208,8 @@ Blockly.Blocks['relationship_declaration'] = {
   mutationToDom() {
     // Store information required to reconstruct the block
     let container = document.createElement('mutation');
-    var arity = parseInt(this.getFieldValue('arity'));
-    for (var i=1; i<= arity; i) {
+    var arity = parseInt(this.getFieldValue('relationship_arity'));
+    for (var i=1; i<= arity; i++) {
       container.setAttribute('prefix'+i,this.getFieldValue('prefix'+i));
       container.setAttribute('type'+i,this.getFieldValue('type'+i));
     }
@@ -5284,7 +5284,7 @@ updateRelationshipDeclaration = function(changeEvent) {
               target.getField("prefix" + c).setValue(postfix_text);
               target.getField("postfix").setValue("");
             }
-            input.insertFieldAt(type_insert,new Blockly.FieldDropdown(target.generateDataTypes), "type" + c);
+            input.insertFieldAt(type_insert,new Blockly.FieldDropdown(target.getField('type'+(c-1)).menuGenerator_), "type" + c);
           }
         } else if (arity < old_arity) {
           // If the number is smaller, removeField
