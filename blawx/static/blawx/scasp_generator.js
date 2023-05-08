@@ -76,7 +76,7 @@ function text2math(string) {
         case "lte": return "=<";
         case "gt": return ">";
         case "gte": return ">=";
-        case "eq": return "==";
+        case "eq": return "=";
         case "neq": return "\\=";
     }
 }
@@ -1301,7 +1301,7 @@ sCASP['relationship_declaration'] = function(block) {
     code += 'blawx_as_of(' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
     code += 'blawx_as_of(' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BetweenT #< Time.\n';
     code += 'blawx_during(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End, Start #< End.\n';
-    code += 'blawx_during(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(-' + text_relationship_name + '' + parameters + '),datetime(BeforeEnd)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End.\n';
+    code += 'blawx_during(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End.\n';
     code += 'blawx_during(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(AfterStart)), blawx_ultimately(' + text_relationship_name + '(' + parameters + ')), AfterStart #> Start.\n';
     code += 'blawx_as_of(-' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)), not blawx_becomes(' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
     code += 'blawx_as_of(-' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_initially(-' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BetweenT #< Time.\n';
