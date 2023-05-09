@@ -381,7 +381,7 @@ function loadBlocksFile(element) {
       var file = element.files[0];
       var fr = new FileReader();           
       fr.onload = function (event) {
-        var xml = Blockly.Xml.textToDom(event.target.result);
+        var xml = Blockly.utils.xml.textToDom(event.target.result);
         demoWorkspace.clear();
         Blockly.Xml.domToWorkspace(xml, demoWorkspace);
       };
@@ -397,7 +397,7 @@ try {
     var file = element.files[0];
     var fr = new FileReader();
     fr.onload = function (event) {
-    var xml = Blockly.Xml.textToDom(event.target.result);
+    var xml = Blockly.utils.xml.textToDom(event.target.result);
     importWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, importWorkspace);
     };
@@ -418,7 +418,7 @@ getExample = function(example_pk){
     xhttp.onreadystatechange = function() {
         output_object = JSON.parse(this.responseText);
         demoWorkspace.clear();
-        xml = Blockly.Xml.textToDom(output_object.xml_content);
+        xml = Blockly.utils.xml.textToDom(output_object.xml_content);
         Blockly.Xml.domToWorkspace(xml, demoWorkspace);
     }
     xhttp.send();
@@ -441,7 +441,7 @@ load_section_workspace = function(ruledoc_id,workspace_id) {
         if (this.responseText) {
             output_object = JSON.parse(this.responseText);
             if (output_object.xml_content) {
-                xml = Blockly.Xml.textToDom(output_object.xml_content);
+                xml = Blockly.utils.xml.textToDom(output_object.xml_content);
                 Blockly.Xml.domToWorkspace(xml, demoWorkspace);
             }
         }
@@ -467,7 +467,7 @@ load_test_workspace = function(ruledoc_id,test_name) {
         if (this.responseText) {
             output_object = JSON.parse(this.responseText);
             if (output_object.xml_content) {
-                xml = Blockly.Xml.textToDom(output_object.xml_content);
+                xml = Blockly.utils.xml.textToDom(output_object.xml_content);
                 Blockly.Xml.domToWorkspace(xml, demoWorkspace);
             }
         }
