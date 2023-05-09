@@ -20,6 +20,7 @@ from .ldap import ldap_code
 from .dates import scasp_dates, scasp_now
 from .aggregates import scasp_aggregates
 from .events import ec_code
+from .passthrough import blawx_passthrough
 
 from rest_framework import permissions
 
@@ -563,6 +564,7 @@ blawxrun(Query, Human, Tree, Model) :-
 #     maplist(del_attrs, AttVars).
 # """)
   
+      rulefile.write(blawx_passthrough + '\n\n')
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
       rulefile.write(scasp_now + '\n\n')
@@ -660,6 +662,7 @@ blawxrun(Query, Human) :-
     maplist(del_attrs, AttVars).
 """)
 
+    rulefile.write(blawx_passthrough + '\n\n')
     rulefile.write(ldap_code + '\n\n')
     rulefile.write(scasp_dates + '\n\n')
     rulefile.write(scasp_now + '\n\n')
@@ -1238,6 +1241,7 @@ blawxrun(Query, Human, Tree, Model) :-
     %maplist(del_attrs, AttVars).
 """)
 
+      rulefile.write(blawx_passthrough + '\n\n')
       rulefile.write(ldap_code + '\n\n')
       rulefile.write(scasp_dates + '\n\n')
       rulefile.write(scasp_now + '\n\n')

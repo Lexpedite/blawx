@@ -304,7 +304,7 @@ sCASP['object_equality'] = function (block) {
 sCASP['object_disequality'] = function (block) {
     var value_first_object = sCASP.valueToCode(block, 'first_object', sCASP.ORDER_ATOMIC);
     var value_second_object = sCASP.valueToCode(block, 'second_object', sCASP.ORDER_ATOMIC);
-    var code = value_first_object + " \\= " + value_second_object;
+    var code = "blawx_diseq(" + value_first_object + "," + value_second_object + ")";
     return code;
 };
 
@@ -632,7 +632,7 @@ sCASP['numerical_constraint'] = function (block) {
     var value_first_comparator = sCASP.valueToCode(block, 'first_comparator', sCASP.ORDER_ATOMIC);
     var dropdown_operator = block.getFieldValue('operator');
     var value_second_comparator = sCASP.valueToCode(block, 'second_comparator', sCASP.ORDER_ATOMIC);
-    var code = value_first_comparator + " #" + text2math(dropdown_operator) + " " + value_second_comparator;
+    var code = "blawx_comparison(" + value_first_comparator + "," + dropdown_operator + "," + value_second_comparator + ")";
     return code;
 };
 

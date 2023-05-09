@@ -640,6 +640,27 @@
                 return displayValue(model.args[0],human) + " is equal to " + displayValue(model.args[1],human) + ")";
             } else if (model.functor == '\=') {
                 return displayValue(model.args[0],human) + " is not equal to " + displayValue(model.args[1],human) + ")";
+            } else if (model.functor == 'blawx_diseq') {
+                return displayValue(model.args[0],human) + " is not the same object as " + displayValue(model.args[1],human);
+            } else if (model.functor == 'blawx_comparison' ) {
+                if (model.args[1] == "eq") {
+                    return displayValue(model.args[0],human) + " is equal to " + displayValue(model.args[2],human)
+                }
+                if (model.args[1] == "neq") {
+                    return displayValue(model.args[0],human) + " is not equal to " + displayValue(model.args[2],human)
+                }
+                if (model.args[1] == "gt") {
+                    return displayValue(model.args[0],human) + " is greater than " + displayValue(model.args[2],human)
+                }
+                if (model.args[1] == "gte") {
+                    return displayValue(model.args[0],human) + " is greater than or equal to " + displayValue(model.args[2],human)
+                }
+                if (model.args[1] == "lt") {
+                    return displayValue(model.args[0],human) + " is less than " + displayValue(model.args[2],human)
+                }
+                if (model.args[1] == "lte") {
+                    return displayValue(model.args[0],human) + " is less than or equal to " + displayValue(model.args[2],human)
+                }
             } else { // this should be a real one, now 
                 predicate_name = model.functor;
                 if (predicate_name == "datetime_diff_duration") {
