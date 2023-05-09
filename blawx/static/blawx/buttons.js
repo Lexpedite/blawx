@@ -221,7 +221,8 @@ runCode = function(button) {
     run_xhttp.open("POST", "run/", true);
     run_xhttp.setRequestHeader('Content-type', 'application/json');
     run_xhttp.setRequestHeader('X-CSRFToken', csrftoken);
-    run_xhttp.onreadystatechange = function() {
+    run_xhttp.onload = function() {
+        //console.log("Response Length: " + this.responseText.length)
         output_object = JSON.parse(this.responseText);
         // console.log(output_object);
         if (output_object.error) {
