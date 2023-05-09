@@ -2184,7 +2184,7 @@
             }
         }
         function get_variables(string) {
-            const pattern = /[^\w]([A-Z_]\w*)/gm;
+            const pattern = /\b([A-Z_]\w*)/gm;
             var output = [];
             for(let match of string.matchAll(pattern)) {
                 output.push(match[1]);
