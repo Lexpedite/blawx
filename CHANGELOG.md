@@ -7,6 +7,20 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.12-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.12-alpha) 2023-05-09
+
+This release chances how code is generated for projects. To upgrade existing files you may need to
+open each section of the code and re-save it.
+
+### Fixes
+* Numerical constraints with equality work properly
+* Date constraints no longer fail on type errors related to the beginning and end of time
+* Scenario editor now displays all relevant constraints in the explanations
+* Scenario editor will now display reasoner errors if they occur.
+* The OASA example is no longer published by default.
+* Scenario Editor and Test Editor no longer crash when dealing with attributed rules in the root section of the project.
+* Disequalities and numerical constraints now appear in explanations.
+
 ## [v1.6.11-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.11-alpha) 2023-05-08
 
 ### Fixes
