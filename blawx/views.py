@@ -82,9 +82,12 @@ def ruleDocLegalTextView(request,pk,section_name):
     ruledoc=RuleDoc.objects.get(pk=pk)
     if request.user.has_perm('blawx.view_ruledoc',ruledoc):
         cobalt_parse = Act(ruledoc.akoma_ntoso)
-        target = cobalt_parse.act.find(".//*[@eId='" + section_name + "']")
-        return Response({'xml': lxml.etree.tostring(target),
-                        'text': ' '.join(target.itertext())})
+        if section_name != "root":
+            target = cobalt_parse.act.find(".//*[@eId='" + section_name + "']")
+            return Response({'xml': lxml.etree.tostring(target),
+                            'text': ' '.join(target.itertext())})
+        else:
+            return Response({'xml': '', 'text': ruledoc.ruledoc_name})
     else:
         return HttpResponseForbidden()
 
