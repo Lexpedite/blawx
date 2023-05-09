@@ -18,7 +18,7 @@ function createImportListener(event) {
         request.send(null);
         request.onreadystatechange = function () {
             if (request.readyState === 4 && request.status === 200) {
-                var xml = Blockly.Xml.textToDom(request.responseText);
+                var xml = Blockly.utils.xml.textToDom(request.responseText);
                 Blockly.Xml.domToWorkspace(xml, importSpace);
             }
         }

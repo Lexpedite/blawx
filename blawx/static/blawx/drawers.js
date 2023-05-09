@@ -9,7 +9,7 @@ knownAttributesCallback = function(workspace) {
         // Go through the blocks in the workspace.
         // If the block is an object declaration, add the relevant block to the xml
         if (all_workspaces[w].xml_content) {
-            var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
+            var domObject = Blockly.utils.xml.textToDom(all_workspaces[w].xml_content);
             var tempWorkspace = new Blockly.Workspace();
             Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
             var blockList = tempWorkspace.getAllBlocks();
@@ -29,7 +29,7 @@ knownAttributesCallback = function(workspace) {
                 } else { // all other attribute types use a binary attribute selector
                     var blockText = "<xml><block type='attribute_selector'><mutation xmlns='http://www.w3.org/1999/xhtml' attributename='" + attribute_name + "' attributetype='" + attribute_type + "' attributeorder='" + dropdown_order + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
                 }
-                var block = Blockly.Xml.textToDom(blockText).firstChild;
+                var block = Blockly.utils.xml.textToDom(blockText).firstChild;
                 // need to check for repeatedly adding the same block.
                 xmlList.push(block);
             }
@@ -53,7 +53,7 @@ knownAttributesCallback = function(workspace) {
             } else { // all other attribute types use a binary attribute selector
                 var blockText = "<xml><block type='attribute_selector'><mutation xmlns='http://www.w3.org/1999/xhtml' attributename='" + attribute_name + "' attributetype='" + attribute_type + "' attributeorder='" + dropdown_order + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='infix'>" + text_infix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
             }
-            var block = Blockly.Xml.textToDom(blockText).firstChild;
+            var block = Blockly.utils.xml.textToDom(blockText).firstChild;
             // need to check for repeatedly adding the same block.
             xmlList.push(block);
         }
@@ -72,7 +72,7 @@ knownRelationshipsCallback = function(workspace) {
         // Go through the blocks in the workspace.
         // If the block is a relationship declaration, add the relevant block to the xml
         if (all_workspaces[w].xml_content) {
-            var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
+            var domObject = Blockly.utils.xml.textToDom(all_workspaces[w].xml_content);
             var tempWorkspace = new Blockly.Workspace();
             Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
             var blockList = tempWorkspace.getAllBlocks();
@@ -102,7 +102,7 @@ knownRelationshipsCallback = function(workspace) {
                 }
                 blockText += "<field name='postfix'>" + blockList[i].getFieldValue("postfix") + "</field>";
                 blockText += "</block></xml>";
-                var block = Blockly.Xml.textToDom(blockText).firstChild;
+                var block = Blockly.utils.xml.textToDom(blockText).firstChild;
                 // need to check for repeatedly adding the same block.
                 xmlList.push(block);
               }
@@ -122,7 +122,7 @@ knownObjectsCallback = function(workspace) {
         // Go through the blocks in the workspace.
         // If the block is an object declaration, add the relevant block to the xml
         if (all_workspaces[w].xml_content) {
-            var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
+            var domObject = Blockly.utils.xml.textToDom(all_workspaces[w].xml_content);
             var tempWorkspace = new Blockly.Workspace();
             Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
             var blockList = tempWorkspace.getAllBlocks();
@@ -131,7 +131,7 @@ knownObjectsCallback = function(workspace) {
                 // Get the name of the entity, insert a block of that type,
                 var object_name = blockList[i].getFieldValue('object_name'); 
                 var blockText = "<xml><block type='object_selector'><field name='object_name'>" + object_name+"</field></block></xml>"
-                var block = Blockly.Xml.textToDom(blockText).firstChild;
+                var block = Blockly.utils.xml.textToDom(blockText).firstChild;
                 // Need to add check to make sure I'm not repeatedly adding the same block.
                 xmlList.push(block);
             }
@@ -139,7 +139,7 @@ knownObjectsCallback = function(workspace) {
             if (blockList[i].type == "data_dictionary") {
                 var entity_name = blockList[i].getFieldValue('dictionary_name');
                 var blockText = "<xml><block type='object_selector'><field name='objectName'>" + entity_name+"</field></block></xml>"
-                var block = Blockly.Xml.textToDom(blockText).firstChild;
+                var block = Blockly.utils.xml.textToDom(blockText).firstChild;
                 // Need to add check to make sure I'm not repeatedly adding the same block.
                 xmlList.push(block);
             }
@@ -153,7 +153,7 @@ knownObjectsCallback = function(workspace) {
         // Get the name of the entity, insert a block of that type,
         var object_name = blockList[i].getFieldValue('object_name'); 
         var blockText = "<xml><block type='object_selector'><field name='object_name'>" + object_name+"</field></block></xml>"
-        var block = Blockly.Xml.textToDom(blockText).firstChild;
+        var block = Blockly.utils.xml.textToDom(blockText).firstChild;
         // Need to add check to make sure I'm not repeatedly adding the same block.
         xmlList.push(block);
         }
@@ -161,7 +161,7 @@ knownObjectsCallback = function(workspace) {
         if (blockList[i].type == "data_dictionary") {
         var entity_name = blockList[i].getFieldValue('dictionary_name');
         var blockText = "<xml><block type='object_selector'><field name='objectName'>" + entity_name+"</field></block></xml>"
-        var block = Blockly.Xml.textToDom(blockText).firstChild;
+        var block = Blockly.utils.xml.textToDom(blockText).firstChild;
         // Need to add check to make sure I'm not repeatedly adding the same block.
         xmlList.push(block);
         }
@@ -182,7 +182,7 @@ knownCategoriesCallback = function(workspace) {
         // Go through the blocks in the workspace.
         // If the block is an object declaration, add the relevant block to the xml
         if (all_workspaces[w].xml_content) {
-            var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
+            var domObject = Blockly.utils.xml.textToDom(all_workspaces[w].xml_content);
             var tempWorkspace = new Blockly.Workspace();
             Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
             var blockList = tempWorkspace.getAllBlocks();
@@ -192,7 +192,7 @@ knownCategoriesCallback = function(workspace) {
                     // Get the name of the entity, insert a block of that type,
                     var category_name = blockList[i].getFieldValue('category_name'); 
                     var blockText = "<xml><block type='category_selector'><field name='category_name'>" + category_name + "</field></block></xml>"
-                    var block = Blockly.Xml.textToDom(blockText).firstChild;
+                    var block = Blockly.utils.xml.textToDom(blockText).firstChild;
                     // Need to add check to make sure I'm not repeatedly adding the same block.
                     xmlList.push(block);
                 }
@@ -207,7 +207,7 @@ knownCategoriesCallback = function(workspace) {
         // Get the name of the entity, insert a block of that type,
         var category_name = blockList[i].getFieldValue('category_name'); 
         var blockText = "<xml><block type='category_selector'><field name='category_name'>" + category_name + "</field></block></xml>"
-        var block = Blockly.Xml.textToDom(blockText).firstChild;
+        var block = Blockly.utils.xml.textToDom(blockText).firstChild;
         // Need to add check to make sure I'm not repeatedly adding the same block.
         xmlList.push(block);
         }
@@ -229,7 +229,7 @@ newObjectCallback = function(workspace) {
         // Go through the blocks in the workspace.
         // If the block is an object declaration, add the relevant block to the xml
         if (all_workspaces[w].xml_content) {
-            var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
+            var domObject = Blockly.utils.xml.textToDom(all_workspaces[w].xml_content);
             var tempWorkspace = new Blockly.Workspace();
             Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
             var blockList = tempWorkspace.getAllBlocks();
@@ -240,7 +240,7 @@ newObjectCallback = function(workspace) {
                 var text_prefix = blockList[i].getFieldValue('prefix');
                 var text_postfix = blockList[i].getFieldValue('postfix');
                 var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
-                var block = Blockly.Xml.textToDom(blockText).firstChild;
+                var block = Blockly.utils.xml.textToDom(blockText).firstChild;
                 // Need to add check to make sure I'm not repeatedly adding the same block.
                 xmlList.push(block);
             }
@@ -256,7 +256,7 @@ newObjectCallback = function(workspace) {
         var text_prefix = blockList[i].getFieldValue('prefix');
         var text_postfix = blockList[i].getFieldValue('postfix');
         var blockText = "<xml><block type='object_declaration'><mutation xmlns='http://www.w3.org/1999/xhtml' category_name='" + category_name + "'></mutation><field name='prefix'>" + text_prefix + "</field><field name='postfix'>" + text_postfix + "</field></block></xml>";
-        var block = Blockly.Xml.textToDom(blockText).firstChild;
+        var block = Blockly.utils.xml.textToDom(blockText).firstChild;
         // Need to add check to make sure I'm not repeatedly adding the same block.
         xmlList.push(block);
         }
@@ -265,11 +265,11 @@ newObjectCallback = function(workspace) {
     }
     
     var objectEqualityBlockText = '<xml><block type="object_equality"></block></xml>';
-    var objectEqualityBlock = Blockly.Xml.textToDom(objectEqualityBlockText).firstChild;
+    var objectEqualityBlock = Blockly.utils.xml.textToDom(objectEqualityBlockText).firstChild;
     var objectDisequalityBlockText = '<xml><block type="object_disequality"></block></xml>';
-    var objectDisequalityBlock = Blockly.Xml.textToDom(objectDisequalityBlockText).firstChild;
+    var objectDisequalityBlock = Blockly.utils.xml.textToDom(objectDisequalityBlockText).firstChild;
     var objectCategoryBlockText = '<xml><block type="new_object_category"></block></xml>';
-    var objectCategoryBlock = Blockly.Xml.textToDom(objectCategoryBlockText).firstChild;
+    var objectCategoryBlock = Blockly.utils.xml.textToDom(objectCategoryBlockText).firstChild;
     xmlList.push(objectEqualityBlock);
     xmlList.push(objectDisequalityBlock);
     xmlList.push(objectCategoryBlock);
@@ -310,7 +310,7 @@ knownRulesCallback = function(workspace) {
     // var blocktypes = ['scope']
     // for (var i = 0; i < blocktypes.length; i++) {
     //     var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';
-    //     var block = Blockly.Xml.textToDom(blocktext).firstChild;
+    //     var block = Blockly.utils.xml.textToDom(blocktext).firstChild;
     //     xmlList.push(block);
     // }
 
@@ -339,7 +339,7 @@ knownRulesCallback = function(workspace) {
         blocktext += "</field>"
         blocktext += '<mutation xmlns="http://www.w3.org/1999/xhtml" section_reference="' + raw_id + '"></mutation>'
         blocktext += "</block></xml>"
-        var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        var block = Blockly.utils.xml.textToDom(blocktext).firstChild;
         xmlList.push(block);
         // if (sections[i].attributes.eid.value.startsWith('sec')) {
         //     var short_ref = sections[i].attributes.eid.value;
@@ -348,7 +348,7 @@ knownRulesCallback = function(workspace) {
         //     short_ref = short_ref.replace("__para_",".");
         //     short_ref = short_ref.replace("__subpara_",".");
         //     var blocktext = '<xml><block type="doc_selector"><field name="doc_part_name">' + abbreviation + " " + short_ref + '</field></block></xml>';
-        //     var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        //     var block = Blockly.utils.xml.textToDom(blocktext).firstChild;
         //     xmlList.push(block);
         //     // console.log("Pushing " + blocktext);
         // }
@@ -365,7 +365,7 @@ primaryDrawerCallback = function(workspace) {
     var xmlList = [];
     for (var i = 0; i < blocktypes.length; i++) {
         var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';
-        var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        var block = Blockly.utils.xml.textToDom(blocktext).firstChild;
         xmlList.push(block);
     }
     // console.log("Creating drawer using " + blocktext)
@@ -385,13 +385,13 @@ primaryDrawerCallback = function(workspace) {
         </block>\
         </value>\
         </block></xml>';
-        var queryblock = Blockly.Xml.textToDom(querytext).firstChild;
+        var queryblock = Blockly.utils.xml.textToDom(querytext).firstChild;
         xmlList.push(queryblock)
     }
     var blocktypes = ['unattributed_constraint','query']
     for (var i = 0; i < blocktypes.length; i++) {
         var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';
-        var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        var block = Blockly.utils.xml.textToDom(blocktext).firstChild;
         xmlList.push(block);
     }
 //     var querytext = '<xml><block type="query">\
@@ -399,12 +399,12 @@ primaryDrawerCallback = function(workspace) {
 //       <block type="holds"></block>\
 //     </statement>\
 //   </block></xml>';
-//     var queryblock = Blockly.Xml.textToDom(querytext).firstChild;
+//     var queryblock = Blockly.utils.xml.textToDom(querytext).firstChild;
     // xmlList.push(queryblock)
     var blocktypes = ['assume','json_textfield']
     for (var i = 0; i < blocktypes.length; i++) {
         var blocktext = '<xml><block type="' + blocktypes[i] + '"></block></xml>';
-        var block = Blockly.Xml.textToDom(blocktext).firstChild;
+        var block = Blockly.utils.xml.textToDom(blocktext).firstChild;
         xmlList.push(block);
     }
     return xmlList

@@ -5461,7 +5461,7 @@ function getKnownCategories() {
     // Go through the blocks in the workspace.
     // If the block is an object declaration, add the relevant block to the xml
     if (all_workspaces[w].xml_content) {
-      var domObject = Blockly.Xml.textToDom(all_workspaces[w].xml_content);
+      var domObject = Blockly.utils.xml.textToDom(all_workspaces[w].xml_content);
       var tempWorkspace = new Blockly.Workspace();
       Blockly.Xml.domToWorkspace(domObject, tempWorkspace);
       var blockList = tempWorkspace.getAllBlocks();

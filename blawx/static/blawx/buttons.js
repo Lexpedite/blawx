@@ -221,7 +221,8 @@ runCode = function(button) {
     run_xhttp.open("POST", "run/", true);
     run_xhttp.setRequestHeader('Content-type', 'application/json');
     run_xhttp.setRequestHeader('X-CSRFToken', csrftoken);
-    run_xhttp.onreadystatechange = function() {
+    run_xhttp.onload = function() {
+        //console.log("Response Length: " + this.responseText.length)
         output_object = JSON.parse(this.responseText);
         // console.log(output_object);
         if (output_object.error) {
@@ -381,7 +382,7 @@ function loadBlocksFile(element) {
       var file = element.files[0];
       var fr = new FileReader();           
       fr.onload = function (event) {
-        var xml = Blockly.Xml.textToDom(event.target.result);
+        var xml = Blockly.utils.xml.textToDom(event.target.result);
         demoWorkspace.clear();
         Blockly.Xml.domToWorkspace(xml, demoWorkspace);
       };
@@ -397,7 +398,7 @@ try {
     var file = element.files[0];
     var fr = new FileReader();
     fr.onload = function (event) {
-    var xml = Blockly.Xml.textToDom(event.target.result);
+    var xml = Blockly.utils.xml.textToDom(event.target.result);
     importWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, importWorkspace);
     };
@@ -418,7 +419,7 @@ getExample = function(example_pk){
     xhttp.onreadystatechange = function() {
         output_object = JSON.parse(this.responseText);
         demoWorkspace.clear();
-        xml = Blockly.Xml.textToDom(output_object.xml_content);
+        xml = Blockly.utils.xml.textToDom(output_object.xml_content);
         Blockly.Xml.domToWorkspace(xml, demoWorkspace);
     }
     xhttp.send();
@@ -441,7 +442,7 @@ load_section_workspace = function(ruledoc_id,workspace_id) {
         if (this.responseText) {
             output_object = JSON.parse(this.responseText);
             if (output_object.xml_content) {
-                xml = Blockly.Xml.textToDom(output_object.xml_content);
+                xml = Blockly.utils.xml.textToDom(output_object.xml_content);
                 Blockly.Xml.domToWorkspace(xml, demoWorkspace);
             }
         }
@@ -467,7 +468,7 @@ load_test_workspace = function(ruledoc_id,test_name) {
         if (this.responseText) {
             output_object = JSON.parse(this.responseText);
             if (output_object.xml_content) {
-                xml = Blockly.Xml.textToDom(output_object.xml_content);
+                xml = Blockly.utils.xml.textToDom(output_object.xml_content);
                 Blockly.Xml.domToWorkspace(xml, demoWorkspace);
             }
         }

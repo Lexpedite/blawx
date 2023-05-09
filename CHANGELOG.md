@@ -7,6 +7,13 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.13-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.13-alpha) 2023-05-09
+
+### Fixes
+* Favicon works properly
+* JSON errors no longer occur in test editor
+* Blockly warnings no longer occur in test editor and code editor
+
 ## [v1.6.12-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.12-alpha) 2023-05-09
 
 This release chances how code is generated for projects. To upgrade existing files you may need to
