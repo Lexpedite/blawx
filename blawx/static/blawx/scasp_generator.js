@@ -76,7 +76,7 @@ function text2math(string) {
         case "lte": return "=<";
         case "gt": return ">";
         case "gte": return ">=";
-        case "eq": return "==";
+        case "eq": return "=";
         case "neq": return "\\=";
     }
 }
@@ -304,7 +304,7 @@ sCASP['object_equality'] = function (block) {
 sCASP['object_disequality'] = function (block) {
     var value_first_object = sCASP.valueToCode(block, 'first_object', sCASP.ORDER_ATOMIC);
     var value_second_object = sCASP.valueToCode(block, 'second_object', sCASP.ORDER_ATOMIC);
-    var code = value_first_object + " \\= " + value_second_object;
+    var code = "blawx_diseq(" + value_first_object + "," + value_second_object + ")";
     return code;
 };
 
@@ -632,7 +632,7 @@ sCASP['numerical_constraint'] = function (block) {
     var value_first_comparator = sCASP.valueToCode(block, 'first_comparator', sCASP.ORDER_ATOMIC);
     var dropdown_operator = block.getFieldValue('operator');
     var value_second_comparator = sCASP.valueToCode(block, 'second_comparator', sCASP.ORDER_ATOMIC);
-    var code = value_first_comparator + " #" + text2math(dropdown_operator) + " " + value_second_comparator;
+    var code = "blawx_comparison(" + value_first_comparator + "," + dropdown_operator + "," + value_second_comparator + ")";
     return code;
 };
 
@@ -1301,7 +1301,7 @@ sCASP['relationship_declaration'] = function(block) {
     code += 'blawx_as_of(' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
     code += 'blawx_as_of(' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BetweenT #< Time.\n';
     code += 'blawx_during(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End, Start #< End.\n';
-    code += 'blawx_during(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(-' + text_relationship_name + '' + parameters + '),datetime(BeforeEnd)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End.\n';
+    code += 'blawx_during(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End.\n';
     code += 'blawx_during(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(AfterStart)), blawx_ultimately(' + text_relationship_name + '(' + parameters + ')), AfterStart #> Start.\n';
     code += 'blawx_as_of(-' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)), not blawx_becomes(' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
     code += 'blawx_as_of(-' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_initially(-' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BetweenT #< Time.\n';

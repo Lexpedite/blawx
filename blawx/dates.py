@@ -47,12 +47,12 @@ date_compare(time(X),gte,time(Y)) :- X #>= Y.
 date_compare(time(X),ne,time(Y)) :- X \= Y.
 
 date_compare(datetime(X),eq,datetime(X)).
-date_compare(datetime(bot),gte,datetime(bot)).
-date_compare(datetime(bot),lte,datetime(bot)).
-date_compare(datetime(eot),gte,datetime(eot)).
-date_compare(datetime(eot),lte,datetime(eot)).
-date_compare(datetime(bot),lt,datetime(Y)) :- Y \= bot.
-date_compare(datetime(eot),gt,datetime(Y)) :- Y \= eot.
+%date_compare(datetime(bot),gte,datetime(bot)).
+%date_compare(datetime(bot),lte,datetime(bot)).
+%date_compare(datetime(eot),gte,datetime(eot)).
+%date_compare(datetime(eot),lte,datetime(eot)).
+%date_compare(datetime(bot),lt,datetime(Y)) :- Y \= bot.
+%date_compare(datetime(eot),gt,datetime(Y)) :- Y \= eot.
 date_compare(datetime(X),lt,datetime(Y)) :- X #< Y.
 date_compare(datetime(X),gt,datetime(Y)) :- X #> Y.
 date_compare(datetime(X),lte,datetime(Y)) :- X #=< Y.
@@ -60,12 +60,12 @@ date_compare(datetime(X),gte,datetime(Y)) :- X #>= Y.
 date_compare(datetime(X),ne,datetime(Y)) :- X \= Y.
 
 date_compare(date(X),eq,datetime(X)).
-date_compare(date(bot),gte,datetime(bot)).
-date_compare(date(eot),lte,datetime(eot)).
-date_compare(date(eot),gte,datetime(eot)).
-date_compare(date(bot),lte,datetime(bot)).
-date_compare(date(bot),lt,datetime(Y)) :- Y \= bot.
-date_compare(date(eot),gt,datetime(Y)) :- Y \= eot.
+%date_compare(date(bot),gte,datetime(bot)).
+%date_compare(date(eot),lte,datetime(eot)).
+%date_compare(date(eot),gte,datetime(eot)).
+%date_compare(date(bot),lte,datetime(bot)).
+%date_compare(date(bot),lt,datetime(Y)) :- Y \= bot.
+%date_compare(date(eot),gt,datetime(Y)) :- Y \= eot.
 date_compare(date(X),lt,datetime(Y)) :- X #< Y.
 date_compare(date(X),gt,datetime(Y)) :- X #> Y.
 date_compare(date(X),lte,datetime(Y)) :- X #=< Y.
@@ -73,12 +73,12 @@ date_compare(date(X),gte,datetime(Y)) :- X #>= Y.
 date_compare(date(X),ne,datetime(Y)) :- X \= Y.
 
 date_compare(datetime(X),eq,date(X)).
-date_compare(datetime(bot),gte,date(bot)).
-date_compare(datetime(bot),lte,date(bot)).
-date_compare(datetime(eot),gte,date(eot)).
-date_compare(datetime(eot),lte,date(eot)).
-date_compare(datetime(bot),lt,date(Y)) :- Y \= bot.
-date_compare(datetime(eot),gt,date(Y)) :- Y \= eot.
+%date_compare(datetime(bot),gte,date(bot)).
+%date_compare(datetime(bot),lte,date(bot)).
+%date_compare(datetime(eot),gte,date(eot)).
+%date_compare(datetime(eot),lte,date(eot)).
+%date_compare(datetime(bot),lt,date(Y)) :- Y \= bot.
+%date_compare(datetime(eot),gt,date(Y)) :- Y \= eot.
 date_compare(datetime(X),lt,date(Y)) :- X #< Y.
 date_compare(datetime(X),gt,date(Y)) :- X #> Y.
 date_compare(datetime(X),lte,date(Y)) :- X #=< Y.
@@ -86,12 +86,12 @@ date_compare(datetime(X),gte,date(Y)) :- X #>= Y.
 date_compare(datetime(X),ne,date(Y)) :- X \= Y.
 
 date_compare(date(X),eq,date(X)).
-date_compare(date(bot),gte,date(bot)).
-date_compare(date(bot),lte,date(bot)).
-date_compare(date(eot),gte,date(eot)).
-date_compare(date(eot),lte,date(eot)).
-date_compare(date(bot),lt,date(Y)) :- Y \= bot.
-date_compare(date(eot),gt,date(Y)) :- Y \= eot.
+%date_compare(date(bot),gte,date(bot)).
+%date_compare(date(bot),lte,date(bot)).
+%date_compare(date(eot),gte,date(eot)).
+%date_compare(date(eot),lte,date(eot)).
+%date_compare(date(bot),lt,date(Y)) :- Y \= bot.
+%date_compare(date(eot),gt,date(Y)) :- Y \= eot.
 date_compare(date(X),lt,date(Y)) :- X #< Y.
 date_compare(date(X),gt,date(Y)) :- X #> Y.
 date_compare(date(X),lte,date(Y)) :- X #=< Y.
