@@ -210,7 +210,8 @@
         'is',
         'date_add',
         'date_compare',
-        'duration_compare'];
+        'duration_compare',
+        'blawx_list_not_between'];
 
         function getNodeName(node,answer,explanation) {
             var node_name = "";
@@ -550,6 +551,10 @@
                 return "ultimately, " + answerNLG(model.args[0],human);
             } else if (model.functor == "blawx_during") {
                 return "from " + displayValue(model.args[0],human) + " to " + displayValue(model.args[2],human) + " " + answerNLG(model.args[1],human);
+            } else if (model.functor == "blawx_not_interrupted") {
+                return "between " + displayValue(model.args[0],human) + " and " + displayValue(model.args[2],human) + " it remained the case that " + answerNLG(model.args[1],human);
+            } else if (model.functor == "blawx_list_not_between") {
+                return displayValue(model.args[0],human) + " doesn't include elements between " + displayValue(model.args[1],human) + " and " + displayValue(model.args[2],human);
             } else if (model.functor == "abduced" && model.args[0].functor != "-") {
                 return "it is hypothesized that " + answerNLG(model.args[0],human);
             } else if (model.functor == "abduced" && model.args[0].functor == "-") {

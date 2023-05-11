@@ -37,4 +37,12 @@ min_blawx_list([First|Rest],First) :-
 min_blawx_list([First|Rest],RestMin) :-
     min_blawx_list(Rest,RestMin),
     First #> RestMin.
+
+blawx_list_not_between([Head|Tail],Start,End) :-
+    blawx_not_between(Head,Start,End),
+    blawx_list_not_between(Tail,Start,End).
+blawx_list_not_between([],_,_).
+blawx_not_between(X,Y,Z) :- X < Y.
+blawx_not_between(X,Y,Z) :- X > Z.
+
 """
