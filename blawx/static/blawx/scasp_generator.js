@@ -957,16 +957,53 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred blawx_during(T1,-' + text_attribute_name + '(' + variable_order + "),T2) :: 'that it is not the case that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
         code += '#pred blawx_becomes(' + text_attribute_name + '(' + variable_order + "),T) :: 'that " + add_code.trim() + " became true at @(T)'.\n";
         code += '#pred blawx_becomes(-' + text_attribute_name + '(' + variable_order + "),T) :: 'that it is not the case that " + add_code.trim() + " became true at @(T)'.\n";
-        code += 'blawx_as_of(' + text_attribute_name + '(X,Y),datetime(Time)) :- blawx_becomes(' + text_attribute_name + '(X,Y),datetime(BeforeT)), not blawx_becomes(-' + text_attribute_name + '(X,Y), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-        code += 'blawx_as_of(' + text_attribute_name + '(X,Y),datetime(Time)) :- blawx_initially(' + text_attribute_name + '(X,Y)), not blawx_becomes(-' + text_attribute_name + '(X,Y), datetime(BetweenT)), BetweenT #< Time.\n';
-        code += 'blawx_during(datetime(Start),' + text_attribute_name + '(X,Y),datetime(End)) :- blawx_becomes(' + text_attribute_name + '(X,Y),datetime(Start)), not blawx_becomes(-' + text_attribute_name + '(X,Y),datetime(BeforeEnd)), blawx_becomes(-' + text_attribute_name + '(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\n';
-        code += 'blawx_during(datetime(bot),' + text_attribute_name + '(X,Y),datetime(End)) :- blawx_initially(' + text_attribute_name + '(X,Y)), not blawx_becomes(-' + text_attribute_name + '(X,Y),datetime(BeforeEnd)), blawx_becomes(-' + text_attribute_name + '(X,Y),datetime(End)), BeforeEnd #< End.\n';
-        code += 'blawx_during(datetime(Start),' + text_attribute_name + '(X,Y),datetime(eot)) :- blawx_becomes(' + text_attribute_name + '(X,Y),datetime(Start)), not blawx_becomes(-' + text_attribute_name + '(X,Y),datetime(AfterStart)), blawx_ultimately(' + text_attribute_name + '(X,Y)), AfterStart #> Start.\n';
-        code += 'blawx_as_of(-' + text_attribute_name + '(X,Y),datetime(Time)) :- blawx_becomes(-' + text_attribute_name + '(X,Y),datetime(BeforeT)), not blawx_becomes(' + text_attribute_name + '(X,Y), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-        code += 'blawx_as_of(-' + text_attribute_name + '(X,Y),datetime(Time)) :- blawx_initially(-' + text_attribute_name + '(X,Y)), not blawx_becomes(' + text_attribute_name + '(X,Y), datetime(BetweenT)), BetweenT #< Time.\n';
-        code += 'blawx_during(datetime(Start),-' + text_attribute_name + '(X,Y),datetime(End)) :- blawx_becomes(-' + text_attribute_name + '(X,Y),datetime(Start)), not blawx_becomes(' + text_attribute_name + '(X,Y),datetime(BeforeEnd)), blawx_becomes(' + text_attribute_name + '(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\n';
-        code += 'blawx_during(datetime(bot),-' + text_attribute_name + '(X,Y),datetime(End)) :- blawx_initially(-' + text_attribute_name + '(X,Y)), not blawx_becomes(' + text_attribute_name + '(X,Y),datetime(BeforeEnd)), blawx_becomes(' + text_attribute_name + '(X,Y),datetime(End)), BeforeEnd #< End.\n';
-        code += 'blawx_during(datetime(Start),-' + text_attribute_name + '(X,Y),datetime(eot)) :- blawx_becomes(-' + text_attribute_name + '(X,Y),datetime(Start)), not blawx_becomes(' + text_attribute_name + '(X,Y),datetime(AfterStart)), blawx_ultimately(-' + text_attribute_name + '(X,Y)), AfterStart #> Start.\n';
+        code += '#pred blawx_not_interrupted(Start,' + text_attribute_name + '(' + variable_order + "),End) :: '" + add_code.trim() + " remained the case between @(Start) and @(End)'.\n";
+        code += '#pred blawx_not_interrupted(Start,-' + text_attribute_name + '(' + variable_order + "),End) :: 'it is not the case that " + add_code.trim() + " remained the case between @(Start) and @(End)'.\n";
+        
+        // Generate event reasoning rules.
+        // Not interrupted positive between
+        code += 'blawx_not_interrupted(datetime(Start),' + text_attribute_name + '(' + variable_order + '),datetime(End)) :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\n'
+        // not interrupted negative between
+        code += 'blawx_not_interrupted(datetime(Start),-' + text_attribute_name + '(' + variable_order + '),datetime(End)) :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(' + text_attribute_name + '(' + variable_order + '),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\n'
+        // not interrupted positive before end after bot
+        code += 'blawx_not_interrupted(datetime(bot),' + text_attribute_name + '(' + variable_order + '),datetime(End)) :- End \\= eot, findall(Time,blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(Time)),Times),blawx_list_not_before(Times,End).\n'
+        // not interrupted negative before end after bot
+        code += 'blawx_not_interrupted(datetime(bot),-' + text_attribute_name + '(' + variable_order + '),datetime(End)) :- End \\= eot, findall(Time,blawx_becomes(' + text_attribute_name + '(' + variable_order + '),datetime(Time)),Times),blawx_list_not_before(Times,End).\n'
+        // not interrupted positive before eot after start
+        code += 'blawx_not_interrupted(datetime(Start),' + text_attribute_name + '(' + variable_order + '),datetime(eot)) :- Start \\= bot, findall(Time,blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(Time)),Times),blawx_list_not_after(Times,Start).\n'
+        // not interrupted negative before eot after start
+        code += 'blawx_not_interrupted(datetime(Start),-' + text_attribute_name + '(' + variable_order + '),datetime(eot)) :- Start \\= bot, findall(Time,blawx_becomes(' + text_attribute_name + '(' + variable_order + '),datetime(Time)),Times),blawx_list_not_after(Times,Start).\n'
+        // not interrupted positive ever
+        code += 'blawx_not_interrupted(datetime(bot),' + text_attribute_name + '(' + variable_order + '),datetime(eot)) :- blawx_initially(' + text_attribute_name + '(' + variable_order + ')), blawx_ultimately(' + text_attribute_name + '(' + variable_order + ')), findall(Time,blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(Time)),[]).\n'
+        // not interrupted negative ever
+        code += 'blawx_not_interrupted(datetime(bot),-' + text_attribute_name + '(' + variable_order + '),datetime(eot)) :- blawx_initially(-' + text_attribute_name + '(' + variable_order + ')), blawx_ultimately(-' + text_attribute_name + '(' + variable_order + ')), findall(Time,blawx_becomes(' + text_attribute_name + '(' + variable_order + '),datetime(Time)),[]).\n'
+        
+        // As of initially, positive
+        code += 'blawx_as_of(' + text_attribute_name + '(' + variable_order + '),datetime(Time)) :- blawx_initially(' + text_attribute_name + '(' + variable_order + ')), BeforeT #< Time,blawx_not_interrupted(datetime(bot),' + text_attribute_name + '(' + variable_order + '),datetime(BeforeT)).\n'
+        // As of later positive
+        code += 'blawx_as_of(' + text_attribute_name + '(' + variable_order + '),datetime(Time)) :- blawx_becomes(' + text_attribute_name + '(' + variable_order + '),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),' + text_attribute_name + '(' + variable_order + '),datetime(Time)).\n'
+        // As of initially, negative
+        code += 'blawx_as_of(-' + text_attribute_name + '(' + variable_order + '),datetime(Time)) :- blawx_initially(-' + text_attribute_name + '(' + variable_order + ')), BeforeT #< Time,blawx_not_interrupted(datetime(bot),-' + text_attribute_name + '(' + variable_order + '),datetime(BeforeT)).\n'
+        // As of later negative
+        code += 'blawx_as_of(-' + text_attribute_name + '(' + variable_order + '),datetime(Time)) :- blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),-' + text_attribute_name + '(' + variable_order + '),datetime(Time)).\n'
+        
+        // During Positive Both
+        code += 'blawx_during(datetime(Start),' + text_attribute_name + '(' + variable_order + '),datetime(End)) :- blawx_becomes(' + text_attribute_name + '(' + variable_order + '),datetime(Start)), blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(End)), Start #< End, blawx_not_interrupted(datetime(Start),' + text_attribute_name + '(' + variable_order + '),datetime(End)).\n';
+        // During Positive End
+        code += 'blawx_during(datetime(bot),' + text_attribute_name + '(' + variable_order + '),datetime(End)) :- blawx_initially(' + text_attribute_name + '(' + variable_order + ')), blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(End)), blawx_not_interrupted(datetime(bot),' + text_attribute_name + '(' + variable_order + '),datetime(End)).\n';
+        // During Positive Start
+        code += 'blawx_during(datetime(Start),' + text_attribute_name + '(' + variable_order + '),datetime(eot)) :- blawx_ultimately(' + text_attribute_name + '(' + variable_order + ')), blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(Start)), blawx_not_interrupted(datetime(Start),' + text_attribute_name + '(' + variable_order + '),datetime(eot)).\n';
+        // During Positive Neither
+        code += 'blawx_during(datetime(bot),' + text_attribute_name + '(' + variable_order + '),datetime(eot)) :- blawx_initially(' + text_attribute_name + '(' + variable_order + ')), blawx_ultimately(' + text_attribute_name + '(' + variable_order + ')), blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(Start)), blawx_not_interrupted(datetime(bot),' + text_attribute_name + '(' + variable_order + '),datetime(eot)).\n';
+        
+        // During Negative Both
+        code += 'blawx_during(datetime(Start),-' + text_attribute_name + '(' + variable_order + '),datetime(End)) :- blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(Start)), blawx_becomes(' + text_attribute_name + '(' + variable_order + '),datetime(End)), Start #< End, blawx_not_interrupted(datetime(Start),-' + text_attribute_name + '(' + variable_order + '),datetime(End)).\n';
+        // During Negative End
+        code += 'blawx_during(datetime(bot),-' + text_attribute_name + '(' + variable_order + '),datetime(End)) :- blawx_initially(-' + text_attribute_name + '(' + variable_order + ')), blawx_becomes(' + text_attribute_name + '(' + variable_order + '),datetime(End)), blawx_not_interrupted(datetime(bot),-' + text_attribute_name + '(' + variable_order + '),datetime(End)).\n';
+        // During Negative Start
+        code += 'blawx_during(datetime(Start),-' + text_attribute_name + '(' + variable_order + '),datetime(eot)) :- blawx_ultimately(-' + text_attribute_name + '(' + variable_order + ')), blawx_becomes(' + text_attribute_name + '(' + variable_order + '),datetime(Start)), blawx_not_interrupted(datetime(Start),-' + text_attribute_name + '(' + variable_order + '),datetime(eot)).\n';
+        // During Negative Neither
+        code += 'blawx_during(datetime(bot),-' + text_attribute_name + '(' + variable_order + '),datetime(eot)) :- blawx_initially(-' + text_attribute_name + '(' + variable_order + ')), blawx_ultimately(-' + text_attribute_name + '(' + variable_order + ')), blawx_becomes(-' + text_attribute_name + '(' + variable_order + '),datetime(Start)), blawx_not_interrupted(datetime(bot),-' + text_attribute_name + '(' + variable_order + '),datetime(eot)).\n';    
     } else {
         // This is for booleans.
         code += "blawx_attribute_nlg(" + text_attribute_name + ",not_applicable,\"" + text_prefix + "\",not_applicable,\"" + text_postfix + "\").\n"
@@ -991,16 +1028,53 @@ sCASP['new_attribute_declaration'] = function(block) {
         code += '#pred blawx_during(T1,-' + text_attribute_name + "(X),T2) :: 'that it is not the case that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
         code += '#pred blawx_becomes(' + text_attribute_name + "(X),T) :: 'that " + add_code.trim() + " became true at @(T)'.\n";
         code += '#pred blawx_becomes(-' + text_attribute_name + "(X),T) :: 'that it is not the case that " + add_code.trim() + " became true at @(T)'.\n";
-        code += 'blawx_as_of(' + text_attribute_name + '(X),datetime(Time)) :- blawx_becomes(' + text_attribute_name + '(X),datetime(BeforeT)), not blawx_becomes(-' + text_attribute_name + '(X), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-        code += 'blawx_as_of(' + text_attribute_name + '(X),datetime(Time)) :- blawx_initially(' + text_attribute_name + '(X)), not blawx_becomes(-' + text_attribute_name + '(X), datetime(BetweenT)), BetweenT #< Time.\n';
-        code += 'blawx_during(datetime(Start),' + text_attribute_name + '(X),datetime(End)) :- blawx_becomes(' + text_attribute_name + '(X),datetime(Start)), not blawx_becomes(-' + text_attribute_name + '(X),datetime(BeforeEnd)), blawx_becomes(-' + text_attribute_name + '(X),datetime(End)), BeforeEnd #< End, Start #< End.\n';
-        code += 'blawx_during(datetime(bot),' + text_attribute_name + '(X),datetime(End)) :- blawx_initially(' + text_attribute_name + '(X)), not blawx_becomes(-' + text_attribute_name + '(X),datetime(BeforeEnd)), blawx_becomes(-' + text_attribute_name + '(X),datetime(End)), BeforeEnd #< End.\n';
-        code += 'blawx_during(datetime(Start),' + text_attribute_name + '(X),datetime(eot)) :- blawx_becomes(' + text_attribute_name + '(X),datetime(Start)), not blawx_becomes(-' + text_attribute_name + '(X),datetime(AfterStart)), blawx_ultimately(' + text_attribute_name + '(X)), AfterStart #> Start.\n';
-        code += 'blawx_as_of(-' + text_attribute_name + '(X),datetime(Time)) :- blawx_becomes(-' + text_attribute_name + '(X),datetime(BeforeT)), not blawx_becomes(' + text_attribute_name + '(X), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-        code += 'blawx_as_of(-' + text_attribute_name + '(X),datetime(Time)) :- blawx_initially(-' + text_attribute_name + '(X)), not blawx_becomes(' + text_attribute_name + '(X), datetime(BetweenT)), BetweenT #< Time.\n';
-        code += 'blawx_during(datetime(Start),-' + text_attribute_name + '(X),datetime(End)) :- blawx_becomes(-' + text_attribute_name + '(X),datetime(Start)), not blawx_becomes(' + text_attribute_name + '(X),datetime(BeforeEnd)), blawx_becomes(' + text_attribute_name + '(X),datetime(End)), BeforeEnd #< End, Start #< End.\n';
-        code += 'blawx_during(datetime(bot),-' + text_attribute_name + '(X),datetime(End)) :- blawx_initially(-' + text_attribute_name + '(X)), not blawx_becomes(' + text_attribute_name + '(X),datetime(BeforeEnd)), blawx_becomes(' + text_attribute_name + '(X),datetime(End)), BeforeEnd #< End.\n';
-        code += 'blawx_during(datetime(Start),-' + text_attribute_name + '(X),datetime(eot)) :- blawx_becomes(-' + text_attribute_name + '(X),datetime(Start)), not blawx_becomes(' + text_attribute_name + '(X),datetime(AfterStart)), blawx_ultimately(-' + text_attribute_name + '(X)), AfterStart #> Start.\n';
+        code += '#pred blawx_not_interrupted(Start,' + text_attribute_name + "(X),End) :: '" + add_code.trim() + " remained the case between @(Start) and @(End)'.\n";
+        code += '#pred blawx_not_interrupted(Start,-' + text_attribute_name + "(X),End) :: 'it is not the case that " + add_code.trim() + " remained the case between @(Start) and @(End)'.\n";
+        
+        // Generate event reasoning rules.
+        // Not interrupted positive between
+        code += 'blawx_not_interrupted(datetime(Start),' + text_attribute_name + '(X),datetime(End)) :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(-' + text_attribute_name + '(X),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\n'
+        // not interrupted negative between
+        code += 'blawx_not_interrupted(datetime(Start),-' + text_attribute_name + '(X),datetime(End)) :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(' + text_attribute_name + '(X),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\n'
+        // not interrupted positive before end after bot
+        code += 'blawx_not_interrupted(datetime(bot),' + text_attribute_name + '(X),datetime(End)) :- End \\= eot, findall(Time,blawx_becomes(-' + text_attribute_name + '(X),datetime(Time)),Times),blawx_list_not_before(Times,End).\n'
+        // not interrupted negative before end after bot
+        code += 'blawx_not_interrupted(datetime(bot),-' + text_attribute_name + '(X),datetime(End)) :- End \\= eot, findall(Time,blawx_becomes(' + text_attribute_name + '(X),datetime(Time)),Times),blawx_list_not_before(Times,End).\n'
+        // not interrupted positive before eot after start
+        code += 'blawx_not_interrupted(datetime(Start),' + text_attribute_name + '(X),datetime(eot)) :- Start \\= bot, findall(Time,blawx_becomes(-' + text_attribute_name + '(X),datetime(Time)),Times),blawx_list_not_after(Times,Start).\n'
+        // not interrupted negative before eot after start
+        code += 'blawx_not_interrupted(datetime(Start),-' + text_attribute_name + '(X),datetime(eot)) :- Start \\= bot, findall(Time,blawx_becomes(' + text_attribute_name + '(X),datetime(Time)),Times),blawx_list_not_after(Times,Start).\n'
+        // not interrupted positive ever
+        code += 'blawx_not_interrupted(datetime(bot),' + text_attribute_name + '(X),datetime(eot)) :- blawx_initially(' + text_attribute_name + '(X)), blawx_ultimately(' + text_attribute_name + '(X)), findall(Time,blawx_becomes(-' + text_attribute_name + '(X),datetime(Time)),[]).\n'
+        // not interrupted negative ever
+        code += 'blawx_not_interrupted(datetime(bot),-' + text_attribute_name + '(X),datetime(eot)) :- blawx_initially(-' + text_attribute_name + '(X)), blawx_ultimately(-' + text_attribute_name + '(X)), findall(Time,blawx_becomes(' + text_attribute_name + '(X),datetime(Time)),[]).\n'
+        
+        // As of initially, positive
+        code += 'blawx_as_of(' + text_attribute_name + '(X),datetime(Time)) :- blawx_initially(' + text_attribute_name + '(X)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),' + text_attribute_name + '(X),datetime(BeforeT)).\n'
+        // As of later positive
+        code += 'blawx_as_of(' + text_attribute_name + '(X),datetime(Time)) :- blawx_becomes(' + text_attribute_name + '(X),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),' + text_attribute_name + '(X),datetime(Time)).\n'
+        // As of initially, negative
+        code += 'blawx_as_of(-' + text_attribute_name + '(X),datetime(Time)) :- blawx_initially(-' + text_attribute_name + '(X)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),-' + text_attribute_name + '(X),datetime(BeforeT)).\n'
+        // As of later negative
+        code += 'blawx_as_of(-' + text_attribute_name + '(X),datetime(Time)) :- blawx_becomes(-' + text_attribute_name + '(X),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),-' + text_attribute_name + '(X),datetime(Time)).\n'
+        
+        // During Positive Both
+        code += 'blawx_during(datetime(Start),' + text_attribute_name + '(X),datetime(End)) :- blawx_becomes(' + text_attribute_name + '(X),datetime(Start)), blawx_becomes(-' + text_attribute_name + '(X),datetime(End)), Start #< End, blawx_not_interrupted(datetime(Start),' + text_attribute_name + '(X),datetime(End)).\n';
+        // During Positive End
+        code += 'blawx_during(datetime(bot),' + text_attribute_name + '(X),datetime(End)) :- blawx_initially(' + text_attribute_name + '(X)), blawx_becomes(-' + text_attribute_name + '(X),datetime(End)), blawx_not_interrupted(datetime(bot),' + text_attribute_name + '(X),datetime(End)).\n';
+        // During Positive Start
+        code += 'blawx_during(datetime(Start),' + text_attribute_name + '(X),datetime(eot)) :- blawx_ultimately(' + text_attribute_name + '(X)), blawx_becomes(-' + text_attribute_name + '(X),datetime(Start)), blawx_not_interrupted(datetime(Start),' + text_attribute_name + '(X),datetime(eot)).\n';
+        // During Positive Neither
+        code += 'blawx_during(datetime(bot),' + text_attribute_name + '(X),datetime(eot)) :- blawx_initially(' + text_attribute_name + '(X)), blawx_ultimately(' + text_attribute_name + '(X)), blawx_becomes(-' + text_attribute_name + '(X),datetime(Start)), blawx_not_interrupted(datetime(bot),' + text_attribute_name + '(X),datetime(eot)).\n';
+        
+        // During Negative Both
+        code += 'blawx_during(datetime(Start),-' + text_attribute_name + '(X),datetime(End)) :- blawx_becomes(-' + text_attribute_name + '(X),datetime(Start)), blawx_becomes(' + text_attribute_name + '(X),datetime(End)), Start #< End, blawx_not_interrupted(datetime(Start),-' + text_attribute_name + '(X),datetime(End)).\n';
+        // During Negative End
+        code += 'blawx_during(datetime(bot),-' + text_attribute_name + '(X),datetime(End)) :- blawx_initially(-' + text_attribute_name + '(X)), blawx_becomes(' + text_attribute_name + '(X),datetime(End)), blawx_not_interrupted(datetime(bot),-' + text_attribute_name + '(X),datetime(End)).\n';
+        // During Negative Start
+        code += 'blawx_during(datetime(Start),-' + text_attribute_name + '(X),datetime(eot)) :- blawx_ultimately(-' + text_attribute_name + '(X)), blawx_becomes(' + text_attribute_name + '(X),datetime(Start)), blawx_not_interrupted(datetime(Start),-' + text_attribute_name + '(X),datetime(eot)).\n';
+        // During Negative Neither
+        code += 'blawx_during(datetime(bot),-' + text_attribute_name + '(X),datetime(eot)) :- blawx_initially(-' + text_attribute_name + '(X)), blawx_ultimately(-' + text_attribute_name + '(X)), blawx_becomes(-' + text_attribute_name + '(X),datetime(Start)), blawx_not_interrupted(datetime(bot),-' + text_attribute_name + '(X),datetime(eot)).\n';    
     }
     return code;
 };
@@ -1033,16 +1107,54 @@ sCASP['new_category_declaration'] = function(block) {
     code += '#pred blawx_during(T1,-' + text_category_name + "(X),T2) :: 'that it is not the case that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
     code += '#pred blawx_becomes(' + text_category_name + "(X),T) :: 'that " + add_code.trim() + " became true at @(T)'.\n";
     code += '#pred blawx_becomes(-' + text_category_name + "(X),T) :: 'that it is not the case that " + add_code.trim() + " became true at @(T)'.\n";
-    code += 'blawx_as_of(' + text_category_name + '(X),datetime(Time)) :- blawx_becomes(' + text_category_name + '(X),datetime(BeforeT)), not blawx_becomes(-' + text_category_name + '(X), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-    code += 'blawx_as_of(' + text_category_name + '(X),datetime(Time)) :- blawx_initially(' + text_category_name + '(X)), not blawx_becomes(-' + text_category_name + '(X), datetime(BetweenT)), BetweenT #< Time.\n';
-    code += 'blawx_during(datetime(Start),' + text_category_name + '(X),datetime(End)) :- blawx_becomes(' + text_category_name + '(X),datetime(Start)), not blawx_becomes(-' + text_category_name + '(X),datetime(BeforeEnd)), blawx_becomes(-' + text_category_name + '(X),datetime(End)), BeforeEnd #< End, Start #< End.\n';
-    code += 'blawx_during(datetime(bot),' + text_category_name + '(X),datetime(End)) :- blawx_initially(' + text_category_name + '(X)), not blawx_becomes(-' + text_category_name + '(X),datetime(BeforeEnd)), blawx_becomes(-' + text_category_name + '(X),datetime(End)), BeforeEnd #< End.\n';
-    code += 'blawx_during(datetime(Start),' + text_category_name + '(X),datetime(eot)) :- blawx_becomes(' + text_category_name + '(X),datetime(Start)), not blawx_becomes(-' + text_category_name + '(X),datetime(AfterStart)), blawx_ultimately(' + text_category_name + '(X)), AfterStart #> Start.\n';
-    code += 'blawx_as_of(-' + text_category_name + '(X),datetime(Time)) :- blawx_becomes(-' + text_category_name + '(X),datetime(BeforeT)), not blawx_becomes(' + text_category_name + '(X), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-    code += 'blawx_as_of(-' + text_category_name + '(X),datetime(Time)) :- blawx_initially(-' + text_category_name + '(X)), not blawx_becomes(' + text_category_name + '(X), datetime(BetweenT)), BetweenT #< Time.\n';
-    code += 'blawx_during(datetime(Start),-' + text_category_name + '(X),datetime(End)) :- blawx_becomes(-' + text_category_name + '(X),datetime(Start)), not blawx_becomes(' + text_category_name + '(X),datetime(BeforeEnd)), blawx_becomes(' + text_category_name + '(X),datetime(End)), BeforeEnd #< End, Start #< End.\n';
-    code += 'blawx_during(datetime(bot),-' + text_category_name + '(X),datetime(End)) :- blawx_initially(-' + text_category_name + '(X)), not blawx_becomes(' + text_category_name + '(X),datetime(BeforeEnd)), blawx_becomes(' + text_category_name + '(X),datetime(End)), BeforeEnd #< End.\n';
-    code += 'blawx_during(datetime(Start),-' + text_category_name + '(X),datetime(eot)) :- blawx_becomes(-' + text_category_name + '(X),datetime(Start)), not blawx_becomes(' + text_category_name + '(X),datetime(AfterStart)), blawx_ultimately(-' + text_category_name + '(X)), AfterStart #> Start.\n';
+    code += '#pred blawx_not_interrupted(Start,' + text_category_name + "(X),End) :: '" + add_code.trim() + " remained the case between @(Start) and @(End)'.\n";
+    code += '#pred blawx_not_interrupted(Start,-' + text_category_name + "(X),End) :: 'it is not the case that " + add_code.trim() + " remained the case between @(Start) and @(End)'.\n";
+    
+    // Generate event reasoning rules.
+    // Not interrupted positive between
+    code += 'blawx_not_interrupted(datetime(Start),' + text_category_name + '(X),datetime(End)) :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(-' + text_category_name + '(X),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\n'
+    // not interrupted negative between
+    code += 'blawx_not_interrupted(datetime(Start),-' + text_category_name + '(X),datetime(End)) :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(' + text_category_name + '(X),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\n'
+    // not interrupted positive before end after bot
+    code += 'blawx_not_interrupted(datetime(bot),' + text_category_name + '(X),datetime(End)) :- End \\= eot, findall(Time,blawx_becomes(-' + text_category_name + '(X),datetime(Time)),Times),blawx_list_not_before(Times,End).\n'
+    // not interrupted negative before end after bot
+    code += 'blawx_not_interrupted(datetime(bot),-' + text_category_name + '(X),datetime(End)) :- End \\= eot, findall(Time,blawx_becomes(' + text_category_name + '(X),datetime(Time)),Times),blawx_list_not_before(Times,End).\n'
+    // not interrupted positive before eot after start
+    code += 'blawx_not_interrupted(datetime(Start),' + text_category_name + '(X),datetime(eot)) :- Start \\= bot, findall(Time,blawx_becomes(-' + text_category_name + '(X),datetime(Time)),Times),blawx_list_not_after(Times,Start).\n'
+    // not interrupted negative before eot after start
+    code += 'blawx_not_interrupted(datetime(Start),-' + text_category_name + '(X),datetime(eot)) :- Start \\= bot, findall(Time,blawx_becomes(' + text_category_name + '(X),datetime(Time)),Times),blawx_list_not_after(Times,Start).\n'
+    // not interrupted positive ever
+    code += 'blawx_not_interrupted(datetime(bot),' + text_category_name + '(X),datetime(eot)) :- blawx_initially(' + text_category_name + '(X)), blawx_ultimately(' + text_category_name + '(X)), findall(Time,blawx_becomes(-' + text_category_name + '(X),datetime(Time)),[]).\n'
+    // not interrupted negative ever
+    code += 'blawx_not_interrupted(datetime(bot),-' + text_category_name + '(X),datetime(eot)) :- blawx_initially(-' + text_category_name + '(X)), blawx_ultimately(-' + text_category_name + '(X)), findall(Time,blawx_becomes(' + text_category_name + '(X),datetime(Time)),[]).\n'
+    
+    // As of initially, positive
+    code += 'blawx_as_of(' + text_category_name + '(X),datetime(Time)) :- blawx_initially(' + text_category_name + '(X)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),' + text_category_name + '(X),datetime(BeforeT)).\n'
+    // As of later positive
+    code += 'blawx_as_of(' + text_category_name + '(X),datetime(Time)) :- blawx_becomes(' + text_category_name + '(X),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),' + text_category_name + '(X),datetime(Time)).\n'
+    // As of initially, negative
+    code += 'blawx_as_of(-' + text_category_name + '(X),datetime(Time)) :- blawx_initially(-' + text_category_name + '(X)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),-' + text_category_name + '(X),datetime(BeforeT)).\n'
+    // As of later negative
+    code += 'blawx_as_of(-' + text_category_name + '(X),datetime(Time)) :- blawx_becomes(-' + text_category_name + '(X),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),-' + text_category_name + '(X),datetime(Time)).\n'
+    
+    // During Positive Both
+    code += 'blawx_during(datetime(Start),' + text_category_name + '(X),datetime(End)) :- blawx_becomes(' + text_category_name + '(X),datetime(Start)), blawx_becomes(-' + text_category_name + '(X),datetime(End)), Start #< End, blawx_not_interrupted(datetime(Start),' + text_category_name + '(X),datetime(End)).\n';
+    // During Positive End
+    code += 'blawx_during(datetime(bot),' + text_category_name + '(X),datetime(End)) :- blawx_initially(' + text_category_name + '(X)), blawx_becomes(-' + text_category_name + '(X),datetime(End)), blawx_not_interrupted(datetime(bot),' + text_category_name + '(X),datetime(End)).\n';
+    // During Positive Start
+    code += 'blawx_during(datetime(Start),' + text_category_name + '(X),datetime(eot)) :- blawx_ultimately(' + text_category_name + '(X)), blawx_becomes(-' + text_category_name + '(X),datetime(Start)), blawx_not_interrupted(datetime(Start),' + text_category_name + '(X),datetime(eot)).\n';
+    // During Positive Neither
+    code += 'blawx_during(datetime(bot),' + text_category_name + '(X),datetime(eot)) :- blawx_initially(' + text_category_name + '(X)), blawx_ultimately(' + text_category_name + '(X)), blawx_becomes(-' + text_category_name + '(X),datetime(Start)), blawx_not_interrupted(datetime(bot),' + text_category_name + '(X),datetime(eot)).\n';
+    
+    // During Negative Both
+    code += 'blawx_during(datetime(Start),-' + text_category_name + '(X),datetime(End)) :- blawx_becomes(-' + text_category_name + '(X),datetime(Start)), blawx_becomes(' + text_category_name + '(X),datetime(End)), Start #< End, blawx_not_interrupted(datetime(Start),-' + text_category_name + '(X),datetime(End)).\n';
+    // During Negative End
+    code += 'blawx_during(datetime(bot),-' + text_category_name + '(X),datetime(End)) :- blawx_initially(-' + text_category_name + '(X)), blawx_becomes(' + text_category_name + '(X),datetime(End)), blawx_not_interrupted(datetime(bot),-' + text_category_name + '(X),datetime(End)).\n';
+    // During Negative Start
+    code += 'blawx_during(datetime(Start),-' + text_category_name + '(X),datetime(eot)) :- blawx_ultimately(-' + text_category_name + '(X)), blawx_becomes(' + text_category_name + '(X),datetime(Start)), blawx_not_interrupted(datetime(Start),-' + text_category_name + '(X),datetime(eot)).\n';
+    // During Negative Neither
+    code += 'blawx_during(datetime(bot),-' + text_category_name + '(X),datetime(eot)) :- blawx_initially(-' + text_category_name + '(X)), blawx_ultimately(-' + text_category_name + '(X)), blawx_becomes(-' + text_category_name + '(X),datetime(Start)), blawx_not_interrupted(datetime(bot),-' + text_category_name + '(X),datetime(eot)).\n';
+    
     return code;
 };
 
@@ -1297,17 +1409,54 @@ sCASP['relationship_declaration'] = function(block) {
     code += '#pred blawx_during(T1,-' + text_relationship_name + '(' + parameters + "),T2) :: 'that it is not the case that " + add_code.trim() + " held between @(T1) and @(T2)'.\n";
     code += '#pred blawx_becomes(' + text_relationship_name + '(' + parameters + "),T) :: 'that " + add_code.trim() + " became true at @(T)'.\n";
     code += '#pred blawx_becomes(-' + text_relationship_name + '(' + parameters + "),T) :: 'that it is not the case that " + add_code.trim() + " became true at @(T)'.\n";
+    code += '#pred blawx_not_interrupted(Start,' + text_relationship_name + '(' + parameters + "),End) :: '" + add_code.trim() + " remained the case between @(Start) and @(End)'.\n";
+    code += '#pred blawx_not_interrupted(Start,-' + text_relationship_name + '(' + parameters + "),End) :: 'it is not the case that " + add_code.trim() + " remained the case between @(Start) and @(End)'.\n";
+    
     // Generate event reasoning rules.
-    code += 'blawx_as_of(' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-    code += 'blawx_as_of(' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BetweenT #< Time.\n';
-    code += 'blawx_during(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End, Start #< End.\n';
-    code += 'blawx_during(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End.\n';
-    code += 'blawx_during(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(AfterStart)), blawx_ultimately(' + text_relationship_name + '(' + parameters + ')), AfterStart #> Start.\n';
-    code += 'blawx_as_of(-' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)), not blawx_becomes(' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\n';
-    code += 'blawx_as_of(-' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_initially(-' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(' + text_relationship_name + '(' + parameters + '), datetime(BetweenT)), BetweenT #< Time.\n';
-    code += 'blawx_during(datetime(Start),-' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End, Start #< End.\n';
-    code += 'blawx_during(datetime(bot),-' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_initially(-' + text_relationship_name + '(' + parameters + ')), not blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(BeforeEnd)), blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(End)), BeforeEnd #< End.\n';
-    code += 'blawx_during(datetime(Start),-' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Start)), not blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(AfterStart)), blawx_ultimately(-' + text_relationship_name + '(' + parameters + ')), AfterStart #> Start.\n';
+    // Not interrupted positive between
+    code += 'blawx_not_interrupted(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\n'
+    // not interrupted negative between
+    code += 'blawx_not_interrupted(datetime(Start),-' + text_relationship_name + '(' + parameters + '),datetime(End)) :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\n'
+    // not interrupted positive before end after bot
+    code += 'blawx_not_interrupted(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- End \\= eot, findall(Time,blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Time)),Times),blawx_list_not_before(Times,End).\n'
+    // not interrupted negative before end after bot
+    code += 'blawx_not_interrupted(datetime(bot),-' + text_relationship_name + '(' + parameters + '),datetime(End)) :- End \\= eot, findall(Time,blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Time)),Times),blawx_list_not_before(Times,End).\n'
+    // not interrupted positive before eot after start
+    code += 'blawx_not_interrupted(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- Start \\= bot, findall(Time,blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Time)),Times),blawx_list_not_after(Times,Start).\n'
+    // not interrupted negative before eot after start
+    code += 'blawx_not_interrupted(datetime(Start),-' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- Start \\= bot, findall(Time,blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Time)),Times),blawx_list_not_after(Times,Start).\n'
+    // not interrupted positive ever
+    code += 'blawx_not_interrupted(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), blawx_ultimately(' + text_relationship_name + '(' + parameters + ')), findall(Time,blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Time)),[]).\n'
+    // not interrupted negative ever
+    code += 'blawx_not_interrupted(datetime(bot),-' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_initially(-' + text_relationship_name + '(' + parameters + ')), blawx_ultimately(-' + text_relationship_name + '(' + parameters + ')), findall(Time,blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Time)),[]).\n'
+    
+    // As of initially, positive
+    code += 'blawx_as_of(' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), BeforeT #< Time,blawx_not_interrupted(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)).\n'
+    // As of later positive
+    code += 'blawx_as_of(' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),' + text_relationship_name + '(' + parameters + '),datetime(Time)).\n'
+    // As of initially, negative
+    code += 'blawx_as_of(-' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_initially(-' + text_relationship_name + '(' + parameters + ')), BeforeT #< Time,blawx_not_interrupted(datetime(bot),-' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)).\n'
+    // As of later negative
+    code += 'blawx_as_of(-' + text_relationship_name + '(' + parameters + '),datetime(Time)) :- blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),-' + text_relationship_name + '(' + parameters + '),datetime(Time)).\n'
+    
+    // During Positive Both
+    code += 'blawx_during(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Start)), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), Start #< End, blawx_not_interrupted(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(End)).\n';
+    // During Positive End
+    code += 'blawx_during(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(End)), blawx_not_interrupted(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(End)).\n';
+    // During Positive Start
+    code += 'blawx_during(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_ultimately(' + text_relationship_name + '(' + parameters + ')), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Start)), blawx_not_interrupted(datetime(Start),' + text_relationship_name + '(' + parameters + '),datetime(eot)).\n';
+    // During Positive Neither
+    code += 'blawx_during(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_initially(' + text_relationship_name + '(' + parameters + ')), blawx_ultimately(' + text_relationship_name + '(' + parameters + ')), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Start)), blawx_not_interrupted(datetime(bot),' + text_relationship_name + '(' + parameters + '),datetime(eot)).\n';
+    
+    // During Negative Both
+    code += 'blawx_during(datetime(Start),-' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Start)), blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(End)), Start #< End, blawx_not_interrupted(datetime(Start),-' + text_relationship_name + '(' + parameters + '),datetime(End)).\n';
+    // During Negative End
+    code += 'blawx_during(datetime(bot),-' + text_relationship_name + '(' + parameters + '),datetime(End)) :- blawx_initially(-' + text_relationship_name + '(' + parameters + ')), blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(End)), blawx_not_interrupted(datetime(bot),-' + text_relationship_name + '(' + parameters + '),datetime(End)).\n';
+    // During Negative Start
+    code += 'blawx_during(datetime(Start),-' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_ultimately(-' + text_relationship_name + '(' + parameters + ')), blawx_becomes(' + text_relationship_name + '(' + parameters + '),datetime(Start)), blawx_not_interrupted(datetime(Start),-' + text_relationship_name + '(' + parameters + '),datetime(eot)).\n';
+    // During Negative Neither
+    code += 'blawx_during(datetime(bot),-' + text_relationship_name + '(' + parameters + '),datetime(eot)) :- blawx_initially(-' + text_relationship_name + '(' + parameters + ')), blawx_ultimately(-' + text_relationship_name + '(' + parameters + ')), blawx_becomes(-' + text_relationship_name + '(' + parameters + '),datetime(Start)), blawx_not_interrupted(datetime(bot),-' + text_relationship_name + '(' + parameters + '),datetime(eot)).\n';
+    
     return code;
 };
 

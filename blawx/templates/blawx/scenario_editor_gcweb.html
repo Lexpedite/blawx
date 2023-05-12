@@ -1,5 +1,5 @@
 
-{% extends "base2.html" %}
+{% extends "gcweb.html" %}
 
 {% load guardian_tags %}
 {% block breadcrumb %}
@@ -27,7 +27,7 @@
             </div>
           </nav>
           <div class="tab-content card-body" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-facts" role="tabpanel" aria-labelledby="nav-facts-tab">
+            <div class="tab-pane in fade show active" id="nav-facts" role="tabpanel" aria-labelledby="nav-facts-tab">
                 <div id="facttree" class="blawx-category tree-element p-2">
                 </div>
                 <div>
@@ -48,7 +48,7 @@
                     </button>
                 </div>
             </div>
-            <div class="tab-pane fade" id="nav-answers" role="tabpanel" aria-labelledby="nav-answers-tab">
+            <div class="tab-pane in fade" id="nav-answers" role="tabpanel" aria-labelledby="nav-answers-tab">
                 <div class="container py-3">
                     <div class="card">
                         <div class="card-body">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="nav-view" role="tabpanel" aria-labelledby="nav-view-tab">
+            <div class="tab-pane in fade" id="nav-view" role="tabpanel" aria-labelledby="nav-view-tab">
                 <div class="container py-3">
                     <div class="card">
                         <div class="card-body">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="nav-devel" role="tabpanel" aria-labelledby="nav-devel-tab">
+            <div class="tab-pane in fade" id="nav-devel" role="tabpanel" aria-labelledby="nav-devel-tab">
                 <div class="container py-3">
                     <div class="card">
                         <div class="card-body">
@@ -555,6 +555,10 @@
                 return "between " + displayValue(model.args[0],human) + " and " + displayValue(model.args[2],human) + " it remained the case that " + answerNLG(model.args[1],human);
             } else if (model.functor == "blawx_list_not_between") {
                 return displayValue(model.args[0],human) + " doesn't include elements between " + displayValue(model.args[1],human) + " and " + displayValue(model.args[2],human);
+            } else if (model.functor == "blawx_list_not_before") {
+                return displayValue(model.args[0],human) + " doesn't include elements before " + displayValue(model.args[1],human);
+            } else if (model.functor == "blawx_list_not_after") {
+                return displayValue(model.args[0],human) + " doesn't include elements after " + displayValue(model.args[1],human);
             } else if (model.functor == "abduced" && model.args[0].functor != "-") {
                 return "it is hypothesized that " + answerNLG(model.args[0],human);
             } else if (model.functor == "abduced" && model.args[0].functor == "-") {

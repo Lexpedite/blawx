@@ -48,20 +48,23 @@
       type="new_category_declaration" id="/+.JAEH.c(L=ES|z@iRP"><field name="category_name">person</field><field
       name="prefix"></field><field name="first_element">object</field><field name="postfix">is
       a person</field><next><block type="new_attribute_declaration" id="_Yj,uei!pgZG]:/(SjCx"><mutation
-      xmlns="http://www.w3.org/1999/xhtml" category_name="person" attribute_type="boolean"></mutation><field
+      xmlns="http://www.w3.org/1999/xhtml" category_name="person" category_list="[[&quot;person&quot;,&quot;person&quot;]]"
+      attribute_type="boolean" attribute_list="[[&quot;true / false&quot;,&quot;boolean&quot;],[&quot;number&quot;,&quot;number&quot;],[&quot;date&quot;,&quot;date&quot;],[&quot;time&quot;,&quot;time&quot;],[&quot;datetime&quot;,&quot;datetime&quot;],[&quot;duration&quot;,&quot;duration&quot;],[&quot;list&quot;,&quot;list&quot;],[&quot;person&quot;,&quot;person&quot;]]"></mutation><field
       name="category_name">person</field><field name="attribute_name">alive</field><field
       name="attribute_type">boolean</field><field name="order">ov</field><field name="prefix"></field><field
       name="first_element">object</field><field name="infix">'s attribute name is</field><field
       name="second_element">value</field><field name="postfix">is alive</field><next><block
       type="new_attribute_declaration" id="kWrJHyiaCmq}};;W[5z$"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person" attribute_type="datetime"></mutation><field name="category_name">person</field><field
-      name="attribute_name">dob</field><field name="attribute_type">datetime</field><field
-      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
-      name="infix">was born on</field><field name="second_element">value</field><field
-      name="postfix"></field></block></next></block></next></block></statement></block><block
+      category_name="person" category_list="[[&quot;person&quot;,&quot;person&quot;]]"
+      attribute_type="datetime" attribute_list="[[&quot;true / false&quot;,&quot;boolean&quot;],[&quot;number&quot;,&quot;number&quot;],[&quot;date&quot;,&quot;date&quot;],[&quot;time&quot;,&quot;time&quot;],[&quot;datetime&quot;,&quot;datetime&quot;],[&quot;duration&quot;,&quot;duration&quot;],[&quot;list&quot;,&quot;list&quot;],[&quot;person&quot;,&quot;person&quot;]]"></mutation><field
+      name="category_name">person</field><field name="attribute_name">dob</field><field
+      name="attribute_type">datetime</field><field name="order">ov</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="infix">was born on</field><field
+      name="second_element">value</field><field name="postfix"></field></block></next></block></next></block></statement></block><block
       type="attributed_rule" id="`n}F3x6Ox#y*^1mU/BD@" x="73" y="411"><field name="defeasible">FALSE</field><field
       name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
-      id="3bxXdTzs)9!gg(7*ZuSm"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      id="3bxXdTzs)9!gg(7*ZuSm"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"
+      category_list="[[&quot;person&quot;,&quot;person&quot;]]"></mutation><field
       name="category_name">person</field><value name="object"><block type="variable"
       id="G=};@(O@i;Fux#rV9*a="><field name="variable_name">Person</field></block></value><next><block
       type="attribute_selector" id=";.6(r*nK)mWiIJSqDreh"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -101,26 +104,34 @@
       :: 'that it is not the case that @(X) is a person held between @(T1) and @(T2)'.\n#pred
       blawx_becomes(person(X),T) :: 'that @(X) is a person became true at @(T)'.\n#pred
       blawx_becomes(-person(X),T) :: 'that it is not the case that @(X) is a person
-      became true at @(T)'.\nblawx_as_of(person(X),datetime(Time)) :- blawx_becomes(person(X),datetime(BeforeT)),
-      not blawx_becomes(-person(X), datetime(BetweenT)), BeforeT #< Time,BeforeT #<
-      BetweenT, BetweenT #< Time.\nblawx_as_of(person(X),datetime(Time)) :- blawx_initially(person(X)),
-      not blawx_becomes(-person(X), datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),person(X),datetime(End))
-      :- blawx_becomes(person(X),datetime(Start)), not blawx_becomes(-person(X),datetime(BeforeEnd)),
-      blawx_becomes(-person(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),person(X),datetime(End))
-      :- blawx_initially(person(X)), not blawx_becomes(-person(X),datetime(BeforeEnd)),
-      blawx_becomes(-person(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),person(X),datetime(eot))
-      :- blawx_becomes(person(X),datetime(Start)), not blawx_becomes(-person(X),datetime(AfterStart)),
-      blawx_ultimately(person(X)), AfterStart #> Start.\nblawx_as_of(-person(X),datetime(Time))
-      :- blawx_becomes(-person(X),datetime(BeforeT)), not blawx_becomes(person(X),
-      datetime(BetweenT)), BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-person(X),datetime(Time))
-      :- blawx_initially(-person(X)), not blawx_becomes(person(X), datetime(BetweenT)),
-      BetweenT #< Time.\nblawx_during(datetime(Start),-person(X),datetime(End)) :-
-      blawx_becomes(-person(X),datetime(Start)), not blawx_becomes(person(X),datetime(BeforeEnd)),
-      blawx_becomes(person(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-person(X),datetime(End))
-      :- blawx_initially(-person(X)), not blawx_becomes(person(X),datetime(BeforeEnd)),
-      blawx_becomes(person(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-person(X),datetime(eot))
-      :- blawx_becomes(-person(X),datetime(Start)), not blawx_becomes(person(X),datetime(AfterStart)),
-      blawx_ultimately(-person(X)), AfterStart #> Start.\nblawx_attribute(person,alive,boolean).\nblawx_attribute_nlg(alive,not_applicable,\"\",not_applicable,\"is
+      became true at @(T)'.\n#pred blawx_not_interrupted(Start,person(X),End) :: '@(X)
+      is a person remained the case between @(Start) and @(End)'.\n#pred blawx_not_interrupted(Start,-person(X),End)
+      :: 'it is not the case that @(X) is a person remained the case between @(Start)
+      and @(End)'.\nblawx_not_interrupted(datetime(Start),person(X),datetime(End))
+      :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(-person(X),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\nblawx_not_interrupted(datetime(Start),-person(X),datetime(End))
+      :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(person(X),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\nblawx_not_interrupted(datetime(bot),person(X),datetime(End))
+      :- End \\= eot, findall(Time,blawx_becomes(-person(X),datetime(Time)),Times),blawx_list_not_before(Times,End).\nblawx_not_interrupted(datetime(bot),-person(X),datetime(End))
+      :- End \\= eot, findall(Time,blawx_becomes(person(X),datetime(Time)),Times),blawx_list_not_before(Times,End).\nblawx_not_interrupted(datetime(Start),person(X),datetime(eot))
+      :- Start \\= bot, findall(Time,blawx_becomes(-person(X),datetime(Time)),Times),blawx_list_not_after(Times,Start).\nblawx_not_interrupted(datetime(Start),-person(X),datetime(eot))
+      :- Start \\= bot, findall(Time,blawx_becomes(person(X),datetime(Time)),Times),blawx_list_not_after(Times,Start).\nblawx_not_interrupted(datetime(bot),person(X),datetime(eot))
+      :- blawx_initially(person(X)), blawx_ultimately(person(X)), findall(Time,blawx_becomes(-person(X),datetime(Time)),[]).\nblawx_not_interrupted(datetime(bot),-person(X),datetime(eot))
+      :- blawx_initially(-person(X)), blawx_ultimately(-person(X)), findall(Time,blawx_becomes(person(X),datetime(Time)),[]).\nblawx_as_of(person(X),datetime(Time))
+      :- blawx_initially(person(X)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),person(X),datetime(BeforeT)).\nblawx_as_of(person(X),datetime(Time))
+      :- blawx_becomes(person(X),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),person(X),datetime(Time)).\nblawx_as_of(-person(X),datetime(Time))
+      :- blawx_initially(-person(X)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),-person(X),datetime(BeforeT)).\nblawx_as_of(-person(X),datetime(Time))
+      :- blawx_becomes(-person(X),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),-person(X),datetime(Time)).\nblawx_during(datetime(Start),person(X),datetime(End))
+      :- blawx_becomes(person(X),datetime(Start)), blawx_becomes(-person(X),datetime(End)),
+      Start #< End, blawx_not_interrupted(datetime(Start),person(X),datetime(End)).\nblawx_during(datetime(bot),person(X),datetime(End))
+      :- blawx_initially(person(X)), blawx_becomes(-person(X),datetime(End)), blawx_not_interrupted(datetime(bot),person(X),datetime(End)).\nblawx_during(datetime(Start),person(X),datetime(eot))
+      :- blawx_ultimately(person(X)), blawx_becomes(-person(X),datetime(Start)), blawx_not_interrupted(datetime(Start),person(X),datetime(eot)).\nblawx_during(datetime(bot),person(X),datetime(eot))
+      :- blawx_initially(person(X)), blawx_ultimately(person(X)), blawx_becomes(-person(X),datetime(Start)),
+      blawx_not_interrupted(datetime(bot),person(X),datetime(eot)).\nblawx_during(datetime(Start),-person(X),datetime(End))
+      :- blawx_becomes(-person(X),datetime(Start)), blawx_becomes(person(X),datetime(End)),
+      Start #< End, blawx_not_interrupted(datetime(Start),-person(X),datetime(End)).\nblawx_during(datetime(bot),-person(X),datetime(End))
+      :- blawx_initially(-person(X)), blawx_becomes(person(X),datetime(End)), blawx_not_interrupted(datetime(bot),-person(X),datetime(End)).\nblawx_during(datetime(Start),-person(X),datetime(eot))
+      :- blawx_ultimately(-person(X)), blawx_becomes(person(X),datetime(Start)), blawx_not_interrupted(datetime(Start),-person(X),datetime(eot)).\nblawx_during(datetime(bot),-person(X),datetime(eot))
+      :- blawx_initially(-person(X)), blawx_ultimately(-person(X)), blawx_becomes(-person(X),datetime(Start)),
+      blawx_not_interrupted(datetime(bot),-person(X),datetime(eot)).\nblawx_attribute(person,alive,boolean).\nblawx_attribute_nlg(alive,not_applicable,\"\",not_applicable,\"is
       alive\").\n:- dynamic alive/1.\n#pred alive(X) :: '@(X) is alive'.\n#pred holds(user,alive,X)
       :: 'it is provided as a fact that @(X) is alive'.\n#pred holds(user,-alive,X)
       :: 'it is provided as a fact that it is not the case that @(X) is alive'.\n#pred
@@ -141,26 +152,34 @@
       :: 'that it is not the case that @(X) is alive held between @(T1) and @(T2)'.\n#pred
       blawx_becomes(alive(X),T) :: 'that @(X) is alive became true at @(T)'.\n#pred
       blawx_becomes(-alive(X),T) :: 'that it is not the case that @(X) is alive became
-      true at @(T)'.\nblawx_as_of(alive(X),datetime(Time)) :- blawx_becomes(alive(X),datetime(BeforeT)),
-      not blawx_becomes(-alive(X), datetime(BetweenT)), BeforeT #< Time,BeforeT #<
-      BetweenT, BetweenT #< Time.\nblawx_as_of(alive(X),datetime(Time)) :- blawx_initially(alive(X)),
-      not blawx_becomes(-alive(X), datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),alive(X),datetime(End))
-      :- blawx_becomes(alive(X),datetime(Start)), not blawx_becomes(-alive(X),datetime(BeforeEnd)),
-      blawx_becomes(-alive(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),alive(X),datetime(End))
-      :- blawx_initially(alive(X)), not blawx_becomes(-alive(X),datetime(BeforeEnd)),
-      blawx_becomes(-alive(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),alive(X),datetime(eot))
-      :- blawx_becomes(alive(X),datetime(Start)), not blawx_becomes(-alive(X),datetime(AfterStart)),
-      blawx_ultimately(alive(X)), AfterStart #> Start.\nblawx_as_of(-alive(X),datetime(Time))
-      :- blawx_becomes(-alive(X),datetime(BeforeT)), not blawx_becomes(alive(X), datetime(BetweenT)),
-      BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-alive(X),datetime(Time))
-      :- blawx_initially(-alive(X)), not blawx_becomes(alive(X), datetime(BetweenT)),
-      BetweenT #< Time.\nblawx_during(datetime(Start),-alive(X),datetime(End)) :-
-      blawx_becomes(-alive(X),datetime(Start)), not blawx_becomes(alive(X),datetime(BeforeEnd)),
-      blawx_becomes(alive(X),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-alive(X),datetime(End))
-      :- blawx_initially(-alive(X)), not blawx_becomes(alive(X),datetime(BeforeEnd)),
-      blawx_becomes(alive(X),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-alive(X),datetime(eot))
-      :- blawx_becomes(-alive(X),datetime(Start)), not blawx_becomes(alive(X),datetime(AfterStart)),
-      blawx_ultimately(-alive(X)), AfterStart #> Start.\nblawx_attribute(person,dob,datetime).\nblawx_attribute_nlg(dob,ov,\"\",\"was
+      true at @(T)'.\n#pred blawx_not_interrupted(Start,alive(X),End) :: '@(X) is
+      alive remained the case between @(Start) and @(End)'.\n#pred blawx_not_interrupted(Start,-alive(X),End)
+      :: 'it is not the case that @(X) is alive remained the case between @(Start)
+      and @(End)'.\nblawx_not_interrupted(datetime(Start),alive(X),datetime(End))
+      :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(-alive(X),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\nblawx_not_interrupted(datetime(Start),-alive(X),datetime(End))
+      :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(alive(X),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\nblawx_not_interrupted(datetime(bot),alive(X),datetime(End))
+      :- End \\= eot, findall(Time,blawx_becomes(-alive(X),datetime(Time)),Times),blawx_list_not_before(Times,End).\nblawx_not_interrupted(datetime(bot),-alive(X),datetime(End))
+      :- End \\= eot, findall(Time,blawx_becomes(alive(X),datetime(Time)),Times),blawx_list_not_before(Times,End).\nblawx_not_interrupted(datetime(Start),alive(X),datetime(eot))
+      :- Start \\= bot, findall(Time,blawx_becomes(-alive(X),datetime(Time)),Times),blawx_list_not_after(Times,Start).\nblawx_not_interrupted(datetime(Start),-alive(X),datetime(eot))
+      :- Start \\= bot, findall(Time,blawx_becomes(alive(X),datetime(Time)),Times),blawx_list_not_after(Times,Start).\nblawx_not_interrupted(datetime(bot),alive(X),datetime(eot))
+      :- blawx_initially(alive(X)), blawx_ultimately(alive(X)), findall(Time,blawx_becomes(-alive(X),datetime(Time)),[]).\nblawx_not_interrupted(datetime(bot),-alive(X),datetime(eot))
+      :- blawx_initially(-alive(X)), blawx_ultimately(-alive(X)), findall(Time,blawx_becomes(alive(X),datetime(Time)),[]).\nblawx_as_of(alive(X),datetime(Time))
+      :- blawx_initially(alive(X)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),alive(X),datetime(BeforeT)).\nblawx_as_of(alive(X),datetime(Time))
+      :- blawx_becomes(alive(X),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),alive(X),datetime(Time)).\nblawx_as_of(-alive(X),datetime(Time))
+      :- blawx_initially(-alive(X)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),-alive(X),datetime(BeforeT)).\nblawx_as_of(-alive(X),datetime(Time))
+      :- blawx_becomes(-alive(X),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),-alive(X),datetime(Time)).\nblawx_during(datetime(Start),alive(X),datetime(End))
+      :- blawx_becomes(alive(X),datetime(Start)), blawx_becomes(-alive(X),datetime(End)),
+      Start #< End, blawx_not_interrupted(datetime(Start),alive(X),datetime(End)).\nblawx_during(datetime(bot),alive(X),datetime(End))
+      :- blawx_initially(alive(X)), blawx_becomes(-alive(X),datetime(End)), blawx_not_interrupted(datetime(bot),alive(X),datetime(End)).\nblawx_during(datetime(Start),alive(X),datetime(eot))
+      :- blawx_ultimately(alive(X)), blawx_becomes(-alive(X),datetime(Start)), blawx_not_interrupted(datetime(Start),alive(X),datetime(eot)).\nblawx_during(datetime(bot),alive(X),datetime(eot))
+      :- blawx_initially(alive(X)), blawx_ultimately(alive(X)), blawx_becomes(-alive(X),datetime(Start)),
+      blawx_not_interrupted(datetime(bot),alive(X),datetime(eot)).\nblawx_during(datetime(Start),-alive(X),datetime(End))
+      :- blawx_becomes(-alive(X),datetime(Start)), blawx_becomes(alive(X),datetime(End)),
+      Start #< End, blawx_not_interrupted(datetime(Start),-alive(X),datetime(End)).\nblawx_during(datetime(bot),-alive(X),datetime(End))
+      :- blawx_initially(-alive(X)), blawx_becomes(alive(X),datetime(End)), blawx_not_interrupted(datetime(bot),-alive(X),datetime(End)).\nblawx_during(datetime(Start),-alive(X),datetime(eot))
+      :- blawx_ultimately(-alive(X)), blawx_becomes(alive(X),datetime(Start)), blawx_not_interrupted(datetime(Start),-alive(X),datetime(eot)).\nblawx_during(datetime(bot),-alive(X),datetime(eot))
+      :- blawx_initially(-alive(X)), blawx_ultimately(-alive(X)), blawx_becomes(-alive(X),datetime(Start)),
+      blawx_not_interrupted(datetime(bot),-alive(X),datetime(eot)).\nblawx_attribute(person,dob,datetime).\nblawx_attribute_nlg(dob,ov,\"\",\"was
       born on\",\"\").\n:- dynamic dob/2.\n#pred dob(X,Y) :: '@(X) was born on @(Y)'.\n#pred
       holds(user,dob,X,Y) :: 'it is provided as a fact that @(X) was born on @(Y)'.\n#pred
       holds(user,-dob,X,Y) :: 'it is provided as a fact that it is not the case that
@@ -171,39 +190,46 @@
       :: 'according to @(Z), it is not the case that @(X) was born on @(Y)'.\n#pred
       blawx_defeated(Z,dob,X,Y) :: 'the conclusion in @(Z) that @(X) was born on @(Y)
       is defeated'.\n#pred blawx_defeated(Z,-dob,X,Y) :: 'the conclusion in @(Z) that
-      @(X) was born on @(Y) is defeated'.\n#pred blawx_initially(dob,(X,Y)) :: 'that
-      @(X) was born on @(Y) holds initially'.\n#pred blawx_initially(-dob,(X,Y)) ::
+      @(X) was born on @(Y) is defeated'.\n#pred blawx_initially(dob(X,Y)) :: 'that
+      @(X) was born on @(Y) holds initially'.\n#pred blawx_initially(-dob(X,Y)) ::
       'that it is not the case that @(X) was born on @(Y) holds initially'.\n#pred
-      blawx_ultimately(dob,(X,Y)) :: 'that @(X) was born on @(Y) holds ultimately'.\n#pred
-      blawx_ultimately(-dob,(X,Y)) :: 'that it is not the case that @(X) was born
-      on @(Y) holds ultimately'.\n#pred blawx_as_of(dob,(X,Y),T) :: 'that @(X) was
-      born on @(Y) holds at @(T)'.\n#pred blawx_as_of(-dob,(X,Y),T) :: 'that it is
-      not the case that @(X) was born on @(Y) holds at @(T)'.\n#pred blawx_during(T1,dob,(X,Y),T2)
-      :: 'that @(X) was born on @(Y) held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-dob,(X,Y),T2)
+      blawx_ultimately(dob(X,Y)) :: 'that @(X) was born on @(Y) holds ultimately'.\n#pred
+      blawx_ultimately(-dob(X,Y)) :: 'that it is not the case that @(X) was born on
+      @(Y) holds ultimately'.\n#pred blawx_as_of(dob(X,Y),T) :: 'that @(X) was born
+      on @(Y) holds at @(T)'.\n#pred blawx_as_of(-dob(X,Y),T) :: 'that it is not the
+      case that @(X) was born on @(Y) holds at @(T)'.\n#pred blawx_during(T1,dob(X,Y),T2)
+      :: 'that @(X) was born on @(Y) held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-dob(X,Y),T2)
       :: 'that it is not the case that @(X) was born on @(Y) held between @(T1) and
-      @(T2)'.\n#pred blawx_becomes(dob,(X,Y),T) :: 'that @(X) was born on @(Y) became
-      true at @(T)'.\n#pred blawx_becomes(-dob,(X,Y),T) :: 'that it is not the case
-      that @(X) was born on @(Y) became true at @(T)'.\nblawx_as_of(dob(X,Y),datetime(Time))
-      :- blawx_becomes(dob(X,Y),datetime(BeforeT)), not blawx_becomes(-dob(X,Y), datetime(BetweenT)),
-      BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(dob(X,Y),datetime(Time))
-      :- blawx_initially(dob(X,Y)), not blawx_becomes(-dob(X,Y), datetime(BetweenT)),
-      BetweenT #< Time.\nblawx_during(datetime(Start),dob(X,Y),datetime(End)) :- blawx_becomes(dob(X,Y),datetime(Start)),
-      not blawx_becomes(-dob(X,Y),datetime(BeforeEnd)), blawx_becomes(-dob(X,Y),datetime(End)),
-      BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),dob(X,Y),datetime(End))
-      :- blawx_initially(dob(X,Y)), not blawx_becomes(-dob(X,Y),datetime(BeforeEnd)),
-      blawx_becomes(-dob(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),dob(X,Y),datetime(eot))
-      :- blawx_becomes(dob(X,Y),datetime(Start)), not blawx_becomes(-dob(X,Y),datetime(AfterStart)),
-      blawx_ultimately(dob(X,Y)), AfterStart #> Start.\nblawx_as_of(-dob(X,Y),datetime(Time))
-      :- blawx_becomes(-dob(X,Y),datetime(BeforeT)), not blawx_becomes(dob(X,Y), datetime(BetweenT)),
-      BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-dob(X,Y),datetime(Time))
-      :- blawx_initially(-dob(X,Y)), not blawx_becomes(dob(X,Y), datetime(BetweenT)),
-      BetweenT #< Time.\nblawx_during(datetime(Start),-dob(X,Y),datetime(End)) :-
-      blawx_becomes(-dob(X,Y),datetime(Start)), not blawx_becomes(dob(X,Y),datetime(BeforeEnd)),
-      blawx_becomes(dob(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-dob(X,Y),datetime(End))
-      :- blawx_initially(-dob(X,Y)), not blawx_becomes(dob(X,Y),datetime(BeforeEnd)),
-      blawx_becomes(dob(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-dob(X,Y),datetime(eot))
-      :- blawx_becomes(-dob(X,Y),datetime(Start)), not blawx_becomes(dob(X,Y),datetime(AfterStart)),
-      blawx_ultimately(-dob(X,Y)), AfterStart #> Start.\n\naccording_to(sec_1_section,blawx_becomes,alive(Person),DOB)
+      @(T2)'.\n#pred blawx_becomes(dob(X,Y),T) :: 'that @(X) was born on @(Y) became
+      true at @(T)'.\n#pred blawx_becomes(-dob(X,Y),T) :: 'that it is not the case
+      that @(X) was born on @(Y) became true at @(T)'.\n#pred blawx_not_interrupted(Start,dob(X,Y),End)
+      :: '@(X) was born on @(Y) remained the case between @(Start) and @(End)'.\n#pred
+      blawx_not_interrupted(Start,-dob(X,Y),End) :: 'it is not the case that @(X)
+      was born on @(Y) remained the case between @(Start) and @(End)'.\nblawx_not_interrupted(datetime(Start),dob(X,Y),datetime(End))
+      :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(-dob(X,Y),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\nblawx_not_interrupted(datetime(Start),-dob(X,Y),datetime(End))
+      :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(dob(X,Y),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\nblawx_not_interrupted(datetime(bot),dob(X,Y),datetime(End))
+      :- End \\= eot, findall(Time,blawx_becomes(-dob(X,Y),datetime(Time)),Times),blawx_list_not_before(Times,End).\nblawx_not_interrupted(datetime(bot),-dob(X,Y),datetime(End))
+      :- End \\= eot, findall(Time,blawx_becomes(dob(X,Y),datetime(Time)),Times),blawx_list_not_before(Times,End).\nblawx_not_interrupted(datetime(Start),dob(X,Y),datetime(eot))
+      :- Start \\= bot, findall(Time,blawx_becomes(-dob(X,Y),datetime(Time)),Times),blawx_list_not_after(Times,Start).\nblawx_not_interrupted(datetime(Start),-dob(X,Y),datetime(eot))
+      :- Start \\= bot, findall(Time,blawx_becomes(dob(X,Y),datetime(Time)),Times),blawx_list_not_after(Times,Start).\nblawx_not_interrupted(datetime(bot),dob(X,Y),datetime(eot))
+      :- blawx_initially(dob(X,Y)), blawx_ultimately(dob(X,Y)), findall(Time,blawx_becomes(-dob(X,Y),datetime(Time)),[]).\nblawx_not_interrupted(datetime(bot),-dob(X,Y),datetime(eot))
+      :- blawx_initially(-dob(X,Y)), blawx_ultimately(-dob(X,Y)), findall(Time,blawx_becomes(dob(X,Y),datetime(Time)),[]).\nblawx_as_of(dob(X,Y),datetime(Time))
+      :- blawx_initially(dob(X,Y)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),dob(X,Y),datetime(BeforeT)).\nblawx_as_of(dob(X,Y),datetime(Time))
+      :- blawx_becomes(dob(X,Y),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),dob(X,Y),datetime(Time)).\nblawx_as_of(-dob(X,Y),datetime(Time))
+      :- blawx_initially(-dob(X,Y)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),-dob(X,Y),datetime(BeforeT)).\nblawx_as_of(-dob(X,Y),datetime(Time))
+      :- blawx_becomes(-dob(X,Y),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),-dob(X,Y),datetime(Time)).\nblawx_during(datetime(Start),dob(X,Y),datetime(End))
+      :- blawx_becomes(dob(X,Y),datetime(Start)), blawx_becomes(-dob(X,Y),datetime(End)),
+      Start #< End, blawx_not_interrupted(datetime(Start),dob(X,Y),datetime(End)).\nblawx_during(datetime(bot),dob(X,Y),datetime(End))
+      :- blawx_initially(dob(X,Y)), blawx_becomes(-dob(X,Y),datetime(End)), blawx_not_interrupted(datetime(bot),dob(X,Y),datetime(End)).\nblawx_during(datetime(Start),dob(X,Y),datetime(eot))
+      :- blawx_ultimately(dob(X,Y)), blawx_becomes(-dob(X,Y),datetime(Start)), blawx_not_interrupted(datetime(Start),dob(X,Y),datetime(eot)).\nblawx_during(datetime(bot),dob(X,Y),datetime(eot))
+      :- blawx_initially(dob(X,Y)), blawx_ultimately(dob(X,Y)), blawx_becomes(-dob(X,Y),datetime(Start)),
+      blawx_not_interrupted(datetime(bot),dob(X,Y),datetime(eot)).\nblawx_during(datetime(Start),-dob(X,Y),datetime(End))
+      :- blawx_becomes(-dob(X,Y),datetime(Start)), blawx_becomes(dob(X,Y),datetime(End)),
+      Start #< End, blawx_not_interrupted(datetime(Start),-dob(X,Y),datetime(End)).\nblawx_during(datetime(bot),-dob(X,Y),datetime(End))
+      :- blawx_initially(-dob(X,Y)), blawx_becomes(dob(X,Y),datetime(End)), blawx_not_interrupted(datetime(bot),-dob(X,Y),datetime(End)).\nblawx_during(datetime(Start),-dob(X,Y),datetime(eot))
+      :- blawx_ultimately(-dob(X,Y)), blawx_becomes(dob(X,Y),datetime(Start)), blawx_not_interrupted(datetime(Start),-dob(X,Y),datetime(eot)).\nblawx_during(datetime(bot),-dob(X,Y),datetime(eot))
+      :- blawx_initially(-dob(X,Y)), blawx_ultimately(-dob(X,Y)), blawx_becomes(-dob(X,Y),datetime(Start)),
+      blawx_not_interrupted(datetime(bot),-dob(X,Y),datetime(eot)).\n\naccording_to(sec_1_section,blawx_becomes,alive(Person),DOB)
       :- person(Person),\ndob(Person,DOB).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_1_section,blawx_becomes,alive(Person),DOB)
       :- according_to(sec_1_section,blawx_becomes,alive(Person),DOB).\n\n% BLAWX CHECK
       DUPLICATES\n  blawx_becomes(  alive(Person),DOB) :- holds(sec_1_section,blawx_becomes,alive(Person),DOB)."
@@ -229,14 +255,16 @@
     xml_content: <xml xmlns="https://developers.google.com/blockly/xml"><block type="unattributed_fact"
       id="RBZbwl-$+*goMbqU4OI^" x="62" y="99"><statement name="statements"><block
       type="new_attribute_declaration" id="CQMDIUV,~65wKzDk21.$"><mutation xmlns="http://www.w3.org/1999/xhtml"
-      category_name="person" attribute_type="datetime"></mutation><field name="category_name">person</field><field
-      name="attribute_name">dod</field><field name="attribute_type">datetime</field><field
-      name="order">ov</field><field name="prefix"></field><field name="first_element">object</field><field
-      name="infix">died on</field><field name="second_element">value</field><field
-      name="postfix"></field></block></statement></block><block type="attributed_rule"
-      id="C3/!c[j6tGM(m_b5v)zS" x="63" y="249"><field name="defeasible">FALSE</field><field
+      category_name="person" category_list="[[&quot;person&quot;,&quot;person&quot;]]"
+      attribute_type="datetime" attribute_list="[[&quot;true / false&quot;,&quot;boolean&quot;],[&quot;number&quot;,&quot;number&quot;],[&quot;date&quot;,&quot;date&quot;],[&quot;time&quot;,&quot;time&quot;],[&quot;datetime&quot;,&quot;datetime&quot;],[&quot;duration&quot;,&quot;duration&quot;],[&quot;list&quot;,&quot;list&quot;],[&quot;person&quot;,&quot;person&quot;]]"></mutation><field
+      name="category_name">person</field><field name="attribute_name">dod</field><field
+      name="attribute_type">datetime</field><field name="order">ov</field><field name="prefix"></field><field
+      name="first_element">object</field><field name="infix">died on</field><field
+      name="second_element">value</field><field name="postfix"></field></block></statement></block><block
+      type="attributed_rule" id="C3/!c[j6tGM(m_b5v)zS" x="63" y="249"><field name="defeasible">FALSE</field><field
       name="inapplicable">FALSE</field><statement name="conditions"><block type="new_object_category"
-      id="5K?BEGE9(fQ*mF5,==a+"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"></mutation><field
+      id="5K?BEGE9(fQ*mF5,==a+"><mutation xmlns="http://www.w3.org/1999/xhtml" category_name="person"
+      category_list="[[&quot;person&quot;,&quot;person&quot;]]"></mutation><field
       name="category_name">person</field><value name="object"><block type="variable"
       id="ElU5CnHwN]i6!0:]nJho"><field name="variable_name">Person</field></block></value><next><block
       type="attribute_selector" id="+c6q+pO{oI=RBd0z6kKT"><mutation xmlns="http://www.w3.org/1999/xhtml"
@@ -272,38 +300,46 @@
       :: 'according to @(Z), @(X) died on @(Y)'.\n#pred according_to(Z,-dod,X,Y) ::
       'according to @(Z), it is not the case that @(X) died on @(Y)'.\n#pred blawx_defeated(Z,dod,X,Y)
       :: 'the conclusion in @(Z) that @(X) died on @(Y) is defeated'.\n#pred blawx_defeated(Z,-dod,X,Y)
-      :: 'the conclusion in @(Z) that @(X) died on @(Y) is defeated'.\n#pred blawx_initially(dod,(X,Y))
-      :: 'that @(X) died on @(Y) holds initially'.\n#pred blawx_initially(-dod,(X,Y))
+      :: 'the conclusion in @(Z) that @(X) died on @(Y) is defeated'.\n#pred blawx_initially(dod(X,Y))
+      :: 'that @(X) died on @(Y) holds initially'.\n#pred blawx_initially(-dod(X,Y))
       :: 'that it is not the case that @(X) died on @(Y) holds initially'.\n#pred
-      blawx_ultimately(dod,(X,Y)) :: 'that @(X) died on @(Y) holds ultimately'.\n#pred
-      blawx_ultimately(-dod,(X,Y)) :: 'that it is not the case that @(X) died on @(Y)
-      holds ultimately'.\n#pred blawx_as_of(dod,(X,Y),T) :: 'that @(X) died on @(Y)
-      holds at @(T)'.\n#pred blawx_as_of(-dod,(X,Y),T) :: 'that it is not the case
-      that @(X) died on @(Y) holds at @(T)'.\n#pred blawx_during(T1,dod,(X,Y),T2)
-      :: 'that @(X) died on @(Y) held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-dod,(X,Y),T2)
+      blawx_ultimately(dod(X,Y)) :: 'that @(X) died on @(Y) holds ultimately'.\n#pred
+      blawx_ultimately(-dod(X,Y)) :: 'that it is not the case that @(X) died on @(Y)
+      holds ultimately'.\n#pred blawx_as_of(dod(X,Y),T) :: 'that @(X) died on @(Y)
+      holds at @(T)'.\n#pred blawx_as_of(-dod(X,Y),T) :: 'that it is not the case
+      that @(X) died on @(Y) holds at @(T)'.\n#pred blawx_during(T1,dod(X,Y),T2) ::
+      'that @(X) died on @(Y) held between @(T1) and @(T2)'.\n#pred blawx_during(T1,-dod(X,Y),T2)
       :: 'that it is not the case that @(X) died on @(Y) held between @(T1) and @(T2)'.\n#pred
-      blawx_becomes(dod,(X,Y),T) :: 'that @(X) died on @(Y) became true at @(T)'.\n#pred
-      blawx_becomes(-dod,(X,Y),T) :: 'that it is not the case that @(X) died on @(Y)
-      became true at @(T)'.\nblawx_as_of(dod(X,Y),datetime(Time)) :- blawx_becomes(dod(X,Y),datetime(BeforeT)),
-      not blawx_becomes(-dod(X,Y), datetime(BetweenT)), BeforeT #< Time,BeforeT #<
-      BetweenT, BetweenT #< Time.\nblawx_as_of(dod(X,Y),datetime(Time)) :- blawx_initially(dod(X,Y)),
-      not blawx_becomes(-dod(X,Y), datetime(BetweenT)), BetweenT #< Time.\nblawx_during(datetime(Start),dod(X,Y),datetime(End))
-      :- blawx_becomes(dod(X,Y),datetime(Start)), not blawx_becomes(-dod(X,Y),datetime(BeforeEnd)),
-      blawx_becomes(-dod(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),dod(X,Y),datetime(End))
-      :- blawx_initially(dod(X,Y)), not blawx_becomes(-dod(X,Y),datetime(BeforeEnd)),
-      blawx_becomes(-dod(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),dod(X,Y),datetime(eot))
-      :- blawx_becomes(dod(X,Y),datetime(Start)), not blawx_becomes(-dod(X,Y),datetime(AfterStart)),
-      blawx_ultimately(dod(X,Y)), AfterStart #> Start.\nblawx_as_of(-dod(X,Y),datetime(Time))
-      :- blawx_becomes(-dod(X,Y),datetime(BeforeT)), not blawx_becomes(dod(X,Y), datetime(BetweenT)),
-      BeforeT #< Time,BeforeT #< BetweenT, BetweenT #< Time.\nblawx_as_of(-dod(X,Y),datetime(Time))
-      :- blawx_initially(-dod(X,Y)), not blawx_becomes(dod(X,Y), datetime(BetweenT)),
-      BetweenT #< Time.\nblawx_during(datetime(Start),-dod(X,Y),datetime(End)) :-
-      blawx_becomes(-dod(X,Y),datetime(Start)), not blawx_becomes(dod(X,Y),datetime(BeforeEnd)),
-      blawx_becomes(dod(X,Y),datetime(End)), BeforeEnd #< End, Start #< End.\nblawx_during(datetime(bot),-dod(X,Y),datetime(End))
-      :- blawx_initially(-dod(X,Y)), not blawx_becomes(dod(X,Y),datetime(BeforeEnd)),
-      blawx_becomes(dod(X,Y),datetime(End)), BeforeEnd #< End.\nblawx_during(datetime(Start),-dod(X,Y),datetime(eot))
-      :- blawx_becomes(-dod(X,Y),datetime(Start)), not blawx_becomes(dod(X,Y),datetime(AfterStart)),
-      blawx_ultimately(-dod(X,Y)), AfterStart #> Start.\n\naccording_to(sec_3_section,blawx_becomes,-alive(Person),DOD)
+      blawx_becomes(dod(X,Y),T) :: 'that @(X) died on @(Y) became true at @(T)'.\n#pred
+      blawx_becomes(-dod(X,Y),T) :: 'that it is not the case that @(X) died on @(Y)
+      became true at @(T)'.\n#pred blawx_not_interrupted(Start,dod(X,Y),End) :: '@(X)
+      died on @(Y) remained the case between @(Start) and @(End)'.\n#pred blawx_not_interrupted(Start,-dod(X,Y),End)
+      :: 'it is not the case that @(X) died on @(Y) remained the case between @(Start)
+      and @(End)'.\nblawx_not_interrupted(datetime(Start),dod(X,Y),datetime(End))
+      :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(-dod(X,Y),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\nblawx_not_interrupted(datetime(Start),-dod(X,Y),datetime(End))
+      :- Start \\= bot, End \\= eot, findall(Time,blawx_becomes(dod(X,Y),datetime(Time)),Times),blawx_list_not_between(Times,Start,End).\nblawx_not_interrupted(datetime(bot),dod(X,Y),datetime(End))
+      :- End \\= eot, findall(Time,blawx_becomes(-dod(X,Y),datetime(Time)),Times),blawx_list_not_before(Times,End).\nblawx_not_interrupted(datetime(bot),-dod(X,Y),datetime(End))
+      :- End \\= eot, findall(Time,blawx_becomes(dod(X,Y),datetime(Time)),Times),blawx_list_not_before(Times,End).\nblawx_not_interrupted(datetime(Start),dod(X,Y),datetime(eot))
+      :- Start \\= bot, findall(Time,blawx_becomes(-dod(X,Y),datetime(Time)),Times),blawx_list_not_after(Times,Start).\nblawx_not_interrupted(datetime(Start),-dod(X,Y),datetime(eot))
+      :- Start \\= bot, findall(Time,blawx_becomes(dod(X,Y),datetime(Time)),Times),blawx_list_not_after(Times,Start).\nblawx_not_interrupted(datetime(bot),dod(X,Y),datetime(eot))
+      :- blawx_initially(dod(X,Y)), blawx_ultimately(dod(X,Y)), findall(Time,blawx_becomes(-dod(X,Y),datetime(Time)),[]).\nblawx_not_interrupted(datetime(bot),-dod(X,Y),datetime(eot))
+      :- blawx_initially(-dod(X,Y)), blawx_ultimately(-dod(X,Y)), findall(Time,blawx_becomes(dod(X,Y),datetime(Time)),[]).\nblawx_as_of(dod(X,Y),datetime(Time))
+      :- blawx_initially(dod(X,Y)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),dod(X,Y),datetime(BeforeT)).\nblawx_as_of(dod(X,Y),datetime(Time))
+      :- blawx_becomes(dod(X,Y),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),dod(X,Y),datetime(Time)).\nblawx_as_of(-dod(X,Y),datetime(Time))
+      :- blawx_initially(-dod(X,Y)), BeforeT #< Time,blawx_not_interrupted(datetime(bot),-dod(X,Y),datetime(BeforeT)).\nblawx_as_of(-dod(X,Y),datetime(Time))
+      :- blawx_becomes(-dod(X,Y),datetime(BeforeT)),BeforeT #< Time,blawx_not_interrupted(datetime(BeforeT),-dod(X,Y),datetime(Time)).\nblawx_during(datetime(Start),dod(X,Y),datetime(End))
+      :- blawx_becomes(dod(X,Y),datetime(Start)), blawx_becomes(-dod(X,Y),datetime(End)),
+      Start #< End, blawx_not_interrupted(datetime(Start),dod(X,Y),datetime(End)).\nblawx_during(datetime(bot),dod(X,Y),datetime(End))
+      :- blawx_initially(dod(X,Y)), blawx_becomes(-dod(X,Y),datetime(End)), blawx_not_interrupted(datetime(bot),dod(X,Y),datetime(End)).\nblawx_during(datetime(Start),dod(X,Y),datetime(eot))
+      :- blawx_ultimately(dod(X,Y)), blawx_becomes(-dod(X,Y),datetime(Start)), blawx_not_interrupted(datetime(Start),dod(X,Y),datetime(eot)).\nblawx_during(datetime(bot),dod(X,Y),datetime(eot))
+      :- blawx_initially(dod(X,Y)), blawx_ultimately(dod(X,Y)), blawx_becomes(-dod(X,Y),datetime(Start)),
+      blawx_not_interrupted(datetime(bot),dod(X,Y),datetime(eot)).\nblawx_during(datetime(Start),-dod(X,Y),datetime(End))
+      :- blawx_becomes(-dod(X,Y),datetime(Start)), blawx_becomes(dod(X,Y),datetime(End)),
+      Start #< End, blawx_not_interrupted(datetime(Start),-dod(X,Y),datetime(End)).\nblawx_during(datetime(bot),-dod(X,Y),datetime(End))
+      :- blawx_initially(-dod(X,Y)), blawx_becomes(dod(X,Y),datetime(End)), blawx_not_interrupted(datetime(bot),-dod(X,Y),datetime(End)).\nblawx_during(datetime(Start),-dod(X,Y),datetime(eot))
+      :- blawx_ultimately(-dod(X,Y)), blawx_becomes(dod(X,Y),datetime(Start)), blawx_not_interrupted(datetime(Start),-dod(X,Y),datetime(eot)).\nblawx_during(datetime(bot),-dod(X,Y),datetime(eot))
+      :- blawx_initially(-dod(X,Y)), blawx_ultimately(-dod(X,Y)), blawx_becomes(-dod(X,Y),datetime(Start)),
+      blawx_not_interrupted(datetime(bot),-dod(X,Y),datetime(eot)).\n\naccording_to(sec_3_section,blawx_becomes,-alive(Person),DOD)
       :- person(Person),\ndod(Person,DOD).\n\n% BLAWX CHECK DUPLICATES\nholds(sec_3_section,blawx_becomes,-alive(Person),DOD)
       :- according_to(sec_3_section,blawx_becomes,-alive(Person),DOD).\n\n% BLAWX
       CHECK DUPLICATES\n  blawx_becomes(  -alive(Person),DOD) :- holds(sec_3_section,blawx_becomes,-alive(Person),DOD).\n\nblawx_ultimately(
