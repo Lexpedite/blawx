@@ -1,0 +1,2230 @@
+
+{% extends "gcweb.html" %}
+
+{% load guardian_tags %}
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><i class="bi bi-house pe-2"></i><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' blawxtest.ruledoc.id %}">{{ blawxtest.ruledoc.ruledoc_name }}</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-clipboard-check pe-2"></i><a href="{% url 'test' blawxtest.ruledoc.id blawxtest.test_name %}">{{ blawxtest.test_name }}</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-ui-checks pe-2"></i>Scenario Editor</li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block main_content_card %}
+{% get_obj_perms request.user for blawxtest as 'blawxtest_perms' %}
+
+<div class="collapse-horizontal flex-column card col-12 collapse show p-0">
+            
+        <nav class="card-header">
+            <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-facts-tab" data-bs-toggle="tab" data-bs-target="#nav-facts" type="button" role="tab" aria-controls="nav-facts" aria-selected="true">Facts</button>
+              <button class="nav-link" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#nav-answers" type="button" role="tab" aria-controls="nav-answers" aria-selected="false">Answers</button>
+              <button class="nav-link" id="nav-view-tab" data-bs-toggle="tab" data-bs-target="#nav-view" type="button" role="tab" aria-controls="nav-view" aria-selected="false">View</button>
+              <button class="nav-link" id="nav-devel-tab" data-bs-toggle="tab" data-bs-target="#nav-devel" type="button" role="tab" aria-controls="nav-devel" aria-selected="false">Devel</button>
+            </div>
+          </nav>
+          <div class="tab-content card-body" id="nav-tabContent">
+            <div class="tab-pane in fade show active" id="nav-facts" role="tabpanel" aria-labelledby="nav-facts-tab">
+                <div id="facttree" class="blawx-category tree-element p-2">
+                </div>
+                <div>
+                    <button class="btn btn-success my-2 {% if 'change_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'change_blawxtest' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="save_fact_scenario()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+                            <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"></path>
+                        </svg>
+                        <span class="text">Save Default Fact Scenario</span>
+                    </button>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-disabled" onclick="run_test()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M5.795 12.456A.5.5 0 0 1 5.5 12V4a.5.5 0 0 1 .832-.374l4.5 4a.5.5 0 0 1 0 .748l-4.5 4a.5.5 0 0 1-.537.082z"/>
+                        </svg>
+                        <span class="text">Run</span>
+                    </button>
+                </div>
+            </div>
+            <div class="tab-pane in fade" id="nav-answers" role="tabpanel" aria-labelledby="nav-answers-tab">
+                <div class="container py-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Answers</h5>
+                            <div id="answers">
+                                <!-- The answers will go here. -->
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane in fade" id="nav-view" role="tabpanel" aria-labelledby="nav-view-tab">
+                <div class="container py-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">View</h5>
+                            <div id="viewform">
+                                <!-- The view editor will go here. -->
+                            </div>
+                            <div>
+                                <button class="btn btn-success {% if 'change_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'change_blawxtest' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="save_view()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+                                        <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"></path>
+                                    </svg>
+                                    <span class="text">Save Default View</span>
+                                </button>
+                            </div>
+                            
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane in fade" id="nav-devel" role="tabpanel" aria-labelledby="nav-devel-tab">
+                <div class="container py-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Devel</h5>
+                            This tab shows the ontology received from the ontology API, the payload sent to the Blawx interview API, and the response
+                            received, to illustrate use of the Blawx interview API for developers.
+                            <h6>Ontology</h6>
+                            <div id="ontology">
+                                <!-- The ontology will go here. -->
+                            </div>
+                            <h6>Payload</h6>
+                            <div id="payload">
+                                <!-- The payload will go here. -->
+                            </div>
+                            <h6>Response</h6>
+                            <div id="response">
+                                <!-- The response will go here. -->
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+        // Get the ontology
+        var parsed_test_response = {'Relevant Attributes': [], 'Relevant Categories': []};
+        var ontology = {};
+        var fact_data = {};
+        var new_fact_data = {'facts': []};
+        var hidden_by_view = [];
+        const ontology_request = new XMLHttpRequest();
+        ontology_request.onload = function () {
+            ontology = JSON.parse(this.responseText);
+            if(ontology.View != "") {
+                hidden_by_view = ontology.View;
+            }
+            if(ontology.Facts != "") {
+                new_fact_data = ontology.Facts;
+            } else {
+                initialize_facts();
+            }
+            console.log("Ontology received");
+        }
+        ontology_request.open("GET", "{% url 'test_onto' blawxtest.ruledoc.id blawxtest %}", false); // This is asynchronous because the interview request doesn't work until we have the ontology.
+        ontology_request.setRequestHeader('X-CSRFToken', csrftoken);
+        ontology_request.send();
+
+
+        var expanded={}; // A list of tree elements that have been expanded.
+        var section_texts = {};
+        function addSectionReferences(text,human) {
+            if (text == "user") {
+                return "the facts provided by the user";
+            }
+            if (text.charAt(0) === text.charAt(0).toUpperCase()) {
+                return "any section"; // This is variable, return it as is.
+            }
+            if (!(text+human in section_texts)) {
+                // Search the string for the list of section references
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "../../../rule/" + text.slice(0,-8) + "/", false);
+                xhttp.setRequestHeader('X-CSRFToken', csrftoken);
+                xhttp.send();
+                output_object = JSON.parse(xhttp.responseText);
+                rule_text = output_object['text'];
+                var new_text = text.replace(/(sec_.*)_section/g, "$1");
+                new_text = new_text.replace(/sec_/g, "section ");
+                new_text = new_text.replace(/__subsec_/g, " subsection ");
+                new_text = new_text.replace(/__para_/g, " paragraph ");
+                new_text = new_text.replace(/__subpara_/g, ' sub-paragraph ');
+                new_text = new_text.replace(/__span_/g, ' span ');
+                output = ""
+                if (human) {output = '<a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="' + rule_text + '">';}
+                output += new_text;
+                if (human) {output += '</a>'}
+                section_texts[text+human] = output;
+                }
+            return section_texts[text+human];
+        }
+
+        var excluded = ['datetime_diff_duration',
+        'lte',
+        'average_blawx_list',
+        'sum_blawx_list',
+        'count_blawx_list',
+        'min_blawx_list',
+        'max_blawx_list',
+        'before',
+        'after',
+        'not_before',
+        'not_after',
+        'eq',
+        'lt',
+        'gt',
+        'gte',
+        'blawx_now',
+        'blawx_today',
+        'build_datetime',
+        'datetime_add',
+        'datetime_diff',
+        'datetime_add_days',
+        'days_between_datetimes',
+        'is',
+        'date_add',
+        'date_compare',
+        'duration_compare',
+        'blawx_list_not_between'];
+
+        function getNodeName(node,answer,explanation) {
+            var node_name = "";
+            var statement = node;
+            if (statement != "query" && statement != "o_nmr_check") {
+
+                var predicate = statement.functor;
+                if (predicate == "proved") { // this is a reference to something for which there is already a node
+                    return getNodeName(statement.args[0],answer,explanation)
+                }
+                var parameters = statement.args;
+                var prefix = "ans" + answer + "_expl" + explanation + "_"
+                var node_name = prefix + "_" + predicate
+                for (var i =0; i < parameters.length; i++) { 
+                    node_name += "_" + displayValue(parameters[i],false).replace("'",'_').replace('.','_')
+                }
+            } else {
+                node_name = statement;
+            }
+            return encodeURIComponent(node_name).replace('%','_').replace('(','_').replace(')','_');
+        }
+
+        // Have a global dictionary of nodes, just by reference and name
+        // Generate a list of the nodes we actually need by name.
+        // Display those nodes using the dictionary to find the source node.
+
+        var explanation_node_index = {};
+        function getExplanationNodeIndex(model,answer,explanation) {
+            var new_node_name = getNodeName(model.args[0],answer,explanation);
+            if(!(new_node_name in explanation_node_index)) {
+                explanation_node_index[new_node_name] = model;
+            }
+            var reasons = model.args[1];
+            for (var i = 0; i < reasons.length; i++) {
+                getExplanationNodeIndex(reasons[i],answer,explanation);
+            }
+        }
+
+        function getNodesFromModel(model,show_this_node,answer,explanation) {
+            // The structure looks like this
+            // functor: -, args: statement, reasons
+            // statement {functor: predicate, args: parameters}
+            // reasons: [new structures]
+            var node_list = [];
+            // In the current node, we need the statement, and we need the reasons
+            var statement = model.args[0];
+            var reasons = model.args[1];
+            var predicate = statement.functor;
+            var parameters = statement.args;
+            var node_name = getNodeName(statement,answer,explanation)
+            var show_subnodes = false;
+            var target=model;
+            if(predicate == "proved") {
+                // If a node is proved elsewhere, we need to find where it is proved, and add that proof here.
+                // This is to avoid situations where the node is proved inside the elided part of an excluded
+                // predicate only, and so will never be generated otherwise.
+                // We need to search the tree for where the node is proved, and convert that node instead.
+                // But this is a recursive algorithm that doesn't have access to the tree above it, which has
+                // already been processed.
+                // Now I have access to the node models by name because of the index, so I get the name of the
+                // first argument, get the model from the index, and change the target to that model.
+                var proved_statement = getNodeName(parameters[0],answer,explanation)
+                target = explanation_node_index[proved_statement];
+            }
+            if(statement == "o_nmr_check") {
+                return []
+            }
+            if(statement == "query") {
+                show_subnodes = true;
+            }
+            var new_node = {'name': node_name, 'content': convertNodeToParagraph(target,show_this_node,answer,explanation)}
+            node_list.push(new_node);
+            var subnodes = [];
+            if (!excluded.includes(predicate)) {
+                for (var i=0; i < reasons.length; i++) {
+                    subnodes = subnodes.concat(getNodesFromModel(reasons[i],show_subnodes,answer,explanation));
+                }
+            }
+            for (var i=0; i < subnodes.length; i++) {
+                if(!node_list.includes(subnodes[i])) {
+                    node_list.push(subnodes[i]);
+                }
+            }
+            return node_list;
+        }
+
+        function convertNodeToParagraph(node,show,answer,explanation) {
+            var output_html = "";
+            var statement = node.args[0]
+            output_html += '<div class="new_explanation collapse';
+            if (show) {
+                output_html += " show";
+            }
+            output_html +='" id="' + getNodeName(statement,answer,explanation) + '">';
+            var reasons = node.args[1]
+            var predicate_name = node.args[0].functor
+
+            if(statement != "query" && statement != "o_nmr_check") {
+                var statement_nlg = answerNLG(statement,true);
+                var negated = statement_nlg.match('there is no evidence that'); // is this a negated fact?
+                var assumed = statement_nlg.match('it is assumed that'); // is this an assumption?
+                var text_output = ""
+                output_html += "<p>"
+                if (!excluded.includes(predicate_name) && !negated && !assumed) {
+                    // Here we will need to check for assumptions, so they can be displayed.
+                    text_output += "We know "
+                } else if (!negated && !assumed) {
+                    text_output += "We can calculate that "
+                }
+                text_output += statement_nlg;
+
+                output_html += text_output.charAt(0).toUpperCase() + text_output.slice(1)
+                // If there are sub-justifications, add the NLG for each sub-justification, and add it
+                // as a collapsible link.
+                
+                if (reasons.length && !excluded.includes(predicate_name) ) {
+                    var displayed_reasons = [];
+                    output_html += " because <ul>";
+                    for(var i=0; i< reasons.length; i++) {
+                        if (!displayed_reasons.includes(getNodeName(reasons[i].args[0],answer,explanation))) { // This is used to get rid of duplicate sub-goals in explanations for constructively negated predicates.
+                            if(i == reasons.length-1 && reasons.length > 1) {
+                                output_html += " and "
+                            }
+                            output_html += '<li>';
+                            displayed_reasons.push(getNodeName(reasons[i].args[0],answer,explanation));
+                            output_html += answerNLG(reasons[i].args[0],true);
+                            output_html += '<a title="How do we know?" class="btn btn-light p-0" data-bs-toggle="collapse" href="#' + getNodeName(reasons[i].args[0],answer,explanation) + '" data-bs-target="#' + getNodeName(reasons[i].args[0],answer,explanation) + '" role="button" aria-expanded="true" aria-controls="' + getNodeName(reasons[i].args[0],answer,explanation) + '">';
+                            output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">';
+                            output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                            output_html += '<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>';
+                            output_html += '</svg>';
+                            output_html += '</a>';
+                            if(i == reasons.length-1) {
+                                output_html += ".";
+                            }
+                        }
+                    }
+                    output_html += "</ul>"
+                    output_html += "</p>"
+                } else if (!excluded.includes(predicate_name) && !negated && !assumed) { // there are no reasons, so it was specified as a fact
+                        output_html += ", which was provided as a fact.</p>"
+                } else {
+                    output_html += ".</p>"
+                }
+            }
+            output_html += "</div>"
+            return output_html;
+        }
+        
+        function displayValue(term,human=true) {
+            var output = "";
+            if(term.hasOwnProperty('functor')) {
+                switch(term.functor) {
+                    case 'date':
+                        if (isNaN(term.args[0])) {
+                            if (term.args[0] == "bot") {
+                                output = "beginning of time";
+                            } else if(term.args[0] == "eot") {
+                                output = "end of time";
+                            } else if(term.args[0][0] === term.args[0][0].toUpperCase()) {
+                                output = "a date " + term.args[0];
+                            }
+                        } else {
+                            var date = new Date(term.args[0]*1000);
+                            output = date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate();
+                        }
+                        break;
+                    case 'datetime':
+                        if (isNaN(term.args[0])) {
+                            if (term.args[0] == "bot") {
+                                output = "beginning of time"
+                            } else if(term.args[0] == "eot") {
+                                output = "end of time"
+                            } else if(term.args[0][0] === term.args[0][0].toUpperCase()) {
+                                output = "a datetime " + term.args[0];
+                            }
+                        } else {
+                            var date = new Date(term.args[0]*1000)
+                            output = date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes().toString().padStart(2,"0") + ":" + date.getSeconds().toString().padStart(2,"0")
+                        }
+                        break;
+                    case 'duration':
+                        var timestamp = term.args[0];
+                        if (typeof timestamp === "object") {
+                            if ('functor' in timestamp) {
+                                if (!timestamp.args.legnth) {
+                                    // s(CASP) is putting the number into the functor, for some reason
+                                    timestamp = parseFloat(term.args[0].functor);
+                                }
+                            }
+                        }
+                        if (isNaN(timestamp) && (typeof timestamp === 'string' || timestamp instanceof String)) {
+                            if (term.args[0][0] === term.args[0][0].toUpperCase()) {
+                                output = "a duration " + term.args[0]
+                            }
+                        } else {
+                            if (timestamp < 1) {
+                              var direction = "into the past"
+                              timestamp = timestamp * -1
+                            } else {
+                                var direction = "into the future"
+                            }
+                            var days = Math.floor(timestamp/86400);
+                            var hours = Math.floor((timestamp-days*86400)/3600);
+                            var minutes = Math.floor((timestamp-days*86400-hours*3600)/60);
+                            var seconds = timestamp - days*86400 - hours*3600 - minutes*60;
+                            output = (days != 0 ? days + " days, " :"") + 
+                                    (hours != 0 ? hours + " hours, " : "") + 
+                                    (minutes != 0 ? minutes + " minutes, " : "") +
+                                    (seconds != 0 ? seconds + " seconds " : "") + 
+                                    direction
+                        }
+                        break;
+                    case 'time':
+                        var timestamp = term.args[0];
+                        if (isNaN(timestamp)) {
+                            output = "a time " + timestamp;
+                        } else {
+                            var hours = Math.floor(timestamp/3600);
+                            var minutes = Math.floor((timestamp-(hours*3600))/60)
+                            var seconds = timestamp-(hours*3600)-(minutes*60)
+                            output = hours + ":" + minutes.toString().padStart(2,"0") + ":" + seconds.toString().padStart(2,"0")
+                        }
+                        break;
+                    //case 'defeated':
+                    //    output = answerNLG(term);
+                    //    break;
+                    //case 'refuted':
+                    //    output = answerNLG(term);
+                    //    break;
+                    //case 'adbuced':
+                    //    output = answerNLG(term);
+                    case 'timestamp':
+                        if (term.args[0] == "bot") {
+                            output = "beginning of time"
+                            break;
+                        } else if (term.args[0] == "eot") {
+                            output = "end of time"
+                            break;
+                        } else if (typeof(term.args[0]) != "number") {
+                            output = "time " + term.args[0];
+                            break;
+                        } else {
+                            var date = new Date(term.args[0]*1000);
+                            output = date.getFullYear()+"/" + (parseInt(date.getMonth())+1) +"/" + date.getDate() +" "+date.getHours()+":"+date.getMinutes().toString().padStart(2,"0")+":"+date.getSeconds().toString().padStart(2,"0");
+                            break;
+                        }
+                    default:
+                        output = answerNLG(term,human);
+                        //output = 'Unknown predicate type'
+                }
+            } else {
+                output = term
+            }
+            if (human) {
+                return output;
+            } else {
+                return encodeURIComponent(output).replaceAll('%','_').replaceAll('(','_').replaceAll(')','_').replaceAll('*','mul').replaceAll('/','div').replaceAll('+','add').replaceAll('-','sub');
+            }
+        }
+
+        function convertToNode(array) {
+            // This function is to de-reify parameters in a term and convert them into the data structure that is used
+            // in the answerNLG function, rather than have to completely rewrite answerNLG to be able to deal with two different
+            // data structures...
+            // Essentially, it takes an array where the first element is the functor, and the rest are the arguments.
+            // If any of the parameters are also terms, the correct structure should already be there.
+            // If array[0] is an object with functor "-", 
+            if (array[0].hasOwnProperty('functor') && array[0].functor == "-") {
+                var object = {};
+                object['functor'] = '-';
+                object['args'] = [];
+                object['args'].push({'functor': array[0].args[0], 'args': array.slice(1)})
+            } else {
+                var object = {'functor': array[0], 'args': array.slice(1)};
+            }
+            return object
+        }
+
+        function answerNLG(model,human) {
+            if(model == "query") { // this is the root of a model
+                // This doesn't need a representation
+                return "root";
+            } else if(typeof(model) == 'string') {
+                if (model.charAt(0) === model.charAt(0).toUpperCase()){ // This is where we are checking to see if the thing is a variable, which might be a good place to check for disunity constraints?
+                    return "anything"
+                }
+                if (model == "o_nmr_check") {
+                    return "all global constraints hold"
+                }
+            } else if (typeof(model) != 'object') {
+                return model.toString();
+            } else if (Array.isArray(model)) {
+                return model.toString();
+            } else if (model.functor == "-") { // this is a known false node
+                return "it is not true that " + answerNLG(model.args[0],human);
+            } else if (model.functor == "not" && model.args[0].functor != "-") {
+                return "there is no evidence that " + answerNLG(model.args[0],human);
+            } else if (model.functor == "not" && model.args[0].functor == "-") {
+                return "it may be true that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "holds") {
+                // Now we need to convert the rest of the data to fit the old format.
+                var section = model.args[0];
+                var statement = convertToNode(model.args.slice(1));
+                if (statement.functor != "-") {
+                    return "it holds that according to " + addSectionReferences(section,human) + ", " + answerNLG(statement,human);
+                } else {
+                    return "it holds that it is false that according to " + addSectionReferences(section,human) + ", " + answerNLG(statement,human);
+                }
+            } else if (model.functor == "according_to") {
+                var section = model.args[0];
+                var statement = convertToNode(model.args.slice(1));
+                if (statement.functor != "-") {
+                    return "according to " + addSectionReferences(section,human) + ', ' + answerNLG(statement,human);
+                } else {
+                    return "according to " + addSectionReferences(section,human) + ', it is not true that ' + answerNLG(statement,human);
+                }
+            } else if (model.functor == "blawx_defeated") {
+                var section = model.args[0];
+                var statement = convertToNode(model.args.slice(1));
+                if (statement.functor != "-") {
+                    return "the conclusion in " + addSectionReferences(section,human) + " that " + answerNLG(statement,human) + " is defeated"
+                } else {
+                    return "the conclusion in " + addSectionReferences(model.args[0],human) + " that it is not true that " + answerNLG(statement,human) + " is defeated"
+                }
+            } else if (model.functor == "blawx_applies") {
+                var section = model.args[0];
+                var object = model.args[1];
+                return addSectionReferences(section,human) + " applies to " + displayValue(object,human)
+            } else if (model.functor == "blawx_as_of") {
+                return "as of " + displayValue(model.args[1],human) + " " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_becomes") {
+                return "from " + displayValue(model.args[1],human) + " " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_initially") {
+                return "initially, " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_ultimately") {
+                return "ultimately, " + answerNLG(model.args[0],human);
+            } else if (model.functor == "blawx_during") {
+                return "from " + displayValue(model.args[0],human) + " to " + displayValue(model.args[2],human) + " " + answerNLG(model.args[1],human);
+            } else if (model.functor == "blawx_not_interrupted") {
+                return "between " + displayValue(model.args[0],human) + " and " + displayValue(model.args[2],human) + " it remained the case that " + answerNLG(model.args[1],human);
+            } else if (model.functor == "blawx_list_not_between") {
+                return displayValue(model.args[0],human) + " doesn't include elements between " + displayValue(model.args[1],human) + " and " + displayValue(model.args[2],human);
+            } else if (model.functor == "blawx_list_not_before") {
+                return displayValue(model.args[0],human) + " doesn't include elements before " + displayValue(model.args[1],human);
+            } else if (model.functor == "blawx_list_not_after") {
+                return displayValue(model.args[0],human) + " doesn't include elements after " + displayValue(model.args[1],human);
+            } else if (model.functor == "abduced" && model.args[0].functor != "-") {
+                return "it is hypothesized that " + answerNLG(model.args[0],human);
+            } else if (model.functor == "abduced" && model.args[0].functor == "-") {
+                return "it is hypothesized that it is not the case that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "proved" && model.args[0].functor != "-" ) { 
+                return answerNLG(model.args[0],human); // Just display the NLG for the thing that was proved.
+            } else if (model.functor == "proved" && model.args[0].functor == "-" ) { 
+                return "it is not true that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "chs" && model.args[0].functor != "-") {
+                return "it is assumed that " + answerNLG(model.args[0],human);
+            } else if (model.functor == "chs" && model.args[0].functor == "-") {
+                return "it is assumed that it is not true that " + answerNLG(model.args[0].args[0],human);
+            } else if (model.functor == "findall") {
+                return "finding all " + answerNLG(model.args[0],human) + " in " + answerNLG(model.args[1],human) + " gives " + answerNLG(model.args[2],human)
+            } else if (model.functor == "count_blawx_list") {
+                return "there are " + answerNLG(model.args[1],human) + ' elements in ' + answerNLG(model.args[0],human)
+            } else if (model.functor == "average_blawx_list") {
+                return "the average of " + answerNLG(model.args[0],human) + ' is ' + answerNLG(model.args[1],human)
+            } else if (model.functor == "sum_blawx_list") {
+                return "the sum of " + answerNLG(model.args[0],human) + ' is ' + answerNLG(model.args[1],human)
+            } else if (model.functor == "max_blawx_list") {
+                return "the maximum of " + answerNLG(model.args[0],human) + ' is ' + answerNLG(model.args[1],human)
+            } else if (model.functor == "min_blawx_list") {
+                return "the minimum of " + answerNLG(model.args[0],human) + ' is ' + answerNLG(model.args[1],human)
+            } else if (model.functor == "duration_compare") {
+                if (model.args[1] == "gt") {
+                    return displayValue(model.args[0],human) + " is larger than " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "gte") {
+                    return displayValue(model.args[0],human) + " is larger than or equal to " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "lt") {
+                    return displayValue(model.args[0],human) + " is less than " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "lte") {
+                    return displayValue(model.args[0],human) + " is less than or equal to " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "eq") {
+                    return displayValue(model.args[0],human) + " is equal to " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "ne") {
+                    return displayValue(model.args[0],human) + " is not equal to " + displayValue(model.args[2],human);
+                }
+            } else if (model.functor == "date_compare") {
+                if (model.args[1] == "gt") {
+                    return displayValue(model.args[0],human) + " is after " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "gte") {
+                    return displayValue(model.args[0],human) + " is on or after " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "lt") {
+                    return displayValue(model.args[0],human) + " is before " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "lte") {
+                    return displayValue(model.args[0],human) + " is on or before " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "eq") {
+                    return displayValue(model.args[0],human) + " is equal to " + displayValue(model.args[2],human);
+                } else if (model.args[1] == "ne") {
+                    return displayValue(model.args[0],human) + " is not equal to " + displayValue(model.args[2],human);
+                }
+            } else if (model.functor == "before") {
+                return displayValue(model.args[0],human) + ' is before ' + displayValue(model.args[1],human);
+            } else if (model.functor == "after") {
+                return displayValue(model.args[0],human) + ' is after ' + displayValue(model.args[1],human);
+            } else if (model.functor == "not_before") {
+                return displayValue(model.args[0],human) + ' is not before ' + displayValue(model.args[1],human);
+            } else if (model.functor == "not_after") {
+                return displayValue(model.args[0],human) + ' is not after ' + displayValue(model.args[1],human);
+            } else if (model.functor == "eq") {
+                return displayValue(model.args[0],human) + ' is equal to ' + displayValue(model.args[1],human);
+            } else if (model.functor == "blawx_now") {
+                return "the current datetime is " + displayValue(model.args[0],human);
+            } else if (model.functor == "blawx_today") {
+                return "today is " + displayValue(model.args[0],human);
+            } else if (model.functor == "build_datetime") {
+                return "the date " + displayValue(model.args[0],human) + " and the time " + displayValue(model.args[1],human) + " correspond to the datetime " + displayValue(model.args[2],human)
+            } else if (model.functor == "date_add") {
+                return displayValue(model.args[0],human) + " modified by " + displayValue(model.args[1],human) + " gives " + displayValue(model.args[2],human)
+            } else if (model.functor == "datetime_diff") {
+                return "from " + displayValue(model.args[0],human) + " to " + displayValue(model.args[1],human) + " is " + displayValue(model.args[2],human)
+            } else if (model.functor == "datetime_add_days") {
+                return displayValue(model.args[0],human) + " plus " + displayValue(model.args[1],human) + " days gives " + displayValue(model.args[2],human)
+            } else if (model.functor == "days_between_datetimes") {
+                return "from" + displayValue(model.args[0],human) + " to " + displayValue(model.args[1],human) + " in days is " + displayValue(model.args[2],human)
+            } else if (model.functor == "is") {
+                return displayValue(model.args[0],human) + " = (" + answerNLG(model.args[1],human) + ")"
+            } else if (model.functor == "+") {
+                return "(" + answerNLG(model.args[0],human) + " + " + answerNLG(model.args[1],human) + ")";
+            } else if (model.functor == "-") {
+                return "(" + answerNLG(model.args[0],human) + " - " + answerNLG(model.args[1],human) + ")";
+            } else if (model.functor == "*") {
+                return "(" + answerNLG(model.args[0],human) + " * " + answerNLG(model.args[1],human) + ")";
+            } else if (model.functor == "/") {
+                return "(" + answerNLG(model.args[0],human) + " / " + answerNLG(model.args[1],human) + ")";
+            } else if (model.functor == '==') {
+                return displayValue(model.args[0],human) + " is equal to " + displayValue(model.args[1],human) + ")";
+            } else if (model.functor == '\=') {
+                return displayValue(model.args[0],human) + " is not equal to " + displayValue(model.args[1],human) + ")";
+            } else if (model.functor == 'blawx_diseq') {
+                return displayValue(model.args[0],human) + " is not the same object as " + displayValue(model.args[1],human);
+            } else if (model.functor == 'blawx_comparison' ) {
+                if (model.args[1] == "eq") {
+                    return displayValue(model.args[0],human) + " is equal to " + displayValue(model.args[2],human)
+                }
+                if (model.args[1] == "neq") {
+                    return displayValue(model.args[0],human) + " is not equal to " + displayValue(model.args[2],human)
+                }
+                if (model.args[1] == "gt") {
+                    return displayValue(model.args[0],human) + " is greater than " + displayValue(model.args[2],human)
+                }
+                if (model.args[1] == "gte") {
+                    return displayValue(model.args[0],human) + " is greater than or equal to " + displayValue(model.args[2],human)
+                }
+                if (model.args[1] == "lt") {
+                    return displayValue(model.args[0],human) + " is less than " + displayValue(model.args[2],human)
+                }
+                if (model.args[1] == "lte") {
+                    return displayValue(model.args[0],human) + " is less than or equal to " + displayValue(model.args[2],human)
+                }
+            } else { // this should be a real one, now 
+                predicate_name = model.functor;
+                if (predicate_name == "datetime_diff_duration") {
+                    return "the amount of time between " + displayValue(model.args[0],human) + " and " + displayValue(model.args[1],human) + " is " + displayValue(model.args[2],human) 
+                }
+                if (predicate_name == "lte") {
+                    return displayValue(model.args[0],human) + " is less than or equal to " + displayValue(model.args[1],human)
+                }
+                if (predicate_name == "lt") {
+                    return displayValue(model.args[0],human) + " is less than " + displayValue(model.args[1],human)
+                }
+                if (predicate_name == "gte") {
+                    return displayValue(model.args[0],human) + " is greater than " + displayValue(model.args[1],human)
+                }
+                if (predicate_name == "gt") {
+                    return displayValue(model.args[0],human) + " is greater than or equal to" + displayValue(model.args[1],human)
+                }
+                predicate_type = model.args.length; // 1 is category, 2 is attribute (not any more), 3+ is relationship
+                var prefix = "";
+                var infix = "";
+                var postfix = "";
+                if (predicate_type == 1) {
+                    object = model.args[0]
+                    // Check for a category NLG.
+                    for (var i=0; i < ontology.CategoryNLG.length; i++) {
+                        if (ontology.CategoryNLG[i].Category == predicate_name) {
+                            prefix = ontology.CategoryNLG[i].Prefix;
+                            postfix = ontology.CategoryNLG[i].Postfix;
+                            
+                            return prefix + " " + displayValue(object,human) + " " + postfix;
+                        }
+                    }
+                    for (var i=0; i < ontology.AttributeNLG.length; i++) {
+                        if (ontology.AttributeNLG[i].Attribute == predicate_name) {
+                            prefix = ontology.AttributeNLG[i].Prefix;
+                            postfix = ontology.AttributeNLG[i].Postfix;
+                            
+                            return prefix + " " + displayValue(object,human) + " " + postfix;
+                        }
+                    }
+                    return displayValue(object,human) + " is a " + predicate_name;
+                } else if (predicate_type == 2) { // it is a binary attribute
+                    object = model.args[0];
+                    value = model.args[1];
+                        
+                    for(var i=0; i < ontology.AttributeNLG.length; i++) {
+                            
+                        if (ontology.AttributeNLG[i].Attribute == predicate_name) {
+                            prefix = ontology.AttributeNLG[i].Prefix;
+                            postfix = ontology.AttributeNLG[i].Postfix;
+                            infix = ontology.AttributeNLG[i].Infix;
+                            order = ontology.AttributeNLG[i].Order;
+                            if (order == "ov") {
+                                return prefix + " " + displayValue(object,human) + " " + infix + " " + displayValue(value,human) + " " + postfix;
+                            } else {
+                                return prefix + " " + displayValue(value,human) + " " + infix + " " + displayValue(object,human) + " " + postfix;
+                            }
+                        }
+                    }
+                    return displayValue(object,human) + "'s " + predicate_name + " is " + displayValue(value,human);
+                } else { // It is a relationship
+                    var postfix = "";
+                    var prefixes = {};
+                    var arity = model.args.length;
+                    var output = ""
+                    for (var i=0; i < ontology.RelationshipNLG.length; i++) {
+                        if (ontology.RelationshipNLG[i].Relationship == predicate_name) {
+                            postfix = ontology.RelationshipNLG[i].Postfix;
+                            for (var p=1; p<=arity; p++) {
+                                prefixes[p] = ontology.RelationshipNLG[i]['Prefix'+p];
+                            }
+                            break;
+                        }
+                    }
+                    for (var p=1; p <= arity; p++) {
+                        output += prefixes[p] + " " + displayValue(model.args[p-1],human) + " ";
+                    }
+                    output += postfix;
+                    return output;
+                }
+            }
+        }
+        
+        function initialize_facts() { 
+            categories = ontology['Categories'];
+            
+            // For each existing object, add it to the fact scenario.
+            objects = ontology['Objects'];
+            attributes = ontology['Attributes'];
+            values = ontology['Values'];
+            relations = ontology['Relations'];
+            for (var i=0; i < objects.length; i++) {
+                var new_fact_statement = {'from_ontology': true, 'type': 'true','category': objects[i]['Category'], 'object': objects[i]['Object']}
+                new_fact_data['facts'].push(new_fact_statement);
+            }
+            for(var l=0; l<values.length; l++){
+                // I have an object, an attribute, and a value, but I don't have a category.
+                // So I need to collect the category from the object.
+                var value_category;
+                for(var m=0; m<objects.length; m++){
+                    if(objects[m]['Object'] == values[l]['Object']) {
+                        value_category = objects[m]['Category'];
+                        break;
+                    }
+                }
+                // Now I should be able to add the value to the object in the fact_data
+                var new_fact_statement = {'from_ontology': true, 'type': 'true','attribute': values[l]['Attribute'], 'object': values[l]['Object']}
+                if ('Value' in values[l]) {
+                    new_fact_statement['value'] = values[l]['Value']
+                }
+                new_fact_data['facts'].push(new_fact_statement);
+            }
+            relationships = ontology['Relationships'];
+            for (var r=0; r < relations.length; r++) {
+                var new_relation = {'from_ontology': true, 'type': 'true', 'relationship': relations[r]['Relationship']}
+                for (var p=1; p <= Object.keys(relations[r]).length-1; p++) {
+                    new_relation['parameter'+p] = relations[r]['Parameter'+p]
+                }
+                new_fact_data['facts'].push(new_relation);
+            }
+
+        }
+        
+        
+        function draw_facts(){
+            var output_html = '<nav class="column" id="facttree">';
+            output_html += '<div id="new_known_objects">';
+            output_html += draw_new_fact_data();
+            output_html += "</div>";
+            // TODO: Create an "add object" form, that lets you create objects of any category.
+            // Loop through the categories and their NLG, and build the new object forms, here, for display when requested.
+            for(var c=0; c < ontology['Categories'].length; c++) {
+                if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
+                    var prefix = "";
+                    var postfix = "is a " + ontology['Categories'][c];
+                    for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                        if (ontology['CategoryNLG'][i]['Category'] == ontology['Categories'][c]) {
+                            prefix = ontology['CategoryNLG'][i]['Prefix'];
+                            postfix = ontology['CategoryNLG'][i]['Postfix'];
+                            break;
+                        }
+                    }
+                    output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2" id="new_category_' + ontology['Categories'][c] + '">';
+                    output_html += '<div class="input-group">';
+                    output_html += '<span class="input-group-text">It is</span>';
+                        
+                    output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example" id="new_object_truth_value_' + ontology['Categories'][c] + '">';
+                    output_html += '<option selected value="true">true that</option>';
+                    output_html += '<option value="false">false that</option>';
+                    output_html += '<option value="unknown">uncertain whether</option>';
+                    output_html += '</select></div>';
+                    if (prefix != "") {
+                        output_html += '<span class="input-group-text">'+ prefix + '</span>';
+                    }
+                    output_html += '<div class="input-group-text"><input onclick="toggle_unground_new_object(\'' + ontology['Categories'][c] + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input" id="new_object_toggle_check_' + ontology['Categories'][c] + '"><input onchange="save_new_object(\'' + ontology['Categories'][c] + '\')" type="text" class="form-control" aria-label="New object name" id="new_object_name_' + ontology['Categories'][c] + '">';
+                    output_html += '</div>';
+                    if (postfix != "") {
+                        output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                    }
+                    output_html += '<button onclick="save_new_object(\'' + ontology['Categories'][c] + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
+                    output_html += '</svg></button>';
+                    output_html += '<button onclick="cancel_new_object(\'' + ontology['Categories'][c] + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+                    output_html += '</svg></button></div></div>';
+                }
+            }
+            for(var a = 0; a < ontology['Attributes'].length; a++) {
+                if (!hidden_by_view.includes('view_att_' + ontology['Attributes'][a]['Attribute'])) {
+                    var prefix;
+                    var infix;
+                    var postfix;
+                    var order;
+                    var object_type;
+                    var value_type;
+                    var attribute_name;
+                    attribute_name = ontology['Attributes'][a]['Attribute'];
+                    object_type = ontology['Attributes'][a]['Category'];
+                    value_type = ontology['Attributes'][a]['Type'];
+                    var value_type_is_category;
+                    if (['date','time','datetime','duration','number','list'].includes(value_type)) {
+                        value_type_is_category = false;
+                    } else {
+                        value_type_is_category = true;
+                    }
+                    for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                        if (ontology['Attributes'][a]['Attribute'] == ontology['AttributeNLG'][i]['Attribute']) {
+                            prefix = ontology['AttributeNLG'][i]['Prefix'];
+                            infix = ontology['AttributeNLG'][i]['Infix'];
+                            postfix = ontology['AttributeNLG'][i]['Postfix'];
+                            order = ontology['AttributeNLG'][i]['Order'];
+                            break;
+                        }
+                    }
+                    output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2" id="new_attribute_' + attribute_name + '">';
+                    output_html += '<div class="input-group">';
+                    output_html += '<span class="input-group-text">It is</span>';
+                        
+                    output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example" id="new_attribute_truth_type_' + attribute_name + '">';
+                    output_html += '<option selected value="true">true that</option>';
+                    output_html += '<option value="false">false that</option>';
+                    output_html += '<option value="unknown">uncertain whether</option>';
+                    output_html += '</select></div>';
+
+                    value_html = ""
+                    switch(value_type) {
+                        case 'number':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';    
+                            value_html += '<input onchange="save_new_value(\'' + attribute_name + '\')" type="number" class="form-control" aria-label="New value" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        case 'date':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<input type="date" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        case 'duration':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<span class="input-group-text px-1">S</span>';
+                            value_html += '<div class="input-group-text">';
+                            value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="new_attribute_value_' + attribute_name + '_direction">';
+                            value_html += '</div>';
+                            //value_html += '<span class="input-group-text px-1">Y</span>';
+                            //value_html += '<input type="number" class="form-control" aria-label="Duration Years" value="0" id="new_attribute_value_' + attribute_name + '_years">';
+                            //value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                            //value_html += '<input type="number" class="form-control" aria-label="Duration Months" value="0" id="new_attribute_value_' + attribute_name + '_months">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="new_attribute_value_' + attribute_name + '_days">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="new_attribute_value_' + attribute_name + '_hours">';
+                            value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                            value_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="new_attribute_value_' + attribute_name + '_minutes">';
+                            value_html += "</div>";
+                            break;
+                        case 'boolean':
+                            break;
+                        case 'time':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<input type="time" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        case 'datetime':
+                            value_html += '<div class="input-group-text">';
+                            //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                            value_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="new_attribute_value_' + attribute_name + '">';
+                            value_html += "</div>";
+                            break;
+                        default:
+                            if (value_type_is_category) {
+                                value_html += '<div class="input-group-text">';
+                                //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                                value_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_value_' + attribute_name + '">';
+                                //for (var o=0; o < ontology['Objects'].length; o++) {
+                                //    if (ontology['Objects'][o]['Category'] == value_type) {
+                                //        value_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                                //    }
+                                //}
+                                for (var n=0; n < new_fact_data['facts'].length; n++) {
+                                    if ('category' in new_fact_data['facts'][n]) {
+                                        if (new_fact_data['facts'][n]['category'] == value_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                            value_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                        }
+                                    }
+                                }
+                                //for (var f=0; f < fact_data.length; f++) {
+                                //    if ('category' in fact_data[f]) {
+                                //        if (fact_data[f]['category'] == value_type) {
+                                //            value_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                                //        }
+                                //    }
+                                //}
+                                value_html += '<option value="VAR">any ' + value_type + '</option>';
+                                value_html += '</select></div>';
+                            } else {
+                                value_html += "Can't Render Datatype";
+                            }
+                    }
+
+                    if (prefix != "") {
+                        output_html += '<span class="input-group-text">'+ prefix + '</span>';
+                    }
+                    if (order == "ov") {
+                        output_html += '<div class="input-group-text">';
+                        //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                        output_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_object_' + attribute_name + '">';
+                        //for (var o=0; o < ontology['Objects'].length; o++) {
+                        //    if (ontology['Objects'][o]['Category'] == object_type) {
+                        //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                        //    }
+                        //}
+                        for (var n=0; n < new_fact_data['facts'].length; n++) {
+                            if ('category' in new_fact_data['facts'][n]) {
+                                if (new_fact_data['facts'][n]['category'] == object_type  && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                    output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                }
+                            }
+                        }
+                        //for (var f=0; f < fact_data.length; f++) {
+                        //    if ('category' in fact_data[f]) {
+                        //        if (fact_data[f]['category'] == object_type) {
+                        //            output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                        //        }
+                        //    }
+                        //}
+                        output_html += '<option value="VAR">any ' + object_type + '</option>';
+                        output_html += '</select></div>';
+                    } else {
+                        output_html += value_html;
+                    }
+                    if (infix != "" && infix != "not_applicable") {
+                        output_html += '<span class="input-group-text">'+ infix + '</span>';
+                    }
+                    if (order == "ov") {
+                        output_html += value_html;
+                    } else {
+                        output_html += '<div class="input-group-text">';
+                        //output_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                        output_html += '<select class="form-select" aria-label="Default select example" id="new_attribute_object_' + attribute_name + '">';
+                        //for (var o=0; o < ontology['Objects'].length; o++) {
+                        //    if (ontology['Objects'][o]['Category'] == object_type) {
+                        //        output_html += '<option value ="' + ontology['Objects'][o]['Object'] + '">'+ ontology['Objects'][o]['Object'] + '</option>';
+                        //    }
+                        //}
+                        for (var n=0; n < new_fact_data['facts'].length; n++) {
+                            if ('category' in new_fact_data['facts'][n]) {
+                                if (new_fact_data['facts'][n]['category'] == object_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                    output_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                }
+                            }
+                        }
+                        //for (var f=0; f < fact_data.length; f++) {
+                        //    if ('category' in fact_data[f]) {
+                        //        if (fact_data[f]['category'] == object_type) {
+                        //            output_html += '<option value ="' + fact_data[f]['object'] + '">'+ fact_data[f]['object'] + '</option>';
+                        //        }
+                        //    }
+                        //}
+                        output_html += '<option value="VAR">any ' + object_type + '</option>';
+                        output_html += '</select></div>';
+                    }
+                    if (postfix != "") {
+                        output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                    }
+                    output_html += '<button onclick="save_new_value(\'' + attribute_name + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
+                    output_html += '</svg></button>';
+                    output_html += '<button onclick="cancel_new_value(\'' + attribute_name + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+                    output_html += '</svg></button></div></div>';    
+                }
+            }
+            for(var r = 0; r < ontology['Relationships'].length; r++) {
+                if (!hidden_by_view.includes('view_rel_' + relationship_name)) {
+                    var relationship_name = ontology['Relationships'][r]['Relationship']
+                    var arity = Object.keys(ontology['Relationships'][r]).length-1;
+                    // Get type info
+                    var types = {};
+                    for (var t = 1; t <= arity; t++) {
+                        types[t] = ontology['Relationships'][r]['Parameter'+t];
+                    }
+                    // Get NLG info
+                    var postfix = "";
+                    var prefixes = [];
+                    for (var n = 0; n < ontology['RelationshipNLG'].length; n++) {
+                        if (relationship_name == ontology['RelationshipNLG'][n]['Relationship']) {
+                            postfix = ontology['RelationshipNLG'][n]['Postfix'];
+                            for (var p = 1; p <= arity; p++) {
+                                prefixes[p] = ontology['RelationshipNLG'][n]['Prefix'+p]
+                            }
+                            break;
+                        }
+                    }
+                    // Truth Type
+                    output_html += '<div class="collapse blawx_new_object row blawx-object tree-element p-2" id="new_relationship_' + relationship_name + '">';
+                    output_html += '<div class="input-group">';
+                    output_html += '<span class="input-group-text">It is</span>';
+                        
+                    output_html += '<div class="input-group-text"><select class="form-select" aria-label="Default select example" id="new_relationship_truth_type_' + relationship_name + '">';
+                    output_html += '<option selected value="true">true that</option>';
+                    output_html += '<option value="false">false that</option>';
+                    output_html += '<option value="unknown">uncertain whether</option>';
+                    output_html += '</select></div>';
+                    // Parameters
+                    for (var p = 1; p <= arity; p++) {
+                        if (prefixes[p] != "") {
+                            output_html += '<span class="input-group-text">' + prefixes[p] + '</span>';
+                        }
+                        output_html += generate_field_control(relationship_name,p,types[p]);
+                    }
+                    // Postfix
+                    if (postfix != "") {
+                        output_html += '<span class="input-group-text">'+ postfix + '</span>';
+                    }
+                    // Save and Cancel Buttons
+                    output_html += '<button onclick="save_new_relationship(\'' + relationship_name + '\')" class="btn btn-outline-success" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>';
+                    output_html += '</svg></button>';
+                    output_html += '<button onclick="cancel_new_relationship(\'' + relationship_name + '\')" class="btn btn-outline-danger" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+                    output_html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                    output_html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+                    output_html += '</svg></button></div></div>'; 
+                }
+            }
+            output_html += '<div id="new_objects">';
+            output_html += '<div class="dropdown">';
+            output_html += '<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">';
+            output_html += '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>';
+            output_html += '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
+            output_html += '</svg>Add Fact</button>';
+            output_html += '<ul class="dropdown-menu w-100">';
+            
+            var categories = Object.keys(fact_data);
+            
+            for(var c=0; c < ontology['Categories'].length; c++) {
+                if (!hidden_by_view.includes('view_cat_' + ontology['Categories'][c])) {
+                    var prefix = "";
+                    var postfix = "is a " + ontology['Categories'][c];
+                    for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                        if (ontology['CategoryNLG'][i]['Category'] == ontology['Categories'][c]) {
+                            prefix = ontology['CategoryNLG'][i]['Prefix'];
+                            postfix = ontology['CategoryNLG'][i]['Postfix'];
+                            break;
+                        }
+                    }
+                    output_html += '<li><a onclick="show_new_object(\'' + ontology['Categories'][c] + '\')" class="dropdown-item" href="#">' + prefix + ' <i>object</i> ' + postfix + '</a></li>';
+                }
+            }
+            for(var a=0; a < ontology['Attributes'].length; a++) {
+                if (!hidden_by_view.includes('view_att_' + ontology['Attributes'][a]['Attribute'])) {    
+                    var attribute_name = ontology['Attributes'][a]['Attribute'];
+                    var object_type = ontology['Attributes'][a]['Category'];
+                    var value_type = ontology['Attributes'][a]['Type'];
+                    for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                        if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
+                            prefix = ontology['AttributeNLG'][i]['Prefix'];
+                            infix = ontology['AttributeNLG'][i]['Infix'];
+                            postfix = ontology['AttributeNLG'][i]['Postfix'];
+                            order = ontology['AttributeNLG'][i]['Order'];
+                            break;
+                        }
+                    }
+                    if (value_type == "boolean") {
+                        output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                    } else {
+                        if (order == "ov") {
+                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' +  object_type + '</i> ' + infix + ' <i>' + value_type + '</i> ' + postfix + '</a></li>';
+                        } else {
+                            output_html += '<li><a onclick="show_new_attribute(\'' + attribute_name + '\')" class="dropdown-item" href="#">' + prefix + ' <i>' + value_type + '</i> ' + infix + ' <i>' +  object_type + '</i> ' + postfix + '</a></li>';
+                        }
+                    }
+                }
+            }
+            for (var r=0; r < ontology['Relationships'].length; r++) {
+                if (!hidden_by_view.includes('view_rel_' + ontology['Relationships'][r]['Relationship'])) {
+                    var relationship_name = ontology['Relationships'][r]['Relationship'];
+                    var arity = Object.keys(ontology['Relationships'][r]).length-1;
+                    var types = {};
+                    var prefixes = {};
+                    var postfix = "";
+                    for (var p=1; p <= arity; p++) {
+                        types[p] = ontology['Relationships'][r]['Parameter'+p];
+                    }
+                    for (var nlg=0; nlg < ontology['RelationshipNLG'].length; nlg++) {
+                        if (ontology['Relationships'][r]['Relationship'] == ontology['RelationshipNLG'][nlg]['Relationship']) {
+                            postfix = ontology['RelationshipNLG'][nlg]['Postfix'];
+                            for (var np=1; np <= arity; np++) {
+                                prefixes[np] = ontology['RelationshipNLG'][nlg]['Prefix'+np];
+                            }
+                            break;
+                        }
+                    }
+                    output_html += '<li><a onclick="show_new_relationship(\'' + relationship_name + '\')" class="dropdown-item" href="#">'
+                    for (var p=1; p <= arity; p++) {
+                        output_html += prefixes[p] + ' ';
+                        output_html += '<i>' + types[p] + '</i> ';
+                    }
+                    output_html += postfix + '</a></li>'
+                }
+            }
+            output_html += '</ul>';
+            output_html += '</div>';
+            output_html += '</div>';
+                
+
+            output_html += '</nav>';
+            // Output the result to facttree
+            var target = document.getElementById('facttree');
+            target.outerHTML = output_html;
+
+        };
+        function generate_field_control(relationship_name,parameter,value_type) {
+            var value_html = "";
+            switch(value_type) {
+                case 'number':
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input type="number" class="form-control" aria-label="New value" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                case 'date':
+                    value_html += '<div class="input-group-text">';
+                    //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                    value_html += '<input type="date" class="form-control" aria-label="Date" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                case 'duration':
+                    value_html += '<div class="input-group-text">';
+                    //value_html += '<input onclick="toggle_unground_new_value(\'' + attribute_name + '\')" class="form-check-input mt-0 me-1" type="checkbox" value="" aria-label="Checkbox for following text input">';
+                    value_html += '<span class="input-group-text px-1">S</span>';
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input class="form-check-input" type="checkbox" aria-label="Duration Direction" checked id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_direction">';
+                    value_html += '</div>';
+                    value_html += '<span class="input-group-text px-1" id="basic-addon1">D</span>';
+                    value_html += '<input type="number" class="form-control" aria-label="Duration Days" value="0" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_days">';
+                    value_html += '<span class="input-group-text px-1" id="basic-addon1">H</span>';
+                    value_html += '<input type="number" class="form-control" aria-label="Duration Hours" value="0" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_hours">';
+                    value_html += '<span class="input-group-text px-1" id="basic-addon1">M</span>';
+                    value_html += '<input type="number" class="form-control" aria-label="Duration Minutes" value="0" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '_minutes">';
+                    value_html += "</div>";
+                    break;
+                case 'boolean':
+                    break;
+                case 'time':
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input type="time" class="form-control" aria-label="Date" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                case 'datetime':
+                    value_html += '<div class="input-group-text">';
+                    value_html += '<input type="datetime-local" class="form-control" aria-label="Date" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                    value_html += "</div>";
+                    break;
+                default:
+                    if (ontology['Categories'].includes(value_type)) {
+                        value_html += '<div class="input-group-text">';
+                        value_html += '<select class="form-select" aria-label="Default select example" id="new_relationship_parameter_' + parameter + '_' + relationship_name + '">';
+                        for (var n=0; n < new_fact_data['facts'].length; n++) {
+                            if ('category' in new_fact_data['facts'][n]) {
+                                if (new_fact_data['facts'][n]['category'] == value_type && typeof(new_fact_data['facts'][n]['object']) != "object") {
+                                    value_html += '<option value="' + new_fact_data['facts'][n]['object'] + '">' + new_fact_data['facts'][n]['object'] + '</option>';
+                                }
+                            }
+                        }
+                        value_html += '<option value="VAR">any ' + value_type + '</option>';
+                        value_html += '</select></div>';
+                    } else {
+                        value_html += "Can't Render Datatype";
+                    }
+            }
+            return value_html;
+        }
+        function toggle_unground_new_object(category) {
+            // Get the value of the checkbox
+            var checkbox = document.getElementById('new_object_toggle_check_' + category);
+            var grounded = checkbox.checked;
+            // Get the target textbox
+            var target_input = document.getElementById('new_object_name_' + category);
+            // If checked, set the textbox to "ANYTHING" and disable it.
+            if (grounded) {
+                target_input.value = "any object";
+                target_input.disabled = true;
+            } else {
+                // Otherwise, set the textbox to blank, and enable it.
+                target_input.value = "";
+                target_input.disabled = false;
+            }
+
+        }
+        function show_new_object(category){
+            
+            target = document.getElementById('new_category_' + category);
+            target.classList.add('show');
+
+        };
+        function show_new_attribute(attribute) {
+            target = document.getElementById('new_attribute_' + attribute);
+            target.classList.add('show');
+        };
+        function show_new_relationship(relationship) {
+            target = document.getElementById('new_relationship_' + relationship);
+            target.classList.add('show');
+        }
+        function save_new_object(category){
+            // Add the object to the data
+            target_name = document.getElementById('new_object_name_' + category);
+            target_truth_value = document.getElementById('new_object_truth_value_' + category)
+            new_object_name = target.value;
+            var new_fact_statement = { 'from_ontology': false, 'type': target_truth_value.value, 'category': category}
+            if (target_name.value == "any object") {
+                new_fact_statement['object'] = {'variable': 'A'};
+            } else {
+                new_fact_statement['object'] = target_name.value;
+            }
+            new_fact_data['facts'].push(new_fact_statement)
+            
+            // redraw
+            draw_facts();
+        };
+        function save_new_relationship(relationship) {
+            var target_truth_value = document.getElementById('new_relationship_truth_type_' + relationship);
+            var new_relationship_statement = {'from_ontology': false, 'relationship': relationship, 'type': target_truth_value.value}
+            // I Need to get the Arity of the relationship
+            var arity = 3;
+            var types = {};
+            for (var r = 0; r < ontology['Relationships'].length; r++) {
+                if (relationship == ontology['Relationships'][r]['Relationship']) {
+                    arity = Object.keys(ontology['Relationships'][r]).length-1;
+                    for (var p=1; p<=arity; p++) {
+                        types[p] = ontology['Relationships'][r]['Parameter'+p];
+                    }
+                    break;
+                }
+            }
+            // Now I need to get the values for all of the parameters
+            var variables = "ABCDEFGHIJK";
+            for (var p = 1; p <= arity; p++) {
+                if (types[p] == "duration") {
+                    // Get the new value
+                    var new_value = "";
+                    var direction_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_direction');
+                    var day_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_days');
+                    var hour_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_hours');
+                    var minute_target = document.getElementById('new_relationship_parameter_' + p + '_' + relationship + '_minutes');
+                    if (direction_target.checked) {
+                        new_direction = true;
+                    } else {
+                        new_direction = false;
+                    }
+                    var new_day = day_target.value;
+                    var new_hour = hour_target.value;
+                    var new_minute = minute_target.value;
+                    if (new_direction) {
+                        new_value = "";
+                    } else {
+                        new_value = "-";
+                    }
+                    new_value += "P"
+                    // The idea here is that if all three are zero, it should come out as P0D
+                    if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
+                        new_value += new_day + "D";
+                    }
+                    if (parseInt(new_hour) || parseInt(new_minute)) {
+                        new_value += "T";
+                    }
+                    if (parseInt(new_hour)) {
+                        new_value += new_hour + "H";
+                    }
+                    if (parseInt(new_minute)) {
+                        new_value += new_minute + "M";
+                    }
+                    target_value = new_value;
+                } else {
+                    target_param = document.getElementById('new_relationship_parameter_' + p + '_' + relationship);
+                    target_value = target_param.value;
+                }
+                if (target_value == "VAR") {
+                    new_relationship_statement['parameter'+p] = {'variable': variables[p]};
+                } else {
+                    new_relationship_statement['parameter'+p] = target_value;
+                }
+            }
+            new_fact_data['facts'].push(new_relationship_statement);
+            draw_facts();
+        }
+        function cancel_new_object(category){
+            // Delete the value in the current new object
+            //target_new_object = document.getElementById('category_' + category + '_new_object');
+            //target_new_object.value='';
+            // Return it to hidden.
+            target_category = document.getElementById('new_category_' + category);
+            target_category.classList.remove('show');
+            // Re-Enable the Lock Button
+            //target_button = document.getElementById('category_' + category + '_lock');
+            //target_button.removeAttribute('disabled');
+        };
+        function cancel_new_value(attribute){
+            target_attribute = document.getElementById('new_attribute_' + attribute);
+            target_attribute.classList.remove('show');
+        };
+        function cancel_new_relationship(relationship) {
+            target = document.getElementById('new_relationship_' + relationship);
+            target.classList.remove('show');
+        }
+        function show_new_value(category,object,attribute){
+            // Close any other open new object or value
+            // set the current new object to be visible.
+            target = document.getElementById( category + '_' + object + '_' + attribute);
+            target.classList.add('blawx_show_new');
+            // Set the current "lock" button to disabled.
+            target_button = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_lock');
+            target_button.setAttribute('disabled','');
+            // Move the focus to the new object input.
+            // Figure out what type of value this is.
+            var attribute_type;
+            for(var i =0; i<ontology['Attributes'].length; i++) {
+                if(ontology['Attributes'][i]['Category'] == category
+                  && ontology['Attributes'][i]['Attribute'] == attribute) {
+                    attribute_type = ontology['Attributes'][i]['Type'];
+                    break;
+                  }
+            }
+            if (attribute_type == "duration") {
+                target_input = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_years');
+            } else {
+                target_input = document.getElementById('category_' + category + '_' + object + '_' + attribute + '_new_value');
+            }
+            target_input.focus();
+        };
+        function save_new_value(attribute){
+            var truth_target = document.getElementById('new_attribute_truth_type_' + attribute);
+            var truth_type = truth_target.value;
+            
+            // Figure out what type of value this is.
+            var attribute_type;
+            for(var i =0; i<ontology['Attributes'].length; i++) {
+                if(ontology['Attributes'][i]['Attribute'] == attribute) {
+                    attribute_type = ontology['Attributes'][i]['Type'];
+                    break;
+                  }
+            }
+            
+            
+            if(attribute_type == "duration") {
+                // Get the new value
+                direction_target = document.getElementById('new_attribute_value_' + attribute + '_direction');
+                //year_target = document.getElementById('new_attribute_value_' + attribute + '_years');
+                //month_target = document.getElementById('new_attribute_value_' + attribute + '_months');
+                day_target = document.getElementById('new_attribute_value_' + attribute + '_days');
+                hour_target = document.getElementById('new_attribute_value_' + attribute + '_hours');
+                minute_target = document.getElementById('new_attribute_value_' + attribute + '_minutes');
+                if (direction_target.checked) {
+                    new_direction = true;
+                } else {
+                    new_direction = false;
+                }
+                //new_year = year_target.value;
+                //new_month = month_target.value;
+                new_day = day_target.value;
+                new_hour = hour_target.value;
+                new_minute = minute_target.value;
+                if (new_direction) {
+                    new_value = "";
+                } else {
+                    new_value = "-";
+                }
+                new_value += "P"
+                //if (parseInt(new_year)) {
+                //    new_value += new_year + "Y";
+                //}
+                //if (parseInt(new_month)) {
+                //    new_value += new_month + "M";
+                //}
+                // The idea here is that if all three are zero, it should come out as P0D
+                if (parseInt(new_day) || (!parseInt(new_year) && !parseInt(new_month))) {
+                    new_value += new_day + "D";
+                }
+                if (parseInt(new_hour) || parseInt(new_minute)) {
+                    new_value += "T";
+                }
+                if (parseInt(new_hour)) {
+                    new_value += new_hour + "H";
+                }
+                if (parseInt(new_minute)) {
+                    new_value += new_minute + "M";
+                }
+            } else if (attribute_type != "boolean") {
+                // Get the new value
+                target = document.getElementById('new_attribute_value_' + attribute);
+                new_value = target.value;    
+            }
+            var target_object = document.getElementById('new_attribute_object_' + attribute);
+            var new_object = target_object.value;
+            var new_fact_statement = {'from_ontology': false, 'type': truth_type, 'attribute': attribute};
+            if (new_object != "VAR") {
+                new_fact_statement['object'] = new_object;
+            } else {
+                new_fact_statement['object'] = {'variable': 'object'};
+            }
+            if (attribute_type != "boolean") {
+                if (new_value != "VAR") {
+                    new_fact_statement['value'] = new_value;
+                } else {
+                    new_fact_statement['value'] = {'variable': 'value'}
+                }
+            }
+            new_fact_data['facts'].push(new_fact_statement);
+            //fact_data[category]['members'][object][attribute]['values'].push(new_value);
+            //expanded[category + "_" + object + '_' + attribute + "_content"] = true;
+            // redraw
+            draw_facts();
+        };
+        
+        draw_facts();
+        var answer_element = document.getElementById('answers');
+        var payload_element = document.getElementById('payload');
+        var response_element = document.getElementById('response');
+        var ontology_element = document.getElementById('ontology');
+        function run_test() {
+            var testrun_request = new XMLHttpRequest();
+            testrun_request.onload = function () {
+                parsed_test_response = JSON.parse(this.responseText);
+                console.log("Test response received")
+                payload_element.innerHTML = '<pre>' + JSON.stringify(new_fact_data,null,2) + '</pre>'
+                
+                response_element.innerHTML = '<pre>' + JSON.stringify(parsed_test_response,null,2) + '</pre>'
+
+                ontology_element.innerHTML = '<pre>' + JSON.stringify(ontology,null,2) + '</pre>'
+                // If the question is answered
+                if ('Answers' in parsed_test_response) {
+                    if (parsed_test_response['Answers'].length) {
+                        // Display the answer
+                        var output_content = '<div class="accordion accordion-flush">';
+                        var answers = parsed_test_response.Answers;
+                        for (let i = 0; i < answers.length; i++) {
+                            var count = i + 1;
+                            var heading_name = "answer_" + count + "_heading";
+                            var collapse_name = "answer_" + count + "_collapse";
+                            output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + heading_name + '">';
+                            output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + collapse_name + '" aria-expanded="false" aria-controls="' + collapse_name + '">';
+                            output_content += 'Answer #' + count;
+                            var variables = answers[i].Variables;
+                            output_content += '</button></h2>';
+                            output_content += '<div id="' + collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + heading_name + '" style="">';
+                            models = answers[i].Models;
+                            output_content += '<div class="accordian accordian-flush">'
+                            output_content += '<ul>'
+                            for (var key in variables) {
+                                output_content += '<li>' + key + ': ' + displayValue(variables[key]) + '</li>';
+                            }
+                            output_content += '</ul>'
+                            var attributes_output = [];
+
+                            for (let j = 0; j < models.length; j++) {
+                                var model_count = j + 1;
+                                var model_heading_name = "answer_" + count + "_model_" + model_count + "_heading";
+                                var model_collapse_name = "answer_" + count + "_model_" + model_count + "_collapse";
+                                output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + model_heading_name + '">';
+                                output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + model_collapse_name + '" aria-expanded="false" aria-controls="' + model_collapse_name + '">';
+                                output_content += 'Explanation #' + model_count;
+                                output_content += '</button></h2>';
+                                output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
+                                //for (var attribute in models[j]['Residuals']) {
+                                //    attributes_output.push(describe_constraint(models[j]['Residuals'][attribute]));
+                                //}
+                                var constraints_output = describe_constraints_new(models[j].Residuals, models[j].Terms);
+
+
+                                //output_content += convertModelToTree(models[j].Tree, count, model_count);
+                                getExplanationNodeIndex(models[j].Raw, i, j)
+                                var explanations = getNodesFromModel(models[j].Raw, false, i, j);
+                                var displayed_nodes = [];
+                                var explanation_content = "";
+                                var referenced_variables = [];
+                                for (var k = 0; k < explanations.length; k++) {
+
+                                    if (!displayed_nodes.includes(explanations[k].name)) { // To eliminate duplicates caused by "proved" method.
+                                        explanation_content += explanations[k].content;
+                                        referenced_variables = referenced_variables.concat(get_variables(explanation_content));
+                                        displayed_nodes.push(explanations[k].name);
+                                    }
+                                }
+                                // We could de-duplicate the lists, but I feel like at this point it would not help much.
+                                // var constraint_output = "";
+                                var displayed_constraint_output = [];
+                                if (constraints_output.length) {
+                                    for (var ao = 0; ao < constraints_output.length; ao++) {
+                                        var variables_in_constraint = get_variables(constraints_output[ao]);
+                                        var any_matches = referenced_variables.filter(x => variables_in_constraint.includes(x));
+                                        if (any_matches.length) {
+                                            displayed_constraint_output.push(constraints_output[ao]);
+                                        }
+                                    }
+                                }
+                                //    if (constraint_output != "") {
+                                if (displayed_constraint_output.length) {
+                                    output_content += "Where:<ul>";
+                                    for (var dc = 0; dc < displayed_constraint_output.length; dc++) {
+                                        output_content += "<li>" + displayed_constraint_output[dc] + "</li>";
+                                    }
+                                    //output_content += constraint_output;
+                                    output_content += "</ul>"
+                                }
+
+                                output_content += explanation_content;
+                                //output_content += getNodesFromModel(models[j].Raw);
+                                // output_content += convertModelToParagraphs(models[j].Raw);
+                                output_content += '</div></div>';
+
+                            }
+                            output_content += '</div></div></div>';
+                        }
+                        output_content += '</div>';
+                        answer_element.innerHTML = output_content;
+
+                        $('#nav-answers-tab').tab('show');
+                        draw_facts(); // So that new relevance information will be displayed in the interface.
+                    } else {
+                        // Indicate that there are no answers.
+                        answer_element.innerHTML = "No answers received.";
+
+                        $('#nav-answers-tab').tab('show');
+                    }
+                }  else {
+                    answer_element.innerHTML = "<p>There was an error</p><pre>" + JSON.stringify(parsed_test_response,null,2) + "</pre>";
+                    $('#nav-answers-tab').tab('show');
+                }
+            }
+            testrun_request.open("POST", "{% url 'test_interview' blawxtest.ruledoc.id blawxtest %}");
+            testrun_request.setRequestHeader("Content-Type", "application/json");
+            console.log("Sending test request");
+            answer_element.innerHTML = "Thinking...";
+            testrun_request.setRequestHeader('X-CSRFToken', csrftoken);
+            testrun_request.send(JSON.stringify(new_fact_data));
+        }
+        var view_form_element = document.getElementById('viewform');
+        function toggle_view_hidden(input) {
+            index = hidden_by_view.indexOf(input);
+            if(index > -1) {
+                hidden_by_view.splice(index,1);
+            } else {
+                hidden_by_view.push(input);
+            }
+            draw_facts();
+        }
+        function draw_view_form() {
+            output = "<ul>";
+            // For each category
+            for(var i=0; i < ontology['Categories'].length; i++) {
+                // Ask if they want to hide that category
+                output += "<li>";
+                output += '<div class="form-check form-switch">';
+                output += '<input onchange="toggle_view_hidden(\'' + 'view_cat_' + ontology['Categories'][i] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_cat_' + ontology['Categories'][i] + '"';
+                if (hidden_by_view.includes('view_cat_' + ontology['Categories'][i])) {
+                    output += ' checked';
+                }
+                output += '>';
+                output += '<label class="form-check-label" for="view_cat_' + ontology['Categories'][i] + '">Hide Category ' + ontology['Categories'][i] + '</label>';
+                output += '</div>';
+                output += '</li>';
+            }
+            // For each attribute
+            for(var j=0; j < ontology['Attributes'].length; j++) {
+                // Ask if they want to hide that attribute for all objects in the category
+                output += '<li>';
+                output += '<div class="form-check form-switch">';
+                output += '<input onchange="toggle_view_hidden(\'' + 'view_att_' + ontology['Attributes'][j]['Attribute'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_att_' + ontology['Attributes'][j]['Attribute'] + '"';
+                if(hidden_by_view.includes('view_att_' + ontology['Attributes'][j]['Attribute'])) {
+                    output += ' checked';
+                }
+                output += '>';
+                output += '<label class="form-check-label" for="view_att_' + ontology['Attributes'][j]['Attribute'] + '">Hide Attribute ' + ontology['Attributes'][j]['Attribute'] + '</label>';
+                output += '</div>';
+                output += '</li>';
+            }
+            // For each relationship
+            for (var k=0; k < ontology['Relationships'].length; k++) {
+                output += '<li>'
+                output += '<div class="form-check form-switch">';
+                output += '<input onchange="toggle_view_hidden(\'' + 'view_rel_' + ontology['Relationships'][k]['Relationship'] + '\')" class="form-check-input" type="checkbox" role="switch" id="view_rel_' + ontology['Relationships'][k]['Relationship'] + '"';
+                if(hidden_by_view.includes('view_rel_' + ontology['Relationships'][k]['Relationship'])) {
+                    output += ' checked';
+                }
+                output += '>';
+                output += '<label class="form-check-label" for="view_rel_' + ontology['Relationships'][k]['Relationship'] + '">Hide Relationship ' + ontology['Relationships'][k]['Relationship'] + '</label>';
+                output += '</div>';
+                output += '</li>';
+            }
+            output += '</ul>';
+            view_form_element.innerHTML = output;
+        }
+        draw_view_form();
+        function save_view() {
+            var payload = {};
+            view_update_request = new XMLHttpRequest();
+            view_update_request.onload = function() {
+                console.log("Test Update Sent");
+            }
+            view_update_request.open("POST", "{% url 'update_test_view' blawxtest.ruledoc.id blawxtest %}");
+            view_update_request.setRequestHeader("Content-Type", "application/json");
+            console.log("Sending test view update");
+            view_update_request.setRequestHeader('X-CSRFToken', csrftoken);
+            payload.view = hidden_by_view;
+            view_update_request.send(body=JSON.stringify(payload));
+        }
+        function save_fact_scenario() {
+            var payload = {};
+            save_fact_request = new XMLHttpRequest();
+            save_fact_request.onload = function() {
+                console.log("Fact Sceanrio Sent");
+            }
+            save_fact_request.open("POST", "{% url 'save_fact_scenario' blawxtest.ruledoc.id blawxtest %}");
+            save_fact_request.setRequestHeader("Content-Type", "application/json");
+            console.log("Sending Fact Update");
+            save_fact_request.setRequestHeader('X-CSRFToken', csrftoken);
+            payload.fact_scenario = new_fact_data;
+            save_fact_request.send(body=JSON.stringify(payload));
+        }
+        function draw_new_fact_data() {
+            var output_html = ""
+            
+            output_html += "<h3>Facts</h3><ul>"
+            for(var f=0; f < new_fact_data['facts'].length; f++) {
+                var hidden = false;
+                if ('category' in new_fact_data['facts'][f]) {
+                    if (hidden_by_view.includes('view_cat_' + new_fact_data['facts'][f]['category'])) {
+                        hidden = true;
+                    }
+                } else if ('attribute' in new_fact_data['facts'][f]) {
+                    if (hidden_by_view.includes('view_att_' + new_fact_data['facts'][f]['attribute'])) {
+                        hidden = true;
+                    }
+                } else if ('relationship' in new_fact_data['facts'][f]) {
+                    if (hidden_by_view.includes('view_rel_' + new_fact_data['facts'][f]['relationship'])) {
+                        hidden = true;
+                    }
+                }
+                if (!hidden) {
+                    output_html += "<li>";
+                    if (new_fact_data['facts'][f]['type'] != "true") {
+                        if (new_fact_data['facts'][f]['type'] == "false") {
+                            output_html += "it is false that ";
+                        }
+                        if (new_fact_data['facts'][f]['type'] == "unknown") {
+                            output_html += "it is uncertain whether ";
+                        }
+                    } 
+                    //else {
+                        //output_html += "it is true that ";
+                    //}
+                    if ('category' in new_fact_data['facts'][f]) {
+                        var prefix = "";
+                        var postfix = "";
+                        for (var i=0; i< ontology['CategoryNLG'].length; i++) {
+                            if (ontology['CategoryNLG'][i]['Category'] == new_fact_data['facts'][f]['category']) {
+                                prefix = ontology['CategoryNLG'][i]['Prefix'];
+                                postfix = ontology['CategoryNLG'][i]['Postfix'];
+                                break;
+                            }
+                        }
+                        var object_display = new_fact_data['facts'][f]['object'];
+                        if (typeof(new_fact_data['facts'][f]['object']) == 'object') {
+                            object_display = "any object"
+                        }
+                        output_html += prefix + ' ' + object_display + ' ' + postfix;
+                    } else if ('attribute' in new_fact_data['facts'][f]) {
+                        var attribute_name = new_fact_data['facts'][f]['attribute'];
+                        for (var i=0; i< ontology['AttributeNLG'].length; i++) {
+                            if (attribute_name == ontology['AttributeNLG'][i]['Attribute']) {
+                                prefix = ontology['AttributeNLG'][i]['Prefix'];
+                                infix = ontology['AttributeNLG'][i]['Infix'];
+                                postfix = ontology['AttributeNLG'][i]['Postfix'];
+                                order = ontology['AttributeNLG'][i]['Order'];
+                                break;
+                            }
+                        }
+                        var object_display = new_fact_data['facts'][f]['object'];
+                        if (typeof(object_display) == 'object') {
+                            for (var a=0; a < ontology['Attributes'].length; a++) {
+                                if (attribute_name == ontology['Attributes'][a]['Attribute']) {
+                                    attribute_type = ontology['Attributes'][a]['Category'];
+                                    break;
+                                }
+                            }
+                            object_display = "any " + attribute_type; 
+                        }
+                        if ('value' in new_fact_data['facts'][f]) {
+                            var value_display = new_fact_data['facts'][f]['value'];
+                            for (var c=0; c < ontology['Attributes'].length; c++) {
+                                if (attribute_name == ontology['Attributes'][c]['Attribute']) {
+                                    value_type = ontology['Attributes'][c]['Type'];
+                                }
+                            }
+                            if (typeof(value_display) == 'object') {   
+                                value_display = "any " + value_type;
+                            }
+                            if (value_type == "duration") {
+                                iso_duration = /^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$/
+                                matches = iso_duration.exec(value_display)
+                                var new_value_display = ""
+                                var future = true;
+                                if (matches[1] != undefined) {
+                                    future = false;
+                                }
+                                if (matches[2] != undefined) {
+                                    new_value_display += matches[2].slice(0,-1) + " years, ";
+                                }
+                                if (matches[3] != undefined) {
+                                    new_value_display += matches[3].slice(0,-1) + " months, ";
+                                }
+                                if (matches[4] != undefined) {
+                                    new_value_display += matches[4].slice(0,-1) + " days, ";
+                                }
+                                if (matches[5] != undefined) {
+                                    new_value_display += matches[5].slice(0,-1) + " hours, ";
+                                }
+                                if (matches[6] != undefined) {
+                                    new_value_display += matches[6].slice(0,-1) + " minutes, ";
+                                }
+                                if (matches[7] != undefined) {
+                                    new_value_display += matches[7].slice(0,-1) + " seconds, ";
+                                }
+                                if (future) {
+                                    new_value_display += " into the future";
+                                } else {
+                                    new_value_display += " into the past";
+                                }
+                                var last_comma = new_value_display.lastIndexOf(',');
+                                value_display = new_value_display.slice(0,last_comma) + new_value_display.slice(last_comma+1);
+
+                            }
+                            if (value_type == "datetime") {
+                                value_display = value_display.replace("T"," ")
+                            }
+                            if (order == "ov") {
+                                output_html += prefix + ' ' +  object_display + ' ' + infix + ' ' + value_display + ' ' + postfix;
+                            } else {
+                                output_html += prefix + ' ' + value_display + ' ' + infix + ' ' +  object_display + ' ' + postfix;
+                            }
+                        } else {
+                            output_html += prefix + ' ' +  object_display + ' ' + postfix ;
+                        }
+                    } else if ('relationship' in new_fact_data['facts'][f]) {
+                        var arity = 3;
+                        var prefixes = {}
+                        var postfix = "";
+                        for (var i=0; i < ontology['RelationshipNLG'].length; i++) {
+
+                            if (ontology['RelationshipNLG'][i]['Relationship'] == new_fact_data['facts'][f]['relationship']) {
+                                postfix = ontology['RelationshipNLG'][i]['Postfix'];
+                                arity = Object.keys(ontology['RelationshipNLG'][i]).length-2;
+                                for (var p=1; p <= arity; p++) {
+                                    prefixes[p] = ontology['RelationshipNLG'][i]['Prefix'+p];
+                                }
+                                break;
+                            }
+                        }
+                        var types = {}
+                        for (var i=0; i < ontology['Relationships'].length; i++) {
+                            if (ontology['Relationships'][i]['Relationship'] == new_fact_data['facts'][f]['relationship']) {
+                                for (var p=1; p <= arity; p++) {
+                                    types[p] = ontology['Relationships'][i]['Parameter'+p];
+                                }
+                                break;
+                            }
+                        }
+                        for (var i=1; i <= arity; i++) {
+                            output_html += " " + prefixes[i];
+                            var value_display = new_fact_data['facts'][f]['parameter'+i];
+                            var value_type = types[i];
+                            if (typeof(value_display) == 'object') {   
+                                value_display = "any " + value_type;
+                            }
+                            if (value_type == "duration") {
+                                iso_duration = /^(-)?P(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$/
+                                matches = iso_duration.exec(value_display)
+                                var new_value_display = ""
+                                var future = true;
+                                if (matches[1] != undefined) {
+                                    future = false;
+                                }
+                                if (matches[2] != undefined) {
+                                    new_value_display += matches[2].slice(0,-1) + " years, ";
+                                }
+                                if (matches[3] != undefined) {
+                                    new_value_display += matches[3].slice(0,-1) + " months, ";
+                                }
+                                if (matches[4] != undefined) {
+                                    new_value_display += matches[4].slice(0,-1) + " days, ";
+                                }
+                                if (matches[5] != undefined) {
+                                    new_value_display += matches[5].slice(0,-1) + " hours, ";
+                                }
+                                if (matches[6] != undefined) {
+                                    new_value_display += matches[6].slice(0,-1) + " minutes, ";
+                                }
+                                if (matches[7] != undefined) {
+                                    new_value_display += matches[7].slice(0,-1) + " seconds, ";
+                                }
+                                if (future) {
+                                    new_value_display += " into the future";
+                                } else {
+                                    new_value_display += " into the past";
+                                }
+                                var last_comma = new_value_display.lastIndexOf(',');
+                                value_display = new_value_display.slice(0,last_comma) + new_value_display.slice(last_comma+1);
+
+                            }
+                            if (value_type == "datetime") {
+                                value_display = value_display.replace("T"," ")
+                            }
+                            output_html += " " + value_display;
+                        }
+                        output_html += " " + postfix;
+                        // TODO: This doesn't deal with variables, and it doesn't format data properly.
+                    }
+                    if (!new_fact_data['facts'][f]['from_ontology']) {
+                        var delete_target
+                        output_html += '<button type="button" class="btn-close" onclick="delete_fact('+ JSON.stringify(new_fact_data['facts'][f]).replaceAll('"',"\'") +')" aria-label="Delete"></button>';
+                    } else {
+                        output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">';
+                        output_html += '<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>';
+                        output_html += '</svg>';
+                    }
+                    output_html += "</li>";
+                }
+            }
+            output_html += "</ul>";
+            if ('Relevant Statements' in parsed_test_response) {
+
+                if (parsed_test_response['Relevant Statements'].length > 0) {
+                    output_html += "<h3>Relevant Statements</h3>";
+                    output_html += "<p>Answers to the following questions would be relevant for finding non-contingent answers to the question:</p>"
+                    output_html += "Is it true that... <ul>";
+                    for (var r=0; r < parsed_test_response['Relevant Statements'].length; r++) {
+                        output_html += "<li>" + answerNLG(parsed_test_response['Relevant Statements'][r])
+                        output_html += "?</li>";
+                    }
+                    output_html += "</ul>";
+                }           
+            }
+            return output_html;
+        }
+        function delete_fact(fact) {
+            var target_index = -1;
+            for (var ind=0; ind < new_fact_data['facts'].length; ind++) {
+                if (JSON.stringify(new_fact_data['facts'][ind]) == JSON.stringify(fact)) {
+                    target_index = ind;
+                    break;
+                }
+            }
+            if (target_index > -1) {
+                new_fact_data['facts'].splice(target_index,1);
+            }
+            draw_facts();
+        }
+        function remove_conjunctions(numerical_constraints) {
+            var output = [];
+            if (numerical_constraints['functor'] == ',') {
+                output = output.concat(remove_conjunctions(numerical_constraints['args'][0]));
+                output = output.concat(remove_conjunctions(numerical_constraints['args'][1]));
+            } else {
+                output = output.concat(numerical_constraints);
+            }
+            return output;
+        }
+        function reduce_constraints_to_list(all_constraints) {
+            var constraint_list = [];
+            // Go through the constraints, and find the one that is for "{}"
+            // Then, if there is an "and", go through each and add it to a list.
+            for (var r=0; r < all_constraints.length; r++) {
+                if (all_constraints[r]['functor'] != "{}" && all_constraints[r]['functor'] != "∉") {
+                    continue;
+                } else if (all_constraints[r]['functor'] == "{}") {
+                    constraint_list = constraint_list.concat(remove_conjunctions(all_constraints[r]['args'][0]));
+                } else if (all_constraints[r]['functor'] == "∉") {
+                    constraint_list.push(all_constraints[r]);
+                }
+            }
+            return constraint_list;
+        }
+        const type_predicates = ['date','time','datetime','duration'];
+        function get_all_variable_and_value_usages(constraints,type_uses) {
+            for (var c=0; c < constraints.length; c++) {
+                if (type_predicates.includes(constraints[c]['functor'])) {
+                    if (!(constraints[c]['args'][0] in type_uses)) {
+                        type_uses[constraints[c]['args'][0]] = [];
+                    }
+                    if (!type_uses[constraints[c]['args'][0]].includes(constraints[c]['functor'])) {
+                        type_uses[constraints[c]['args'][0]].push(constraints[c]['functor']);
+                    }
+                    //if (isNaN(constraints[c]['args'][0])) {
+                    //    if (constraints[c]['args'][0][0] === constraints[c]['args'][0][0].toUpperCase()) {
+                    //        if (!(constraints[c]['args'][0] in type_uses)) {
+                    //            type_uses[constraints[c]['args'][0]] = [];    
+                    //        }
+                    //        if (!type_uses[constraints[c]['args'][0]].includes(constraints[c]['functor'])) {
+                    //            type_uses[constraints[c]['args'][0]].push(constraints[c]['functor']);
+                    //        }
+                    //    }
+                    //} 
+                }
+                for (var a=0; a < constraints[c]['args'].length; a++) {
+                    if (constraints[c]['args'][a].constructor == Object && 'functor' in constraints[c]['args'][a]) {
+                        type_uses = get_all_variable_and_value_usages([constraints[c]['args'][a]],type_uses)
+                    }
+                }
+            }
+            return type_uses;
+        }
+        function get_variable_and_value_types(terms) {
+            var type_uses = get_all_variable_and_value_usages(terms,{});
+            var confirmed = {};
+            for ([variable,types] of Object.entries(type_uses)) {
+                if (types.length ==1) {
+                    confirmed[variable] = types[0];
+                }
+            }
+            return confirmed;
+        }
+        function describe_constraints_new(constraints,terms) {
+            // Reduce the nested structure of contraints to a list
+            var constraints_list = reduce_constraints_to_list(constraints);
+            // Get the data types for variables in the terms
+            var variable_types = get_variable_and_value_types(terms);
+            // Go through each constraint, and generate text for it.
+            var output = [];
+            for (var c = 0; c < constraints_list.length; c++) {
+                output.push(generate_text_for_constraint(constraints_list[c],variable_types));
+            }
+            // Return the text generated
+            return output;
+        }
+        function isVariable(node) {
+            is_variable = false;
+            if ((typeof(node) === "string" || node instanceof String) && node[0] === node[0].toUpperCase()) {
+                is_variable = true;
+            }
+            return is_variable;
+        }
+        function generate_text_for_constraint(constraint,variable_types) {
+            var output = "";
+            var functor = constraint['functor'];
+            var args = constraint['args'];
+            // If the argument is a variable, and that variable has a type, convert it to that type.
+            //for (var a=0; a< args.length; a++) {
+            //    if (isVariable(args[a]) && args[a] in variable_types) {
+            //        args[a] = {"functor": variable_types[args[a]], "args": [args[a]]};
+            //    }
+            //}
+            // If the first argument has a type, and the second argument is a list of values, convert the values to that type.
+
+            // If the value or variable has a known type, assign it.
+            for (var a=0; a < args.length; a++) {
+                if (args[a] in variable_types) {
+                    args[a] = {"functor": variable_types[args[a]], "args": [args[a]]};
+                }
+            }
+            switch (functor) {
+                case "<":
+                    output += displayValue(args[0]) + " is less than " + displayValue(args[1]);
+                    break;
+                case ">":
+                    output += displayValue(args[0]) + " is greater than " + displayValue(args[1]);
+                    break;
+                case "=<":
+                    output += displayValue(args[0]) + " is less than or equal to " + displayValue(args[1]);
+                    break;
+                case ">=":
+                    output += displayValue(args[0]) + " is greater than or equal to " + displayValue(args[1]);
+                    break;
+                case "∉":
+                    for (var l = 0; l < args[1].length; l++) {
+                        args[1][l] == {"functor": variable_types[args[0]], "args": args[1][l]};
+                    }
+                    output += displayValue(args[0]) + " is not "
+                    if (args[1].length > 1) {
+                        output += "one of ";
+                    }
+                    for (var a=0; a < args[1].length; a++) {
+                        output += displayValue(args[1][a]);
+                        if (args[1].length > 1 && a == args[1].length-2) {
+                            output += ", or ";
+                        } else if (a < args[1].length-2) {
+                            output += ", ";
+                        }
+                    }
+                    break;
+                case "=":
+                    output += displayValue(args[0]) + " is equal to " + generate_text_for_constraint(args[1],variable_types);
+                    break;
+                case "+":
+                    output += displayValue(args[0]) + " plus " + displayValue(args[1]);
+                    break;
+                case "-":
+                    output += displayValue(args[0]) + " minus " + displayValue(args[1]);
+                    break;
+                case "*":
+                    output += displayValue(args[0]) + " times " + displayValue(args[1]);
+                    break;
+                case "/":
+                    output += displayValue(args[0]) + " divided by " + displayValue(args[1]);
+                    break;
+                default:
+                    console.warn("Unrecognized constraint type applied to variable: " + constraint.toString())
+            }
+
+            return output;
+        }
+        function describe_constraints_for_typed_variable(variable,type,constraints) {
+            // So what I need to do here is go through the constraints as usual, but only output
+            // constraints that apply to the correct variable name.
+            // No. I need to pre-process all of the "ands", and reduce the conjunctions to a list.
+            // THEN I can go through each element in the list and display it if it is for the relevant
+            // variable.
+            // TODO: This is slow. Constraints should be processed once per model, not once per reference to a variable.
+            // TODO: It also won't notice if a variable is used inside a mathematical equation.
+            var constraints_list = reduce_constraints_to_list(constraints);
+            var output = ""
+            for (var c = 0; c < constraints_list.length; c++) {
+                var functor = constraints_list[c]['functor'];
+                var args = constraints_list[c]['args'];    
+                switch(functor) {
+                    case "<":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " is less than " + displayValue(new_arg1);
+                        }
+                        break;
+                    case ">":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " is greater than " + displayValue(new_arg1);
+                        }
+                        break;
+                    case "=<":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " is less than or equal to " + displayValue(new_arg1);
+                        }
+                        break;
+                    case ">=":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " is greater than or equal to " + displayValue(new_arg1);
+                        }
+                        break;
+                    case "∉":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = [];
+                        for (var a=0; a < args[1].length; a++) {
+                            new_arg1.push({"functor": type, "args": [args[1][a]]});
+                        }
+                        if (args[0] == variable) {
+                            output += displayValue(new_arg0) + " is not "
+                            if (args[1].length > 1) {
+                                output += "one of ";
+                            }
+                            for (var a=0; a < new_arg1.length; a++) {
+                                output += displayValue(new_arg1[a]);
+                                if (a == new_arg1.length-1) {
+                                    output += ", or ";
+                                } else if (a < new_arg1.length-1) {
+                                    output += ", ";
+                                }
+                            }
+                        }
+                        break;
+                    case "=":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        if (args[0] == variable) { // I really don't think this is going to work, because I don't know if the variable appears later in the constraint.
+                            output += displayValue(new_arg0) + " is equal to " + describe_constraints_for_typed_variable(variable,type,args[1]);
+                        }
+                        break;
+                    case "+":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " plus " + displayValue(new_arg1);
+                        }
+                        break;
+                    case "-":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " minus " + displayValue(new_arg1);
+                        }
+                        break;
+                    case "*":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " times " + displayValue(new_arg1);
+                        }
+                        break;
+                    case "/":
+                        new_arg0 = {"functor": type, "args": [args[0]]};
+                        new_arg1 = {"functor": type, "args": [args[1]]};
+                        if (args[0] == variable || args[1] == variable) {
+                            output += displayValue(new_arg0) + " divided by " + displayValue(new_arg1);
+                        }
+                        break;
+                    default:
+                        console.warn("Unrecognized constraint type applied to variable: " + constraint.toString())
+                }
+            }
+            return output;
+        }
+        function describe_constraint(constraint) {
+            // A constraint is a functor and a list of arguments.
+            // Some functions can have other functions inside them.
+            // Functors can be "{}", ",", "put_attr", ">", ">=", "=<", or "<".
+            var functor = constraint['functor'];
+            var args = constraint['args'];
+            var output = ""
+            switch(functor) {
+                case "put_attr": // We don't need to display these.
+                    return ""
+                case "{}": // This is a set of one or more numerical constraints
+                    for (var a=0; a< args.length; a++) {
+                        output += "<li>" + describe_constraint(args[a]) + "</li>";
+                    }
+                    return output;
+                case ",": // This is a set of two conjoined constraints
+                    output += describe_constraint(args[0]);
+                    output += " and ";
+                    output += describe_constraint(args[1]);
+                    return output;
+                case "<":
+                    output += args[0] + " is less than " + args[1];
+                    return output;
+                case ">":
+                    output += args[0] + " is greater than " + args[1];
+                    return output;
+                case "=<":
+                    output += args[0] + " is less than or equal to " + args[1];
+                    return output;
+                case ">=":
+                    output += args[0] + " is greater than or equal to " + args[1];
+                    return output;
+                case "∉":
+                    output += "<li>" + args[0] + " is not "
+                    if (args[1].length > 1) {
+                        output += "one of ";
+                    }
+                    output += args[1].toString() + "</li>";
+                    return output;
+                case "=":
+                    output += args[0] + " is equal to " + describe_constraint(args[1]);
+                    return output;
+                case "+":
+                    output += args[0] + " plus " + args[1];
+                    return output;
+                default:
+                    console.warn("Unrecognized constraint type applied to variable: " + constraint.toString())
+            }
+        }
+        function get_variables(string) {
+            const pattern = /\b([A-Z_]\w*)/gm;
+            var output = [];
+            for(let match of string.matchAll(pattern)) {
+                output.push(match[1]);
+            }
+            return output;
+        }
+    </script>
+    {% endblock %}
