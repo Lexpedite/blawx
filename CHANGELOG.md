@@ -7,20 +7,14 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
-## IMPROVED EVENT REASONING
+## [v1.6.14-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.14-alpha) 2023-05-12
+
+### Added
+* A GCWeb-themed version of Scenario Editor
 
 ### Fixed
 * Event reasoning was finding spurious evidence of non-interruption.
 
-### TODO
-* Re-Implement blawx_becomes (all 4) for Relationships
-* Re-implement blawx_during (all 6) for Relationships
-* Implement positive and negative interrupted for Categories
-* Implement positive and negative interrupted for Attributes
-* Re-Implement blawx_becomes (all 4) for Categories
-* Re-Implement blawx_becomes (all 4) for Attributes
-* Re-implement blawx_during (all 6) for Categories
-* Re-implement blawx_during (all 6) for Attributes
 
 ## [v1.6.13-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.13-alpha) 2023-05-09
 
