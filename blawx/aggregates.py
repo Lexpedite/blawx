@@ -42,7 +42,17 @@ blawx_list_not_between([Head|Tail],Start,End) :-
     blawx_not_between(Head,Start,End),
     blawx_list_not_between(Tail,Start,End).
 blawx_list_not_between([],_,_).
-blawx_not_between(X,Y,Z) :- X < Y.
-blawx_not_between(X,Y,Z) :- X > Z.
+blawx_not_between(X,Y,Z) :- X =< Y.
+blawx_not_between(X,Y,Z) :- X >= Z.
+
+blawx_list_not_before([Head|Tail],End) :-
+    Head >= End,
+    blawx_list_not_before(Tail,End).
+blawx_list_not_before([],_).
+
+blawx_list_not_after([Head|Tail],Start) :-
+    Head =< Start,
+    blawx_list_not_after(Tail,Start).
+blawx_list_not_after([],_).
 
 """
