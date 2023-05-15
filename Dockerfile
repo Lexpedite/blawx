@@ -6,8 +6,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get -y update
 
-RUN wget https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin -P ~/.cache/gpt4all/
-
 RUN pip3 install Django
 
 RUN set -eux; \

@@ -6,12 +6,14 @@ from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, DjangoObjectPermissions, IsAuthenticatedOrReadOnly, AllowAny
 
-import gpt4all
+import openai
+
+prompt_preamble = """
+"""
 
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def simplify(request):
-    gptj = gpt4all.GPT4All("ggml-gpt4all-j-v1.3-groovy")
-    messages = [{"role": "user", "content": "Simplify the following explanation: " + request.data['explanation'] }]
-    return Response(gptj.chat_completion(messages))
+    completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": prompt_preamble + request.data['explanation'] }])
+    return Response(completion.choices[0].message.content)
