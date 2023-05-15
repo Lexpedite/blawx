@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path
-from . import views, reasoner
+from . import views, reasoner, simplifier
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeDoneView, PasswordChangeView
 from .models import RuleDoc
 
@@ -42,4 +42,5 @@ urlpatterns = [
     path('docs/<path:pk>/', views.DocumentView.as_view(), name="docs_page"),
     path("register/", views.register_request, name="register"),
     path("version/",views.version,name="version"),
+    path("simplify/",simplifier.simplify, name="simplify"),
 ]
