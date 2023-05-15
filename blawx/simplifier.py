@@ -13,5 +13,5 @@ import gpt4all
 @permission_classes([IsAuthenticated])
 def simplify(request):
     gptj = gpt4all.GPT4All("ggml-gpt4all-j-v1.3-groovy")
-    messages = [{"role": "user", "content": "Simplify the following explanation: " + request.data.explanation }]
+    messages = [{"role": "user", "content": "Simplify the following explanation: " + request.data['explanation'] }]
     return Response(gptj.chat_completion(messages))
