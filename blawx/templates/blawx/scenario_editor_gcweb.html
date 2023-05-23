@@ -19,6 +19,11 @@
 <div class="collapse-horizontal flex-column card col-12 collapse show p-0">
             
         <nav class="card-header">
+            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill" aria-label="Warning:"></i>
+                <div><b><u>This is not an official Government of Canada website.</u> It is a technical prototype for development and educational purposes.
+                    It should not be used for any other purpose. If you are looking for Government of Canada resources, please go to <a href="https://canada.ca">canada.ca</a>.</b></div>
+                </div>
             <div class="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
               <button class="nav-link active" id="nav-facts-tab" data-bs-toggle="tab" data-bs-target="#nav-facts" type="button" role="tab" aria-controls="nav-facts" aria-selected="true">Facts</button>
               <button class="nav-link" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#nav-answers" type="button" role="tab" aria-controls="nav-answers" aria-selected="false">Answers</button>
@@ -1519,9 +1524,17 @@
                                 output_content += 'Explanation #' + model_count;
                                 output_content += '</button></h2>';
                                 output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
+                                output_content += '<div id="' + model_collapse_name + '_simplified">';
+                                output_content += '</div>';
                                 //for (var attribute in models[j]['Residuals']) {
                                 //    attributes_output.push(describe_constraint(models[j]['Residuals'][attribute]));
                                 //}
+                                output_content += '<div id="' + model_collapse_name + '_detail_header" class="accordian-item"><h3 class="accordian-header">';
+                                output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + model_collapse_name + '_detail_content" aria-expanded="false" aria-controls="' + model_collapse_name + '_detail_content">';
+                                output_content += 'Details';
+                                output_content += '</button></h3>';
+                                output_content += '<div id="' + model_collapse_name + '_detail_content" class="accordian-collapse collapse aria-labelledby="' + model_collapse_name + '_detail_header">';
+
                                 var constraints_output = describe_constraints_new(models[j].Residuals, models[j].Terms);
 
 
@@ -1565,12 +1578,54 @@
                                 //output_content += getNodesFromModel(models[j].Raw);
                                 // output_content += convertModelToParagraphs(models[j].Raw);
                                 output_content += '</div></div>';
+                                output_content += '</div></div>';
 
                             }
                             output_content += '</div></div></div>';
                         }
                         output_content += '</div>';
                         answer_element.innerHTML = output_content;
+
+                        // Now we summarize them
+                        for (var a = 0; a < parsed_test_response['Answers'].length; a++) {
+                            for (var e = 0; e < parsed_test_response['Answers'][a]['Models'].length; e++) {
+                                var target_explanation = document.getElementById("answer_" + (a+1) + "_model_" + (e+1) + "_collapse");
+                                var target_summary = document.getElementById("answer_" + (a+1) + "_model_" + (e+1) + "_collapse_simplified");
+                                var detail_header_name = "answer_" + (a+1) + "_model_" + (e+1) + "_collapse_detail_header";
+                                var detail_content_name = "answer_" + (a+1) + "_model_" + (e+1) + "_collapse_detail_content";
+                                var text_explanation = get_text_of_explanation(target_explanation);
+                                var simplify_request = new XMLHttpRequest();
+                                var warning_text = '<div class="alert alert-warning alert-dismissible" role="alert">';
+                                warning_text += '<i class="bi bi-exclamation-triangle-fill" aria-label="Warning:"></i>';
+                                warning_text += '<div>The following summarization was automatically generated, and may not be accurate. The details below show the actual reasoning.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
+                                warning_text += '</div>';
+                                simplify_request.onload = function () {
+                                    if (this.responseText != '""') {
+                                        target_summary.innerHTML = warning_text + "Summary: " + this.responseText;
+                                    } else {
+                                        // There was no answer, so there is no summary. The contents of the details should be moved to the explanation part,
+                                        // and the details parts removed.
+                                        
+                                        var detail_header_target = document.getElementById(detail_header_name);
+                                        var detail_content_target = document.getElementById(detail_content_name);
+
+                                        // Get the details content innerHTML
+                                        var explanation = detail_content_target.innerHTML;
+                                        // Set it to the value of the target.
+                                        target_summary.innerHTML = explanation;
+                                        // remove the header and the content elements.
+                                        detail_header_target.remove();
+                                        detail_content_target.remove();}
+                                }
+                                simplify_request.open("POST", "{% url 'simplify' %}");
+                                simplify_request.setRequestHeader("Content-Type", "application/json");
+                                target_summary.innerHTML = "Getting AI Summary...";
+                                console.log("Sending simplify request");
+                                simplify_request.setRequestHeader('X-CSRFToken', csrftoken);
+                                simplify_request.send(JSON.stringify({"explanation": text_explanation}));
+                            }
+                        }
+
 
                         $('#nav-answers-tab').tab('show');
                         draw_facts(); // So that new relevance information will be displayed in the interface.
@@ -1592,6 +1647,20 @@
             testrun_request.setRequestHeader('X-CSRFToken', csrftoken);
             testrun_request.send(JSON.stringify(new_fact_data));
         }
+
+        
+        function get_text_of_explanation(element) {
+            var output = ""
+            if (element.hasChildNodes()) {
+                for (var c = 0; c < element.childNodes.length; c++) {
+                    output += get_text_of_explanation(element.childNodes[c])
+                }
+            } else {
+                output += "\n" + element.data
+            }
+            return output;
+        }
+
         var view_form_element = document.getElementById('viewform');
         function toggle_view_hidden(input) {
             index = hidden_by_view.indexOf(input);
@@ -1875,7 +1944,7 @@
                     }
                     if (!new_fact_data['facts'][f]['from_ontology']) {
                         var delete_target
-                        output_html += '<button type="button" class="btn-close" onclick="delete_fact('+ JSON.stringify(new_fact_data['facts'][f]).replaceAll('"',"\'") +')" aria-label="Delete"></button>';
+                        output_html += '<button type="button" class="close" onclick="delete_fact('+ JSON.stringify(new_fact_data['facts'][f]).replaceAll('"',"\'") +')" aria-label="Delete"></button>';
                     } else {
                         output_html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">';
                         output_html += '<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>';

@@ -108,6 +108,14 @@
       It is possible that age is a factor that can exclude you, but cannot include you. So you
       would not really be getting the answer to your question unless you ran both queries.
 
+      ## ChatGPT Summaries of Explanations
+
+      If you provide Blawx with an OpenAI API Key when running the server (see `INSTALL.md` for details)
+      in scenario editor your tree-structured explanations will be prefaced with an AI-generated plain-
+      language summary. It is prefaced with a warning that it should not be relied upon for understanding
+      how the reasoner reached the conclusion, and the actual tree-structured explanation on which it is
+      based is still made available.
+
       
 
 

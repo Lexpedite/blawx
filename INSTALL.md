@@ -21,6 +21,9 @@ cd blawx
 ./update.sh
 ```
 
+Note that the `./update.sh` script runs the blawx server in the terminal, for development purposes, so that you can see debug information.
+If you want to run the docker container in the background, add `-d` as a flag to the `docker run` command in that script.
+
 This command will take several minutes to run the first time.
 
 The Blawx server will now be available at [http://127.0.0.1:8000](http://127.0.0.1:8000),
@@ -35,6 +38,16 @@ of running the `./update.sh` script.
 
 A demo account with username "demo" and password "blawx2022" is also created,
 and should be deleted in the admin interface if you want to restrict access to your server.
+
+## Configure ChatGPT Integration
+
+If you wish to run Blawx with ChatGPT integration, which allows for AI-generated summaries of explanations to be displayed
+to the user in the scenario editor, you will need to not use the `./update.sh` command, and instead enter these two commands:
+
+```
+docker build -t blawx .
+docker run -it -p 8000:8000 -e OPENAI_API_KEY="your_key_goes_here" blawx
+```
 
 ## Updating Blawx
 

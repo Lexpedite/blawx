@@ -1510,14 +1510,25 @@
                                 var model_count = j + 1;
                                 var model_heading_name = "answer_" + count + "_model_" + model_count + "_heading";
                                 var model_collapse_name = "answer_" + count + "_model_" + model_count + "_collapse";
+                                
+                            
                                 output_content += '<div class="accordion-item"><h2 class="accordion-header" id="' + model_heading_name + '">';
                                 output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + model_collapse_name + '" aria-expanded="false" aria-controls="' + model_collapse_name + '">';
                                 output_content += 'Explanation #' + model_count;
                                 output_content += '</button></h2>';
                                 output_content += '<div id="' + model_collapse_name + '" class="accordion-collapse collapse" aria-labelledby="' + model_heading_name + '" style="">';
-                                //for (var attribute in models[j]['Residuals']) {
+                                output_content += '<div id="' + model_collapse_name + '_simplified">';
+                                output_content += '</div>';
+                                    //for (var attribute in models[j]['Residuals']) {
                                 //    attributes_output.push(describe_constraint(models[j]['Residuals'][attribute]));
                                 //}
+
+                                output_content += '<div id="' + model_collapse_name + '_detail_header" class="accordian-item"><h3 class="accordian-header">';
+                                output_content += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + model_collapse_name + '_detail_content" aria-expanded="false" aria-controls="' + model_collapse_name + '_detail_content">';
+                                output_content += 'Details';
+                                output_content += '</button></h3>';
+                                output_content += '<div id="' + model_collapse_name + '_detail_content" class="accordian-collapse collapse aria-labelledby="' + model_collapse_name + '_detail_header">';
+
                                 var constraints_output = describe_constraints_new(models[j].Residuals, models[j].Terms);
 
 
@@ -1561,12 +1572,54 @@
                                 //output_content += getNodesFromModel(models[j].Raw);
                                 // output_content += convertModelToParagraphs(models[j].Raw);
                                 output_content += '</div></div>';
+                                output_content += '</div></div>';
 
                             }
                             output_content += '</div></div></div>';
                         }
                         output_content += '</div>';
                         answer_element.innerHTML = output_content;
+
+                        // Now we summarize them
+                        for (var a = 0; a < parsed_test_response['Answers'].length; a++) {
+                            for (var e = 0; e < parsed_test_response['Answers'][a]['Models'].length; e++) {
+                                var target_explanation = document.getElementById("answer_" + (a+1) + "_model_" + (e+1) + "_collapse");
+                                var target_summary = document.getElementById("answer_" + (a+1) + "_model_" + (e+1) + "_collapse_simplified");
+                                var detail_header_name = "answer_" + (a+1) + "_model_" + (e+1) + "_collapse_detail_header";
+                                var detail_content_name = "answer_" + (a+1) + "_model_" + (e+1) + "_collapse_detail_content";
+                                var text_explanation = get_text_of_explanation(target_explanation);
+                                var simplify_request = new XMLHttpRequest();
+                                var warning_text = '<div class="alert alert-warning d-flex align-items-center alert-dismissible fade show" role="alert" id="answer_"' + (a+1) + "_model_" + (e+1) + '_collapse_simplified_warning">';
+                                warning_text += '<i class="bi bi-exclamation-triangle-fill" aria-label="Warning:"></i>';
+                                warning_text += '<div>The following summarization was automatically generated, and may not be accurate. The details below show the actual reasoning.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                                warning_text += '</div>';
+                                simplify_request.onload = function () {
+                                    if (this.responseText != '""') {
+                                        target_summary.innerHTML = warning_text + "Summary: " + this.responseText;
+                                    } else {
+                                        // There was no answer, so there is no summary. The contents of the details should be moved to the explanation part,
+                                        // and the details parts removed.
+                                        
+                                        var detail_header_target = document.getElementById(detail_header_name);
+                                        var detail_content_target = document.getElementById(detail_content_name);
+
+                                        // Get the details content innerHTML
+                                        var explanation = detail_content_target.innerHTML;
+                                        // Set it to the value of the target.
+                                        target_summary.innerHTML = explanation;
+                                        // remove the header and the content elements.
+                                        detail_header_target.remove();
+                                        detail_content_target.remove();
+                                    }
+                                }
+                                simplify_request.open("POST", "{% url 'simplify' %}");
+                                simplify_request.setRequestHeader("Content-Type", "application/json");
+                                target_summary.innerHTML = "Getting AI Summary...";
+                                console.log("Sending simplify request");
+                                simplify_request.setRequestHeader('X-CSRFToken', csrftoken);
+                                simplify_request.send(JSON.stringify({"explanation": text_explanation}));
+                            }
+                        }
 
                         $('#nav-answers-tab').tab('show');
                         draw_facts(); // So that new relevance information will be displayed in the interface.
@@ -1588,6 +1641,19 @@
             testrun_request.setRequestHeader('X-CSRFToken', csrftoken);
             testrun_request.send(JSON.stringify(new_fact_data));
         }
+
+        function get_text_of_explanation(element) {
+            var output = ""
+            if (element.hasChildNodes()) {
+                for (var c = 0; c < element.childNodes.length; c++) {
+                    output += get_text_of_explanation(element.childNodes[c])
+                }
+            } else {
+                output += "\n" + element.data
+            }
+            return output;
+        }
+
         var view_form_element = document.getElementById('viewform');
         function toggle_view_hidden(input) {
             index = hidden_by_view.indexOf(input);
