@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 
 # For adding a version identifier
-BLAWX_VERSION = "v1.6.14-alpha"
+BLAWX_VERSION = "v1.6.15-alpha"
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
