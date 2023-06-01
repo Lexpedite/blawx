@@ -24,6 +24,7 @@
       the toolbox.
 
       A test in the Net 30 example uses the date value block to specify a date like this:
+      
       ![Date Value Example](/static/blawx/docs/images/date_value_filled.png)
       
       ## Understanding Dates

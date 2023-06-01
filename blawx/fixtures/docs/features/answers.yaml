@@ -44,8 +44,6 @@
       scenario editor is better suited for use by subject matter experts for validation, whereas the tree
       structure provided in the test editor may be more appropriate for debugging purposes.
 
-      ![How do we know?](/static/blawx/docs/images/how_do_we_know.png)
-
       In the above example, the explanation might read "socrates is mortal, because socrates is human".
 
       ##  Multiple Answers
