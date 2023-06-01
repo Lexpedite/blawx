@@ -77,7 +77,7 @@
       block can be found in the “Categories” drawer of the toolbox, and looks like
       this:
 
-      ![category attribute block](/static/blawx/docs/images/blocks/attribute_declaration.png)
+      ![attribute declaration binary](/static/blawx/docs/images/new_attribute_declaration_binary.png)
 
       To complete an attribute declaration, you say what category it applies to, give it a name, give it
       a data type, and then describe how it should be phrased in attribute selector blocks and explanations.
