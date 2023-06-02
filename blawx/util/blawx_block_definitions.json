@@ -5118,4 +5118,175 @@
   "colour": 195,
   "tooltip": "Use to set or check the value of a relationship.",
   "helpUrl": "/docs/blocks/relationship_selector/"
+},
+{
+  "type": "interview_phase",
+  "message0": "For phase %1 do %2 %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "phase_name",
+      "text": "default"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "phase_flow"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "agenda",
+  "message0": "Agenda: %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "agenda_steps",
+      "check": "AGENDA_STEP"
+    }
+  ],
+  "colour": 165,
+  "tooltip": "Used to set out a named agenda",
+  "helpUrl": "/docs/blocks/agenda"
+},
+{
+  "type": "agenda_question",
+  "message0": "Ask for between %1 and %2 %3 answers to the question %4 %5",
+  "args0": [
+    {
+      "type": "field_number",
+      "name": "min",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "field_checkbox",
+      "name": "any",
+      "checked": true
+    },
+    {
+      "type": "field_number",
+      "name": "max",
+      "value": 0,
+      "min": 1
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "question",
+      "check": "STATEMENT"
+    }
+  ],
+  "previousStatement": "AGENDA_STEP",
+  "nextStatement": "AGENDA_STEP",
+  "colour": 165,
+  "tooltip": "Creates an agenda step in which a question is posed a number of times.",
+  "helpUrl": "/docs/blocks/agenda_question"
+},
+{
+  "type": "agenda_question_with_loop",
+  "message0": "Ask for between %1 and %2 %3 answers to the question %4 %5 and immediately after each... %6 %7",
+  "args0": [
+    {
+      "type": "field_number",
+      "name": "min",
+      "value": 0,
+      "min": 0
+    },
+    {
+      "type": "field_checkbox",
+      "name": "any",
+      "checked": false
+    },
+    {
+      "type": "field_number",
+      "name": "max",
+      "value": 0,
+      "min": 1
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "question",
+      "check": "STATEMENT"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "agenda_steps",
+      "check": "AGENDA_STEP"
+    }
+  ],
+  "previousStatement": "AGENDA_STEP",
+  "nextStatement": "AGENDA_STEP",
+  "colour": 165,
+  "tooltip": "Used to ask a question and then a set of question about the answer.",
+  "helpUrl": "/docs/blocks/agenda_question_with_loop"
+},
+{
+  "type": "agenda_loop",
+  "message0": "For each answer to %1 %2 do %3 %4",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "question",
+      "check": "STATEMENT"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "agenda_steps",
+      "check": "AGENDA_STEP"
+    }
+  ],
+  "previousStatement": "AGENDA_STEP",
+  "nextStatement": "AGENDA_STEP",
+  "colour": 165,
+  "tooltip": "Use to ask questions for each answer already received.",
+  "helpUrl": "/docs/blocks/agenda_loop"
+},
+{
+  "type": "agenda_phase",
+  "message0": "Phase: %1 %2 %3",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "phase_name",
+      "text": "default"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "agenda_steps",
+      "check": "AGENDA_STEP"
+    }
+  ],
+  "previousStatement": "AGENDA_STEP",
+  "nextStatement": "AGENDA_STEP",
+  "colour": 165,
+  "tooltip": "Use to set out a phase that can be used in the interface.",
+  "helpUrl": "/docs/blocks/agenda_phase"
 }]

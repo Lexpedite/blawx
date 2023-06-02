@@ -11811,4 +11811,442 @@
         <field name="HUE">195</field>
       </block>
     </value>
+  </block><block type="factory_base" id="?5d9*WTO5YZS^.SOv.fs" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">interview_phase</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="$lG3oCYf!0ORMF4v~|pB">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="VaC7^_nWaiYx;P`]Sshc">
+            <field name="TEXT">For phase</field>
+            <next>
+              <block type="field_input" id="/o1)jdI=KCWlZ9R#;ATk">
+                <field name="TEXT">default</field>
+                <field name="FIELDNAME">phase_name</field>
+                <next>
+                  <block type="field_static" id="5td-y1`v2#tO#S([Bkh@">
+                    <field name="TEXT">do</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="]z@}X~FVE8j^.O[6n:zO">
+            <field name="INPUTNAME">phase_flow</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="HGIa^T]@C]}rEi?rg/nH"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="D1+%DZqob3.H1w.b34t(" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="JLacpm-Z!B6!``)c}3I~" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="@(n=W}8~:SVH-`S%WmQe"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="ar)kh.q{96GZn7goW(Jf"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="Vmj?6Jx/xF}k94Lh~$Z^">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="?5d9*WTO5YZS^.SOv.fs" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">agenda</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="}[Y2puz4bf2X)?GP@Cu0">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="33=LO.aF$hld%eA62V9/">
+            <field name="TEXT">Agenda:</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="]z@}X~FVE8j^.O[6n:zO">
+            <field name="INPUTNAME">agenda_steps</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="HGIa^T]@C]}rEi?rg/nH"></shadow>
+              <block type="type_other" id="{o,fkuradjA@p|/r@V-O">
+                <field name="TYPE">AGENDA_STEP</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="D1+%DZqob3.H1w.b34t(" deletable="false" movable="false">
+        <field name="TEXT">Used to set out a named agenda</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="JLacpm-Z!B6!``)c}3I~" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/agenda</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="Vmj?6Jx/xF}k94Lh~$Z^">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="L1S~F,fw]5+XYn@vU!i{" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">agenda_question</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="3-LzRrzacS)~nxg|!%E^">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="+P}U8LE$D0P:*A!SX=#U">
+            <field name="TEXT">Ask for between</field>
+            <next>
+              <block type="field_number" id="@2IBy89=hwfYtPHe~.#*">
+                <field name="VALUE">0</field>
+                <field name="FIELDNAME">min</field>
+                <field name="MIN">0</field>
+                <field name="MAX">Infinity</field>
+                <field name="PRECISION">0</field>
+                <next>
+                  <block type="field_static" id="gdb,UO(m-eh[7bp(]YK5">
+                    <field name="TEXT">and</field>
+                    <next>
+                      <block type="field_checkbox" id=".!(ARM=[7U1U3Wh#Rf[c">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">any</field>
+                        <next>
+                          <block type="field_number" id="r4C]$NBx,%er5N,dXN4R">
+                            <field name="VALUE">0</field>
+                            <field name="FIELDNAME">max</field>
+                            <field name="MIN">1</field>
+                            <field name="MAX">Infinity</field>
+                            <field name="PRECISION">0</field>
+                            <next>
+                              <block type="field_static" id="(D~+_`GmWRd`o-?FePDf">
+                                <field name="TEXT">answers to the question</field>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="Xm)nTIXt$10J+rLJJ9rY">
+            <field name="INPUTNAME">question</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="9XVeHC{Z;4xR!R*}264D"></shadow>
+              <block type="type_other" id="{a)RB8E8w9`uPj.#*hU;">
+                <field name="TYPE">STATEMENT</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="fodP:E=}M}n#WIZ~C)}o" deletable="false" movable="false">
+        <field name="TEXT">Creates an agenda step in which a question is posed a number of times.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ffEULh}N4xp1y?}U)t_F" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/agenda_question</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="G#ps6X#,Uj#nL8U`-Gii"></shadow>
+      <block type="type_other" id=".X9%r{T|o.}2jgvr%?nh">
+        <field name="TYPE">AGENDA_STEP</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="57IwWO9CoUOEhv*a9xZq"></shadow>
+      <block type="type_other" id="_YQ?[[XMmE3jUGKCM3|/">
+        <field name="TYPE">AGENDA_STEP</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="mM{7Pk8e=O8fwq=2#GMq">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="L1S~F,fw]5+XYn@vU!i{" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">agenda_question_with_loop</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="3-LzRrzacS)~nxg|!%E^">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="+P}U8LE$D0P:*A!SX=#U">
+            <field name="TEXT">Ask for between</field>
+            <next>
+              <block type="field_number" id="@2IBy89=hwfYtPHe~.#*">
+                <field name="VALUE">0</field>
+                <field name="FIELDNAME">min</field>
+                <field name="MIN">0</field>
+                <field name="MAX">Infinity</field>
+                <field name="PRECISION">0</field>
+                <next>
+                  <block type="field_static" id="gdb,UO(m-eh[7bp(]YK5">
+                    <field name="TEXT">and</field>
+                    <next>
+                      <block type="field_checkbox" id=".!(ARM=[7U1U3Wh#Rf[c">
+                        <field name="CHECKED">FALSE</field>
+                        <field name="FIELDNAME">any</field>
+                        <next>
+                          <block type="field_number" id="r4C]$NBx,%er5N,dXN4R">
+                            <field name="VALUE">0</field>
+                            <field name="FIELDNAME">max</field>
+                            <field name="MIN">1</field>
+                            <field name="MAX">Infinity</field>
+                            <field name="PRECISION">0</field>
+                            <next>
+                              <block type="field_static" id="(D~+_`GmWRd`o-?FePDf">
+                                <field name="TEXT">answers to the question</field>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="Xm)nTIXt$10J+rLJJ9rY">
+            <field name="INPUTNAME">question</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="9XVeHC{Z;4xR!R*}264D"></shadow>
+              <block type="type_other" id="tlXPj9#]K4ff+qi*w%6e">
+                <field name="TYPE">STATEMENT</field>
+              </block>
+            </value>
+            <next>
+              <block type="input_dummy" id="Wb-HM_?j74?hy?IK`KK{">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="1r~sKNrGo@U:$qD$}[@G">
+                    <field name="TEXT">and immediately after each...</field>
+                  </block>
+                </statement>
+                <next>
+                  <block type="input_statement" id=":ogLiMV#q:.7lgv{m]kB">
+                    <field name="INPUTNAME">agenda_steps</field>
+                    <field name="ALIGN">LEFT</field>
+                    <value name="TYPE">
+                      <shadow type="type_null" id="@O3]!B**2Q/)t[9ZLMo["></shadow>
+                      <block type="type_other" id="1bVzzlO]%J/qrferN_il">
+                        <field name="TYPE">AGENDA_STEP</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="fodP:E=}M}n#WIZ~C)}o" deletable="false" movable="false">
+        <field name="TEXT">Used to ask a question and then a set of question about the answer.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ffEULh}N4xp1y?}U)t_F" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/agenda_question_with_loop</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="G#ps6X#,Uj#nL8U`-Gii"></shadow>
+      <block type="type_other" id="NOvL-=rr)}32ck#5getS">
+        <field name="TYPE">AGENDA_STEP</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="57IwWO9CoUOEhv*a9xZq"></shadow>
+      <block type="type_other" id="Z?m;sO3fWPS!Lcb3+-P0">
+        <field name="TYPE">AGENDA_STEP</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="mM{7Pk8e=O8fwq=2#GMq">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="L1S~F,fw]5+XYn@vU!i{" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">agenda_loop</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="3-LzRrzacS)~nxg|!%E^">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="+P}U8LE$D0P:*A!SX=#U">
+            <field name="TEXT">For each answer to</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="Xm)nTIXt$10J+rLJJ9rY">
+            <field name="INPUTNAME">question</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="9XVeHC{Z;4xR!R*}264D"></shadow>
+              <block type="type_other" id="W}E5FJ^o/iT[8f)#EqEN">
+                <field name="TYPE">STATEMENT</field>
+              </block>
+            </value>
+            <next>
+              <block type="input_dummy" id="Wb-HM_?j74?hy?IK`KK{">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="1r~sKNrGo@U:$qD$}[@G">
+                    <field name="TEXT">do</field>
+                  </block>
+                </statement>
+                <next>
+                  <block type="input_statement" id=":ogLiMV#q:.7lgv{m]kB">
+                    <field name="INPUTNAME">agenda_steps</field>
+                    <field name="ALIGN">LEFT</field>
+                    <value name="TYPE">
+                      <shadow type="type_null" id="@O3]!B**2Q/)t[9ZLMo["></shadow>
+                      <block type="type_other" id="8!is`{Yf?~_I%N/PPh@I">
+                        <field name="TYPE">AGENDA_STEP</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="fodP:E=}M}n#WIZ~C)}o" deletable="false" movable="false">
+        <field name="TEXT">Use to ask questions for each answer already received.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ffEULh}N4xp1y?}U)t_F" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/agenda_loop</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="G#ps6X#,Uj#nL8U`-Gii"></shadow>
+      <block type="type_other" id="$eo=~j!j2`=Z-~oXp@UG">
+        <field name="TYPE">AGENDA_STEP</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="57IwWO9CoUOEhv*a9xZq"></shadow>
+      <block type="type_other" id="`1O|_.*I^hE?1c`oQCT|">
+        <field name="TYPE">AGENDA_STEP</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="mM{7Pk8e=O8fwq=2#GMq">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="?5d9*WTO5YZS^.SOv.fs" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">agenda_phase</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="$lG3oCYf!0ORMF4v~|pB">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="VaC7^_nWaiYx;P`]Sshc">
+            <field name="TEXT">Phase:</field>
+            <next>
+              <block type="field_input" id="/o1)jdI=KCWlZ9R#;ATk">
+                <field name="TEXT">default</field>
+                <field name="FIELDNAME">phase_name</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="]z@}X~FVE8j^.O[6n:zO">
+            <field name="INPUTNAME">agenda_steps</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="HGIa^T]@C]}rEi?rg/nH"></shadow>
+              <block type="type_other" id="%CHT#_ci6XHIrS#qtV[;">
+                <field name="TYPE">AGENDA_STEP</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="D1+%DZqob3.H1w.b34t(" deletable="false" movable="false">
+        <field name="TEXT">Use to set out a phase that can be used in the interface.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="JLacpm-Z!B6!``)c}3I~" deletable="false" movable="false">
+        <field name="TEXT">/docs/blocks/agenda_phase</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="@(n=W}8~:SVH-`S%WmQe"></shadow>
+      <block type="type_other" id="5K6;~DmDIzceyA_y6=qa">
+        <field name="TYPE">AGENDA_STEP</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="ar)kh.q{96GZn7goW(Jf"></shadow>
+      <block type="type_other" id="is$HUVXL9{XLAHSD5mE?">
+        <field name="TYPE">AGENDA_STEP</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="Vmj?6Jx/xF}k94Lh~$Z^">
+        <mutation colour="#5ba593"></mutation>
+        <field name="HUE">165</field>
+      </block>
+    </value>
   </block></xml>
