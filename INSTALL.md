@@ -86,3 +86,4 @@ Steps for deploying will include:
 * configuring nginx or another proxy server to directly serve static files
 * configuring TLS
 * replacing the manage.py runserver with a production WSGI web server
+* replacing the CORS configuration (which is open by default) with a whitelist
