@@ -7,6 +7,16 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## For Agendas
+
+### Todo
+* Create a specific toolbox for the agenda code screen.
+* add code generation for agenda blocks
+* Add the new blockly interface with the new toolbox to the agenda code screen.
+* Make it so that saving the test saves the agenda, too.
+* figure out some way to make the agenda available over API.
+* go from there.
+
 ## [v1.6.15-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.15-alpha) 2023-05-23
 
 ### Added
