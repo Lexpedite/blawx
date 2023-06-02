@@ -12,7 +12,7 @@ class RuleDocAdmin(GuardedModelAdmin):
     fields = ['ruledoc_name','scasp_encoding','tutorial','akoma_ntoso','rule_text','navtree','owner','published']
 
 class BlawxTestAdmin(GuardedModelAdmin):
-    fields = ['ruledoc','test_name','xml_content','scasp_encoding', 'tutorial', 'view', 'fact_scenario']
+    fields = ['ruledoc','test_name','xml_content','scasp_encoding', 'tutorial', 'view', 'fact_scenario', 'agenda_code', 'agenda_yaml']
 
 
 admin.site.register(BlawxPreference, PreferencesAdmin)

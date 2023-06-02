@@ -54,6 +54,8 @@ class BlawxTest(models.Model):
     tutorial = models.TextField(default="",blank=True)
     view = models.TextField(default="",blank=True)
     fact_scenario = models.TextField(default="",blank=True)
+    agenda_code = models.TextField(default="",blank=True)
+    agenda_yaml = models.TextField(default="",blank=True)
 
     def __str__(self):
         return self.test_name
