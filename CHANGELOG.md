@@ -9,13 +9,29 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ## For Agendas
 
+### Added
+* An "Agenda" tab has been added to the test editor with a block-based language for specifying expert system agendas
+
+
 ### Todo
-* Create a specific toolbox for the agenda code screen.
+* Fix the colour of the Agenda category
+* fix the availability of knownCategories inside the agenda screen (set the listeners to update, or whatever)
+  * simply adding the listener doesn't work, because the listener is using the name of the specific workspace that it is
+    updating. If I'm going to have multiple different workspaces re-using the same listener functions, I need to parameterize it
+    by the specific workspace. This is probably true of the drawers, too, because the code for adding the callback functions is inside
+    the drawers.js, when it should be somewhere else that is specific to the specific editor that is being generated.
 * add code generation for agenda blocks
-* Add the new blockly interface with the new toolbox to the agenda code screen.
-* Make it so that saving the test saves the agenda, too.
-* figure out some way to make the agenda available over API.
-* go from there.
+* make "any" work in the question blocks
+* make there be an agenda block by default that can't be removed
+* remove the agenda block from the agenda drawer
+* remove stuff from the agendaToolbox that doesn't need to be there
+* Make it so that saving the test saves the agenda, too
+* figure out some way to make the agenda available over API
+* update the documentation
+  * update test editor information
+  * add feature page for agendas
+  * add block pages for agenda blocks
+* go from there
 
 ## [v1.6.15-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.15-alpha) 2023-05-23
 

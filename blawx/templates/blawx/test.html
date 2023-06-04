@@ -122,11 +122,20 @@
     <script src="{% static 'blawx/scasp_generator.js' %}"></script>
     <script src="{% static 'blawx/buttons.js' %}"></script>
     <script>
+      
+
             var blocklyArea = document.getElementById('blocklyArea');
+            var agendaArea = document.getElementById('agendaArea');
             var blocklyDiv = document.getElementById('blocklyDiv');
+            var agendaDiv = document.getElementById('agendaDiv');
             var demoWorkspace = Blockly.inject(blocklyDiv,
                 {media: "{% static 'blawx/blockly/media/' %}",
                 toolbox: document.getElementById('toolbox'),
+                {% if not 'change_blawxtest' in blawxtest_perms %}readOnly: true,scrollbars: true,{% endif %}
+                });
+            var agendaWorkspace = Blockly.inject(agendaDiv,
+                {media: "{% static 'blawx/blockly/media/' %}",
+                toolbox: document.getElementById('agendaToolbox'),
                 {% if not 'change_blawxtest' in blawxtest_perms %}readOnly: true,scrollbars: true,{% endif %}
                 });
             var importWorkspace = new Blockly.Workspace();
@@ -138,10 +147,17 @@
                 blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
                 blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
                 Blockly.svgResize(demoWorkspace);
+                agendaDiv.style.left = agendaArea.offsetLeft + 'px';
+                agendaDiv.style.top = agendaArea.offsetTop + 'px';
+                agendaDiv.style.width = agendaArea.offsetWidth + 'px';
+                agendaDiv.style.height = agendaArea.offsetHeight + 'px';
+                Blockly.svgResize(agendaWorkspace);
             };
             var myob = new ResizeObserver(onresize);
             myob.observe(blocklyArea);
+            myob.observe(agendaArea);
             Blockly.svgResize(demoWorkspace);
+            Blockly.svgResize(agendaWorkspace);
             var blawxTestID = '{{ blawxtest.test_name}}';
             var blawxTestRulePK = {{ blawxtest.ruledoc.pk }};
             var workspace_is_test = true;
@@ -160,6 +176,7 @@
             
             demoWorkspace.addChangeListener(onCategoryChange);
             demoWorkspace.addChangeListener(updateRelationshipDeclaration);
+            agendaWorkspace.addChangeListener(onCategoryChange);
             var knownCategories = [];
             var localCategories = [];
             window.onload = function() {
@@ -177,6 +194,12 @@
         <script src="{% static 'blawx/blawx2scasp.js' %}"></script>
         <script src="{% static 'blawx/context_menus.js' %}"></script>
         <script>
+            
+          agendaWorkspace.registerToolboxCategoryCallback('KNOWN_ATTRIBUTES', knownAttributesCallback);
+          agendaWorkspace.registerToolboxCategoryCallback('KNOWN_RELATIONSHIPS', knownRelationshipsCallback);
+          agendaWorkspace.registerToolboxCategoryCallback('KNOWN_OBJECTS', knownObjectsCallback);
+          agendaWorkspace.registerToolboxCategoryCallback('KNOWN_CATEGORIES', knownCategoriesCallback);
+          agendaWorkspace.registerToolboxCategoryCallback('NEW_OBJECTS', newObjectCallback);
             function duplicate_test() {
                 var payload = {};
                 new_name_element = document.getElementById('saveAsNewName');
