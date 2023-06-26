@@ -7,6 +7,20 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+
+## [v1.6.16-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.16-alpha) 2023-06-26
+
+`.blawx` files created in previous versions will work with this version, but **please note that the majority of URLs are now different**.
+
+### Added
+* Projects now have a path slug based on their name, which must be unique per user. The slug can be changed in the admin interface.
+
+### Changed
+* All URLS that previously began with `/{rule_id}/` now start with `/{owner}/{rule_slug}/`
+  For example `/1/test/who_won` would now be `/jason/rock-paper-scissors-act/test/who_won`.
+  This is intended to give some predictability to the location of the API endpoints for a loaded `.blawx` file to simplify development using
+  Blawx as a legal reasoner.
+
 ## [v1.6.15-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.15-alpha) 2023-05-23
 
 ### Added
@@ -14,9 +28,6 @@ and breaking changes will not necessarily result in changes to the main version 
 
 ### Changed
 * Disclaimer has been added to the GCWeb styled version of the scenario editor.
-
-### TODO
-* Update the documentation for the scenario editor.
 
 ## [v1.6.14-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.14-alpha) 2023-05-12
 
