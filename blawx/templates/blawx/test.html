@@ -7,7 +7,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><i class="bi bi-house pe-2"></i><a href="/">Home</a></li>
-      <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' blawxtest.ruledoc.id %}">{{ blawxtest.ruledoc.ruledoc_name }}</a></li>
+      <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug %}">{{ blawxtest.ruledoc.ruledoc_name }}</a></li>
         <li class="breadcrumb-item"><i class="bi bi-clipboard-check pe-2"></i>{{ blawxtest.test_name }}</li>
     </ul>
 </nav>
@@ -45,7 +45,7 @@
             <li><a href="javascript:void(0);" class="dropdown-item {% if 'change_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'change_blawxtest' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="updateBlawxTest()"><i class="bi bi-save pe-2"></i>Save</a></li>
             <li><a class="dropdown-item {% if 'add_blawxtest_to_ruledoc' not in ruledoc_perms %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#saveAsModal" {% if 'add_blawxtest_to_ruledoc' not in ruledoc_perms %}aria-disabled="true" {% endif %}href="javascript:void(0);"><i class="bi bi-save pe-2"></i>Save as...</a></li>
             <li><a href="javascript:void(0);" class="dropdown-item {% if 'run' not in blawxtest_perms %}disabled{% endif %}" {% if 'run' not in blawxtest_perms %}aria-disabled="true" {% endif %}onclick="runCode()"><i class="bi bi-play pe-2"></i>Run</a></li>
-            <li><a href="{% url 'scenario_editor' blawxtest.ruledoc.pk blawxtest %}" class="dropdown-item {% if 'run' not in blawxtest_perms %}disabled{% endif %}" {% if 'run' not in blawxtest_perms %}aria-disabled="true" {% endif %}><i class="bi bi-ui-checks pe-2"></i>Scenario Editor</a></li>
+            <li><a href="{% url 'scenario_editor' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug blawxtest %}" class="dropdown-item {% if 'run' not in blawxtest_perms %}disabled{% endif %}" {% if 'run' not in blawxtest_perms %}aria-disabled="true" {% endif %}><i class="bi bi-ui-checks pe-2"></i>Scenario Editor</a></li>
             <li><a href="delete/" class="dropdown-item {% if 'delete_blawxtest' not in blawxtest_perms %}disabled{% endif %}" {% if 'delete_blawxtest' not in blawxtest_perms %}aria-disabled="true"{% endif %}><i class="bi bi-trash pe-2"></i>Delete</a></li>
           </ul>
           <div class="modal fade" id="saveAsModal" tabindex="-1" aria-labelledby="saveAsModalLabel" aria-hidden="true">
@@ -174,7 +174,7 @@
                     console.log("Request to Duplicate Test Sent");
                 }
                 new_name_element.value = "";
-                duplicate_test_request.open("POST", "{% url 'duplicate_test' blawxtest.ruledoc.id blawxtest %}");
+                duplicate_test_request.open("POST", "{% url 'duplicate_test' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug blawxtest %}");
                 duplicate_test_request.setRequestHeader("Content-Type", "application/json");
                 console.log("Requesting Duplicate Test");
                 duplicate_test_request.setRequestHeader('X-CSRFToken', csrftoken);

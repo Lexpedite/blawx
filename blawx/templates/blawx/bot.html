@@ -113,7 +113,7 @@
                     </svg>
                     <span class="text">Help</span>
                 </a>
-                <a href="{% url 'test' blawxtest.ruledoc.id blawxtest %}" class="btn btn-secondary">
+                <a href="{% url 'test' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug blawxtest %}" class="btn btn-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-x-square" viewBox="0 0 16 16">
                         <path
@@ -532,7 +532,7 @@
                     return;
                 }
             }
-            interview_request.open("POST", "{% url 'test_interview' blawxtest.ruledoc.id blawxtest %}");
+            interview_request.open("POST", "{% url 'test_interview' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug blawxtest %}");
             interview_request.setRequestHeader("Content-Type", "application/json");
             console.log("Sending interview request")
             interview_request.setRequestHeader('X-CSRFToken', csrftoken);
@@ -686,7 +686,7 @@
             test_fact_element.innerHTML = output_html;
 
         }
-        ontology_request.open("GET", "{% url 'test_onto' blawxtest.ruledoc.id blawxtest %}", false); // This is asynchronous because the interview request doesn't work until we have the ontology.
+        ontology_request.open("GET", "{% url 'test_onto' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug blawxtest %}", false); // This is asynchronous because the interview request doesn't work until we have the ontology.
         ontology_request.setRequestHeader('X-CSRFToken', csrftoken);
         ontology_request.send();
 
