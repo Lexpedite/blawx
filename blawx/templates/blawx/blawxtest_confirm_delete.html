@@ -4,8 +4,8 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><i class="bi bi-house pe-2"></i><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' blawxtest.ruledoc.id %}">{{ blawxtest.ruledoc.ruledoc_name }}</a></li>
-        <li class="breadcrumb-item"><i class="bi bi-clipboard-check pe-2"></i><a href="{% url 'test' blawxtest.ruledoc.id  blawxtest.test_name%}">{{ blawxtest.test_name }}</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug %}">{{ blawxtest.ruledoc.ruledoc_name }}</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-clipboard-check pe-2"></i><a href="{% url 'test' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug  blawxtest.test_name%}">{{ blawxtest.test_name }}</a></li>
         <li class="breadcrumb-item"><i class="bi bi-pencil-square pe-2"></i>Test Confirm Delete</li>
     </ul>
 </nav>

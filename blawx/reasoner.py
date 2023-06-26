@@ -1,4 +1,5 @@
 from django.http import Http404, HttpResponseNotFound, HttpResponseForbidden
+from django.contrib.auth.models import User
 
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
@@ -85,9 +86,9 @@ def convertVariables(param):
   else:
     return param
 
-def even_newer_json_2_scasp(payload,ruledoc,testname):
+def even_newer_json_2_scasp(payload,user,rule,testname):
   output = ""
-  ontology = get_ontology_internal(ruledoc,testname)
+  ontology = get_ontology_internal(user,rule,testname)
   # Basically, we need to know what the predicate is, what the parameters are, whether the parameters have category types, and if they are variables.
   # So get the predicate, look up the typing, modify for negation if required, and generate the fact, testing for categories if required.
 
@@ -469,17 +470,18 @@ def format_statement_value(value,attribute_type):
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([AllowAny])
-def run_test(request,ruledoc,test_name):
+def run_test(request,user,rule,test_name):
     # Get the data (test, facts, and workspaces)
     # ruledoctest = RuleDoc.objects.filter(pk=ruledoc,owner=request.user)
-    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    owner = User.objects.get(username=user)
+    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),test_name=test_name)
     if request.user.has_perm('blawx.run',test):
       translated_facts = ""
       if request.data:
-        translated_facts = even_newer_json_2_scasp(request.data,ruledoc,test_name)
+        translated_facts = even_newer_json_2_scasp(request.data,user,rule,test_name)
         # print("Facts Generated for Run Request:\n")
         # print(translated_facts)
-      wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
+      wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner))
       ruleset = ""
       # for ws in wss:
       #   ruleset += "\n\n" + ws.scasp_encoding
@@ -633,9 +635,10 @@ blawxrun(Query, Human, Tree, Model) :-
     else:
       return HttpResponseForbidden()
 
-def get_ontology_internal(ruledoc,test_name):
-    wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
-    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+def get_ontology_internal(user,rule,test_name):
+    owner = User.objects.get(username=user)
+    wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner))
+    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),test_name=test_name)
     ruleset = ""
     for ws in wss:
       ruleset += "\n\n" + ws.scasp_encoding
@@ -1011,11 +1014,12 @@ blawxrun(Query, Human) :-
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def get_ontology(request,ruledoc,test_name):
-    ruledoctest = RuleDoc.objects.get(pk=ruledoc)
+def get_ontology(request,user,rule,test_name):
+    owner = User.objects.get(username=user)
+    ruledoctest = RuleDoc.objects.get(rule_slug=rule,owner=owner)
     if request.user.has_perm('blawx.view_ruledoc',ruledoctest):
-      test = BlawxTest.objects.get(ruledoc=ruledoc,test_name=test_name)
-      result = get_ontology_internal(ruledoc,test_name)
+      test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),test_name=test_name)
+      result = get_ontology_internal(user,rule,test_name)
       if test.view == "":
         result['View'] = test.view
       else:
@@ -1041,9 +1045,10 @@ def simplify_rule(rule):
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([AllowAny])
-def interview(request,ruledoc,test_name):
+def interview(request,user,rule,test_name):
     #print("Dealing with interview request.\n")
-    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+    owner = User.objects.get(username=user)
+    test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),test_name=test_name)
     if request.user.has_perm('blawx.run',test):
       
       
@@ -1167,10 +1172,11 @@ def interview(request,ruledoc,test_name):
       # Effectively, we're going to start over.
       translated_facts = ""
       if request.data:
-        translated_facts = even_newer_json_2_scasp(request.data, ruledoc, test_name) #Generate answers INCLUDING assumptions in the submitted data
+        translated_facts = even_newer_json_2_scasp(request.data, user, rule, test_name) #Generate answers INCLUDING assumptions in the submitted data
       
-      wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=ruledoc))
-      test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+      owner = User.objects.get(username=user)
+      wss = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner))
+      test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),test_name=test_name)
       ruleset = ""
       unique_rules = []
       for ws in wss:
