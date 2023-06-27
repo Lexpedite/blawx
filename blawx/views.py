@@ -6,9 +6,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.core import serializers
 from django.http import FileResponse, HttpResponse, HttpResponseForbidden, HttpResponseNotFound, HttpResponseRedirect, HttpResponseNotAllowed
-from django.shortcuts import  render, redirect
+from django.shortcuts import  render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 # from rest_framework import viewsets, permissions
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
@@ -66,20 +67,27 @@ class RuleDocView(PermissionRequiredMixin, generic.DetailView):
     template_name = 'blawx/ruledoc.html'
     model = RuleDoc
 
+    def get_object(self, queryset=None):
+        user = get_object_or_404(User, username=self.kwargs['user'])
+        return get_object_or_404(RuleDoc, rule_slug=self.kwargs['rule'], owner=user)
+
     def get_queryset(self):
-        return RuleDoc.objects.filter(pk=self.kwargs['pk'])
+        user = User.objects.get(username=self.kwargs['user'])
+        return RuleDoc.objects.filter(rule_slug=self.kwargs['rule'],owner=user)
       
     def get_context_data(self, **kwargs):
         context = super(RuleDocView, self).get_context_data(**kwargs)
-        context['tests'] = BlawxTest.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']))
+        user = User.objects.get(username=self.kwargs['user'])
+        context['tests'] = BlawxTest.objects.filter(ruledoc=RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user))
         context['ruledoc_list'] = RuleDoc.objects.all()
         return context
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def ruleDocLegalTextView(request,pk,section_name):
-    ruledoc=RuleDoc.objects.get(pk=pk)
+def ruleDocLegalTextView(request,user,rule,section_name):
+    owner = User.objects.get(username=user)
+    ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner)
     if request.user.has_perm('blawx.view_ruledoc',ruledoc):
         cobalt_parse = Act(ruledoc.akoma_ntoso)
         if section_name != "root":
@@ -94,20 +102,21 @@ def ruleDocLegalTextView(request,pk,section_name):
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def ruleDocExportView(request,pk):
-    ruledoc = RuleDoc.objects.get(pk=pk)
+def ruleDocExportView(request,user,rule):
+    owner = User.objects.get(username=user)
+    ruledoc = RuleDoc.objects.get(rule_slug=rule,owner=owner)
     if request.user.has_perm('blawx.view_ruledoc',ruledoc):
-        download = tempfile.NamedTemporaryFile('w',delete=False,prefix="blawx_rule_" + str(pk) + "_")
+        download = tempfile.NamedTemporaryFile('w',delete=False,prefix=user + "_" + rule + "_")
         download_filename = download.name
-        download.write(serializers.serialize('yaml',RuleDoc.objects.filter(pk=pk)))
-        sections = Workspace.objects.filter(ruledoc=pk)
+        download.write(serializers.serialize('yaml',RuleDoc.objects.filter(rule_slug=rule,owner=owner)))
+        sections = Workspace.objects.filter(ruledoc=ruledoc)
         if len(sections):
             download.write(serializers.serialize('yaml',sections))
-        tests = BlawxTest.objects.filter(ruledoc=pk)
+        tests = BlawxTest.objects.filter(ruledoc=ruledoc)
         if len(tests):
             download.write(serializers.serialize('yaml',tests))
         download.close()
-        response = FileResponse(open(download_filename,'rb'),as_attachment=True,filename="blawx_rule_" + str(pk) + ".blawx")
+        response = FileResponse(open(download_filename,'rb'),as_attachment=True,filename=user + "_" + rule + ".blawx")
         return response
     else:
         return HttpResponseForbidden()
@@ -176,12 +185,18 @@ class BlawxView(PermissionRequiredMixin, generic.DetailView):
     template_name = 'blawx/blawx.html'
     model = RuleDoc
 
+    def get_object(self, queryset=None):
+        user = get_object_or_404(User, username=self.kwargs['user'])
+        return get_object_or_404(RuleDoc, rule_slug=self.kwargs['rule'], owner=user)
+
     def get_queryset(self):
-        return RuleDoc.objects.filter(pk=self.kwargs['pk'])
+         user = User.objects.get(username=self.kwargs['user'])
+         return RuleDoc.objects.filter(rule_slug=self.kwargs['rule'],owner=user)
     
     def get_context_data(self, **kwargs):
         context = super(BlawxView, self).get_context_data(**kwargs)
-        context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']))
+        user = User.objects.get(username=self.kwargs['user'])
+        context['workspaces'] = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user))
         context['ruledoc_list'] = RuleDoc.objects.all()
         return context
 
@@ -191,7 +206,8 @@ class TestView(PermissionRequiredMixin, generic.DetailView):
     model = BlawxTest
 
     def get_object(self):
-        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['pk']),test_name=self.kwargs['test_name'])
+        user = User.objects.get(username=self.kwargs['user'])
+        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user),test_name=self.kwargs['test_name'])
     
     def get_context_data(self, **kwargs):
         context = super(TestView, self).get_context_data(**kwargs)
@@ -204,7 +220,8 @@ class BlawxBot(PermissionRequiredMixin, generic.DetailView):
     model = BlawxTest
 
     def get_object(self):
-        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
+        user = User.objects.get(username=user)
+        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user),test_name=self.kwargs['test_name'])
 
 class ScenarioEditor(PermissionRequiredMixin, generic.DetailView):
     permission_required = "blawx.view_blawxtest"
@@ -212,7 +229,8 @@ class ScenarioEditor(PermissionRequiredMixin, generic.DetailView):
     model = BlawxTest
 
     def get_object(self):
-        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
+        user = User.objects.get(username=self.kwargs['user'])
+        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user),test_name=self.kwargs['test_name'])
     
     def get_context_data(self, **kwargs):
         context = super(ScenarioEditor, self).get_context_data(**kwargs)
@@ -225,7 +243,8 @@ class ScenarioEditorGCWeb(PermissionRequiredMixin, generic.DetailView):
     model = BlawxTest
 
     def get_object(self):
-        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=self.kwargs['ruledoc']),test_name=self.kwargs['test_name'])
+        user = User.objects.get(username=self.kwargs['user'])
+        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user),test_name=self.kwargs['test_name'])
     
     def get_context_data(self, **kwargs):
         context = super(ScenarioEditorGCWeb, self).get_context_data(**kwargs)
@@ -239,32 +258,42 @@ class TestCreateView(PermissionRequiredMixin, CreateView):
     fields = ['test_name']
     
     def get_success_url(self):
-        return reverse_lazy('ruledoc', args=(self.kwargs['pk'],))
+        user = User.objects.get(username=self.kwargs['user'])
+        return reverse_lazy('ruledoc', args=(user,self.kwargs['rule'],))
     
     def form_valid(self, form):
-        form.instance.ruledoc = RuleDoc.objects.get(pk=self.kwargs['pk'])
+        user = User.objects.get(username=self.kwargs['user'])
+        form.instance.ruledoc = RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user)
         return super().form_valid(form)
     
     # In this case we are not checking for permissions on the object being created, but it's container.
     def get_object(self):
-        return RuleDoc.objects.get(pk=self.kwargs['pk'])
+        user = User.objects.get(username=self.kwargs['user'])
+        return RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user)
     
     def get_context_data(self, **kwargs):
         context = super(TestCreateView, self).get_context_data(**kwargs)
+        user = User.objects.get(username=self.kwargs['user'])
         context['ruledoc_list'] = RuleDoc.objects.all()
-        context['ruledoc'] = RuleDoc.objects.get(pk=self.kwargs['pk'])
+        context['ruledoc'] = RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user)
         return context
 
 class TestDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = "blawx.delete_blawxtest"
     model = BlawxTest
 
+    def get_object(self):
+        user = User.objects.get(username=self.kwargs['user'])
+        return BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user),test_name=self.kwargs['test_name'])
+
     def get_success_url(self):
-        return reverse_lazy('ruledoc', args=(self.kwargs['pk'],))
+        user = User.objects.get(username=self.kwargs['user'])
+        return reverse_lazy('ruledoc', args=(user,self.kwargs['rule'],))
     
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
-        target = RuleDoc.objects.get(pk=self.kwargs['pk'])
+        user = User.objects.get(username=self.kwargs['user'])
+        target = RuleDoc.objects.get(rule_slug=self.kwargs['rule'],owner=user)
         if target.owner != self.request.user:
             return redirect(self.success_url) # This is sub-optimal.
         return super().post(request, *args, **kwargs)
@@ -298,6 +327,9 @@ class RuleDocDeleteView(PermissionRequiredMixin, DeleteView):
     model = RuleDoc
     success_url = reverse_lazy('ruledocs')
 
+    def get_object(self, queryset=None):
+        user = get_object_or_404(User, username=self.kwargs['user'])
+        return get_object_or_404(RuleDoc, rule_slug=self.kwargs['rule'], owner=user)
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -315,8 +347,13 @@ class RuleDocEditView(PermissionRequiredMixin, UpdateView):
     model = RuleDoc
     fields = ['ruledoc_name','rule_text','published']
 
+    def get_object(self, queryset=None):
+        user = get_object_or_404(User, username=self.kwargs['user'])
+        return get_object_or_404(RuleDoc, rule_slug=self.kwargs['rule'], owner=user)
+
     def get_success_url(self):
-        return reverse_lazy('ruledoc', args=(self.kwargs['pk'],))
+        user = User.objects.get(username=self.kwargs['user'])
+        return reverse_lazy('ruledoc', args=(user,self.kwargs['rule'],))
     
     def get_context_data(self, **kwargs):
         context = super(RuleDocEditView, self).get_context_data(**kwargs)
@@ -338,8 +375,9 @@ class DocumentView(generic.DetailView):
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def update_code(request,pk,workspace):
-    target = Workspace.objects.get(ruledoc=pk,workspace_name=workspace)
+def update_code(request,user,rule,workspace):
+    owner = User.objects.get(username=user)
+    target = Workspace.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),workspace_name=workspace)
     if request.user.has_perm('blawx.change_workspace',target):
         workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
         workspace_serializer.is_valid()
@@ -354,8 +392,9 @@ def update_code(request,pk,workspace):
 @api_view(['POST','GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def get_code(request,pk,workspace):
-    ruledoctest = RuleDoc.objects.get(pk=pk)
+def get_code(request,user,rule,workspace):
+    owner = User.objects.get(username=user)
+    ruledoctest = RuleDoc.objects.get(rule_slug=rule,owner=owner)
     target = Workspace.objects.filter(ruledoc=ruledoctest,workspace_name=workspace)
     if (len(target) and request.user.has_perm('blawx.view_workspace',target[0])) or (not len(target) and request.user.has_perm('blawx.add_workspace_to_ruledoc',ruledoctest)):
         (workspace, created) = Workspace.objects.get_or_create(ruledoc=ruledoctest,workspace_name=workspace)
@@ -366,8 +405,9 @@ def get_code(request,pk,workspace):
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def get_all_code(request,pk):
-    workspaces = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(pk=pk))
+def get_all_code(request,user,rule):
+    owner = User.objects.get(username=user)
+    workspaces = Workspace.objects.filter(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner))
     output = []
     for w in workspaces:
         if request.user.has_perm('blawx.view_workspace',w):
@@ -385,8 +425,9 @@ def version(request):
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def update_test(request,ruledoc,test_name):
-    target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+def update_test(request,user,rule,test_name):
+    owner = User.objects.get(username=user)
+    target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),test_name=test_name)
     if request.user.has_perm('blawx.change_blawxtest',target):
         workspace_serializer = CodeUpdateRequestSerializer(data=request.data)
         workspace_serializer.is_valid()
@@ -400,8 +441,9 @@ def update_test(request,ruledoc,test_name):
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def update_test_view(request,ruledoc,test_name):
-    target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+def update_test_view(request,user,rule,test_name):
+    owner = User.objects.get(username=user)
+    target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),test_name=test_name)
     if request.user.has_perm('blawx.change_blawxtest',target):
         test_view_serializer = TestViewUpdateRequestSerializer(data=request.data)
         test_view_serializer.is_valid()
@@ -414,8 +456,9 @@ def update_test_view(request,ruledoc,test_name):
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def save_fact_scenario(request,ruledoc,test_name):
-    target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+def save_fact_scenario(request,user,rule,test_name):
+    owner = User.objects.get(username=user)
+    target = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),test_name=test_name)
     if request.user.has_perm('blawx.change_blawxtest',target):
         save_facts_serializer = SaveFactsRequestSerializer(data=request.data)
         save_facts_serializer.is_valid()
@@ -428,9 +471,10 @@ def save_fact_scenario(request,ruledoc,test_name):
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def duplicate_test(request,ruledoc,test_name):
-    target_test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
-    target_rule = RuleDoc.objects.get(pk=ruledoc)
+def duplicate_test(request,user,rule,test_name):
+    owner = User.objects.get(username=user)
+    target_test = BlawxTest.objects.get(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),test_name=test_name)
+    target_rule = RuleDoc.objects.get(rule_slug=rule,owner=owner)
     if request.user.has_perm("blawx.add_blawxtest_to_ruledoc",target_rule):
         # Create a new test from the existing one, use the request.data['new_test_name'], and save it.
         target_test.pk = None
@@ -444,13 +488,14 @@ def duplicate_test(request,ruledoc,test_name):
 @api_view(['POST','GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
-def get_test(request,ruledoc,test_name):
-    ruledoctest = RuleDoc.objects.get(pk=ruledoc)
+def get_test(request,user,rule,test_name):
+    owner = User.objects.get(username=user)
+    ruledoctest = RuleDoc.objects.get(rule_slug=rule,owner=owner)
     # Checking permissions here is weird. If it already exists, I need to check if they can change it.
     # If it doesn't exist, I need to check if they can add one.
     target = BlawxTest.objects.filter(ruledoc=ruledoctest,test_name=test_name)
     if (len(target) and request.user.has_perm('blawx.view_blawxtest',target[0])) or (not len(target) and request.user.has_perm('blawx.add_blawxtest_to_ruldoc',ruledoctest)):
-        (test, created) = BlawxTest.objects.get_or_create(ruledoc=RuleDoc.objects.get(pk=ruledoc),test_name=test_name)
+        (test, created) = BlawxTest.objects.get_or_create(ruledoc=RuleDoc.objects.get(rule_slug=rule,owner=owner),test_name=test_name)
         return Response({"xml_content": test.xml_content})
     else:
         return HttpResponseForbidden()

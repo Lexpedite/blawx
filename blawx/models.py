@@ -6,11 +6,13 @@ from .parse_an import generate_tree
 from cobalt.hierarchical import Act
 from clean.clean import generate_akn
 from preferences.models import Preferences
+from django.utils.text import slugify
 
 # Create your models here.
 class RuleDoc(models.Model):
     ruledoc_name = models.CharField(max_length=200)
     rule_text = models.TextField(default="Default Act")
+    rule_slug = models.TextField()
     akoma_ntoso = models.TextField(default="",blank=True)
     navtree = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
@@ -22,6 +24,9 @@ class RuleDoc(models.Model):
         return self.ruledoc_name
 
     class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['rule_slug','owner'],name='unique_owner_and_rule_slug')
+        ]
         permissions = [
             ('add_blawxtest_to_ruledoc', 'Can add Test to RuleDoc'),
             ('add_workspace_to_ruledoc', 'Can add Workspace to RuleDoc'),
@@ -31,6 +36,7 @@ class RuleDoc(models.Model):
 def update_an_nav(sender, instance, **kwargs):
     instance.akoma_ntoso = generate_akn(instance.rule_text)
     instance.navtree = generate_tree(Act(instance.akoma_ntoso).act)
+    instance.rule_slug = slugify(instance.ruledoc_name)
 
 class Workspace(models.Model):
     ruledoc = models.ForeignKey(RuleDoc, related_name='workspaces', on_delete=models.CASCADE)

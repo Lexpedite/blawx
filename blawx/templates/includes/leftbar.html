@@ -42,7 +42,7 @@
             <ul>
                 {% for ruledoc in ruledoc_list %}
                 {% if user == ruledoc.owner %}    
-                    <li><a href="{% url 'ruledoc' ruledoc.id %}">{{ ruledoc.ruledoc_name }}</a></li>
+                    <li><a href="{% url 'ruledoc' ruledoc.owner ruledoc.rule_slug %}">{{ ruledoc.ruledoc_name }}</a></li>
                 {% endif %}
             {% endfor %}
             </ul>
@@ -54,7 +54,7 @@
             {% for ruledoc in ruledoc_list %}
         {% get_obj_perms request.user for ruledoc as "ruledoc_perms" %}
         {% if user != ruledoc.owner and ruledoc.published and 'view_ruledoc' in ruledoc_perms %}    
-            <li><a href="{% url 'ruledoc' ruledoc.id %}">{{ ruledoc.ruledoc_name }}</a></li>
+            <li><a href="{% url 'ruledoc' ruledoc.owner ruledoc.rule_slug %}">{{ ruledoc.ruledoc_name }}</a></li>
         {% endif %}
     {% endfor %}
             </ul>

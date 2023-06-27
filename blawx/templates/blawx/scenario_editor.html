@@ -6,8 +6,8 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><i class="bi bi-house pe-2"></i><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' blawxtest.ruledoc.id %}">{{ blawxtest.ruledoc.ruledoc_name }}</a></li>
-        <li class="breadcrumb-item"><i class="bi bi-clipboard-check pe-2"></i><a href="{% url 'test' blawxtest.ruledoc.id blawxtest.test_name %}">{{ blawxtest.test_name }}</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-journal pe-2"></i><a href="{% url 'ruledoc' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug %}">{{ blawxtest.ruledoc.ruledoc_name }}</a></li>
+        <li class="breadcrumb-item"><i class="bi bi-clipboard-check pe-2"></i><a href="{% url 'test' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug blawxtest.test_name %}">{{ blawxtest.test_name }}</a></li>
         <li class="breadcrumb-item"><i class="bi bi-ui-checks pe-2"></i>Scenario Editor</li>
     </ul>
 </nav>
@@ -148,7 +148,7 @@
             }
             console.log("Ontology received");
         }
-        ontology_request.open("GET", "{% url 'test_onto' blawxtest.ruledoc.id blawxtest %}", false); // This is asynchronous because the interview request doesn't work until we have the ontology.
+        ontology_request.open("GET", "{% url 'test_onto' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug blawxtest %}", false); // This is asynchronous because the interview request doesn't work until we have the ontology.
         ontology_request.setRequestHeader('X-CSRFToken', csrftoken);
         ontology_request.send();
 
@@ -1634,7 +1634,7 @@
                     $('#nav-answers-tab').tab('show');
                 }
             }
-            testrun_request.open("POST", "{% url 'test_interview' blawxtest.ruledoc.id blawxtest %}");
+            testrun_request.open("POST", "{% url 'test_interview' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug blawxtest %}");
             testrun_request.setRequestHeader("Content-Type", "application/json");
             console.log("Sending test request");
             answer_element.innerHTML = "Thinking...";
@@ -1717,7 +1717,7 @@
             view_update_request.onload = function() {
                 console.log("Test Update Sent");
             }
-            view_update_request.open("POST", "{% url 'update_test_view' blawxtest.ruledoc.id blawxtest %}");
+            view_update_request.open("POST", "{% url 'update_test_view' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug blawxtest %}");
             view_update_request.setRequestHeader("Content-Type", "application/json");
             console.log("Sending test view update");
             view_update_request.setRequestHeader('X-CSRFToken', csrftoken);
@@ -1730,7 +1730,7 @@
             save_fact_request.onload = function() {
                 console.log("Fact Sceanrio Sent");
             }
-            save_fact_request.open("POST", "{% url 'save_fact_scenario' blawxtest.ruledoc.id blawxtest %}");
+            save_fact_request.open("POST", "{% url 'save_fact_scenario' blawxtest.ruledoc.owner blawxtest.ruledoc.rule_slug blawxtest %}");
             save_fact_request.setRequestHeader("Content-Type", "application/json");
             console.log("Sending Fact Update");
             save_fact_request.setRequestHeader('X-CSRFToken', csrftoken);

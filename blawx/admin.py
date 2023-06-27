@@ -9,7 +9,7 @@ class WorkspaceAdmin(GuardedModelAdmin):
     fields = ['ruledoc','workspace_name','xml_content','scasp_encoding']
 
 class RuleDocAdmin(GuardedModelAdmin):
-    fields = ['ruledoc_name','scasp_encoding','tutorial','akoma_ntoso','rule_text','navtree','owner','published']
+    fields = ['ruledoc_name','rule_slug','scasp_encoding','tutorial','akoma_ntoso','rule_text','navtree','owner','published']
 
 class BlawxTestAdmin(GuardedModelAdmin):
     fields = ['ruledoc','test_name','xml_content','scasp_encoding', 'tutorial', 'view', 'fact_scenario', 'agenda_code', 'agenda_yaml']
