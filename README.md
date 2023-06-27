@@ -4,14 +4,14 @@ A user-friendly web-based tool for Rules as Code written by Jason Morris of [Lex
 
 Blocks + law = Blawx
 
-![Blawx Front End Screenshot](blawx_v1.3.16-alpha_screenshot.png)
+![Blawx Front End Screenshot](blawx_v1.6.16-alpha_interface.png)
 
 ## Demonstration Video
 
-Click on the thumbnail below for a recent (but probably not 100% up to date)
+Click on the thumbnail below for a recent
 video demonstration of how Blawx is used.
 
-[![thumbnail](thumbnail.png)](https://youtu.be/d2sxlvU9hlo)
+[![thumbnail](thumbnail.png)](https://youtu.be/x5l4Ynfr4VU)
 
 ## Overview
 
@@ -44,25 +44,30 @@ It provides:
 * Publish Code as an API
 * Explainability
 * Hypothetical reasoning
-* Automatically-generated Expert Systems
+* User-friendly Scenario Explorer
 
-As of v1.3.16-alpha, Blawx is the only open source Rules as Code programming environment with
-automatic chatbot-style expert systems, explanations for answers, and hypothetical reasoning.
+Blawx is the only open source Rules as Code programming environment with
+a user-friendly scenario explorer, explanations for answers, and hypothetical reasoning.
 
 ## How Can I Try It?
-The easiest way to try Blawx is to go to [www.blawx.com](https://www.blawx.com). I try to keep a recent version running there for people to play with.
+The easiest way to try Blawx is to go to [dev.blawx.com](https://dev.blawx.com). I try to keep a recent version running there for people to play with.
 
 ## How do I Install It Myself?
-If you would like to try running Blawx locally, check out [INSTALL.md](INSTALL.md) for instructions.
+If you would like to try running Blawx locally, install docker for your platform, and then run
+```
+docker run lexpedite/blawx
+```
+Blawx will then be available at (http://localhost:8000)[http://localhost:8000].
+
+Check out [INSTALL.md](INSTALL.md) for more details.
 
 ## How Can I Learn More?
-Extensive documentation, including the Blawx Beginner's Guide and several examples, is available from inside the application
-by clicking "Help" in the coding interface. You can also view the [documentation on the live demo site](https://dev.blawx.com/docs).
+Extensive documentation is available from inside the application
+by clicking "Help" in the left navigation menu. You can also view the [documentation on the live demo site](https://dev.blawx.com/docs).
 
 ## Is this software production ready?
-No. Blawx is functional, but it is not production-quality software. It is a proof of concept that is intended to motivate
-investment in similar technologies in the future by demonstrating what they are capable of.
+No. Blawx is functional, but it is not production-quality software. It is intended for educational and experimental purposes.
 
 ## Contributions
-If you have issues or concerns with the package, please open an Issue here in the [GitHub Repository](https://github.com/Lexpedite/blawx).
+If you have issues or concerns with the package, please open an Issue in the [GitHub Repository](https://github.com/Lexpedite/blawx).
 Contributions to the code and documentation are welcome. Please contribute responsibly.
