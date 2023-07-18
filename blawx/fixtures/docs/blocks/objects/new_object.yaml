@@ -28,8 +28,17 @@
 
       The new object block asserts that the named object is in the category.
 
-      The text field must be the name of the object, which must not include spaces
-      and must start with a lower-case letter. Names for objects must also be unique.
+      The text field must be the name of the object. Names for objects must also be unique.
+
+      To be valid, an object name must
+
+      * contain only numbers, underscores, and letters
+      * begin with a lowercase letter
+      * not end in an underscore followed by only digits
+
+      The block will automatically remove leading and trailing spaces, convert spaces to underscores,
+      and convert an initial uppercase letter into lowercase. Other invalid values will be rejected, and
+      the value of the field will not be changed.
 
       The new object block is a statement, and can be stacked with other statements.
 

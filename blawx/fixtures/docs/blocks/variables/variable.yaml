@@ -23,8 +23,17 @@
 
       ## Technical Details
 
-      The variable block requires you to enter a variable name into the text field,
-      which must not include spaces and must start with a capital letter to be valid.
+      The variable block requires you to enter a variable name into the text field.
+
+      To be valid, a variable name must
+
+      * contain only numbers, underscores, and letters
+      * begin with an uppercase letter
+      * not end in an underscore followed by only digits
+
+      The block will automatically remove leading and trailing spaces, convert spaces to underscores,
+      and convert an initial lowercase letter into uppercase. Other invalid values will be rejected, and
+      the value of the field will not be changed.
 
       The variable block can be entered anywhere an object or a value is expected.
 

@@ -33,3 +33,13 @@
       ## Tips
 
       Names of relationships should be unique, but can safely overlap with other relationship that have a different number of objects and values.
+
+      To be valid, a relationship name must
+
+      * contain only numbers, underscores, and letters
+      * begin with a lowercase letter
+      * not end in an underscore followed by only digits
+
+      The block will automatically remove leading and trailing spaces, convert spaces to underscores,
+      and convert an initial uppercase letter into lowercase. Other invalid values will be rejected, and
+      the value of the field will not be changed.

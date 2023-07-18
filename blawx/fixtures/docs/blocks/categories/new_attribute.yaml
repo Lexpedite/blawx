@@ -22,8 +22,6 @@
       It accepts a category to which the attribute should be applied, specified in a dropdown,
       a name for the attribute specified in a text field, and an attribute type specified in a dropdown.
 
-      To be valid, an attribute name should start with a lowercase letter and not have any spaces.
-
       The datatype can be a scalar data type like "number", or another category.
 
       The block also accepts an order for how the attribute should be displayed in natural language,
@@ -38,6 +36,16 @@
 
 
       ## Tips
+
+      To be valid, an attribute name must
+
+      * contain only numbers, underscores, and letters
+      * begin with a lowercase letter
+      * not end in an underscore followed by only digits
+
+      The block will automatically remove leading and trailing spaces, convert spaces to underscores,
+      and convert an initial uppercase letter into lowercase. Other invalid values will be rejected, and
+      the value of the field will not be changed.
 
       Note that if you specify a data type as the attribute type your attribute selector blocks
       will only accept the correct type of value, and variables in the value position. If you choose
