@@ -113,7 +113,7 @@ def even_newer_json_2_scasp(payload,user,rule,testname):
               value_category = att['Type']
               break
           categories = [object_category,value_category]
-          parameters = [fact['object'],format_statement_value(fact['value'],value_category)]
+          parameters = [fact['object'],fact['value']]
         else:
           parameters = [fact['object']]
           for att in ontology['Attributes']:
@@ -1369,7 +1369,7 @@ def simplify_term(term):
   for a in term['args']:
     if type(a) == dict: # If the argument is a term, simplify it, too. Used to deal with negations, mostly.
       simplified['args'].append(simplify_term(a))
-    elif a[0].isupper(): #This is a variable.
+    elif type(a) == str and a[0].isupper(): #This is a variable.
       simplified['args'].append(replacements[r])
       r += 1
     else:

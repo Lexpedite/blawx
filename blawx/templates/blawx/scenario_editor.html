@@ -1026,7 +1026,7 @@
                 }
             }
             for(var r = 0; r < ontology['Relationships'].length; r++) {
-                if (!hidden_by_view.includes('view_rel_' + relationship_name)) {
+                if (!hidden_by_view.includes('view_rel_' + ontology['Relationships'][r]['Relationship'])) {
                     var relationship_name = ontology['Relationships'][r]['Relationship']
                     var arity = Object.keys(ontology['Relationships'][r]).length-1;
                     // Get type info

@@ -7,6 +7,16 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.18-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.18-alpha) 2023-07-20
+
+This release resolves three bugs in the scenario editor.
+
+### Fixed
+* Issue [#543](https://github.com/Lexpedite/blawx/issues/543)
+* Issue [#449](https://github.com/Lexpedite/blawx/issues/449)
+* Issue [#561](https://github.com/Lexpedite/blawx/issues/561)
+
+
 ## [v1.6.17-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.17-alpha) 2023-07-18
 
 This release adds validation for category names, attribute names, object names, relationship names, and variable names.
