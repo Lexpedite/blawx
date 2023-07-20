@@ -113,7 +113,7 @@ def even_newer_json_2_scasp(payload,user,rule,testname):
               value_category = att['Type']
               break
           categories = [object_category,value_category]
-          parameters = [fact['object'],format_statement_value(fact['value'],value_category)]
+          parameters = [fact['object'],fact['value']]
         else:
           parameters = [fact['object']]
           for att in ontology['Attributes']:
