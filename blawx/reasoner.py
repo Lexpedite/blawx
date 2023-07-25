@@ -939,64 +939,65 @@ blawxrun(Query, Human) :-
                     attribute_name = att['Variables']['Attribute']
                     try:
                       att_query_response = swipl_thread.query("blawxrun(" + attribute_name + "(Object,Value),Human).")
+                    
+                      transcript.write(str(att_query_response) + '\n')
+                      att_query_answers = generate_answers(att_query_response)
+                      for answer in att_query_answers:
+                        object_name = answer['Variables']['Object']
+                        value = answer['Variables']['Value']
+                        skip_value_variable_check = False
+                        # Right now, this returns a variable name as a value. It's not clear if this is something that
+                        # SHOULD be included in the data, and filtered out at the front end, making the API more complicated,
+                        # or if it should be filtered out here, simplifying the API, but making it impossible to know that
+                        # the generic statement has been made. For now, I will remove it at the API level.
+                        # Note that we are excluding partially and fully unground statements.
+                        # I think that converting the value to a string should work for everything, but it
+                        # is added specifically to deal with numbers.
+                        # I need to check and see if the thing is a date, and if it is, convert it to JSON format.
+                        if type(value) == dict and 'functor' in value:
+                          if value['functor'] == 'date':
+                            date = datetime.fromtimestamp(value['args'][0])
+                            value = date.date().isoformat()
+                          elif value['functor'] == 'time':
+                            time = time(value['args'][0],value['args'][1])
+                            value = time.isoformat(timespec='minutes')
+                          elif value['functor'] == 'datetime':
+                            date = datetime.fromtimestamp(value['args'][0])
+                            value = date.isoformat(timespec='minutes')
+                          elif value['functor'] == 'duration':
+                            timestamp = value['args'][0]
+                            if timestamp < 0:
+                              new_value = "-P"
+                              timestamp = timestamp * -1
+                            else:
+                              new_value = "P"
+                              skip_value_variable_check = True #It starts with a capital P, but it is not a variable.
+                            days = timestamp // 86400
+                            timestamp_less_days = timestamp - days*86400
+                            if days:
+                              new_value += str(days) + "D"
+                            if timestamp_less_days:
+                              new_value += "T"
+                              hours = timestamp_less_days // 3600
+                              timestamp_less_hours = timestamp_less_days - hours*3600
+                              if hours:
+                                new_value += str(hours) + "H"
+                              minutes = timestamp_less_hours // 60
+                              seconds = timestamp_less_hours - minutes*60
+                              if minutes:
+                                new_value += str(minutes) + "M"
+                              if seconds:
+                                new_value += str(seconds) + "S"
+                            value = new_value
+                        # matches = re.findall(r"^date\((\d{4}),(\d{2}),(\d{2})\)$", str(value), re.MULTILINE)
+                        # if len(matches):
+                        #   (year,month,day) = matches[0]
+                        #   value = str(year) + '-' + str(month) + '-' + str(day)
+                        if not re.search(r"^[A-Z_]\w*",object_name) and (skip_value_variable_check or not re.search(r"^[A-Z_]\w*",str(value))):
+                          value_query_answers.append({"Attribute": attribute_name, "Object": object_name, "Value": value})
                     except PrologError as err:
                       if err.prolog().startswith('existence_error'):
                         continue
-                    transcript.write(str(att_query_response) + '\n')
-                    att_query_answers = generate_answers(att_query_response)
-                    for answer in att_query_answers:
-                      object_name = answer['Variables']['Object']
-                      value = answer['Variables']['Value']
-                      skip_value_variable_check = False
-                      # Right now, this returns a variable name as a value. It's not clear if this is something that
-                      # SHOULD be included in the data, and filtered out at the front end, making the API more complicated,
-                      # or if it should be filtered out here, simplifying the API, but making it impossible to know that
-                      # the generic statement has been made. For now, I will remove it at the API level.
-                      # Note that we are excluding partially and fully unground statements.
-                      # I think that converting the value to a string should work for everything, but it
-                      # is added specifically to deal with numbers.
-                      # I need to check and see if the thing is a date, and if it is, convert it to JSON format.
-                      if type(value) == dict and 'functor' in value:
-                        if value['functor'] == 'date':
-                          date = datetime.fromtimestamp(value['args'][0])
-                          value = date.date().isoformat()
-                        elif value['functor'] == 'time':
-                          time = time(value['args'][0],value['args'][1])
-                          value = time.isoformat(timespec='minutes')
-                        elif value['functor'] == 'datetime':
-                          date = datetime.fromtimestamp(value['args'][0])
-                          value = date.isoformat(timespec='minutes')
-                        elif value['functor'] == 'duration':
-                          timestamp = value['args'][0]
-                          if timestamp < 0:
-                            new_value = "-P"
-                            timestamp = timestamp * -1
-                          else:
-                            new_value = "P"
-                            skip_value_variable_check = True #It starts with a capital P, but it is not a variable.
-                          days = timestamp // 86400
-                          timestamp_less_days = timestamp - days*86400
-                          if days:
-                            new_value += str(days) + "D"
-                          if timestamp_less_days:
-                            new_value += "T"
-                            hours = timestamp_less_days // 3600
-                            timestamp_less_hours = timestamp_less_days - hours*3600
-                            if hours:
-                              new_value += str(hours) + "H"
-                            minutes = timestamp_less_hours // 60
-                            seconds = timestamp_less_hours - minutes*60
-                            if minutes:
-                              new_value += str(minutes) + "M"
-                            if seconds:
-                              new_value += str(seconds) + "S"
-                          value = new_value
-                      # matches = re.findall(r"^date\((\d{4}),(\d{2}),(\d{2})\)$", str(value), re.MULTILINE)
-                      # if len(matches):
-                      #   (year,month,day) = matches[0]
-                      #   value = str(year) + '-' + str(month) + '-' + str(day)
-                      if not re.search(r"^[A-Z_]\w*",object_name) and (skip_value_variable_check or not re.search(r"^[A-Z_]\w*",str(value))):
-                        value_query_answers.append({"Attribute": attribute_name, "Object": object_name, "Value": value})
 
               transcript.close()
               transcript = open(transcript_name,'r')

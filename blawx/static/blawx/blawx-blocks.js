@@ -5606,7 +5606,7 @@ function updateLocalCategories() {
 }
 
 function updateDropDownOptions(ddfield,options) {
-  var selected = ddfield.selectedOption_
+  var selected = ddfield.selectedOption
   ddfield.menuGenerator_ = options;
   if (!optionInList(selected,options)) {
     ddfield.setValue(options[0][1]);
@@ -5614,9 +5614,11 @@ function updateDropDownOptions(ddfield,options) {
 }
 
 function optionInList(option,list) {
-  for (var i = 0; i < list.length; i++) {
-    if (option[0] == list[i][0] && option[1] == list[i][1]) {
-      return true;
+  if (list.length) {
+    for (var i = 0; i < list.length; i++) {
+      if (option[0] == list[i][0] && option[1] == list[i][1]) {
+        return true;
+      }
     }
   }
   return false;
