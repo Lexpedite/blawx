@@ -7,6 +7,22 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.19-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.19-alpha) 2023-07-27
+
+This release includes bug-fixes.
+
+**NB**: This release incorporates a change to the Blockly API that was implemented in Blockly 10.
+In order to ensure that this release works properly, when building the image you may need to use the
+`--no-cache` flag on the `docker build` command to ensure docker uses the latest version of the Blockly library.
+See INSTALL.md for details. If you are having difficulties, inside the rule editor run `Blockly.VERSION` in the browser console.
+The version should be 10.0.0 or later.
+
+### Fixes
+* Crash in scenario editor on ontology endpoint for certain code
+* Errors setting value in dropdown (caused by changes to Blockly)
+* Issue [#563](https://github.com/Lexpedite/blawx/issues/563), files owned by Admin were not working properly
+* Issue [#562](https://github.com/Lexpedite/blawx/issues/562), reasoner incorrectly formats section references
+
 ## [v1.6.18-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.18-alpha) 2023-07-20
 
 This release resolves three bugs in the scenario editor.
