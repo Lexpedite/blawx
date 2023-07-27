@@ -88,7 +88,7 @@ function formatDates(text) {
 
 function addSectionReferences(text) {
     // Search the string for the list of section references
-    var match = text.match(/according to (sec_.*)_section/);
+    var match = text.match(/according to (sec_.*?)_section/);
     var rule_text = "This will be the text of the act."
     if (match) {
         var eId = match[1];
@@ -101,7 +101,7 @@ function addSectionReferences(text) {
         text = text.replace("according to " + eId + "_section",
         'according to <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="' + rule_text + '">' + eId + '</a>')
     }
-    var new_text = text.replace(/(sec_.*)_section/g,"$1");
+    var new_text = text.replace(/(sec_.*?)_section/g,"$1");
     new_text = new_text.replace(/sec_/g,"section ");
     new_text = new_text.replace(/__subsec_/g," subsection ");
     new_text = new_text.replace(/__para_/g," paragraph ");
