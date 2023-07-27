@@ -924,16 +924,16 @@ blawxrun(Query, Human) :-
                     category_name = cat['Variables']['Category']
                     try:
                       cat_query_response = swipl_thread.query("blawxrun(" + category_name + "(Object),Human).")
+                      transcript.write(str(cat_query_response) + '\n')
+                      cat_query_answers = generate_answers(cat_query_response)
+                      for answer in cat_query_answers:
+                        object_name = answer['Variables']['Object']
+                        # Do not add variables as objects
+                        if not re.search(r"^[A-Z_]\w*",object_name):
+                          object_query_answers.append({"Category": category_name, "Object": object_name})
                     except PrologError as err:
                       if err.prolog().startswith('existence_error'):
                         continue
-                    transcript.write(str(cat_query_response) + '\n')
-                    cat_query_answers = generate_answers(cat_query_response)
-                    for answer in cat_query_answers:
-                      object_name = answer['Variables']['Object']
-                      # Do not add variables as objects
-                      if not re.search(r"^[A-Z_]\w*",object_name):
-                        object_query_answers.append({"Category": category_name, "Object": object_name})
                   value_query_answers = []
                   for att in query2_answers:
                     attribute_name = att['Variables']['Attribute']
