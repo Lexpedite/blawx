@@ -5291,9 +5291,36 @@ scasp_blockset = [{
   "helpUrl": "/docs/blocks/agenda_phase"
 }]
 
+Blockly.Extensions.register('variable_name_validator',
+  function() {
+    var field = this.getField('variable_name');
+    field.setValidator(validate_variable);
+  }
+)
+
+Blockly.Extensions.register('category_name_validator',
+  function() {
+    var field = this.getField('category_name');
+    field.setValidator(validate_predicate);
+  }
+)
+
+Blockly.Extensions.register('object_name_validator',
+  function() {
+    var field = this.getField('object_name');
+    field.setValidator(validate_predicate);
+  }
+)
+
 // TODO: A bunch of these things below are redundant as the blocks are being removed.
 // Make modifications that it is not possible to make in the Developer Tools
 for (var i = 0; i < scasp_blockset.length; i++) {
+  if (scasp_blockset[i].type == "new_category_declaration") {
+    scasp_blockset[i]['extensions'] = ['category_name_validator'];
+  }
+  if (scasp_blockset[i].type == "variable") {
+    scasp_blockset[i]['extensions'] = ['variable_name_validator'];
+  }
   if (scasp_blockset[i].type == "attribute_selector") {
     scasp_blockset[i]['mutator'] = "attribute_selector_mutator"
   };
@@ -5328,6 +5355,7 @@ for (var i = 0; i < scasp_blockset.length; i++) {
   }
   if (scasp_blockset[i].type == "object_declaration") {
     scasp_blockset[i]['mutator'] = "object_declaration_mutator";
+    scasp_blockset[i]['extensions'] = ['object_name_validator'];
   };
   // if (scasp_blockset[i].type == "category_display") {
   //   scasp_blockset[i]['extensions'] = ['changeCategoryDisplayText'];
@@ -5356,10 +5384,46 @@ for (var i = 0; i < scasp_blockset.length; i++) {
 
 var headless=false;
 
+function validate_predicate(predicate_name) {
+  // make sure the first letter is a letter
+  if (predicate_name[0].toLowerCase().search(/[a-z]/) == 0) {
+    // make sure it does not end in a _ followed by digits
+    if (predicate_name.replaceAll(' ','_').search(/_\d+$/) == -1) {
+      // make sure all the characters are letters, numbers, or spaces
+      if (predicate_name.search(/^[\w ]*$/) != -1) {
+        // trim leading and trailing spaces, replace other spaces with underscores, and lowercase
+        var output = predicate_name[0].toLowerCase()
+        output += predicate_name.slice(1).trim().replaceAll(' ','_')
+        return output;
+      }
+    }
+  }
+  // the first character is not a letter, or it contains symbols, or it ends in an _# pattern.
+  return null;
+}
+
+function validate_variable(variable_name) {
+  // make sure the first letter is a letter
+  if (variable_name[0].toUpperCase().search(/[A-Z]/) == 0) {
+    // make sure it does not end in a _ followed by digits
+    if (variable_name.replaceAll(' ','_').search(/_\d+$/) == -1) {
+      // make sure all the characters are letters, numbers, or spaces
+      if (variable_name.search(/^[\w ]*$/) != -1) {
+        // trim leading and trailing spaces, replace other spaces with underscores, and uppercase the first letter
+        var output = variable_name[0].toUpperCase()
+        output += variable_name.slice(1).trim().replaceAll(' ','_')
+        return output;
+      }
+    }
+  }
+  // the first character is not a letter, or it contains symbols, or it ends in an _# pattern.
+  return null;
+}
+
 Blockly.Blocks['relationship_declaration'] = {
   init: function() {
     this.appendDummyInput("topline")
-      .appendField(new Blockly.FieldTextInput("relationship_name"), "relationship_name")
+      .appendField(new Blockly.FieldTextInput("relationship_name",validate_predicate), "relationship_name")
       .appendField("is a relationship between")
       .appendField(new Blockly.FieldDropdown([["3","3"],["4","4"],["5","5"],["6","6"],["7","7"],["8","8"],["9","9"],["10","10"]]), "relationship_arity")
       .appendField("objects or values, displayed as");
@@ -5477,7 +5541,7 @@ Blockly.Blocks['new_attribute_declaration'] = {
         .appendField("The category")
         .appendField(new Blockly.FieldDropdown([['no categories defined','none']]),"category_name")
         .appendField("has an attribute")
-        .appendField(new Blockly.FieldTextInput("attribute name"), "attribute_name");
+        .appendField(new Blockly.FieldTextInput("attribute name",validate_predicate), "attribute_name");
     this.appendDummyInput()
         .appendField("which is of type")
         .appendField(new Blockly.FieldDropdown([["true / false","boolean"], ["number","number"], ["date","date"], ["time","time"], ["datetime","datetime"], ["duration","duration"], ['list','list']]),"attribute_type")
@@ -5713,7 +5777,7 @@ function updateLocalCategories() {
 }
 
 function updateDropDownOptions(ddfield,options) {
-  var selected = ddfield.selectedOption_
+  var selected = ddfield.selectedOption
   ddfield.menuGenerator_ = options;
   if (!optionInList(selected,options)) {
     ddfield.setValue(options[0][1]);
@@ -5721,9 +5785,11 @@ function updateDropDownOptions(ddfield,options) {
 }
 
 function optionInList(option,list) {
-  for (var i = 0; i < list.length; i++) {
-    if (option[0] == list[i][0] && option[1] == list[i][1]) {
-      return true;
+  if (list.length) {
+    for (var i = 0; i < list.length; i++) {
+      if (option[0] == list[i][0] && option[1] == list[i][1]) {
+        return true;
+      }
     }
   }
   return false;

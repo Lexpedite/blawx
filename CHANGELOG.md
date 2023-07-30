@@ -33,6 +33,52 @@ and breaking changes will not necessarily result in changes to the main version 
   * add block pages for agenda blocks
 * go from there
 
+## [v1.6.19-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.19-alpha) 2023-07-27
+
+This release includes bug-fixes.
+
+**NB**: This release incorporates a change to the Blockly API that was implemented in Blockly 10.
+In order to ensure that this release works properly, when building the image you may need to use the
+`--no-cache` flag on the `docker build` command to ensure docker uses the latest version of the Blockly library.
+See INSTALL.md for details. If you are having difficulties, inside the rule editor run `Blockly.VERSION` in the browser console.
+The version should be 10.0.0 or later.
+
+### Fixes
+* Crash in scenario editor on ontology endpoint for certain code
+* Errors setting value in dropdown (caused by changes to Blockly)
+* Issue [#563](https://github.com/Lexpedite/blawx/issues/563), files owned by Admin were not working properly
+* Issue [#562](https://github.com/Lexpedite/blawx/issues/562), reasoner incorrectly formats section references
+
+## [v1.6.18-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.18-alpha) 2023-07-20
+
+This release resolves three bugs in the scenario editor.
+
+### Fixed
+* Issue [#543](https://github.com/Lexpedite/blawx/issues/543)
+* Issue [#449](https://github.com/Lexpedite/blawx/issues/449)
+* Issue [#561](https://github.com/Lexpedite/blawx/issues/561)
+
+
+## [v1.6.17-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.17-alpha) 2023-07-18
+
+This release adds validation for category names, attribute names, object names, relationship names, and variable names.
+The corresponding blocks will now convert invalid names to valid names where possible, and will reject names that they
+cannot convert.
+
+This version is reverse compatible with .blawx files from previous versions. However, invalid names will be either corrected
+if possible, or if not possible to correct will be replaced with the default value for the relevant field. This may have unexpected
+effects in encodings with invalid field values.
+
+### Changed
+* New Relationship, New Category, New Attribute, New Object, and Variable blocks now validate and correct
+  names as follows:
+  * first letters will be corrected to uppercase for variables and lowercase for all others
+  * spaces at the start and end will be removed
+  * spaces elsewhere will be converted to underscores
+  * names with symbols other than letters, numerals, underscore, and space will be rejected
+  * names that end in an underscore followed by numerals will be rejected
+* Documentation has been updated to reflect the new behaviour.
+
 ## [v1.6.16-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.16-alpha) 2023-06-26
 
 `.blawx` files created in previous versions will work with this version, but **please note that the majority of URLs are now different**.

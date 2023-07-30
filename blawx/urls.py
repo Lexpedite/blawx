@@ -6,7 +6,6 @@ from .models import RuleDoc
 
 app_name = 'blawx'
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')), # The following 4 lines override four addresses with additional context data
     path('accounts/login', LoginView.as_view(extra_context={'ruledoc_list': RuleDoc.objects.all()}),name="login"),
     path('accounts/logout', LogoutView.as_view(extra_context={'ruledoc_list': RuleDoc.objects.all()}),name="logout"),
@@ -43,4 +42,5 @@ urlpatterns = [
     path("register/", views.register_request, name="register"),
     path("version/",views.version,name="version"),
     path("simplify/",simplifier.simplify, name="simplify"),
+    path('admin/', admin.site.urls),
 ]

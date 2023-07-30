@@ -59,7 +59,12 @@
       the name of the variable, but you can use any other name you like.
 
       **Note that
-      variable names should not include spaces, and must start with a capital letter.**
+      variable names should include only letters, numerals, and underscores, must start with a capital letter, and must not end
+      in an underscore followed by numerals.**
+
+      The variable block will automatically remove leading and trailing spaces, convert spaces to underscores,
+      and convert an initial lowercase letter into uppercase. Other invalid variable names will be rejected, and
+      the variable name will not be changed.
 
       ### Variables in Rule Conclusions
 
@@ -147,7 +152,7 @@
       A named variable is the only kind of variable that will cause Blawx to give you the specific
       value in response to a question, outside of the explanation.
 
-      A variable should start with a capital letter, and have no spaces.
+      See above for the rules on what counts as a valid variable name.
 
       ### Unnamed Variables
 
