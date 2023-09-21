@@ -7,6 +7,13 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.20-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.20-alpha) 2023-09-21
+
+This release is backwards compatible with v1.6.19-alpha.
+
+### Fixes
+* Applies Blocks cause slow-downs in code speed.
+
 ## [v1.6.19-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.19-alpha) 2023-07-27
 
 This release includes bug-fixes.
