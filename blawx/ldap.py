@@ -9,6 +9,4 @@ ldap_code = """
 #pred according_to(X,-blawx_applies,Y,Z) :: 'according to @(X) it is not the case that @(Y) applies to @(Z)'.
 #pred defeated(X,blawx_applies,Y,Z) :: 'the conclusion in @(X) that @(Y) applies to @(Z) is defeated'.
 #pred defeated(X,-blawx_applies,Y,Z) :: 'the conclusion in @(X) that it is not the case that @(Y) applies to @(Z) is defeated'.
--blawx_applies(X,Y) :- holds(_,-blawx_applies,X,Y).
-blawx_applies(X,Y) :- holds(_,blawx_applies,X,Y).
 """
