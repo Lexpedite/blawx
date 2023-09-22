@@ -33,6 +33,11 @@ and breaking changes will not necessarily result in changes to the main version 
   * add block pages for agenda blocks
 * go from there
 
+## [v1.6.21-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.21-alpha) 2023-09-21
+
+### Fixes
+* Attributed rules subject to applicability with multiple category checks were slowing the code.
+
 ## [v1.6.20-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.20-alpha) 2023-09-21
 
 This release is backwards compatible with v1.6.19-alpha.
