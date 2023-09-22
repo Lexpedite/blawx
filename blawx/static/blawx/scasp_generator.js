@@ -1176,18 +1176,6 @@ sCASP['attributed_rule'] = function(block) {
     // IF the user has said defeasible, the second rule checks for defeats.
     // In order to check for defeats, we just need the conclusion, so that's fine. But to check for applicability,
     // we need the list of objects whose categories have been tested in the conditions.
-    var applicable_targets = [];
-    if (checkbox_inapplicable) {
-        // So get the next block from the conditions connector, check if it is an object category block, if so add
-        // to the list of categories, repeat until there is no next block.
-        var statement = this.getInputTargetBlock('conditions');
-        while(statement) {
-            if (statement.type == "new_object_category") {
-                applicable_targets.push(sCASP.valueToCode(statement,'object', sCASP.ORDER_ATOMIC));
-            }
-            statement = statement.getNextBlock();
-        }
-    }
     var first_rule = "according_to(" + value_source + ",";
     var conclusion_parameters = deconstruct_term(statements_conclusion);
     for (var i = 0; i< conclusion_parameters.length; i++) {
@@ -1197,16 +1185,15 @@ sCASP['attributed_rule'] = function(block) {
         }
     }
     first_rule += ") :- ";
-    if (checkbox_inapplicable) {
-        for(var t=0; t < applicable_targets.length; t++) {
-            first_rule += "blawx_applies(" + value_source + "," + applicable_targets[t].trim() + "),\n";
-        }
-    }
     currentBlock = this.getInputTargetBlock('conditions');
     while (currentBlock) {
         var codeForBlock = getCodeForSingleBlock(currentBlock);
-        currentBlock = currentBlock.getNextBlock();
+        if (currentBlock.type == "new_object_category" && checkbox_inapplicable) {
+            var target = sCASP.valueToCode(currentBlock,'object', sCASP.ORDER_ATOMIC)
+            codeForBlock += ",\nblawx_applies(" + value_source + "," + target.trim() + ")";
+        }        
         first_rule += codeForBlock;
+        currentBlock = currentBlock.getNextBlock();
         if (currentBlock) {
             first_rule += ",\n";
         }
