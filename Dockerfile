@@ -2,7 +2,10 @@ FROM swipl:latest as prolog
 
 FROM python:latest
 
+
 ENV DEBIAN_FRONTEND=noninteractive
+
+RUN pip install --upgrade pip
 
 RUN apt-get -y update
 
