@@ -7,6 +7,11 @@ As of v0.2-alpha, this project is attempting to adhere to [Semantic Versioning](
 While alpha, however, any version may include breaking changes that may not be specifically noted as such,
 and breaking changes will not necessarily result in changes to the main version number.
 
+## [v1.6.22-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.22-alpha) 2023-10-18
+
+### Fixes
+* Fresh installs were failing due to dependency issues.
+
 ## [v1.6.21-alpha](https://github.com/Lexpedite/blawx/releases/tag/v1.6.21-alpha) 2023-09-21
 
 ### Fixes

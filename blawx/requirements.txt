@@ -7,4 +7,5 @@ clean-law >=0.0.4
 django-guardian
 django-preferences
 django-cors-headers
+aiohttp >= 3.9.0b0
 openai
