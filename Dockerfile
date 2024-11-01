@@ -1,7 +1,6 @@
 FROM swipl:latest as prolog
 
-FROM python:latest
-
+FROM python:3.10
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -16,7 +15,14 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends \
 	git \
 	npm \
-	libtcmalloc-minimal4
+	libtcmalloc-minimal4 \
+	libarchive13 \
+	libxml2-dev \
+	libxslt1-dev \
+	gcc \
+	wget \
+	unzip 
+
 
 WORKDIR /app
 
