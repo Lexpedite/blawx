@@ -54,7 +54,11 @@ RUN mkdir blawx/blawx/static/blawx/fonts
 
 # RUN git clone https://github.com/google/blockly --branch develop blawx/blawx/static/blawx/blockly 
 
-RUN npm install blockly
+# NOTE: currently Blawx blocks works only blockly < 11.0
+# update to the latest version after the deprecation warning below is resolved
+#
+# block generator functions on CodeGenerator objects was deprecated in 10.0 and will be deleted in 11.0. Use the .forBlock[blockType] dictionary instead.
+RUN npm install blockly@10.1.3
 
 RUN mv ./node_modules/blockly /app/blawx/blawx/static/blawx
 
