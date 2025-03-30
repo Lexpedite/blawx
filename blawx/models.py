@@ -2,6 +2,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 from .parse_an import generate_tree
 from cobalt.hierarchical import Act
 from clean.clean import generate_akn
@@ -54,7 +55,8 @@ class Workspace(models.Model):
 
 class BlawxTest(models.Model):
     ruledoc = models.ForeignKey(RuleDoc, related_name='tests', on_delete=models.CASCADE)
-    test_name = models.CharField(max_length=200)
+    validate_test_name = RegexValidator(regex="^[-a-zA-Z0-9_]+$",message="Test names cannot have spaces or special characters.")
+    test_name = models.CharField(max_length=200,validators=[validate_test_name])
     xml_content = models.TextField(default="",blank=True)
     scasp_encoding = models.TextField(default="",blank=True)
     tutorial = models.TextField(default="",blank=True)
